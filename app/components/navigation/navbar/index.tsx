@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useRef, useEffect } from 'react';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import MenuSVG from "./MenuSVG";
@@ -11,6 +12,26 @@ import styles from "./index.module.css";
 gsap.registerPlugin(useGSAP);
 
 const Navbar = (/* { toggle }: { toggle: () => void } */) => {
+  /* const router = useRouter();
+  const aniStart = () => {
+    console.log("Animation Start");
+  };
+  const aniEnd = () => {
+    console.log("Animation End");
+  };
+  useEffect(() => {
+    router.events.on("routeChangeStart", aniStart);
+    router.events.on("routeChangeComplete", aniEnd);
+    router.events.on("routeChangeError", aniEnd);
+
+    return () => {
+      router.events.off("routeChangeStart", aniStart);
+      router.events.off("routeChangeComplete", aniEnd);
+      router.events.off("routeChangeError", aniEnd);
+    };
+  }, [router]); */
+
+
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
   useEffect(() => {
@@ -139,24 +160,58 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   <div id="dropdown1" className="dropdown">
                     <ul role="menu1">
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="home" data-link="#home">Home</a>
+                          <a
+                            href="/#home"
+                            data-page="/"
+                            data-link="#home"
+                            className="dropdown-link">
+                            Home
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="home" data-link="#homeFeatures">Features</a>
+                          <a
+                            href="/#homeFeatures"
+                            data-page="/"
+                            data-link="#homeFeatures"
+                            className="dropdown-link">
+                            Features
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="home" data-link="#homeBenefits">Benefits for everyone else</a>
+                          <a
+                            href="/#homeBenefits"
+                            data-page="/"
+                            data-link="#homeBenefits"
+                            className="dropdown-link">
+                            Benefits for everyone
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="home" data-link="#homeOurmission">Our Mission</a>
+                          <a
+                            href="/#homeOurmission"
+                            data-page="/"
+                            data-link="#homeOurmission"
+                            className="dropdown-link">
+                            Our Mission
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="home" data-link="#homeFAQSupport">FAQs/Support</a>
+                          <a
+                            href="/#homeFAQSupport"
+                            data-page="/"
+                            data-link="#homeFAQSupport"
+                            className="dropdown-link">
+                            FAQs/Support
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <Link href="/#homeContactUs" passHref legacyBehavior>
-                          <a className="dropdown-link" data-page="home" data-link="#homeContactUs">Contact Us</a>
-                        </Link>
+                          <a
+                            href="/#homeContactUs"
+                            data-page="/"
+                            data-link="#homeContactUs"
+                            className="dropdown-link">
+                            Contact Us
+                          </a>
                       </li>
                     </ul>
                   </div>
@@ -173,29 +228,49 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <span className="dropdown-link-title">MMAPP for...</span>
                       </li> */}
                       <li role="menuitem">
-                        <Link href="/company#companyVision" passHref legacyBehavior>
-                          <a className="dropdown-link" data-page="/company" data-link="#companyVision">Vision</a>
-                        </Link>
+                          <a
+                            href="/company#companyVision"
+                            data-page="/company"
+                            data-link="#companyVision"
+                            className="dropdown-link">
+                            Vision
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <Link href="/company#companyVision" passHref legacyBehavior>
-                          <a className="dropdown-link" data-page="/company" data-link="#companyMission">Mission</a>
-                        </Link>
+                          <a
+                            href="/company#companyMission"
+                            data-page="/company"
+                            data-link="#companyMission"
+                            className="dropdown-link">
+                            Mission
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <Link href="/company#companyCoreValues" passHref legacyBehavior>
-                          <a className="dropdown-link" data-page="/company" data-link="#companyCoreValues">Core Values</a>
-                        </Link>
+                          <a
+                            href="/company#companyCoreValues"
+                            data-page="/company"
+                            data-link="#companyCoreValues"
+                            className="dropdown-link">
+                            Core Values
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <Link href="/company" passHref legacyBehavior>
-                          <a className="dropdown-link" data-page="/company"  data-link="#companySecurityCompliance">Security & Compliance</a>
-                        </Link>
+                          <a
+                            href="/company#companySecurityCompliance"
+                            data-page="/company"
+                            data-link="#companySecurityCompliance"
+                            className="dropdown-link">
+                            Security & Compliance
+                          </a>
                       </li>
                       <li role="menuitem">
-                        <Link href="/company/#companyPolicies" scroll={false} className="dropdown-link">
-                          {/* <a className="dropdown-link" data-page="company" data-link="#companyPolicies"> */}Policies{/* </a> */}
-                        </Link>
+                          <a
+                            href="/company#companyPolicies"
+                            data-page="/company"
+                            data-link="#companyPolicies"
+                            className="dropdown-link">
+                            Policies
+                          </a>
                       </li>
                     </ul>
                   </div>
@@ -210,13 +285,31 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   <div id="dropdown3" className="dropdown">
                     <ul role="menu3">
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="product" data-link="#productFeatures">Features</a>
+                        <a
+                          href="/product#productFeatures"
+                          data-page="/product"
+                          data-link="#productFeatures"
+                          className="dropdown-link">
+                          Features
+                        </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="product" data-link="#productBenefits">Benefits</a>
+                        <a
+                          href="/product#productBenefits"
+                          data-page="/product"
+                          data-link="#productBenefits"
+                          className="dropdown-link">
+                          Benefits
+                        </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="product" data-link="#productContactUs">Contact Us</a>
+                        <a
+                          href="/product#productContactUs"
+                          data-page="/product"
+                          data-link="#productContactUs"
+                          className="dropdown-link">
+                          Contact Us
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -224,16 +317,27 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 <li>
                   <button className="nav-link dropdown-btn" data-dropdown="dropdown4" aria-haspopup="true" aria-expanded="false" aria-label="Contact">
                     Contact
-                    {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                     <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown4" className="dropdown">
                     <ul role="menu4">
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="contact" data-link="#contactContactUs">Contact Us</a>
+                        <a
+                          href="/contact#contactContactUs"
+                          data-page="/contact"
+                          data-link="#contactContactUs"
+                          className="dropdown-link">
+                          Contact Us
+                        </a>
                       </li>
                       <li role="menuitem">
-                        <a className="dropdown-link" data-page="contact" data-link="#contactFAQSupport">FAQs/Support</a>
+                        <a
+                          href="/contact#contactFAQSupport"
+                          data-page="/contact"
+                          data-link="#contactFAQSupport"
+                          className="dropdown-link">
+                          FAQs/Support
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -252,12 +356,16 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               {/* <a href="#profile">
                 <img src="https://???" width="30" height="30" alt="user image" />
               </a> */}
-              <button className="btn btn-primary login-link"><a href="#">Login</a></button>
+              <button className="btn btn-primary login-link">
+                <a href="#">Login</a>
+              </button>
             </div>
 
             <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
               {/* <i className="bx bx-menu" aria-hidden="true"></i> */}
-              <div className={styles.menuSVG}><MenuSVG aria-hidden="true"/></div>
+              <div className={styles.menuSVG}>
+                <MenuSVG aria-hidden="true"/>
+              </div>
             </button>
           </div>
         </div>
