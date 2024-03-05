@@ -4,7 +4,7 @@ const Contacts = () => {
   return (
     <>
       <div id="ContactUs" className="content-spacer">
-        <h2>contactContactUs</h2>
+        <h2>ContactUs</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
         <h4>Visual Reports with Actionable Insights</h4>
@@ -14,7 +14,7 @@ const Contacts = () => {
         <br/>
       </div>
       <div id="FAQSupport" className="content-spacer">
-        <h2>contactFAQSupport</h2>
+        <h2>FAQ Support</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
         <h4>Visual Reports with Actionable Insights</h4>

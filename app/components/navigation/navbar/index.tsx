@@ -82,6 +82,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        e.stopPropagation();
         closeDropdownMenu();
         setAriaExpandedFalse();
         toggleHamburger();
