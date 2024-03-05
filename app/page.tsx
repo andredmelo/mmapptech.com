@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <>
-      <div id="Home" className="" height="100">
+      <div id="Home" className="">
         <div className="homeBackground">
           <img src="/images/33498201.webp" alt="Fighters getting ready to fight"/>
         </div>
