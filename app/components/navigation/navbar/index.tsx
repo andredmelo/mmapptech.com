@@ -13,26 +13,7 @@ import styles from "./index.module.css";
 gsap.registerPlugin(useGSAP);
 
 const Navbar = (/* { toggle }: { toggle: () => void } */) => {
-  /* const router = useRouter();
-  const aniStart = () => {
-    console.log("Animation Start");
-  };
-  const aniEnd = () => {
-    console.log("Animation End");
-  };
-  useEffect(() => {
-    router.events.on("routeChangeStart", aniStart);
-    router.events.on("routeChangeComplete", aniEnd);
-    router.events.on("routeChangeError", aniEnd);
-
-    return () => {
-      router.events.off("routeChangeStart", aniStart);
-      router.events.off("routeChangeComplete", aniEnd);
-      router.events.off("routeChangeError", aniEnd);
-    };
-  }, [router]); */
-
-
+  
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
   useEffect(() => {
@@ -99,7 +80,8 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     
     // close dropdown menu when the dropdown links are clicked
     links.forEach((link) =>
-      link.addEventListener("click", () => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
         closeDropdownMenu();
         setAriaExpandedFalse();
         toggleHamburger();
