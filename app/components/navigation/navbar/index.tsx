@@ -79,7 +79,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     });
     
     // close dropdown menu when the dropdown links are clicked
-    links.forEach((link) =>
+    /* links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -87,7 +87,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         setAriaExpandedFalse();
         toggleHamburger();
       })
-    );
+    ); */
 
     // close dropdown menu when the logo link is clicked
     // This needs to be disabled if no logo is present
