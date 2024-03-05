@@ -79,48 +79,52 @@ export default function RootLayout({
       /* const animIn = gsap.timeline({paused: true, immediateRender: true})
         .fromTo("#smooth-content", {opacity: 0, xPercent: -100, }, {duration: 0.5, opacity: 1, xPercent: 0, ease: "power2.out"}); */
         //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 0, y: -100}, {duration: 0.1, opacity: 1, y: 0, stagger: 0.01, ease: "power2.inOut"})
+      const checktemplateAnimIn = setInterval(() => {
+        if (document.querySelector('.templateAnimIn')) {
+          clearInterval(checktemplateAnimIn);
+          const animOut = gsap.timeline({paused: true, immediateRender: true})
+          //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
+            .fromTo(".templateAnimIn", {opacity: 1, x: 0},{duration: 0.25, opacity: 0, x: -100, ease: "power2.out"})
 
-      const animOut = gsap.timeline({paused: true, immediateRender: true})
-      //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
-        .fromTo(".templateAnimIn", {opacity: 1, x: 0},{duration: 0.25, opacity: 0, x: -100, ease: "power2.out"})
+          if (smoother && smoother.current) {
+            const dropdownLinks = gsap.utils.toArray('.dropdown-link');
+            dropdownLinks.forEach((link: any, i) => {
+              //router.prefetch(link.dataset.page)
+              link.addEventListener("click", (e: any) => {
 
-      if (smoother && smoother.current) {
-        const dropdownLinks = gsap.utils.toArray('.dropdown-link');
-        dropdownLinks.forEach((link: any, i) => {
-          //router.prefetch(link.dataset.page)
-          link.addEventListener("click", (e: any) => {
+                e.preventDefault();
+                /* console.log("Clicked && currentPage is "+currentPage);
+                console.log("New page is "+link.dataset.page);
+                console.log("New link is "+link.dataset.link);
+                console.log("New href is "+link.href); */
 
-            e.preventDefault();
-            /* console.log("Clicked && currentPage is "+currentPage);
-            console.log("New page is "+link.dataset.page);
-            console.log("New link is "+link.dataset.link);
-            console.log("New href is "+link.href); */
-
-            if (link.dataset.page == currentPage && smoother.current) {
-              smoother.current.scrollTo(link.dataset.link, true, ScrollSmootherTop);
-              router.replace(link.href, { scroll: false });
-              //console.log("currentPage remains = "+currentPage);
-            } else {
-              /* // Event without animOut
-              setHref(link.dataset.link);
-              router.push(link.href, { scroll: false });
-              currentPage = link.dataset.page;
-              console.log("currentPage changed to " + currentPage); */
-
-              animOut.eventCallback("onComplete", () => {
-                setHref(link.dataset.link);
-                startTransition(() => {
+                if (link.dataset.page == currentPage && smoother.current) {
+                  smoother.current.scrollTo(link.dataset.link, true, ScrollSmootherTop);
+                  router.replace(link.href, { scroll: false });
+                  //console.log("currentPage remains = "+currentPage);
+                } else {
+                  /* // Event without animOut
+                  setHref(link.dataset.link);
                   router.push(link.href, { scroll: false });
-                });
-                currentPage = link.dataset.page;
-                //console.log("currentPage changed to " + currentPage);
+                  currentPage = link.dataset.page;
+                  console.log("currentPage changed to " + currentPage); */
+
+                  animOut.eventCallback("onComplete", () => {
+                    setHref(link.dataset.link);
+                    startTransition(() => {
+                      router.push(link.href, { scroll: false });
+                    });
+                    currentPage = link.dataset.page;
+                    //console.log("currentPage changed to " + currentPage);
+                  });
+                  animOut.invalidate();
+                  animOut.restart().play();
+                }
               });
-              animOut.invalidate();
-              animOut.restart().play();
-            }
-          });
-        });
-      }
+            });
+          }
+        }
+      }, 50); // Check every 50ms
 
 
   /* GSDevTools.create(); */

@@ -164,7 +164,7 @@ section {
   position: relative;
   top: 75px;
 } */
-#home {
+#Home {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -254,6 +254,8 @@ section {
 
 .dropdown-btn img{
 	min-height: 30px;
+	max-height: 2rem;
+  min-width:145px;
 }
 
 #nav-menu {
@@ -271,9 +273,6 @@ section {
   }
 }
 
-.dropdown-btn img{
-	max-height: 2rem;
-}
 
 .nav-container {
   display: flex;

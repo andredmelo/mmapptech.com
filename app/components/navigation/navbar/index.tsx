@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useRef, useEffect } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from 'next/image'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import MenuSVG from "./MenuSVG";
@@ -35,13 +36,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
   useEffect(() => {
-    const dropdownBtn = document.querySelectorAll(".dropdown-btn");
-    const dropdown = document.querySelectorAll(".dropdown");
-    const hamburgerBtn = document.getElementById("hamburger");
-    const navMenu = document.querySelector(".menu");
-    const navMenuSpacer = document.querySelector(".menu-spacer");
-    const links = document.querySelectorAll(".dropdown a");
+    const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
+    const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
+    const hamburgerBtn = document.getElementById("hamburger") as HTMLButtonElement | null;
+    const navMenu = document.querySelector(".menu") as HTMLElement | null;
+    const navMenuSpacer = document.querySelector(".menu-spacer") as HTMLElement | null;
+    const links = document.querySelectorAll(".dropdown a") as NodeListOf<HTMLAnchorElement>;
 
+    
     function setAriaExpandedFalse() {
       dropdownBtn.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
     }
@@ -153,7 +155,9 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               <ul className="menu-bar">
                 <li>
                   <button className="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
-                    <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
+                  <img
+                    src="/images/logo_on_black.svg"
+                    alt="MMAPP Logo"/>
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                     <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
                   </button>
@@ -161,54 +165,54 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     <ul role="menu1">
                       <li role="menuitem">
                           <a
-                            href="/#home"
+                            href="/#Home"
                             data-page="/"
-                            data-link="#home"
+                            data-link="#Home"
                             className="dropdown-link">
                             Home
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#homeFeatures"
+                            href="/#Features"
                             data-page="/"
-                            data-link="#homeFeatures"
+                            data-link="#Features"
                             className="dropdown-link">
                             Features
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#homeBenefits"
+                            href="/#Benefits"
                             data-page="/"
-                            data-link="#homeBenefits"
+                            data-link="#Benefits"
                             className="dropdown-link">
                             Benefits for everyone
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#homeOurmission"
+                            href="/#Ourmission"
                             data-page="/"
-                            data-link="#homeOurmission"
+                            data-link="#Ourmission"
                             className="dropdown-link">
                             Our Mission
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#homeFAQSupport"
+                            href="/#FAQSupport"
                             data-page="/"
-                            data-link="#homeFAQSupport"
+                            data-link="#FAQSupport"
                             className="dropdown-link">
                             FAQs/Support
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#homeContactUs"
+                            href="/#ContactUs"
                             data-page="/"
-                            data-link="#homeContactUs"
+                            data-link="#ContactUs"
                             className="dropdown-link">
                             Contact Us
                           </a>
@@ -229,45 +233,45 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </li> */}
                       <li role="menuitem">
                           <a
-                            href="/company#companyVision"
+                            href="/company#Vision"
                             data-page="/company"
-                            data-link="#companyVision"
+                            data-link="#Vision"
                             className="dropdown-link">
                             Vision
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/company#companyMission"
+                            href="/company#Mission"
                             data-page="/company"
-                            data-link="#companyMission"
+                            data-link="#Mission"
                             className="dropdown-link">
                             Mission
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/company#companyCoreValues"
+                            href="/company#CoreValues"
                             data-page="/company"
-                            data-link="#companyCoreValues"
+                            data-link="#CoreValues"
                             className="dropdown-link">
                             Core Values
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/company#companySecurityCompliance"
+                            href="/company#SecurityCompliance"
                             data-page="/company"
-                            data-link="#companySecurityCompliance"
+                            data-link="#SecurityCompliance"
                             className="dropdown-link">
                             Security & Compliance
                           </a>
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/company#companyPolicies"
+                            href="/company#Policies"
                             data-page="/company"
-                            data-link="#companyPolicies"
+                            data-link="#Policies"
                             className="dropdown-link">
                             Policies
                           </a>
@@ -286,27 +290,27 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     <ul role="menu3">
                       <li role="menuitem">
                         <a
-                          href="/product#productFeatures"
+                          href="/product#Features"
                           data-page="/product"
-                          data-link="#productFeatures"
+                          data-link="#Features"
                           className="dropdown-link">
                           Features
                         </a>
                       </li>
                       <li role="menuitem">
                         <a
-                          href="/product#productBenefits"
+                          href="/product#Benefits"
                           data-page="/product"
-                          data-link="#productBenefits"
+                          data-link="#Benefits"
                           className="dropdown-link">
                           Benefits
                         </a>
                       </li>
                       <li role="menuitem">
                         <a
-                          href="/product#productContactUs"
+                          href="/product#ContactUs"
                           data-page="/product"
-                          data-link="#productContactUs"
+                          data-link="#ContactUs"
                           className="dropdown-link">
                           Contact Us
                         </a>
@@ -323,18 +327,18 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     <ul role="menu4">
                       <li role="menuitem">
                         <a
-                          href="/contact#contactContactUs"
+                          href="/contact#ContactUs"
                           data-page="/contact"
-                          data-link="#contactContactUs"
+                          data-link="#ContactUs"
                           className="dropdown-link">
                           Contact Us
                         </a>
                       </li>
                       <li role="menuitem">
                         <a
-                          href="/contact#contactFAQSupport"
+                          href="/contact#FAQSupport"
                           data-page="/contact"
-                          data-link="#contactFAQSupport"
+                          data-link="#FAQSupport"
                           className="dropdown-link">
                           FAQs/Support
                         </a>

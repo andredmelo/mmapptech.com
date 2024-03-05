@@ -3,7 +3,7 @@ import React from "react";
 const Contacts = () => {
   return (
     <>
-      <div id="contactContactUs" className="content-spacer">
+      <div id="ContactUs" className="content-spacer">
         <h2>contactContactUs</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -13,7 +13,7 @@ const Contacts = () => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="contactFAQSupport" className="content-spacer">
+      <div id="FAQSupport" className="content-spacer">
         <h2>contactFAQSupport</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>

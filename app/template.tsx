@@ -22,7 +22,14 @@ export default function Template({
 }) {
   const { href } = useHref();
 
-  gsap.set(".templateAnimIn", {opacity: 0});
+  useEffect(() => {
+    const checktemplateAnimInLoad = setInterval(() => {
+      if (document.querySelector('.templateAnimIn')) {
+        clearInterval(checktemplateAnimInLoad);
+        gsap.set(".templateAnimIn", {opacity: 0});
+      }
+    }, 100); // Check every 100ms
+  }, []);
 
   //console.log(children);
 
@@ -48,7 +55,7 @@ export default function Template({
       let ScrollSmootherTop = "top 52px";
 
       const checkPendingAndSmoother = setInterval(() => {
-        if (isPending == false && smoother && smoother.current) {
+        if (isPending == false && smoother && smoother.current && document.querySelector('.templateAnimIn')) {
           clearInterval(checkPendingAndSmoother);
           const animIn = gsap.timeline({
             paused: true,
@@ -82,9 +89,12 @@ export default function Template({
   { dependencies: [smoother, href, isPending]/* , revertOnUpdate: true, scope: main  */}
   );
 
-  if (/* isPending === undefined || */ isPending === true) {
-    return <div className="templateAnimIn"><Loading /></div>;
-  }
+  const checkPendingAndSmootherLoad = setInterval(() => {
+    if (/* isPending === undefined || */ isPending === true || smoother) {
+      clearInterval(checkPendingAndSmootherLoad);
+      return <div className="templateAnimIn"><Loading /></div>;
+    }
+  }, 100); // Check every 100ms
 
   return (
     <div className="templateAnimIn">

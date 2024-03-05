@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <>
-      <div id="home" className="">
+      <div id="Home" className="" height="100">
         <div className="homeBackground">
           <img src="/images/33498201.webp" alt="Fighters getting ready to fight"/>
         </div>
@@ -16,7 +16,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section id="homeFeatures" className="content-spacer">
+      <section id="Features" className="content-spacer">
         <h1>Features</h1>
         <div id="featuresDashboard" className="featuresDashboard">
           <h2>Federations (Dashboard)</h2>
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="homeBenefits" className="content-spacer">
+      <section id="Benefits" className="content-spacer">
         <h1>Benefits for everyone else</h1>
         <div id="benefitsAthletes" className="benefitsAthletes">
           <h2>Athletes</h2>
@@ -85,7 +85,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="homeOurmission" className="content-spacer">
+      <section id="Ourmission" className="content-spacer">
         <h1>Our Mission</h1>
         <p>
           At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age. Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling. On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
@@ -93,7 +93,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section id="homeFAQSupport" className="content-spacer">
+      <section id="FAQSupport" className="content-spacer">
         <h1>FAQs/Support</h1>
         <p>
           At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age. Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling. On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
@@ -101,7 +101,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section id="homeContactUs" className="content-spacer">
+      <section id="ContactUs" className="content-spacer">
         <h1>Contact Us</h1>
         <p>
           At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age. Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling. On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.

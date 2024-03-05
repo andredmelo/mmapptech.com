@@ -3,7 +3,7 @@ import React from "react";
 const Product = () => {
   return (
     <>
-      <div id="productFeatures" className="content-spacer">
+      <div id="Features" className="content-spacer">
         <h2>productFeatures</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -13,7 +13,7 @@ const Product = () => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="productBenefits" className="content-spacer">
+      <div id="Benefits" className="content-spacer">
         <h2>productBenefits</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -23,7 +23,7 @@ const Product = () => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="productContactUs" className="content-spacer">
+      <div id="ContactUs" className="content-spacer">
         <h2>productContactUs</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>

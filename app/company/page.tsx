@@ -32,7 +32,7 @@ const Company = (props: any) => {
 
   return (
     <>
-      <div id="companyVision" className="content-spacer">
+      <div id="Vision" className="content-spacer">
         <h2>companyVision</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -42,7 +42,7 @@ const Company = (props: any) => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="companyMission" className="content-spacer">
+      <div id="Mission" className="content-spacer">
         <h2>companyMission</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -52,7 +52,7 @@ const Company = (props: any) => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="companyCoreValues" className="content-spacer">
+      <div id="CoreValues" className="content-spacer">
         <h2>companyCoreValues</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -62,7 +62,7 @@ const Company = (props: any) => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="companySecurityCompliance" className="content-spacer">
+      <div id="SecurityCompliance" className="content-spacer">
         <h2>companySecurityCompliance</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
@@ -72,7 +72,7 @@ const Company = (props: any) => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
-      <div id="companyPolicies" className="content-spacer">
+      <div id="Policies" className="content-spacer">
         <h2>companyPolicies</h2>
         <br/>
         <h4>Overview of Federation Affairs</h4>
