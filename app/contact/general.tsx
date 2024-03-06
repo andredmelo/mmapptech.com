@@ -9,7 +9,7 @@ import {
 import styles from "./general.module.css";
 
 export default function General() {
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  /* async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data: FormData = new FormData(e.currentTarget);
     console.log(data);
@@ -26,7 +26,7 @@ export default function General() {
       console.error(err);
       alert("We can't submit the form, try again later?");
     }
-  }
+  } */
 
   return (
     <Card>
