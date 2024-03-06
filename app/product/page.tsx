@@ -3,6 +3,7 @@ import React from "react";
 const Product = () => {
   return (
     <>
+    <article className="prose-stone lg:prose-xl">
       <div id="Features" className="content-spacer">
         <h2>productFeatures</h2>
         <br/>
@@ -33,6 +34,7 @@ const Product = () => {
         <h4>Intuitive Member Management</h4>
         <br/>
       </div>
+      </article>
   </>
 )};
 
