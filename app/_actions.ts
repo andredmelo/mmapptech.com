@@ -4,7 +4,6 @@ import { z } from 'zod'
 import { Resend } from 'resend'
 import { ContactFormSchema, FormDataSchema } from '@/lib/schema'
 import ContactFormEmail from '@/emails/contact-form-email'
-import MagicLinkEmail from '@/emails/magic-link-email'
 
 type Inputs = z.infer<typeof FormDataSchema>
 
