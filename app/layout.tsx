@@ -6,10 +6,12 @@ import { useRouter } from "next/navigation";
 import { HrefContext } from './HrefContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
-import Navbar from "./components/navigation/navbar";
+import Navbar from "../components/navigation/navbar";
 import Loading from "./loading";
 import Template from "./template";
+import Providers from './providers'
 import "./globals.css";
+
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -142,7 +144,7 @@ export default function RootLayout({
           <div id="smooth-wrapper">
             <div id="smooth-content">
               <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
-                <main id="main">{children}</main>
+                <main id="main"><Providers>{children}</Providers></main>
               </Template>
             </div>
           </div>

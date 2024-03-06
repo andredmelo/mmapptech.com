@@ -6,7 +6,7 @@ import General from './general'
 import Sales from './sales'
 import Partnership from './partnership'
 import Media from './media'
-import TabButton from '.././components/tab-button'
+import TabButton from '../../components/tab-button'
 
 const Contacts = () => {
   const [activeTab, setActiveTab] = useState('about')
