@@ -11,15 +11,13 @@ module.exports = {
     extend: {},
   }, */
   theme: {
-    /* screens: { sm: '480px', md: '768px', lg: '976px', xl: '1440px', }, */
-    screens: {
-      'xs': {'min': '475px', 'max': '639px'}, // => @media (min-width < 475px and max-width: 640px) { ... }
-      'sm': {'min': '640px', 'max': '767px'}, // => @media (min-width: 640px and max-width: 767px) { ... }
-      'md': {'min': '768px', 'max': '1023px'}, // => @media (min-width: 768px and max-width: 1023px) { ... }
-      'lg': {'min': '1024px', 'max': '1279px'}, // => @media (min-width: 1024px and max-width: 1279px) { ... }
-      'xl': {'min': '1280px', 'max': '1535px'}, // => @media (min-width: 1280px and max-width: 1535px) { ... }
+    /* screens: {
+      'sm': {'min': '640px'}, // => @media (min-width: 640px and max-width: 767px) { ... }
+      'base': {'min': '768px'}, // => @media (min-width: 768px and max-width: 1023px) { ... }
+      'lg': {'min': '1024px'}, // => @media (min-width: 1024px and max-width: 1279px) { ... }
+      'xl': {'min': '1280px'}, // => @media (min-width: 1280px and max-width: 1535px) { ... }
       '2xl': {'min': '1536px'}, // => @media (min-width: 1536px) { ... }
-    },
+    }, */
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -42,7 +40,7 @@ module.exports = {
       '2xs': '0.6rem',
       xs: '0.8rem',
       sm: '1.2rem',
-      base: '1.6rem',
+      md: '1.6rem',
       lg: '2.4rem',
       xl: '3.2rem',
       '2xl': '4.8rem',

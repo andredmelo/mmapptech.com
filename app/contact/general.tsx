@@ -5,8 +5,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '../../components/ui/card'
-import styles from "./general.module.css";
+} from '@/components/ui/card'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -67,26 +66,26 @@ export default function General() {
       <CardHeader>
         <CardTitle>General Inquiries</CardTitle>
         <CardDescription>
-          If you would like an electronic response please enter your comments or questions in the space provided below.<br/>
-          In cases where you wish to receive a written response please include your mailing address.
+          Inquire about general questions.<br/>
+          Any information solicited will be used solely to provide requester with the information they have requested.
         </CardDescription>
       </CardHeader>
-      <CardContent className='h-full space-y-2'>
-        <div className='h-full rounded-lg bg-emerald-100 p-4'>
+      <CardContent className='h-full'>
+        <div className='h-full rounded-lg bg-emerald-100'>
 
           <form
             onSubmit={handleSubmit(processForm)}
-            className="container p-5 rounded-[1rem]"
+            className="container rounded-[1rem]"
           >
             <input type="hidden" {...register('kind', { value: 'General Inquiries' })} />
             <div className="email flex flex-col">
-              <label htmlFor="frm-name">Name</label>
+              <label htmlFor="form-name">Name</label>
               <input
                 className="w-full"
-                /* id="form-first"
-                type="text"
+                id="form-name"
+                autoComplete="name"
+                /* type="text"
                 name="first"
-                autoComplete="given-name"
                 required */
                 placeholder='Name'
                 {...register('name')}
@@ -98,12 +97,12 @@ export default function General() {
               )}
             </div>
             <div className="email flex flex-col">
-              <label htmlFor="frm-email">Email</label>
+              <label htmlFor="form-email">Email</label>
               <input
-                /* id="form-email"
-                type="email"
-                name="email"
+                id="form-email"
                 autoComplete="email"
+                /* type="email"
+                name="email"
                 required */
                 placeholder='Email'
                 {...register('email')}
@@ -125,12 +124,12 @@ export default function General() {
               />
             </div> */}
             <div className="message flex flex-col">
-              <label htmlFor="frm-message">Message</label>
+              <label htmlFor="form-message">Message</label>
               <textarea
-                /* id="frm-message"
-                name="message" */
+                id="form-message"
+                /* name="message" */
                 rows={6}
-                placeholder='message'
+                placeholder='Message'
                 {...register('message')}
               />
               {errors.message?.message && (
@@ -140,7 +139,7 @@ export default function General() {
             <div className="flex flex-col items-center">
               <button
                 disabled={isSubmitting}
-                className="bg-neutral-100 hover:bg-neutral-50 text-neutral-600 hover:text-neutral-800 hover:ring-2 ring-blue-700 ring-opacity-75 p-4 rounded-lg"
+                className="bg-neutral-100 hover:bg-neutral-50 text-neutral-600 hover:text-neutral-800 hover:ring-2 ring-blue-700 ring-opacity-75 p-4 my-4 rounded-lg"
                 /* type="submit" */
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -150,8 +149,8 @@ export default function General() {
 
         </div>
       </CardContent>
-      <CardFooter className='border-t border-neutral-800 pt-6'>
-        <p className='text-sm italic text-neutral-400'>General Inquiries Submission Form</p>
+      <CardFooter className='border-t border-neutral-800 p-6 pl-10'>
+        <p className='text-sm italic text-neutral-500'>General Inquiries Submission Form</p>
       </CardFooter>
     </Card>
   )

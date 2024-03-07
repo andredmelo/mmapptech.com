@@ -19,7 +19,7 @@ export default function TabButton({
       className={cn(
         activeTab === value ? 'bg-white text-neutral-900' : 'bg-neutral-800 text-neutral-400',
         isPending && 'opacity-25',
-        'h-24 rounded-lg text-lg'
+        'h-full w-full rounded-lg text-md base:text-md lg:text-lg xl:text-lg 2xl:text-xl'
       )}
       {...props}
     >

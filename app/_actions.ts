@@ -20,7 +20,7 @@ export async function addEntry(data: Inputs) {
 }
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>
-const resend = new Resend('re_3vjNoqFu_2WDWW5HhF5v6DinNMQ2U3EiP')
+const resend = new Resend('re_YMaYMgiq_Q965UrGUTjZPfzRqb8PnxndJ')
 
 export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data)
@@ -29,10 +29,10 @@ export async function sendEmail(data: ContactFormInputs) {
     const { kind, name, email, message } = result.data
     try {
       const data = await resend.emails.send({
-        from: 'Andre Melo <andre1melo@proton.me>',
-        to: /* ['Pedro Marques <pedro@mmapptech.com>'] */'Andre Melo <andre1melo@proton.me>',
+        from: "onboarding@resend.dev",
+        to: "delivered@resend.dev" /* ['Pedro Marques <pedro@mmapptech.com>'] *//* 'Andre Melo <andre1melo@proton.me>' */,
         subject: `${kind} Contact form submission`,
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+        text: `Kind: ${kind}\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
         react: ContactFormEmail({ kind, name, email, message })
       })
       return { success: true, data }

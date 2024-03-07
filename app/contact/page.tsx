@@ -21,13 +21,13 @@ const Contacts = () => {
   return (
     <>
       <div id="ContactUs" /* className="content-spacer" */>
-        <section className='py-12'>
+        <section className='py-8'>
           {/* <div className='container sm:max-w-2xl'> */}
           <div className='container w-full'>
-            <h1 className='text-9xl font-bold'>ContactUs</h1>
+            <h1 className='text-center'>Contact Us</h1>
 
-            <section className='mt-16'>
-              <div className='grid w-full grid-cols-4 items-center justify-center gap-1.5 rounded-lg bg-white p-1.5 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'>
+            <section className='mt-6'>
+              <div className='flex flex-col md:flex-row w-full h-72 md:h-24 lg:h-28 items-center justify-center gap-1.5 rounded-lg bg-white p-1.5 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'>
                 <TabButton
                   value='general'
                   activeTab={activeTab}

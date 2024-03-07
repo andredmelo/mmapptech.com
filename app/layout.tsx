@@ -140,14 +140,16 @@ export default function RootLayout({
     <HrefContext.Provider value={{ href, setHref }}>
       <html lang="en">
         <body className={inter.className} ref={main}>
-          <Navbar />
-          <div id="smooth-wrapper">
-            <div id="smooth-content">
-              <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
-                <main id="main"><Providers>{children}</Providers></main>
-              </Template>
+          <Providers>
+            <Navbar />
+            <div id="smooth-wrapper">
+              <div id="smooth-content">
+                <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
+                  <main id="main">{children}</main>
+                </Template>
+              </div>
             </div>
-          </div>
+          </Providers>
         </body>
       </html>
     </HrefContext.Provider>
