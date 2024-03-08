@@ -8,7 +8,6 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import MenuSVG from "./MenuSVG";
 import ArrowDown from "./bx-chevron-down";
-import styles from "./index.module.css";
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,6 +19,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
     const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
     const hamburgerBtn = document.getElementById("hamburger") as HTMLButtonElement | null;
+    const loginLink = document.getElementById("loginLink") as HTMLButtonElement | null;
     const navMenu = document.querySelector(".menu") as HTMLElement | null;
     const navMenuSpacer = document.querySelector(".menu-spacer") as HTMLElement | null;
     const links = document.querySelectorAll(".dropdown a") as NodeListOf<HTMLAnchorElement>;
@@ -39,6 +39,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     function toggleHamburger() {
       navMenu?.classList.toggle("show");
       navMenuSpacer?.classList.toggle("show");
+      loginLink?.classList.toggle("show");
     }
 
     /* function toggleHamburgerIfActive() {
@@ -142,7 +143,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     src="/images/logo_on_black.svg"
                     alt="MMAPP Logo"/>
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown1" className="dropdown">
                     <ul role="menu1">
@@ -207,7 +208,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   <button className="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="Company">
                     Company
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown2" className="dropdown">
                     <ul role="menu2">
@@ -216,20 +217,20 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </li> */}
                       <li role="menuitem">
                           <a
-                            href="/company#Vision"
-                            data-page="/company"
-                            data-link="#Vision"
-                            className="dropdown-link">
-                            Vision
-                          </a>
-                      </li>
-                      <li role="menuitem">
-                          <a
                             href="/company#Mission"
                             data-page="/company"
                             data-link="#Mission"
                             className="dropdown-link">
                             Mission
+                          </a>
+                      </li>
+                      <li role="menuitem">
+                          <a
+                            href="/company#Vision"
+                            data-page="/company"
+                            data-link="#Vision"
+                            className="dropdown-link">
+                            Vision
                           </a>
                       </li>
                       <li role="menuitem">
@@ -267,7 +268,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   <button className="nav-link dropdown-btn" data-dropdown="dropdown3" aria-haspopup="true" aria-expanded="false" aria-label="Product">
                     Product
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown3" className="dropdown">
                     <ul role="menu3">
@@ -304,7 +305,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 <li>
                   <button className="nav-link dropdown-btn" data-dropdown="dropdown4" aria-haspopup="true" aria-expanded="false" aria-label="Contact">
                     Contact
-                    <div className={styles.arrowDown}><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown4" className="dropdown">
                     <ul role="menu4">
@@ -343,14 +344,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               {/* <a href="#profile">
                 <img src="https://???" width="30" height="30" alt="user image" />
               </a> */}
-              <button className="btn btn-primary login-link">
-                <a href="#">Login</a>
+              <button id="loginLink" className="btn btn-primary login-link">
+                <a href="https://dashboard.mmapp.app/login">Login</a>
               </button>
             </div>
 
             <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
               {/* <i className="bx bx-menu" aria-hidden="true"></i> */}
-              <div className={styles.menuSVG}>
+              <div className="menuSVG">
                 <MenuSVG aria-hidden="true"/>
               </div>
             </button>

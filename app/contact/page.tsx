@@ -9,8 +9,9 @@ import Media from './media'
 import TabButton from '../../components/tab-button'
 
 const Contacts = () => {
-  const [activeTab, setActiveTab] = useState('about')
+  const [activeTab, setActiveTab] = useState('general')
   const [isPending, startTransition] = useTransition()
+
 
   function selectTab(tab: string) {
     startTransition(() => {
@@ -21,13 +22,13 @@ const Contacts = () => {
   return (
     <>
       <div id="ContactUs" /* className="content-spacer" */>
-        <section className='py-8'>
+        <section className='py-8 md:py-16 lg:py-24 xl:py-32'>
           {/* <div className='container sm:max-w-2xl'> */}
           <div className='container w-full'>
-            <h1 className='text-center'>Contact Us</h1>
+            <h1 className='text-center pb-1 md:pb-12 lg:pb-18 xl:pb-24 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>Contact Us</h1>
 
             <section className='mt-6'>
-              <div className='flex flex-col md:flex-row w-full h-72 md:h-24 lg:h-28 items-center justify-center gap-1.5 rounded-lg bg-white p-1.5 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'>
+              <div className='flex flex-col md:flex-row w-full h-72 md:h-24 lg:h-28 xl:h-32 2xl:h-36 items-center justify-center gap-1.5 rounded-lg bg-white p-1.5 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'>
                 <TabButton
                   value='general'
                   activeTab={activeTab}

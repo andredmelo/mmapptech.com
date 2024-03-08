@@ -47,7 +47,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-base text-neutral-500 dark:text-neutral-400 pt-16", className)}
+    className={cn("text-neutral-500 dark:text-neutral-400 pt-16", className)}
     {...props}
   />
 ))
@@ -67,7 +67,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-y6 pt-0", className)}
+    className={cn("flex items-center pt-0", className)}
     {...props}
   />
 ))

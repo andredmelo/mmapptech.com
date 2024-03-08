@@ -1,6 +1,6 @@
 "use client";
 import Head from 'next/head';
-import type { Metadata } from "next";
+/* import type { Metadata } from "next"; */
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter } from "next/navigation";
 import { HrefContext } from './HrefContext';
@@ -20,14 +20,17 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 /* const inter = Inter({ subsets: ["latin"] });
-export const siteTitle = 'MMAPP';
+export const siteTitle = 'MMAPP'; */
 
-export const metadata: Metadata = {
-  title: "MMAPP",
-  description: "Mapping MMA",
-}; */
 const inter = Inter({ subsets: ["latin"] });
 
+/* export const metadata: Metadata = {
+  title: {
+    template: '%s | MMAPP',
+    default: 'MMAPP',
+  },
+  description: "Mapping MMA, the Language of MMA Officials",
+}; */
 
 
 export default function RootLayout({
@@ -139,6 +142,16 @@ export default function RootLayout({
   return (
     <HrefContext.Provider value={{ href, setHref }}>
       <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <link rel="icon" href="@/public/images/logo.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1"
+          />
+          <link rel="apple-touch-icon" href="@/public/images/logo.webp" />
+          <link rel="preconnect" href="https://fonts.googleapis.com"/>
+          <link rel="preconnect" href="https://fonts.gstatic.com"/>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+        </head>
         <body className={inter.className} ref={main}>
           <Providers>
             <Navbar />
