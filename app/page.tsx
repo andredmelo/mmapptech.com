@@ -67,7 +67,7 @@ export default function Home() {
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Sign-up in one go, and keep your documents up to date with reminders of their expiration</p>
             <h4>Get featured in a centralized database available to promoters</h4>
-            <p>When registered to your Federation, you are automatically added to the country’s roster, at the disposal of all national promoters</p>
+            <p>When registered to your Federation, you are automatically added to the country's roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsCoaches" className="benefitsCoaches">
             <h2>Coaches</h2>
@@ -77,7 +77,7 @@ export default function Home() {
             <h4>Manage multiple athletes associated with you</h4>
             <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they're always eligible for competition</p>
             <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country’s roster, at the disposal of all national promoters</p>
+            <p>When registered to the Federation, your atheltes are automatically added to the country's roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsClubs" className="benefitsClubs">
             <h2>Clubs</h2>
@@ -87,7 +87,7 @@ export default function Home() {
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
             <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country’s roster, at the disposal of all national promoters</p>
+            <p>When registered to the Federation, your atheltes are automatically added to the country's roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsPromoters" className="benefitsPromoters">
             <h2>Promoters</h2>
