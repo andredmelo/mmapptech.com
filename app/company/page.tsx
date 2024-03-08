@@ -76,7 +76,7 @@ const Company = (props: any) => {
             <h4>
               Striving to become the document of record for the sport, we take Privacy, Security, and Compliance with the utmost seriousness.<br/>
               The privacy of our users is paramount, and we take industry-excelling measures to guarantee their safety.<br/>
-              We adhere to the GDPR as our base of compliance. Still, we are in accordance with various privacy agreements worldwide, such as the US`&quot;`s CCPA, Australia`&quot;`s Privacy Act, and Canada`&quot;`s DCIA.<br/>
+              We adhere to the GDPR as our base of compliance. Still, we are in accordance with various privacy agreements worldwide, such as the US&apos;s CCPA, Australia&apos;s Privacy Act, and Canada&apos;s DCIA.<br/>
               We are continuously working to include full compliance in all regions we operate. Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
             </h4>
           </div>

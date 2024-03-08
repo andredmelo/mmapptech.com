@@ -67,7 +67,7 @@ export default function Home() {
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Sign-up in one go, and keep your documents up to date with reminders of their expiration</p>
             <h4>Get featured in a centralized database available to promoters</h4>
-            <p>When registered to your Federation, you are automatically added to the country`&quot;`s roster, at the disposal of all national promoters</p>
+            <p>When registered to your Federation, you are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsCoaches" className="benefitsCoaches">
             <h2>Coaches</h2>
@@ -75,19 +75,19 @@ export default function Home() {
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Easily keep your profile always up-to-date, with reminders of expiration dates for documents</p>
             <h4>Manage multiple athletes associated with you</h4>
-            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they`&quot;`re always eligible for competition</p>
+            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
             <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country`&quot;`s roster, at the disposal of all national promoters</p>
+            <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsClubs" className="benefitsClubs">
             <h2>Clubs</h2>
             <br/>
             <h4>Manage multiple athletes associated with you</h4>
-            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they`&quot;`re always eligible for competition</p>
+            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
             <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country`&quot;`s roster, at the disposal of all national promoters</p>
+            <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
           </div>
           <div id="benefitsPromoters" className="benefitsPromoters">
             <h2>Promoters</h2>
@@ -115,7 +115,7 @@ export default function Home() {
           <div>
             <h1>FAQs/Support</h1>
             <h5>
-              Ask us anything. We`&quot;`re here to help.
+              Ask us anything. We&apos;re here to help.
             </h5>
           </div>
         </section>
@@ -124,7 +124,7 @@ export default function Home() {
           <div>
             <h1>Contact Us</h1>
             <h5>
-              Get in touch already. We`&quot;`re waiting for you.
+              Get in touch already. We&apos;re waiting for you.
             </h5>
           </div>
         </section>

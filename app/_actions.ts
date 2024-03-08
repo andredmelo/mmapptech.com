@@ -20,29 +20,38 @@ export async function addEntry(data: Inputs) {
 }
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>
-const resend = new Resend('re_YMaYMgiq_Q965UrGUTjZPfzRqb8PnxndJ')
+/* const resend = new Resend('re_YMaYMgiq_Q965UrGUTjZPfzRqb8PnxndJ') */
 
 export async function sendEmail(data: ContactFormInputs) {
-  const result = ContactFormSchema.safeParse(data)
+  const result = ContactFormSchema.safeParse(data);
 
   if (result.success) {
-    const { kind, name, email, message } = result.data
     try {
-      const data = await resend.emails.send({
-        from: "onboarding@resend.dev",
-        to: "delivered@resend.dev" /* ['Pedro Marques <pedro@mmapptech.com>'] *//* 'Andre Melo <andre1melo@proton.me>' */,
-        subject: `${kind} Contact form submission`,
-        text: `Kind: ${kind}\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
-        react: ContactFormEmail({ kind, name, email, message })
-      })
-      return { success: true, data }
+      const response = await fetch('https://formsubmit.co/your_email_address', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(result.data),
+      });
+
+      // Check if the response is JSON
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        console.error('Received non-JSON response', await response.text());
+        return { success: false, error: 'Non-JSON response received' };
+      }
+
+      const responseData = await response.json();
+      return { success: true, data: responseData };
     } catch (error) {
-      return { success: false, error }
+      console.error('Error parsing JSON:', error);
+      return { success: false, error: 'Error parsing JSON' };
     }
   }
 
   if (result.error) {
-    return { success: false, error: result.error.format() }
+    return { success: false, error: result.error.format() };
   }
 }
 

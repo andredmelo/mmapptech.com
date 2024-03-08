@@ -17,9 +17,9 @@ export default function TabButton({
   return (
     <button
       className={cn(
-        activeTab === value ? 'bg-white text-neutral-900' : 'bg-neutral-800 text-neutral-400',
+        activeTab === value ? 'dark:bg-white dark:text-neutral-900 bg-neutral-800 text-neutral-200' : 'dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 bg-white hover:bg-neutral-100 text-neutral-900 hover:text-neutral-700',
         isPending && 'opacity-25',
-        'whitespace-nowrap px-[1%] h-full w-full rounded-lg text-md md:text-md lg:text-[2rem] xl:text-lg 2xl:text-xl'
+        'whitespace-nowrap px-[1%] h-full w-full rounded-lg font-semibold text-[2rem] md:text-[1.9rem] lg:text-[2rem] xl:text-[2.3rem] 2xl:text-[2.8rem]'
       )}
       {...props}
     >

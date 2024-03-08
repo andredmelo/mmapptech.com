@@ -77,7 +77,13 @@ export default function General() {
             onSubmit={handleSubmit(processForm)}
             className="container rounded-[1rem]"
           >
+            <input type="hidden" name="_subject" value="General Inquiries"/>
             <input type="hidden" {...register('kind', { value: 'General Inquiries' })} />
+            <input type="hidden" name="_template" value="box"/>
+            {/* <input type="hidden" name="_captcha" value="false"/> */}
+            {/* <input type="hidden" name="_next" value="https://yourdomain.co/thanks.html?param1=value&param2=value"/> //provide an alternative URL for "Thank You" page */}
+
+
             <div className="email flex flex-col">
               <label htmlFor="form-name">Name</label>
               <input
@@ -87,7 +93,7 @@ export default function General() {
                 /* type="text"
                 name="first"
                 required */
-                placeholder='Name'
+                placeholder='Your Name'
                 {...register('name')}
               />
               {errors.name?.message && (
@@ -104,7 +110,7 @@ export default function General() {
                 /* type="email"
                 name="email"
                 required */
-                placeholder='Email'
+                placeholder='Your Email Address'
                 {...register('email')}
               />
               {errors.email?.message && (
@@ -129,7 +135,7 @@ export default function General() {
                 id="form-message"
                 /* name="message" */
                 rows={6}
-                placeholder='Message'
+                placeholder='Your Message'
                 {...register('message')}
               />
               {errors.message?.message && (
@@ -139,7 +145,7 @@ export default function General() {
             <div className="flex flex-col items-center">
               <button
                 disabled={isSubmitting}
-                className="bg-neutral-100 hover:bg-neutral-50 text-neutral-600 hover:text-neutral-800 hover:ring-2 ring-blue-700 ring-opacity-75 p-4 my-4 rounded-lg"
+                className=""
                 /* type="submit" */
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -149,8 +155,8 @@ export default function General() {
 
         </div>
       </CardContent>
-      <CardFooter className='border-t border-neutral-800 p-6 pl-10'>
-        <p className='text-sm italic text-neutral-500'>General Inquiries Submission Form</p>
+      <CardFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
+        <p className='text-sm italic text-neutral-400 dark:text-neutral-500'>General Inquiries Submission Form</p>
       </CardFooter>
     </Card>
   )
