@@ -3,12 +3,12 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
 import React from "react";
 
-interface AccordionItem {
+export interface AccordionItem {
   header: string;
   content: string;
 }
 
-const items: AccordionItem[] = [
+/* const items: AccordionItem[] = [
   {
     header: "Where do I go to setup an account?",
     content:
@@ -31,7 +31,7 @@ const items: AccordionItem[] = [
     header: "How do I find your offices and payment locations?",
     content: "You do not have to log in to view addresses or maps to our office locations or even to get our contact information. Simply open the App and use the link at the bottom of the login screen.",
   },
-];
+]; */
 
 interface AccordionProps { items: AccordionItem[]; }
 
@@ -42,7 +42,7 @@ const Accordion = (props: AccordionProps) => {
       defaultValue="item-1"
       className={clsx("space-y-4 w-full")}
     >
-      {items.map(({ header, content }, i) => (
+      {props.items.map(({ header, content }, i) => (
         <AccordionPrimitive.Item
           key={`header-${i}`}
           value={`item-${i + 1}`}

@@ -15,7 +15,6 @@ import FAQ5 from '@/app/contact/faq5'
 import { CardFAQ } from '@/components/ui/card'
 import TabButton from '@/components/ui/tab-button'
 import TabButtonFAQs from '@/components/ui/tab-button-faqs'
-import { Accordion } from '@/components/ui/accordion'
 
 const Contacts = () => {
   const [activeTab, setActiveTab] = useState('general')
@@ -90,7 +89,7 @@ const Contacts = () => {
         </h1>
 
         <section className='container w-[95%] md:w-[95%] xl:w-[90%] pt-6 md:pt-0 mb-12'>
-          <Accordion />
+          <FAQ />
         </section>
 
         <section className='pt-6 md:pt-0 mb-12'> {/*py-8 md:py-16 lg:py-24 xl:py-32*/}
