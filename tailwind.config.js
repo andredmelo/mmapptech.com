@@ -24,6 +24,8 @@ module.exports = {
       'a1mRed': '#600000',
       black: colors.black,
       neutral: colors.neutral,
+      stone: colors.stone,
+      zinc: colors.zinc,
       white: colors.white,
       blue: colors.blue,
       red: colors.red,
@@ -95,6 +97,7 @@ module.exports = {
         'html': { fontSize: '62.5%' },
       })
     }),
+    require("tailwindcss-radix")(),
   ],
 }
 

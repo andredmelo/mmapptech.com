@@ -7,7 +7,7 @@
     font-family: "Inter", sans-serif;
   }
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-extrabold leading-none tracking-tight text-center;
+    @apply text-2xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl font-extrabold leading-none tracking-tight text-center;
   }
   h2 {
     @apply text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl font-bold leading-none tracking-tight;
@@ -37,7 +37,7 @@
     @apply mb-6 mt-1 p-4 rounded border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
   form button {
-    @apply p-4 w-[20%] rounded-lg border-solid border-2 border-neutral-300    hover:border-fuchsia-800 hover:border-opacity-85 dark:hover:border-opacity-85
+    @apply p-4 w-[20%] rounded-lg border-solid border-2 border-neutral-300 hover:border-fuchsia-800 hover:border-opacity-85 dark:hover:border-opacity-85
       text-sm md:text-sm lg:text-md
       bg-white hover:bg-fuchsia-50 dark:bg-neutral-100
       text-neutral-600 hover:text-fuchsia-800
@@ -126,6 +126,9 @@
   --link-inactive: #898484;
   --clip-section-right: polygon(100% 0, 0% 100%, 100% 100%);
   --clip-section-left: polygon(0 0, 0% 100%, 100% 100%);
+
+
+  --primary-blue: #121212;
 }
 
 /* @media (prefers-color-scheme: dark) {

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "../../lib/utils"
+import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -73,4 +73,20 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+
+const CardFAQ = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <h5
+    ref={ref}
+    className={cn("font-normal leading-[4rem] text-neutral-700 dark:text-neutral-300 py-16 px-14", className)}
+    {...props}
+  />
+))
+CardFAQ.displayName = "CardFAQ"
+
+
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, CardFAQ }
