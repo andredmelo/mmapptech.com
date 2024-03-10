@@ -77,13 +77,7 @@ export default function General() {
             onSubmit={handleSubmit(processForm)}
             className="container rounded-[1rem]"
           >
-            <input type="hidden" name="_subject" value="General Inquiries"/>
             <input type="hidden" {...register('kind', { value: 'General Inquiries' })} />
-            <input type="hidden" name="_template" value="box"/>
-            {/* <input type="hidden" name="_captcha" value="false"/> */}
-            {/* <input type="hidden" name="_next" value="https://yourdomain.co/thanks.html?param1=value&param2=value"/> //provide an alternative URL for "Thank You" page */}
-
-
             <div className="email flex flex-col">
               <label htmlFor="form-name">Name</label>
               <input

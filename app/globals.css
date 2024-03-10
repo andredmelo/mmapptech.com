@@ -64,20 +64,38 @@
   .companyPage section {
     @apply flex items-center w-full min-h-[calc(100vh-52px)] p-2 md:p-6 space-y-8 mb-[10rem] md:mb-[15rem];
   }
-  .companyPage section div{
+  .companyPage section .defaultDiv{
     @apply w-full space-y-6 p-4 md:p-14 pb-8;
   }
-  .companyPage section div h1{
+  .companyPage section .defaultDiv h1{
     @apply text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-extrabold leading-none tracking-tight text-center pb-12;
   }
-  .companyPage section div h3:nth-child(odd){
+  .companyPage section .defaultDiv h3:nth-child(odd){
     @apply text-right;
   }
-  .companyPage section div h4{
+  .companyPage section .defaultDiv h4{
     @apply leading-[3rem] md:leading-[5rem];
   }
-  .companyPage section div p{
+  .companyPage section .defaultDiv p{
     @apply pb-8;
+  }
+  .companyPage .carouselWrapper{
+    @apply w-[110vw] h-[40rem] md:h-[50rem] relative flex items-center overflow-visible bg-transparent;
+  }
+  .companyPage .carouselWrapper .box{
+    @apply p-8 h-full w-[35rem] md:w-[45rem];
+  }
+  .companyPage .carouselWrapper .box .card{
+    @apply flex flex-col content-between shrink-0 relative h-full w-[30rem] md:w-[40rem] rounded-3xl overflow-hidden bg-purple-800;
+  }
+  .companyPage .carouselWrapper .box .card div{
+    @apply flex w-[100%] h-[25%] mb-auto justify-center items-center;
+  }
+  .companyPage .carouselWrapper .box .card h4{
+    @apply px-12 pt-12 break-normal text-center text-xl md:text-xl lg:text-2xl font-bold leading-none tracking-tight /* border-2 border-solid border-red-700 */;
+  }
+  .companyPage .carouselWrapper .box img{
+    @apply w-[100%] h-[75%];
   }
 }
 
