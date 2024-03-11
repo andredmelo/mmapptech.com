@@ -75,18 +75,59 @@ CardFooter.displayName = "CardFooter"
 
 
 
-const CardFAQ = React.forwardRef<
+
+const CardBenefits = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border border-neutral-100 bg-white text-neutral-950 shadow dark:border-blue-800 dark:bg-blue-950 dark:text-neutral-50",
+      "p-10 md:p-16 space-y-10 md:space-y-20",
+      className
+    )}
+    {...props}
+  />
+))
+CardBenefits.displayName = "CardBenefits"
+
+const CardBenefitsHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-3 md:space-y-6", className)}
+    {...props}
+  />
+))
+CardBenefitsHeader.displayName = "CardBenefitsHeader"
+
+const CardBenefitsTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h4
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardBenefitsTitle.displayName = "CardBenefitsTitle"
+
+const CardBenefitsDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("font-normal leading-[4rem] text-neutral-700 dark:text-neutral-300 py-16 px-14", className)}
+    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[4rem] text-neutral-700 dark:text-neutral-300", className)}
     {...props}
   />
 ))
-CardFAQ.displayName = "CardFAQ"
+CardBenefitsDescription.displayName = "CardBenefitsDescription"
 
 
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, CardFAQ }
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, CardBenefits, CardBenefitsHeader, CardBenefitsTitle, CardBenefitsDescription }

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Metadata } from 'next'
+import ContactUs from '@/app/contact/contact-us'
+import Benefits from '@/app/home/benefits'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -10,7 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="homePage">
+      <div className="">
         <div id="Home" className="homeSection">
           <div className="homeBackground">
             <img src="/images/33498201.webp" alt="Fighters getting ready to fight"/>
@@ -21,7 +23,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="Features" className="">
+        <section id="Features" className="homePageSection">
           <h1>Features</h1>
           <div id="featuresDashboard" className="featuresDashboard">
             <h2>Federations (Dashboard)</h2>
@@ -55,7 +57,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="Benefits" className="">
+        {/* <section id="Benefits" className="homePageSection">
           <h1>Benefits for everyone else</h1>
           <div id="benefitsAthletes" className="benefitsAthletes">
             <h2>Athletes</h2>
@@ -99,9 +101,11 @@ export default function Home() {
             <h4>Smooth Experience for Membership Maintenance</h4>
             <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
           </div>
-        </section>
+        </section> */}
 
-        <section id="Ourmission" className="">
+        <Benefits /* items={items} */ />
+
+        <section id="Ourmission" className="homePageSection">
           <div>
             <h1>Our Mission</h1>
             <h4>
@@ -111,7 +115,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="FAQSupport" className="">
+        <section id="FAQSupport" className="homePageSection">
           <div>
             <h1>FAQs/Support</h1>
             <h5>
@@ -120,14 +124,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="ContactUs" className="">
-          <div>
-            <h1>Contact Us</h1>
-            <h5>
-              Get in touch already. We&apos;re waiting for you.
-            </h5>
-          </div>
-        </section>
+        
+        <ContactUs id={ContactUs}/>
       </div>
     </>
   );

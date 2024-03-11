@@ -54,7 +54,11 @@ const Accordion = (props: AccordionProps) => {
                 "group",
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
-                "inline-flex w-full items-center justify-between px-10 md:px-16 py-6 md:py-10 text-left bg-white dark:bg-neutral-800"
+                "inline-flex w-full items-center justify-between px-10 md:px-16 py-6 md:py-10 text-left",
+                "bg-neutral-50 hover:bg-neutral-200",
+                "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors"
+                /* "radix-state-open:bg-white radix-state-closed:bg-neutral-200 hover:bg-neutral-100",
+                "radix-state-open:dark:bg-neutral-700 radix-state-closed:dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
               )}
             >
               <span className="text-lg md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
@@ -68,7 +72,7 @@ const Accordion = (props: AccordionProps) => {
               />
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-100 dark:bg-[#181818]">
+          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-neutral-700 px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
             <div className="text-[2rem] md:text-[1.8rem] text-neutral-900 dark:text-neutral-300">
               {content}
             </div>

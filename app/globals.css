@@ -46,19 +46,19 @@
   section:last-child {
     @apply min-h-[calc(100vh-52px)];
   }
-  .homePage section {
+  .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh-52px)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;
   }
-  .homePage section div{
+  .homePageSection div{
     @apply flex flex-col w-full space-y-6 p-4 md:p-14 pb-8 text-left;
   }
-  .homePage section div h1{
+  .homePageSection div h1{
     @apply text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-extrabold leading-none tracking-tight text-center pb-24;
   }
-  .homePage section div h4{
+  .homePageSection div h4{
     @apply leading-[3rem] md:leading-[5rem];
   }
-  .homePage section div p{
+  .homePageSection div p{
     @apply pb-8;
   }
   .companyPage section {
@@ -128,7 +128,8 @@
   --clip-section-left: polygon(0 0, 0% 100%, 100% 100%);
 
 
-  --primary-blue: #121212;
+/*   --primary-purple: #670067;
+  --primary-purple: #36043a; */
 }
 
 /* @media (prefers-color-scheme: dark) {
