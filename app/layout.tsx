@@ -81,12 +81,14 @@ export default function RootLayout({
       let currentPage: string = "/";
       let ScrollSmootherTop = "top 52px";
 
+      // Navigation
       /* const animIn = gsap.timeline({paused: true, immediateRender: true})
         .fromTo("#smooth-content", {opacity: 0, xPercent: -100, }, {duration: 0.5, opacity: 1, xPercent: 0, ease: "power2.out"}); */
         //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 0, y: -100}, {duration: 0.1, opacity: 1, y: 0, stagger: 0.01, ease: "power2.inOut"})
-      const checktemplateAnimIn = setInterval(() => {
+      const checktemplateAnimIn = setInterval(() => {        
         if (document.querySelector('.templateAnimIn')) {
           clearInterval(checktemplateAnimIn);
+          //console.log("Template animations are ready");
           const animOut = gsap.timeline({paused: true, immediateRender: true})
           //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
             .fromTo(".templateAnimIn", {opacity: 1, x: 0},{duration: 0.25, opacity: 0, x: -100, ease: "power2.out"})
@@ -131,6 +133,92 @@ export default function RootLayout({
         }
       }, 50); // Check every 50ms
 
+      //Home Animations
+      const checkHomeAnimIn = setInterval(() => {
+        if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
+              clearInterval(checkHomeAnimIn);
+              //console.log("Home animations are ready");
+          let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
+
+          let h4s: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeader > h4");
+          const changeH4 = gsap.timeline({paused: true, immediateRender: false})
+            .fromTo(h4s[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.25})
+            .fromTo(h4s[1], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.25})
+            .addPause()
+            .fromTo(h4s[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.25})
+            .fromTo(h4s[2], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.25})
+            .addPause()
+            .fromTo(h4s[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.25})
+            .fromTo(h4s[3], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.25})
+            .addPause()
+
+          h4s.forEach((h4) => { gsap.set(h4, {opacity: 0}); });
+          gsap.set(h4s[0], {opacity: 1});
+          //console.log(h4s)
+          let header = document.getElementById('featuresDashboardHeader');
+
+          const vhToPixels = (vh: number) => {
+            const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            return (vh * height) / 100;
+          };
+          let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as it will eat up the content bellow
+          
+          let lastCardST = ScrollTrigger.create({
+            trigger: cards[cards.length-1] as HTMLElement,
+            start: "center center",
+          });
+
+          cards.forEach((card, i) => {
+            switch (i) {
+              case 0: // case to pin both card[0] and header
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 55%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: card,
+                  pinSpacing: false,
+                });
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 55%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: header,
+                  pinSpacing: false,
+                });
+                break;
+              case cards.length-1: // case to pinSpacing the last card
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 55%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: true,
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                  }
+                });
+                break;
+              default: // default case
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 55%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: false,
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                  }
+                });
+            }
+          });
+        }
+      }, 50); // Check every 50ms
 
   /* GSDevTools.create(); */
   },

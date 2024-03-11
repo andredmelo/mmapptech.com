@@ -1,8 +1,10 @@
+/* 'use client' */
 import Image from "next/image";
 import styles from "./page.module.css";
 import { Metadata } from 'next'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
+import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -22,6 +24,30 @@ export default function Home() {
             <h2>Mapping MMA</h2>
           </div>
         </div>
+
+        <section id="Features Dashboard">
+          <h1>Features</h1>
+          <div className="flex flex-col colored-cards my-24">
+            <div id="featuresDashboardHeader" className="featuresDashboardHeader flex items-center justify-center text-center mb-12 py-8">
+              <h4 className="absolute mt-auto">Overview of Federation Affairs</h4>
+              <h4 className="absolute mt-auto">Visual Reports with Actionable Insights</h4>
+              <h4 className="absolute mt-auto">Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
+              <h4 className="absolute mt-auto">Intuitive Member Management</h4>
+            </div>
+            <FeaturesDashboardCard className="colored-card">
+              <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
+            </FeaturesDashboardCard>
+            <FeaturesDashboardCard className="colored-card">
+              <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
+            </FeaturesDashboardCard>
+            <FeaturesDashboardCard className="colored-card">
+              <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
+            </FeaturesDashboardCard>
+            <FeaturesDashboardCard className="colored-card">
+              <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
+            </FeaturesDashboardCard>
+          </div>
+        </section>
 
         <section id="Features" className="homePageSection">
           <h1>Features</h1>

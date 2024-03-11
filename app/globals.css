@@ -97,6 +97,13 @@
   .companyPage .carouselWrapper .box img{
     @apply w-[100%] h-[75%];
   }
+
+  .colored-cards .colored-card {
+    @apply flex flex-col min-h-[20rem] bg-transparent rounded-lg shadow-md;;
+  }
+  .colored-cards .spacer {
+    @apply mb-[10rem];
+  }
 }
 
 

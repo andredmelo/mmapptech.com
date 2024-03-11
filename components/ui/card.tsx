@@ -84,7 +84,7 @@ const CardBenefits = React.forwardRef<
     ref={ref}
     className={cn(
       "rounded-xl border border-neutral-100 bg-white text-neutral-950 shadow dark:border-blue-800 dark:bg-blue-950 dark:text-neutral-50",
-      "p-10 md:p-16 space-y-10 md:space-y-20",
+      "p-10 md:p-16 space-y-10 md:space-y-15 lg:space-y-20",
       className
     )}
     {...props}
@@ -122,7 +122,7 @@ const CardBenefitsDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[4rem] text-neutral-700 dark:text-neutral-300", className)}
+    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[2.5rem] lg:leading-[4rem] text-neutral-700 dark:text-neutral-300", className)}
     {...props}
   />
 ))

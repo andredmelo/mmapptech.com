@@ -85,6 +85,7 @@ export default function Template({
 
         }
       }, 100); // Check every 100ms
+      
     },
   { dependencies: [smoother, href, isPending]/* , revertOnUpdate: true, scope: main  */}
   );
