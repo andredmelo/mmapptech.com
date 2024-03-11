@@ -48,13 +48,13 @@ const Accordion = (props: AccordionProps) => {
           value={`item-${i + 1}`}
           className="rounded-xl focus-within:ring focus-within:ring-fuchsia-700 focus-within:ring-opacity-75 focus:outline-none w-full"
         >
-          <AccordionPrimitive.Header className="w-full h-full leading-[0.5]">
+          <AccordionPrimitive.Header className="w-full h-full leading-[3rem]">
             <AccordionPrimitive.Trigger
               className={clsx(
                 "group",
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
-                "inline-flex w-full items-center justify-between px-10 md:px-16 py-7 md:py-12 text-left bg-white dark:bg-neutral-800"
+                "inline-flex w-full items-center justify-between px-10 md:px-16 py-6 md:py-10 text-left bg-white dark:bg-neutral-800"
               )}
             >
               <span className="text-lg md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
@@ -68,7 +68,7 @@ const Accordion = (props: AccordionProps) => {
               />
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl px-10 md:px-16 pt-6 md:pt-8 pb-7 md:pb-12 bg-neutral-100 dark:bg-[#181818]">
+          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-100 dark:bg-[#181818]">
             <div className="text-[2rem] md:text-[1.8rem] text-neutral-900 dark:text-neutral-300">
               {content}
             </div>
