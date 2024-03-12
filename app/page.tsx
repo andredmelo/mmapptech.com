@@ -27,7 +27,8 @@ export default function Home() {
 
         <section id="Features Dashboard">
           <h1>Features</h1>
-          <div className="flex flex-col colored-cards my-24">
+          <div className="flex flex-col items-center justify-center colored-cards my-24">
+            <h2 className="mb-12" >Federations (Dashboard)</h2>
             <div id="featuresDashboardHeader" className="featuresDashboardHeader flex items-center justify-center text-center mb-12 py-8">
               <h4 className="absolute mt-auto">Overview of Federation Affairs</h4>
               <h4 className="absolute mt-auto">Visual Reports with Actionable Insights</h4>
@@ -50,7 +51,7 @@ export default function Home() {
         </section>
 
         <section id="Features" className="homePageSection">
-          <h1>Features</h1>
+          {/* <h1>Features</h1>
           <div id="featuresDashboard" className="featuresDashboard">
             <h2>Federations (Dashboard)</h2>
             <br/>
@@ -60,7 +61,7 @@ export default function Home() {
             <h4>Seamless Sign-up process for all your members<br/>(Officials, Athletes, Coaches, Promoters and Clubs)</h4>
             <h4>Intuitive Member Management</h4>
             <br/>
-          </div>
+          </div> */}
           <div id="featuresJudge" className="featuresJudge">
             <h2>Officials (Judge)</h2>
             <br/>

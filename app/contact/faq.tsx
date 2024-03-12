@@ -28,6 +28,8 @@ const items: AccordionItem[] = [
 
 export default function FAQ() {
   return (
-    <Accordion items={items} />
+    <div className='container w-[95%] md:w-[95%] xl:w-[90%] pt-6 md:pt-0'>
+      <Accordion items={items} />
+    </div>
   )
 }
