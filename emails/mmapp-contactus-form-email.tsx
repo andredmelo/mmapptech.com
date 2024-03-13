@@ -1,19 +1,74 @@
 import * as React from 'react';
-import { Html, Heading, Text, Container} from '@react-email/components';
+import { Html, Head, Heading, Text, Container, Section, Preview, Body, Row, Img} from '@react-email/components';
+import { Tailwind } from "@react-email/tailwind";
 
 export default function MMAPPContactFormEmail(props: any) {
   const { kind, name, email, message } = props;
 
+  /* const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : ""; */
+
+  const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "";
+
   return (
     <Html lang="en">
-    <Container>
-      <Heading as="h1">{kind} Contact form submission</Heading>
-      <Heading as="h2">
-        From {name} at {email}
-      </Heading>
-      <Heading as="h3">Message:</Heading>
-      <Text>{message}</Text>
-    </Container>
+      <Head />
+      <Preview>MMAPP</Preview>
+      <Tailwind
+        config={{
+          theme: {
+            extend: {
+              colors: {
+                brand: "#2250f4",
+                offwhite: "#fafbfb",
+              },
+              spacing: {
+                0: "0px",
+                20: "20px",
+                45: "45px",
+              },
+            },
+          },
+        }}
+      >
+        <Body className="bg-offwhite text-base font-sans">
+          <Img
+            src={`${baseUrl}/images/logo_lg.webp`}
+            width="184"
+            height="75"
+            alt="Netlify"
+            className="mx-auto my-20"
+          />
+          <Container className="bg-white p-45">
+            <Heading className="text-center my-0 leading-8">
+              {kind} Contact form submission
+            </Heading>
+            <Section>
+                <Row>
+                  <Text className="text-base">
+                    Below is the {message} contact form submission from the MMAPP website.
+                  </Text>
+                </Row>
+              </Section>
+            <Heading as="h2" className="text-left">
+              From {name}
+            </Heading>
+            <Heading as="h2" className="text-left">
+              @ <a href={`mailto:${email}`}>{email}</a>
+            </Heading>
+            <Heading as="h3" className="text-left">Message:</Heading>
+            <Text>{message}</Text>
+          </Container>
+          <Container className="mt-20">
+              <Text className="text-center text-gray-400 mb-45">
+                MMAPP, Avenida da República, 861, Bloco D, 3º Dto., Parede, Lisbon 2775-274
+              </Text>
+            </Container>
+        </Body>
+      </Tailwind>
     </Html>
   );
 }

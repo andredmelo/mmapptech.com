@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import Image from 'next/image'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
-import MenuSVG from "./MenuSVG";
-import ArrowDown from "./bx-chevron-down";
+import MenuSVG from "@/components/ui/svg/MenuSVG";
+import ArrowDown from "@/components/ui/svg/bx-chevron-down";
 
 gsap.registerPlugin(useGSAP);
 

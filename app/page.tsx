@@ -5,6 +5,7 @@ import { Metadata } from 'next'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
+import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -27,24 +28,29 @@ export default function Home() {
 
         <section id="Features Dashboard">
           <h1>Features</h1>
-          <div className="flex flex-col items-center justify-center colored-cards my-24">
-            <h2 className="mb-12" >Federations (Dashboard)</h2>
-            <div id="featuresDashboardHeader" className="featuresDashboardHeader flex items-center justify-center text-center mb-12 py-8">
-              <h4 className="absolute mt-auto">Overview of Federation Affairs</h4>
-              <h4 className="absolute mt-auto">Visual Reports with Actionable Insights</h4>
-              <h4 className="absolute mt-auto">Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
-              <h4 className="absolute mt-auto">Intuitive Member Management</h4>
+          <div className="flex flex-col items-center colored-cards my-24">
+            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-12text-center" >Federations (Dashboard)</h2>
+            {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
+              <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
+            </div> */}
+            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
+              <h4 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
+              <h4 className="absolute featuresDashboardHeaderH4">Overview of Federation Affairs</h4>
+              <h4 className="absolute featuresDashboardHeaderH4">Visual Reports with Actionable Insights</h4>
+              <h4 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderH4">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
+              <h4 className="absolute featuresDashboardHeaderH4">Intuitive Member Management</h4>
             </div>
-            <FeaturesDashboardCard className="colored-card">
+            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
             </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="colored-card">
+            <ProDisplayShadowSVG className="proDisplayShadowSVG pb-[35vh]"/>
+            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-[35vh]">
               <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
             </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="colored-card">
+            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-[35vh]">
               <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
             </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="colored-card">
+            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
             </FeaturesDashboardCard>
           </div>

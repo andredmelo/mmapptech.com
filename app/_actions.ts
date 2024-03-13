@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { render, renderAsync } from '@react-email/render';
 import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
 import { ContactFormSchema, FormDataSchema } from '@/lib/schema'
-import ContactFormEmail from '@/emails/contact-form-email'
+//import ContactFormEmail from '@/emails/contact-form-email'
 import MMAPPContactFormEmail from '@/emails/mmapp-contactus-form-email'
 /* import MMAPPContactFormEmail from '@/emails/simple-mmapp-form-email' */
 
@@ -28,7 +28,7 @@ type ContactFormInputs = z.infer<typeof ContactFormSchema>
 /* const resend = new Resend('re_YMaYMgiq_Q965UrGUTjZPfzRqb8PnxndJ') */
 
 const mailerSend = new MailerSend({
-  apiKey: 'mlsn.631aa3ba7284ce7331268442404636f29da16331da6a1462b207760696fc6c8b' || '',
+  apiKey: 'mlsn.07e27fa464e2d75484a582b57df9fb7adea894054dc54695c4fb20b68b99637e' || '',
 });
 
 export async function sendEmail(data: ContactFormInputs) {
@@ -38,12 +38,14 @@ export async function sendEmail(data: ContactFormInputs) {
     const { kind, name, email, message } = result.data
     try {
       const emailHtml = await renderAsync(MMAPPContactFormEmail(result.data));
-      console.log("result.data are "+kind+name+email+message)
+      //console.log("result.data are "+kind+name+email+message)
        /* kind={kind} name={name} email={email} message={message} */
       
-      const sentFrom = new Sender(`info@trial-3zxk54vv27x4jy6v.mlsender.net`, `${name}`);
+      const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
       const recipients = [
-          new Recipient("andre1melo@proton.me", 'André Melo')
+          new Recipient("andre1melo@proton.me", 'André Melo'),
+          /* new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
+          new Recipient("info@mmapptech.com", 'MMAPP Tech') */
       ];
       const emailParams = new EmailParams()
           .setFrom(sentFrom)

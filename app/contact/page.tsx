@@ -1,4 +1,4 @@
-/* 'use client' */
+'use client'
 
 import ContactUs from '@/app/contact/contact-us'
 import FAQ from '@/app/contact/faq'
