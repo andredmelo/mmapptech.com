@@ -135,8 +135,12 @@ export default function Home() {
             <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
           </div>
         </section> */}
-
-        <Benefits /* items={items} */ />
+        <section id="Benefits" className='md:pt-0 mb-12'>
+          <h1 className="text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
+            Benefits for everyone else
+          </h1>
+          <Benefits /* items={items} */ />
+        </section>
 
         <section id="Ourmission" className="homePageSection">
           <div>
@@ -149,16 +153,23 @@ export default function Home() {
         </section>
 
         <section id="FAQSupport" className="homePageSection">
-          <div>
-            <h1>FAQs/Support</h1>
-            <h5>
-              Ask us anything. We&apos;re here to help.
-            </h5>
-          </div>
+          <h1>FAQs/Support</h1>
+          <h5>
+            Ask us anything. We&apos;re here to help.
+          </h5>
         </section>
 
-        
-        <ContactUs id={ContactUs}/>
+        <section id="ContactUs" className="mb-12">
+          <h1 className="text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
+            Contact Us
+          </h1>
+          <ContactUs id={ContactUs} className=""/>
+        </section>
+        <footer className="py-32">
+          <p className="text-center font-medium">
+            Powered by{' ®MMAPP '} © 2024 MMAPP. All rights reserved.
+          </p>
+        </footer>
       </div>
     </>
   );

@@ -1,9 +1,9 @@
-import { CardBenefits, CardBenefitsDescription, CardBenefitsHeader, CardBenefitsTitle } from '@/components/ui/card'
+import { CardBenefits, CardBenefitsDescription, CardBenefitsHeader, CardBenefitsTitle } from '@/components/ui/card-benefits'
 
 export default function Benefits1() {
 
   return (
-    <CardBenefits className='h-full'>
+    <CardBenefits className='' id="benefitsAthletes">
       <CardBenefitsHeader>
         <CardBenefitsTitle>
           Guarantees athletes and promoters high-standard officials

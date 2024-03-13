@@ -8,9 +8,9 @@ const ProDisplayShadowSVG: React.FC<ProDisplayShadowSVGProps> = ({ className }) 
   <svg id="proDisplayShadowSVG" className={className} viewBox="0 0 500 15" xmlns="http://www.w3.org/2000/svg">
   <defs>
     {<radialGradient gradientUnits="userSpaceOnUse" cx="215" cy="15" r="215" id="gradient-0" gradientTransform="matrix(1.157401, -0.001966, 0.000133, 0.042854, -0.001327, 7.18046)">
-      {<stop offset="0" stop-color="rgb(150, 150, 150)" stopOpacity="0.3"></stop>}
-      {<stop offset=".3" stop-color="rgb(115, 115, 115)" stopOpacity="0.12"></stop>}
-      {<stop offset=".85" stop-color="rgb(80, 80, 80)" stopOpacity="0"></stop>}
+      {<stop offset="0" stopColor="rgb(150, 150, 150)" stopOpacity="0.3"></stop>}
+      {<stop offset=".3" stopColor="rgb(115, 115, 115)" stopOpacity="0.12"></stop>}
+      {<stop offset=".85" stopColor="rgb(80, 80, 80)" stopOpacity="0"></stop>}
     </radialGradient>}
   </defs>
     {<ellipse style={{ fill: 'url(#gradient-0)' }} cx="250" cy="7.5" rx="250" ry="7.5"></ellipse>}

@@ -3,6 +3,8 @@ import { useState, useTransition } from 'react'
 import TabButtonBenefits from '@/components/ui/tab-button-benefits'
 import Benefits1 from '@/app/home/benefits1'
 import Benefits2 from '@/app/home/benefits2'
+import Benefits3 from '@/app/home/benefits3'
+import Benefits4 from '@/app/home/benefits4'
 
 export interface BenefitsItem {
   title: string;
@@ -41,58 +43,58 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <section  id="Benefits" className='md:pt-0 mb-12'> {/*py-8 md:py-16 lg:py-24 xl:py-32*/}
-        {/* <div className='container sm:max-w-2xl'> */}
-        <h1 className='text-center py-14 md:py-20 lg:py-24 xl:py-32'>
-        Benefits for everyone else
-        </h1>
-        <div className='flex flex-col md:flex-row items-center mx-4 md:mx-12'>
+      <div className='flex flex-col md:flex-row md:min-h-[74rem] mx-4 md:mx-12'>
 
-          {/* <section className='w-full'> */}
-            <div className='flex flex-row md:flex-col w-full md:w-[40%] h-full mb-auto justify-center gap-0.5 p-0.5 rounded-lg bg-neutral-100 text-neutral-500 dark:bg-blue-800 dark:text-neutral-400'>
-              <TabButtonBenefits
-                value='Benefits1'
-                isPending={isPending}
-                activeTab={activeTabBenefits}
-                onClick={() => selectTabBenefits('Benefits1')}
-              >
-                Athletes
-              </TabButtonBenefits>
-              <TabButtonBenefits
-                value='Benefits2'
-                isPending={isPending}
-                activeTab={activeTabBenefits}
-                onClick={() => selectTabBenefits('Benefits2')}
-              >
-                Coaches
-              </TabButtonBenefits>
-              <TabButtonBenefits
-                value='Benefits3'
-                activeTab={activeTabBenefits}
-                onClick={() => selectTabBenefits('Benefits3')}
-              >
-                Clubs
-              </TabButtonBenefits>
-              <TabButtonBenefits
-                value='Benefits4'
-                activeTab={activeTabBenefits}
-                onClick={() => selectTabBenefits('Benefits4')}
-              >
-                Promoters
-              </TabButtonBenefits>
-            </div>
+          <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[40%]'>
+            {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}
+            <TabButtonBenefits
+              value='Benefits1'
+              isPending={isPending}
+              activeTab={activeTabBenefits}
+              onClick={() => selectTabBenefits('Benefits1')}
+            >
+              Athletes
+            </TabButtonBenefits>
+            <TabButtonBenefits
+              value='Benefits2'
+              isPending={isPending}
+              activeTab={activeTabBenefits}
+              onClick={() => selectTabBenefits('Benefits2')}
+            >
+              Coaches
+            </TabButtonBenefits>
+            <TabButtonBenefits
+              value='Benefits3'
+              activeTab={activeTabBenefits}
+              onClick={() => selectTabBenefits('Benefits3')}
+            >
+              Clubs
+            </TabButtonBenefits>
+            <TabButtonBenefits
+              value='Benefits4'
+              activeTab={activeTabBenefits}
+              onClick={() => selectTabBenefits('Benefits4')}
+            >
+              Promoters
+            </TabButtonBenefits>
+          </div>
 
-            <div className='w-full mb-auto'>
-              {activeTabBenefits === 'Benefits1' && <Benefits1 />}
-              {activeTabBenefits === 'Benefits2' && <Benefits2 />}
-              {activeTabBenefits === 'Benefits3' && <Benefits1 />}
-              {activeTabBenefits === 'Benefits4' && <Benefits1 />}
-            </div>
-          {/* </section> */}
-        </div>
-      </section>
+          <div className='w-full'>
+            {activeTabBenefits === 'Benefits1' && <Benefits1 />}
+            {activeTabBenefits === 'Benefits2' && <Benefits2 />}
+            {activeTabBenefits === 'Benefits3' && <Benefits3 />}
+            {activeTabBenefits === 'Benefits4' && <Benefits4 />}
+          </div>
 
-      {/* <section id="Benefits" className="homePageSection">
+      </div>
+    </>
+  )
+};
+
+export default Benefits;
+
+
+{/* <section id="Benefits" className="homePageSection">
         <h1>Benefits for everyone else</h1>
         <div id="benefitsAthletes" className="benefitsAthletes">
           <h2>Athletes</h2>
@@ -137,9 +139,3 @@ const Benefits = (/* props: BenefitsProps */) => {
           <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
         </div>
       </section> */}
-
-    </>
-  )
-};
-
-export default Benefits;

@@ -146,7 +146,7 @@ export default function RootLayout({
         }
       }, 50); // Check every 50ms
 
-      const detectViewportRatio = () => {
+      /* const detectViewportRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const ratio = width / height;
@@ -169,7 +169,7 @@ export default function RootLayout({
         }
       }
       detectViewportRatio();
-      window.addEventListener('resize', detectViewportRatio);
+      window.addEventListener('resize', detectViewportRatio); */
 
       function isViewportRatioLessThan160() {
         const width = window.innerWidth;
