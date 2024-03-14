@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 
 import horizontalLoop from '@/components/HorizontalLoop';
+import { Dialog } from '@/components/ui/dialog'
 
 /* export const metadata: Metadata = {
   title: 'Company',
@@ -44,7 +45,6 @@ const Company = (props: any) => {
     () => {
       const boxes = gsap.utils.toArray(".box");
       const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:1.5});
-
 
   /* GSDevTools.create(); */
 
@@ -150,18 +150,19 @@ const Company = (props: any) => {
             </h4>
           </div>
         </section>
-        <section id="Policies" className="">
+        <section id="policies" className="">
           <div className="defaultDiv">
-            <h1>Company Policies ??? Where are they Señor Suave???</h1>
+            <h1>Company Policies</h1>
+            <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
             <br/>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
-            <h4>Bla Bla Bla</h4>
+            <a
+              href="/company/policies/privacy-policy"
+              data-page="/company/policies/privacy-policy"
+              data-link=""
+              className="dropdown-link"
+            >
+                Privacy Policy
+            </a>
           </div>
         </section>
       </div>

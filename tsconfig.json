@@ -25,6 +25,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../-Old/faq1.tsx", "../-Old/faq2.tsx", "../-Old/faq3.tsx", "../-Old/faq4.tsx", "../-Old/faq5.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "../-Old/faq1.tsx", "../-Old/faq2.tsx", "../-Old/faq3.tsx", "../-Old/faq4.tsx", "../-Old/faq5.tsx", "../-Old/policieslayout.tsx", "../-Old/[policies].tsx"]
 }

@@ -116,11 +116,53 @@
   --medium-grey: #636363;
   --light-grey: #eeeeee;
   --ash: #f4f4f4;
-  --primary-color: #2b72fb;
-  --primary-red: #C62828;
-  --secondary-red: #990000;
-  --primary-purple: #800080;
-  --primary-blue: #282DD6;
+  --primary-blue: hsl(238, 69%, 50%);
+  --primary-red: hsl(0, 100%, 40%);
+  --secondary-red: hsl(0, 100%, 30%);
+  --primary-fuchsia: hsl(300, 100%, 25%);
+  --primary-fuchsia-dark1: hsl(300, 100%, 20%);
+  --primary-fuchsia-dark2: hsl(300, 100%, 20%);
+  --primary-fuchsia-dark3: hsl(300, 100%, 15%);
+  --primary-fuchsia-dark4: hsl(300, 100%, 10%);
+  --primary-fuchsia-dark5: hsl(300, 100%, 5%);
+  --purple-50: hsl(270, 100%, 98%);
+  --purple-100: hsl(269, 100%, 95%);
+  --purple-150: hsl(269, 100%, 93.5%);
+  --purple-200: hsl(269, 100%, 92%);
+  --purple-250: hsl(269, 98.5%, 88.5%);
+  --purple-300: hsl(269, 97%, 85%);
+  --purple-350: hsl(269.5, 96%, 80%);
+  --purple-400: hsl(270, 95%, 75%);
+  --purple-450: hsl(270.5, 93%, 70%);
+  --purple-500: hsl(271, 91%, 65%);
+  --purple-550: hsl(271, 86%, 60.5%);
+  --purple-600: hsl(271, 81%, 56%);
+  --purple-650: hsl(271.5, 76%, 51.5%);
+  --purple-700: hsl(272, 72%, 47%);
+  --purple-750: hsl(272.5, 69.5%, 43%);
+  --purple-800: hsl(273, 67%, 39%);
+  --purple-850: hsl(273.5, 66.5%, 36%);
+  --purple-900: hsl(274, 66%, 32%);
+  --purple-950: hsl(274, 87%, 21%);
+  --fuchsia-50: hsl(289, 100%, 98%);
+  --fuchsia-100: hsl(287, 100%, 95%);
+  --fuchsia-150: hsl(287.5, 98%, 93%);
+  --fuchsia-200: hsl(288, 96%, 91%);
+  --fuchsia-250: hsl(289.5, 94.5%, 87%);
+  --fuchsia-300: hsl(291, 93%, 83%);
+  --fuchsia-350: hsl(291.5, 92%, 78%);
+  --fuchsia-400: hsl(292, 91%, 73%);
+  --fuchsia-450: hsl(292, 88.5%, 67%);
+  --fuchsia-500: hsl(292, 84%, 61%);
+  --fuchsia-550: hsl(292.5, 76.5%, 55%);
+  --fuchsia-600: hsl(293, 69%, 49%);
+  --fuchsia-650: hsl(294, 70.5%, 44.5%);
+  --fuchsia-700: hsl(295, 72%, 40%);
+  --fuchsia-750: hsl(295, 71%, 36.5%);
+  --fuchsia-800: hsl(295, 70%, 33%);
+  --fuchsia-850: hsl(296, 67%, 30.5%);
+  --fuchsia-900: hsl(297, 64%, 28%);
+  --fuchsia-950: hsl(297, 90%, 16%);
   --white: white;
   --border: 1px solid var(--dark-grey);
   --mmapp-gradient: linear-gradient(90deg, rgba(204,0,0,1) 0%, rgba(128,0,128,1) 50%, rgba(40,45,214,1) 100%);
@@ -136,11 +178,20 @@
 
 
   --test-color: rgb(186, 186, 186);
+  --pen-red: #960200;
+  --lavender: #D8D4F2;
+  --silver: #C1C1C1;
+  --rose-quartz: #BB9BB0;
+  --pale-purple: #F3E0EC;
+  --lavender-blush: #F3E8EE;
+  --thistle: #DBC2CF;
+  --periwinkle: #BBB6DF;
+
+
+
  
 
 
-/*   --primary-purple: #670067;
-  --primary-purple: #36043a; */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -304,6 +355,10 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+/* .textShadow {
+  text-shadow:1px 1px 2px rgba(0,0,0,0.25);
+} */
 
 .content-spacer {
   min-height: 75vh;

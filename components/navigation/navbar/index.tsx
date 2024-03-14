@@ -253,9 +253,9 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/company#Policies"
+                            href="/company#policies"
                             data-page="/company"
-                            data-link="#Policies"
+                            data-link="#policies"
                             className="dropdown-link">
                             Policies
                           </a>

@@ -1,5 +1,4 @@
 "use client";
-import Head from 'next/head';
 /* import type { Metadata } from "next"; */
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter } from "next/navigation";
@@ -7,7 +6,7 @@ import { HrefContext } from './HrefContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "../components/navigation/navbar";
-import Loading from "./loading";
+//import Loading from "./loading";
 import Template from "./template";
 import Providers from './providers'
 import "./globals.css";
@@ -120,7 +119,7 @@ export default function RootLayout({
 
                 if (link.dataset.page == currentPage && smoother.current) {
                   smoother.current.scrollTo(link.dataset.link, true, ScrollSmootherTop);
-                  router.replace(link.href, { scroll: false });
+                  //router.replace(link.href, { scroll: false });
                   //console.log("currentPage remains = "+currentPage);
                 } else {
                   /* // Event without animOut
@@ -132,7 +131,8 @@ export default function RootLayout({
                   animOut.eventCallback("onComplete", () => {
                     setHref(link.dataset.link);
                     startTransition(() => {
-                      router.push(link.href, { scroll: false });
+                      router.push(link.dataset.page, { scroll: false });
+                      //router.push(link.href, { scroll: false });
                     });
                     currentPage = link.dataset.page;
                     //console.log("currentPage changed to " + currentPage);
@@ -171,169 +171,6 @@ export default function RootLayout({
       detectViewportRatio();
       window.addEventListener('resize', detectViewportRatio); */
 
-      function isViewportRatioLessThan160() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        return ratio < 1.6;
-      }
-
-      //Home Animations
-      const checkHomeAnimIn = setInterval(() => {
-        if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
-              clearInterval(checkHomeAnimIn);
-              //console.log("Home animations are ready");
-          let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
-
-          let h4s: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderH4");
-          const changeH4 = gsap.timeline({paused: true, immediateRender: false})
-            .fromTo(h4s[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(h4s[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(h4s[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(h4s[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(h4s[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(h4s[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-
-          h4s.forEach((h4) => { gsap.set(h4, {opacity: 0}); });
-          gsap.set(h4s[0], {opacity: 1, filter:"brightness(100%)"});
-
-          let header = document.getElementById('featuresDashboardHeader');
-          let title = document.getElementById('featuresDashboardTitle');
-          let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
-
-          const vhToPixels = (vh: number) => {
-            const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            return (vh * height) / 100;
-          };
-          let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as 
-          let lastCardST = ScrollTrigger.create({
-            trigger: cards[cards.length-1] as HTMLElement,
-            start: "center center",
-          });
-
-          // variable for how much the card moves up when stacked
-          let cardsYPercent = 5;
-          matchMedia.add("(hover: none)", () => { cardsYPercent = 6; })
-
-          // Animation that makes the cards go up and shrink further on each iteration
-          const stackCardsAnim = (cards: HTMLElement[], i: number) => {
-            for (let j = 0; j < i; j++) {
-              let opacity = 1 - ((i - j) * 0.2); // Decrease opacity by 0.2 for each preceding card
-              let brightness = 100 - ((i - j) * 20); // Decrease brightness by 20% for each preceding card
-              let blur = 0 + (i * 0.5); // Increase blur by 2 for each preceding card
-
-              gsap.to(cards[j], {
-                yPercent: ((-cardsYPercent) * (i - j)),
-                scale: (1 - ((i - j) * 0.1)),
-                filter: `brightness(${brightness}%)`, //blur(${blur}px)
-                /* opacity: opacity, */
-                transformOrigin: "top",
-                duration: 0.5,
-                ease: "power2.inOut"
-              });
-            }
-          }
-
-          const reverseStackCardsAnim = (cards: HTMLElement[], i: number) => {
-            for (let j = 0; j < i; j++) {
-              // Calculate the adjustment factor to ensure immediate reversal
-              let adjustmentFactor = j - i + 1;
-              let brightness = 100 + (adjustmentFactor * 20); // Increase brightness to reverse the effect
-              let opacity = 1 + (adjustmentFactor * 0.2); // Increase opacity to reverse the effect
-              let blur = 0 - (i * 0.5); // Decrease blur to reverse the effect
-
-              gsap.to(cards[j], {
-                yPercent: cardsYPercent * adjustmentFactor,
-                scale: 1 - (adjustmentFactor * (-0.1)),
-                filter: `brightness(${brightness}%)`,
-                /* opacity: opacity, */
-                transformOrigin: "top",
-                duration: 0.5,
-                ease: "power2.inOut"
-              });
-            }
-          }
-
-          cards.forEach((card, i) => {
-            switch (i) {
-              case 0: // case to pin both card[0] and header
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
-                  pin: card,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
-                  pin: header,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
-                  pin: proDisplayShadowSVG,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                if (isViewportRatioLessThan160()) {
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start + bottomDistance,
-                    pin: title,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  });
-                }
-                break;
-              case cards.length-1: // case to pinSpacing the last card
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: true,
-                  invalidateOnRefresh: true,
-                  onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
-                    stackCardsAnim(cards, i);
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
-                    reverseStackCardsAnim(cards, i);
-                  }
-                });
-                break;
-              default: // default case
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start+ bottomDistance,
-                  pin: true,
-                  pinSpacing: false,
-                  onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
-                    stackCardsAnim(cards, i);
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
-                    reverseStackCardsAnim(cards, i);
-                  }
-                });
-            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-          });
-        }
-      }, 50); // Check every 50ms
-
   /* GSDevTools.create(); */
   },
   { dependencies: [router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
@@ -347,8 +184,7 @@ export default function RootLayout({
         <head>
           <meta charSet="utf-8" />
           <link rel="icon" href="@/public/images/logo.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1"
-          />
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <link rel="apple-touch-icon" href="@/public/images/logo.webp" />
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -370,4 +206,3 @@ export default function RootLayout({
     </HrefContext.Provider>
   );
 };
-

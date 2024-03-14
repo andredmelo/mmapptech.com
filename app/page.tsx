@@ -1,17 +1,220 @@
-/* 'use client' */
+'use client'
 import Image from "next/image";
 import styles from "./page.module.css";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { Metadata } from 'next'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
 import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
-export const metadata: Metadata = {
+gsap.registerPlugin(ScrollTrigger);
+/* export const metadata: Metadata = {
   title: 'Home',
-}
+} */
 
 export default function Home() {
+
+    /* ===== GSAP React ===== */
+    useGSAP(
+      () => {
+        let matchMedia = gsap.matchMedia();
+        /* const detectViewportRatio = () => {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          const ratio = width / height;
+          if (ratio > 16/9) {
+          } else if (ratio < 16/9) {
+          } else {
+            console.log("Viewport is 16:9");
+          }
+          if (ratio < 4/3) {
+            console.log("Viewport is narrower than 4:3");
+          } else if (ratio > 4/3) {
+            console.log("Viewport is wider than 4:3");
+          } else {
+            console.log("Viewport is 4:3");
+          }
+          console.log("ratio is "+ratio);
+  
+          if (ratio > 1.54) {
+            gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
+          }
+        }
+        detectViewportRatio();
+        window.addEventListener('resize', detectViewportRatio); */
+        window.addEventListener('resize', () => {ScrollTrigger.refresh();console.log("Refreshed ScrollTrigger");});
+        
+        //To detect if a viewport is ultra-wide
+        function isViewportRatioLessThan160() {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          const ratio = width / height;
+          return ratio < 1.6;
+        }
+  
+        //Home Animations
+        const checkHomeAnimIn = setInterval(() => {
+          if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
+                clearInterval(checkHomeAnimIn);
+                //console.log("Home animations are ready");
+            let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
+  
+            let h4s: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderH4");
+            const changeH4 = gsap.timeline({paused: true, immediateRender: false})
+              .fromTo(h4s[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(h4s[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .addPause()
+              .fromTo(h4s[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(h4s[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .addPause()
+              .fromTo(h4s[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(h4s[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .addPause()
+  
+            h4s.forEach((h4) => { gsap.set(h4, {opacity: 0}); });
+            gsap.set(h4s[0], {opacity: 1, filter:"brightness(100%)"});
+  
+            let header = document.getElementById('featuresDashboardHeader');
+            let title = document.getElementById('featuresDashboardTitle');
+            let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
+  
+            const vhToPixels = (vh: number) => {
+              const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+              return (vh * height) / 100;
+            };
+            let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+            let lastCardST = ScrollTrigger.create({
+              trigger: cards[cards.length-1] as HTMLElement,
+              start: "center center",
+            });
+  
+            // variable for how much the card moves up when stacked
+            let cardsYPercent = 5;
+            matchMedia.add("(hover: none)", () => { cardsYPercent = 6; })
+  
+            // Animation that makes the cards go up and shrink further on each iteration
+            const stackCardsAnim = (cards: HTMLElement[], i: number) => {
+              for (let j = 0; j < i; j++) {
+                let opacity = 1 - ((i - j) * 0.2); // Decrease opacity by 0.2 for each preceding card
+                let brightness = 100 - ((i - j) * 20); // Decrease brightness by 20% for each preceding card
+                let blur = 0 + (i * 0.5); // Increase blur by 2 for each preceding card
+  
+                gsap.to(cards[j], {
+                  yPercent: ((-cardsYPercent) * (i - j)),
+                  scale: (1 - ((i - j) * 0.1)),
+                  filter: `brightness(${brightness}%)`, // Discarded blur(${blur}px)
+                  /* opacity: opacity, */
+                  transformOrigin: "top",
+                  duration: 0.5,
+                  ease: "power2.inOut"
+                });
+              }
+            }
+  
+            const reverseStackCardsAnim = (cards: HTMLElement[], i: number) => {
+              for (let j = 0; j < i; j++) {
+                // Calculate the adjustment factor to ensure immediate reversal
+                let adjustmentFactor = j - i + 1;
+                let brightness = 100 + (adjustmentFactor * 20); // Increase brightness to reverse the effect
+                let opacity = 1 + (adjustmentFactor * 0.2); // Increase opacity to reverse the effect
+                let blur = 0 - (i * 0.5); // Decrease blur to reverse the effect
+  
+                gsap.to(cards[j], {
+                  yPercent: cardsYPercent * adjustmentFactor,
+                  scale: 1 - (adjustmentFactor * (-0.1)),
+                  filter: `brightness(${brightness}%)`,
+                  /* opacity: opacity, */
+                  transformOrigin: "top",
+                  duration: 0.5,
+                  ease: "power2.inOut"
+                });
+              }
+            }
+  
+            cards.forEach((card, i) => {
+              switch (i) {
+                case 0: // case to pin both card[0] and header
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastCardST.start + bottomDistance,
+                    pin: card,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastCardST.start + bottomDistance,
+                    pin: header,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastCardST.start + bottomDistance,
+                    pin: proDisplayShadowSVG,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                  if (isViewportRatioLessThan160()) {
+                    ScrollTrigger.create({
+                      trigger: card,
+                      start: "center 60%",
+                      end: () => lastCardST.start + bottomDistance,
+                      pin: title,
+                      pinSpacing: false,
+                      invalidateOnRefresh: true,
+                    });
+                  }
+                  break;
+                case cards.length-1: // case to pinSpacing the last card
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true,
+                    onEnter: ({progress, direction, isActive}) => {
+                      changeH4.play();
+                      stackCardsAnim(cards, i);
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      changeH4.reverse();
+                      reverseStackCardsAnim(cards, i);
+                    }
+                  });
+                  break;
+                default: // default case
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastCardST.start+ bottomDistance,
+                    pin: true,
+                    pinSpacing: false,
+                    onEnter: ({progress, direction, isActive}) => {
+                      changeH4.play();
+                      stackCardsAnim(cards, i);
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      changeH4.reverse();
+                      reverseStackCardsAnim(cards, i);
+                    }
+                  });
+              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+            });
+          }
+        }, 50); // Check every 50ms
+  
+    /* GSDevTools.create(); */
+    },
+    { dependencies: [], revertOnUpdate: true }
+    );
 
   return (
     <>
@@ -26,10 +229,10 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="Features Dashboard">
+        <section id="Features">
           <h1>Features</h1>
           <div className="flex flex-col items-center colored-cards my-24">
-            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-12text-center" >Federations (Dashboard)</h2>
+            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center" >Federations (Dashboard)</h2>
             {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
             </div> */}
@@ -56,7 +259,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="Features" className="homePageSection">
+        <section id="Features rest" className="homePageSection">
           {/* <h1>Features</h1>
           <div id="featuresDashboard" className="featuresDashboard">
             <h2>Federations (Dashboard)</h2>
@@ -90,51 +293,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* <section id="Benefits" className="homePageSection">
-          <h1>Benefits for everyone else</h1>
-          <div id="benefitsAthletes" className="benefitsAthletes">
-            <h2>Athletes</h2>
-            <br/>
-            <h4>Guarantees athletes and promoters high-standard officials</h4>
-            <p>With a standardised methodology and an electronic scoring system, provides higher quality officiating with less effort, making sure wherever you are, you get a fair result.</p>
-            <h4>Minimizes unexpected decisions</h4>
-            <p>With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, mitigating conscious and unconscious bias</p>
-            <h4>Smooth Experience for Membership Maintenance</h4>
-            <p>Sign-up in one go, and keep your documents up to date with reminders of their expiration</p>
-            <h4>Get featured in a centralized database available to promoters</h4>
-            <p>When registered to your Federation, you are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-          </div>
-          <div id="benefitsCoaches" className="benefitsCoaches">
-            <h2>Coaches</h2>
-            <br/>
-            <h4>Smooth Experience for Membership Maintenance</h4>
-            <p>Easily keep your profile always up-to-date, with reminders of expiration dates for documents</p>
-            <h4>Manage multiple athletes associated with you</h4>
-            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
-            <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-          </div>
-          <div id="benefitsClubs" className="benefitsClubs">
-            <h2>Clubs</h2>
-            <br/>
-            <h4>Manage multiple athletes associated with you</h4>
-            <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
-            <h4>Smooth Experience for Membership Maintenance</h4>
-            <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
-            <h4>Make your athletes instantly available to national promoters</h4>
-            <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-          </div>
-          <div id="benefitsPromoters" className="benefitsPromoters">
-            <h2>Promoters</h2>
-            <br/>
-            <h4>Guarantees athletes and promoters high-standard officials</h4>
-            <p>With a standardised methodology and an electronic scoring system, provides higher quality officiating with less effort</p>
-            <h4>Minimizes unexpected decisions</h4>
-            <p>With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, mitigating conscious and unconscious bias</p>
-            <h4>Smooth Experience for Membership Maintenance</h4>
-            <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
-          </div>
-        </section> */}
+        
         <section id="Benefits" className='md:pt-0 mb-12'>
           <h1 className="text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
             Benefits for everyone else

@@ -44,25 +44,25 @@ export default function MMAPPContactFormEmail(props: any) {
           />
           <Container className="bg-white p-45">
             <Heading className="text-center my-0 leading-8">
-              {kind} Contact form submission
+              {kind}<br/>Contact form submission
             </Heading>
             <Section>
                 <Row>
                   <Text className="text-base">
-                    Below is the {message} contact form submission from the MMAPP website.
+                    Hi Pedro, here below is the latest {kind} contact form submission from the MMAPP website.
                   </Text>
                 </Row>
               </Section>
             <Heading as="h2" className="text-left">
-              From {name}
+              From: {name}
             </Heading>
             <Heading as="h2" className="text-left">
-              @ <a href={`mailto:${email}`}>{email}</a>
+              @: <a href={`mailto:${email}`}>{email}</a>
             </Heading>
             <Heading as="h3" className="text-left">Message:</Heading>
             <Text>{message}</Text>
           </Container>
-          <Container className="mt-20">
+          <Container className="mt-15">
               <Text className="text-center text-gray-400 mb-45">
                 MMAPP, Avenida da República, 861, Bloco D, 3º Dto., Parede, Lisbon 2775-274
               </Text>
