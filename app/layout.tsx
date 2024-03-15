@@ -88,7 +88,7 @@ export default function RootLayout({
       });
 
       let currentPage: string = "/";
-      let ScrollSmootherTop = "top 52px";
+      let ScrollSmootherTop = "top 0px"; //"top 52px"
 
       //ScrollTrigger.config({ ignoreMobileResize: true });
       //ScrollTrigger.normalizeScroll(true);

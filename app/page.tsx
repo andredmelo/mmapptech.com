@@ -1,10 +1,10 @@
 'use client'
-import Image from "next/image";
-import styles from "./page.module.css";
+/* import Image from "next/image";
+import { Metadata } from 'next'
+import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Metadata } from 'next'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import { FeaturesDashboardCard } from '@/components/ui/featuresCard'

@@ -55,16 +55,27 @@ const Company = (props: any) => {
   return (
     <>
       <div className="companyPage">
-        <section id="Mission" className="">
-          <div className="defaultDiv">
-            <h1>Our Mission</h1>
-            <h4>
-              Our mission is to accelerate the recognition of MMA as an Olympic sport.<br/>
-              In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
-            </h4>
+        <section id="Mission" className="flex justify-center">
+          <div className="w-[90vw] h-[98vh] pt-[0px] md:pt-[60px] flex flex-col md:flex-row relative rounded-b-[3rem] bg-[radial-gradient(ellipse_at_50%_0%,_var(--tw-gradient-stops))] from-[#140f0f]/0 via-[#140f0f]/10 to-[#800080] to-[100%]">
+            <div className="z-20 w-full mb-auto p-2 md:p-6 text-left">
+              <h3 className="px-2 md:px-12 pt-[2%] mb-24">
+                Our mission is to accelerate the recognition of MMA as an Olympic sport
+              </h3>
+              <div className="w-max md:max-w-[65vw] py-2 md:py-10 px-2 md:px-12 bg-neutral-950 bg-opacity-25 rounded-2xl mb-20">
+                <p className="w-full leading-[5rem] text-left font-light tracking-normal">
+                  In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging.
+                </p>
+              </div>
+              <div className="md:max-w-[55vw] py-2 md:py-10 px-2 md:px-12 bg-neutral-950 bg-opacity-25 rounded-2xl">
+                <p className="leading-[5rem] text-left font-light tracking-normal">
+                  By offering these tools for officials to discuss their assessments more profoundly and amplify their judging abilities, we aim to increase transparency, consistency, and coherence in MMA.
+                </p>
+              </div>
+            </div>
+            <img className="z-10 max-h-full max-w-[40vw] bottom-0 right-0 relative md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div>
         </section>
-        <section id="Vision" className="">
+        <section id="Vision" className="flex items-center">
           <div className="defaultDiv">
             <h1>Our Vision</h1>
             <h4>
@@ -72,7 +83,7 @@ const Company = (props: any) => {
             </h4>
           </div>
         </section>
-        <section id="CoreValues" className="flex flex-col">
+        <section id="CoreValues" className="flex flex-col items-center">
           <div className="defaultDiv">
             <h1>Core Values</h1>
           </div>
@@ -139,7 +150,7 @@ const Company = (props: any) => {
             </div>
           </div>
         </section>
-        <section id="SecurityCompliance" className="">
+        <section id="SecurityCompliance" className="flex items-center ">
           <div className="defaultDiv">
             <h1>Security and Compliance</h1>
             <h4>
@@ -150,7 +161,7 @@ const Company = (props: any) => {
             </h4>
           </div>
         </section>
-        <section id="policies" className="">
+        <section id="policies" className="flex items-center ">
           <div className="defaultDiv">
             <h1>Company Policies</h1>
             <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />

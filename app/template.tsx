@@ -52,7 +52,7 @@ export default function Template({
   useGSAP(
     () => {
       //console.log(smoother);
-      let ScrollSmootherTop = "top 52px";
+      let ScrollSmootherTop = "top 0px"; //"top 52px"
 
       const checkPendingAndSmoother = setInterval(() => {
         if (isPending == false && smoother && smoother.current && document.querySelector('.templateAnimIn')) {
