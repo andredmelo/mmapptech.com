@@ -10,6 +10,7 @@ import Navbar from "../components/navigation/navbar";
 import Template from "./template";
 import Providers from './providers'
 import "./globals.css";
+import localFont from "next/font/local";
 
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -22,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export const siteTitle = 'MMAPP'; */
 
 const inter = Inter({ subsets: ["latin"] });
+const CalSans = localFont({ src: "../components/ui/fonts/cal-sans/webfonts/CalSans-SemiBold.woff2" });
 
 /* export const metadata: Metadata = {
   title: {
@@ -190,7 +192,7 @@ export default function RootLayout({
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
         </head>
-        <body className={inter.className} ref={main}>
+        <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           <Providers>
             <Navbar />
             <div id="smooth-wrapper">

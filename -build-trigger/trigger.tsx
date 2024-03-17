@@ -1,2 +1,2 @@
-let vNumber = "v0.1.0-β.16 | Navbar restyled, Company mission initial layout and several fixes";
+let vNumber = "v0.1.0-β.17 | Our mission layout, core values update";
 

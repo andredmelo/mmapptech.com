@@ -1,17 +1,45 @@
 "use client";
 import React from "react";
+import * as ReactDOMServer from "react-dom/server";
 /* import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'; */
 import { Metadata } from 'next'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
+import { clsx } from "clsx";
 
 import horizontalLoop from '@/components/HorizontalLoop';
 import { Dialog } from '@/components/ui/dialog'
+//import heroBGSVG from '@/public/images/bg/heroBG.svg';
 
 /* export const metadata: Metadata = {
   title: 'Company',
 } */
+
+function HeroBGSVG({}: {}) {
+  return (
+    <svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <clipPath id="mask0">
+          <rect fill="rgb(255, 255, 255)" width="500" height="400"></rect>
+        </clipPath>
+        <linearGradient id="gradient-1">
+          <stop offset="0.345" stopColor="rgb(20, 15, 15)"></stop>
+          <stop offset="1" stopColor="rgb(128, 0, 128)"></stop>
+        </linearGradient>
+        <radialGradient id="radial-gradient" gradientUnits="userSpaceOnUse" cx="256.082" cy="-0.516" r="250" spreadMethod="pad" gradientTransform="matrix(-0.004168, 1.497955, -2.776109, -0.007725, 261.7983, -384.24772)" href="#gradient-1"></radialGradient>
+      </defs>
+      <g clip-path="url(#mask0)">
+        <rect fill="url(#radial-gradient)" width="1000" height="400" x="-250"></rect>
+      </g>
+    </svg>
+
+  );
+}
+
+const svgString = encodeURIComponent(
+  ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
+);
 
 const Company = (props: any) => {
   //console.log(props);
@@ -56,26 +84,25 @@ const Company = (props: any) => {
     <>
       <div className="companyPage">
         <section id="Mission" className="flex justify-center">
-          <div className="w-[90vw] h-[98vh] pt-[0px] md:pt-[60px] flex flex-col md:flex-row relative rounded-b-[3rem] bg-[radial-gradient(ellipse_at_50%_0%,_var(--tw-gradient-stops))] from-[#140f0f]/0 via-[#140f0f]/10 to-[#800080] to-[100%]">
-            <div className="z-20 w-full mb-auto p-2 md:p-6 text-left">
-              <h3 className="px-2 md:px-12 pt-[2%] mb-24">
-                Our mission is to accelerate the recognition of MMA as an Olympic sport
+          <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
+          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[90rem] 2xl:min-h-[90rem] rounded-b-[3rem]")} style={{ backgroundPosition: "bottom", backgroundRepeat: "no-repeat", backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}}>
+            <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
+              <h2 className="">
+                Our Mission:
+              </h2>
+              <h3 className="mb-8 md:mb-12 lg:mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-250)] to-purple-100">
+                Accelerate the Recognition of MMA as an Olympic Sport
               </h3>
-              <div className="w-max md:max-w-[65vw] py-2 md:py-10 px-2 md:px-12 bg-neutral-950 bg-opacity-25 rounded-2xl mb-20">
-                <p className="w-full leading-[5rem] text-left font-light tracking-normal">
-                  In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging.
-                </p>
-              </div>
-              <div className="md:max-w-[55vw] py-2 md:py-10 px-2 md:px-12 bg-neutral-950 bg-opacity-25 rounded-2xl">
-                <p className="leading-[5rem] text-left font-light tracking-normal">
-                  By offering these tools for officials to discuss their assessments more profoundly and amplify their judging abilities, we aim to increase transparency, consistency, and coherence in MMA.
+              <div className="">
+                <p className="leading-[2.1rem] md:leading-[2.5rem] text-left w-[27rem] md:w-[42rem] lg:w-[51rem]">
+                In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
                 </p>
               </div>
             </div>
-            <img className="z-10 max-h-full max-w-[40vw] bottom-0 right-0 relative md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
+            <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div>
         </section>
-        <section id="Vision" className="flex items-center">
+        <section id="Vision" className="flex items-center  min-h-[calc(50vh)]">
           <div className="defaultDiv">
             <h1>Our Vision</h1>
             <h4>
@@ -150,7 +177,7 @@ const Company = (props: any) => {
             </div>
           </div>
         </section>
-        <section id="SecurityCompliance" className="flex items-center ">
+        <section id="SecurityCompliance" className="flex items-center min-h-[calc(50vh)]">
           <div className="defaultDiv">
             <h1>Security and Compliance</h1>
             <h4>
@@ -161,7 +188,7 @@ const Company = (props: any) => {
             </h4>
           </div>
         </section>
-        <section id="policies" className="flex items-center ">
+        <section id="Policies" className="flex items-center min-h-[calc(50vh)]">
           <div className="defaultDiv">
             <h1>Company Policies</h1>
             <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />

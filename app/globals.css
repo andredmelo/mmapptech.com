@@ -4,6 +4,9 @@
 
 @layer base {
   h1, h2, h3, h4 {
+    font-family: "Cal Sans", sans-serif;
+  }
+  p {
     font-family: "Inter", sans-serif;
   }
   h1 {
@@ -22,7 +25,7 @@
     @apply text-sm md:text-md lg:text-lg xl:text-lg 2xl:text-lg font-bold leading-none tracking-tight;
   }
   p {
-    @apply text-sm md:text-sm lg:text-md xl:text-[2rem] 2xl:text-lg font-normal leading-none tracking-tight;
+    @apply text-[1.4rem] md:text-md lg:text-[1.8rem] font-medium leading-none tracking-normal;
   }
   button {
     @apply border-none cursor-pointer text-sm md:text-md lg:text-md;
@@ -37,15 +40,15 @@
     @apply mb-6 mt-1 p-4 rounded border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
   form button {
-    @apply p-4 w-[20%] rounded-lg border-solid border-2 border-neutral-300 hover:border-fuchsia-800 hover:border-opacity-85 dark:hover:border-opacity-85
+    @apply p-4 w-[20%] rounded-lg border-solid border-2 border-neutral-300 hover:border-neutral-100 hover:border-opacity-85 dark:hover:border-opacity-85
       text-sm md:text-sm lg:text-md
       bg-white hover:bg-fuchsia-50 dark:bg-neutral-100
       text-neutral-600 hover:text-fuchsia-800
-      hover:ring-2 ring-fuchsia-700 ring-opacity-75;
+      hover:ring-4 ring-fuchsia-700 ring-opacity-60;
   }
-  section:last-child {
+  /* section:last-child {
     @apply min-h-[calc(100vh)];
-  }
+  } */
   .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;
   }
@@ -62,7 +65,7 @@
     @apply pb-8;
   }
   .companyPage section {
-    @apply w-full min-h-[calc(100vh)];
+    @apply w-full ; /* min-h-[calc(100vh)] */
   }
   .companyPage section .defaultDiv{
     @apply w-full space-y-6 p-4 md:p-14 pb-8;
@@ -80,22 +83,22 @@
     @apply pb-8;
   }
   .companyPage .carouselWrapper{
-    @apply w-[110vw] h-[40rem] md:h-[50rem] relative flex items-center overflow-visible bg-transparent;
+    @apply w-[110vw] h-[50rem] md:h-[60rem] relative flex items-center overflow-visible bg-transparent;
   }
   .companyPage .carouselWrapper .box{
     @apply p-8 h-full w-[35rem] md:w-[45rem];
   }
   .companyPage .carouselWrapper .box .card{
-    @apply flex flex-col content-between shrink-0 relative h-full w-[30rem] md:w-[40rem] rounded-3xl overflow-hidden bg-purple-800;
+    @apply flex flex-col content-between shrink-0 items-center relative h-full w-[30rem] md:w-[40rem] rounded-3xl overflow-hidden bg-gradient-to-b from-[var(--background-grey)] to-[var(--background-grey-light)] border-2 border-solid border-[var(--background-grey-highlight)] shadow-inner;
   }
   .companyPage .carouselWrapper .box .card div{
-    @apply flex w-[100%] h-[25%] mb-auto justify-center items-center;
+    @apply flex w-[100%] h-[25%] mb-auto justify-center items-center absolute;
   }
   .companyPage .carouselWrapper .box .card h4{
-    @apply px-12 pt-12 break-normal text-center text-xl md:text-xl lg:text-2xl font-bold leading-none tracking-tight /* border-2 border-solid border-red-700 */;
+    @apply px-12 pt-6 break-normal text-center text-xl md:text-xl lg:text-2xl font-bold leading-none tracking-tight /* border-2 border-solid border-red-700 */;
   }
-  .companyPage .carouselWrapper .box img{
-    @apply w-[100%] h-[75%];
+  .companyPage .carouselWrapper .box .card img{
+    @apply w-[125%] h-[125%] max-w-[200%] -bottom-[28%] absolute;
   }
 
   .colored-cards .colored-card {
@@ -104,6 +107,13 @@
   .colored-cards .spacer {
     @apply mb-[10rem];
   }
+
+  .hero1ContainerMargins {
+    @apply ml-1 md:ml-[4rem] xl:ml-[8rem] 2xl:ml-[13.5rem] mr-1 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem];
+  }
+  .hero1ContentMargins {
+    @apply ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] mt-[10rem] md:mt-[18rem] xl:mt-[24rem] 2xl:mt-[24rem];
+  }
 }
 
 
@@ -111,8 +121,9 @@
 
 :root {
   /* --background-grey: #131316; */
-  --background2-grey: #15161A;
+  --background2-grey: #1a1515;
   --background-grey: #140f0f;
+  --background-grey-light: hsl(0, 14%,10%);
   --background-grey-highlight: rgb(33, 33, 33, 0.5);
   --dark-grey: #131010;
   --medium-grey: #636363;
@@ -196,10 +207,8 @@
   --thistle: #DBC2CF;
   --periwinkle: #BBB6DF;
 
-
-
- 
-
+  --bgNoise: hsl(211, 50%, 100%);
+  --primary-fuchsia: rgb(128, 0, 128);
 
 }
 
@@ -235,6 +244,16 @@
     --card-border-rgb: 200, 200, 200;
   }
 } */
+/* @font-face {
+  font-family: "Cal Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("./fonts/webfonts/CalSans-SemiBold.woff2") format("woff2"),
+    url("./fonts/webfonts/CalSans-SemiBold.woff") format("woff"),
+    url("./fonts/webfonts/CalSans-SemiBold.ttf") format("truetype");
+} */
+
 .Inter-100 {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;

@@ -344,7 +344,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               {/* <a href="#profile">
                 <img src="https://???" width="30" height="30" alt="user image" />
               </a> */}
-              <button id="loginLink" className="btn btn-primary login-link">
+              <button id="loginLink" className="btn btn-primary login-link hover:ring-1 hover:ring-white hover:ring-opacity-85 hover:ring-offset-2">
                 <a href="https://dashboard.mmapp.app/login">Login</a>
               </button>
             </div>

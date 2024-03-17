@@ -45,7 +45,7 @@ export default function Home() {
         }
         detectViewportRatio();
         window.addEventListener('resize', detectViewportRatio); */
-        window.addEventListener('resize', () => {ScrollTrigger.refresh();console.log("Refreshed ScrollTrigger");});
+        window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
         
         //To detect if a viewport is ultra-wide
         function isViewportRatioLessThan160() {
