@@ -539,11 +539,11 @@ a {
   /* background: transparent; */
   z-index: 900;
 }
-@media screen and (hover: none) {
+/* @media screen and (hover: none) {
   #nav-menu {
     background: var(--dark-grey);
   }
-}
+} */
 
 
 .nav-container {
