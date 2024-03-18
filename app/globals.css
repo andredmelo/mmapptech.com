@@ -19,9 +19,12 @@
     @apply text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-3xl font-semibold leading-none tracking-tight;
   }
   h4 {
-    @apply text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-xl font-bold leading-none tracking-tight;
+    @apply text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl font-bold leading-none tracking-tight;
   }
   h5 {
+    @apply text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-xl font-bold leading-none tracking-tight;
+  }
+  h6 {
     @apply text-sm md:text-md lg:text-lg xl:text-lg 2xl:text-lg font-bold leading-none tracking-tight;
   }
   p {
@@ -83,22 +86,22 @@
     @apply pb-8;
   }
   .companyPage .carouselWrapper{
-    @apply w-[110vw] h-[50rem] md:h-[60rem] relative flex items-center overflow-visible bg-transparent;
+    @apply w-[110vw] h-[30rem] md:h-[43rem] relative flex items-center overflow-visible bg-transparent;
   }
   .companyPage .carouselWrapper .box{
-    @apply p-8 h-full w-[35rem] md:w-[45rem];
+    @apply p-8 h-full w-[25rem] md:w-[35rem];
   }
   .companyPage .carouselWrapper .box .card{
-    @apply flex flex-col content-between shrink-0 items-center relative h-full w-[30rem] md:w-[40rem] rounded-3xl overflow-hidden bg-gradient-to-b from-[var(--background-grey)] to-[var(--background-grey-light)] border-2 border-solid border-[var(--background-grey-highlight)] shadow-inner;
+    @apply flex flex-col content-between shrink-0 items-center relative h-full w-[20rem] md:w-[30rem] rounded-3xl overflow-hidden bg-gradient-to-b from-[var(--background-grey)] to-[var(--background-grey-light)] border-2 border-solid border-[var(--background-grey-highlight)] shadow-inner;
   }
   .companyPage .carouselWrapper .box .card div{
-    @apply flex w-[100%] h-[25%] mb-auto justify-center items-center absolute;
+    @apply flex w-[100%] h-[20%] mb-auto justify-center items-center absolute;
   }
   .companyPage .carouselWrapper .box .card h4{
-    @apply px-12 pt-6 break-normal text-center text-xl md:text-xl lg:text-2xl font-bold leading-none tracking-tight /* border-2 border-solid border-red-700 */;
+    @apply px-12 pt-12 break-normal text-center text-[2rem] md:text-lg lg:text-xl font-bold leading-none tracking-tight /* border-2 border-solid border-red-700 */;
   }
   .companyPage .carouselWrapper .box .card img{
-    @apply w-[125%] h-[125%] max-w-[200%] -bottom-[28%] absolute;
+    @apply w-[105%] h-[105%] max-w-[200%] -bottom-[15%] absolute;
   }
 
   .colored-cards .colored-card {
@@ -134,9 +137,9 @@
   --secondary-red: hsl(0, 100%, 30%);
   --primary-fuchsia: #800080;
   --primary-fuchsia-dark1: hsl(300, 100%, 20%);
-  --primary-fuchsia-dark2: hsl(300, 100%, 20%);
+  --primary-fuchsia-dark2: #660066;
   --primary-fuchsia-dark3: hsl(300, 100%, 15%);
-  --primary-fuchsia-dark4: hsl(300, 100%, 10%);
+  --primary-fuchsia-dark4: #330033;
   --primary-fuchsia-dark5: hsl(300, 100%, 5%);
   --purple-50: hsl(270, 100%, 98%);
   --purple-100: hsl(269, 100%, 95%);

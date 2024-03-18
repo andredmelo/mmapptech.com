@@ -102,18 +102,14 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div>
         </section>
-        <section id="Vision" className="flex items-center  min-h-[calc(50vh)]">
-          <div className="defaultDiv">
-            <h1>Our Vision</h1>
+        <section id="Vision" className="flex flex-col items-center min-h-[calc(50vh)] my-24 space-y-24">
+            <h2>Our Vision</h2>
             <h4>
               Our vision is to create a common language and unit of measurement for officials to increase transparency, consistency, and coherence in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </h4>
-          </div>
         </section>
-        <section id="CoreValues" className="flex flex-col items-center">
-          <div className="defaultDiv">
-            <h1>Core Values</h1>
-          </div>
+        <section id="CoreValues" className="flex flex-col items-center my-24 space-y-24">
+            <h2>Core Values</h2>
           <div className="carouselWrapper">
             <div className="box">
               <div className="card">
@@ -177,20 +173,59 @@ const Company = (props: any) => {
             </div>
           </div>
         </section>
-        <section id="SecurityCompliance" className="flex items-center min-h-[calc(50vh)]">
-          <div className="defaultDiv">
-            <h1>Security and Compliance</h1>
-            <h4>
-              Striving to become the document of record for the sport, we take Privacy, Security, and Compliance with the utmost seriousness.<br/>
-              The privacy of our users is paramount, and we take industry-excelling measures to guarantee their safety.<br/>
-              We adhere to the GDPR as our base of compliance. Still, we are in accordance with various privacy agreements worldwide, such as the US&apos;s CCPA, Australia&apos;s Privacy Act, and Canada&apos;s DCIA.<br/>
+
+        <section id="SecurityCompliance" className="flex flex-col items-center mt-12 md:mt-24 min-h-[calc(50vh)]">
+          <h2 className="text-center">Security & Compliance</h2>
+          <ul className="flex flex-col items-center text-left md:text-center gap-6 md:gap-12 p-8 md:p-12 lg:p-24 space-y-6 md:space-y-8 lg:space-y-6" role="list">
+            <li className="w-[98%] md:w-[90%] lg:w-[80%]">
+              <h4 className="leading-[3rem] md:leading-[4rem] lg:leading-[5rem] font-bold text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100">
+                Striving to become the document of record for the sport, we take Privacy, Security, and Compliance with the utmost seriousness
+              </h4>
+            </li>
+            <li className="flex flex-col md:flex-row">
+              <ol className="basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
+                <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
+                Privacy
+                </h4>
+                <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold text-neutral-300">
+                The privacy of our users is paramount, and we take industry-excelling measures to guarantee their safety.
+                </p>
+              </ol>
+              <ol className="hidden md:inline-flex items-center basis-1/3 content-center justify-center">
+                <div className="md:w-[25rem] md:h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-10">
+                  <img className="" src="/images/icons/shield.svg" alt="shield"/>
+                </div>
+              </ol>
+              <ol className="flex flex-col basis-1/3 mt-0 md:mt-20 lg:mt-32">
+                <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
+                Security
+                </h4>
+                <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mt-2 text-neutral-300">
+                  GDPR is our base of compliance.<br/>
+                  Furthermore, we are in accordance with various privacy agreements worldwide.
+                </p>
+              </ol>
+            </li>
+            <li className="w-[100%] md:w-[90%] lg:w-[80%]">
+              <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
+              Compliance
+              </h4>
+              <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold  text-neutral-300">
               We are continuously working to include full compliance in all regions we operate. Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
-            </h4>
-          </div>
+              </p>
+            </li>
+            <div className="flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
+              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/gdpr.webp" alt="gdpr"/>
+              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/cppa.webp" alt="cppa"/>
+              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/apa.webp" alt="apa"/>
+              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/ccpa.webp" alt="ccpa"/>
+            </div>
+          </ul>
         </section>
+        
         <section id="Policies" className="flex items-center min-h-[calc(50vh)]">
           <div className="defaultDiv">
-            <h1>Company Policies</h1>
+            <h2>Company Policies</h2>
             <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
             <br/>
             <a

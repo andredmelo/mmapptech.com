@@ -62,20 +62,20 @@ export default function Home() {
                 //console.log("Home animations are ready");
             let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
   
-            let h4s: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderH4");
+            let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
             const changeH4 = gsap.timeline({paused: true, immediateRender: false})
-              .fromTo(h4s[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(h4s[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .fromTo(fDHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(fDHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
               .addPause()
-              .fromTo(h4s[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(h4s[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .fromTo(fDHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(fDHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
               .addPause()
-              .fromTo(h4s[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(h4s[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+              .fromTo(fDHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+              .fromTo(fDHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
               .addPause()
   
-            h4s.forEach((h4) => { gsap.set(h4, {opacity: 0}); });
-            gsap.set(h4s[0], {opacity: 1, filter:"brightness(100%)"});
+            fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
+            gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
   
             let header = document.getElementById('featuresDashboardHeader');
             let title = document.getElementById('featuresDashboardTitle');
@@ -237,11 +237,11 @@ export default function Home() {
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
             </div> */}
             <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
-              <h4 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
-              <h4 className="absolute featuresDashboardHeaderH4">Overview of Federation Affairs</h4>
-              <h4 className="absolute featuresDashboardHeaderH4">Visual Reports with Actionable Insights</h4>
-              <h4 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderH4">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h4>
-              <h4 className="absolute featuresDashboardHeaderH4">Intuitive Member Management</h4>
+              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
+              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
             </div>
             <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
@@ -264,32 +264,32 @@ export default function Home() {
           <div id="featuresDashboard" className="featuresDashboard">
             <h2>Federations (Dashboard)</h2>
             <br/>
-            <h4>Overview of Federation Affairs</h4>
-            <h4>Visual Reports with Actionable Insights</h4>
-            <h4>Easy Form Management</h4>
-            <h4>Seamless Sign-up process for all your members<br/>(Officials, Athletes, Coaches, Promoters and Clubs)</h4>
-            <h4>Intuitive Member Management</h4>
+            <h5>Overview of Federation Affairs</h5>
+            <h5>Visual Reports with Actionable Insights</h5>
+            <h5>Easy Form Management</h5>
+            <h5>Seamless Sign-up process for all your members<br/>(Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+            <h5>Intuitive Member Management</h5>
             <br/>
           </div> */}
           <div id="featuresJudge" className="featuresJudge">
             <h2>Officials (Judge)</h2>
             <br/>
-            <h4>Personalized Fight Card</h4>
-            <h4>Make more Informed Decisions with a Coherent and Consistent Methodology</h4>
-            <h4>Discuss scoring more deeply with your colleagues</h4>
-            <h4>Reduce Fatigue</h4>
-            <h4>Instantly submit your scorecards to the RecordKeeper</h4>
-            <h4>Training Mode - Create Own Fights, Improve your skills and compare with your colleagues</h4>
+            <h5>Personalized Fight Card</h5>
+            <h5>Make more Informed Decisions with a Coherent and Consistent Methodology</h5>
+            <h5>Discuss scoring more deeply with your colleagues</h5>
+            <h5>Reduce Fatigue</h5>
+            <h5>Instantly submit your scorecards to the RecordKeeper</h5>
+            <h5>Training Mode - Create Own Fights, Improve your skills and compare with your colleagues</h5>
           </div>
           <div id="featuresRecordKeeper" className="featuresRecordKeeper">
             <h2>Officials (RecordKeeper)</h2>
             <br/>
 
-            <h4>Pre-filled in Information</h4>
-            <h4>Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules</h4>
-            <h4>Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)</h4>
-            <h4>Notifications for actions needed to perform</h4>
-            <h4>Instant Score Delivery and Calculation</h4>
+            <h5>Pre-filled in Information</h5>
+            <h5>Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules</h5>
+            <h5>Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)</h5>
+            <h5>Notifications for actions needed to perform</h5>
+            <h5>Instant Score Delivery and Calculation</h5>
           </div>
         </section>
 
@@ -304,10 +304,10 @@ export default function Home() {
         <section id="Ourmission" className="homePageSection">
           <div>
             <h1>Our Mission</h1>
-            <h4>
+            <h5>
               At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age. Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling. On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
               Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials. By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-            </h4>
+            </h5>
           </div>
         </section>
 
