@@ -324,11 +324,6 @@ export default function Home() {
           </h1>
           <ContactUs id={ContactUs} className=""/>
         </section>
-        <footer className="py-32">
-          <p className="text-center font-medium">
-            Powered by{' ®MMAPP '} © 2024 MMAPP. All rights reserved.
-          </p>
-        </footer>
       </div>
     </>
   );

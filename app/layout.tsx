@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { HrefContext } from './HrefContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
-import Navbar from "../components/navigation/navbar";
+import Navbar from "@/components/navigation/navbar";
+import Footer from "@/components/footer";
 //import Loading from "./loading";
 import Template from "./template";
 import Providers from './providers'
@@ -200,6 +201,7 @@ export default function RootLayout({
                 <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
                   <main id="main">{children}</main>
                 </Template>
+                <Footer />
               </div>
             </div>
           </Providers>

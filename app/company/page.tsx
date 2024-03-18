@@ -11,6 +11,7 @@ import { clsx } from "clsx";
 import horizontalLoop from '@/components/HorizontalLoop';
 import { Dialog } from '@/components/ui/dialog'
 //import heroBGSVG from '@/public/images/bg/heroBG.svg';
+import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
 
 /* export const metadata: Metadata = {
   title: 'Company',
@@ -85,9 +86,9 @@ const Company = (props: any) => {
       <div className="companyPage">
         <section id="Mission" className="flex justify-center">
           <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[90rem] 2xl:min-h-[90rem] rounded-b-[3rem]")} style={{ backgroundPosition: "bottom", backgroundRepeat: "no-repeat", backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}}>
+          "hero1ContainerMargins min-h-[60rem] md:min-h-[65rem] xl:min-h-[80rem] rounded-b-[3rem] bg-no-repeat bg-bottom ")} style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}}>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
-              <h2 className="">
+              <h2 className="mb-4 md:mb-8 lg:mb-12">
                 Our Mission:
               </h2>
               <h3 className="mb-8 md:mb-12 lg:mb-16 text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-250)] to-purple-100">
@@ -102,13 +103,15 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div>
         </section>
-        <section id="Vision" className="flex flex-col items-center min-h-[calc(50vh)] my-24 space-y-24">
+
+        <section id="Vision" className="flex flex-col items-center min-h-[calc(50vh)] space-y-24">
             <h2>Our Vision</h2>
-            <h4>
+            <h5>
               Our vision is to create a common language and unit of measurement for officials to increase transparency, consistency, and coherence in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
-            </h4>
+            </h5>
         </section>
-        <section id="CoreValues" className="flex flex-col items-center my-24 space-y-24">
+
+        <section id="CoreValues" className="flex flex-col items-center space-y-24">
             <h2>Core Values</h2>
           <div className="carouselWrapper">
             <div className="box">
@@ -174,7 +177,7 @@ const Company = (props: any) => {
           </div>
         </section>
 
-        <section id="SecurityCompliance" className="flex flex-col items-center mt-12 md:mt-24 min-h-[calc(50vh)]">
+        <section id="SecurityCompliance" className="flex flex-col items-center min-h-[calc(50vh)]">
           <h2 className="text-center">Security & Compliance</h2>
           <ul className="flex flex-col items-center text-left md:text-center gap-6 md:gap-12 p-8 md:p-12 lg:p-24 space-y-6 md:space-y-8 lg:space-y-6" role="list">
             <li className="w-[98%] md:w-[90%] lg:w-[80%]">
@@ -223,19 +226,114 @@ const Company = (props: any) => {
           </ul>
         </section>
         
-        <section id="Policies" className="flex items-center min-h-[calc(50vh)]">
-          <div className="defaultDiv">
-            <h2>Company Policies</h2>
-            <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
-            <br/>
-            <a
-              href="/company/policies/privacy-policy"
-              data-page="/company/policies/privacy-policy"
-              data-link=""
-              className="dropdown-link"
-            >
-                Privacy Policy
-            </a>
+        <section id="Policies" className="flex flex-col items-center min-h-[calc(50vh)]">
+            <h2 className="text-center mb-24">Company Policies</h2>
+            {/* <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
+            <br/> */}
+
+            <div className="flex flex-row flex-wrap justify-center mx-20 md:mx-10 lg:mx-8">
+              <CardPolicies className='' id="Privacy Policy">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Privacy Policy
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our Privacy Policy for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  Privacy Policy
+                </CardPoliciesButton>
+              </CardPolicies>
+              <CardPolicies className='' id="Cookie Policy">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Cookie Policy
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our Cookie Policy for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  Cookie Policy
+                </CardPoliciesButton>
+              </CardPolicies>
+              <CardPolicies className='' id="Terms & Conditions">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Terms & Conditions
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our Terms & Conditions for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  Terms & Conditions
+                </CardPoliciesButton>
+              </CardPolicies>
+              <CardPolicies className='' id="EULA">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    EULA
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our EULA for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  EULA
+                </CardPoliciesButton>
+              </CardPolicies>
+              <CardPolicies className='' id="Disclaimer">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Disclaimer
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our Disclaimer for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  Disclaimer
+                </CardPoliciesButton>
+              </CardPolicies>
+              <CardPolicies className='' id="Acceptable Use Policy">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Acceptable Use Policy
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    Consult our Acceptable Use Policy for more information on how we use your data.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/privacy-policy"
+                  data-page="/company/policies/privacy-policy"
+                  className=""
+                >
+                  Acceptable Use Policy
+                </CardPoliciesButton>
+              </CardPolicies>
           </div>
         </section>
       </div>

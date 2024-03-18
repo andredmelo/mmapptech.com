@@ -25,7 +25,7 @@
     @apply text-md md:text-lg lg:text-xl xl:text-xl 2xl:text-xl font-bold leading-none tracking-tight;
   }
   h6 {
-    @apply text-sm md:text-md lg:text-lg xl:text-lg 2xl:text-lg font-bold leading-none tracking-tight;
+    @apply text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal;
   }
   p {
     @apply text-[1.4rem] md:text-md lg:text-[1.8rem] font-medium leading-none tracking-normal;
@@ -49,9 +49,13 @@
       text-neutral-600 hover:text-fuchsia-800
       hover:ring-4 ring-fuchsia-700 ring-opacity-60;
   }
-  /* section:last-child {
-    @apply min-h-[calc(100vh)];
-  } */
+  section {
+    @apply pt-20 md:pt-36 lg:pt-40;  /* This is to account for the Navbar */
+  }
+  section:last-child {
+    @apply min-h-[calc(75vh)];
+  }
+  
   .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;
   }
@@ -115,7 +119,7 @@
     @apply ml-1 md:ml-[4rem] xl:ml-[8rem] 2xl:ml-[13.5rem] mr-1 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem];
   }
   .hero1ContentMargins {
-    @apply ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] mt-[10rem] md:mt-[18rem] xl:mt-[24rem] 2xl:mt-[24rem];
+    @apply ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] mt-[10rem] md:mt-[12rem] xl:mt-[18rem];
   }
 }
 
@@ -387,6 +391,11 @@ a {
   color: inherit;
 }
 
+.shadow-inset {
+	--tw-shadow: inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);
+	--tw-shadow-colored: inset 6px 84px 79px -40px var(--tw-shadow-color), inset 0 -4px 1px -3px var(--tw-shadow-color), inset 0 4px 1px -3px var(--tw-shadow-color);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+}
 /* .textShadow {
   text-shadow:1px 1px 2px rgba(0,0,0,0.25);
 } */
