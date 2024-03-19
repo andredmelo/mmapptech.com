@@ -1,2 +1,2 @@
-let vNumber = "v0.1.0-β.22 | Benefits redesign, gradients integration in Tailwind config, several tweaks";
+let vNumber = "v0.1.0-β.23 | Core Values icons complete replacement with duoTone, small fixes";
 

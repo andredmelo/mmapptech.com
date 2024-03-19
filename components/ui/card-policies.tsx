@@ -12,7 +12,7 @@ const CardPolicies = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col h-full min-h-[17rem] md:min-h-[24rem] xl:min-h-[30rem] w-[32rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
+      "flex flex-col h-full min-h-[32rem] md:min-h-[35rem] xl:min-h-[40rem] w-[32rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
       /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
       "p-8 md:p-12 lg:p-16 mx-2 md:mx-4 lg:mx-6 my-3 md:my-4 lg:my-6",
       className
@@ -52,7 +52,7 @@ const CardPoliciesDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("font-medium md:font-normal leading-[2.1rem] md:leading-[2.5rem] text-neutral-700 dark:text-neutral-300", className)}
+    className={cn("smallP text-neutral-700 dark:text-neutral-300", className)}
     {...props}
   />
 ))
