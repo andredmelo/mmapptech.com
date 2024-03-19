@@ -73,6 +73,12 @@ module.exports = {
           },
         },
       }, */
+      backgroundImage: {
+        'bgRadialGradientUp': "var(--bgRadialGradientUp)",
+        'bgRadialGradientDown': "var(--bgRadialGradientDown)",
+        'bgRadialGradientRight': "var(--bgRadialGradientRight)",
+        'bgRadialGradientLeft': "var(--bgRadialGradientLeft)",
+      },
       textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',
         DEFAULT: '0 2px 4px var(--tw-shadow-color)',

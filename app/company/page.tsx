@@ -11,37 +11,16 @@ import { clsx } from "clsx";
 import horizontalLoop from '@/components/HorizontalLoop';
 import { Dialog } from '@/components/ui/dialog'
 //import heroBGSVG from '@/public/images/bg/heroBG.svg';
-import { HeroBGSVG } from '@/components/ui/svg/heroBGSVG';
+//import { HeroBGSVG } from '@/components/ui/svg/heroBGSVG';
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
 
 /* export const metadata: Metadata = {
   title: 'Company',
 } */
 
-/* function HeroBGSVG({}: {}) {
-  return (
-    <svg viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="mask0">
-          <rect fill="rgb(255, 255, 255)" width="500" height="400"></rect>
-        </clipPath>
-        <linearGradient id="gradient-1">
-          <stop offset="0.345" stopColor="rgb(20, 15, 15)"></stop>
-          <stop offset="1" stopColor="rgb(128, 0, 128)"></stop>
-        </linearGradient>
-        <radialGradient id="radial-gradient" gradientUnits="userSpaceOnUse" cx="256.082" cy="-0.516" r="250" spreadMethod="pad" gradientTransform="matrix(-0.004168, 1.497955, -2.776109, -0.007725, 261.7983, -384.24772)" href="#gradient-1"></radialGradient>
-      </defs>
-      <g clipPath="url(#mask0)">
-        <rect fill="url(#radial-gradient)" width="1000" height="400" x="-250"></rect>
-      </g>
-    </svg>
-
-  );
-} */
-
-const svgString = encodeURIComponent(
+/* const svgString = encodeURIComponent(
   ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
-);
+); */
 
 const Company = (props: any) => {
   //console.log(props);
@@ -74,7 +53,7 @@ const Company = (props: any) => {
   useGSAP(
     () => {
       const boxes = gsap.utils.toArray(".box");
-      const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:1.5});
+      const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:0.75});
 
   /* GSDevTools.create(); */
 
@@ -86,8 +65,8 @@ const Company = (props: any) => {
     <>
       <div className="companyPage">
         <section id="Mission" className="flex justify-center">
-          <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[80rem] rounded-b-[3rem] bg-no-repeat bg-bottom ")} style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}}>
+          <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
+          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200">
                 Our Mission
@@ -108,8 +87,8 @@ const Company = (props: any) => {
         <div className="borderBottom"></div>
 
         <section id="Vision" className="flex justify-center">
-          <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-4 border-neutral-900")}>
+          <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
+          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
             <div className="flex flex-col justify-top z-20 text-center">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200">
                 Our Vision
@@ -125,7 +104,7 @@ const Company = (props: any) => {
               <div className="">
                 <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
 
-                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4">
+                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 rounded-[1rem]">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-slack" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -145,7 +124,7 @@ const Company = (props: any) => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 py-8 md:py-0">
+                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
                       <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-artboard" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <rect x="8" y="8" width="8" height="8" rx="1"></rect> <line x1="3" y1="8" x2="4" y2="8"></line> <line x1="3" y1="16" x2="4" y2="16"></line> <line x1="8" y1="3" x2="8" y2="4"></line> <line x1="16" y1="3" x2="16" y2="4"></line> <line x1="20" y1="8" x2="21" y2="8"></line> <line x1="20" y1="16" x2="21" y2="16"></line> <line x1="8" y1="20" x2="8" y2="21"></line> <line x1="16" y1="20" x2="16" y2="21"></line> </svg>
@@ -278,7 +257,7 @@ const Company = (props: any) => {
                 Security
                 </h4>
                 <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mt-2 text-neutral-300">
-                  GDPR is our base of compliance.<br/>
+                  We adhere to the GDPR as our base of compliance.<br/>
                   Furthermore, we are in accordance with various privacy agreements worldwide.
                 </p>
               </ol>

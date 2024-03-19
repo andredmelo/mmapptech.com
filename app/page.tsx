@@ -317,11 +317,10 @@ export default function Home() {
         <section id="OurMission" className="flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
-              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom ",
+              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
               "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
-              style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100% auto"}}
             >
-              <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[2rem] md:pt-[6rem] lg:pt-[10rem] text-left">
+              <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[5rem] md:pt-[6rem] lg:pt-[10rem] text-left">
                 <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200">
                   Our Mission
                 </h5>
@@ -352,7 +351,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[2rem] right-[2rem] md:bottom-[8rem] md:right-[6rem] lg:bottom-[10rem] lg:right-[10rem] absolute object-contain" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[8rem] md:right-[6rem] lg:bottom-[10rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
             </div>
         </section>
 

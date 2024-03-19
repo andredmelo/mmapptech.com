@@ -4,18 +4,23 @@ import { cn } from "@/lib/utils"
 const CardBenefits = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "flex flex-col h-full rounded-xl md:rounded-xl md:mx-0 bg-white text-neutral-950 shadow-2xl  dark:text-neutral-50 dark:bg-gradient-to-r from-[var(--primary-fuchsia-dark5)] to-[var(--primary-fuchsia-dark4)]",
-      /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
-      "p-10 md:p-20 lg:p-28 space-y-8 md:space-y-12 lg:space-y-16 justify-between",
-      className
-    )}
-    {...props}
-  />
-))
+>(({ className, ...props }, ref) => {
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "flex flex-col h-full rounded-xl md:rounded-xl md:mx-0 text-neutral-950 dark:text-neutral-50",
+        /*  bg-white dark:bg-gradient-to-r from-[var(--primary-fuchsia-dark4)] to-[var(--background-grey)] to-85% */
+        "bg-no-repeat bg-left bg-cover bg-bgRadialGradientRight",
+        /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
+        "p-8 md:p-10 lg:p-12 space-y-8 md:space-y-10 lg:space-y-12 justify-between",
+        { ...props, ref }
+      )}
+      {...props}
+    />
+  );
+});
 CardBenefits.displayName = "CardBenefits"
 
 const CardBenefitsHeader = React.forwardRef<
@@ -24,7 +29,7 @@ const CardBenefitsHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-3 md:space-y-6", className)}
+    className={cn("flex flex-col space-y-3 md:space-y-6", "rounded-2xl md:rounded-2xl bg-white text-neutral-950 shadow-xl dark:bg-[var(--background-grey-50)] dark:text-neutral-50 shadow-inset-right p-8 md:p-10 lg:p-12", className)}
     {...props}
   />
 ))

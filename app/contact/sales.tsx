@@ -47,8 +47,8 @@ export default function Sales() {
       <CardHeader>
         <CardTitle>Sales Inquiries</CardTitle>
         <CardDescription>
-          Inquire about sales.<br/>
-          Any information solicited for a sales inquiry will be used solely to provide requester with the information they have requested.
+          Inquire about sales questions.<br/>
+          Any information solicited will be used solely to provide requester with the information they have requested.
         </CardDescription>
       </CardHeader>
       <CardContent className='h-full'>
@@ -68,7 +68,7 @@ export default function Sales() {
                 /* type="text"
                 name="first"
                 required */
-                placeholder='Name'
+                placeholder='Your Name'
                 {...register('name')}
               />
               {errors.name?.message && (
@@ -85,7 +85,7 @@ export default function Sales() {
                 /* type="email"
                 name="email"
                 required */
-                placeholder='Email'
+                placeholder='Your Email Address'
                 {...register('email')}
               />
               {errors.email?.message && (
@@ -110,7 +110,7 @@ export default function Sales() {
                 id="form-message"
                 /* name="message" */
                 rows={6}
-                placeholder='Message'
+                placeholder='Your Message'
                 {...register('message')}
               />
               {errors.message?.message && (
@@ -120,7 +120,7 @@ export default function Sales() {
             <div className="flex flex-col items-center">
               <button
                 disabled={isSubmitting}
-                className="bg-neutral-100 hover:bg-neutral-50 text-neutral-600 hover:text-neutral-800 hover:ring-2 ring-blue-700 ring-opacity-75 p-4 my-4 rounded-lg"
+                className=""
                 /* type="submit" */
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
@@ -130,8 +130,8 @@ export default function Sales() {
 
         </div>
       </CardContent>
-      <CardFooter className='border-t border-neutral-800 p-6 pl-10'>
-        <p className='text-sm italic text-neutral-500'>Sales Inquiries Submission Form</p>
+      <CardFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
+        <p className='text-sm italic text-neutral-400 dark:text-neutral-500'>Sales Inquiries Submission Form</p>
       </CardFooter>
     </Card>
   )

@@ -136,6 +136,7 @@
   /* --background-grey: #131316; */
   --background2-grey: #1a1515;
   --background-grey: #140f0f;
+  --background-grey-50: rgba(20, 15, 15, 0.65);
   --background-grey-light: hsl(0, 14%,10%);
   --background-grey-highlight: rgb(33, 33, 33, 0.5);
   --dark-grey: #131010;
@@ -148,7 +149,7 @@
   --primary-fuchsia: #800080;
   --primary-fuchsia-dark1: hsl(300, 100%, 20%);
   --primary-fuchsia-dark2: #660066;
-  --primary-fuchsia-dark3: hsl(300, 100%, 15%);
+  --primary-fuchsia-dark3: #4d004d;
   --primary-fuchsia-dark4: hsl(300, 100%, 10%);
   --primary-fuchsia-dark5: hsl(300, 100%, 7.5%);
   --primary-fuchsia-dark6: hsl(300, 100%, 5%);
@@ -211,6 +212,10 @@
   --clip-section-right: polygon(100% 0, 0% 100%, 100% 100%);
   --clip-section-left: polygon(0 0, 0% 100%, 100% 100%);
 
+  --bgRadialGradientUp: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+  --bgRadialGradientDown: radial-gradient(140% 107.13% at 50% 20%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+  --bgRadialGradientRight: radial-gradient(109.77% 131.66% at 97.75% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+  --bgRadialGradientLeft: radial-gradient(107.13% 140% at 10% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
 
   --test-color: rgb(186, 186, 186);
   --pen-red: #960200;
@@ -224,6 +229,9 @@
 
   --bgNoise: hsl(211, 50%, 100%);
   --primary-fuchsia: rgb(128, 0, 128);
+
+  --tes: rgb(128, 0, 128);
+  
 
 }
 
@@ -399,6 +407,19 @@ a {
   color: inherit;
 }
 
+/* .bgRadialGradientUp {
+	background-image: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+}
+.bgRadialGradientDown {
+	background-image: radial-gradient(140% 107.13% at 50% 20%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+}
+.bgRadialGradientRight {
+	background-image: radial-gradient(109.77% 131.66% at 97.75% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+}
+.bgRadialGradientLeft {
+	background-image: radial-gradient(107.13% 140% at 10% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+} */
+
 .shadow-inset {
 	--tw-shadow: inset 6px 84px 79px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);
 	--tw-shadow-colored: inset 6px 84px 79px -40px var(--tw-shadow-color), inset 0 -4px 1px -3px var(--tw-shadow-color), inset 0 4px 1px -3px var(--tw-shadow-color);
@@ -406,6 +427,16 @@ a {
 }
 .shadow-inset-mission {
 	--tw-shadow: inset 6px 45px 45px -40px hsla(0,0%,100%,.025), inset 0 -4px 1px -3px hsla(0,0%,100%,.25), inset 0 4px 1px -3px hsla(0,0%,100%,.25);
+	--tw-shadow-colored: inset 6px 84px 79px -40px var(--tw-shadow-color), inset 0 -4px 1px -3px var(--tw-shadow-color), inset 0 4px 1px -3px var(--tw-shadow-color);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+}
+.shadow-inset-left {
+	--tw-shadow: inset 15px 15px 15px -15px hsla(0,0%,100%,.025), inset 0 -3px 0px -3px hsla(0,0%,100%,.25), inset 4px 0px 0px -3px hsla(0,0%,100%,.25);
+	--tw-shadow-colored: inset 6px 84px 79px -40px var(--tw-shadow-color), inset 0 -4px 1px -3px var(--tw-shadow-color), inset 0 4px 1px -3px var(--tw-shadow-color);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+}
+.shadow-inset-right {
+	--tw-shadow: inset 6px 45px 45px -40px hsla(0,0%,100%,.025), inset -3px 0px 3px -3px hsla(0,0%,100%,.125), inset -4px 0px 0px -3px hsla(0,0%,100%,.125);
 	--tw-shadow-colored: inset 6px 84px 79px -40px var(--tw-shadow-color), inset 0 -4px 1px -3px var(--tw-shadow-color), inset 0 4px 1px -3px var(--tw-shadow-color);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
 }

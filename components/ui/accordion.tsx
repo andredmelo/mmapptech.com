@@ -36,7 +36,7 @@ const Accordion = (props: AccordionProps) => {
                 "radix-state-open:dark:bg-neutral-700 radix-state-closed:dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
               )}
             >
-              <span className="text-lg md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+              <span className="text-[1.8rem] md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
                 {header}
               </span>
               <ChevronDownIcon
@@ -48,9 +48,9 @@ const Accordion = (props: AccordionProps) => {
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
           <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-neutral-700 px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
-            <div className="text-[2rem] md:text-[1.8rem] text-neutral-900 dark:text-neutral-300">
+            <h6 className="leading-[1.8rem] lg:leading-[2.8rem] font-normal text-neutral-900 dark:text-neutral-300">
               {content}
-            </div>
+            </h6>
           </AccordionPrimitive.Content>
         </AccordionPrimitive.Item>
       ))}
