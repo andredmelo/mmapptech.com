@@ -1,4 +1,6 @@
 'use client'
+import * as ReactDOMServer from "react-dom/server";
+import { clsx } from "clsx";
 /* import Image from "next/image";
 import { Metadata } from 'next'
 import styles from "./page.module.css"; */
@@ -7,6 +9,8 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
+import FAQ from '@/app/contact/faq'
+import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
 import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
@@ -17,199 +21,206 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
 
-    /* ===== GSAP React ===== */
-    useGSAP(
-      () => {
-        let matchMedia = gsap.matchMedia();
-        /* const detectViewportRatio = () => {
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-          const ratio = width / height;
-          if (ratio > 16/9) {
-          } else if (ratio < 16/9) {
-          } else {
-            console.log("Viewport is 16:9");
-          }
-          if (ratio < 4/3) {
-            console.log("Viewport is narrower than 4:3");
-          } else if (ratio > 4/3) {
-            console.log("Viewport is wider than 4:3");
-          } else {
-            console.log("Viewport is 4:3");
-          }
-          console.log("ratio is "+ratio);
-  
-          if (ratio > 1.54) {
-            gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
-          }
+  const svgString = encodeURIComponent(
+    ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
+  );
+  const svgString180 = encodeURIComponent(
+    ReactDOMServer.renderToStaticMarkup(<HeroBGSVG180 />)
+  );
+
+  /* ===== GSAP React ===== */
+  useGSAP(
+    () => {
+      let matchMedia = gsap.matchMedia();
+      /* const detectViewportRatio = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio > 16/9) {
+        } else if (ratio < 16/9) {
+        } else {
+          console.log("Viewport is 16:9");
         }
-        detectViewportRatio();
-        window.addEventListener('resize', detectViewportRatio); */
-        window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
-        
-        //To detect if a viewport is ultra-wide
-        function isViewportRatioLessThan160() {
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-          const ratio = width / height;
-          return ratio < 1.6;
+        if (ratio < 4/3) {
+          console.log("Viewport is narrower than 4:3");
+        } else if (ratio > 4/3) {
+          console.log("Viewport is wider than 4:3");
+        } else {
+          console.log("Viewport is 4:3");
         }
-  
-        //Home Animations
-        const checkHomeAnimIn = setInterval(() => {
-          if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
-                clearInterval(checkHomeAnimIn);
-                //console.log("Home animations are ready");
-            let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
-  
-            let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
-            const changeH4 = gsap.timeline({paused: true, immediateRender: false})
-              .fromTo(fDHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(fDHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-              .addPause()
-              .fromTo(fDHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(fDHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-              .addPause()
-              .fromTo(fDHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-              .fromTo(fDHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-              .addPause()
-  
-            fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
-            gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
-  
-            let header = document.getElementById('featuresDashboardHeader');
-            let title = document.getElementById('featuresDashboardTitle');
-            let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
-  
-            const vhToPixels = (vh: number) => {
-              const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-              return (vh * height) / 100;
-            };
-            let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
-            let lastCardST = ScrollTrigger.create({
-              trigger: cards[cards.length-1] as HTMLElement,
-              start: "center center",
-            });
-  
-            // variable for how much the card moves up when stacked
-            let cardsYPercent = 5;
-            matchMedia.add("(hover: none)", () => { cardsYPercent = 6; })
-  
-            // Animation that makes the cards go up and shrink further on each iteration
-            const stackCardsAnim = (cards: HTMLElement[], i: number) => {
-              for (let j = 0; j < i; j++) {
-                let opacity = 1 - ((i - j) * 0.2); // Decrease opacity by 0.2 for each preceding card
-                let brightness = 100 - ((i - j) * 20); // Decrease brightness by 20% for each preceding card
-                let blur = 0 + (i * 0.5); // Increase blur by 2 for each preceding card
-  
-                gsap.to(cards[j], {
-                  yPercent: ((-cardsYPercent) * (i - j)),
-                  scale: (1 - ((i - j) * 0.1)),
-                  filter: `brightness(${brightness}%)`, // Discarded blur(${blur}px)
-                  /* opacity: opacity, */
-                  transformOrigin: "top",
-                  duration: 0.5,
-                  ease: "power2.inOut"
-                });
-              }
+        console.log("ratio is "+ratio);
+
+        if (ratio > 1.54) {
+          gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
+        }
+      }
+      detectViewportRatio();
+      window.addEventListener('resize', detectViewportRatio); */
+      window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
+      
+      //To detect if a viewport is ultra-wide
+      function isViewportRatioLessThan160() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        return ratio < 1.6;
+      }
+
+      //Home Animations
+      const checkHomeAnimIn = setInterval(() => {
+        if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
+              clearInterval(checkHomeAnimIn);
+              //console.log("Home animations are ready");
+          let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
+
+          let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
+          const changeH4 = gsap.timeline({paused: true, immediateRender: false})
+            .fromTo(fDHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fDHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+            .fromTo(fDHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fDHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+            .fromTo(fDHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fDHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+
+          fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
+          gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
+
+          let header = document.getElementById('featuresDashboardHeader');
+          let title = document.getElementById('featuresDashboardTitle');
+          let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
+
+          const vhToPixels = (vh: number) => {
+            const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            return (vh * height) / 100;
+          };
+          let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+          let lastCardST = ScrollTrigger.create({
+            trigger: cards[cards.length-1] as HTMLElement,
+            start: "center center",
+          });
+
+          // variable for how much the card moves up when stacked
+          let cardsYPercent = 5;
+          matchMedia.add("(hover: none)", () => { cardsYPercent = 6; })
+
+          // Animation that makes the cards go up and shrink further on each iteration
+          const stackCardsAnim = (cards: HTMLElement[], i: number) => {
+            for (let j = 0; j < i; j++) {
+              let opacity = 1 - ((i - j) * 0.2); // Decrease opacity by 0.2 for each preceding card
+              let brightness = 100 - ((i - j) * 20); // Decrease brightness by 20% for each preceding card
+              let blur = 0 + (i * 0.5); // Increase blur by 2 for each preceding card
+
+              gsap.to(cards[j], {
+                yPercent: ((-cardsYPercent) * (i - j)),
+                scale: (1 - ((i - j) * 0.1)),
+                filter: `brightness(${brightness}%)`, // Discarded blur(${blur}px)
+                /* opacity: opacity, */
+                transformOrigin: "top",
+                duration: 0.5,
+                ease: "power2.inOut"
+              });
             }
-  
-            const reverseStackCardsAnim = (cards: HTMLElement[], i: number) => {
-              for (let j = 0; j < i; j++) {
-                // Calculate the adjustment factor to ensure immediate reversal
-                let adjustmentFactor = j - i + 1;
-                let brightness = 100 + (adjustmentFactor * 20); // Increase brightness to reverse the effect
-                let opacity = 1 + (adjustmentFactor * 0.2); // Increase opacity to reverse the effect
-                let blur = 0 - (i * 0.5); // Decrease blur to reverse the effect
-  
-                gsap.to(cards[j], {
-                  yPercent: cardsYPercent * adjustmentFactor,
-                  scale: 1 - (adjustmentFactor * (-0.1)),
-                  filter: `brightness(${brightness}%)`,
-                  /* opacity: opacity, */
-                  transformOrigin: "top",
-                  duration: 0.5,
-                  ease: "power2.inOut"
-                });
-              }
+          }
+
+          const reverseStackCardsAnim = (cards: HTMLElement[], i: number) => {
+            for (let j = 0; j < i; j++) {
+              // Calculate the adjustment factor to ensure immediate reversal
+              let adjustmentFactor = j - i + 1;
+              let brightness = 100 + (adjustmentFactor * 20); // Increase brightness to reverse the effect
+              let opacity = 1 + (adjustmentFactor * 0.2); // Increase opacity to reverse the effect
+              let blur = 0 - (i * 0.5); // Decrease blur to reverse the effect
+
+              gsap.to(cards[j], {
+                yPercent: cardsYPercent * adjustmentFactor,
+                scale: 1 - (adjustmentFactor * (-0.1)),
+                filter: `brightness(${brightness}%)`,
+                /* opacity: opacity, */
+                transformOrigin: "top",
+                duration: 0.5,
+                ease: "power2.inOut"
+              });
             }
-  
-            cards.forEach((card, i) => {
-              switch (i) {
-                case 0: // case to pin both card[0] and header
+          }
+
+          cards.forEach((card, i) => {
+            switch (i) {
+              case 0: // case to pin both card[0] and header
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: card,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: header,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: proDisplayShadowSVG,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
+                if (isViewportRatioLessThan160()) {
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 60%",
                     end: () => lastCardST.start + bottomDistance,
-                    pin: card,
+                    pin: title,
                     pinSpacing: false,
                     invalidateOnRefresh: true,
                   });
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start + bottomDistance,
-                    pin: header,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  });
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start + bottomDistance,
-                    pin: proDisplayShadowSVG,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  });
-                  if (isViewportRatioLessThan160()) {
-                    ScrollTrigger.create({
-                      trigger: card,
-                      start: "center 60%",
-                      end: () => lastCardST.start + bottomDistance,
-                      pin: title,
-                      pinSpacing: false,
-                      invalidateOnRefresh: true,
-                    });
+                }
+                break;
+              case cards.length-1: // case to pinSpacing the last card
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: true,
+                  invalidateOnRefresh: true,
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                    stackCardsAnim(cards, i);
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                    reverseStackCardsAnim(cards, i);
                   }
-                  break;
-                case cards.length-1: // case to pinSpacing the last card
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start + bottomDistance,
-                    pin: true,
-                    pinSpacing: true,
-                    invalidateOnRefresh: true,
-                    onEnter: ({progress, direction, isActive}) => {
-                      changeH4.play();
-                      stackCardsAnim(cards, i);
-                    },
-                    onLeaveBack: ({progress, direction, isActive}) => {
-                      changeH4.reverse();
-                      reverseStackCardsAnim(cards, i);
-                    }
-                  });
-                  break;
-                default: // default case
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start+ bottomDistance,
-                    pin: true,
-                    pinSpacing: false,
-                    onEnter: ({progress, direction, isActive}) => {
-                      changeH4.play();
-                      stackCardsAnim(cards, i);
-                    },
-                    onLeaveBack: ({progress, direction, isActive}) => {
-                      changeH4.reverse();
-                      reverseStackCardsAnim(cards, i);
-                    }
-                  });
-              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            });
-          }
-        }, 50); // Check every 50ms
+                });
+                break;
+              default: // default case
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastCardST.start+ bottomDistance,
+                  pin: true,
+                  pinSpacing: false,
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                    stackCardsAnim(cards, i);
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                    reverseStackCardsAnim(cards, i);
+                  }
+                });
+            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+          });
+        }
+      }, 50); // Check every 50ms
   
     /* GSDevTools.create(); */
     },
@@ -230,7 +241,9 @@ export default function Home() {
         </div>
 
         <section id="Features">
-          <h1>Features</h1>
+          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center">
+            Features
+          </h5>
           <div className="flex flex-col items-center colored-cards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center" >Federations (Dashboard)</h2>
             {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
@@ -294,34 +307,66 @@ export default function Home() {
         </section>
 
         
-        <section id="Benefits" className='md:pt-0 mb-12'>
-          <h1 className="text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
-            Benefits for everyone else
-          </h1>
+        <section id="Benefits" className=''>
+          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center">
+          Benefits for everyone else
+          </h5>
           <Benefits /* items={items} */ />
         </section>
 
-        <section id="Ourmission" className="homePageSection">
-          <div>
-            <h1>Our Mission</h1>
-            <h5>
-              At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age. Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling. On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
-              Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials. By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-            </h5>
-          </div>
+        <section id="OurMission" className="flex flex-col justify-center">
+            <div
+              className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
+              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom ",
+              "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
+              style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100% auto"}}
+            >
+              <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[2rem] md:pt-[6rem] lg:pt-[10rem] text-left">
+                <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200">
+                  Our Mission
+                </h5>
+                <h3 className="mb-8 md:mb-12 lg:mb-12 py-8 text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100">
+                  Accelerate the Recognition of MMA as an Olympic Sport
+                </h3>
+                <p className="mb-8 md:mb-12 lg:mb-12 leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age.
+                </p>
+                <div className="flex flex-col w-[27rem] md:w-[35rem] lg:w-[65rem] gap-10">
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      Management, Scheduling, Officiation
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling.<br/>
+                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      Common Language & Unit of Measurement
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials.<br/>
+                      By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[2rem] right-[2rem] md:bottom-[8rem] md:right-[6rem] lg:bottom-[10rem] lg:right-[10rem] absolute object-contain" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+            </div>
         </section>
 
-        <section id="FAQSupport" className="homePageSection">
-          <h1>FAQs/Support</h1>
-          <h5>
-            Ask us anything. We&apos;re here to help.
+        <section id="FAQSupport" className="">
+          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center">
+            FAQs/Support
           </h5>
+          <FAQ />
         </section>
 
-        <section id="ContactUs" className="mb-12">
-          <h1 className="text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl">
+        <section id="ContactUs" className="">
+          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center">
             Contact Us
-          </h1>
+          </h5>
           <ContactUs id={ContactUs} className=""/>
         </section>
       </div>

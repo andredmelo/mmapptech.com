@@ -43,9 +43,9 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[65rem] portrait:md:min-h-[64rem] mx-4 md:mx-12'>
+      <div className='flex flex-col md:flex-row md:min-h-[73rem] portrait:md:min-h-[64rem] mx-4 md:mx-12 lg:mx-32'>
 
-          <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[40%]'>
+          <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}
             <TabButtonBenefits
               value='Benefits1'

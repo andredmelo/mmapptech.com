@@ -12,9 +12,9 @@ const CardPolicies = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col h-full min-h-[17rem] md:min-h-[24rem] w-[30rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-800 dark:text-neutral-50 shadow-inset",
+      "flex flex-col h-full min-h-[17rem] md:min-h-[24rem] xl:min-h-[30rem] w-[32rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
       /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
-      "p-8 md:p-12 lg:p-16 mx-2 md:mx-2 lg:mx-4 my-2 md:my-2 lg:my-4",
+      "p-8 md:p-12 lg:p-16 mx-2 md:mx-4 lg:mx-6 my-3 md:my-4 lg:my-6",
       className
     )}
     {...props}
@@ -40,7 +40,7 @@ const CardPoliciesTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h6
     ref={ref}
-    className={cn("leading-6 text-white text-shadow shadow-[rgba(0,0,0,0.35)]", className)}
+    className={cn("text-white text-shadow shadow-[rgba(0,0,0,0.15)] dark:shadow-[rgba(255,255,255,0.15)]", className)}
     {...props}
   />
 ))
@@ -65,9 +65,10 @@ const CardPoliciesButton = React.forwardRef<
   <a
     ref={ref}
     /* href={url} */
-    className={cn("text-md w-full py-2 px-4 border focus:ring-2 rounded-full border-transparent bg-white hover:bg-white/10 text-black duration-200 focus:ring-offset-2 focus:ring-white hover:text-white inline-flex items-center justify-center ring-1 ring-transparent mt-auto", className)}
+    className={cn("text-md w-full py-2 px-4 border focus:ring-2 rounded-full border-transparent dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white hover:bg-neutral-100 bg-neutral-700 text-white hover:text-black duration-200 focus:ring-offset-2 focus:ring-white inline-flex items-center justify-center ring-1 ring-transparent mt-auto", className)}
     {...props}
   />
+  /*  */
 ))
 CardPoliciesButton.displayName = "CardPoliciesButton"
 
