@@ -12,7 +12,14 @@ import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
+import { FeaturesJudgeCard } from '@/components/ui/judgeCard'
 import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
+
+/* import { Canvas } from "@react-three/fiber";
+import { OrbitControls} from '@react-three/drei'; */
+//import { ThreeJSViewer } from '@/components/three.js';
+import ThreeJSViewer from '@/components/three.js';
+import Cube from '@/components/three.js/cube'
 
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {
@@ -66,12 +73,12 @@ export default function Home() {
         return ratio < 1.6;
       }
 
-      //Home Animations
-      const checkHomeAnimIn = setInterval(() => {
-        if (document.querySelector('.colored-card') && document.querySelector('.featuresDashboardHeader')) {
-              clearInterval(checkHomeAnimIn);
-              //console.log("Home animations are ready");
-          let cards: HTMLElement[] = gsap.utils.toArray(".colored-card");
+      //Dashboard Animations
+      const checkDashboardAnimIn = setInterval(() => {
+        if (document.querySelector('.dashboardCard') && document.querySelector('.featuresDashboardHeader')) {
+              clearInterval(checkDashboardAnimIn);
+              //console.log("Dashboard animations are ready");
+          let cards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
 
           let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
           const changeH4 = gsap.timeline({paused: true, immediateRender: false})
@@ -96,10 +103,11 @@ export default function Home() {
             const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
             return (vh * height) / 100;
           };
-          let bottomDistance = vhToPixels(50); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+          let bottomDistance = vhToPixels(0); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
           let lastCardST = ScrollTrigger.create({
             trigger: cards[cards.length-1] as HTMLElement,
-            start: "center center",
+            start: "center 60%",
+            markers:false,
           });
 
           // variable for how much the card moves up when stacked
@@ -189,7 +197,7 @@ export default function Home() {
                   start: "center 60%",
                   end: () => lastCardST.start + bottomDistance,
                   pin: true,
-                  pinSpacing: true,
+                  pinSpacing: false,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     changeH4.play();
@@ -205,7 +213,7 @@ export default function Home() {
                 ScrollTrigger.create({
                   trigger: card,
                   start: "center 60%",
-                  end: () => lastCardST.start+ bottomDistance,
+                  end: () => lastCardST.start + bottomDistance,
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
@@ -221,6 +229,100 @@ export default function Home() {
           });
         }
       }, 50); // Check every 50ms
+
+
+      //Judge Animations
+      const checkJudgeAnimIn = setInterval(() => {
+        if (document.querySelector('.judgeCard') /* && document.querySelector('.featuresJudgeHeader') */) {
+              clearInterval(checkJudgeAnimIn);
+              //console.log("Judge animations are ready");
+          let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
+          let judgeTitle = document.getElementById('featuresJudgeTitle');
+          let bottomDistance = 0; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+
+          let lastJudgeCardST = ScrollTrigger.create({
+            trigger: judgeCards[judgeCards.length-1] as HTMLElement,
+            start: "center 50%",
+            markers:true,
+          });
+
+          judgeCards.forEach((card, i) => {
+            switch (i) {
+              case 0: // case to pin both card[0] and header
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastJudgeCardST.start + bottomDistance,
+                  pin: card,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
+                /* ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastJudgeCardST.start + bottomDistance,
+                  pin: header,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                }); */
+                /* ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastJudgeCardST.start + bottomDistance,
+                  pin: proDisplayShadowSVG,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                }); */
+                if (isViewportRatioLessThan160()) {
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    pin: judgeTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                }
+                break;
+              case judgeCards.length-1: // case to pinSpacing the last card
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastJudgeCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                  /* onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                    stackCardsAnim(judgeCards, i);
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                    reverseStackCardsAnim(judgeCards, i);
+                  } */
+                });
+                break;
+              default: // default case
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastJudgeCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: false,
+                  /* onEnter: ({progress, direction, isActive}) => {
+                    changeH4.play();
+                    stackCardsAnim(judgeCards, i);
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    changeH4.reverse();
+                    reverseStackCardsAnim(judgeCards, i);
+                  } */
+                });
+            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+          });
+
+        }
+      }, 50); // Check every 50ms
   
     /* GSDevTools.create(); */
     },
@@ -230,6 +332,7 @@ export default function Home() {
   return (
     <>
       <div className="">
+
         <div id="Home" className="homeSection">
           <div className="homeBackground">
             <img src="/images/33498201.webp" alt="Fighters getting ready to fight"/>
@@ -244,7 +347,7 @@ export default function Home() {
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
           </h5>
-          <div className="flex flex-col items-center colored-cards my-24">
+          <div className="flex flex-col items-center dashboardCards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center" >Federations (Dashboard)</h2>
             {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
@@ -256,23 +359,24 @@ export default function Home() {
               <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
               <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
             </div>
-            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-0">
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
             </FeaturesDashboardCard>
             <ProDisplayShadowSVG className="proDisplayShadowSVG pb-[35vh]"/>
-            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-[35vh]">
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
               <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
             </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-[35vh]">
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
               <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
             </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="colored-card z-10" parentClassName="pb-0">
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
             </FeaturesDashboardCard>
           </div>
         </section>
 
-        <section id="Features rest" className="homePageSection">
+        <section id="Features2" className="features2">
+          {/* <Cube /> */}
           {/* <h1>Features</h1>
           <div id="featuresDashboard" className="featuresDashboard">
             <h2>Federations (Dashboard)</h2>
@@ -284,16 +388,33 @@ export default function Home() {
             <h5>Intuitive Member Management</h5>
             <br/>
           </div> */}
-          <div id="featuresJudge" className="featuresJudge">
-            <h2>Officials (Judge)</h2>
-            <br/>
-            <h5>Personalized Fight Card</h5>
-            <h5>Make more Informed Decisions with a Coherent and Consistent Methodology</h5>
-            <h5>Discuss scoring more deeply with your colleagues</h5>
-            <h5>Reduce Fatigue</h5>
-            <h5>Instantly submit your scorecards to the RecordKeeper</h5>
-            <h5>Training Mode - Create Own Fights, Improve your skills and compare with your colleagues</h5>
+          <div id="featuresJudge" className="featuresJudge flex justify-center">
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col justify-top z-20 text-left">
+                <h2 id="featuresJudgeTitle">Officials (Judge)</h2>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Personalized Fight Card</h4>
+                </FeaturesJudgeCard>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Make more Informed Decisions with a Coherent and Consistent Methodology</h4>
+                </FeaturesJudgeCard>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Discuss scoring more deeply with your colleagues</h4>
+                </FeaturesJudgeCard>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Reduce Fatigue</h4>
+                </FeaturesJudgeCard>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Instantly submit your scorecards to the RecordKeeper</h4>
+                </FeaturesJudgeCard>
+                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
+                  <h4>Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues</h4>
+                </FeaturesJudgeCard>
+              </div>
+            </div>
           </div>
+
           <div id="featuresRecordKeeper" className="featuresRecordKeeper">
             <h2>Officials (RecordKeeper)</h2>
             <br/>
@@ -304,11 +425,12 @@ export default function Home() {
             <h5>Notifications for actions needed to perform</h5>
             <h5>Instant Score Delivery and Calculation</h5>
           </div>
+
         </section>
-        
-        <div className="borderBottom"></div>
-        
-        <section id="Benefits" className=''>
+
+        <div className="borderBottom featuresRecordKeeperBottom"></div>
+
+        <section id="Benefits" className='z-20 benefits'>
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
           Benefits for everyone else
           </h5>
@@ -317,7 +439,7 @@ export default function Home() {
         
         <div className="borderBottom"></div>
 
-        <section id="OurMission" className="flex flex-col justify-center">
+        <section id="OurMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
@@ -375,6 +497,8 @@ export default function Home() {
           </h5>
           <ContactUs id={ContactUs} className=""/>
         </section>
+
+        <ThreeJSViewer />
       </div>
     </>
   );

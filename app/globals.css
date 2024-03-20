@@ -120,10 +120,10 @@
     @apply w-[90%] h-[90%] max-w-[200%] -bottom-[7%] absolute;
   }
 
-  .colored-cards .colored-card {
+  .dashboardCards .dashboardCard {
     @apply flex flex-col min-h-[20rem] bg-transparent rounded-lg shadow-md;;
   }
-  .colored-cards .spacer {
+  .dashboardCards .spacer {
     @apply mb-[10rem];
   }
 

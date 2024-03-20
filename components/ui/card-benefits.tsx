@@ -12,7 +12,7 @@ const CardBenefits = React.forwardRef<
       className={cn(
         "flex flex-col h-full rounded-xl md:rounded-xl md:mx-0 text-neutral-950 dark:text-neutral-50",
         /*  bg-white dark:bg-gradient-to-r from-[var(--primary-fuchsia-dark4)] to-[var(--background-grey)] to-85% */
-        "bg-no-repeat bg-left bg-cover bg-bgRadialGradientRight",
+        "bg-no-repeat bg-left bg-cover bg-bgRadialGradientUp md:bg-bgRadialGradientRight",
         /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
         "p-8 md:p-10 lg:p-12 space-y-8 md:space-y-10 lg:space-y-12 justify-between",
         { ...props, ref }
