@@ -66,7 +66,7 @@ const Company = (props: any) => {
       <div className="companyPage">
         <section id="Mission" className="flex justify-center">
           <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
+          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem]  max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
                 Our Mission
@@ -97,7 +97,7 @@ const Company = (props: any) => {
                 <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-center text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[80%]">
                 Create a common language and unit of measurement for officiating MMA
                 </h3>
-                <h6 className="h7 font-medium text-center leading-[2.1rem] md:leading-[2.5rem] w-[95%] md:w-[85%]">
+                <h6 className="h7 font-medium text-center leading-[2.1rem] md:leading-[2.5rem] w-[98%] md:w-[85%]">
                   By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
                 </h6>
               </div>
@@ -125,12 +125,11 @@ const Company = (props: any) => {
                   <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-article">
+                      <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                        <path d="M7 8h10" />
-                        <path d="M7 12h10" />
-                        <path d="M7 16h10" />
+                        <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                        <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                        <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
                       </svg>
                       </div>
                       <div className="h7 font-medium leading-6 text-white">
