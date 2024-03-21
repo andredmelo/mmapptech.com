@@ -1,26 +1,49 @@
 'use client';
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState, Suspense } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { TextureLoader, Mesh, RepeatWrapping, MeshStandardMaterial } from 'three';
+import { Texture, TextureLoader, Mesh, RepeatWrapping, MeshStandardMaterial, Object3D } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, ScrollControls, useScroll} from '@react-three/drei';
-import { GUI } from 'dat.gui'
+//import { GUI } from 'dat.gui'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function ThreeJSViewer() {
-  const iPhone = useLoader(GLTFLoader, '/3d-models/iPhone_14_Pro_Max.glb');
+  const [iPhone, setIPhone] = useState<GLTF | null>(null);
+  const [textures, setTextures] = useState<{ texture_1: Texture | null, texture_2: Texture | null, texture_3: Texture | null }>({
+    texture_1: null,
+    texture_2: null,
+    texture_3: null
+  });
+
+  useEffect(() => {
+    const loadModelsAndTextures = async () => {
+      const iPhoneLoader = new GLTFLoader();
+      const textureLoader = new TextureLoader();
+      const iPhoneModel = await iPhoneLoader.loadAsync('/3d-models/iPhone_14_Pro_Max.glb');
+      const texture1 = await textureLoader.loadAsync("/3d-models/textures/iPhone_Front_Screen.jpg");
+      const texture2 = await textureLoader.loadAsync("/3d-models/textures/color.png");
+      const texture3 = await textureLoader.loadAsync("/3d-models/textures/color2.png");
+
+      setIPhone(iPhoneModel);
+      setTextures({ texture_1: texture1, texture_2: texture2, texture_3: texture3 });
+    };
+
+    loadModelsAndTextures();
+  }, []);
+  /* const iPhone = useLoader(GLTFLoader, '/3d-models/iPhone_14_Pro_Max.glb');
   const texture_1 = useLoader(TextureLoader, "/3d-models/textures/iPhone_Front_Screen.jpg");
   const texture_2 = useLoader(TextureLoader, "/3d-models/textures/color.png");
-  const texture_3 = useLoader(TextureLoader, "/3d-models/textures/color2.png");
+  const texture_3 = useLoader(TextureLoader, "/3d-models/textures/color2.png"); */
   const container = useRef(null);
 
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
       const checkthreeJSViewer = setInterval(() => {
-        if (document.querySelector('.threeJSViewer') && document.querySelector('.homeSection') && document.querySelector('.features2')) {
+        if (document.querySelector('.threeJSViewer') && document.querySelector('.homeSection') && document.querySelector('.features2') && iPhone?.scene) {
           clearInterval(checkthreeJSViewer);
           /* console.log("threeJSViewer is ready"); */
           //gsap.set(iPhone.scene.scale, {x: 0.5, y: 0.5, z: 0.5})
@@ -110,7 +133,7 @@ export default function ThreeJSViewer() {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone.scene, texture_1, texture_2, texture_3], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, textures.texture_1, textures.texture_2, textures.texture_3], revertOnUpdate: true }
   );
 
   return (
@@ -123,18 +146,17 @@ export default function ThreeJSViewer() {
           {/* <directionalLight position={[2, 1, 1]}/> */}
           {/* <Cube /> */}
           {/* <primitive object={iPhone.scene} /> */}
-          <IPhoneModel />
+          {/* <IPhoneModel /> */}
+          {iPhone && textures.texture_1 && textures.texture_2 && textures.texture_3 && (
+          <IPhoneModel iPhone={iPhone} textures={textures} />
+        )}
         {/* </ScrollControls> */}
       </Canvas>
     </div>
   )
 }
 
-export const IPhoneModel: React.FC = () => {
-  const iPhone = useLoader(GLTFLoader, '/3d-models/iPhone_14_Pro_Max.glb');
-  const texture_1 = useLoader(TextureLoader, "/3d-models/textures/iPhone_Front_Screen.jpg");
-  const texture_2 = useLoader(TextureLoader, "/3d-models/textures/color.png");
-  const texture_3 = useLoader(TextureLoader, "/3d-models/textures/color2.png");
+export const IPhoneModel: React.FC<{ iPhone: any; textures: { texture_1: any; texture_2: any; texture_3: any; }; }> = ({ iPhone, textures }) => {
   const iPhoneRef = useRef<Mesh>(null);
 
   /* iPhone.scene.scale.set(1, 1, 1) */
@@ -147,13 +169,13 @@ export const IPhoneModel: React.FC = () => {
   }); */
   
   useEffect(() => {
-    iPhone.scene.traverse((child) => {
+    iPhone.scene.traverse((child: Object3D) => {
       if ( child.name === 'ID279_14' && 'material' in child) {
-        const mesh = child as any;
+        const mesh = child as Mesh;
 
-        // Create a new MeshStandardMaterial with texture_1 as its map
+        // Create a new MeshStandardMaterial with textures.texture_1 as its map
         const screenMaterial = new MeshStandardMaterial({
-          map: texture_1
+          map: textures.texture_1
         });
 
         // Apply the new material to the mesh
@@ -163,19 +185,21 @@ export const IPhoneModel: React.FC = () => {
         // mesh.material[0] = screenMaterial; // Example for replacing a specific material in an array
   
         // Ensure the texture repeats correctly, if necessary
-        texture_1.wrapS = RepeatWrapping;
-        texture_1.wrapT = RepeatWrapping;
-        texture_1.repeat.set(1, 1); // Adjust repeat values as needed
+        textures.texture_1.wrapS = RepeatWrapping;
+        textures.texture_1.wrapT = RepeatWrapping;
+        textures.texture_1.repeat.set(1, 1); // Adjust repeat values as needed
   
         // Mark the material and texture for update
-        mesh.material.map.needsUpdate = true;
+        if (mesh.material instanceof MeshStandardMaterial && mesh.material.map) {
+          mesh.material.map.needsUpdate = true;
+        }
         mesh.material.needsUpdate = true;
       }
     });
     /* child instanceof Mesh */ //Apply to all surfaces
     /* child.name === 'ID299001_5' 'ID279_14'*/
 
-    const gui = new GUI()
+    /* const gui = new GUI()
     const scaleProxy = { scale: 1 };
     const opacityProxy = { opacity: 1 };
     const dummyFolder = gui.addFolder('.')
@@ -201,14 +225,11 @@ export const IPhoneModel: React.FC = () => {
         }
       });
     });
-    /* iPhoneFolder.add(iPhone.scene.rotation, 'x', 0, Math.PI * 2)
-    iPhoneFolder.add(iPhone.scene.rotation, 'y', 0, Math.PI * 2)
-    iPhoneFolder.add(iPhone.scene.rotation, 'z', 0, Math.PI * 2) */
 
     return () => {
       gui.destroy()
-    }
-  }, [iPhone.scene, texture_1])
+    } */
+  }, [iPhone, textures])
 
   return (
       <>

@@ -1,7 +1,7 @@
 "use client";
 /* import type { Metadata } from "next"; */
 import { useState, useRef, useEffect, useTransition } from 'react';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { HrefContext } from './HrefContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
@@ -54,6 +54,11 @@ export default function RootLayout({
   const [href, setHref] = useState('');
   const [isPending, startTransition] = useTransition();
 
+  // Initialize currentPage with the current path
+  const initialPathname = usePathname();
+  let currentPage = useRef<string>(initialPathname);
+  console.log("currentPage = "+currentPage.current);
+
   /* useEffect(() => {
     console.log("href = "+href);
     // Here you can fetch data based on the `href` value
@@ -90,7 +95,7 @@ export default function RootLayout({
         smoothTouch: 0.25, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
       });
 
-      let currentPage: string = "/";
+      //let currentPage: string = "/";
       let ScrollSmootherTop = "top 0px"; //"top 52px"
 
       //ScrollTrigger.config({ ignoreMobileResize: true });
@@ -100,7 +105,7 @@ export default function RootLayout({
       /* const animIn = gsap.timeline({paused: true, immediateRender: true})
         .fromTo("#smooth-content", {opacity: 0, xPercent: -100, }, {duration: 0.5, opacity: 1, xPercent: 0, ease: "power2.out"}); */
         //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 0, y: -100}, {duration: 0.1, opacity: 1, y: 0, stagger: 0.01, ease: "power2.inOut"})
-      const checktemplateAnimIn = setInterval(() => {        
+      const checktemplateAnimIn = setInterval(() => {
         if (document.querySelector('.templateAnimIn')) {
           clearInterval(checktemplateAnimIn);
           //console.log("Template animations are ready");
@@ -120,7 +125,8 @@ export default function RootLayout({
                 console.log("New link is "+link.dataset.link);
                 console.log("New href is "+link.href); */
 
-                if (link.dataset.page == currentPage && smoother.current) {
+                if (link.dataset.page == currentPage.current && smoother.current) {
+                  console.log("currentPage is = "+currentPage.current);
                   smoother.current.scrollTo(link.dataset.link, true, ScrollSmootherTop);
                   //router.replace(link.href, { scroll: false });
                   //console.log("currentPage remains = "+currentPage);
@@ -137,7 +143,7 @@ export default function RootLayout({
                       router.push(link.dataset.page, { scroll: false });
                       //router.push(link.href, { scroll: false });
                     });
-                    currentPage = link.dataset.page;
+                    currentPage.current = link.dataset.page;
                     //console.log("currentPage changed to " + currentPage);
                   });
                   animOut.invalidate();
@@ -176,7 +182,7 @@ export default function RootLayout({
 
   /* GSDevTools.create(); */
   },
-  { dependencies: [router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
+  { dependencies: [currentPage, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
   );
 
   //console.log(smoother);

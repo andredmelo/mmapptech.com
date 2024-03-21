@@ -243,7 +243,7 @@ export default function Home() {
           let lastJudgeCardST = ScrollTrigger.create({
             trigger: judgeCards[judgeCards.length-1] as HTMLElement,
             start: "center 50%",
-            markers:true,
+            markers:false,
           });
 
           judgeCards.forEach((card, i) => {
@@ -327,7 +327,7 @@ export default function Home() {
     /* GSDevTools.create(); */
     },
     { dependencies: [], revertOnUpdate: true }
-    );
+  );
 
   return (
     <>

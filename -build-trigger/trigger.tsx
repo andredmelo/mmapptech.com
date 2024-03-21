@@ -1,1 +1,1 @@
-let vNumber = "v0.1.1-β.2 | ReferenceError fixes";
+let vNumber = "v0.1.1-β.3 | Band-Aid solution for the Home loading (when initial page != Home) issue";

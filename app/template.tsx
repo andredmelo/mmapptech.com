@@ -53,38 +53,94 @@ export default function Template({
     () => {
       //console.log(smoother);
       let ScrollSmootherTop = "top 0px"; //"top 52px"
+      let attempts = 0;
+      const maxAttempts = 5; // Maximum number of attempts to try scrollTo
+      const attemptInterval = 50; // Milliseconds between attempts
 
-      const checkPendingAndSmoother = setInterval(() => {
-        if (isPending == false && smoother && smoother.current && document.querySelector('.templateAnimIn')) {
-          clearInterval(checkPendingAndSmoother);
-          const animIn = gsap.timeline({
-            paused: true,
-            /* onStart: () => {
-              console.log("animIn complete");
-              //console.log("href inside template = "+href);
-              if (smoother) {
-                console.log("scrollTo triggered");
-                setTimeout(() => {
-                  smoother.current.scrollTo(href, false, ScrollSmootherTop);
-                }, 500);
+      const checkAndExecuteScroll = () => {
+        console.log("checkAndExecuteScroll "+attempts);
+        attempts++;
+        // Check if conditions are met to execute the scroll
+        if ((!isPending || isPending === undefined) && smoother?.current && typeof smoother.current.scrollTo === "function") {
+          const templateAnimInExists = document.querySelector('.templateAnimIn');
+
+          console.log("Conditions for scrollTo met!:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+
+          if (templateAnimInExists) {
+
+            const animIn = gsap.timeline({ paused: true })
+              .fromTo(".templateAnimIn", { opacity: 0, x: -20 }, { duration: 0.75, opacity: 1, x: 0, ease: "power2.out" });
+
+            // Additional check to ensure smoother is in a ready state
+            const checkSmootherCurrentIsReady = setInterval(() => {
+              if (smoother.current) {
+                clearInterval(checkSmootherCurrentIsReady);
+                smoother.current.scrollTo(href, false, "top 0px");
+                animIn.invalidate();
+                animIn.restart().play();
+                console.log("scrollTo : " + href);
               }
-            } */})
-            //.set(".templateAnimIn", {y: 100})
-            .fromTo(".templateAnimIn", {opacity: 0, x: -20, }, {duration: 0.75, opacity: 1, x: 0, ease: "power2.out"});
-
-
-          const checkSmootherExists = setInterval(() => {
-            if (smoother && smoother.current) {
-              clearInterval(checkSmootherExists);
-              //console.log("scrollTo+animIn triggered");
-              smoother.current.scrollTo(href, false, ScrollSmootherTop);
-              animIn.invalidate();
-              animIn.restart().play();
-            }
-          }, 100); // Check every 100ms
-
+            }, 100); // Check every 100ms
+          }
+        } else if (attempts < maxAttempts) {
+          console.log("Conditions for scrollTo not met:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+          // If conditions are not met, retry after a delay
+          setTimeout(checkAndExecuteScroll, attemptInterval);
+        } else {
+          console.log("Conditions for scrollTo not met after maximum attempts.");
         }
-      }, 100); // Check every 100ms
+      };
+    
+      // Initial attempt
+      setTimeout(checkAndExecuteScroll, attemptInterval);
+
+      
+      // Original code to debug the issue
+      /* const checkAndExecuteScroll = () => {
+        if (!isPending && smoother?.current && typeof smoother.current.scrollTo === "function") {
+
+          console.log("Conditions for scrollTo met!:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+          //console.log("href = "+href);
+
+          const templateAnimInExists = document.querySelector('.templateAnimIn');
+          if (templateAnimInExists) {
+
+            const animIn = gsap.timeline({ paused: true})
+              .fromTo(".templateAnimIn", {opacity: 0, x: -20, }, {duration: 0.75, opacity: 1, x: 0, ease: "power2.out"});
+
+            try {
+              // Additional check to ensure smoother is in a ready state
+              const checkSmootherCurrentIsReady = setInterval(() => {
+                if (smoother.current) {
+                  clearInterval(checkSmootherCurrentIsReady);
+                  smoother.current.scrollTo(href, false, ScrollSmootherTop);
+                  animIn.invalidate();
+                  animIn.restart().play();
+                  console.log("scrollTo : "+href);
+                } else {
+                  console.log("Smoother is not ready.");
+                }
+              }, 100); // Check every 100ms
+            } catch (error) {
+              console.error("Error calling scrollTo on smoother.current:", error);
+              console.log("Error calling scrollTo on smoother.current.");
+            }
+          } else {
+            console.log("'.templateAnimIn' element not found in the DOM.");
+          }
+        } else {
+          console.log("Conditions for scrollTo not met:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+        }
+      };
+    
+      // Attempt to execute scroll after a delay to ensure smoother and elements are ready
+      const delayForInitialization = 500; // Adjust delay as needed
+      const timeoutId = setTimeout(checkAndExecuteScroll, delayForInitialization);
+    
+      // Cleanup timeout if component unmounts
+      return () => clearTimeout(timeoutId); */
+
+
       
     },
   { dependencies: [smoother, href, isPending]/* , revertOnUpdate: true, scope: main  */}

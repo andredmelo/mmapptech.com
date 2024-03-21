@@ -53,7 +53,7 @@ const Company = (props: any) => {
   useGSAP(
     () => {
       const boxes = gsap.utils.toArray(".box");
-      const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:2.75});
+      const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:0.75});
 
   /* GSDevTools.create(); */
 
@@ -595,13 +595,13 @@ const Company = (props: any) => {
           <ul className="flex flex-col items-center text-left md:text-center gap-12 md:gap-12 px-8 md:px-12 lg:px-24" role="list">
             <li className="w-[98%] md:w-[90%] lg:w-[80%]">
               <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100">
-                Striving to become the document of record for the sport, we take Privacy, Security, and Compliance with the utmost seriousness
+                We take Privacy, Security, and Compliance with the utmost seriousness
               </h3>
             </li>
             <li className="flex flex-col md:flex-row mb-0 lg:mb-16">
               <ol className="basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
                 <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
-                Privacy
+                  Security
                 </h4>
                 <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold text-neutral-300">
                 The privacy of our users is paramount, and we take industry‑excelling measures to guarantee their safety.
@@ -614,7 +614,7 @@ const Company = (props: any) => {
               </ol>
               <ol className="flex flex-col basis-1/3 mt-0 md:mt-20 lg:mt-32">
                 <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
-                Security
+                  Privacy
                 </h4>
                 <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mt-2 text-neutral-300">
                   We adhere to the GDPR as our base of compliance.<br/>
@@ -648,6 +648,11 @@ const Company = (props: any) => {
             <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
               Our Policies are tight
             </h3>
+            <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] w-[80%] md:w-[62%] pb-16 md:pb-12">
+              In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
+              It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
+              You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.
+            </h6>
             {/* <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
             <br/> */}
 
@@ -658,8 +663,9 @@ const Company = (props: any) => {
                     Privacy Policy
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    MMAPP uses your information in accordance with European law (GDPR - General Data Protection Regulation).<br/>
-                    Our privacy policy covers all aspects of how MMAPP collects and utilizes user data.<br/> Consult our Privacy Policy for more information on how we use your data. If you have any questions, please contact us at privacy@mmapp.com.
+                    This policy explains how we collect, use, and protect your personal information.<br/>
+                    It details what data we gather when you use our platform, how we use it to improve your experience, and how we keep it secure.<br/>
+                    This policy also outlines your choices regarding your information, including your opt-out options and data access rights.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -670,16 +676,15 @@ const Company = (props: any) => {
                   Privacy Policy
                 </CardPoliciesButton>
               </CardPolicies>
+
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Cookie Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Cookie Policy
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    MMAPP uses cookies to help us operate and provide better services to our users.<br/>
-                    Our cookie policy explains how MMAPP uses cookies, its purpose in each case, the types of cookies you are using, and when the cookies expire.<br/>
-                    Consult our Cookie Policy for more information on how we use your data.
-
+                    This details the types of cookies we use on our website and mobile apps.<br/>
+                    We explain what cookies are, why we use them (e.g., session management, analytics, personalization), and how you can control your cookie preferences through your browser or device settings.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -690,15 +695,14 @@ const Company = (props: any) => {
                   Cookie Policy
                 </CardPoliciesButton>
               </CardPolicies>
+
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Terms & Conditions">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Terms & Conditions
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    Terms and Conditions (T&C) are basically a set of rules that explain how you can use MMAPP Technologies&apos; Platform and Tools.<br/>
-                    They outline what you can and can&apos;t do, and what the company can and can&apos;t do for you, and who we have to share information with to provide you the best service possible. It&apos;s like an agreement that keeps things fair and clear for everyone.<br/>
-                    Consult our Terms & Conditions for more information on how we use your data.
+                    This outlines the rules for using our website, mobile apps, and our associated services.<br/>It covers topics like user accounts, payment terms, acceptable content, and limitations of liability.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -709,6 +713,7 @@ const Company = (props: any) => {
                   Terms & Conditions
                 </CardPoliciesButton>
               </CardPolicies>
+
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="EULA">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
@@ -727,17 +732,14 @@ const Company = (props: any) => {
                   EULA
                 </CardPoliciesButton>
               </CardPolicies>
+
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Disclaimer">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Disclaimer
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    We try our best, but mistakes happen.<br/>
-                    The information on our website is intended to be helpful and accurate, but it&apos;s always possible there are some errors.<br/>
-                    Not everything is guaranteed: The disclaimer explains that we can&apos;t promise everything on the site is absolutely perfect or 100% up-to-date at all times.<br/>
-                    Consult our Disclaimer for more information.
-
+                    This agreement outlines the terms and conditions for using our SaaS platform and mobile applications. It clarifies what you can and cannot do with our service, such as acceptable use guidelines, limitations on data storage and usage, and intellectual property ownership.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -748,14 +750,14 @@ const Company = (props: any) => {
                   Disclaimer
                 </CardPoliciesButton>
               </CardPolicies>
+
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Acceptable Use Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Acceptable Use Policy
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                  An Acceptable Use Policy (AUP) establishes the rules and guidelines that users must agree to and follow when using MMAPP Technologies&apos; Platform and Tools. The AUP outlines acceptable and unacceptable behaviours, and helps protect the app provider from misuse, security risks, and legal liability.<br/>
-                  Consult our Acceptable Use Policy for more information.
+                    Our Acceptable Use Policy outlines the proper ways to use our platform and mobile applications.<br/>To ensure a safe and productive environment for everyone, it prohibits activities such as using our service for illegal purposes, attempting to breach security measures, disrupting the platform&apos;s functionality, infringing on intellectual property rights, engaging in harassment, sending spam, misusing data, or collecting personal information without authorization.<br/>By following these guidelines, we can all contribute to a positive and responsible user community.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
