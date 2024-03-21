@@ -19,7 +19,7 @@ import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 import { OrbitControls} from '@react-three/drei'; */
 //import { ThreeJSViewer } from '@/components/three.js';
 import ThreeJSViewer from '@/components/three.js';
-import Cube from '@/components/three.js/cube'
+//import Cube from '@/components/three.js/cube'
 
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {

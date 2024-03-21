@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-export default function index() {
+export default function ThreeJSViewer() {
   const iPhone = useLoader(GLTFLoader, '/3d-models/iPhone_14_Pro_Max.glb');
   const texture_1 = useLoader(TextureLoader, "/3d-models/textures/iPhone_Front_Screen.jpg");
   const texture_2 = useLoader(TextureLoader, "/3d-models/textures/color.png");
@@ -110,7 +110,7 @@ export default function index() {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [], revertOnUpdate: true }
+    { dependencies: [iPhone.scene, texture_1, texture_2, texture_3], revertOnUpdate: true }
   );
 
   return (
@@ -208,7 +208,7 @@ export const IPhoneModel: React.FC = () => {
     return () => {
       gui.destroy()
     }
-  }, [])
+  }, [iPhone.scene, texture_1])
 
   return (
       <>

@@ -1,1 +1,1 @@
-let vNumber = "v0.1.1-β.1 | React Three Fiber (R3F) setup, Home initial 3D Animation, Judge initial 3D Animation and layout";
+let vNumber = "v0.1.1-β.2 | ReferenceError fixes";
