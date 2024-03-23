@@ -238,6 +238,22 @@ export default function Home() {
               //console.log("Judge animations are ready");
           let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
           let judgeTitle = document.getElementById('featuresJudgeTitle');
+
+          let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
+          const changeJudgeH4 = gsap.timeline({paused: true, immediateRender: false})
+            .fromTo(fJHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fJHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+            .fromTo(fJHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fJHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+            .fromTo(fJHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fJHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+
+          fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
+          gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
+
           let bottomDistance = 0; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
 
           let lastJudgeCardST = ScrollTrigger.create({
@@ -265,14 +281,6 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: proDisplayShadowSVG,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                }); */
                 if (isViewportRatioLessThan160()) {
                   ScrollTrigger.create({
                     trigger: card,
@@ -292,14 +300,14 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
-                  /* onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
-                    stackCardsAnim(judgeCards, i);
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeJudgeH4.play();
+                    //stackCardsAnim(judgeCards, i);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
-                    reverseStackCardsAnim(judgeCards, i);
-                  } */
+                    changeJudgeH4.reverse();
+                    //reverseStackCardsAnim(judgeCards, i);
+                  }
                 });
                 break;
               default: // default case
@@ -309,14 +317,14 @@ export default function Home() {
                   end: () => lastJudgeCardST.start + bottomDistance,
                   pin: true,
                   pinSpacing: false,
-                  /* onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
-                    stackCardsAnim(judgeCards, i);
+                  onEnter: ({progress, direction, isActive}) => {
+                    changeJudgeH4.play();
+                    //stackCardsAnim(judgeCards, i);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
-                    reverseStackCardsAnim(judgeCards, i);
-                  } */
+                    changeJudgeH4.reverse();
+                    //reverseStackCardsAnim(judgeCards, i);
+                  }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
           });
@@ -394,22 +402,22 @@ export default function Home() {
               <div className="flex flex-col justify-top z-20 text-left">
                 <h2 id="featuresJudgeTitle">Officials (Judge)</h2>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Personalized Fight Card</h4>
+                  <h4 className="featuresJudgeHeaderItem">Personalized Fight Card</h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Make more Informed Decisions with a Coherent and Consistent Methodology</h4>
+                  <h4 className="featuresJudgeHeaderItem">Make more Informed Decisions with a Coherent and Consistent Methodology</h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Discuss scoring more deeply with your colleagues</h4>
+                  <h4 className="featuresJudgeHeaderItem">Discuss scoring more deeply with your colleagues</h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Reduce Fatigue</h4>
+                  <h4 className="featuresJudgeHeaderItem">Reduce Fatigue</h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Instantly submit your scorecards to the RecordKeeper</h4>
+                  <h4 className="featuresJudgeHeaderItem">Instantly submit your scorecards to the RecordKeeper</h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4>Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues</h4>
+                  <h4 className="featuresJudgeHeaderItem">Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues</h4>
                 </FeaturesJudgeCard>
               </div>
             </div>

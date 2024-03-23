@@ -23,7 +23,7 @@ const FeaturesJudgeCard = React.forwardRef<
         "flex items-center justify-start",
         "w-[95vw] md:w-[90vw] lg:w-[75vw] h-[67.5vw] md:h-[53.3vw]",
         "max-w-[1440px] max-h-[50vh] overflow-hidden object-cover object-top pr-[35%]",
-        "bg-transparent ring-2 ring-fuchsia-900",
+        /* "bg-transparent ring-2 ring-fuchsia-900", */
         className
       )}
       {...props}

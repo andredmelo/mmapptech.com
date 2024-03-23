@@ -58,13 +58,13 @@ export default function Template({
       const attemptInterval = 50; // Milliseconds between attempts
 
       const checkAndExecuteScroll = () => {
-        console.log("checkAndExecuteScroll "+attempts);
+        //console.log("checkAndExecuteScroll "+attempts);
         attempts++;
         // Check if conditions are met to execute the scroll
         if ((!isPending || isPending === undefined) && smoother?.current && typeof smoother.current.scrollTo === "function") {
           const templateAnimInExists = document.querySelector('.templateAnimIn');
 
-          console.log("Conditions for scrollTo met!:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+          //console.log("Conditions for scrollTo met!:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
 
           if (templateAnimInExists) {
 
@@ -78,16 +78,16 @@ export default function Template({
                 smoother.current.scrollTo(href, false, "top 0px");
                 animIn.invalidate();
                 animIn.restart().play();
-                console.log("scrollTo : " + href);
+                //console.log("scrollTo : " + href);
               }
             }, 100); // Check every 100ms
           }
         } else if (attempts < maxAttempts) {
-          console.log("Conditions for scrollTo not met:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+          //console.log("Conditions for scrollTo not met:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
           // If conditions are not met, retry after a delay
           setTimeout(checkAndExecuteScroll, attemptInterval);
         } else {
-          console.log("Conditions for scrollTo not met after maximum attempts.");
+          //console.log("Conditions for scrollTo not met after maximum attempts.");
         }
       };
     

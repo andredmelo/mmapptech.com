@@ -1,1 +1,2 @@
-let vNumber = "v0.1.1-β.3 | Band-Aid solution for the Home loading (when initial page != Home) issue";
+let vNumber = "v0.1.1-β.4 | 3D Models, Textures, Lights, Cameras, Controls, Animations, and more!";
+
