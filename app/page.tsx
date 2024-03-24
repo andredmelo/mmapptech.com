@@ -1,5 +1,6 @@
 'use client'
 import * as ReactDOMServer from "react-dom/server";
+import React, { useContext } from 'react';
 import { clsx } from "clsx";
 /* import Image from "next/image";
 import { Metadata } from 'next'
@@ -21,12 +22,15 @@ import { OrbitControls} from '@react-three/drei'; */
 import ThreeJSViewer from '@/components/three.js';
 //import Cube from '@/components/three.js/cube'
 
+import TextureContext from '@/contexts/TextureContext';
+
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {
   title: 'Home',
 } */
 
 export default function Home() {
+  const { setTextureName } = useContext(TextureContext);
 
   const svgString = encodeURIComponent(
     ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
@@ -250,6 +254,12 @@ export default function Home() {
             .fromTo(fJHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
             .fromTo(fJHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
             .addPause()
+            .fromTo(fJHI[3], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fJHI[4], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
+            .fromTo(fJHI[4], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+            .fromTo(fJHI[5], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+            .addPause()
 
           fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
           gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -272,6 +282,9 @@ export default function Home() {
                   pin: card,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
+                  onLeaveBack: ({}) => {
+                    setTextureName('iPhone_texture_'+(i+1));
+                  }
                 });
                 /* ScrollTrigger.create({
                   trigger: card,
@@ -298,14 +311,16 @@ export default function Home() {
                   start: "center 50%",
                   end: () => lastJudgeCardST.start + bottomDistance,
                   pin: true,
-                  pinSpacing: false,
+                  pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     changeJudgeH4.play();
+                    setTextureName('iPhone_texture_'+(i+1));
                     //stackCardsAnim(judgeCards, i);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     changeJudgeH4.reverse();
+                    setTextureName('iPhone_texture_'+(i));
                     //reverseStackCardsAnim(judgeCards, i);
                   }
                 });
@@ -318,11 +333,13 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    changeJudgeH4.play();
+                    changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
+                    setTextureName('iPhone_texture_'+(i+1));
                     //stackCardsAnim(judgeCards, i);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     changeJudgeH4.reverse();
+                    setTextureName('iPhone_texture_'+(i));
                     //reverseStackCardsAnim(judgeCards, i);
                   }
                 });
@@ -334,7 +351,7 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [], revertOnUpdate: true }
+    { dependencies: [setTextureName], revertOnUpdate: true }
   );
 
   return (

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState, Suspense } from 'react'
+import React, { useEffect, useRef, useState, useContext, Suspense } from 'react'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Texture, TextureLoader, Mesh, Color, SRGBColorSpace, LinearSRGBColorSpace, RepeatWrapping, MeshStandardMaterial, ACESFilmicToneMapping, Object3D, PerspectiveCamera, Clock } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -10,21 +10,24 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
+import TextureContext from '@/contexts/TextureContext';
+
 export default function ThreeJSViewer() {
 
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
-  const [textures, setTextures] = useState<{ iPhone_texture_1: Texture | null, iPhone_texture_2: Texture | null, iPhone_texture_3: Texture | null , iPhone_texture_4: Texture | null, iPhone_texture_5: Texture | null, iPad_texture_1: Texture | null, iPad_texture_2: Texture | null, iPad_texture_3: Texture | null, iPad_texture_4: Texture | null, iPad_texture_5: Texture | null}>({
+  const [textures, setTextures] = useState<{ iPhone_texture_1: Texture | null, iPhone_texture_2: Texture | null, iPhone_texture_3: Texture | null , iPhone_texture_4: Texture | null, iPhone_texture_5: Texture | null, iPhone_texture_6: Texture | null, iPad_texture_1: Texture | null, iPad_texture_2: Texture | null, iPad_texture_3: Texture | null, iPad_texture_4: Texture | null, iPad_texture_5: Texture | null}>({
     iPhone_texture_1: null,
     iPhone_texture_2: null,
     iPhone_texture_3: null,
     iPhone_texture_4: null,
     iPhone_texture_5: null,
+    iPhone_texture_6: null,
     iPad_texture_1: null,
     iPad_texture_2: null,
     iPad_texture_3: null,
     iPad_texture_4: null,
-    iPad_texture_5: null
+    iPad_texture_5: null,
   });
 
   useEffect(() => {
@@ -40,6 +43,7 @@ export default function ThreeJSViewer() {
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
       const iPhoneTexture4 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-4.webp");
       const iPhoneTexture5 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-5.webp");
+      const iPhoneTexture6 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-6.webp");
       const iPadTexture1 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp");
       const iPadTexture2 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp");
       const iPadTexture3 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp");
@@ -48,7 +52,7 @@ export default function ThreeJSViewer() {
 
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
-      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5 });
+      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5 });
     };
 
     loadModelsAndTextures();
@@ -72,6 +76,8 @@ export default function ThreeJSViewer() {
           gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8})
           //gsap.set(".threeJSViewer", {opacity:1})
 
+          
+
           // Pin threeJSViewer
           ScrollTrigger.create({
             trigger: "body",
@@ -90,8 +96,7 @@ export default function ThreeJSViewer() {
           });
 
           // HomeAnimIn
-          const HomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
-          //.set(iPhone.scene.scale, {x: 1, y: 1, z: 1})
+          /* const HomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
           //.set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
           .to(".threeJSViewer", {opacity:1, duration:0.1}, "<")
           .fromTo(iPhone.scene.position, {y: 1.5, x: 0}, {y: -0.4, x: 1.5, ease:"power1.out", duration:1}, "<")
@@ -100,10 +105,10 @@ export default function ThreeJSViewer() {
           .fromTo(iPad.scene.position, {y: -1.5, x:0}, {y: -0.5, x: -1.2, ease:"power1.out", duration:1}, "<")
           .fromTo(iPad.scene.rotation, {y: -1}, {y: 1, ease:"power1.out", duration:1}, "<")
           //.fromTo(iPad.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
-          HomeAnimIn.play();
+          HomeAnimIn.play(); */
 
           // iPhoneHomeAnimIn
-          /* const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
+          const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
               //.set(iPhone.scene.scale, {x: 1, y: 1, z: 1})
               .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
               .set(iPhone.scene.position, {x: 0, y: 0, z: 0}, "<")
@@ -111,10 +116,10 @@ export default function ThreeJSViewer() {
               .to(".threeJSViewer", {opacity:1, duration:0.1}, "<")
               .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.3, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {y: -3}, {y: 0, ease:"power1.out", duration:1}, "<")
-              .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.8, ease:"power1.in", duration:1}, "<")
-          iPhoneHomeAnimIn.play(); */
+              .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
+          iPhoneHomeAnimIn.play();
 
-          /* // iPhoneHomeAnimOut
+          // iPhoneHomeAnimOut
           const iPhoneHomeAnimOut = gsap.timeline({
             scrollTrigger: {
                 trigger: '.homeSection',
@@ -126,24 +131,23 @@ export default function ThreeJSViewer() {
                 //pin: ".threeJSViewer",
             },
           })
-            .set(iPhone.scene.scale, {x: 1, y: 1, z: 1}, 0)
-            .set(iPhone.scene.position, {x: 0, y: -1.5, z: 0}, 0)
-            .set(iPhone.scene.rotation, {x: -0.8, y: 0, z: 0}, 0)
-            //.set(iPhone.scene.scale, {x: 1, y: 1, z: 1})
-            .fromTo(iPhone.scene.position, {y: -1.5}, {y: -6.3, ease:"power1.in"}, 0)
-            .to(iPhone.scene.scale, {x: 3, y: 3, z: 3, ease:"linear"}, "<")
-            .fromTo(iPhone.scene.rotation, {x: -0.8}, {x: -2.2, ease:"power1.out"}, "<")
+            .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
+            .set(iPhone.scene.position, {x: 0, y: -0.3, z: 0}, 0)
+            .set(iPhone.scene.rotation, {x: -0.5, y: 0, z: 0}, 0)
+            .fromTo(iPhone.scene.position, {y: -0.3}, {y: -3, ease:"power1.in"}, 0)
+            .to(iPhone.scene.scale, {x: 9, y: 9, z: 9, ease:"linear"}, "<")
+            .fromTo(iPhone.scene.rotation, {x: -0.5}, {x: -2.2, ease:"power1.out"}, "<")
             //.set(".threeJSViewer", {opacity:0})
-            .set(iPhone.scene.scale, {x: 1, y: 1, z: 1})
-            .set(iPhone.scene.position, {x: 8, y: 0, z: 0})
+            .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
+            .set(iPhone.scene.position, {x: 2, y: 0, z: 0})
             .set(iPhone.scene.rotation, {x: 0, y: -2, z: 0})
 
           // iPhoneFeaturesAnimIn
           const iPhoneFeaturesAnimIn = gsap.timeline({paused:true})
             //.set(".threeJSViewer", {autoAlpha:1})
-            .fromTo(iPhone.scene.position, {x: 8}, {x: 2.5, ease:"power1.out"}, "<")
-            .fromTo(iPhone.scene.rotation, {y: -2}, {y: -1, ease:"power1.in"}, "<")
-            .fromTo(iPhone.scene.scale, {x: 1, y: 1, z: 1}, {x: 1.5, y: 1.5, z: 1.5, ease:"power3.in"}, "<")
+            .fromTo(iPhone.scene.position, {x: 2}, {x: 0.6, ease:"power1.out"}, "<")
+            .fromTo(iPhone.scene.rotation, {y: -2}, {y: -0.5, ease:"power1.in"}, "<")
+            .fromTo(iPhone.scene.scale, {x: 6, y: 6, z: 6}, {x: 8, y: 8, z: 8, ease:"power3.in"}, "<")
 
           ScrollTrigger.create({
             trigger: '.featuresJudge',
@@ -153,7 +157,7 @@ export default function ThreeJSViewer() {
             scrub: true,
             animation: iPhoneFeaturesAnimIn,
             toggleActions: "play none none reverse"
-          }); */
+          });
 
 
 
@@ -178,7 +182,7 @@ export default function ThreeJSViewer() {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPhone_texture_6, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
   );
 
   return (
@@ -186,7 +190,7 @@ export default function ThreeJSViewer() {
       <Canvas linear>
         {/* <ScrollControls pages={5} damping={0.1}> */}
 
-          <OrbitControls enableZoom={false} enablePan={false}/>
+          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
           <ambientLight intensity={2}/>
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
@@ -201,9 +205,9 @@ export default function ThreeJSViewer() {
           <IPhoneModel iPhone={iPhone} textures={textures} />
           )}
 
-          {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && (
+          {/* {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && (
           <IPadModel iPad={iPad} textures={textures} />
-          )}
+          )} */}
 
         {/* </ScrollControls> */}
       </Canvas>
@@ -211,7 +215,8 @@ export default function ThreeJSViewer() {
   )
 }
 
-export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; }; }> = ({ iPhone, textures }) => {
+export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; iPhone_texture_6: any; newiPhoneTextureName: any}; }> = ({ iPhone, textures }) => {
+  const { textureName } = useContext(TextureContext);
 
   const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
 
@@ -279,9 +284,38 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
       } */
     });
 
+    type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5' | 'iPhone_texture_6';
+
+    const changeiPhoneTexture = (newiPhoneTextureName: TextureName) => {
+      //let iPhoneScreenMaterial: any;
+      iPhone.scene.traverse((child: Object3D) => {
+        if (child instanceof Mesh && child.material.name === 'iPhone_Screen') {
+          console.log("texture = " + newiPhoneTextureName);
+          let iPhoneScreenMaterial: any = child.material;
+          const texture = textures[newiPhoneTextureName];
+
+          if (!texture) {
+            console.error("Texture not found:", newiPhoneTextureName);
+            return;
+          }
+          // Apply the texture to the existing material's map
+          iPhoneScreenMaterial.map = texture;
+          iPhoneScreenMaterial.toneMapped=false;
+          // If the material uses an emissive map and you want to apply the same texture to it making it glow
+          iPhoneScreenMaterial.emissive = new Color(0xffffff); // White emissive color
+          iPhoneScreenMaterial.emissiveMap = texture;
+          iPhoneScreenMaterial.emissiveIntensity = 0.125; // Adjust as needed
+          iPhoneScreenMaterial.needsUpdate = true;
+        }
+      });
+    }
+    if (textureName) {
+      changeiPhoneTexture(textureName as TextureName); // Type assertion
+    }
+
 
     // Gui setup
-    /* const gui = new GUI()
+    const gui = new GUI()
     const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
 
     const iPhoneCameraFolder = gui.addFolder('iPhone Camera');
@@ -333,8 +367,8 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
 
     return () => {
       gui.destroy()
-    } */
-  }, [iPhone, textures, gl])
+    }
+  }, [iPhone, textures, gl, textureName])
 
   return (
       <>
@@ -416,7 +450,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
 
     // Gui setup
-    /* const gui = new GUI()
+    const gui = new GUI()
     const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
 
     const iPadCameraFolder = gui.addFolder('iPad Camera');
@@ -468,7 +502,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
     return () => {
       gui.destroy()
-    } */
+    }
   }, [iPad, textures, gl])
 
   return (

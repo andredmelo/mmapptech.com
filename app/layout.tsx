@@ -2,7 +2,8 @@
 /* import type { Metadata } from "next"; */
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter, usePathname } from "next/navigation";
-import { HrefContext } from './HrefContext';
+import { HrefContext } from '@/contexts/HrefContext';
+import TextureContext from '@/contexts/TextureContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
@@ -49,6 +50,7 @@ export default function RootLayout({
   const [under768] = useMediaQuery('(max-width: 767px)')
   const [hUnder376] = useMediaQuery('(max-height: 376px)') */
 
+  const [textureName, setTextureName] = useState('');
   
   const router = useRouter();
   const [href, setHref] = useState('');
@@ -201,15 +203,17 @@ export default function RootLayout({
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           <Providers>
-            <Navbar />
-            <div id="smooth-wrapper">
-              <div id="smooth-content">
-                <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
-                  <main id="main">{children}</main>
-                </Template>
-                <Footer />
+            <TextureContext.Provider value={{ textureName, setTextureName }}>
+              <Navbar />
+              <div id="smooth-wrapper">
+                <div id="smooth-content">
+                  <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
+                    <main id="main">{children}</main>
+                  </Template>
+                  <Footer />
+                </div>
               </div>
-            </div>
+            </TextureContext.Provider>
           </Providers>
         </body>
       </html>
