@@ -12,8 +12,9 @@ import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
-import { FeaturesDashboardCard } from '@/components/ui/featuresCard'
-import { FeaturesJudgeCard } from '@/components/ui/judgeCard'
+import { FeaturesDashboardCard } from '@/components/ui/featuresDashboardCard'
+import { FeaturesJudgeCard } from '@/components/ui/featuresJudgeCard'
+import { FeaturesRecordKeeperCard } from '@/components/ui/featuresRecordKeeperCard'
 import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
 /* import { Canvas } from "@react-three/fiber";
@@ -22,7 +23,7 @@ import { OrbitControls} from '@react-three/drei'; */
 import ThreeJSViewer from '@/components/three.js';
 //import Cube from '@/components/three.js/cube'
 
-import TextureContext from '@/contexts/TextureContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/TextureContext';
 
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {
@@ -30,7 +31,10 @@ gsap.registerPlugin(ScrollTrigger);
 } */
 
 export default function Home() {
-  const { setTextureName } = useContext(TextureContext);
+  const { setiPhoneTextureName } = useContext(IPhoneTextureContext);
+  const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
+  const { setiPadTextureName } = useContext(IPadTextureContext);
+  const { setiPadOpacity } = useContext(IPadOpacityContext);
 
   const svgString = encodeURIComponent(
     ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
@@ -264,7 +268,7 @@ export default function Home() {
           fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
           gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
 
-          let bottomDistance = 0; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+          let bottomDistance = judgeCards[judgeCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
 
           let lastJudgeCardST = ScrollTrigger.create({
             trigger: judgeCards[judgeCards.length-1] as HTMLElement,
@@ -283,7 +287,7 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                   onLeaveBack: ({}) => {
-                    setTextureName('iPhone_texture_'+(i+1));
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
                   }
                 });
                 /* ScrollTrigger.create({
@@ -315,12 +319,20 @@ export default function Home() {
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     changeJudgeH4.play();
-                    setTextureName('iPhone_texture_'+(i+1));
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
                     //stackCardsAnim(judgeCards, i);
+                  },
+                  onLeave: ({progress, direction, isActive}) => {
+                    setiPhoneOpacity(0);
+                    setiPadOpacity(1);
+                  }, 
+                  onEnterBack: ({progress, direction, isActive}) => {
+                    setiPhoneOpacity(1);
+                    setiPadOpacity(0);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     changeJudgeH4.reverse();
-                    setTextureName('iPhone_texture_'+(i));
+                    setiPhoneTextureName('iPhone_texture_'+(i));
                     //reverseStackCardsAnim(judgeCards, i);
                   }
                 });
@@ -334,16 +346,18 @@ export default function Home() {
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
                     changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
-                    setTextureName('iPhone_texture_'+(i+1));
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
                     //stackCardsAnim(judgeCards, i);
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     changeJudgeH4.reverse();
-                    setTextureName('iPhone_texture_'+(i));
+                    setiPhoneTextureName('iPhone_texture_'+(i));
                     //reverseStackCardsAnim(judgeCards, i);
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+            setiPhoneOpacity(1);
+            setiPadOpacity(0);
           });
 
         }
@@ -351,7 +365,7 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [setTextureName], revertOnUpdate: true }
+    { dependencies: [setiPhoneTextureName], revertOnUpdate: true }
   );
 
   return (
@@ -440,15 +454,29 @@ export default function Home() {
             </div>
           </div>
 
-          <div id="featuresRecordKeeper" className="featuresRecordKeeper">
-            <h2>Officials (RecordKeeper)</h2>
-            <br/>
+          <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col justify-top z-20 text-right">
+                <h2 id="featuresRecordKeeperTitle">Officials (RecordKeeper)</h2>
 
-            <h5>Pre-filled in Information</h5>
-            <h5>Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules</h5>
-            <h5>Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)</h5>
-            <h5>Notifications for actions needed to perform</h5>
-            <h5>Instant Score Delivery and Calculation</h5>
+                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
+                  <h4 className="featuresRecordKeeperHeaderItem">Pre-filled in Information</h4>
+                </FeaturesRecordKeeperCard>
+                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
+                  <h4 className="featuresRecordKeeperHeaderItem">Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules</h4>
+                </FeaturesRecordKeeperCard>
+                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
+                  <h4 className="featuresRecordKeeperHeaderItem">Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)</h4>
+                </FeaturesRecordKeeperCard>
+                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
+                  <h4 className="featuresRecordKeeperHeaderItem">Notifications for actions needed to perform</h4>
+                </FeaturesRecordKeeperCard>
+                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
+                  <h4 className="featuresRecordKeeperHeaderItem">Instant Score Delivery and Calculation</h4>
+                </FeaturesRecordKeeperCard>
+              </div>
+            </div>
           </div>
 
         </section>

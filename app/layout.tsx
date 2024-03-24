@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter, usePathname } from "next/navigation";
 import { HrefContext } from '@/contexts/HrefContext';
-import TextureContext from '@/contexts/TextureContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/TextureContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
@@ -50,8 +50,11 @@ export default function RootLayout({
   const [under768] = useMediaQuery('(max-width: 767px)')
   const [hUnder376] = useMediaQuery('(max-height: 376px)') */
 
-  const [textureName, setTextureName] = useState('');
-  
+  const [iPhoneTextureName, setiPhoneTextureName] = useState('');
+  const [iPadTextureName, setiPadTextureName] = useState('');
+  const [iPhoneOpacity, setiPhoneOpacity] = useState(0);
+  const [iPadOpacity, setiPadOpacity] = useState(0);
+
   const router = useRouter();
   const [href, setHref] = useState('');
   const [isPending, startTransition] = useTransition();
@@ -59,7 +62,7 @@ export default function RootLayout({
   // Initialize currentPage with the current path
   const initialPathname = usePathname();
   let currentPage = useRef<string>(initialPathname);
-  console.log("currentPage = "+currentPage.current);
+  //console.log("currentPage = "+currentPage.current);
 
   /* useEffect(() => {
     console.log("href = "+href);
@@ -203,7 +206,10 @@ export default function RootLayout({
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           <Providers>
-            <TextureContext.Provider value={{ textureName, setTextureName }}>
+            <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
+            <IPadTextureContext.Provider value={{ iPadTextureName, setiPadTextureName }}>
+            <IPhoneOpacityContext.Provider value={{ iPhoneOpacity, setiPhoneOpacity }}>
+            <IPadOpacityContext.Provider value={{ iPadOpacity, setiPadOpacity }}>
               <Navbar />
               <div id="smooth-wrapper">
                 <div id="smooth-content">
@@ -213,7 +219,10 @@ export default function RootLayout({
                   <Footer />
                 </div>
               </div>
-            </TextureContext.Provider>
+            </IPadOpacityContext.Provider>
+            </IPhoneOpacityContext.Provider>
+            </IPadTextureContext.Provider>
+            </IPhoneTextureContext.Provider>
           </Providers>
         </body>
       </html>

@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState, useContext, Suspense } from 'react'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Texture, TextureLoader, Mesh, Color, SRGBColorSpace, LinearSRGBColorSpace, RepeatWrapping, MeshStandardMaterial, ACESFilmicToneMapping, Object3D, PerspectiveCamera, Clock } from 'three';
+import { Texture, TextureLoader, Mesh, Color, SRGBColorSpace, LinearSRGBColorSpace, RepeatWrapping, MeshStandardMaterial, ACESFilmicToneMapping, Object3D, PerspectiveCamera, Clock, Material } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, ScrollControls, useScroll} from '@react-three/drei';
@@ -10,24 +10,40 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-import TextureContext from '@/contexts/TextureContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/TextureContext';
 
 export default function ThreeJSViewer() {
 
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
-  const [textures, setTextures] = useState<{ iPhone_texture_1: Texture | null, iPhone_texture_2: Texture | null, iPhone_texture_3: Texture | null , iPhone_texture_4: Texture | null, iPhone_texture_5: Texture | null, iPhone_texture_6: Texture | null, iPad_texture_1: Texture | null, iPad_texture_2: Texture | null, iPad_texture_3: Texture | null, iPad_texture_4: Texture | null, iPad_texture_5: Texture | null}>({
+  const [textures, setTextures] = useState<{
+    iPhone_texture_1: Texture | null,
+    iPhone_texture_2: Texture | null,
+    iPhone_texture_3: Texture | null,
+    iPhone_texture_4: Texture | null,
+    iPhone_texture_5: Texture | null,
+    iPhone_texture_6: Texture | null,
+    newiPhoneTextureName: Texture | null,
+    iPad_texture_1: Texture | null,
+    iPad_texture_2: Texture | null,
+    iPad_texture_3: Texture | null,
+    iPad_texture_4: Texture | null,
+    iPad_texture_5: Texture | null,
+    newiPadTextureName: Texture | null
+  }>({
     iPhone_texture_1: null,
     iPhone_texture_2: null,
     iPhone_texture_3: null,
     iPhone_texture_4: null,
     iPhone_texture_5: null,
     iPhone_texture_6: null,
+    newiPhoneTextureName: null,
     iPad_texture_1: null,
     iPad_texture_2: null,
     iPad_texture_3: null,
     iPad_texture_4: null,
     iPad_texture_5: null,
+    newiPadTextureName: null,
   });
 
   useEffect(() => {
@@ -52,7 +68,7 @@ export default function ThreeJSViewer() {
 
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
-      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5 });
+      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, newiPhoneTextureName: iPhoneTexture1, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5, newiPadTextureName: iPadTexture1 });
     };
 
     loadModelsAndTextures();
@@ -74,9 +90,18 @@ export default function ThreeJSViewer() {
 
           gsap.set(".threeJSViewer", {opacity:0})
           gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8})
+          gsap.set(iPad.scene.scale, {x: 0.5, y: 0.5, z: 0.5})
+          gsap.set(iPad.scene.position, {x: -0.55, y: 0, z: 0})
+          /* iPad.scene.traverse((child) => {
+            if (child instanceof Mesh && child.material instanceof Material) {
+              child.material.opacity = 0;
+              child.material.transparent = true; // Ensure transparency is enabled
+              child.material.needsUpdate = true; // Mark the material for update
+            }
+          }); */
           //gsap.set(".threeJSViewer", {opacity:1})
 
-          
+
 
           // Pin threeJSViewer
           ScrollTrigger.create({
@@ -188,9 +213,10 @@ export default function ThreeJSViewer() {
   return (
     <div ref={container} className="threeJSViewer absolute top-0 left-0 z-[2] h-screen w-screen overflow-visible">
       <Canvas linear>
+        <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
 
-          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
+          <OrbitControls enableZoom={false} enablePan={false}/>
           <ambientLight intensity={2}/>
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
@@ -201,13 +227,13 @@ export default function ThreeJSViewer() {
           {/* <primitive object={iPhone.scene} /> */}
           {/* <IPhoneModel /> */}
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
           <IPhoneModel iPhone={iPhone} textures={textures} />
           )}
 
-          {/* {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && (
+          {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && textures.iPad_texture_4 && textures.iPad_texture_5 && (
           <IPadModel iPad={iPad} textures={textures} />
-          )} */}
+          )}
 
         {/* </ScrollControls> */}
       </Canvas>
@@ -215,16 +241,14 @@ export default function ThreeJSViewer() {
   )
 }
 
-export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; iPhone_texture_6: any; newiPhoneTextureName: any}; }> = ({ iPhone, textures }) => {
-  const { textureName } = useContext(TextureContext);
 
-  const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
+// Perspective Camera component
+export const CustomCamera: React.FC = () => {
+  const { camera } = useThree();// Gui setup
 
-  const iPhoneRef = useRef<Mesh>(null);
-
-  const { camera, scene } = useThree();
   // Type assertion to PerspectiveCamera
   const perspectiveCamera = camera as PerspectiveCamera;
+
   // Adjust camera properties using the asserted type
   perspectiveCamera.fov = 25;
   perspectiveCamera.aspect = window.innerWidth / window.innerHeight;
@@ -232,8 +256,52 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
   perspectiveCamera.far = 100;
   perspectiveCamera.position.set(0, 0, 4);
   perspectiveCamera.updateProjectionMatrix();
-  // If you need to add the camera to the scene explicitly
-  // scene.add(camera);
+
+  /* useEffect(() => {
+    const gui = new GUI()
+    const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
+
+    const CameraFolder = gui.addFolder('Perspective Camera');
+    CameraFolder.add(perspectiveCamera, 'fov').min(0).max(100).step(0.01).name('FOV').onChange((newValue) => {
+      // Update the actual object's scale in the listener
+      perspectiveCamera.fov = newValue;
+      perspectiveCamera.updateProjectionMatrix();
+    });
+    //perspectiveCamera.position.set(0, 0, 4);
+    CameraFolder.add(perspectiveCamera.position, 'x').min(-7).max(7).step(0.01).name('Position X').onChange((newValue) => {
+      // Update the actual object's scale in the listener
+      perspectiveCamera.position.x = newValue;
+      perspectiveCamera.updateProjectionMatrix();
+    });
+    CameraFolder.add(perspectiveCamera.position, 'y').min(-7).max(7).step(0.01).name('Position Y').onChange((newValue) => {
+      // Update the actual object's scale in the listener
+      perspectiveCamera.position.y = newValue;
+      perspectiveCamera.updateProjectionMatrix();
+    });
+    CameraFolder.add(perspectiveCamera.position, 'z').min(-7).max(7).step(0.01).name('Position Z').onChange((newValue) => {
+      // Update the actual object's scale in the listener
+      perspectiveCamera.position.z = newValue;
+      perspectiveCamera.updateProjectionMatrix();
+    });
+
+    return () => {
+      gui.destroy()
+    }
+  }, [perspectiveCamera]) */
+
+  // No need to render anything, as this component is only for configuring the camera
+  return null;
+};
+
+
+// iPhone Model component
+export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; iPhone_texture_6: any; newiPhoneTextureName: any}; }> = ({ iPhone, textures }) => {
+  const { iPhoneTextureName } = useContext(IPhoneTextureContext);
+  const { iPhoneOpacity } = useContext(IPhoneOpacityContext);
+
+  const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
+
+  const iPhoneRef = useRef<Mesh>(null);
 
   useFrame((_state, delta) => {
   // Make it spin
@@ -255,6 +323,7 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
   });
 
   useEffect(() => {
+    //Set initial iPhone texture
     let iPhoneScreenMaterial: any;
     iPhone.scene.traverse((child: Object3D) => {
       if (child instanceof Mesh && child.material.name === 'iPhone_Screen') {
@@ -284,13 +353,14 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
       } */
     });
 
+    // Change iPhone texture function
     type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5' | 'iPhone_texture_6';
 
     const changeiPhoneTexture = (newiPhoneTextureName: TextureName) => {
       //let iPhoneScreenMaterial: any;
       iPhone.scene.traverse((child: Object3D) => {
         if (child instanceof Mesh && child.material.name === 'iPhone_Screen') {
-          console.log("texture = " + newiPhoneTextureName);
+          //console.log("texture = " + newiPhoneTextureName);
           let iPhoneScreenMaterial: any = child.material;
           const texture = textures[newiPhoneTextureName];
 
@@ -309,37 +379,33 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
         }
       });
     }
-    if (textureName) {
-      changeiPhoneTexture(textureName as TextureName); // Type assertion
+    if (iPhoneTextureName) {
+      changeiPhoneTexture(iPhoneTextureName as TextureName); // Type assertion
+    }
+
+    // Change iPhone opacity function
+    const changeiPhoneOpacity = (newiPhoneOpacity: number) => {
+      iPhone.scene.traverse((child: any) => {
+        if (child instanceof Mesh && child.material instanceof Material) {
+          child.material.opacity = newiPhoneOpacity;
+          if (newiPhoneOpacity === 0) {
+            child.material.transparent = true; // Ensure transparency is enabled
+          } else {
+            child.material.transparent = false; // Ensure transparency is disabled
+          }
+          child.material.needsUpdate = true; // Mark the material for update
+        }
+      });
+    }
+    if (iPhoneOpacity !== undefined && iPhoneOpacity !== null) {
+      console.log("iPhoneOpacity triggered = "+iPhoneOpacity);
+      changeiPhoneOpacity(iPhoneOpacity as number);
     }
 
 
-    // Gui setup
-    const gui = new GUI()
-    const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
-
-    const iPhoneCameraFolder = gui.addFolder('iPhone Camera');
-    iPhoneCameraFolder.add(perspectiveCamera, 'fov').min(0).max(100).step(0.01).name('FOV').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.fov = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    //perspectiveCamera.position.set(0, 0, 4);
-    iPhoneCameraFolder.add(perspectiveCamera.position, 'x').min(-7).max(7).step(0.01).name('Position X').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.x = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    iPhoneCameraFolder.add(perspectiveCamera.position, 'y').min(-7).max(7).step(0.01).name('Position Y').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.y = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    iPhoneCameraFolder.add(perspectiveCamera.position, 'z').min(-7).max(7).step(0.01).name('Position Z').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.z = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
+    // iPhone Gui setup
+    /* const gui = new GUI()
+    const dummyFolder = gui.addFolder('.'); const dummy2Folder = gui.addFolder('..');
 
     const iPhoneFolder = gui.addFolder('iPhone')
     iPhoneFolder.add(iPhone.scene.position, 'x').min(-7).max(7).step(0.01).name('Position X')
@@ -367,8 +433,8 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
 
     return () => {
       gui.destroy()
-    }
-  }, [iPhone, textures, gl, textureName])
+    } */
+  }, [iPhone, textures, gl, iPhoneTextureName, iPhoneOpacity])
 
   return (
       <>
@@ -380,24 +446,14 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
 };
 
 
-export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; iPad_texture_2: any; iPad_texture_3: any; iPad_texture_4: any; iPad_texture_5: any; }; }> = ({ iPad, textures }) => {
+// iPad Model component
+export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; iPad_texture_2: any; iPad_texture_3: any; iPad_texture_4: any; iPad_texture_5: any; newiPadTextureName: any }; }> = ({ iPad, textures }) => {
+  const { iPadTextureName } = useContext(IPadTextureContext);
+  const { iPadOpacity } = useContext(IPadOpacityContext);
 
   const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
 
   const iPadRef = useRef<Mesh>(null);
-
-  const { camera, scene } = useThree();
-  // Type assertion to PerspectiveCamera
-  const perspectiveCamera = camera as PerspectiveCamera;
-  // Adjust camera properties using the asserted type
-  perspectiveCamera.fov = 50;
-  perspectiveCamera.aspect = window.innerWidth / window.innerHeight;
-  perspectiveCamera.near = 0.1;
-  perspectiveCamera.far = 100;
-  perspectiveCamera.position.set(0, 0, 4);
-  perspectiveCamera.updateProjectionMatrix();
-  // If you need to add the camera to the scene explicitly
-  // scene.add(camera);
 
   useFrame((_state, delta) => {
   // Make it spin
@@ -419,15 +475,16 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
   });
 
   useEffect(() => {
+    //Set initial iPad texture
     let iPadScreenMaterial: any;
     iPad.scene.traverse((child: Object3D) => {
-      if (child instanceof Mesh && child.material.name === 'screen') {
+      if (child instanceof Mesh && child.material.name === 'iPad_Screen') {
         iPadScreenMaterial = child.material;
-        const texture = textures.iPad_texture_1;
+        const texture = textures.iPad_texture_3;
 
         // Apply the texture to the existing material's map
         iPadScreenMaterial.map = texture;
-        iPadScreenMaterial.toneMapped=false;
+        iPadScreenMaterial.toneMapped = false;
 
         // If the material uses an emissive map and you want to apply the same texture to it making it glow
         iPadScreenMaterial.emissive = new Color(0xffffff); // White emissive color
@@ -438,7 +495,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
          iPadScreenMaterial.needsUpdate = true;
 
         // If the texture appears too bright or washed out, adjusting the exposure of the renderer may help
-         //gl.toneMappingExposure = Math.pow(0.9, 5.0); // Adjust exposure, 0.9 is an example value
+         //gl.toneMappingExposure = Math.pow(0.7, 1.0); // Adjust exposure, 0.9 is an example value
          //gl.toneMapping = ACESFilmicToneMapping;
       }
 
@@ -448,33 +505,58 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
       } */
     });
 
+    // Change iPad texture function
+    type TextureName = 'iPad_texture_1' | 'iPad_texture_2' | 'iPad_texture_3' | 'iPad_texture_4' | 'iPad_texture_5';
 
-    // Gui setup
+    const changeiPadTexture = (newiPadTextureName: TextureName) => {
+      //let iPadScreenMaterial: any;
+      iPad.scene.traverse((child: Object3D) => {
+        if (child instanceof Mesh && child.material.name === 'iPad_Screen') {
+          console.log("texture = " + newiPadTextureName);
+          let iPadScreenMaterial: any = child.material;
+          const texture = textures[newiPadTextureName];
+
+          if (!texture) {
+            console.error("Texture not found:", newiPadTextureName);
+            return;
+          }
+          // Apply the texture to the existing material's map
+          iPadScreenMaterial.map = texture;
+          iPadScreenMaterial.toneMapped=false;
+          // If the material uses an emissive map and you want to apply the same texture to it making it glow
+          iPadScreenMaterial.emissive = new Color(0xffffff); // White emissive color
+          iPadScreenMaterial.emissiveMap = texture;
+          iPadScreenMaterial.emissiveIntensity = 1; // Adjust as needed
+          iPadScreenMaterial.needsUpdate = true;
+        }
+      });
+    }
+    if (iPadTextureName) {
+      changeiPadTexture(iPadTextureName as TextureName); // Type assertion
+    }
+
+    // Change iPad opacity function
+    const changeiPadOpacity = (newiPadOpacity: number) => {
+      iPad.scene.traverse((child: any) => {
+        if (child instanceof Mesh && child.material instanceof Material) {
+          child.material.opacity = newiPadOpacity;
+          if (newiPadOpacity === 0) {
+            child.material.transparent = true; // Ensure transparency is enabled
+          } else {
+            child.material.transparent = false; // Ensure transparency is disabled
+          }
+          child.material.needsUpdate = true; // Mark the material for update
+        }
+      });
+    }    
+    if (iPadOpacity !== undefined && iPadOpacity !== null) {
+      console.log("iPadOpacity triggered = "+iPadOpacity);
+      changeiPadOpacity(iPadOpacity as number); // Type assertion
+    }
+
+    /* // Gui setup
     const gui = new GUI()
     const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
-
-    const iPadCameraFolder = gui.addFolder('iPad Camera');
-    iPadCameraFolder.add(perspectiveCamera, 'fov').min(0).max(100).step(0.01).name('FOV').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.fov = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    //perspectiveCamera.position.set(0, 0, 4);
-    iPadCameraFolder.add(perspectiveCamera.position, 'x').min(-7).max(7).step(0.01).name('Position X').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.x = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    iPadCameraFolder.add(perspectiveCamera.position, 'y').min(-7).max(7).step(0.01).name('Position Y').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.y = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
-    iPadCameraFolder.add(perspectiveCamera.position, 'z').min(-7).max(7).step(0.01).name('Position Z').onChange((newValue) => {
-      // Update the actual object's scale in the listener
-      perspectiveCamera.position.z = newValue;
-      perspectiveCamera.updateProjectionMatrix();
-    });
 
     const iPadFolder = gui.addFolder('iPad')
     iPadFolder.add(iPad.scene.position, 'x').min(-7).max(7).step(0.01).name('Position X')
@@ -502,8 +584,9 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
     return () => {
       gui.destroy()
-    }
-  }, [iPad, textures, gl])
+    } */
+
+  }, [iPad, textures, gl, iPadTextureName, iPadOpacity])
 
   return (
       <>
@@ -516,6 +599,12 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
 
 
+
+
+
+
+
+// Le basic Cube
 interface CubeProps {
   texture: Texture;
 }

@@ -64,7 +64,7 @@
   .borderBottom{
     @apply relative mx-12 md:mx-72 border-b border-white/5;  /* This is to account for the Navbar */
   }
-  
+
   .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;
   }
@@ -529,12 +529,12 @@ a {
   width: auto;
   max-width: 50vw;
   height: auto;
-  top: 2.5vh;
+  top: 7vh;
 }
 .homeMain h2{
   position: relative;
   max-width: 90%;
-  top: 65vh;
+  top: 13vh;
   font-size: 8rem;
 }
 
