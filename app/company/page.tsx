@@ -646,7 +646,7 @@ const Company = (props: any) => {
               Company Policies
             </h5>
             <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
-              Our Policies are tight
+              Policies and Guidelines of Usage
             </h3>
             <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] w-[80%] md:w-[62%] pb-16 md:pb-12">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
@@ -702,7 +702,8 @@ const Company = (props: any) => {
                     Terms & Conditions
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    This outlines the rules for using our website, mobile apps, and our associated services.<br/>It covers topics like user accounts, payment terms, acceptable content, and limitations of liability.
+                    This outlines the rules for using our website, mobile apps, and our associated services.<br/>
+                    It covers topics like user accounts, payment terms, acceptable content, and limitations of liability.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -757,7 +758,8 @@ const Company = (props: any) => {
                     Acceptable Use Policy
                   </CardPoliciesTitle>
                   <CardPoliciesDescription>
-                    Our Acceptable Use Policy outlines the proper ways to use our platform and mobile applications.<br/>To ensure a safe and productive environment for everyone, it prohibits activities such as using our service for illegal purposes, attempting to breach security measures, disrupting the platform&apos;s functionality, infringing on intellectual property rights, engaging in harassment, sending spam, misusing data, or collecting personal information without authorization.<br/>By following these guidelines, we can all contribute to a positive and responsible user community.
+                    Our Acceptable Use Policy outlines the proper ways to use our platform and mobile applications.<br/>
+                    To ensure a safe and productive environment for everyone, it prohibits activities such as using our service for illegal purposes, attempting to breach security measures, disrupting the platform&apos;s functionality, infringing on intellectual property rights, or collecting personal information without authorization.
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
@@ -781,3 +783,5 @@ Company.getInitialProps = async (context: any) => {
 };
 
 export default Company;
+
+

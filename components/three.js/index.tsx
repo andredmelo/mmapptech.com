@@ -227,6 +227,21 @@ export const HomeIntroR3F: React.FC = () => {
           setOpacity(0);
           gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8})
 
+
+          const InitialAnim = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: 'body',
+              start: 'top top',
+              markers: false,
+              scrub: false,
+              invalidateOnRefresh: true,
+              //animation: iPhoneFeaturesAnimIn,
+              toggleActions: "play none none none"
+            },
+          })
+            .set(iPhone.scene.position, {y: 1.5});
+
           // Pin it
           ScrollTrigger.create({
             trigger: "body",
@@ -248,7 +263,7 @@ export const HomeIntroR3F: React.FC = () => {
           const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
               //.set(iPhone.scene.scale, {x: 1, y: 1, z: 1})
               .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
-              .set(iPhone.scene.position, {x: 0, y: 0, z: 0}, "<")
+              //.set(iPhone.scene.position, {x: 0, y: 0, z: 0}, "<")
               .set(iPhone.scene.rotation, {x: 0, y: 0, z: 0}, "<")
               .to(".introHomer3FViewer", {opacity:1, duration:0.1}, "<")
               .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.3, ease:"power1.out", duration:1}, "<")

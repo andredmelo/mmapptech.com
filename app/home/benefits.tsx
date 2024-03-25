@@ -1,38 +1,200 @@
 'use client'
 import { useState, useTransition } from 'react'
 import TabButtonBenefits from '@/components/ui/tab-button-benefits'
-import Benefits1 from '@/app/home/benefits1'
-import Benefits2 from '@/app/home/benefits2'
-import Benefits3 from '@/app/home/benefits3'
-import Benefits4 from '@/app/home/benefits4'
 
-export interface BenefitsItem {
-  title: string;
-  header: string;
-  content: string;
-}
+import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/app/home/benefitsInterface';
 
-const items: BenefitsItem[] = [
+import { IconTablerUniverse, IconTablerMinimize } from '@/components/ui/svg/benefitsSVGs';
+
+
+const athletesItems: BenefitsItem[] = [
   {
-    title: "Athletes",
     header:
-      "Guarantees athletes and promoters high-standard officials",
-    content:
-      "With a standardised methodology and an electronic scoring system, provides higher quality officiating with less effort, making sure wherever you are, you get a fair result.",
+      "Guarantees high-standard officials",
+    content: [
+      "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result wherever you are."
+    ],
+    svg: <IconTablerUniverse />
   },
   {
-    title: "Athletes",
     header:
       "Minimizes unexpected decisions",
-    content:
-      "With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, mitigating conscious and unconscious bias",
+    content: [
+      "With our Judge and RecordKeeper tools, Scores are more consistent, and calculations are done instantly, mitigating user errors and conscious and unconscious bias(es)."
+    ],
+    svg: <IconTablerMinimize />
+  },
+  {
+    header:
+      "Consistency & Transparency",
+    content: [
+      "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency around the world, no matter where you fight."
+    ],
+    svg: <IconTablerMinimize />
+  },
+  {
+    header:
+      "Athlete Profile",
+    content: [
+      "Sign up only once, and simply keep your profile documents up to date (with reminders of their expiration date) to remain affiliated with your Federation."
+    ],
+    svg: <IconTablerMinimize />
+  },
+  {
+    header:
+      "Get featured to Promoters",
+    content: [
+      "When registered to your Federation, you are automatically added to the country’s roster, at the disposal of all national promoters."
+    ],
+    svg: <IconTablerMinimize />
+  },
+  {
+    header:
+      "Free",
+    content: [
+      "Our platform is 100% free to use for athletes (Federation fees still apply).",
+      <br key="br1" />, // Use keys for list elements
+      "Lifetime archive of career/ view past and scheduled fights.",
+      <br key="br2" />,
+      "Access profile anytime, anywhere."
+    ],
+    svg: <IconTablerMinimize />
   },
 ];
 
-interface BenefitsProps { items: BenefitsItem[]; }
+const coachesItems: BenefitsItem[] = [
+  {
+    header:
+      "Coach Profile",
+    content: [
+      "Easily keep your profile always up-to-date, with reminders of expiration dates for documents."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Manage multiple athletes associated with you",
+    content: [
+      "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Make your athletes instantly available to national promoters",
+    content: [
+      "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Consistency & Transparency",
+    content: [
+      "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency worldwide, no matter where your athletes fight."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Free",
+    content: [
+      "Our platform is 100% free to use for coaches (Federation fees still apply)."
+    ],
+    svg: <IconTablerUniverse />
+  },
+];
+
+const clubsItems: BenefitsItem[] = [
+  {
+    header:
+      "Manage multiple athletes associated with you",
+    content: [
+      "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Make your athletes instantly available to national promoters",
+    content: [
+      "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Digitalized Federation",
+    content: [
+      "Help bring your Federation to the 21st century with the MMAPP platform, and take care of all your Federation needs and duties through one simple website."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Federation’s Continuous Improvement",
+    content: [
+      "By having your Federation use MMAPP, you are assured they have access to tools that can provide analysis and fundament to judging decisions, contributing to a cycle of continuous improvement."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Free",
+    content: [
+      "Our platform is 100% free to use for clubs (Federation fees still apply)."
+    ],
+    svg: <IconTablerUniverse />
+  },
+];
+
+const promotersItems: BenefitsItem[] = [
+  {
+    header:
+      "Guarantees high-standard officials",
+    content: [
+      "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result and a successful event."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Reduces Logistic delays",
+    content: [
+      "With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, speeding up officiating tasks, and making your event run smoother."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Smooth Experience for Membership Maintenance",
+    content: [
+      "Sign up once, and keep your documents up to date with reminders of their expiration to stay registered."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Get Your Events Approved Faster",
+    content: [
+      "Register your Events with your Federation in under 5 minutes."
+    ],
+    svg: <IconTablerUniverse />
+  },
+  {
+    header:
+      "Easy Access to Affiliated Fighters",
+    content: [
+      "View every athlete eligible for competition within your Federation in one simple list."
+    ],
+    svg: <IconTablerUniverse />
+  },
+];
+
+
 
 const Benefits = (/* props: BenefitsProps */) => {
-  const [activeTabBenefits, setActiveTabBenefits] = useState('Benefits1')
+  const [activeTabBenefits, setActiveTabBenefits] = useState('BenefitsAthletes')
   const [isPending, startTransition] = useTransition()
 
   function selectTabBenefits(tab: string) {
@@ -48,42 +210,42 @@ const Benefits = (/* props: BenefitsProps */) => {
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}
             <TabButtonBenefits
-              value='Benefits1'
+              value='BenefitsAthletes'
               isPending={isPending}
               activeTab={activeTabBenefits}
-              onClick={() => selectTabBenefits('Benefits1')}
+              onClick={() => selectTabBenefits('BenefitsAthletes')}
             >
               Athletes
             </TabButtonBenefits>
             <TabButtonBenefits
-              value='Benefits2'
+              value='BenefitsCoaches'
               isPending={isPending}
               activeTab={activeTabBenefits}
-              onClick={() => selectTabBenefits('Benefits2')}
+              onClick={() => selectTabBenefits('BenefitsCoaches')}
             >
               Coaches
             </TabButtonBenefits>
             <TabButtonBenefits
-              value='Benefits3'
+              value='BenefitsClubs'
               activeTab={activeTabBenefits}
-              onClick={() => selectTabBenefits('Benefits3')}
+              onClick={() => selectTabBenefits('BenefitsClubs')}
             >
               Clubs
             </TabButtonBenefits>
             <TabButtonBenefits
-              value='Benefits4'
+              value='BenefitsPromoters'
               activeTab={activeTabBenefits}
-              onClick={() => selectTabBenefits('Benefits4')}
+              onClick={() => selectTabBenefits('BenefitsPromoters')}
             >
               Promoters
             </TabButtonBenefits>
           </div>
 
           <div className='w-full'>
-            {activeTabBenefits === 'Benefits1' && <Benefits1 />}
-            {activeTabBenefits === 'Benefits2' && <Benefits2 />}
-            {activeTabBenefits === 'Benefits3' && <Benefits3 />}
-            {activeTabBenefits === 'Benefits4' && <Benefits4 />}
+            {activeTabBenefits === 'BenefitsAthletes' && <BenefitsAthletes athletesItems={athletesItems} />}
+            {activeTabBenefits === 'BenefitsCoaches' && <BenefitsCoaches coachesItems={coachesItems} />}
+            {activeTabBenefits === 'BenefitsClubs' && <BenefitsClubs clubsItems={clubsItems} />}
+            {activeTabBenefits === 'BenefitsPromoters' && <BenefitsPromoters promotersItems={promotersItems} />}
           </div>
 
       </div>
@@ -92,50 +254,3 @@ const Benefits = (/* props: BenefitsProps */) => {
 };
 
 export default Benefits;
-
-
-{/* <section id="Benefits" className="homePageSection">
-        <h1>Benefits for everyone else</h1>
-        <div id="benefitsAthletes" className="benefitsAthletes">
-          <h2>Athletes</h2>
-          <br/>
-          <h4>Guarantees athletes and promoters high-standard officials</h4>
-          <p>With a standardised methodology and an electronic scoring system, provides higher quality officiating with less effort, making sure wherever you are, you get a fair result.</p>
-          <h4>Minimizes unexpected decisions</h4>
-          <p>With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, mitigating conscious and unconscious bias</p>
-          <h4>Smooth Experience for Membership Maintenance</h4>
-          <p>Sign-up in one go, and keep your documents up to date with reminders of their expiration</p>
-          <h4>Get featured in a centralized database available to promoters</h4>
-          <p>When registered to your Federation, you are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-        </div>
-        <div id="benefitsCoaches" className="benefitsCoaches">
-          <h2>Coaches</h2>
-          <br/>
-          <h4>Smooth Experience for Membership Maintenance</h4>
-          <p>Easily keep your profile always up-to-date, with reminders of expiration dates for documents</p>
-          <h4>Manage multiple athletes associated with you</h4>
-          <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
-          <h4>Make your athletes instantly available to national promoters</h4>
-          <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-        </div>
-        <div id="benefitsClubs" className="benefitsClubs">
-          <h2>Clubs</h2>
-          <br/>
-          <h4>Manage multiple athletes associated with you</h4>
-          <p>Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they&apos;re always eligible for competition</p>
-          <h4>Smooth Experience for Membership Maintenance</h4>
-          <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
-          <h4>Make your athletes instantly available to national promoters</h4>
-          <p>When registered to the Federation, your atheltes are automatically added to the country&apos;s roster, at the disposal of all national promoters</p>
-        </div>
-        <div id="benefitsPromoters" className="benefitsPromoters">
-          <h2>Promoters</h2>
-          <br/>
-          <h4>Guarantees athletes and promoters high-standard officials</h4>
-          <p>With a standardised methodology and an electronic scoring system, provides higher quality officiating with less effort</p>
-          <h4>Minimizes unexpected decisions</h4>
-          <p>With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, mitigating conscious and unconscious bias</p>
-          <h4>Smooth Experience for Membership Maintenance</h4>
-          <p>Sign-up once, and keep your documents up to date with reminders of their expiration to stay registered</p>
-        </div>
-      </section> */}
