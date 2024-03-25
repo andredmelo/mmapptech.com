@@ -16,7 +16,7 @@ export const BenefitsAthletes = (props: BenefitsAthletesProps) => {
       id="benefitsAthletes"
     >
       {props.athletesItems.map(({ header, content, svg }, i) => (
-        <CardBenefitsHeader>
+        <CardBenefitsHeader key={i}>
           <dt className="inline-flex items-center gap-3 max-w-full">
             <CardBenefitsTitle>
             {header}
@@ -42,7 +42,7 @@ export const BenefitsCoaches = (props: BenefitsCoachesProps) => {
       id="benefitsCoaches"
     >
       {props.coachesItems.map(({ header, content, svg }, i) => (
-        <CardBenefitsHeader>
+        <CardBenefitsHeader key={i}>
           <dt className="inline-flex items-center gap-3 max-w-full">
             <CardBenefitsTitle>
             {header}
@@ -68,7 +68,7 @@ export const BenefitsClubs = (props: BenefitsClubsProps) => {
       id="benefitsClubs"
     >
       {props.clubsItems.map(({ header, content, svg }, i) => (
-        <CardBenefitsHeader>
+        <CardBenefitsHeader key={i}>
           <dt className="inline-flex items-center gap-3 max-w-full">
             <CardBenefitsTitle>
             {header}
@@ -94,7 +94,7 @@ export const BenefitsPromoters = (props: BenefitsPromotersProps) => {
       id="benefitsPromoters"
     >
       {props.promotersItems.map(({ header, content, svg }, i) => (
-        <CardBenefitsHeader>
+        <CardBenefitsHeader key={i}>
           <dt className="inline-flex items-center gap-3 max-w-full">
             <CardBenefitsTitle>
             {header}
