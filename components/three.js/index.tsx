@@ -283,7 +283,7 @@ export const HomeIntroR3F: React.FC = () => {
   );
 
   return (
-    <div ref={container} className="introHomer3FViewer absolute z-[2] h-screen w-screen overflow-visible border-2 border-red-500">
+    <div ref={container} className="introHomer3FViewer absolute z-[2] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
@@ -404,7 +404,7 @@ export const HomeFeaturesR3F: React.FC = () => {
           })
             .fromTo(iPad.scene.position, {x: 0}, {x: -0.65, ease:"power1.out"}, "<")
             .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.65, z: 0, ease:"power1.in"}, "<")
-            .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.5, y: 0.5, z: 0.5, ease:"power3.in"}, "<")
+            .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.6, y: 0.6, z: 0.6, ease:"power3.in"}, "<")
 
         }
       }, 50); // Check every 50ms
@@ -441,6 +441,58 @@ export const HomeFeaturesR3F: React.FC = () => {
   )
 }
 
+// TestiPadR3F
+export const TestiPadR3F: React.FC = () => {
+  const { iPhone, iPad, textures } = useLoadAssets();
+  const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
+  const { setiPadOpacity } = useContext(IPadOpacityContext);
+
+  const container = useRef(null);
+  const iPhoneRef = useRef<Mesh>(null);
+  const iPadRef = useRef<Mesh>(null);
+
+  /* ===== GSAP React ===== */
+  useGSAP(
+    () => {
+      const checkintroHomer3FViewer = setInterval(() => {
+        if (iPhone?.scene) {
+          clearInterval(checkintroHomer3FViewer);
+          setiPadOpacity(1);
+          gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8});
+        }
+      }, 50); // Check every 50ms
+      /* GSDevTools.create(); */
+    },
+    { dependencies: [iPhone?.scene, iPad?.scene], revertOnUpdate: true }
+  );
+
+  return (
+    <div ref={container} className="testiPadR3F absolute z-[2] h-screen w-screen overflow-visible">
+      <Canvas linear>
+        <CustomCamera />
+        {/* <ScrollControls pages={5} damping={0.1}> */}
+
+          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
+          <ambientLight intensity={2}/>
+          <pointLight position={[2, 3, 4]} />
+          <directionalLight position={[2, 1, 1]}/>
+
+          {/* {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
+          )} */}
+
+          {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && textures.iPad_texture_4 && textures.iPad_texture_5 && (
+          <IPadModel iPad={iPad} textures={textures} innerRef={iPadRef}/>
+          )}
+
+          {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
+
+        {/* </ScrollControls> */}
+      </Canvas>
+    </div>
+  )
+}
+
 
 // Perspective Camera component
 export const CustomCamera: React.FC = () => {
@@ -461,8 +513,8 @@ export const CustomCamera: React.FC = () => {
   perspectiveCamera.updateProjectionMatrix();
 
   // No need to render anything, as this component is only for configuring the camera
-  //return null;
-  return (
+  return null;
+  /* return (
     <DatGuiWrapper>
       {(gui, addFolderSafely) => {
         // Use the gui instance here to add your controls
@@ -498,7 +550,7 @@ export const CustomCamera: React.FC = () => {
         return null; // This component does not render anything itself
       }}
     </DatGuiWrapper>
-  );
+  ); */
 };
 
 
@@ -650,7 +702,7 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
 
   return (
       <>
-        <DatGuiWrapper>
+        {/* <DatGuiWrapper>
           {(gui, addFolderSafely) => {
             // Use the gui instance here to add your controls
             // This function will only be executed on the client side
@@ -685,7 +737,7 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
             }
             return null; // This component does not render anything itself
           }}
-        </DatGuiWrapper>
+        </DatGuiWrapper> */}
           <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
           <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
           <primitive object={iPhone.scene} /* ref={iPhoneRef} */ ref={innerRef} />
@@ -740,7 +792,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
         // If the material uses an emissive map and you want to apply the same texture to it making it glow
         iPadScreenMaterial.emissive = new Color(0xffffff); // White emissive color
         iPadScreenMaterial.emissiveMap = texture;
-        iPadScreenMaterial.emissiveIntensity = 1; // Adjust as needed
+        iPadScreenMaterial.emissiveIntensity = 0.125; // Adjust as needed
 
          // Update the material to reflect the new texture
          iPadScreenMaterial.needsUpdate = true;
@@ -777,7 +829,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
           // If the material uses an emissive map and you want to apply the same texture to it making it glow
           iPadScreenMaterial.emissive = new Color(0xffffff); // White emissive color
           iPadScreenMaterial.emissiveMap = texture;
-          iPadScreenMaterial.emissiveIntensity = 1; // Adjust as needed
+          iPadScreenMaterial.emissiveIntensity = 0.125; // Adjust as needed
           iPadScreenMaterial.needsUpdate = true;
         }
       });
@@ -841,7 +893,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
   return (
       <>
-      <DatGuiWrapper>
+      {/* <DatGuiWrapper>
         {(gui, addFolderSafely) => {
           // Use the gui instance here to add your controls
           // This function will only be executed on the client side
@@ -876,7 +928,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
           }
           return null; // This component does not render anything itself
         }}
-      </DatGuiWrapper>
+      </DatGuiWrapper> */}
           <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
           <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
           <primitive object={iPad.scene} /* ref={iPadRef} */ ref={innerRef} />

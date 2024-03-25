@@ -22,7 +22,8 @@ import { OrbitControls} from '@react-three/drei'; */
 //import { ThreeJSViewer } from '@/components/three.js';
 //import ThreeJSViewer from '@/components/three.js';
 import { HomeIntroR3F } from '@/components/three.js';
-import { HomeFeaturesR3F } from '@/components/three.js';
+import { HomeFeaturesR3F } from '@/components/three.js'; 
+import { TestiPadR3F } from '@/components/three.js'; 
 
 //import Cube from '@/components/three.js/cube'
 
@@ -463,13 +464,13 @@ export default function Home() {
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     //changeRecordKeeperH4.play();
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    setiPadTextureName('iPad_texture_'+(i+1));
                     gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                     gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     //changeRecordKeeperH4.reverse();
-                    setiPhoneTextureName('iPhone_texture_'+(i));
+                    setiPadTextureName('iPad_texture_'+(i));
                     gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                     gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
@@ -484,13 +485,13 @@ export default function Home() {
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
                     //changeRecordKeeperH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    setiPadTextureName('iPad_texture_'+(i+1));
                     gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                     gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     //changeRecordKeeperH4.reverse();
-                    setiPhoneTextureName('iPhone_texture_'+(i));
+                    setiPadTextureName('iPad_texture_'+(i));
                     gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                     gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
@@ -508,7 +509,7 @@ export default function Home() {
             //end: "bottom bottom",
             end: () => lastRecordKeeperCardST.start + bottomDistance,
             pin: ".homeFeaturesR3FViewer",
-            markers:true,
+            markers:false,
           });
 
         }
@@ -531,7 +532,8 @@ export default function Home() {
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
             <h2>Mapping MMA</h2>
           </div>
-          {/* <HomeIntroR3F /> */}
+          <HomeIntroR3F />
+          {/* <TestiPadR3F /> */}
         </div>
 
         <section id="Features" className="">
@@ -571,7 +573,7 @@ export default function Home() {
           <HomeFeaturesR3F />
 
           {/* // Judge */}
-          <div id="featuresJudge" className="featuresJudge flex justify-center border-2 border-red-500">
+          <div id="featuresJudge" className="featuresJudge flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-left">
