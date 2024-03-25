@@ -30,10 +30,10 @@ const Accordion = (props: AccordionProps) => {
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
                 "inline-flex w-full items-center justify-between px-10 md:px-16 py-6 md:py-10 text-left",
-                "bg-neutral-50 hover:bg-neutral-200",
-                "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors"
-                /* "radix-state-open:bg-white radix-state-closed:bg-neutral-200 hover:bg-neutral-100",
-                "radix-state-open:dark:bg-neutral-700 radix-state-closed:dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
+                /* "bg-neutral-50 hover:bg-neutral-200",
+                "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
+                "radix-state-open:bg-white radix-state-closed:bg-neutral-200 radix-state-closed:hover:bg-neutral-100",
+                "dark:radix-state-open:bg-neutral-600 dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
               <span className="text-[1.8rem] md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">

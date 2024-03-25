@@ -21,9 +21,10 @@ import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 import { OrbitControls} from '@react-three/drei'; */
 //import { ThreeJSViewer } from '@/components/three.js';
 import ThreeJSViewer from '@/components/three.js';
+import { IntroHome } from '@/components/three.js';
 //import Cube from '@/components/three.js/cube'
 
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/TextureContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/R3FContext';
 
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {
@@ -380,6 +381,7 @@ export default function Home() {
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
             <h2>Mapping MMA</h2>
           </div>
+          <IntroHome />
         </div>
 
         <section id="Features">
@@ -495,7 +497,7 @@ export default function Home() {
         <section id="OurMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
-              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
+              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[110rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
               "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
             >
               <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[5rem] md:pt-[6rem] lg:pt-[10rem] text-left">
@@ -551,7 +553,7 @@ export default function Home() {
           <ContactUs id={ContactUs} className=""/>
         </section>
 
-        <ThreeJSViewer />
+        {/* <ThreeJSViewer /> */}
       </div>
     </>
   );
