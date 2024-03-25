@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useRef, useState, useContext, Suspense } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Texture, Mesh, Color, SRGBColorSpace, LinearSRGBColorSpace, RepeatWrapping, MeshStandardMaterial, ACESFilmicToneMapping, Object3D, PerspectiveCamera, Clock, Material } from 'three';
 //import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -20,6 +20,7 @@ const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'
   ssr: false, // Disable server-side rendering
 });
 
+// Old default export
 export default function ThreeJSViewer() {
 
   const { iPhone, iPad, textures } = useLoadAssets();
@@ -203,12 +204,12 @@ const IPhoneBobAnimation = ({ iPhoneRef }: { iPhoneRef: React.RefObject<Mesh> })
       iPhoneRef.current.position.y = baseY + Math.sin(time * frequency) * amplitude;
     }
   });
-
   return null; // This component does not render anything itself
 };
 
+
 // Intro Home
-export const IntroHome: React.FC = () => {
+export const HomeIntroR3F: React.FC = () => {
   const { iPhone, textures } = useLoadAssets();
 
   const container = useRef(null);
@@ -218,7 +219,7 @@ export const IntroHome: React.FC = () => {
   useGSAP(
     () => {
       const checkintroHomer3FViewer = setInterval(() => {
-        if (document.querySelector('.introHomer3FViewer') && document.querySelector('.homeSection') && document.querySelector('.features2') && iPhone?.scene) {
+        if (document.querySelector('.introHomer3FViewer') && document.querySelector('.homeSection') && iPhone?.scene) {
           clearInterval(checkintroHomer3FViewer);
 
           const setOpacity = gsap.quickSetter(".introHomer3FViewer", "opacity");
@@ -226,14 +227,14 @@ export const IntroHome: React.FC = () => {
           setOpacity(0);
           gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8})
 
-          // Pin threeJSViewer
-          /* ScrollTrigger.create({
+          // Pin it
+          ScrollTrigger.create({
             trigger: "body",
             start: "top top",
-            endTrigger: ".featuresRecordKeeperBottom",
-            end: "bottom bottom",
+            endTrigger: ".homeSection",
+            end: "bottom 50%",
             //end: () => lastCardST.start + bottomDistance,
-            pin: ".threeJSViewer",
+            pin: ".introHomer3FViewer",
             markers:false,
             onUpdate: (self) => {
               ///console.log(self.progress);
@@ -241,7 +242,7 @@ export const IntroHome: React.FC = () => {
               //console.log(iPhone.scene.rotation);
               //console.log(iPhone.scene.scale);
             }
-          }); */
+          });
 
           // iPhoneHomeAnimIn
           const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
@@ -294,6 +295,142 @@ export const IntroHome: React.FC = () => {
 
           {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
+          )}
+
+          {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
+
+        {/* </ScrollControls> */}
+      </Canvas>
+    </div>
+  )
+}
+
+
+// Home Features
+export const HomeFeaturesR3F: React.FC = () => {
+  const { iPhone, iPad, textures } = useLoadAssets();
+  const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
+  const { setiPadOpacity } = useContext(IPadOpacityContext);
+
+  const container = useRef(null);
+  const iPhoneRef = useRef<Mesh>(null);
+  const iPadRef = useRef<Mesh>(null);
+
+  /* ===== GSAP React ===== */
+  useGSAP(
+    () => {
+      const checkintroHomer3FViewer = setInterval(() => {
+        if (document.querySelector('.homeFeaturesR3FViewer') && document.querySelector('#featuresJudge') && document.querySelector('#Features') && iPhone?.scene && iPad?.scene) {
+          clearInterval(checkintroHomer3FViewer);
+
+          const setContainerOpacity = gsap.quickSetter(".homeFeaturesR3FViewer", "opacity");
+
+          //Initial settings and positioning
+          setContainerOpacity(0);
+          setiPadOpacity(0);
+          gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8});
+          gsap.set(iPhone.scene.position, {x: 2});
+          gsap.set(iPhone.scene.rotation, {y: -2});
+          gsap.set(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45});
+          gsap.set(iPad.scene.position, {x: 0});
+          gsap.set(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57});
+          setContainerOpacity(1);
+
+          const InitialAnim = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: '#featuresJudge',
+              start: 'top bottom',
+              //end: 'top top',
+              markers: false,
+              scrub: true,
+              invalidateOnRefresh: true,
+              //animation: iPhoneFeaturesAnimIn,
+              toggleActions: "play none none none"
+            },
+          })
+            .set(iPhone.scene.position, {x: 2});
+
+          // iPhoneFeaturesAnimIn
+          const iPhoneFeaturesAnimIn = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: '#featuresJudge',
+              start: 'top 50%',
+              end: 'top top',
+              markers: false,
+              scrub: true,
+              invalidateOnRefresh: true,
+              //animation: iPhoneFeaturesAnimIn,
+              toggleActions: "play none none reverse"
+            },
+          })
+            .fromTo(iPhone.scene.position, {x: 2}, {x: 0.6, ease:"power1.out"}, "<")
+            .fromTo(iPhone.scene.rotation, {y: -2}, {y: -0.5, ease:"power1.in"}, "<")
+            .fromTo(iPhone.scene.scale, {x: 6, y: 6, z: 6}, {x: 8, y: 8, z: 8, ease:"power3.in"}, "<")
+
+          // iPhoneFeaturesAnimOut
+          const iPhoneFeaturesAnimOut = gsap.timeline({
+            paused:true,
+            scrollTrigger:{
+              trigger: '#featuresJudge',
+              start: 'bottom bottom',
+              end: 'bottom 55%',
+              markers: false,
+              scrub: true,
+              invalidateOnRefresh: true,
+              //animation: iPhoneFeaturesAnimOut,
+              toggleActions: "play none none reverse"
+            }
+          })
+            .fromTo(iPhone.scene.position, {x: 0.6}, {x: 0, ease:"power1.out"}, "<")
+            .fromTo(iPhone.scene.rotation, {x: 0, y: -0.5, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
+            .fromTo(iPhone.scene.scale, {x: 8, y: 8, z: 8}, {x: 3.5, y: 3.5, z: 3.5, ease:"power3.out"}, "<")
+
+
+          // iPadFeaturesAnimIn
+          const iPadFeaturesAnimIn = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: '#featuresJudge',
+              start: 'bottom 48%',
+              end: 'bottom top',
+              markers: false,
+              scrub: true,
+              invalidateOnRefresh: true,
+              //animation: iPadFeaturesAnimIn,
+              toggleActions: "play none none reverse"
+            },
+          })
+            .fromTo(iPad.scene.position, {x: 0}, {x: -0.65, ease:"power1.out"}, "<")
+            .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.65, z: 0, ease:"power1.in"}, "<")
+            .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.5, y: 0.5, z: 0.5, ease:"power3.in"}, "<")
+
+        }
+      }, 50); // Check every 50ms
+
+      /* GSDevTools.create(); */
+    },
+    { dependencies: [iPhone?.scene, iPad?.scene], revertOnUpdate: true }
+  );
+
+  return (
+    <div ref={container} className="homeFeaturesR3FViewer absolute z-[2] h-screen w-screen overflow-visible">
+      <Canvas linear>
+        <CustomCamera />
+        {/* <ScrollControls pages={5} damping={0.1}> */}
+
+          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
+          <ambientLight intensity={2}/>
+          <pointLight position={[2, 3, 4]} />
+          <directionalLight position={[2, 1, 1]}/>
+
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
+          )}
+
+          {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && textures.iPad_texture_4 && textures.iPad_texture_5 && (
+          <IPadModel iPad={iPad} textures={textures} innerRef={iPadRef}/>
           )}
 
           {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
@@ -365,10 +502,14 @@ export const CustomCamera: React.FC = () => {
 };
 
 
+
+
 // iPhone Model component
 export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; iPhone_texture_6: any; newiPhoneTextureName: any}; innerRef?: React.Ref<Mesh>; }> = ({ iPhone, textures, innerRef }) => {
   const { iPhoneTextureName } = useContext(IPhoneTextureContext);
   const { iPhoneOpacity } = useContext(IPhoneOpacityContext);
+  // Ref to track if the GUI setup has been done
+  const isGuiSetupDone = useRef(false);
 
   const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
 
@@ -513,7 +654,7 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
           {(gui, addFolderSafely) => {
             // Use the gui instance here to add your controls
             // This function will only be executed on the client side
-            if (gui) {
+            if (gui && !isGuiSetupDone.current) {
               //console.log("Adding iPhone controls to GUI");
               const dummyFolder = addFolderSafely('.');const dummy2Folder = addFolderSafely('..');
               const iPhoneFolder = addFolderSafely('iPhone')
@@ -539,6 +680,8 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
                   }
                 });
               });
+              // Mark GUI setup as done
+              isGuiSetupDone.current = true;
             }
             return null; // This component does not render anything itself
           }}
@@ -552,9 +695,12 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
 
 
 // iPad Model component
-export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; iPad_texture_2: any; iPad_texture_3: any; iPad_texture_4: any; iPad_texture_5: any; newiPadTextureName: any }; }> = ({ iPad, textures }) => {
+export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; iPad_texture_2: any; iPad_texture_3: any; iPad_texture_4: any; iPad_texture_5: any; newiPadTextureName: any }; innerRef?: React.Ref<Mesh>;  }> = ({ iPad, textures, innerRef }) => {
   const { iPadTextureName } = useContext(IPadTextureContext);
   const { iPadOpacity } = useContext(IPadOpacityContext);
+
+  // Ref to track if the GUI setup has been done
+  const isGuiSetupDone = useRef(false);
 
   const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
 
@@ -699,7 +845,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
         {(gui, addFolderSafely) => {
           // Use the gui instance here to add your controls
           // This function will only be executed on the client side
-          if (gui) {
+          if (gui && !isGuiSetupDone.current) {
             //console.log("Adding iPad controls to GUI");
             const dummyFolder = addFolderSafely('.');const dummy2Folder = addFolderSafely('..');
             const iPadFolder = addFolderSafely('iPad')
@@ -725,13 +871,15 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
                 }
               });
             });
+            // Mark GUI setup as done
+            isGuiSetupDone.current = true;
           }
           return null; // This component does not render anything itself
         }}
       </DatGuiWrapper>
           <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
           <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
-          <primitive object={iPad.scene} ref={iPadRef} />
+          <primitive object={iPad.scene} /* ref={iPadRef} */ ref={innerRef} />
       </>
   );
 };

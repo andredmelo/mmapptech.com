@@ -20,8 +20,10 @@ import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 /* import { Canvas } from "@react-three/fiber";
 import { OrbitControls} from '@react-three/drei'; */
 //import { ThreeJSViewer } from '@/components/three.js';
-import ThreeJSViewer from '@/components/three.js';
-import { IntroHome } from '@/components/three.js';
+//import ThreeJSViewer from '@/components/three.js';
+import { HomeIntroR3F } from '@/components/three.js';
+import { HomeFeaturesR3F } from '@/components/three.js';
+
 //import Cube from '@/components/three.js/cube'
 
 import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/R3FContext';
@@ -90,7 +92,7 @@ export default function Home() {
           let cards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
 
           let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
-          const changeH4 = gsap.timeline({paused: true, immediateRender: false})
+          /* const changeH4 = gsap.timeline({paused: true, immediateRender: false})
             .fromTo(fDHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
             .fromTo(fDHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
             .addPause()
@@ -99,7 +101,7 @@ export default function Home() {
             .addPause()
             .fromTo(fDHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
             .fromTo(fDHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
+            .addPause() */
 
           fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
           gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -108,11 +110,14 @@ export default function Home() {
           let title = document.getElementById('featuresDashboardTitle');
           let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
 
-          const vhToPixels = (vh: number) => {
+          /* const vhToPixels = (vh: number) => {
             const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
             return (vh * height) / 100;
-          };
-          let bottomDistance = vhToPixels(0); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+          }; */
+          //let bottomDistance = vhToPixels(0); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+
+          let bottomDistance = cards[cards.length-1].offsetHeight;
+
           let lastCardST = ScrollTrigger.create({
             trigger: cards[cards.length-1] as HTMLElement,
             start: "center 60%",
@@ -206,15 +211,19 @@ export default function Home() {
                   start: "center 60%",
                   end: () => lastCardST.start + bottomDistance,
                   pin: true,
-                  pinSpacing: false,
+                  pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
+                    //changeH4.play();
                     stackCardsAnim(cards, i);
+                    gsap.fromTo(fDHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fDHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
+                    //changeH4.reverse();
                     reverseStackCardsAnim(cards, i);
+                    gsap.fromTo(fDHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fDHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
                 break;
@@ -226,12 +235,16 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    changeH4.play();
+                    //changeH4.play();
                     stackCardsAnim(cards, i);
+                    gsap.fromTo(fDHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fDHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeH4.reverse();
+                    //changeH4.reverse();
                     reverseStackCardsAnim(cards, i);
+                    gsap.fromTo(fDHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fDHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -242,29 +255,13 @@ export default function Home() {
 
       //Judge Animations
       const checkJudgeAnimIn = setInterval(() => {
-        if (document.querySelector('.judgeCard') /* && document.querySelector('.featuresJudgeHeader') */) {
+        if (document.querySelector('.judgeCard') && document.getElementById('featuresJudgeTitle')) {
               clearInterval(checkJudgeAnimIn);
               //console.log("Judge animations are ready");
           let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
           let judgeTitle = document.getElementById('featuresJudgeTitle');
 
           let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
-          const changeJudgeH4 = gsap.timeline({paused: true, immediateRender: false})
-            .fromTo(fJHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fJHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fJHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fJHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fJHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fJHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fJHI[3], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fJHI[4], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fJHI[4], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fJHI[5], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
 
           fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
           gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -276,6 +273,18 @@ export default function Home() {
             start: "center 50%",
             markers:false,
           });
+
+          // Pin Judge Title
+          if (isViewportRatioLessThan160()) {
+            ScrollTrigger.create({
+              trigger: judgeTitle,
+              start: "top 7%",
+              end: () => lastJudgeCardST.start + bottomDistance,
+              pin: judgeTitle,
+              pinSpacing: false,
+              invalidateOnRefresh: true,
+            });
+          }
 
           judgeCards.forEach((card, i) => {
             switch (i) {
@@ -299,7 +308,7 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                if (isViewportRatioLessThan160()) {
+                /* if (isViewportRatioLessThan160()) {
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 50%",
@@ -308,7 +317,7 @@ export default function Home() {
                     pinSpacing: false,
                     invalidateOnRefresh: true,
                   });
-                }
+                } */
                 break;
               case judgeCards.length-1: // case to pinSpacing the last card
                 ScrollTrigger.create({
@@ -319,22 +328,16 @@ export default function Home() {
                   pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
-                    changeJudgeH4.play();
+                    //changeJudgeH4.play();
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    //stackCardsAnim(judgeCards, i);
-                  },
-                  onLeave: ({progress, direction, isActive}) => {
-                    setiPhoneOpacity(0);
-                    setiPadOpacity(1);
-                  }, 
-                  onEnterBack: ({progress, direction, isActive}) => {
-                    setiPhoneOpacity(1);
-                    setiPadOpacity(0);
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeJudgeH4.reverse();
+                    //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
-                    //reverseStackCardsAnim(judgeCards, i);
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
                 break;
@@ -346,19 +349,166 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
+                    //changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    //stackCardsAnim(judgeCards, i);
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    changeJudgeH4.reverse();
+                    //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
-                    //reverseStackCardsAnim(judgeCards, i);
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
             setiPhoneOpacity(1);
-            setiPadOpacity(0);
+            //setiPadOpacity(0);
+          });
+
+        }
+      }, 50); // Check every 50ms
+
+      // iPhoneiPadSwitch Animation
+      ScrollTrigger.create({
+        trigger: '.featuresJudge',
+        start: 'bottom 50%',
+        //end: 'bottom 75%',
+        markers: false,
+        scrub: false,
+        onEnter: ({progress, direction, isActive}) => {
+          setiPhoneOpacity(0);
+          setiPadOpacity(1);
+        },
+        onLeaveBack: ({progress, direction, isActive}) => {
+          setiPhoneOpacity(1);
+          setiPadOpacity(0);
+        },
+      });
+
+
+      //RecordKeeper Animations
+      const checkRecordKeeperAnimIn = setInterval(() => {
+        if (document.querySelector('.recordKeeperCard') && document.getElementById('featuresRecordKeeperTitle')) {
+              clearInterval(checkRecordKeeperAnimIn);
+              //console.log("RecordKeeper animations are ready");
+          let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
+          let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
+
+          let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
+
+          fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
+          gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
+
+          let bottomDistance = recordKeeperCards[recordKeeperCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+
+          let lastRecordKeeperCardST = ScrollTrigger.create({
+            trigger: recordKeeperCards[recordKeeperCards.length-1] as HTMLElement,
+            start: "center 50%",
+            markers:false,
+          });
+
+          // Pin RecordKeeper Title
+          if (isViewportRatioLessThan160()) {
+            ScrollTrigger.create({
+              trigger: recordKeeperTitle,
+              start: "top 7%",
+              end: () => lastRecordKeeperCardST.start + bottomDistance,
+              pin: recordKeeperTitle,
+              pinSpacing: false,
+              invalidateOnRefresh: true,
+            });
+          }
+
+          recordKeeperCards.forEach((card, i) => {
+            switch (i) {
+              case 0: // case to pin both card[0] and header
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastRecordKeeperCardST.start + bottomDistance,
+                  pin: card,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                  onLeaveBack: ({}) => {
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
+                  }
+                });
+                /* ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 60%",
+                  end: () => lastRecordKeeperCardST.start + bottomDistance,
+                  pin: header,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                }); */
+                /* if (isViewportRatioLessThan160()) {
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: recordKeeperTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                } */
+                break;
+              case recordKeeperCards.length-1: // case to pinSpacing the last card
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastRecordKeeperCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: true,
+                  invalidateOnRefresh: true,
+                  onEnter: ({progress, direction, isActive}) => {
+                    //changeRecordKeeperH4.play();
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    //changeRecordKeeperH4.reverse();
+                    setiPhoneTextureName('iPhone_texture_'+(i));
+                    gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                  }
+                });
+                break;
+              default: // default case
+                ScrollTrigger.create({
+                  trigger: card,
+                  start: "center 50%",
+                  end: () => lastRecordKeeperCardST.start + bottomDistance,
+                  pin: true,
+                  pinSpacing: false,
+                  onEnter: ({progress, direction, isActive}) => {
+                    //changeRecordKeeperH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
+                    setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                  },
+                  onLeaveBack: ({progress, direction, isActive}) => {
+                    //changeRecordKeeperH4.reverse();
+                    setiPhoneTextureName('iPhone_texture_'+(i));
+                    gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                  }
+                });
+            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+            setiPhoneOpacity(1);
+            //setiPadOpacity(0);
+          });
+
+          // Pin R3F Canvas throughout Features section
+          ScrollTrigger.create({
+            trigger: "#featuresJudge",
+            start: "top top",
+            //endTrigger: ".featuresRecordKeeperBottom",
+            //end: "bottom bottom",
+            end: () => lastRecordKeeperCardST.start + bottomDistance,
+            pin: ".homeFeaturesR3FViewer",
+            markers:true,
           });
 
         }
@@ -366,12 +516,12 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [setiPhoneTextureName], revertOnUpdate: true }
+    { dependencies: [setiPhoneTextureName, setiPadTextureName, setiPhoneOpacity, setiPadOpacity], revertOnUpdate: true }
   );
 
   return (
     <>
-      <div className="">
+      <div className="homeRoot">
 
         <div id="Home" className="homeSection">
           <div className="homeBackground">
@@ -381,14 +531,17 @@ export default function Home() {
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
             <h2>Mapping MMA</h2>
           </div>
-          <IntroHome />
+          {/* <HomeIntroR3F /> */}
         </div>
 
-        <section id="Features">
+        <section id="Features" className="">
+
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
           </h5>
-          <div className="flex flex-col items-center dashboardCards my-24">
+
+          {/* // Dashboard */}
+          <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center" >Federations (Dashboard)</h2>
             {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
@@ -414,22 +567,11 @@ export default function Home() {
               <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
             </FeaturesDashboardCard>
           </div>
-        </section>
 
-        <section id="Features2" className="features2">
-          {/* <Cube /> */}
-          {/* <h1>Features</h1>
-          <div id="featuresDashboard" className="featuresDashboard">
-            <h2>Federations (Dashboard)</h2>
-            <br/>
-            <h5>Overview of Federation Affairs</h5>
-            <h5>Visual Reports with Actionable Insights</h5>
-            <h5>Easy Form Management</h5>
-            <h5>Seamless Sign-up process for all your members<br/>(Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-            <h5>Intuitive Member Management</h5>
-            <br/>
-          </div> */}
-          <div id="featuresJudge" className="featuresJudge flex justify-center">
+          <HomeFeaturesR3F />
+
+          {/* // Judge */}
+          <div id="featuresJudge" className="featuresJudge flex justify-center border-2 border-red-500">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-left">
@@ -456,12 +598,12 @@ export default function Home() {
             </div>
           </div>
 
+          {/* // RecordKeeper */}
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-right">
                 <h2 id="featuresRecordKeeperTitle">Officials (RecordKeeper)</h2>
-
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
                   <h4 className="featuresRecordKeeperHeaderItem">Pre-filled in Information</h4>
                 </FeaturesRecordKeeperCard>
@@ -483,7 +625,9 @@ export default function Home() {
 
         </section>
 
+
         <div className="borderBottom featuresRecordKeeperBottom"></div>
+
 
         <section id="Benefits" className='z-20 benefits'>
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
@@ -492,7 +636,9 @@ export default function Home() {
           <Benefits /* items={items} */ />
         </section>
         
+
         <div className="borderBottom"></div>
+
 
         <section id="OurMission" className="z-20 flex flex-col justify-center">
             <div
@@ -535,7 +681,9 @@ export default function Home() {
             </div>
         </section>
         
+
         <div className="borderBottom"></div>
+
 
         <section id="FAQSupport" className="">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
@@ -544,7 +692,9 @@ export default function Home() {
           <FAQ />
         </section>
         
+
         <div className="borderBottom"></div>
+
 
         <section id="ContactUs" className="">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
