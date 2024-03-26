@@ -18,6 +18,15 @@ export const IPadTextureContext = React.createContext<{
   setiPadTextureName: () => {}, // Default noop function for setTextureName
 });
 
+// Create a context with a default value (if any)
+export const MacBookProTextureContext = React.createContext<{
+  macBookProTextureName: string;
+  setmacBookProTextureName: Dispatch<SetStateAction<string>>;
+}>({
+  macBookProTextureName: 'macBookProTexture1', // Default value for textureName
+  setmacBookProTextureName: () => {}, // Default noop function for setTextureName
+});
+
 export const IPhoneOpacityContext = React.createContext<{
   iPhoneOpacity: number;
   setiPhoneOpacity: Dispatch<SetStateAction<number>>;
@@ -33,3 +42,13 @@ export const IPadOpacityContext = React.createContext<{
   iPadOpacity: 1, // Default opacity value for iPad
   setiPadOpacity: () => {}, // Default noop function for setIPadOpacity
 });
+
+export const MacBookProOpacityContext = React.createContext<{
+  macBookProOpacity: number;
+  setMacBookProOpacity: Dispatch<SetStateAction<number>>;
+}>({
+  macBookProOpacity: 1, // Default opacity value for macBookPro
+  setMacBookProOpacity: () => {}, // Default noop function for setMacBookProOpacity
+});
+
+

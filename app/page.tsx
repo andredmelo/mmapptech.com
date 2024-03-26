@@ -24,7 +24,7 @@ import { OrbitControls} from '@react-three/drei'; */
 import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
-//import { TestiPadR3F } from '@/components/three.js'; 
+import { TestR3F } from '@/components/three.js';
 
 //import Cube from '@/components/three.js/cube'
 
@@ -122,8 +122,8 @@ export default function Home() {
       window.addEventListener('resize', detectViewportRatio); */
       window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
       
-      //To detect if a viewport is ultra-wide
-      function isViewportRatioLessThan160() {
+      //To detect if a viewport is ultra-wide 1.9265 = 920px height
+      function isViewportRatioLessThan192() {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const ratio = width / height;
@@ -155,6 +155,7 @@ export default function Home() {
           let header = document.getElementById('featuresDashboardHeader');
           let title = document.getElementById('featuresDashboardTitle');
           let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
+          let macBookPro = document.getElementById('featuresDashboardMBP');
 
           /* const vhToPixels = (vh: number) => {
             const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -236,11 +237,12 @@ export default function Home() {
                   trigger: card,
                   start: "center 60%",
                   end: () => lastCardST.start + bottomDistance,
-                  pin: proDisplayShadowSVG,
+                  /* pin: proDisplayShadowSVG, */
+                  pin: macBookPro,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 });
-                if (isViewportRatioLessThan160()) {
+                if (isViewportRatioLessThan192()) {
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 60%",
@@ -321,7 +323,7 @@ export default function Home() {
           });
 
           // Pin Judge Title
-          if (isViewportRatioLessThan160()) {
+          if (isViewportRatioLessThan192()) {
             ScrollTrigger.create({
               trigger: judgeTitle,
               start: "top 7%",
@@ -354,7 +356,7 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* if (isViewportRatioLessThan160()) {
+                /* if (isViewportRatioLessThan192()) {
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 50%",
@@ -455,7 +457,7 @@ export default function Home() {
           });
 
           // Pin RecordKeeper Title
-          if (isViewportRatioLessThan160()) {
+          if (isViewportRatioLessThan192()) {
             ScrollTrigger.create({
               trigger: recordKeeperTitle,
               start: "top 7%",
@@ -488,7 +490,7 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* if (isViewportRatioLessThan160()) {
+                /* if (isViewportRatioLessThan192()) {
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 50%",
@@ -580,8 +582,8 @@ export default function Home() {
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
             <h2>Mapping MMA</h2>
           </div>
-          <HomeIntroR3F />
-          {/* <TestiPadR3F /> */}
+          {/* <HomeIntroR3F /> */}
+          <TestR3F />
         </div>
 
 
@@ -671,9 +673,36 @@ export default function Home() {
           {/* // Dashboard */}
           <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
-            {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
+            <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] flex flex-col justify-center items-center z-5">
+              {/* <div className="min-h-[3vh] relative"/> */}
+              <img className="object-contain relative z-5 max-w-[68%] mt-[5vh] macBookPro" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x_alpha.webp" alt="MacBook Pro"/>
+            </div>
+            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
+              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
+              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
+            </div>
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
+              <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
+            </FeaturesDashboardCard>
+            {/* <ProDisplayShadowSVG className="proDisplayShadowSVG pb-[35vh]"/> */}
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
+              <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
+            </FeaturesDashboardCard>
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
+              <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
+            </FeaturesDashboardCard>
+            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
+              <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
+            </FeaturesDashboardCard>
+          </div>
+          {/* <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
+            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
+            //<div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
-            </div> */}
+            </div>
             <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
               <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
               <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
@@ -694,7 +723,7 @@ export default function Home() {
             <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
             </FeaturesDashboardCard>
-          </div>
+          </div> */}
 
           {/* <HomeFeaturesR3F /> */}
           {/* <div ref={homeFeaturesR3FobserverRef} style={{ height: '1px' }}></div> */}

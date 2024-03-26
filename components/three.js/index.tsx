@@ -13,7 +13,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import { useLoadAssets } from '@/components/three.js/useLoadAssets';
 
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext, MacBookProTextureContext, MacBookProOpacityContext } from '@/lib/contexts/R3FContext';
 
 // Dynamically import DatGuiWrapper with SSR disabled
 const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'), {
@@ -23,7 +23,7 @@ const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'
 // Old default export
 export default function ThreeJSViewer() {
 
-  const { iPhone, iPad, textures } = useLoadAssets();
+  const { iPhone, iPad, macBookPro, textures } = useLoadAssets();
   const container = useRef(null);
 
   /* ===== GSAP React ===== */
@@ -266,7 +266,7 @@ export const HomeIntroR3F: React.FC = () => {
               //.set(iPhone.scene.position, {x: 0, y: 0, z: 0}, "<")
               .set(iPhone.scene.rotation, {x: 0, y: 0, z: 0}, "<")
               .to(".introHomer3FViewer", {opacity:1, duration:0.1}, "<")
-              .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.3, ease:"power1.out", duration:1}, "<")
+              .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.6, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {y: -3}, {y: 0, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
           iPhoneHomeAnimIn.play();
@@ -465,38 +465,66 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   )
 }
 
-// TestiPadR3F
-export const TestiPadR3F: React.FC = () => {
-  const { iPhone, iPad, textures } = useLoadAssets();
+// TestR3F
+export const TestR3F: React.FC = () => {
+  const { iPhone, iPad, macBookPro, textures } = useLoadAssets();
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
+  const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
 
   const container = useRef(null);
   const iPhoneRef = useRef<Mesh>(null);
   const iPadRef = useRef<Mesh>(null);
+  const macBookProRef = useRef<Mesh>(null);
 
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-      const checkintroHomer3FViewer = setInterval(() => {
-        if (iPhone?.scene) {
-          clearInterval(checkintroHomer3FViewer);
+      const TestiPadR3F = setInterval(() => {
+        if (iPad?.scene) {
+          clearInterval(TestiPadR3F);
           setiPadOpacity(1);
-          gsap.set(iPhone.scene.scale, {x: 8, y: 8, z: 8});
+          gsap.set(iPad.scene.scale, {x: 0.4, y: 0.4, z: 0.4});
         }
       }, 50); // Check every 50ms
+      const TestmacBookProR3F = setInterval(() => {
+        if (macBookPro?.scene) {
+          clearInterval(TestmacBookProR3F);
+          setMacBookProOpacity(1);
+          gsap.set(macBookPro.scene.scale, {x: 0.5, y: 0.5, z: 0.5});
+          gsap.set(macBookPro.scene.rotation, {x: 0, y: 0, z: 0})
+
+          // Close the MacBook Pro Display
+          macBookPro.scene.traverse((child: Object3D) => {
+            if (child.name === 'Cube016') {
+              const macBookProDisplay = child as Mesh;
+              console.log(macBookProDisplay);
+              macBookProDisplay.rotation.x = 6.285;
+      
+              // macBookProHomeAnimIn
+              const macBookProHomeAnimIn = gsap.timeline({paused:true, delay:0.1, fastScrollEnd: 3000})
+                .to(".introHomer3FViewer", {opacity:1, duration:0.1}, "<")
+                .fromTo(macBookPro.scene.position, {y: 1.5}, {y: -0.6, ease:"power1.out", duration:1}, "<")
+                .fromTo(macBookPro.scene.rotation, {x: -3, y: -3}, {x: 0, y: 0, ease:"power1.out", duration:1}, "<")
+                .fromTo(macBookProDisplay.rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1})
+              macBookProHomeAnimIn.play();
+            }
+          });
+        }
+      }, 50); // Check every 50ms
+
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, iPad?.scene], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, iPad?.scene, macBookPro?.scene], revertOnUpdate: true }
   );
 
   return (
-    <div ref={container} className="testiPadR3F absolute z-[2] h-screen w-screen overflow-visible">
+    <div ref={container} className="TestR3F absolute z-[2] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
 
-          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
+          <OrbitControls enableZoom={false} enablePan={false}/>
           <ambientLight intensity={2}/>
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
@@ -505,8 +533,12 @@ export const TestiPadR3F: React.FC = () => {
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )} */}
 
-          {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && textures.iPad_texture_4 && textures.iPad_texture_5 && (
+          {/* {iPad && textures.iPad_texture_1 && textures.iPad_texture_2 && textures.iPad_texture_3 && textures.iPad_texture_4 && textures.iPad_texture_5 && (
           <IPadModel iPad={iPad} textures={textures} innerRef={iPadRef}/>
+          )} */}
+
+          {macBookPro && textures.macBookPro_texture_1 && textures.macBookPro_texture_2 && textures.macBookPro_texture_3 && textures.macBookPro_texture_4 && textures.macBookPro_texture_5 && (
+          <MacBookProModel macBookPro={macBookPro} textures={textures} innerRef={macBookProRef}/>
           )}
 
           {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
@@ -963,6 +995,187 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
 
 
+export const MacBookProModel: React.FC<{
+  macBookPro: any;
+  textures: {
+    macBookPro_texture_1: any;
+    macBookPro_texture_2: any;
+    macBookPro_texture_3: any;
+    macBookPro_texture_4: any;
+    macBookPro_texture_5: any;
+    newMacBookProTextureName: any;
+  };
+  innerRef?: React.Ref<Mesh>;
+}> = ({ macBookPro, textures, innerRef }) => {
+  const { macBookProTextureName } = useContext(MacBookProTextureContext);
+  const { macBookProOpacity } = useContext(MacBookProOpacityContext);
+
+  // Ref to track if the GUI setup has been done
+  const isGuiSetupDone = useRef(false);
+
+  const { gl } = useThree(); // Access the WebGLRenderer instance as 'gl'
+
+  const macBookProRef = useRef<Mesh>(null);
+
+  useEffect(() => {
+    // Set initial MacBook Pro texture
+    let macBookProScreenMaterial: any;
+    macBookPro.scene.traverse((child: Object3D) => {
+      if (child instanceof Mesh && child.material.name === 'macBookPro_Screen') {
+        macBookProScreenMaterial = child.material;
+        const texture = textures.macBookPro_texture_3; // Default texture, adjust as needed
+
+        // Apply the texture to the existing material's map
+        macBookProScreenMaterial.map = texture;
+        macBookProScreenMaterial.toneMapped = false;
+
+        // If the material uses an emissive map and you want to apply the same texture to it making it glow
+        macBookProScreenMaterial.emissive = new Color(0xffffff);
+        macBookProScreenMaterial.emissiveMap = texture;
+        macBookProScreenMaterial.emissiveIntensity = 0.125;
+
+        // Update the material to reflect the new texture
+        macBookProScreenMaterial.needsUpdate = true;
+      }
+    });
+
+    // Change MacBook Pro texture function
+    type TextureName = 'macBookPro_texture_1' | 'macBookPro_texture_2' | 'macBookPro_texture_3' | 'macBookPro_texture_4' | 'macBookPro_texture_5';
+
+    const changeMacBookProTexture = (newMacBookProTextureName: TextureName) => {
+      macBookPro.scene.traverse((child: Object3D) => {
+        if (child instanceof Mesh && child.material.name === 'macBookPro_Screen') {
+          console.log("texture = " + newMacBookProTextureName);
+          let macBookProScreenMaterial: any = child.material;
+          const texture = textures[newMacBookProTextureName];
+
+          if (!texture) {
+            console.error("Texture not found:", newMacBookProTextureName);
+            return;
+          }
+
+          // Apply the texture to the existing material's map
+          macBookProScreenMaterial.map = texture;
+          macBookProScreenMaterial.toneMapped = false;
+          // If the material uses an emissive map and you want to apply the same texture to it making it glow
+          macBookProScreenMaterial.emissive = new Color(0xffffff);
+          macBookProScreenMaterial.emissiveMap = texture;
+          macBookProScreenMaterial.emissiveIntensity = 0.125;
+          macBookProScreenMaterial.needsUpdate = true;
+        }
+      });
+    }
+    if (macBookProTextureName) {
+      changeMacBookProTexture(macBookProTextureName as TextureName); // Type assertion
+    }
+
+    // Change MacBook Pro opacity function
+    const changeMacBookProOpacity = (newMacBookProOpacity: number) => {
+      macBookPro.scene.traverse((child: any) => {
+        if (child instanceof Mesh && child.material instanceof Material) {
+          child.material.opacity = newMacBookProOpacity;
+          /* child.material.transparent = newMacBookProOpacity < 1; */
+          if (newMacBookProOpacity === 0) {
+            child.material.transparent = true; // Ensure transparency is enabled
+          } else {
+            child.material.transparent = false; // Ensure transparency is disabled
+          }
+          child.material.needsUpdate = true; // Mark the material for update
+        }
+      });
+    }
+    if (macBookProOpacity !== undefined && macBookProOpacity !== null) {
+      console.log("macBookProOpacity triggered = "+macBookProOpacity);
+      changeMacBookProOpacity(macBookProOpacity as number);
+    }
+
+    /* // Gui setup
+    const gui = new GUI()
+    const dummyFolder = gui.addFolder('.');const dummy2Folder = gui.addFolder('..');
+
+    const macBookProFolder = gui.addFolder('macBookPro')
+    macBookProFolder.add(macBookPro.scene.position, 'x').min(-7).max(7).step(0.01).name('Position X')
+    macBookProFolder.add(macBookPro.scene.position, 'y').min(-7).max(7).step(0.01).name('Position Y')
+    macBookProFolder.add(macBookPro.scene.position, 'z').min(-7).max(7).step(0.01).name('Position Z')
+    macBookProFolder.add(macBookPro.scene.rotation, 'x').min(-7).max(7).step(0.01).name('Rotation X')
+    macBookProFolder.add(macBookPro.scene.rotation, 'y').min(-7).max(7).step(0.01).name('Rotation Y')
+    macBookProFolder.add(macBookPro.scene.rotation, 'z').min(-7).max(7).step(0.01).name('Rotation Z')
+    const scaleProxy = { scale: 1 };
+    macBookProFolder.add(scaleProxy, 'scale', 0.1, 15, 0.01).name('Scale XYZ').onChange((newValue) => {
+      // Update the actual object's scale in the listener
+      macBookPro.scene.scale.set(newValue, newValue, newValue);
+    });
+    const opacityProxy = { opacity: 1 };
+    macBookProFolder.add(opacityProxy, 'opacity', 0, 1, 0.01).name('Opacity').onChange((newValue) => {
+      // Update the actual object's opacity in the listener
+      macBookPro.scene.traverse((child: any) => {
+        if (child instanceof Mesh) {
+          child.material.opacity = newValue; // Set your desired opacity here
+          child.material.transparent = true; // Ensure transparency is enabled for opacity to take effect
+          child.material.needsUpdate = true; // Mark the material for update
+        }
+      });
+    });
+
+    return () => {
+      gui.destroy()
+    } */
+
+}, [macBookPro, textures, gl, macBookProTextureName, macBookProOpacity]);
+
+return (
+  <>
+  {/* <DatGuiWrapper>
+    {(gui, addFolderSafely) => {
+      // Use the gui instance here to add your controls
+      // This function will only be executed on the client side
+      if (gui && !isGuiSetupDone.current) {
+        //console.log("Adding macBookPro controls to GUI");
+        const dummyFolder = addFolderSafely('.');const dummy2Folder = addFolderSafely('..');
+        const macBookProFolder = addFolderSafely('macBookPro')
+        macBookProFolder.add(macBookPro.scene.position, 'x').min(-7).max(7).step(0.01).name('Position X')
+        macBookProFolder.add(macBookPro.scene.position, 'y').min(-7).max(7).step(0.01).name('Position Y')
+        macBookProFolder.add(macBookPro.scene.position, 'z').min(-7).max(7).step(0.01).name('Position Z')
+        macBookProFolder.add(macBookPro.scene.rotation, 'x').min(-7).max(7).step(0.01).name('Rotation X')
+        macBookProFolder.add(macBookPro.scene.rotation, 'y').min(-7).max(7).step(0.01).name('Rotation Y')
+        macBookProFolder.add(macBookPro.scene.rotation, 'z').min(-7).max(7).step(0.01).name('Rotation Z')
+        const scaleProxy = { scale: 1 };
+        macBookProFolder.add(scaleProxy, 'scale', 0.1, 15, 0.01).name('Scale XYZ').onChange((newValue: number) => {
+          // Update the actual object's scale in the listener
+          macBookPro.scene.scale.set(newValue, newValue, newValue);
+        });
+        const opacityProxy = { opacity: 1 };
+        macBookProFolder.add(opacityProxy, 'opacity', 0, 1, 0.01).name('Opacity').onChange((newValue: number) => {
+          // Update the actual object's opacity in the listener
+          macBookPro.scene.traverse((child: any) => {
+            if (child instanceof Mesh) {
+              child.material.opacity = newValue; // Set your desired opacity here
+              child.material.transparent = true; // Ensure transparency is enabled for opacity to take effect
+              child.material.needsUpdate = true; // Mark the material for update
+            }
+          });
+        });
+        const rotateXProxy = { rotation: 0 };
+        macBookProFolder.add(rotateXProxy, 'rotation', 0, 6.285, 0.001).name('RotateX').onChange((newValue: number) => {
+          macBookPro.scene.traverse((child: Object3D) => {
+            if (child.name === 'Cube016') {
+              const macBookProDisplay = child as Mesh;
+              macBookProDisplay.rotation.x = newValue;
+            }
+          });
+        });
+        // Mark GUI setup as done
+        isGuiSetupDone.current = true;
+      }
+      return null; // This component does not render anything itself
+    }}
+  </DatGuiWrapper> */}
+    <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
+    <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
+    <primitive object={macBookPro.scene} ref={innerRef} />
+  </>
+);
+};
 
 
 

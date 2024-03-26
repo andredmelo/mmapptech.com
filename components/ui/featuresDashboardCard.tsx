@@ -17,14 +17,26 @@ const FeaturesDashboardCard = React.forwardRef<
       "w-full h-full",
       parentClassName
     )}>
-    <div
+    {/* <div
       ref={ref}
       className={cn(
         "flex items-center justify-start",
         "w-[95vw] md:w-[90vw] lg:w-[75vw] h-[67.5vw] md:h-[53.3vw]",
         "max-w-[1440px] max-h-[70vh] overflow-hidden object-cover object-top",
         "border-solid border-[10px] md:border-[20px] lg:border-[30px] borderImage",
-        /* "bg-transparent ring-2 ring-fuchsia-900", */
+        // "bg-transparent ring-2 ring-fuchsia-900",
+        className
+      )}
+      {...props}
+    /> */}
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center justify-start",
+        "w-[95vw] md:w-[90vw] lg:w-[50vw] h-[67.5vw] md:h-[53.3vw]",
+        "max-w-[1440px] max-h-[60vh] overflow-hidden object-scale-down object-top",
+        //"border-solid border-[10px] md:border-[20px] lg:border-[30px] borderImage",
+        //"bg-transparent ring-2 ring-fuchsia-900",
         className
       )}
       {...props}

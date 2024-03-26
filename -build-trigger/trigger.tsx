@@ -1,1 +1,1 @@
-let vNumber = "v0.1.2-β.1 | Home Features 3D issue fixed! Moved Home Mission to top and various other tweaks and fixes";
+let vNumber = "v0.1.2-β.2 | MacBook Pro 3D Model ready with display open & close control";

@@ -6,6 +6,7 @@ import { TextureLoader, Texture } from 'three';
 type LoadAssetsReturnType = {
   iPhone: GLTF | null;
   iPad: GLTF | null;
+  macBookPro: GLTF | null;
   textures: {
     iPhone_texture_1: Texture | null,
     iPhone_texture_2: Texture | null,
@@ -19,13 +20,20 @@ type LoadAssetsReturnType = {
     iPad_texture_3: Texture | null,
     iPad_texture_4: Texture | null,
     iPad_texture_5: Texture | null,
-    newiPadTextureName: Texture | null
+    newiPadTextureName: Texture | null,
+    macBookPro_texture_1: Texture | null,
+    macBookPro_texture_2: Texture | null,
+    macBookPro_texture_3: Texture | null,
+    macBookPro_texture_4: Texture | null,
+    macBookPro_texture_5: Texture | null,
+    newMacBookProTextureName: Texture | null
   };
 };
 
 export const useLoadAssets = (): LoadAssetsReturnType => {
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
+  const [macBookPro, setMacBookPro] = useState<GLTF | null>(null);
   const [textures, setTextures] = useState<{
     // Define the textures state here as in your original code
     iPhone_texture_1: Texture | null,
@@ -40,8 +48,13 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPad_texture_3: Texture | null,
     iPad_texture_4: Texture | null,
     iPad_texture_5: Texture | null,
-    newiPadTextureName: Texture | null
-    
+    newiPadTextureName: Texture | null,
+    macBookPro_texture_1: Texture | null,
+    macBookPro_texture_2: Texture | null,
+    macBookPro_texture_3: Texture | null,
+    macBookPro_texture_4: Texture | null,
+    macBookPro_texture_5: Texture | null,
+    newMacBookProTextureName: Texture | null
   }>({
     // Initial state
     iPhone_texture_1: null,
@@ -57,6 +70,12 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPad_texture_4: null,
     iPad_texture_5: null,
     newiPadTextureName: null,
+    macBookPro_texture_1: null,
+    macBookPro_texture_2: null,
+    macBookPro_texture_3: null,
+    macBookPro_texture_4: null,
+    macBookPro_texture_5: null,
+    newMacBookProTextureName: null
   });
 
   useEffect(() => {
@@ -64,9 +83,11 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       // Your loading logic here
       const iPhoneLoader = new GLTFLoader(); 
       const iPadLoader = new GLTFLoader();
+      const macBookProLoader = new GLTFLoader();
       const textureLoader = new TextureLoader();
       const iPhoneModel = await iPhoneLoader.loadAsync("/3d-models/iPhone_14_Pro_Max.glb");
       const iPadModel = await iPadLoader.loadAsync("/3d-models/iPad_Pro_4th.glb");
+      const macBookProModel = await macBookProLoader.loadAsync("/3d-models/macBook_Pro_16.glb");
       const iPhoneTexture1 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-1.webp");
       const iPhoneTexture2 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-2.webp");
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
@@ -78,14 +99,21 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const iPadTexture3 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp");
       const iPadTexture4 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp");
       const iPadTexture5 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp");
+      const macBookProTexture1 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-1.webp");
+      const macBookProTexture2 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-2.webp");
+      const macBookProTexture3 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-3.webp");
+      const macBookProTexture4 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-4.webp");
+      const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp");
 
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
-      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, newiPhoneTextureName: iPhoneTexture1, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5, newiPadTextureName: iPadTexture1 });
+      setMacBookPro(macBookProModel);
+      setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, newiPhoneTextureName: iPhoneTexture1, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5, newiPadTextureName: iPadTexture1, macBookPro_texture_1: macBookProTexture1, macBookPro_texture_2: macBookProTexture2, macBookPro_texture_3: macBookProTexture3, macBookPro_texture_4: macBookProTexture4, macBookPro_texture_5: macBookProTexture5, newMacBookProTextureName: macBookProTexture1 });
     };
 
     loadModelsAndTextures();
   }, []);
 
-  return { iPhone, iPad, textures };
+  return { iPhone, iPad, macBookPro, textures };
 };
+
