@@ -1,6 +1,6 @@
 'use client'
 import * as ReactDOMServer from "react-dom/server";
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { clsx } from "clsx";
 /* import Image from "next/image";
 import { Metadata } from 'next'
@@ -21,13 +21,14 @@ import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 import { OrbitControls} from '@react-three/drei'; */
 //import { ThreeJSViewer } from '@/components/three.js';
 //import ThreeJSViewer from '@/components/three.js';
+import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
-import { HomeFeaturesR3F } from '@/components/three.js'; 
-import { TestiPadR3F } from '@/components/three.js'; 
+const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
+//import { TestiPadR3F } from '@/components/three.js'; 
 
 //import Cube from '@/components/three.js/cube'
 
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/R3FContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 gsap.registerPlugin(ScrollTrigger);
 /* export const metadata: Metadata = {
@@ -40,12 +41,56 @@ export default function Home() {
   const { setiPadTextureName } = useContext(IPadTextureContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
 
-  const svgString = encodeURIComponent(
+  const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
+  const homeFeaturesR3FobserverRef = useRef(null);
+// IntersectionObserver for HomeFeaturesR3F loading
+  useEffect(() => {
+    const homeFeaturesR3Fobserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowHomeFeaturesR3F(true);
+          homeFeaturesR3Fobserver.disconnect();
+        }
+      },
+      {
+        rootMargin: '100px',
+      }
+    );
+    if (homeFeaturesR3FobserverRef.current) {
+      homeFeaturesR3Fobserver.observe(homeFeaturesR3FobserverRef.current);
+    }
+    return () => homeFeaturesR3Fobserver.disconnect();
+  }, []);
+
+
+
+  const [isHomeFeaturesR3FLoaded, setIsHomeFeaturesR3FLoaded] = useState(false);
+  const [endPosition, setEndPosition] = useState(0); // State variable to store the elusive end position
+  const hasLoadedOnceRef = useRef(false); // Ref to track if the function has been called
+  const createScrollTriggerWhenHomeFeaturesR3FLoaded = () => {
+    if (!hasLoadedOnceRef.current) { // Check if the function hasn't been called yet
+      setIsHomeFeaturesR3FLoaded(true);
+
+      ScrollTrigger.create({
+        trigger: "#featuresJudge",
+        start: "top top",
+        end: endPosition,
+        pin: ".homeFeaturesR3FViewer",
+        markers: false,
+      });
+      ScrollTrigger.refresh();
+
+      hasLoadedOnceRef.current = true; // Mark as called
+      console.log("Home Features R3F is loaded and its ScrollTrigger is set");
+    }
+  };
+
+  /* const svgString = encodeURIComponent(
     ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
   );
   const svgString180 = encodeURIComponent(
     ReactDOMServer.renderToStaticMarkup(<HeroBGSVG180 />)
-  );
+  ); */
 
   /* ===== GSAP React ===== */
   useGSAP(
@@ -82,7 +127,7 @@ export default function Home() {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const ratio = width / height;
-        return ratio < 1.6;
+        return ratio < 1.9265;
       }
 
       //Dashboard Animations
@@ -501,23 +546,26 @@ export default function Home() {
             //setiPadOpacity(0);
           });
 
-          // Pin R3F Canvas throughout Features section
-          ScrollTrigger.create({
+          // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
+          /* ScrollTrigger.create({
             trigger: "#featuresJudge",
             start: "top top",
             //endTrigger: ".featuresRecordKeeperBottom",
             //end: "bottom bottom",
             end: () => lastRecordKeeperCardST.start + bottomDistance,
             pin: ".homeFeaturesR3FViewer",
-            markers:false,
-          });
+            markers: true,
+          }); */
+
+          //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
+          setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
 
         }
       }, 50); // Check every 50ms
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [setiPhoneTextureName, setiPadTextureName, setiPhoneOpacity, setiPadOpacity], revertOnUpdate: true }
+    { dependencies: [setiPhoneTextureName, setiPadTextureName, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
   );
 
   return (
@@ -526,7 +574,7 @@ export default function Home() {
 
         <div id="Home" className="homeSection">
           <div className="homeBackground">
-            <img src="/images/33498201.webp" alt="Fighters getting ready to fight"/>
+            <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/>
           </div>
           <div className="homeMain">
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
@@ -536,6 +584,84 @@ export default function Home() {
           {/* <TestiPadR3F /> */}
         </div>
 
+
+        <section id="OurMission" className="z-20 flex flex-col justify-center">
+            <div
+              className={clsx("h-full flex flex-col md:flex-row relative ", //shadow-inset-mission
+              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
+              "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
+            >
+              <div className="flex flex-col justify-top z-20 ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem]"> {/* pt-[2rem] md:pt-[2rem] lg:pt-[2rem] max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] */}
+                <h5 className="mb-4 md:mb-8 lg:mb-12 text-center text-neutral-200 deboss">
+                  Our Mission
+                </h5>
+                <div className="flex flex-col justify-center items-center">
+                  <h3 className="mb-8 md:mb-12 lg:mb-12 py-8 text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[80%]">
+                    Accelerate the Recognition of MMA as an Olympic Sport
+                  </h3>
+                  <p className="mb-8 md:mb-12 lg:mb-12 leading-[2.1rem] md:leading-[2.5rem] text-center w-[95%] md:w-[70%] lg:w-[62%]">
+                    At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age.
+                  </p>
+                </div>
+                <div className="flex flex-col w-[27rem] md:w-[35rem] lg:w-[65rem] gap-10">
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      Management, Scheduling, Officiation
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling.<br/>
+                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      Common Language & Unit of Measurement
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials.<br/>
+                      By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.<br/>
+                      We want to acomplish all this with our 3 revolutionizing tools.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      The “Dashboard” app
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Overview of Federation Affairs (insert pretty text here).<br/>
+                      Visual Reports with Actionable Insights (insert pretty text here).<br/>
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      The “Judge” app
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Specifically designed for officials and their mobile devices.<br/>
+                      It provides the tool to apply our methodology during a fight<br/>
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                      The “RecordKeeper” app
+                    </h5>
+                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Effortlessly monitor all relevant details during a fight.<br/>
+                      Flawlessly perform all timing duties (Round time, Break Time and more).<br/>
+                    </p>
+                  </div>
+                  <p className="text-md hover:text-white text-neutral-200 text-left pt-6 pl-10">
+                  <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
+                  </p>
+                </div>
+              </div>
+              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[1.5rem] md:right-[6rem] lg:bottom-[4rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+            </div>
+        </section>
+
+
+        <div className="borderBottom"></div>
+
         <section id="Features" className="">
 
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
@@ -544,7 +670,7 @@ export default function Home() {
 
           {/* // Dashboard */}
           <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
-            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center" >Federations (Dashboard)</h2>
+            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
             {/* <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
             </div> */}
@@ -570,14 +696,21 @@ export default function Home() {
             </FeaturesDashboardCard>
           </div>
 
-          <HomeFeaturesR3F />
+          {/* <HomeFeaturesR3F /> */}
+          {/* <div ref={homeFeaturesR3FobserverRef} style={{ height: '1px' }}></div> */}
+          <div ref={homeFeaturesR3FobserverRef} />
+          {showHomeFeaturesR3F && (
+            <Suspense fallback={<div>Loading 3D...</div>}>
+              <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
+            </Suspense>
+          )}
 
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-left">
-                <h2 id="featuresJudgeTitle">Officials (Judge)</h2>
+                <h2 id="featuresJudgeTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">Officials (Judge)</h2>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
                   <h4 className="featuresJudgeHeaderItem">Personalized Fight Card</h4>
                 </FeaturesJudgeCard>
@@ -605,7 +738,7 @@ export default function Home() {
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-right">
-                <h2 id="featuresRecordKeeperTitle">Officials (RecordKeeper)</h2>
+                <h2 id="featuresRecordKeeperTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">Officials (RecordKeeper)</h2>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
                   <h4 className="featuresRecordKeeperHeaderItem">Pre-filled in Information</h4>
                 </FeaturesRecordKeeperCard>
@@ -632,9 +765,14 @@ export default function Home() {
 
 
         <section id="Benefits" className='z-20 benefits'>
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
-          Benefits for everyone else
-          </h5>
+          <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
+            <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+              Benefits for everyone else
+            </h5>
+            <h2 id="featuresJudgeTitle" className="text-transparent text-center bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 w-[95%] md:w-[60%]">
+              Athletes, Coaches, Clubs and Promoters all Benefit
+            </h2>
+          </div>
           <Benefits /* items={items} */ />
         </section>
         
@@ -642,10 +780,10 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        <section id="OurMission" className="z-20 flex flex-col justify-center">
+        {/* <section id="OurMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
-              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[110rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
+              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
               "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
             >
               <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[5rem] md:pt-[6rem] lg:pt-[10rem] text-left">
@@ -679,12 +817,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[8rem] md:right-[6rem] lg:bottom-[10rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[1.5rem] md:right-[6rem] lg:bottom-[4rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
             </div>
         </section>
         
 
-        <div className="borderBottom"></div>
+        <div className="borderBottom"></div> */}
 
 
         <section id="FAQSupport" className="">

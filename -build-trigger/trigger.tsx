@@ -1,2 +1,1 @@
-let vNumber = "v0.1.1-β.10 | Home Benefits migration to an Interface, FAQs updated";
-
+let vNumber = "v0.1.2-β.1 | Home Features 3D issue fixed! Moved Home Mission to top and various other tweaks and fixes";

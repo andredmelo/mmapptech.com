@@ -572,9 +572,10 @@ a {
 
 .btn {
   display: block;
-  /* background: var(--mmapp-gradient); */
-  background: rgb(40, 45, 215, 0.5);
+  background: var(--mmapp-gradient);
+  /* background: rgb(40, 45, 215, 0.5); */
   color: var(--white);
+  opacity: 0.75;
   text-align: center;
   padding: 0.65rem 2.5rem;
   font-size: 1.6rem;
@@ -586,9 +587,10 @@ a {
 .btn:hover {
   /* font-size: 1.0125rem; */
   /* transform: scale(1.0125); */
-  /* background: var(--primary-red); */
   /* backdrop-filter: brightness(50%); */
-  background: rgb(40, 45, 215, 1);
+  /* background: rgb(40, 45, 215, 1); */
+  background: var(--mmapp-gradient);
+  opacity: 1;
   /* filter: brightness(150%); */
   transform: scale(1.005) translateY(-0.075rem);
   transition: 0.1s ease-in-out;

@@ -2,9 +2,9 @@
 import { useState, useTransition } from 'react'
 import TabButtonBenefits from '@/components/ui/tab-button-benefits'
 
-import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/app/home/benefitsInterface';
+import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/app/home/benefitsFC';
 
-import { IconTablerUniverse, IconTablerMinimize } from '@/components/ui/svg/benefitsSVGs';
+import { IconTablerMinimize, IconTablerUniverse } from '@/components/ui/svg/benefitsSVGs';
 
 
 const athletesItems: BenefitsItem[] = [
@@ -14,7 +14,7 @@ const athletesItems: BenefitsItem[] = [
     content: [
       "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result wherever you are."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -69,7 +69,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Easily keep your profile always up-to-date, with reminders of expiration dates for documents."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -77,7 +77,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -85,7 +85,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -93,7 +93,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency worldwide, no matter where your athletes fight."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -101,7 +101,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Our platform is 100% free to use for coaches (Federation fees still apply)."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
 ];
 
@@ -112,7 +112,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -120,7 +120,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -128,7 +128,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Help bring your Federation to the 21st century with the MMAPP platform, and take care of all your Federation needs and duties through one simple website."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -136,7 +136,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "By having your Federation use MMAPP, you are assured they have access to tools that can provide analysis and fundament to judging decisions, contributing to a cycle of continuous improvement."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -144,7 +144,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Our platform is 100% free to use for clubs (Federation fees still apply)."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
 ];
 
@@ -155,7 +155,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result and a successful event."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -163,7 +163,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, speeding up officiating tasks, and making your event run smoother."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -171,7 +171,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "Sign up once, and keep your documents up to date with reminders of their expiration to stay registered."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -179,7 +179,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "Register your Events with your Federation in under 5 minutes."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
   {
     header:
@@ -187,7 +187,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "View every athlete eligible for competition within your Federation in one simple list."
     ],
-    svg: <IconTablerUniverse />
+    svg: <IconTablerMinimize />
   },
 ];
 
@@ -205,7 +205,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[87rem] portrait:md:min-h-[76rem] mx-4 md:mx-12 lg:mx-32'>
+      <div className='flex flex-col md:flex-row md:min-h-[111rem] portrait:md:min-h-[111rem] mx-4 md:mx-12 lg:mx-32'>
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}

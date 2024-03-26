@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { useHref } from '@/contexts/HrefContext';
+import { useHref } from '@/lib/contexts/HrefContext';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import Loading from './loading';

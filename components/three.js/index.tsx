@@ -13,7 +13,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import { useLoadAssets } from '@/components/three.js/useLoadAssets';
 
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/contexts/R3FContext';
+import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 // Dynamically import DatGuiWrapper with SSR disabled
 const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'), {
@@ -285,7 +285,7 @@ export const HomeIntroR3F: React.FC = () => {
             .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
             .set(iPhone.scene.position, {x: 0, y: -0.3, z: 0}, 0)
             .set(iPhone.scene.rotation, {x: -0.5, y: 0, z: 0}, 0)
-            .fromTo(iPhone.scene.position, {y: -0.3}, {y: -3, ease:"power1.in"}, 0)
+            .fromTo(iPhone.scene.position, {x: 0, y: -0.3}, {x: 2, y: -3, ease:"power1.in"}, 0)
             .to(iPhone.scene.scale, {x: 9, y: 9, z: 9, ease:"linear"}, "<")
             .fromTo(iPhone.scene.rotation, {x: -0.5}, {x: -2.2, ease:"power1.out"}, "<")        
 
@@ -320,9 +320,11 @@ export const HomeIntroR3F: React.FC = () => {
   )
 }
 
-
+interface HomeFeaturesR3FLoadedProps {
+  onLoaded: () => void; // Specify that onLoaded is a function that returns void
+}
 // Home Features
-export const HomeFeaturesR3F: React.FC = () => {
+export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded }) => {
   const { iPhone, iPad, textures } = useLoadAssets();
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
@@ -330,6 +332,14 @@ export const HomeFeaturesR3F: React.FC = () => {
   const container = useRef(null);
   const iPhoneRef = useRef<Mesh>(null);
   const iPadRef = useRef<Mesh>(null);
+
+  //This is to provide the loading state to the parent to trigger the Manual ScrollTrigger
+  useEffect(() => {
+    // Ensure onLoaded is called only if it's provided
+    if (onLoaded) {
+      onLoaded();
+    }
+  }, [onLoaded]);
 
   /* ===== GSAP React ===== */
   useGSAP(
@@ -390,7 +400,7 @@ export const HomeFeaturesR3F: React.FC = () => {
             scrollTrigger:{
               trigger: '#featuresJudge',
               start: 'bottom bottom',
-              end: 'bottom 55%',
+              end: 'bottom 52%',
               markers: false,
               scrub: true,
               invalidateOnRefresh: true,
@@ -423,7 +433,6 @@ export const HomeFeaturesR3F: React.FC = () => {
 
         }
       }, 50); // Check every 50ms
-
       /* GSDevTools.create(); */
     },
     { dependencies: [iPhone?.scene, iPad?.scene], revertOnUpdate: true }
