@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter, usePathname } from "next/navigation";
 import { HrefContext } from '@/lib/contexts/HrefContext';
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
+import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
@@ -50,10 +50,12 @@ export default function RootLayout({
   const [under768] = useMediaQuery('(max-width: 767px)')
   const [hUnder376] = useMediaQuery('(max-height: 376px)') */
 
+  const [macBookProTextureName, setMacBookProTextureName] = useState('');
   const [iPhoneTextureName, setiPhoneTextureName] = useState('');
   const [iPadTextureName, setiPadTextureName] = useState('');
   const [iPhoneOpacity, setiPhoneOpacity] = useState(0);
   const [iPadOpacity, setiPadOpacity] = useState(0);
+  const [macBookProOpacity, setMacBookProOpacity] = useState(0);
 
   const router = useRouter();
   const [href, setHref] = useState('');
@@ -206,8 +208,10 @@ export default function RootLayout({
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           <Providers>
+            <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}> 
             <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
             <IPadTextureContext.Provider value={{ iPadTextureName, setiPadTextureName }}>
+            <MacBookProOpacityContext.Provider value={{ macBookProOpacity, setMacBookProOpacity }}>
             <IPhoneOpacityContext.Provider value={{ iPhoneOpacity, setiPhoneOpacity }}>
             <IPadOpacityContext.Provider value={{ iPadOpacity, setiPadOpacity }}>
               <Navbar />
@@ -221,8 +225,10 @@ export default function RootLayout({
               </div>
             </IPadOpacityContext.Provider>
             </IPhoneOpacityContext.Provider>
+            </MacBookProOpacityContext.Provider>
             </IPadTextureContext.Provider>
             </IPhoneTextureContext.Provider>
+            </MacBookProTextureContext.Provider>
           </Providers>
         </body>
       </html>

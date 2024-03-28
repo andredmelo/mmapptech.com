@@ -7,6 +7,7 @@ type LoadAssetsReturnType = {
   iPhone: GLTF | null;
   iPad: GLTF | null;
   macBookPro: GLTF | null;
+  cage: GLTF | null;
   textures: {
     iPhone_texture_1: Texture | null,
     iPhone_texture_2: Texture | null,
@@ -34,6 +35,7 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
   const [macBookPro, setMacBookPro] = useState<GLTF | null>(null);
+  const [cage, setCage] = useState<GLTF | null>(null);
   const [textures, setTextures] = useState<{
     // Define the textures state here as in your original code
     iPhone_texture_1: Texture | null,
@@ -84,10 +86,12 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const iPhoneLoader = new GLTFLoader(); 
       const iPadLoader = new GLTFLoader();
       const macBookProLoader = new GLTFLoader();
+      const cageLoader = new GLTFLoader();
       const textureLoader = new TextureLoader();
       const iPhoneModel = await iPhoneLoader.loadAsync("/3d-models/iPhone_14_Pro_Max.glb");
       const iPadModel = await iPadLoader.loadAsync("/3d-models/iPad_Pro_4th.glb");
       const macBookProModel = await macBookProLoader.loadAsync("/3d-models/macBook_Pro_16.glb");
+      const cageModel = await cageLoader.loadAsync("/3d-models/cage.glb");
       const iPhoneTexture1 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-1.webp");
       const iPhoneTexture2 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-2.webp");
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
@@ -108,12 +112,13 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
       setMacBookPro(macBookProModel);
+      setCage(cageModel);
       setTextures({ iPhone_texture_1: iPhoneTexture1, iPhone_texture_2: iPhoneTexture2, iPhone_texture_3: iPhoneTexture3, iPhone_texture_4: iPhoneTexture4, iPhone_texture_5: iPhoneTexture5, iPhone_texture_6: iPhoneTexture6, newiPhoneTextureName: iPhoneTexture1, iPad_texture_1: iPadTexture1, iPad_texture_2: iPadTexture2, iPad_texture_3: iPadTexture3, iPad_texture_4: iPadTexture4, iPad_texture_5: iPadTexture5, newiPadTextureName: iPadTexture1, macBookPro_texture_1: macBookProTexture1, macBookPro_texture_2: macBookProTexture2, macBookPro_texture_3: macBookProTexture3, macBookPro_texture_4: macBookProTexture4, macBookPro_texture_5: macBookProTexture5, newMacBookProTextureName: macBookProTexture1 });
     };
 
     loadModelsAndTextures();
   }, []);
 
-  return { iPhone, iPad, macBookPro, textures };
+  return { iPhone, iPad, macBookPro, cage, textures };
 };
 

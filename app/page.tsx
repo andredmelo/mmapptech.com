@@ -3,7 +3,6 @@ import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { clsx } from "clsx";
 /* import Image from "next/image";
-import { Metadata } from 'next'
 import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -11,39 +10,33 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
-import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
+//import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesDashboardCard } from '@/components/ui/featuresDashboardCard'
 import { FeaturesJudgeCard } from '@/components/ui/featuresJudgeCard'
 import { FeaturesRecordKeeperCard } from '@/components/ui/featuresRecordKeeperCard'
-import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
+//import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
-/* import { Canvas } from "@react-three/fiber";
-import { OrbitControls} from '@react-three/drei'; */
-//import { ThreeJSViewer } from '@/components/three.js';
-//import ThreeJSViewer from '@/components/three.js';
 import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import { TestR3F } from '@/components/three.js';
 
-//import Cube from '@/components/three.js/cube'
-
-import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
+import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 gsap.registerPlugin(ScrollTrigger);
-/* export const metadata: Metadata = {
-  title: 'Home',
-} */
 
 export default function Home() {
   const { setiPhoneTextureName } = useContext(IPhoneTextureContext);
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadTextureName } = useContext(IPadTextureContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
+  const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
+  const { setMacBookProTextureName } = useContext(MacBookProTextureContext);
 
+
+  // IntersectionObserver for HomeFeaturesR3F
   const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
   const homeFeaturesR3FobserverRef = useRef(null);
-// IntersectionObserver for HomeFeaturesR3F loading
   useEffect(() => {
     const homeFeaturesR3Fobserver = new IntersectionObserver(
       ([entry]) => {
@@ -53,7 +46,7 @@ export default function Home() {
         }
       },
       {
-        rootMargin: '100px',
+        rootMargin: '200px',
       }
     );
     if (homeFeaturesR3FobserverRef.current) {
@@ -62,8 +55,7 @@ export default function Home() {
     return () => homeFeaturesR3Fobserver.disconnect();
   }, []);
 
-
-
+  // ScrollTrigger for homeFeaturesR3FViewer upon IntersectionObserver
   const [isHomeFeaturesR3FLoaded, setIsHomeFeaturesR3FLoaded] = useState(false);
   const [endPosition, setEndPosition] = useState(0); // State variable to store the elusive end position
   const hasLoadedOnceRef = useRef(false); // Ref to track if the function has been called
@@ -72,12 +64,20 @@ export default function Home() {
       setIsHomeFeaturesR3FLoaded(true);
 
       ScrollTrigger.create({
-        trigger: "#featuresJudge",
+        trigger: "#featuresDashboard",
         start: "top top",
         end: endPosition,
         pin: ".homeFeaturesR3FViewer",
         markers: false,
       });
+      /* ScrollTrigger.create({
+        trigger: "#featuresDashboard",
+        start: "top 95%",
+        onEnter: () => {
+          console.log("onEnter createScrollTriggerWhenHomeFeaturesR3FLoaded");
+          setMacBookProOpacity(1);
+        }
+      }); */
       ScrollTrigger.refresh();
 
       hasLoadedOnceRef.current = true; // Mark as called
@@ -132,174 +132,132 @@ export default function Home() {
 
       //Dashboard Animations
       const checkDashboardAnimIn = setInterval(() => {
-        if (document.querySelector('.dashboardCard') && document.querySelector('.featuresDashboardHeader')) {
+        if (document.querySelector('.dashboardCard') && document.getElementById('featuresDashboardTitle')) {
               clearInterval(checkDashboardAnimIn);
               //console.log("Dashboard animations are ready");
-          let cards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
+          let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
+          let dashboardTitle = document.getElementById('featuresDashboardTitle');
 
-          let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
-          /* const changeH4 = gsap.timeline({paused: true, immediateRender: false})
-            .fromTo(fDHI[0], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fDHI[1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fDHI[1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fDHI[2], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause()
-            .fromTo(fDHI[2], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-            .fromTo(fDHI[3], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-            .addPause() */
+          let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
 
-          fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
-          gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
+          fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
+          gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
 
-          let header = document.getElementById('featuresDashboardHeader');
-          let title = document.getElementById('featuresDashboardTitle');
-          let proDisplayShadowSVG = document.getElementById('proDisplayShadowSVG');
-          let macBookPro = document.getElementById('featuresDashboardMBP');
+          let bottomDistance = dashboardCards[dashboardCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
 
-          /* const vhToPixels = (vh: number) => {
-            const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            return (vh * height) / 100;
-          }; */
-          //let bottomDistance = vhToPixels(0); // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
-
-          let bottomDistance = cards[cards.length-1].offsetHeight;
-
-          let lastCardST = ScrollTrigger.create({
-            trigger: cards[cards.length-1] as HTMLElement,
-            start: "center 60%",
+          let lastDashboardCardST = ScrollTrigger.create({
+            trigger: dashboardCards[dashboardCards.length-1] as HTMLElement,
+            start: "center 50%",
             markers:false,
           });
 
-          // variable for how much the card moves up when stacked
-          let cardsYPercent = 5;
-          matchMedia.add("(hover: none)", () => { cardsYPercent = 6; })
-
-          // Animation that makes the cards go up and shrink further on each iteration
-          const stackCardsAnim = (cards: HTMLElement[], i: number) => {
-            for (let j = 0; j < i; j++) {
-              let opacity = 1 - ((i - j) * 0.2); // Decrease opacity by 0.2 for each preceding card
-              let brightness = 100 - ((i - j) * 20); // Decrease brightness by 20% for each preceding card
-              let blur = 0 + (i * 0.5); // Increase blur by 2 for each preceding card
-
-              gsap.to(cards[j], {
-                yPercent: ((-cardsYPercent) * (i - j)),
-                scale: (1 - ((i - j) * 0.1)),
-                filter: `brightness(${brightness}%)`, // Discarded blur(${blur}px)
-                /* opacity: opacity, */
-                transformOrigin: "top",
-                duration: 0.5,
-                ease: "power2.inOut"
-              });
-            }
+          // Pin Dashboard Title
+          if (isViewportRatioLessThan192()) {
+            ScrollTrigger.create({
+              trigger: dashboardTitle,
+              start: "top 7%",
+              end: () => lastDashboardCardST.start + bottomDistance,
+              pin: dashboardTitle,
+              pinSpacing: false,
+              invalidateOnRefresh: true,
+            });
           }
 
-          const reverseStackCardsAnim = (cards: HTMLElement[], i: number) => {
-            for (let j = 0; j < i; j++) {
-              // Calculate the adjustment factor to ensure immediate reversal
-              let adjustmentFactor = j - i + 1;
-              let brightness = 100 + (adjustmentFactor * 20); // Increase brightness to reverse the effect
-              let opacity = 1 + (adjustmentFactor * 0.2); // Increase opacity to reverse the effect
-              let blur = 0 - (i * 0.5); // Decrease blur to reverse the effect
-
-              gsap.to(cards[j], {
-                yPercent: cardsYPercent * adjustmentFactor,
-                scale: 1 - (adjustmentFactor * (-0.1)),
-                filter: `brightness(${brightness}%)`,
-                /* opacity: opacity, */
-                transformOrigin: "top",
-                duration: 0.5,
-                ease: "power2.inOut"
-              });
-            }
-          }
-
-          cards.forEach((card, i) => {
+          dashboardCards.forEach((card, i) => {
             switch (i) {
               case 0: // case to pin both card[0] and header
                 ScrollTrigger.create({
                   trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
+                  start: "center 50%",
+                  end: () => lastDashboardCardST.start + bottomDistance,
                   pin: card,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
+                  onLeaveBack: ({}) => {
+                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                  }
                 });
-                ScrollTrigger.create({
+                /* ScrollTrigger.create({
                   trigger: card,
                   start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
+                  end: () => lastDashboardCardST.start + bottomDistance,
                   pin: header,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
-                });
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
-                  /* pin: proDisplayShadowSVG, */
-                  pin: macBookPro,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                if (isViewportRatioLessThan192()) {
+                }); */
+                /* if (isViewportRatioLessThan192()) {
                   ScrollTrigger.create({
                     trigger: card,
-                    start: "center 60%",
-                    end: () => lastCardST.start + bottomDistance,
-                    pin: title,
+                    start: "center 50%",
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: dashboardTitle,
                     pinSpacing: false,
                     invalidateOnRefresh: true,
                   });
-                }
+                } */
                 break;
-              case cards.length-1: // case to pinSpacing the last card
+              case dashboardCards.length-1: // case to pinSpacing the last card
                 ScrollTrigger.create({
                   trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
+                  start: "center 50%",
+                  end: () => lastDashboardCardST.start + bottomDistance,
                   pin: true,
                   pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeH4.play();
-                    stackCardsAnim(cards, i);
-                    gsap.fromTo(fDHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fDHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeH4.reverse();
-                    reverseStackCardsAnim(cards, i);
-                    gsap.fromTo(fDHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fDHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    setMacBookProTextureName('macBookPro_texture_'+(i));
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
                 break;
               default: // default case
                 ScrollTrigger.create({
                   trigger: card,
-                  start: "center 60%",
-                  end: () => lastCardST.start + bottomDistance,
+                  start: "center 50%",
+                  end: () => lastDashboardCardST.start + bottomDistance,
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeH4.play();
-                    stackCardsAnim(cards, i);
-                    gsap.fromTo(fDHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fDHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeH4.reverse();
-                    reverseStackCardsAnim(cards, i);
-                    gsap.fromTo(fDHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fDHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    setMacBookProTextureName('macBookPro_texture_'+(i));
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+            //setiPhoneOpacity(1);
+            //setiPadOpacity(0);
           });
+
         }
       }, 50); // Check every 50ms
 
+      // macBookProiPhoneSwitch Animation
+      ScrollTrigger.create({
+        trigger: '.featuresDashboard',
+        start: 'bottom 50%',
+        //end: 'bottom 75%',
+        markers: false,
+        scrub: false,
+        onEnter: ({progress, direction, isActive}) => {
+          setMacBookProOpacity(0);
+          setiPhoneOpacity(1);
+        },
+        onLeaveBack: ({progress, direction, isActive}) => {
+          setMacBookProOpacity(1);
+          setiPhoneOpacity(0);
+        },
+      });
 
       //Judge Animations
       const checkJudgeAnimIn = setInterval(() => {
@@ -410,7 +368,7 @@ export default function Home() {
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            setiPhoneOpacity(1);
+            //setiPhoneOpacity(1);
             //setiPadOpacity(0);
           });
 
@@ -544,7 +502,7 @@ export default function Home() {
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            setiPhoneOpacity(1);
+            //setiPhoneOpacity(1);
             //setiPadOpacity(0);
           });
 
@@ -567,7 +525,7 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [setiPhoneTextureName, setiPadTextureName, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
+    { dependencies: [setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
   );
 
   return (
@@ -582,8 +540,9 @@ export default function Home() {
             <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
             <h2>Mapping MMA</h2>
           </div>
-          {/* <HomeIntroR3F /> */}
-          <TestR3F />
+          <HomeIntroR3F />
+          {/* <TestR3F /> */}
+          {/* <HomeReact3FiberViewer /> */}
         </div>
 
 
@@ -670,11 +629,70 @@ export default function Home() {
             Features
           </h5>
 
+          <div ref={homeFeaturesR3FobserverRef} />
+          {showHomeFeaturesR3F && (
+            <Suspense fallback={<div>Loading 3D...</div>}>
+              <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
+            </Suspense>
+          )}
+
           {/* // Dashboard */}
+          {/* <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
+            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
+            <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] flex flex-col justify-center items-center z-5">
+              <img className="object-contain relative z-5 max-w-[68%] mt-[5vh] macBookPro" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x_alpha.webp" alt="MacBook Pro"/>
+            </div>
+            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
+              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
+              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
+              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
+            </div>
+          </div> */}
+
+
+          <div id="featuresDashboard" className="featuresDashboard flex justify-center">
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col justify-top z-20 text-center">
+                <h2 id="featuresDashboardTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
+                  Federations (Dashboard)
+                </h2>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
+                  </h4>
+                </FeaturesDashboardCard>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Overview of Federation Affairs
+                  </h4>
+                </FeaturesDashboardCard>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Visual Reports with Actionable Insights
+                  </h4>
+                </FeaturesDashboardCard>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
+                  </h4>
+                </FeaturesDashboardCard>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Intuitive Member Management
+                  </h4>
+                </FeaturesDashboardCard>
+              </div>
+            </div>
+          </div>
+
+          {/*
+            // Dashboard V2 with Screen and MacBook Pro image behind
           <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
             <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] flex flex-col justify-center items-center z-5">
-              {/* <div className="min-h-[3vh] relative"/> */}
               <img className="object-contain relative z-5 max-w-[68%] mt-[5vh] macBookPro" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x_alpha.webp" alt="MacBook Pro"/>
             </div>
             <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
@@ -687,7 +705,6 @@ export default function Home() {
             <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
             </FeaturesDashboardCard>
-            {/* <ProDisplayShadowSVG className="proDisplayShadowSVG pb-[35vh]"/> */}
             <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
               <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
             </FeaturesDashboardCard>
@@ -697,8 +714,10 @@ export default function Home() {
             <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
               <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
             </FeaturesDashboardCard>
-          </div>
-          {/* <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
+          </div> */}
+          {/*
+            // Dashboard V1 with Screen and shadow
+            <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
             <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
             //<div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
               <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
@@ -726,37 +745,51 @@ export default function Home() {
           </div> */}
 
           {/* <HomeFeaturesR3F /> */}
-          {/* <div ref={homeFeaturesR3FobserverRef} style={{ height: '1px' }}></div> */}
+          {/* <div ref={homeFeaturesR3FobserverRef} style={{ height: '1px' }}></div> */}{/* 
           <div ref={homeFeaturesR3FobserverRef} />
           {showHomeFeaturesR3F && (
             <Suspense fallback={<div>Loading 3D...</div>}>
               <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
             </Suspense>
-          )}
+          )} */}
 
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-left">
-                <h2 id="featuresJudgeTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">Officials (Judge)</h2>
+                <h2 id="featuresJudgeTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
+                  Officials (Judge)
+                </h2>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Personalized Fight Card</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Personalized Fight Card
+                  </h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Make more Informed Decisions with a Coherent and Consistent Methodology</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Make more Informed Decisions with a Coherent and Consistent Methodology
+                  </h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Discuss scoring more deeply with your colleagues</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Discuss scoring more deeply with your colleagues
+                  </h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Reduce Fatigue</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Reduce Fatigue
+                  </h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Instantly submit your scorecards to the RecordKeeper</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Instantly submit your scorecards to the RecordKeeper
+                  </h4>
                 </FeaturesJudgeCard>
                 <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues</h4>
+                  <h4 className="featuresJudgeHeaderItem">
+                    Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues
+                  </h4>
                 </FeaturesJudgeCard>
               </div>
             </div>
@@ -767,21 +800,33 @@ export default function Home() {
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col justify-top z-20 text-right">
-                <h2 id="featuresRecordKeeperTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">Officials (RecordKeeper)</h2>
+                <h2 id="featuresRecordKeeperTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  Officials (RecordKeeper)
+                </h2>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">Pre-filled in Information</h4>
+                  <h4 className="featuresRecordKeeperHeaderItem">
+                    Pre-filled in Information
+                  </h4>
                 </FeaturesRecordKeeperCard>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules</h4>
+                  <h4 className="featuresRecordKeeperHeaderItem">
+                    Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules
+                  </h4>
                 </FeaturesRecordKeeperCard>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)</h4>
+                  <h4 className="featuresRecordKeeperHeaderItem">
+                    Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)
+                  </h4>
                 </FeaturesRecordKeeperCard>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">Notifications for actions needed to perform</h4>
+                  <h4 className="featuresRecordKeeperHeaderItem">
+                    Notifications for actions needed to perform
+                  </h4>
                 </FeaturesRecordKeeperCard>
                 <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">Instant Score Delivery and Calculation</h4>
+                  <h4 className="featuresRecordKeeperHeaderItem">
+                    Instant Score Delivery and Calculation
+                  </h4>
                 </FeaturesRecordKeeperCard>
               </div>
             </div>

@@ -75,7 +75,7 @@ export default function Template({
             const checkSmootherCurrentIsReady = setInterval(() => {
               if (smoother.current) {
                 clearInterval(checkSmootherCurrentIsReady);
-                smoother.current.scrollTo(href, false, "top 0px");
+                smoother.current.scrollTo(href, true, ScrollSmootherTop);
                 animIn.invalidate();
                 animIn.restart().play();
                 //console.log("scrollTo : " + href);
