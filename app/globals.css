@@ -128,7 +128,7 @@
   }
 
   .hero1ContainerMargins {
-    @apply ml-1 md:ml-[4rem] xl:ml-[8rem] 2xl:ml-[13.5rem] mr-1 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem];
+    @apply mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem]; /* ml-1 md:ml-[4rem] xl:ml-[8rem] 2xl:ml-[13.5rem] mr-1 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem]; */
   }
   .hero1ContentMargins {
     @apply ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] mt-[2rem] md:mt-[10rem] lg:mt-[12rem];

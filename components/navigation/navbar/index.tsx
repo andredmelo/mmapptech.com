@@ -158,6 +158,15 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </li>
                       <li role="menuitem">
                           <a
+                            href="/#SmallMission"
+                            data-page="/"
+                            data-link="#SmallMission"
+                            className="dropdown-link">
+                            Small Mission
+                          </a>
+                      </li>
+                      <li role="menuitem">
+                          <a
                             href="/#Features"
                             data-page="/"
                             data-link="#Features"
@@ -172,15 +181,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             data-link="#Benefits"
                             className="dropdown-link">
                             Benefits for everyone
-                          </a>
-                      </li>
-                      <li role="menuitem">
-                          <a
-                            href="/#OurMission"
-                            data-page="/"
-                            data-link="#OurMission"
-                            className="dropdown-link">
-                            Our Mission
                           </a>
                       </li>
                       <li role="menuitem">

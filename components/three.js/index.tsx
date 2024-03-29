@@ -251,34 +251,36 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               paused:true,
               scrollTrigger: {
                 trigger: '#featuresDashboard',
-                start: 'top 35%',
-                end: 'top 5%',
+                start: 'top 70%',
+                end: 'top 10%',
                 markers: false,
                 scrub: true,
                 invalidateOnRefresh: true,
                 toggleActions: "play none none reverse"
               },
             })
-              .fromTo(macBookPro.scene.position, {x: -4, y: 0.65}, {x: 0, y: -0.795, ease:"power1.out", duration:3})
-              .fromTo(macBookPro.scene.rotation, {x: -3, y: -3}, {x: -0.075, y: 0, ease:"power1.out", duration:3}, "<")
+              .fromTo(macBookPro.scene.position, {x: -3}, {x: 0, ease:"power1.out"})
+              .fromTo(macBookPro.scene.position, {y: 0.5}, {y: -0.6, ease:"power1.in"}, "<")
+              .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: 0, ease:"power1.in"}, "<")
               //.fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
               //.fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
               //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
 
-            const macBookProOpenAnimIn = gsap.timeline({
+            const macBookProOpenDisplayAnimIn = gsap.timeline({
               paused:true,
               scrollTrigger: {
                 trigger: '#featuresDashboard',
-                start: 'top 5%',
-                end: 'top top',
+                start: 'top 10%',
+                end: 'top -15%',
                 markers: false,
                 scrub: true,
                 invalidateOnRefresh: true,
                 toggleActions: "play none none reverse"
               },
             })
-              .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
-              .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
+              .fromTo(macBookPro.scene.position, {y: -0.6}, {y: -0.795, ease:"linear", duration:1})
+              .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
+              .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
               //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
 
             // macBookProFeaturesAnimOut
@@ -377,7 +379,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
         {/* <ScrollControls pages={5} damping={0.1}> */}
 
           {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
-          <ambientLight intensity={2}/>
+          <ambientLight intensity={3}/>
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 

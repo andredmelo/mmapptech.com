@@ -96,6 +96,27 @@ export default function Home() {
   useGSAP(
     () => {
       let matchMedia = gsap.matchMedia();
+
+      const smallMissionImg = document.querySelector(".smallMissionImg");
+      if (smallMissionImg) {
+        const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
+        const halfViewportHeight = window.innerHeight / 2;
+        const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
+        console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
+        
+        //Custom endTrigger
+        matchMedia.add("(min-width: 768px)", (context) => {
+          ScrollTrigger.create({
+            trigger: smallMissionImg,
+            start: "center 50%",
+            endTrigger: ".smallMissionDescriptionContainer",
+            end: "bottom "+endSmallMissionImgTrigger+"px",
+            pin: ".smallMissionImg",
+            pinSpacing: false,
+            invalidateOnRefresh: true,
+          });
+        });
+      };
       /* const detectViewportRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -137,6 +158,7 @@ export default function Home() {
               //console.log("Dashboard animations are ready");
           let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
           let dashboardTitle = document.getElementById('featuresDashboardTitle');
+          let dashboardContainer = document.getElementById('featuresDashboardContainer');
 
           let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
 
@@ -152,7 +174,7 @@ export default function Home() {
           });
 
           // Pin Dashboard Title
-          if (isViewportRatioLessThan192()) {
+          /* if (isViewportRatioLessThan192()) {
             ScrollTrigger.create({
               trigger: dashboardTitle,
               start: "top 7%",
@@ -161,7 +183,7 @@ export default function Home() {
               pinSpacing: false,
               invalidateOnRefresh: true,
             });
-          }
+          } */
 
           dashboardCards.forEach((card, i) => {
             switch (i) {
@@ -179,13 +201,13 @@ export default function Home() {
                 });
                 /* ScrollTrigger.create({
                   trigger: card,
-                  start: "center 60%",
+                  start: "center 50%",
                   end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: header,
+                  pin: dashboardContainer,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* if (isViewportRatioLessThan192()) {
+                /* if (isViewportRatioLessThan192()) { */
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 50%",
@@ -194,7 +216,7 @@ export default function Home() {
                     pinSpacing: false,
                     invalidateOnRefresh: true,
                   });
-                } */
+                /* } */
                 break;
               case dashboardCards.length-1: // case to pinSpacing the last card
                 ScrollTrigger.create({
@@ -546,77 +568,84 @@ export default function Home() {
         </div>
 
 
-        <section id="OurMission" className="z-20 flex flex-col justify-center">
+        <section id="SmallMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative ", //shadow-inset-mission
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
               "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
             >
-              <div className="flex flex-col justify-top z-20 ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem]"> {/* pt-[2rem] md:pt-[2rem] lg:pt-[2rem] max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] */}
+              <div className="flex flex-col justify-top z-20 mx-[2rem] md:mx-[6rem] xl:mx-[12rem] 2xl:mx-[16rem]"> {/* ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[2rem] md:pt-[2rem] lg:pt-[2rem] max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] */}
                 <h5 className="mb-4 md:mb-8 lg:mb-12 text-center text-neutral-200 deboss">
-                  Our Mission
+                  Small Mission
                 </h5>
                 <div className="flex flex-col justify-center items-center">
                   <h3 className="mb-8 md:mb-12 lg:mb-12 py-8 text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[80%]">
                     Accelerate the Recognition of MMA as an Olympic Sport
                   </h3>
                   <p className="mb-8 md:mb-12 lg:mb-12 leading-[2.1rem] md:leading-[2.5rem] text-center w-[95%] md:w-[70%] lg:w-[62%]">
-                    At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age.
+                    MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
                   </p>
                 </div>
-                <div className="flex flex-col w-[27rem] md:w-[35rem] lg:w-[65rem] gap-10">
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      Management, Scheduling, Officiation
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling.<br/>
-                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
+                <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
+                  <div className="flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
+                    <div>
+                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                        Management, Scheduling, Officiation
+                      </h5>
+                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Our platform solves all issues Federations face in membership approval and management and event scheduling and approval.<br/>
+                        On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                        Common Language & Unit of Measurement
+                      </h5>
+                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
+                        By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                        The “Dashboard” app
+                      </h5>
+                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Easy & Quick sign up for members, with minimal input from Federations.<br/>
+                        Manage Members and Events with a few clicks.<br/>
+                        Gain insights into your officials performances.<br/>
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                        The “Judge” app
+                      </h5>
+                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
+                        Discuss scoring in a deeper manner.<br/>
+                        Lifetime archive of your scoring.<br/>
+                        Contribute to the improvement of MMA Judging.<br/>
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                        The “RecordKeeper” app
+                      </h5>
+                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        All Timing duties done automatically.<br/>
+                        Receive and calculate scores instantly.<br/>
+                        Record fight events like never before.<br/>
+                      </p>
+                    </div>
+                    <p className="text-md hover:text-white text-neutral-200 text-left pb-14 md:pb-0 pl-10">
+                    <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
                     </p>
                   </div>
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      Common Language & Unit of Measurement
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials.<br/>
-                      By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.<br/>
-                      We want to acomplish all this with our 3 revolutionizing tools.
-                    </p>
+                  <div className="flex justify-start items-start w-[100%] md:w-[35%]">
+                    <img className="smallMissionImg z-10 object-contain self-start px-0 md:px-2 pb-4 md:pb-6 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
                   </div>
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      The “Dashboard” app
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Overview of Federation Affairs (insert pretty text here).<br/>
-                      Visual Reports with Actionable Insights (insert pretty text here).<br/>
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      The “Judge” app
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Specifically designed for officials and their mobile devices.<br/>
-                      It provides the tool to apply our methodology during a fight<br/>
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      The “RecordKeeper” app
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Effortlessly monitor all relevant details during a fight.<br/>
-                      Flawlessly perform all timing duties (Round time, Break Time and more).<br/>
-                    </p>
-                  </div>
-                  <p className="text-md hover:text-white text-neutral-200 text-left pt-6 pl-10">
-                  <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
-                  </p>
                 </div>
               </div>
-              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[1.5rem] md:right-[6rem] lg:bottom-[4rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
             </div>
         </section>
 
@@ -655,13 +684,13 @@ export default function Home() {
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
-              <div className="flex flex-col justify-top z-20 text-center">
+              <div id="featuresDashboardContainer" className="flex flex-col justify-top z-20 text-center">
                 <h2 id="featuresDashboardTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
                   Federations (Dashboard)
                 </h2>
                 <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
                   <h4 className="featuresDashboardHeaderItem">
-                    Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
+                    Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
                   </h4>
                 </FeaturesDashboardCard>
                 <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
@@ -854,7 +883,7 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        {/* <section id="OurMission" className="z-20 flex flex-col justify-center">
+        {/* <section id="SmallMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",

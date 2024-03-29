@@ -578,7 +578,7 @@ export default function Home() {
         </div>
 
 
-        <section id="OurMission" className="z-20 flex flex-col justify-center">
+        <section id="SmallMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative ", //shadow-inset-mission
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
@@ -824,7 +824,7 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        {/* <section id="OurMission" className="z-20 flex flex-col justify-center">
+        {/* <section id="SmallMission" className="z-20 flex flex-col justify-center">
             <div
               className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",

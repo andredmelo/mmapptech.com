@@ -14,15 +14,15 @@ const FeaturesDashboardCard = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col items-center justify-center",
-      "w-full h-full",
+      "w-full h-full", // border-2 border-green-500
       parentClassName
     )}>
     <div
       ref={ref}
       className={cn(
         "flex items-start justify-center",
-        "w-[95vw] md:w-[90vw] lg:w-[75vw] h-[100vw] md:h-[100vw]",
-        "max-w-[1440px] max-h-[100vh] overflow-hidden object-cover object-top py-[12%]",
+        "w-[95vw] md:w-[90vw] lg:w-[75vw] h-full",
+        "max-w-[1440px] min-h-[66vh] overflow-visible object-top",
         /* "bg-transparent ring-2 ring-fuchsia-900", */
         className
       )}

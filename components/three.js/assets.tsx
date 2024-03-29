@@ -27,7 +27,14 @@ export const CustomCamera: React.FC = () => {
   perspectiveCamera.aspect = window.innerWidth / window.innerHeight;
   perspectiveCamera.near = 0.1;
   perspectiveCamera.far = 100;
-  perspectiveCamera.position.set(0, 0, 4);
+  //perspectiveCamera.position.set(0, 0, 4);
+  if (window.innerWidth > window.innerHeight) {
+    // Landscape mode
+    perspectiveCamera.position.set(0, 0, 4);
+  } else {
+    // Portrait mode
+    perspectiveCamera.position.set(0, 0, 6);
+  }
   perspectiveCamera.updateProjectionMatrix();
 
   // No need to render anything, as this component is only for configuring the camera
@@ -182,7 +189,14 @@ export const IPhoneModel: React.FC<{
     // Change iPhone opacity function
     const changeiPhoneOpacity = (newiPhoneOpacity: number) => {
       iPhone.scene.traverse((child: any) => {
-        if (child instanceof Mesh && child.material instanceof Material) {
+        if (newiPhoneOpacity === 0) {
+          iPhone.scene.visible = false; // This makes it invisible
+          //child.material.transparent = true; // Ensure transparency is enabled
+        } else {
+          iPhone.scene.visible = true; // This makes it invisible
+          //child.material.transparent = false; // Ensure transparency is disabled
+        }
+        /* if (child instanceof Mesh && child.material instanceof Material) {
           child.material.opacity = newiPhoneOpacity;
           if (newiPhoneOpacity === 0) {
             child.material.transparent = true; // Ensure transparency is enabled
@@ -190,7 +204,7 @@ export const IPhoneModel: React.FC<{
             child.material.transparent = false; // Ensure transparency is disabled
           }
           child.material.needsUpdate = true; // Mark the material for update
-        }
+        } */
       });
     }
     if (iPhoneOpacity !== undefined && iPhoneOpacity !== null) {
@@ -233,7 +247,7 @@ export const IPhoneModel: React.FC<{
 
   return (
       <>
-        <DatGuiWrapper>
+        {/* <DatGuiWrapper>
           {(gui, addFolderSafely) => {
             // Use the gui instance here to add your controls
             // This function will only be executed on the client side
@@ -268,9 +282,9 @@ export const IPhoneModel: React.FC<{
             }
             return null; // This component does not render anything itself
           }}
-        </DatGuiWrapper>
-          <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
-          <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
+        </DatGuiWrapper> */}
+          {/* <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
+          <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} /> */}
           <primitive object={iPhone.scene} /* ref={iPhoneRef} */ ref={innerRef} />
       </>
   );
@@ -278,7 +292,18 @@ export const IPhoneModel: React.FC<{
 
 
 // iPad Model component
-export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; iPad_texture_2: any; iPad_texture_3: any; iPad_texture_4: any; iPad_texture_5: any; newiPadTextureName: any }; innerRef?: React.Ref<Mesh>;  }> = ({ iPad, textures, innerRef }) => {
+export const IPadModel: React.FC<{
+  iPad: any;
+  textures: {
+    iPad_texture_1: any;
+    iPad_texture_2: any;
+    iPad_texture_3: any;
+    iPad_texture_4: any;
+    iPad_texture_5: any;
+    newiPadTextureName: any
+  };
+  innerRef?: React.Ref<Mesh>;
+}> = ({ iPad, textures, innerRef }) => {
   const { iPadTextureName } = useContext(IPadTextureContext);
   const { iPadOpacity } = useContext(IPadOpacityContext);
 
@@ -314,7 +339,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
     iPad.scene.traverse((child: Object3D) => {
       if (child instanceof Mesh && child.material.name === 'iPad_Screen') {
         iPadScreenMaterial = child.material;
-        const texture = textures.iPad_texture_3;
+        const texture = textures.iPad_texture_1;
 
         // Apply the texture to the existing material's map
         iPadScreenMaterial.map = texture;
@@ -373,6 +398,14 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
     // Change iPad opacity function
     const changeiPadOpacity = (newiPadOpacity: number) => {
       iPad.scene.traverse((child: any) => {
+        /* if (newiPadOpacity === 0) {
+          iPad.scene.visible = false; // This makes it invisible
+          //child.material.transparent = true; // Ensure transparency is enabled
+        } else {
+          iPad.scene.visible = true; // This makes it invisible
+          //child.material.transparent = false; // Ensure transparency is disabled
+        } */
+
         if (child instanceof Mesh && child.material instanceof Material) {
           child.material.opacity = newiPadOpacity;
           if (newiPadOpacity === 0) {
@@ -425,7 +458,7 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
 
   return (
       <>
-      <DatGuiWrapper>
+      {/* <DatGuiWrapper>
         {(gui, addFolderSafely) => {
           // Use the gui instance here to add your controls
           // This function will only be executed on the client side
@@ -460,9 +493,9 @@ export const IPadModel: React.FC<{ iPad: any; textures: { iPad_texture_1: any; i
           }
           return null; // This component does not render anything itself
         }}
-      </DatGuiWrapper>
-          <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
-          <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
+      </DatGuiWrapper> */}
+          {/* <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
+          <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} /> */}
           <primitive object={iPad.scene} /* ref={iPadRef} */ ref={innerRef} />
       </>
   );
@@ -499,7 +532,7 @@ export const MacBookProModel: React.FC<{
     macBookPro.scene.traverse((child: Object3D) => {
       if (child instanceof Mesh && child.material.name === 'macBookPro_Screen') {
         macBookProScreenMaterial = child.material;
-        const texture = textures.macBookPro_texture_2; // Default texture, adjust as needed
+        const texture = textures.macBookPro_texture_1; // Default texture, adjust as needed
 
         // Apply the texture to the existing material's map
         macBookProScreenMaterial.map = texture;
@@ -550,16 +583,23 @@ export const MacBookProModel: React.FC<{
     // Change MacBook Pro opacity function
     const changeMacBookProOpacity = (newMacBookProOpacity: number) => {
       macBookPro.scene.traverse((child: any) => {
-        if (child instanceof Mesh && child.material instanceof Material) {
+        if (newMacBookProOpacity === 0) {
+          macBookPro.scene.visible = false; // This makes it invisible
+          //child.material.transparent = true; // Ensure transparency is enabled
+        } else {
+          macBookPro.scene.visible = true; // This makes it invisible
+          //child.material.transparent = false; // Ensure transparency is disabled
+        }
+        /* if (child instanceof Mesh && child.material instanceof Material) {
           child.material.opacity = newMacBookProOpacity;
-          /* child.material.transparent = newMacBookProOpacity < 1; */
+          //child.material.transparent = newMacBookProOpacity < 1;
           if (newMacBookProOpacity === 0) {
             child.material.transparent = true; // Ensure transparency is enabled
           } else {
             child.material.transparent = false; // Ensure transparency is disabled
           }
           child.material.needsUpdate = true; // Mark the material for update
-        }
+        } */
       });
     }
     if (macBookProOpacity !== undefined && macBookProOpacity !== null) {
@@ -603,7 +643,7 @@ export const MacBookProModel: React.FC<{
 
 return (
   <>
-  <DatGuiWrapper>
+  {/* <DatGuiWrapper>
     {(gui, addFolderSafely) => {
       // Use the gui instance here to add your controls
       // This function will only be executed on the client side
@@ -647,9 +687,9 @@ return (
       }
       return null; // This component does not render anything itself
     }}
-  </DatGuiWrapper>
-    <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
-    <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} />
+  </DatGuiWrapper> */}
+    {/* <pointLight position={[-10, -10, -10]} color="#636363" intensity={2000} />
+    <pointLight position={[10, 10, 10]} color="#636363" intensity={2000} /> */}
     <primitive object={macBookPro.scene} ref={innerRef} />
   </>
 );
