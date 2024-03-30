@@ -98,8 +98,10 @@ export default function Home() {
 
       const isLandscape = window.innerWidth > window.innerHeight;
       const isPortrait = window.innerWidth < window.innerHeight;
-   
+      const isUnder768 = window.innerWidth < 768;
+      const isOver1536 = window.innerWidth > 1536;
 
+      // Pin Small Mission Image
       const smallMissionImg = document.querySelector(".smallMissionImg");
       const smallMissionDescription = document.querySelector(".smallMissionDescription");
       if (smallMissionImg) {
@@ -107,7 +109,7 @@ export default function Home() {
         const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
         const halfViewportHeight = window.innerHeight / 2;
         const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
-        console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
+        //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
 
         //Custom endTrigger
         matchMedia.add("(min-width: 768px)", (context) => {
@@ -124,6 +126,7 @@ export default function Home() {
           }
         });
       };
+      
       /* const detectViewportRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -161,9 +164,15 @@ export default function Home() {
       //Variables in common
       let sectionTitlePaddingTop = "" as string;
       if (isLandscape) {
-        sectionTitlePaddingTop = "70px";
-      } else {
+        if (isOver1536) {
+          sectionTitlePaddingTop = "90px";
+        } else {
+          sectionTitlePaddingTop = "70px";
+        }
+      } else if (isUnder768) {
         sectionTitlePaddingTop = "50px";
+      } else {
+        sectionTitlePaddingTop = "90px";
       }
 
       //Dashboard Animations
@@ -647,16 +656,16 @@ export default function Home() {
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col z-20 text-left">
 
-                <div id="featuresDashboardTitle" className="flex portrait:flex-row landscape:flex-row justify-start items-center z-20 text-left">  {/* landscape:xl:flex-col landscape:xl:items-start */}
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 pr-12">
-                    Dashboard
+                <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
+                    Federations
                   </h2>
                   <div className="flex flex-row justify-start items-center">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
                       ➤
                     </h6>
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
-                      Federations
+                      Dashboard App
                     </h4>
                   </div>
                 </div>
@@ -821,16 +830,16 @@ export default function Home() {
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col z-20 text-right">
 
-                <div id="featuresJudgeTitle" className="flex portrait:flex-row landscape:flex-row justify-end items-center z-20 text-right">  {/* landscape:xl:flex-col landscape:xl:items-start */}
+                <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
                   <div className="flex flex-row justify-end items-center">
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
                       Judge App
                     </h4>
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden lanscape:block">
                       ➤
                     </h6>
                   </div>
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 pl-12">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0">
                     Officials
                   </h2>
                 </div>
@@ -902,12 +911,12 @@ export default function Home() {
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
               <div className="flex flex-col z-20 text-left">
 
-                <div id="featuresRecordKeeperTitle" className="flex portrait:flex-row landscape:flex-row justify-start items-center z-20 text-left">  {/* landscape:xl:flex-col landscape:xl:items-start */}
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 pr-12">
+                <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
                     Officials
                   </h2>
                   <div className="flex flex-row justify-start items-center">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
                       ➤
                     </h6>
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
