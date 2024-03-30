@@ -21,7 +21,7 @@ export const BenefitsAthletes = (props: BenefitsAthletesProps) => {
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 py-4">
+            <div className="flex items-center justify-center text-white pr-4 pb-0">
               {svg}
             </div>
           </dt>
@@ -47,7 +47,7 @@ export const BenefitsCoaches = (props: BenefitsCoachesProps) => {
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 py-4">
+            <div className="flex items-center justify-center text-white pr-4 pb-0">
               {svg}
             </div>
           </dt>
@@ -73,7 +73,7 @@ export const BenefitsClubs = (props: BenefitsClubsProps) => {
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 py-4">
+            <div className="flex items-center justify-center text-white pr-4 pb-0">
               {svg}
             </div>
           </dt>
@@ -99,7 +99,7 @@ export const BenefitsPromoters = (props: BenefitsPromotersProps) => {
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 py-4">
+            <div className="flex items-center justify-center text-white pr-4 pb-0">
               {svg}
             </div>
           </dt>

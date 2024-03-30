@@ -730,7 +730,7 @@ li:nth-child(4) .nav-link:nth-child(1) {
 .dropdown {
   display: flex;
   flex-direction: column;
-  /* min-width: 230px; */
+  min-width: 15.15rem;
   white-space: nowrap;
   /* background-color: var(--background2-grey); */
   /* background: rgb(19, 19, 22, 0.98); */

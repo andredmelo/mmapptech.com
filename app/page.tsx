@@ -11,9 +11,8 @@ import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
-import { FeaturesDashboardCard } from '@/components/ui/featuresDashboardCard'
-import { FeaturesJudgeCard } from '@/components/ui/featuresJudgeCard'
-import { FeaturesRecordKeeperCard } from '@/components/ui/featuresRecordKeeperCard'
+import { FeaturesLeftCard, FeaturesLeftCardHeader, FeaturesLeftCardTitle, FeaturesLeftCardDescription } from '@/components/ui/featuresLeftCard'
+import { FeaturesRightCard, FeaturesRightCardHeader, FeaturesRightCardTitle, FeaturesRightCardDescription } from '@/components/ui/featuresRightCard'
 //import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
 
 import(/* webpackPreload: true */ '@/components/three.js');
@@ -97,24 +96,32 @@ export default function Home() {
     () => {
       let matchMedia = gsap.matchMedia();
 
+      const isLandscape = window.innerWidth > window.innerHeight;
+      const isPortrait = window.innerWidth < window.innerHeight;
+   
+
       const smallMissionImg = document.querySelector(".smallMissionImg");
+      const smallMissionDescription = document.querySelector(".smallMissionDescription");
       if (smallMissionImg) {
         const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
+        const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
         const halfViewportHeight = window.innerHeight / 2;
         const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
         console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
-        
+
         //Custom endTrigger
         matchMedia.add("(min-width: 768px)", (context) => {
-          ScrollTrigger.create({
-            trigger: smallMissionImg,
-            start: "center 50%",
-            endTrigger: ".smallMissionDescriptionContainer",
-            end: "bottom "+endSmallMissionImgTrigger+"px",
-            pin: ".smallMissionImg",
-            pinSpacing: false,
-            invalidateOnRefresh: true,
-          });
+          if (smallMissionImgHeight < smallMissionDescriptionHeight) {
+            ScrollTrigger.create({
+              trigger: smallMissionImg,
+              start: "center 50%",
+              endTrigger: ".smallMissionDescriptionContainer",
+              end: "bottom "+endSmallMissionImgTrigger+"px",
+              pin: ".smallMissionImg",
+              pinSpacing: false,
+              invalidateOnRefresh: true,
+            });
+          }
         });
       };
       /* const detectViewportRatio = () => {
@@ -144,11 +151,19 @@ export default function Home() {
       window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
       
       //To detect if a viewport is ultra-wide 1.9265 = 920px height
-      function isViewportRatioLessThan192() {
+      /* function isViewportRatioLessThan192() {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const ratio = width / height;
         return ratio < 1.9265;
+      } */
+
+      //Variables in common
+      let sectionTitlePaddingTop = "" as string;
+      if (isLandscape) {
+        sectionTitlePaddingTop = "70px";
+      } else {
+        sectionTitlePaddingTop = "50px";
       }
 
       //Dashboard Animations
@@ -173,18 +188,6 @@ export default function Home() {
             markers:false,
           });
 
-          // Pin Dashboard Title
-          /* if (isViewportRatioLessThan192()) {
-            ScrollTrigger.create({
-              trigger: dashboardTitle,
-              start: "top 7%",
-              end: () => lastDashboardCardST.start + bottomDistance,
-              pin: dashboardTitle,
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            });
-          } */
-
           dashboardCards.forEach((card, i) => {
             switch (i) {
               case 0: // case to pin both card[0] and header
@@ -199,6 +202,15 @@ export default function Home() {
                     setMacBookProTextureName('macBookPro_texture_'+(i+1));
                   }
                 });
+                // Pin Dashboard Title
+                ScrollTrigger.create({
+                  trigger: dashboardTitle,
+                  start: "top "+sectionTitlePaddingTop,
+                  end: () => lastDashboardCardST.start + bottomDistance,
+                  pin: dashboardTitle,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
                 /* ScrollTrigger.create({
                   trigger: card,
                   start: "center 50%",
@@ -207,16 +219,6 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* if (isViewportRatioLessThan192()) { */
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 50%",
-                    end: () => lastDashboardCardST.start + bottomDistance,
-                    pin: dashboardTitle,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  });
-                /* } */
                 break;
               case dashboardCards.length-1: // case to pinSpacing the last card
                 ScrollTrigger.create({
@@ -228,13 +230,13 @@ export default function Home() {
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.3})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.3})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.3})
                   }
                 });
                 break;
@@ -247,13 +249,13 @@ export default function Home() {
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.3})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.3})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.3})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.3})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -302,18 +304,6 @@ export default function Home() {
             markers:false,
           });
 
-          // Pin Judge Title
-          if (isViewportRatioLessThan192()) {
-            ScrollTrigger.create({
-              trigger: judgeTitle,
-              start: "top 7%",
-              end: () => lastJudgeCardST.start + bottomDistance,
-              pin: judgeTitle,
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            });
-          }
-
           judgeCards.forEach((card, i) => {
             switch (i) {
               case 0: // case to pin both card[0] and header
@@ -328,14 +318,15 @@ export default function Home() {
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
                   }
                 });
-                /* ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
+                // Pin Judge Title
+                ScrollTrigger.create({
+                  trigger: judgeTitle,
+                  start: "top "+sectionTitlePaddingTop,
                   end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: header,
+                  pin: judgeTitle,
                   pinSpacing: false,
                   invalidateOnRefresh: true,
-                }); */
+                });
                 /* if (isViewportRatioLessThan192()) {
                   ScrollTrigger.create({
                     trigger: card,
@@ -359,13 +350,13 @@ export default function Home() {
                     //changeJudgeH4.play();
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
                     gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
                     gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
                   }
                 });
                 break;
@@ -380,13 +371,13 @@ export default function Home() {
                     //changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
                     gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
                     gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -436,18 +427,6 @@ export default function Home() {
             markers:false,
           });
 
-          // Pin RecordKeeper Title
-          if (isViewportRatioLessThan192()) {
-            ScrollTrigger.create({
-              trigger: recordKeeperTitle,
-              start: "top 7%",
-              end: () => lastRecordKeeperCardST.start + bottomDistance,
-              pin: recordKeeperTitle,
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            });
-          }
-
           recordKeeperCards.forEach((card, i) => {
             switch (i) {
               case 0: // case to pin both card[0] and header
@@ -462,6 +441,15 @@ export default function Home() {
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
                   }
                 });
+                // Pin RecordKeeper Title
+                ScrollTrigger.create({
+                  trigger: recordKeeperTitle,
+                  start: "top "+sectionTitlePaddingTop,
+                  end: () => lastRecordKeeperCardST.start + bottomDistance,
+                  pin: recordKeeperTitle,
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
                 /* ScrollTrigger.create({
                   trigger: card,
                   start: "center 60%",
@@ -470,16 +458,6 @@ export default function Home() {
                   pinSpacing: false,
                   invalidateOnRefresh: true,
                 }); */
-                /* if (isViewportRatioLessThan192()) {
-                  ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 50%",
-                    end: () => lastRecordKeeperCardST.start + bottomDistance,
-                    pin: recordKeeperTitle,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  });
-                } */
                 break;
               case recordKeeperCards.length-1: // case to pinSpacing the last card
                 ScrollTrigger.create({
@@ -490,16 +468,14 @@ export default function Home() {
                   pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeRecordKeeperH4.play();
                     setiPadTextureName('iPad_texture_'+(i+1));
                     gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeRecordKeeperH4.reverse();
                     setiPadTextureName('iPad_texture_'+(i));
                     gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
                   }
                 });
                 break;
@@ -511,16 +487,14 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeRecordKeeperH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
                     setiPadTextureName('iPad_texture_'+(i+1));
                     gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeRecordKeeperH4.reverse();
                     setiPadTextureName('iPad_texture_'+(i));
                     gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -587,7 +561,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
-                  <div className="flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
+                  <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
                     <div>
                       <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
                         Management, Scheduling, Officiation
@@ -658,6 +632,8 @@ export default function Home() {
             Features
           </h5>
 
+
+          {/* <HomeFeaturesR3F /> */}
           <div ref={homeFeaturesR3FobserverRef} />
           {showHomeFeaturesR3F && (
             <Suspense fallback={<div>Loading 3D...</div>}>
@@ -666,33 +642,93 @@ export default function Home() {
           )}
 
           {/* // Dashboard */}
-          {/* <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
-            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
-            <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] flex flex-col justify-center items-center z-5">
-              <img className="object-contain relative z-5 max-w-[68%] mt-[5vh] macBookPro" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x_alpha.webp" alt="MacBook Pro"/>
-            </div>
-            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
-              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
-              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
-            </div>
-          </div> */}
+          <div id="featuresDashboard" className="featuresDashboard flex justify-center">
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col z-20 text-left">
 
+                <div id="featuresDashboardTitle" className="flex portrait:flex-row landscape:flex-row justify-start items-center z-20 text-left">  {/* landscape:xl:flex-col landscape:xl:items-start */}
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 pr-12">
+                    Dashboard
+                  </h2>
+                  <div className="flex flex-row justify-start items-center">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8">
+                      ➤
+                    </h6>
+                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
+                      Federations
+                    </h4>
+                  </div>
+                </div>
 
+                <FeaturesLeftCard className="dashboardCard z-10">
+                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Overview of Federation Affairs
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="dashboardCard z-10">
+                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Visual Reports with Actionable Insights
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="dashboardCard z-10">
+                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Easy Form Management and Seamless Sign-up process for all (Officials, Athletes, Coaches, Promoters and Clubs)
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="dashboardCard z-10">
+                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Intuitive Member Management
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="dashboardCard z-10">
+                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Centralized Database
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+              </div>
+            </div>
+          </div>
+
+          {/* 
+            // Dashboard V3 with 3D
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
-              <div id="featuresDashboardContainer" className="flex flex-col justify-top z-20 text-center">
+              <div id="featuresDashboardContainer" className="flex flex-col w-full justify-top z-20 text-center">
                 <h2 id="featuresDashboardTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
                   Federations (Dashboard)
                 </h2>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
-                  </h4>
-                </FeaturesDashboardCard>
                 <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
                   <h4 className="featuresDashboardHeaderItem">
                     Overview of Federation Affairs
@@ -705,7 +741,7 @@ export default function Home() {
                 </FeaturesDashboardCard>
                 <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
                   <h4 className="featuresDashboardHeaderItem">
-                    Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)
+                    Easy Form Management and Seamless Sign-up process for all (Officials, Athletes, Coaches, Promoters and Clubs)
                   </h4>
                 </FeaturesDashboardCard>
                 <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
@@ -713,9 +749,14 @@ export default function Home() {
                     Intuitive Member Management
                   </h4>
                 </FeaturesDashboardCard>
+                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
+                  <h4 className="featuresDashboardHeaderItem">
+                    Centralized Database
+                  </h4>
+                </FeaturesDashboardCard>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/*
             // Dashboard V2 with Screen and MacBook Pro image behind
@@ -773,90 +814,163 @@ export default function Home() {
             </FeaturesDashboardCard>
           </div> */}
 
-          {/* <HomeFeaturesR3F /> */}
-          {/* <div ref={homeFeaturesR3FobserverRef} style={{ height: '1px' }}></div> */}{/* 
-          <div ref={homeFeaturesR3FobserverRef} />
-          {showHomeFeaturesR3F && (
-            <Suspense fallback={<div>Loading 3D...</div>}>
-              <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
-            </Suspense>
-          )} */}
 
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
-              <div className="flex flex-col justify-top z-20 text-left">
-                <h2 id="featuresJudgeTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
-                  Officials (Judge)
-                </h2>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Personalized Fight Card
-                  </h4>
-                </FeaturesJudgeCard>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Make more Informed Decisions with a Coherent and Consistent Methodology
-                  </h4>
-                </FeaturesJudgeCard>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Discuss scoring more deeply with your colleagues
-                  </h4>
-                </FeaturesJudgeCard>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Reduce Fatigue
-                  </h4>
-                </FeaturesJudgeCard>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Instantly submit your scorecards to the RecordKeeper
-                  </h4>
-                </FeaturesJudgeCard>
-                <FeaturesJudgeCard className="judgeCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresJudgeHeaderItem">
-                    Training Mode<br/>Create Own Fights, Improve your skills and compare with your colleagues
-                  </h4>
-                </FeaturesJudgeCard>
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col z-20 text-right">
+
+                <div id="featuresJudgeTitle" className="flex portrait:flex-row landscape:flex-row justify-end items-center z-20 text-right">  {/* landscape:xl:flex-col landscape:xl:items-start */}
+                  <div className="flex flex-row justify-end items-center">
+                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
+                      Judge App
+                    </h4>
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180">
+                      ➤
+                    </h6>
+                  </div>
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 pl-12">
+                    Officials
+                  </h2>
+                </div>
+
+                <FeaturesRightCard className="judgeCard z-10">
+                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
+                    <FeaturesRightCardTitle>
+                      Personalized Fight Card
+                    </FeaturesRightCardTitle>
+                    <FeaturesRightCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesRightCardDescription>
+                  </FeaturesRightCardHeader>
+                </FeaturesRightCard>
+
+                <FeaturesRightCard className="judgeCard z-10">
+                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
+                    <FeaturesRightCardTitle>
+                      Make more Informed Decisions with a Coherent and Consistent Methodology
+                    </FeaturesRightCardTitle>
+                    <FeaturesRightCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesRightCardDescription>
+                  </FeaturesRightCardHeader>
+                </FeaturesRightCard>
+
+                <FeaturesRightCard className="judgeCard z-10">
+                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
+                    <FeaturesRightCardTitle>
+                      Discuss scoring more deeply with your colleagues<br/>
+                      Reduce Fatigue
+                    </FeaturesRightCardTitle>
+                    <FeaturesRightCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesRightCardDescription>
+                  </FeaturesRightCardHeader>
+                </FeaturesRightCard>
+
+                <FeaturesRightCard className="judgeCard z-10">
+                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
+                    <FeaturesRightCardTitle>
+                      Instantly submit your scorecards to the RecordKeeper
+                    </FeaturesRightCardTitle>
+                    <FeaturesRightCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesRightCardDescription>
+                  </FeaturesRightCardHeader>
+                </FeaturesRightCard>
+
+                <FeaturesRightCard className="judgeCard z-10">
+                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
+                    <FeaturesRightCardTitle>
+                      Training Mode<br/>
+                      Create Own Fights, Improve your skills and share with your colleagues
+                    </FeaturesRightCardTitle>
+                    <FeaturesRightCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesRightCardDescription>
+                  </FeaturesRightCardHeader>
+                </FeaturesRightCard>
+                
               </div>
             </div>
           </div>
 
           {/* // RecordKeeper */}
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
-              <div className="flex flex-col justify-top z-20 text-right">
-                <h2 id="featuresRecordKeeperTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                  Officials (RecordKeeper)
-                </h2>
-                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">
-                    Pre-filled in Information
-                  </h4>
-                </FeaturesRecordKeeperCard>
-                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">
-                    Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules
-                  </h4>
-                </FeaturesRecordKeeperCard>
-                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">
-                    Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)
-                  </h4>
-                </FeaturesRecordKeeperCard>
-                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">
-                    Notifications for actions needed to perform
-                  </h4>
-                </FeaturesRecordKeeperCard>
-                <FeaturesRecordKeeperCard className="recordKeeperCard z-10" parentClassName="pb-0">
-                  <h4 className="featuresRecordKeeperHeaderItem">
-                    Instant Score Delivery and Calculation
-                  </h4>
-                </FeaturesRecordKeeperCard>
+            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+              <div className="flex flex-col z-20 text-left">
+
+                <div id="featuresRecordKeeperTitle" className="flex portrait:flex-row landscape:flex-row justify-start items-center z-20 text-left">  {/* landscape:xl:flex-col landscape:xl:items-start */}
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 pr-12">
+                    Officials
+                  </h2>
+                  <div className="flex flex-row justify-start items-center">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8">
+                      ➤
+                    </h6>
+                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
+                      RecordKeeper
+                    </h4>
+                  </div>
+                </div>
+
+                <FeaturesLeftCard className="recordKeeperCard z-10">
+                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Pre-filled in Information
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="recordKeeperCard z-10">
+                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="recordKeeperCard z-10">
+                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="recordKeeperCard z-10">
+                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Notifications for actions needed to perform
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
+                <FeaturesLeftCard className="recordKeeperCard z-10">
+                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
+                    <FeaturesLeftCardTitle>
+                      Instant Score Delivery and Calculation
+                    </FeaturesLeftCardTitle>
+                    <FeaturesLeftCardDescription>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </FeaturesLeftCardDescription>
+                  </FeaturesLeftCardHeader>
+                </FeaturesLeftCard>
+
               </div>
             </div>
           </div>
@@ -872,9 +986,12 @@ export default function Home() {
             <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h2 id="featuresJudgeTitle" className="text-transparent text-center bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 w-[95%] md:w-[60%]">
-              Athletes, Coaches, Clubs and Promoters all Benefit
+            <h2 id="featuresJudgeTitle" className="text-transparent text-center pb-12 bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[85%]">
+            Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
             </h2>
+            <p className=" text-center w-[95%] md:w-[60%] pb-10">
+              Choose your category below to find out how you stand to gain
+            </p>
           </div>
           <Benefits /* items={items} */ />
         </section>

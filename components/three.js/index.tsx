@@ -233,7 +233,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 }
               },
             })
-              .set(macBookPro.scene.scale, {x: 0.6, y: 0.6, z: 0.6})
+              .set(macBookPro.scene.scale, {x: 0.61, y: 0.61, z: 0.61})
               .set((macBookProDisplay as Mesh).rotation, {x: 6.285})
               .set((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0})
               //.set((macBookProScreenOutline as MeshStandardMaterial).emissive, {r: 0.5, g: 0.5, b: 0.5})
@@ -246,7 +246,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               .set(iPad.scene.position, {x: 0})
               .set(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57})
 
-            // macBookProFeaturesAnimOIn
+            // macBookProFeaturesAnimIn
             const macBookProFeaturesAnimIn = gsap.timeline({
               paused:true,
               scrollTrigger: {
@@ -259,9 +259,9 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 toggleActions: "play none none reverse"
               },
             })
-              .fromTo(macBookPro.scene.position, {x: -3}, {x: 0, ease:"power1.out"})
-              .fromTo(macBookPro.scene.position, {y: 0.5}, {y: -0.6, ease:"power1.in"}, "<")
-              .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: 0, ease:"power1.in"}, "<")
+              .fromTo(macBookPro.scene.position, {x: 3}, {x: 0.625, ease:"power1.out"})
+              .fromTo(macBookPro.scene.position, {y: 0.4}, {y: -0.5, ease:"power1.in"}, "<")
+              .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: -0.5, ease:"power1.in"}, "<")
               //.fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
               //.fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
               //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
@@ -278,7 +278,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 toggleActions: "play none none reverse"
               },
             })
-              .fromTo(macBookPro.scene.position, {y: -0.6}, {y: -0.795, ease:"linear", duration:1})
+              .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -0.7, ease:"linear", duration:1})
               .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
               .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
               //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
@@ -299,9 +299,10 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"power1.in", duration:1})
               .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
               //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
-              .fromTo(macBookPro.scene.position, {x: 0, y: -0.795}, {x: 0, y: -0.03, ease:"power1.out"}, "<")
-              .fromTo(macBookPro.scene.rotation, {x: -0.075, y: 0, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out"}, "<")
-              .fromTo(macBookPro.scene.scale, {x: 0.6, y: 0.6, z: 0.6}, {x: 0.3, y: 0.3, z: 0.3, ease:"power3.out"}, "<")
+              .fromTo(macBookPro.scene.position, {x: 0.625}, {x: 0, ease:"power1.out", duration:0.75}, "<")
+              .fromTo(macBookPro.scene.position, {y: -0.7}, {y: -0.03, ease:"linear", duration:0.75}, "<")
+              .fromTo(macBookPro.scene.rotation, {x: -0.075, y: -0.5, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
+              .fromTo(macBookPro.scene.scale, {x: 0.61, y: 0.61, z: 0.61}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
 
               // iPhoneFeaturesAnimIn
             const iPhoneFeaturesAnimIn = gsap.timeline({
@@ -322,9 +323,9 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 } */
               },
             })
-              .fromTo(iPhone.scene.position, {x: 0}, {x: 0.6, ease:"power1.out"}, "<")
-              .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.5, z: 0, ease:"power1.in"}, "<")
-              .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 8, y: 8, z: 8, ease:"power3.in"}, "<")
+              .fromTo(iPhone.scene.position, {x: 0, y: 0}, {x: -1, y: -0.1, ease:"power1.out"}, "<")
+              .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.5, z: 0, ease:"power1.in"}, "<")
+              .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 9, y: 9, z: 9, ease:"power3.in"}, "<")
 
             // iPhoneFeaturesAnimOut
             const iPhoneFeaturesAnimOut = gsap.timeline({
@@ -340,8 +341,8 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 toggleActions: "play none none reverse"
               }
             })
-              .fromTo(iPhone.scene.position, {x: 0.6}, {x: 0, ease:"power1.out"}, "<")
-              .fromTo(iPhone.scene.rotation, {x: 0, y: -0.5, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
+              .fromTo(iPhone.scene.position, {x: -1, y: -0.1}, {x: 0, y: 0, ease:"power1.out"}, "<")
+              .fromTo(iPhone.scene.rotation, {x: 0, y: 0.5, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
               .fromTo(iPhone.scene.scale, {x: 8, y: 8, z: 8}, {x: 3.5, y: 3.5, z: 3.5, ease:"power3.out"}, "<")
 
 
@@ -359,9 +360,9 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 toggleActions: "play none none reverse"
               },
             })
-              .fromTo(iPad.scene.position, {x: 0}, {x: -0.65, ease:"power1.out"}, "<")
-              .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.65, z: 0, ease:"power1.in"}, "<")
-              .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.6, y: 0.6, z: 0.6, ease:"power3.in"}, "<")
+              .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: 0.8, y: -0.085, ease:"power1.out"}, "<")
+              .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.65, z: 0, ease:"power1.in"}, "<")
+              .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.7, y: 0.7, z: 0.7, ease:"power3.in"}, "<")
           }
 
 
