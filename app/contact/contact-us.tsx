@@ -5,7 +5,7 @@ import General from '@/app/contact/general'
 import Sales from '@/app/contact/sales'
 import Partnership from '@/app/contact/partnership'
 import Media from '@/app/contact/media'
-import TabButton from '@/components/ui/tab-button'
+import TabButton from '@/components/ui/tab-button-contact-us'
 
 const ContactUs = (props: any) => {
   const [activeTab, setActiveTab] = useState('general')

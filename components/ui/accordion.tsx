@@ -36,7 +36,7 @@ const Accordion = (props: AccordionProps) => {
                 "dark:radix-state-open:bg-neutral-600 dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
-              <span className="text-[1.8rem] md:text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-500 dark:group-radix-state-open:bg-gradient-to-r dark:group-radix-state-open:from-[var(--purple-300)] dark:group-radix-state-open:to-purple-200">
                 {header}
               </span>
               <ChevronDownIcon

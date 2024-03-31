@@ -162,6 +162,19 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
+      let matchMedia = gsap.matchMedia();
+
+      const isLandscape = window.innerWidth > window.innerHeight;
+      const isPortrait = window.innerWidth < window.innerHeight;
+      const isUnder768 = window.innerWidth < 768;
+      const isOver1536 = window.innerWidth > 1536;
+      // Initialize a variable to store the largest observed viewport height
+      let largestViewportHeight = window.innerHeight;      
+      // Update the largest observed viewport height on resize
+      window.addEventListener('resize', () => {
+        largestViewportHeight = Math.max(largestViewportHeight, window.innerHeight);
+      });
+
       const checkHomeFeaturesR3FViewer = setInterval(() => {
         if (document.querySelector('.homeFeaturesR3FViewer') && document.querySelector('#featuresDashboard') && document.querySelector('#featuresJudge') && document.querySelector('#featuresRecordKeeper') && iPhone?.scene && iPad?.scene && macBookPro?.scene) {
           clearInterval(checkHomeFeaturesR3FViewer);
@@ -212,158 +225,462 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
             }
           });
 
-          // macBookProFeaturesAnimIn
-          if (macBookProDisplay && macBookProKeyboardBacklight && macBookProGlass && iPhone && iPad) {
+          {/* Landscape Animation */}
+          matchMedia.add("(orientation: landscape)", (context) => {
+            if (macBookProDisplay && macBookProKeyboardBacklight && macBookProGlass && iPhone && iPad) {
 
-            //Initial settings and positioning
-            const InitialAnim = gsap.timeline({
-              paused:true,
-              scrollTrigger: {
-                trigger: '#featuresDashboard',
-                start: 'top bottom',
-                //end: 'top top',
-                markers: false,
-                scrub: false,
-                invalidateOnRefresh: true,
-                onEnter: () => {
-                  console.log("onEnter InitialAnim");
-                  setMacBookProOpacity(1);
-                  setiPhoneOpacity(0);
-                  setContainerOpacity(1);
+              const calculateDeviceScale = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the deviceScale for your two reference points
+                const deviceScale1250x650 = 0.55;
+                const deviceScale1900x1350 = 0.45;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (deviceScale1900x1350 - deviceScale1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = deviceScale1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the deviceScale for the current window dimensions
+                let deviceScale = m * sizeFactor + b;
+                // Optionally, you can clamp the value of deviceScale to ensure it stays within a reasonable range
+                deviceScale = Math.max(0.45, Math.min(deviceScale, 0.55)); // Adjust the min and max values as needed
+                return deviceScale;
+              };
+              let deviceScale = calculateDeviceScale(window.innerWidth, window.innerHeight);
+              //console.log("DeviceScale is "+DeviceScale);
+
+              const calculateMacBookProPosX = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the macBookProPosX for your two reference points
+                const macBookProPosX1250x650 = 0.625;
+                const macBookProPosX1900x1350 = 0.4;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (macBookProPosX1900x1350 - macBookProPosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = macBookProPosX1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the macBookProPosX for the current window dimensions
+                let macBookProPosX = m * sizeFactor + b;
+                // Optionally, you can clamp the value of macBookProPosX to ensure it stays within a reasonable range
+                macBookProPosX = Math.max(0.4, Math.min(macBookProPosX, 0.625)); // Adjust the min and max values as needed
+                return macBookProPosX;
+              };
+              let macBookProPosX = calculateMacBookProPosX(window.innerWidth, window.innerHeight);
+
+              const calculateMacBookProPosY = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the macBookProPosY for your two reference points
+                const macBookProPosY1250x650 = 0.7;
+                const macBookProPosY1900x1350 = 0.5;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (macBookProPosY1900x1350 - macBookProPosY1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = macBookProPosY1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the macBookProPosY for the current window dimensions
+                let macBookProPosY = m * sizeFactor + b;
+                // Optionally, you can clamp the value of macBookProPosY to ensure it stays within a reasonable range
+                macBookProPosY = Math.max(0.5, Math.min(macBookProPosY, 0.7)); // Adjust the min and max values as needed
+                return macBookProPosY;
+              };
+              let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight);
+
+              const calculateiPhonePosX = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                // This is a simplified approach; you might need to adjust the formula based on testing
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the iPhonePosX for your two reference points
+                const iPhonePosX1250x650 = 1;
+                const iPhonePosX1900x1350 = 0.6;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (iPhonePosX1900x1350 - iPhonePosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = iPhonePosX1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the iPhonePosX for the current window dimensions
+                let iPhonePosX = m * sizeFactor + b;
+                // Optionally, you can clamp the value of iPhonePosX to ensure it stays within a reasonable range
+                iPhonePosX = Math.max(0.6, Math.min(iPhonePosX, 1)); // Adjust the min and max values as needed
+                return iPhonePosX;
+              };
+              let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
+              //console.log("iPhonePosX is "+iPhonePosX);
+
+              const calculateiPadPosX = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the iPadPosX for your two reference points
+                const iPadPosX1250x650 = 0.8;
+                const iPadPosX1900x1350 = 0.55;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (iPadPosX1900x1350 - iPadPosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = iPadPosX1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the iPadPosX for the current window dimensions
+                let iPadPosX = m * sizeFactor + b;
+                // Optionally, you can clamp the value of iPadPosX to ensure it stays within a reasonable range
+                iPadPosX = Math.max(0.55, Math.min(iPadPosX, 0.8)); // Adjust the min and max values as needed
+                return iPadPosX;
+              };
+              let iPadPosX = calculateiPadPosX(window.innerWidth, window.innerHeight);
+
+              //Initial settings and positioning
+              const InitialAnim = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top bottom',
+                  //end: 'top top',
+                  markers: false,
+                  scrub: false,
+                  invalidateOnRefresh: true,
+                  onEnter: () => {
+                    console.log("onEnter InitialAnim");
+                    setMacBookProOpacity(1);
+                    setiPhoneOpacity(0);
+                    setContainerOpacity(1);
+                  }
+                },
+              })
+                .set(macBookPro.scene.scale, {x: deviceScale, y: deviceScale, z: deviceScale})
+                .set((macBookProDisplay as Mesh).rotation, {x: 6.285})
+                .set((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0})
+                //.set((macBookProScreenOutline as MeshStandardMaterial).emissive, {r: 0.5, g: 0.5, b: 0.5})
+
+                //.set((macBookProGlass as MeshStandardMaterial), {opacity: 1})
+                .set(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5})
+                .set(iPhone.scene.position, {x: 0})
+                .set(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57})
+                .set(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45})
+                .set(iPad.scene.position, {x: 0})
+                .set(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57})
+
+              // macBookProFeaturesAnimIn
+              const macBookProFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top 70%',
+                  end: 'top 10%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(macBookPro.scene.position, {x: 3}, {x: macBookProPosX, ease:"power1.out"})
+                .fromTo(macBookPro.scene.position, {y: 0.4}, {y: -0.5, ease:"power1.in"}, "<")
+                .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: -0.5, ease:"power1.in"}, "<")
+                //.fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
+                //.fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+
+              const macBookProOpenDisplayAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top 10%',
+                  end: 'top -15%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -macBookProPosY, ease:"linear", duration:1})
+                .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
+                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+
+              // macBookProFeaturesAnimOut
+              const macBookProFeaturesAnimOut = gsap.timeline({
+                paused:true,
+                scrollTrigger:{
+                  trigger: '#featuresDashboard',
+                  start: 'bottom bottom',
+                  end: 'bottom 52%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
                 }
-              },
-            })
-              .set(macBookPro.scene.scale, {x: 0.61, y: 0.61, z: 0.61})
-              .set((macBookProDisplay as Mesh).rotation, {x: 6.285})
-              .set((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0})
-              //.set((macBookProScreenOutline as MeshStandardMaterial).emissive, {r: 0.5, g: 0.5, b: 0.5})
+              })
+                .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"power1.in", duration:1})
+                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
+                .fromTo(macBookPro.scene.position, {x: macBookProPosX}, {x: 0, ease:"power1.out", duration:0.75}, "<")
+                .fromTo(macBookPro.scene.position, {y: -macBookProPosY}, {y: -0.03, ease:"linear", duration:0.75}, "<")
+                .fromTo(macBookPro.scene.rotation, {x: -0.075, y: -0.5, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
+                .fromTo(macBookPro.scene.scale, {x: deviceScale, y: deviceScale, z: deviceScale}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
 
-              //.set((macBookProGlass as MeshStandardMaterial), {opacity: 1})
-              .set(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5})
-              .set(iPhone.scene.position, {x: 0})
-              .set(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57})
-              .set(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45})
-              .set(iPad.scene.position, {x: 0})
-              .set(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57})
+                // iPhoneFeaturesAnimIn
+              const iPhoneFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'bottom 48%',
+                  end: 'bottom top',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPhoneFeaturesAnimIn,
+                  toggleActions: "play none none reverse",
+                  /* onEnter: () => {
+                    console.log("onEnter iPhoneFeaturesAnimIn");
+                    //setContainerOpacity(0);
+                    setMacBookProOpacity(1);
+                  } */
+                },
+              })
+                .fromTo(iPhone.scene.position, {x: 0, y: 0}, {x: -iPhonePosX, y: -0.1, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.5, z: 0, ease:"power1.in"}, "<")
+                .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 9, y: 9, z: 9, ease:"power3.in"}, "<")
 
-            // macBookProFeaturesAnimIn
-            const macBookProFeaturesAnimIn = gsap.timeline({
-              paused:true,
-              scrollTrigger: {
-                trigger: '#featuresDashboard',
-                start: 'top 70%',
-                end: 'top 10%',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                toggleActions: "play none none reverse"
-              },
-            })
-              .fromTo(macBookPro.scene.position, {x: 3}, {x: 0.625, ease:"power1.out"})
-              .fromTo(macBookPro.scene.position, {y: 0.4}, {y: -0.5, ease:"power1.in"}, "<")
-              .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: -0.5, ease:"power1.in"}, "<")
-              //.fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
-              //.fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
-              //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+              // iPhoneFeaturesAnimOut
+              const iPhoneFeaturesAnimOut = gsap.timeline({
+                paused:true,
+                scrollTrigger:{
+                  trigger: '#featuresJudge',
+                  start: 'bottom bottom',
+                  end: 'bottom 52%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPhoneFeaturesAnimOut,
+                  toggleActions: "play none none reverse"
+                }
+              })
+                .fromTo(iPhone.scene.position, {x: -iPhonePosX, y: -0.1}, {x: 0, y: 0, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.rotation, {x: 0, y: 0.5, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.scale, {x: 8, y: 8, z: 8}, {x: 3.5, y: 3.5, z: 3.5, ease:"power3.out"}, "<")
 
-            const macBookProOpenDisplayAnimIn = gsap.timeline({
-              paused:true,
-              scrollTrigger: {
-                trigger: '#featuresDashboard',
-                start: 'top 10%',
-                end: 'top -15%',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                toggleActions: "play none none reverse"
-              },
-            })
-              .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -0.7, ease:"linear", duration:1})
-              .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
-              .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
-              //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
 
-            // macBookProFeaturesAnimOut
-            const macBookProFeaturesAnimOut = gsap.timeline({
-              paused:true,
-              scrollTrigger:{
-                trigger: '#featuresDashboard',
-                start: 'bottom bottom',
-                end: 'bottom 52%',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                toggleActions: "play none none reverse"
+              // iPadFeaturesAnimIn
+              const iPadFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresJudge',
+                  start: 'bottom 48%',
+                  end: 'bottom top',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPadFeaturesAnimIn,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: iPadPosX, y: -0.085, ease:"power1.out"}, "<")
+                .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.65, z: 0, ease:"power1.in"}, "<")
+                .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: deviceScale*1.25, y: deviceScale*1.25, z: deviceScale*1.25, ease:"power3.in"}, "<")
+            }
+          });
+
+
+
+          {/* Portrait Animation */}
+          matchMedia.add("(orientation: portrait)", (context) => {
+            if (macBookProDisplay && macBookProKeyboardBacklight && macBookProGlass && iPhone && iPad) {
+
+              //let macBookProScale = window.innerWidth/(window.innerWidth*1.7) as number;
+              /* if (isUnder768) {
+                macBookProScale = 0.45;
+              } else {
+                macBookProScale = 0.61;
+              } */
+
+              const calculateMacBookProScale = (width: number, height: number): number => {
+                // Calculate the aspect ratio
+                const aspectRatio = width / height;
+              
+                // Define thresholds for "iPad-like" and "iPhone-like" aspect ratios
+                const iPadAspectRatioThreshold = 0.75; // Example threshold for iPad-like devices
+                const iPhoneAspectRatioThreshold = 0.5; // Example threshold for iPhone-like devices
+              
+                // Adjust the normalization factor to fine-tune the base scale calculation
+                // Decreasing this value will generally increase the base scale values
+                let normalizationFactor = 1600;
+
+                // Calculate a base scale based on the screen size
+                let baseScale = Math.sqrt(width * height) / normalizationFactor;
+              
+                // Adjust the base scale based on the aspect ratio
+                if (aspectRatio >= iPadAspectRatioThreshold) {
+                  // Closer to iPad-like devices
+                  baseScale = Math.min(0.6, baseScale); // Cap the scale for iPad-like devices
+                } else if (aspectRatio <= iPhoneAspectRatioThreshold) {
+                  // Closer to iPhone-like devices
+                  baseScale = Math.max(0.425, baseScale); // Ensure a minimum scale for iPhone-like devices
+                }
+
+                // Clamp the scale to a reasonable range
+                return Math.max(0.425, Math.min(baseScale, 0.75));
               }
-            })
-              .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"power1.in", duration:1})
-              .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
-              //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
-              .fromTo(macBookPro.scene.position, {x: 0.625}, {x: 0, ease:"power1.out", duration:0.75}, "<")
-              .fromTo(macBookPro.scene.position, {y: -0.7}, {y: -0.03, ease:"linear", duration:0.75}, "<")
-              .fromTo(macBookPro.scene.rotation, {x: -0.075, y: -0.5, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
-              .fromTo(macBookPro.scene.scale, {x: 0.61, y: 0.61, z: 0.61}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
+              let macBookProScale = calculateMacBookProScale(window.innerWidth, window.innerHeight);
+              //console.log("macBookProScale is "+macBookProScale);
 
-              // iPhoneFeaturesAnimIn
-            const iPhoneFeaturesAnimIn = gsap.timeline({
-              paused:true,
-              scrollTrigger: {
-                trigger: '#featuresDashboard',
-                start: 'bottom 48%',
-                end: 'bottom top',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                //animation: iPhoneFeaturesAnimIn,
-                toggleActions: "play none none reverse",
-                /* onEnter: () => {
-                  console.log("onEnter iPhoneFeaturesAnimIn");
-                  //setContainerOpacity(0);
-                  setMacBookProOpacity(1);
-                } */
-              },
-            })
-              .fromTo(iPhone.scene.position, {x: 0, y: 0}, {x: -1, y: -0.1, ease:"power1.out"}, "<")
-              .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.5, z: 0, ease:"power1.in"}, "<")
-              .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 9, y: 9, z: 9, ease:"power3.in"}, "<")
+              //Initial settings and positioning
+              const InitialAnim = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top bottom',
+                  //end: 'top top',
+                  markers: false,
+                  scrub: false,
+                  invalidateOnRefresh: true,
+                  onEnter: () => {
+                    console.log("onEnter InitialAnim");
+                    setMacBookProOpacity(1);
+                    setiPhoneOpacity(0);
+                    setContainerOpacity(1);
+                  }
+                },
+              })
+                .set(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale})
+                .set((macBookProDisplay as Mesh).rotation, {x: 6.285})
+                .set((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0})
+                //.set((macBookProScreenOutline as MeshStandardMaterial).emissive, {r: 0.5, g: 0.5, b: 0.5})
 
-            // iPhoneFeaturesAnimOut
-            const iPhoneFeaturesAnimOut = gsap.timeline({
-              paused:true,
-              scrollTrigger:{
-                trigger: '#featuresJudge',
-                start: 'bottom bottom',
-                end: 'bottom 52%',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                //animation: iPhoneFeaturesAnimOut,
-                toggleActions: "play none none reverse"
-              }
-            })
-              .fromTo(iPhone.scene.position, {x: -1, y: -0.1}, {x: 0, y: 0, ease:"power1.out"}, "<")
-              .fromTo(iPhone.scene.rotation, {x: 0, y: 0.5, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
-              .fromTo(iPhone.scene.scale, {x: 8, y: 8, z: 8}, {x: 3.5, y: 3.5, z: 3.5, ease:"power3.out"}, "<")
+                //.set((macBookProGlass as MeshStandardMaterial), {opacity: 1})
+                .set(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5})
+                .set(iPhone.scene.position, {x: 0})
+                .set(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57})
+                .set(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45})
+                .set(iPad.scene.position, {x: 0})
+                .set(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57})
+
+              // macBookProFeaturesAnimIn
+              const macBookProFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top 70%',
+                  end: 'top 10%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(macBookPro.scene.position, {x: 3}, {x: 0, ease:"power1.out"})
+                .fromTo(macBookPro.scene.position, {y: 0.4}, {y: -0.5, ease:"power1.in"}, "<")
+                .fromTo(macBookPro.scene.rotation, {x: 0.65, y: -0.5}, {x: -0.075, y: 0, ease:"power1.in"}, "<")
+                //.fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:0.5})
+                //.fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.5})
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+
+              const macBookProOpenDisplayAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'top 10%',
+                  end: 'top -15%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -0.9, ease:"linear", duration:1})
+                .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
+                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+
+              // macBookProFeaturesAnimOut
+              const macBookProFeaturesAnimOut = gsap.timeline({
+                paused:true,
+                scrollTrigger:{
+                  trigger: '#featuresDashboard',
+                  start: 'bottom bottom',
+                  end: 'bottom 52%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  toggleActions: "play none none reverse"
+                }
+              })
+                .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"power1.in", duration:1})
+                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
+                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
+                .fromTo(macBookPro.scene.position, {x: 0}, {x: 0, ease:"power1.out", duration:0.75}, "<")
+                .fromTo(macBookPro.scene.position, {y: -0.9}, {y: -0.03, ease:"linear", duration:0.75}, "<")
+                .fromTo(macBookPro.scene.rotation, {x: -0.075, y: 0, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
+                .fromTo(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
+
+                // iPhoneFeaturesAnimIn
+              const iPhoneFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresDashboard',
+                  start: 'bottom 48%',
+                  end: 'bottom top',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPhoneFeaturesAnimIn,
+                  toggleActions: "play none none reverse",
+                  /* onEnter: () => {
+                    console.log("onEnter iPhoneFeaturesAnimIn");
+                    //setContainerOpacity(0);
+                    setMacBookProOpacity(1);
+                  } */
+                },
+              })
+                .fromTo(iPhone.scene.position, {x: 0, y: 0}, {x: 0, y: -0.5, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: -0.25, y: 0, z: 0, ease:"power1.in"}, "<")
+                .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 8, y: 8, z: 8, ease:"power3.in"}, "<")
+
+              // iPhoneFeaturesAnimOut
+              const iPhoneFeaturesAnimOut = gsap.timeline({
+                paused:true,
+                scrollTrigger:{
+                  trigger: '#featuresJudge',
+                  start: 'bottom bottom',
+                  end: 'bottom 52%',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPhoneFeaturesAnimOut,
+                  toggleActions: "play none none reverse"
+                }
+              })
+                .fromTo(iPhone.scene.position, {x: 0, y: -0.5}, {x: 0, y: 0, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.rotation, {x: -0.25, y: 0, z: 0}, {x: -1.57, y: 0, z: 1.57, ease:"power1.out"}, "<")
+                .fromTo(iPhone.scene.scale, {x: 8, y: 8, z: 8}, {x: 3.5, y: 3.5, z: 3.5, ease:"power3.out"}, "<")
 
 
-            // iPadFeaturesAnimIn
-            const iPadFeaturesAnimIn = gsap.timeline({
-              paused:true,
-              scrollTrigger: {
-                trigger: '#featuresJudge',
-                start: 'bottom 48%',
-                end: 'bottom top',
-                markers: false,
-                scrub: true,
-                invalidateOnRefresh: true,
-                //animation: iPadFeaturesAnimIn,
-                toggleActions: "play none none reverse"
-              },
-            })
-              .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: 0.8, y: -0.085, ease:"power1.out"}, "<")
-              .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.65, z: 0, ease:"power1.in"}, "<")
-              .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: 0.7, y: 0.7, z: 0.7, ease:"power3.in"}, "<")
-          }
+              // iPadFeaturesAnimIn
+              const iPadFeaturesAnimIn = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '#featuresJudge',
+                  start: 'bottom 48%',
+                  end: 'bottom top',
+                  markers: false,
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                  //animation: iPadFeaturesAnimIn,
+                  toggleActions: "play none none reverse"
+                },
+              })
+                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: 0, y: -0.5, ease:"power1.out"}, "<")
+                .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: -0.25, y: 0, z: 0, ease:"power1.in"}, "<")
+                .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: macBookProScale*1.325, y: macBookProScale*1.325, z: macBookProScale*1.325, ease:"power3.in"}, "<")
+            }
+          });
 
 
         }
