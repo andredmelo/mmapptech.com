@@ -64,9 +64,10 @@ const Company = (props: any) => {
   return (
     <>
       <div className="companyPage">
+
         <section id="Mission" className="flex justify-center">
           <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem]  max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
+          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
                 Our Mission
@@ -104,7 +105,7 @@ const Company = (props: any) => {
               <div className="">
                 <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
 
-                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 rounded-[1rem]">
+                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
                       <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-assembly">
@@ -122,7 +123,7 @@ const Company = (props: any) => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
+                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
                       <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot">
@@ -141,7 +142,7 @@ const Company = (props: any) => {
                     </p>
                   </div>
 
-                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[31rem] px-4">
+                  <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4">
                     <dt className="inline-flex items-center gap-3 max-w-full">
                       <div className="flex items-center justify-center text-white pr-4 py-4">
                       <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-atom-2">
@@ -168,7 +169,7 @@ const Company = (props: any) => {
             </div>
           </div>
         </section>
-        
+
         <div className="borderBottom"></div>
 
         <section id="CoreValues" className="flex flex-col items-center">
@@ -585,7 +586,7 @@ const Company = (props: any) => {
             </div>
           </div>
         </section>
-        
+
         <div className="borderBottom"></div>
 
         <section id="SecurityCompliance" className="flex flex-col items-center min-h-[calc(50vh)]">
@@ -598,7 +599,7 @@ const Company = (props: any) => {
                 We take Privacy, Security, and Compliance with the utmost seriousness
               </h3>
             </li>
-            <li className="flex flex-col md:flex-row mb-0 lg:mb-16">
+            <li className="flex flex-col md:flex-row mb-0 lg:mb-20">
               <ol className="basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
                 <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
                   Security
@@ -622,12 +623,13 @@ const Company = (props: any) => {
                 </p>
               </ol>
             </li>
-            <li className="w-[100%] md:w-[90%] lg:w-[80%]">
+            <li className="w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[60%]">
               <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
               Compliance
               </h4>
               <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold  text-neutral-300">
-              We are continuously working to include full compliance in all regions we operate. Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
+              We are continuously working to include full compliance in all regions we operate.<br/>
+              Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
               </p>
             </li>
             <div className="flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
@@ -638,17 +640,17 @@ const Company = (props: any) => {
             </div>
           </ul>
         </section>
-        
+
         <div className="borderBottom"></div>
-        
+
         <section id="Policies" className="flex flex-col items-center min-h-[calc(50vh)]">
             <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
               Company Policies
             </h5>
-            <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
+            <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
               Policies and Guidelines of Usage
             </h3>
-            <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] w-[80%] md:w-[62%] pb-16 md:pb-12">
+            <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
               It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
               You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.

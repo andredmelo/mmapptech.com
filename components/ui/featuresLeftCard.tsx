@@ -27,7 +27,7 @@ const FeaturesLeftCardHeader = React.forwardRef<
     className={cn(
       "flex flex-col landscape:items-start portrait:items-center landscape:justify-center portrait:justify-start landscape:text-left portrait:text-center", // border-2 border-green-500
       "w-[95vw] md:w-[90vw] lg:w-full max-w-[1440px] max-h-[100vh] h-[100vh]",
-      "overflow-hidden portrait:pt-[48%] portrait:md:pt-[32%] landscape:px-[0%] portrait:px-[2%] landscape:pr-[45%] portrait:pr-[0%]",
+      "overflow-hidden portrait:pt-[48%] portrait:md:pt-[32%] landscape:px-[0%] portrait:px-[2%] landscape:pr-[50%] portrait:pr-[0%]",
       className
     )}
     {...props}

@@ -126,7 +126,7 @@ export default function Home() {
           }
         });
       };
-      
+
       /* const detectViewportRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -184,10 +184,10 @@ export default function Home() {
           let dashboardTitle = document.getElementById('featuresDashboardTitle');
           let dashboardContainer = document.getElementById('featuresDashboardContainer');
 
-          let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
+          let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
 
-          fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
-          gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
+          fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
+          gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
 
           let bottomDistance = dashboardCards[dashboardCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
 
@@ -239,13 +239,17 @@ export default function Home() {
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.3})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.3})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.3})
+                    gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
                 break;
@@ -258,13 +262,17 @@ export default function Home() {
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.3})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.3})
+                    gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.3})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.3})
+                    gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -356,16 +364,18 @@ export default function Home() {
                   pinSpacing: true,
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeJudgeH4.play();
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
                 break;
@@ -377,16 +387,18 @@ export default function Home() {
                   pin: true,
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
-                    //changeJudgeH4.play(); // REVIEW THIS SOLUTION AS IT CAN FAIL WHEN SCROLLING FAST
                     setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
-                    //changeJudgeH4.reverse();
                     setiPhoneTextureName('iPhone_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fJHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
+                    gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -478,13 +490,17 @@ export default function Home() {
                   invalidateOnRefresh: true,
                   onEnter: ({progress, direction, isActive}) => {
                     setiPadTextureName('iPad_texture_'+(i+1));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setiPadTextureName('iPad_texture_'+(i));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
                 break;
@@ -497,13 +513,17 @@ export default function Home() {
                   pinSpacing: false,
                   onEnter: ({progress, direction, isActive}) => {
                     setiPadTextureName('iPad_texture_'+(i+1));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: -200, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 0, yPercent: 200}, {opacity: 1, yPercent: 0, duration: 0.2})
+                    gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
                   },
                   onLeaveBack: ({progress, direction, isActive}) => {
                     setiPadTextureName('iPad_texture_'+(i));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 0, yPercent: -200}, {opacity: 1, yPercent: 0, duration: 0.2})
-                    gsap.fromTo(fRKHI[i], {opacity: 1, yPercent: 0}, {opacity: 0, yPercent: 200, duration: 0.2})
+                    gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                    gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
                   }
                 });
             }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))

@@ -162,10 +162,10 @@ export const IPhoneModel: React.FC<{
       //let iPhoneScreenMaterial: any;
       iPhone.scene.traverse((child: Object3D) => {
         if (child instanceof Mesh && child.material.name === 'iPhone_Screen') {
-          console.log("texture = " + newiPhoneTextureName);
+          //console.log("texture = " + newiPhoneTextureName);
           let iPhoneScreenMaterial: any = child.material;
           const texture = textures[newiPhoneTextureName];
-          console.log("iPhone texture = " + texture);
+          //console.log("iPhone texture = " + texture);
 
           if (!texture) {
             console.error("Texture not found:", newiPhoneTextureName);
@@ -208,7 +208,7 @@ export const IPhoneModel: React.FC<{
       });
     }
     if (iPhoneOpacity !== undefined && iPhoneOpacity !== null) {
-      console.log("iPhoneOpacity triggered = "+iPhoneOpacity);
+      //console.log("iPhoneOpacity triggered = "+iPhoneOpacity);
       changeiPhoneOpacity(iPhoneOpacity as number);
     }
 
@@ -371,10 +371,10 @@ export const IPadModel: React.FC<{
       //let iPadScreenMaterial: any;
       iPad.scene.traverse((child: Object3D) => {
         if (child instanceof Mesh && child.material.name === 'iPad_Screen') {
-          console.log("texture = " + newiPadTextureName);
+          //console.log("texture = " + newiPadTextureName);
           let iPadScreenMaterial: any = child.material;
           const texture = textures[newiPadTextureName];
-          console.log("iPad texture = " + texture);
+          //console.log("iPad texture = " + texture);
 
           if (!texture) {
             console.error("Texture not found:", newiPadTextureName);
@@ -418,7 +418,7 @@ export const IPadModel: React.FC<{
       });
     }    
     if (iPadOpacity !== undefined && iPadOpacity !== null) {
-      console.log("iPadOpacity triggered = "+iPadOpacity);
+      //console.log("iPadOpacity triggered = "+iPadOpacity);
       changeiPadOpacity(iPadOpacity as number); // Type assertion
     }
 
@@ -554,12 +554,12 @@ export const MacBookProModel: React.FC<{
     const changeMacBookProTexture = (newMacBookProTextureName: TextureName) => {
       macBookPro.scene.traverse((child: Object3D) => {
         if (child instanceof Mesh && child.material.name === 'macBookPro_Screen') {
-          console.log("texture = " + newMacBookProTextureName);
+          //console.log("texture = " + newMacBookProTextureName);
           let macBookProScreenMaterial: any = child.material;
           const texture = textures[newMacBookProTextureName];
-          console.log("texture = " + texture);
+          //console.log("texture = " + texture);
 
-          console.log(Object.keys(textures));
+          //console.log(Object.keys(textures));
           if (!texture) {
             console.error("Texture not found:", newMacBookProTextureName);
             return;
@@ -603,7 +603,7 @@ export const MacBookProModel: React.FC<{
       });
     }
     if (macBookProOpacity !== undefined && macBookProOpacity !== null) {
-      console.log("macBookProOpacity triggered = "+macBookProOpacity);
+      //console.log("macBookProOpacity triggered = "+macBookProOpacity);
       changeMacBookProOpacity(macBookProOpacity as number);
     }
 

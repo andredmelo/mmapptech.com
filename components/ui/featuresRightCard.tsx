@@ -27,7 +27,7 @@ const FeaturesRightCardHeader = React.forwardRef<
     className={cn(
       "flex flex-col landscape:items-end portrait:items-center landscape:justify-center portrait:justify-start landscape:text-right portrait:text-center", // border-2 border-green-500
       "w-[95vw] md:w-[90vw] lg:w-full max-w-[1440px] max-h-[100vh] h-[100vh]",
-      "overflow-hidden portrait:pt-[48%] portrait:md:pt-[32%] landscape:px-[0%] portrait:px-[2%] landscape:pl-[40%] portrait:pl-[0%]",
+      "overflow-hidden portrait:pt-[48%] portrait:md:pt-[32%] landscape:px-[0%] portrait:px-[2%] landscape:pl-[50%] portrait:pl-[0%]",
       className
     )}
     {...props}
