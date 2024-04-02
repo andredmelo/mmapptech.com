@@ -89,7 +89,7 @@ const Company = (props: any) => {
 
         <section id="Vision" className="flex justify-center">
           <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
-          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+          "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
             <div className="flex flex-col justify-top z-20 text-center">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
                 Our Vision

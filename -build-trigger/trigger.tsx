@@ -1,2 +1,2 @@
-let vNumber = "v0.1.2-β.8 | Home Features animations adjustments and other general layout adjustments";
+let vNumber = "v0.1.2-β.9 | Product MMAPP Methodology initial layout and Judge sections initial layout and working animations";
 

@@ -645,7 +645,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                    <img className="smallMissionImg z-10 object-contain self-start px-0 md:px-2 pb-4 md:pb-6 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+                    <img className="smallMissionImg max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pb-4 md:pb-6 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
                   </div>
                 </div>
               </div>
@@ -673,7 +673,7 @@ export default function Home() {
           {/* // Dashboard */}
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
@@ -847,7 +847,7 @@ export default function Home() {
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-right">
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
@@ -928,7 +928,7 @@ export default function Home() {
           {/* // RecordKeeper */}
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
+            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
