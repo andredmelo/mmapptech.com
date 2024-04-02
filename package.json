@@ -18,6 +18,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@react-email/components": "^0.0.15",
     "@react-email/render": "^0.0.12",
+    "@react-hook/media-query": "^1.1.1",
     "@react-three/drei": "^9.102.6",
     "@react-three/fiber": "^8.15.19",
     "cal-sans": "^1.0.1",

@@ -551,7 +551,13 @@ a {
   border-image-repeat: round;
 }
 
-
+.two-lines-always {
+  display: flex;
+  align-items: center;
+  min-height: 2.5em; /* Adjust this value based on your line-height and font-size */
+  line-height: 1.25em; /* Example line-height */
+  overflow: hidden;
+}
 
 /* ========= NavBar ============*/
 

@@ -2,6 +2,7 @@
 import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { clsx } from "clsx";
+import { useMediaQuery } from '@react-hook/media-query';
 /* import Image from "next/image";
 import styles from "./page.module.css"; */
 import gsap from 'gsap';
@@ -25,6 +26,11 @@ import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, Mac
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const isLandscape = useMediaQuery('(orientation: landscape)');
+  const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isOver1536 = useMediaQuery('(min-width: 1536px)');
+
   const { setiPhoneTextureName } = useContext(IPhoneTextureContext);
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadTextureName } = useContext(IPadTextureContext);
@@ -95,11 +101,6 @@ export default function Home() {
   useGSAP(
     () => {
       let matchMedia = gsap.matchMedia();
-
-      const isLandscape = window.innerWidth > window.innerHeight;
-      const isPortrait = window.innerWidth < window.innerHeight;
-      const isUnder768 = window.innerWidth < 768;
-      const isOver1536 = window.innerWidth > 1536;
 
       // Pin Small Mission Image
       const smallMissionImg = document.querySelector(".smallMissionImg");
@@ -550,7 +551,7 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
   );
 
   return (
