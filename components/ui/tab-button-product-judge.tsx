@@ -27,11 +27,15 @@ export default function TabButtonProductJudge({
   const isUnder768 = useMediaQuery('(max-width: 768px)');
 
   const activeClass = leftOrRight === 'right' ?
-    'ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 transition-all duration-500 ease-out ring-4 ring-fuchsia-950/50' :
-    'portrait:ml-0 portrait:md:ml-12 landscape:ml-12 mr-0 transition-all duration-500 ease-out ring-4 ring-fuchsia-950/50';
+    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 md:transition-all md:duration-500 md:ease-out ring-4 ring-fuchsia-950/50 brightness-[1.4]' :
+    'portrait:ml-0 portrait:md:ml-12 landscape:ml-12 portrait:mr-0 md:transition-all md:duration-500 md:ease-out ring-4 ring-fuchsia-950/50 brightness-[1.4]';
   const inactiveClass = leftOrRight === 'right' ?
-    'ring-1 ring-white/5 portrait:ml-0 portrait:md:ml-12 landscape:ml-12 mr-0 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-8 landscape:hover:mr-4 transition-all duration-500 ease-out' :
-    'ring-1 ring-white/5 ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-4 landscape:hover:mr-8 transition-all duration-500 ease-out';
+    'portrait:ml-0 portrait:md:ml-12 landscape:ml-12 portrait:mr-0 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-8 landscape:hover:mr-4 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out' :
+    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-4 landscape:hover:mr-8 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out';
+    const activeHeadingClass = leftOrRight === 'right' ?
+      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-750)] to-purple-100 md:transition-all md:duration-500 md:ease-out' :
+      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tr from-[var(--purple-750)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
+    const inactiveHeadingClass = 'text-white py-1';
   const gradientSide = leftOrRight === 'left' ? 'bg-right bg-bgRadialGradientLeft' : 'bg-left bg-bgRadialGradientRight';
   const rowDirection = leftOrRight === 'left' ? 'flex-row' : 'flex-row-reverse';
   const textDirection = leftOrRight === 'left' ? 'text-right' : 'text-left';
@@ -43,7 +47,7 @@ export default function TabButtonProductJudge({
           <button
             className={cn(
               activeTab === value ? activeClass : inactiveClass,
-              isPending && 'opacity-25',
+              isPending && 'opacity-100',
               'flex flex-row items-center',
               'py-1 px-4',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
@@ -52,8 +56,11 @@ export default function TabButtonProductJudge({
             {...props}
           >
             <div className={cn("flex flex-row items-center")}>
-              <div className={cn("flex text-center")}>
-                <h6 className="text-white pl-2">
+              <div className={cn("flex text-center pl-2")}>
+                <h6 className={cn(
+                  activeTab === value ? activeHeadingClass : inactiveHeadingClass,
+                  isPending && ''
+                )}>
                   {smallHeading}
                 </h6>
               </div>
@@ -67,7 +74,7 @@ export default function TabButtonProductJudge({
         <button
           className={cn(
             activeTab === value ? activeClass : inactiveClass,
-            isPending && 'opacity-25',
+            isPending && 'opacity-100',
             'flex flex-row items-center',
             'py-6 px-12',
             'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
@@ -77,7 +84,10 @@ export default function TabButtonProductJudge({
         >
           <div className={cn("flex items-center", rowDirection)}>
             <div className={cn("flex", textDirection)}>
-              <h6 className="text-white">
+              <h6 className={cn(
+                activeTab === value ? activeHeadingClass : inactiveHeadingClass,
+                isPending && ''
+              )}>
                 {smallHeading}
               </h6>
             </div>
@@ -91,9 +101,9 @@ export default function TabButtonProductJudge({
           <button
             className={cn(
               activeTab === value ? activeClass : inactiveClass,
-              isPending && 'opacity-25',
+              isPending && 'opacity-100',
               'flex flex-row items-center',
-              'py-10 px-16',
+              'max-w-[48rem] py-10 px-16',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',gradientSide
             )}
@@ -101,7 +111,10 @@ export default function TabButtonProductJudge({
           >
             <div className={cn("flex items-center", rowDirection)}>
               <div className={cn("flex", textDirection)}>
-                <h6 className="text-white">
+                <h6 className={cn(
+                  activeTab === value ? activeHeadingClass : inactiveHeadingClass,
+                  isPending && ''
+                )}>
                   {heading}
                 </h6>
               </div>

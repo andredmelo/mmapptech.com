@@ -5,7 +5,7 @@ import React from "react";
 
 export interface AccordionItem {
   header: string;
-  content: string;
+  content: React.ReactNode[]; // Use React.ReactNode for flexible content
 }
 
 interface AccordionProps { items: AccordionItem[]; }
@@ -36,7 +36,7 @@ const Accordion = (props: AccordionProps) => {
                 "dark:radix-state-open:bg-neutral-600 dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
-              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-500 dark:group-radix-state-open:bg-gradient-to-r dark:group-radix-state-open:from-[var(--purple-300)] dark:group-radix-state-open:to-purple-200">
+              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-r dark:group-radix-state-open:from-[var(--purple-300)] dark:group-radix-state-open:to-purple-200">
                 {header}
               </span>
               <ChevronDownIcon
@@ -48,7 +48,7 @@ const Accordion = (props: AccordionProps) => {
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
           <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-neutral-700 px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
-            <h6 className="leading-[1.8rem] lg:leading-[2.8rem] font-normal text-neutral-900 dark:text-neutral-300">
+            <h6 className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-900 dark:text-neutral-300">
               {content}
             </h6>
           </AccordionPrimitive.Content>

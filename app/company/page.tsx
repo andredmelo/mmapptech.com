@@ -13,6 +13,7 @@ import { Dialog } from '@/components/ui/dialog'
 //import heroBGSVG from '@/public/images/bg/heroBG.svg';
 //import { HeroBGSVG } from '@/components/ui/svg/heroBGSVG';
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
+import { MainBanner, MainBannerTitle, MainBannerHeading, MainBannerDescription } from '@/components/ui/mainBanner'
 
 /* export const metadata: Metadata = {
   title: 'Company',
@@ -65,9 +66,9 @@ const Company = (props: any) => {
     <>
       <div className="companyPage">
 
-        <section id="Mission" className="flex justify-center">
-          <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")} /* style={{ backgroundImage: `url("data:image/svg+xml,${svgString}")`, backgroundSize:"100%"}} */>
+        <section id="Mission" className="flex flex-col pt-0 lg:pt-20">
+          {/* <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
+          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")}>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
                 Our Mission
@@ -82,13 +83,100 @@ const Company = (props: any) => {
               </div>
             </div>
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
-          </div>
+          </div> */}
+
+          <MainBanner className="bg-bgRadialGradientDown min-h-[55rem] md:min-h-[75rem] lg:min-h-[74rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem]">
+            <MainBannerTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+              Our Mission
+            </MainBannerTitle>
+            <MainBannerHeading className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+              Accelerate the Recognition of MMA as an Olympic Sport
+            </MainBannerHeading>
+            <MainBannerDescription className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+              In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
+            </MainBannerDescription>
+            <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
+          </MainBanner>
         </section>
 
         <div className="borderBottom"></div>
 
-        <section id="Vision" className="flex justify-center">
-          <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
+        <section id="Vision" className="flex flex-col justify-center">
+          <MainBanner className="bg-bgRadialGradientUp ring-1 ring-white/5">
+            <MainBannerTitle className="justify-center">
+              Our Vision
+            </MainBannerTitle>
+            <MainBannerHeading className="text-center">
+              Create a common language and unit of measurement for officiating MMA
+            </MainBannerHeading>
+            <MainBannerDescription>
+              By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
+            </MainBannerDescription>
+            <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
+
+              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
+                <dt className="inline-flex items-center gap-3 max-w-full">
+                  <div className="flex items-center justify-center text-white pr-4 py-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-assembly">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" />
+                    <path d="M15.5 9.422c.312 .18 .503 .515 .5 .876v3.277c0 .364 -.197 .7 -.515 .877l-3 1.922a1 1 0 0 1 -.97 0l-3 -1.922a1 1 0 0 1 -.515 -.876v-3.278c0 -.364 .197 -.7 .514 -.877l3 -1.79c.311 -.174 .69 -.174 1 0l3 1.79h-.014z" />
+                  </svg>
+                  </div>
+                  <div className="h7 font-medium leading-6 text-white">
+                    Transparency
+                  </div>
+                </dt>
+                <p className="text-left font-normal mt-4 text-neutral-200">
+                Provide a consistent and coherent framework for officials to operate within, promoting openness and accountability.
+                </p>
+              </div>
+
+              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
+                <dt className="inline-flex items-center gap-3 max-w-full">
+                  <div className="flex items-center justify-center text-white pr-4 py-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                  </svg>
+                  </div>
+                  <div className="h7 font-medium leading-6 text-white">
+                    Consistency
+                  </div>
+                </dt>
+                <p className="text-left font-normal mt-4 text-neutral-200">
+                Establish common terminology and metrics that can be applied uniformly across the sport, reducing ambiguity and subjectivity.
+                </p>
+              </div>
+
+              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4">
+                <dt className="inline-flex items-center gap-3 max-w-full">
+                  <div className="flex items-center justify-center text-white pr-4 py-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-atom-2">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                    <path d="M12 21l0 .01" />
+                    <path d="M3 9l0 .01" />
+                    <path d="M21 9l0 .01" />
+                    <path d="M8 20.1a9 9 0 0 1 -5 -7.1" />
+                    <path d="M16 20.1a9 9 0 0 0 5 -7.1" />
+                    <path d="M6.2 5a9 9 0 0 1 11.4 0" />
+                  </svg>
+                  </div>
+                  <div className="h7 font-medium leading-6 text-white">
+                    Coherence
+                  </div>
+                </dt>
+                <p className="text-left font-normal mt-4 text-neutral-200">
+                  Develop a unified framework that brings together all aspects of officiating to promote coordination and alignment among officials, organizers, and stakeholders.
+                </p>
+              </div>
+            </div>
+          </MainBanner>
+
+          {/* <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
           "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
             <div className="flex flex-col justify-top z-20 text-center">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
@@ -167,7 +255,8 @@ const Company = (props: any) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+
         </section>
 
         <div className="borderBottom"></div>
