@@ -274,20 +274,47 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     <ul role="menu3">
                       <li role="menuitem">
                         <a
-                          href="/product#Features"
+                          href="/product#MMAPP-Methodology"
                           data-page="/product"
-                          data-link="#Features"
+                          data-link="#MMAPP-Methodology"
                           className="dropdown-link">
-                          Features
+                          MMAPP Methodology
                         </a>
                       </li>
                       <li role="menuitem">
                         <a
-                          href="/product#Benefits"
+                          href="/product#Judge"
                           data-page="/product"
-                          data-link="#Benefits"
+                          data-link="#Judge"
                           className="dropdown-link">
-                          Benefits
+                          Judge
+                        </a>
+                      </li>
+                      <li role="menuitem">
+                        <a
+                          href="/product#RecordKeeper"
+                          data-page="/product"
+                          data-link="#RecordKeeper"
+                          className="dropdown-link">
+                          RecordKeeper
+                        </a>
+                      </li>
+                      <li role="menuitem">
+                        <a
+                          href="/product#Dashboard"
+                          data-page="/product"
+                          data-link="#Dashboard"
+                          className="dropdown-link">
+                          Dashboard
+                        </a>
+                      </li>
+                      <li role="menuitem">
+                        <a
+                          href="/product#Dashboard-Members"
+                          data-page="/product"
+                          data-link="#Dashboard-Members"
+                          className="dropdown-link">
+                          Dashboard (Members)
                         </a>
                       </li>
                       <li role="menuitem">

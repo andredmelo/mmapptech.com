@@ -85,7 +85,7 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div> */}
 
-          <MainBanner className="bg-bgRadialGradientDown min-h-[55rem] md:min-h-[75rem] lg:min-h-[74rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem]">
+          <MainBanner className=" justify-start bg-bgRadialGradientDown min-h-[50rem] md:min-h-[74rem] lg:min-h-[74rem] xl:min-h-[78rem] 2xl:min-h-[85rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem]">
             <MainBannerTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               Our Mission
             </MainBannerTitle>
@@ -95,7 +95,7 @@ const Company = (props: any) => {
             <MainBannerDescription className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
             </MainBannerDescription>
-            <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
+            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </MainBanner>
         </section>
 
@@ -112,7 +112,7 @@ const Company = (props: any) => {
             <MainBannerDescription>
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </MainBannerDescription>
-            <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
+            <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
 
               <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
                 <dt className="inline-flex items-center gap-3 max-w-full">
@@ -712,7 +712,7 @@ const Company = (props: any) => {
                 </p>
               </ol>
             </li>
-            <li className="w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[60%]">
+            <li className="w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[60%]">
               <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
               Compliance
               </h4>
@@ -859,6 +859,24 @@ const Company = (props: any) => {
                   className=""
                 >
                   Acceptable Use Policy
+                </CardPoliciesButton>
+              </CardPolicies>
+
+              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Minimum & Recommended Requirements">
+                <CardPoliciesHeader>
+                  <CardPoliciesTitle>
+                    Minimum & Recommended Requirements
+                  </CardPoliciesTitle>
+                  <CardPoliciesDescription>
+                    This document describes the minimum and recommended requirements for the various devices running the MMAPP Platform, including those for our Web Dashboard, the RecordKeeper app, and the Judge app.
+                  </CardPoliciesDescription>
+                </CardPoliciesHeader>
+                <CardPoliciesButton
+                  href="/company/policies/minimum-recommended-requirements"
+                  data-page="/company/policies/minimum-recommended-requirements"
+                  className=""
+                >
+                  Requirements
                 </CardPoliciesButton>
               </CardPolicies>
           </div>

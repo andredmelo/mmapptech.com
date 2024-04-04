@@ -18,6 +18,9 @@ module.exports = {
       'xl': {'min': '1280px'}, // => @media (min-width: 1280px and max-width: 1535px) { ... }
       '2xl': {'min': '1536px'}, // => @media (min-width: 1536px) { ... }
       '3xl': {'min': '1960px'}, // => @media (min-width: 1960pxpx) { ... }
+      'touch': {
+        'raw': '(hover: none)',
+      },
     },
     colors: {
       transparent: 'transparent',

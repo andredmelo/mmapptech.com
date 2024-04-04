@@ -12,7 +12,7 @@ const CardPolicies = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col h-full min-h-[31rem] md:min-h-[33rem] xl:min-h-[35rem] w-[32rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
+      "flex flex-col h-full min-h-[15rem] md:min-h-[33rem] xl:min-h-[45.5rem] 2xl:min-h-[39rem] 3xl:min-h-[31rem] w-[32rem] md:w-[32rem] lg:w-[40rem] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
       /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
       "p-8 md:p-12 lg:p-16 mx-2 md:mx-4 lg:mx-6 my-3 md:my-4 lg:my-6",
       className
@@ -28,7 +28,7 @@ const CardPoliciesHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-3 md:space-y-6", className)}
+    className={cn("flex flex-col space-y-3 md:space-y-6 mb-3 md:mb-6", className)}
     {...props}
   />
 ))
@@ -65,7 +65,7 @@ const CardPoliciesButton = React.forwardRef<
   <a
     ref={ref}
     /* href={url} */
-    className={cn("text-md w-full py-2 px-4 border focus:ring-2 rounded-full border-transparent dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white hover:bg-neutral-100 bg-neutral-700 text-white hover:text-black duration-200 focus:ring-offset-2 focus:ring-white inline-flex items-center justify-center ring-1 ring-transparent mt-auto", className)}
+    className={cn("text-md text-center w-full py-2 px-6 mt-auto border focus:ring-2 rounded-full border-transparent dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white hover:bg-neutral-100 bg-neutral-700 text-white hover:text-black duration-200 focus:ring-offset-2 focus:ring-white inline-flex items-center justify-center ring-1 ring-transparent", className)}
     {...props}
   />
   /*  */

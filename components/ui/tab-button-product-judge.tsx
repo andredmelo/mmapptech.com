@@ -25,16 +25,17 @@ export default function TabButtonProductJudge({
   //const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isTouch = useMediaQuery('(hover: none)');
 
   const activeClass = leftOrRight === 'right' ?
-    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 md:transition-all md:duration-500 md:ease-out ring-4 ring-fuchsia-950/50 brightness-[1.4]' :
-    'portrait:ml-0 portrait:md:ml-12 landscape:ml-12 portrait:mr-0 md:transition-all md:duration-500 md:ease-out ring-4 ring-fuchsia-950/50 brightness-[1.4]';
+    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 md:transition-all md:duration-500 md:ease-out ring-4 ring-purple-950/50 brightness-[1.4]' :
+    'portrait:ml-0 portrait:mr-0 portrait:md:ml-12 landscape:ml-12 md:transition-all md:duration-500 md:ease-out ring-4 ring-purple-950/50 brightness-[1.4]';
   const inactiveClass = leftOrRight === 'right' ?
-    'portrait:ml-0 portrait:md:ml-12 landscape:ml-12 portrait:mr-0 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-8 landscape:hover:mr-4 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out' :
-    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 portrait:hover:ml-0 portrait:hover:mr-0 landscape:hover:ml-4 landscape:hover:mr-8 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out';
+    'portrait:ml-0 portrait:mr-0 portrait:md:ml-12 landscape:ml-12 portrait:hover:ml-0 portrait:hover:mr-0 portrait:md:hover:ml-8 portrait:md:hover:mr-4 landscape:hover:ml-8 landscape:hover:mr-4 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out' :
+    'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 portrait:hover:ml-0 portrait:hover:mr-0 portrait:md:hover:ml-4 portrait:md:hover:mr-8 landscape:hover:ml-4 landscape:hover:mr-8 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out';
     const activeHeadingClass = leftOrRight === 'right' ?
-      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-750)] to-purple-100 md:transition-all md:duration-500 md:ease-out' :
-      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tr from-[var(--purple-750)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
+      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out' :
+      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tr from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
     const inactiveHeadingClass = 'text-white py-1';
   const gradientSide = leftOrRight === 'left' ? 'bg-right bg-bgRadialGradientLeft' : 'bg-left bg-bgRadialGradientRight';
   const rowDirection = leftOrRight === 'left' ? 'flex-row' : 'flex-row-reverse';
@@ -51,7 +52,7 @@ export default function TabButtonProductJudge({
               'flex flex-row items-center',
               'py-1 px-4',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
-              'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission'
+              'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission hover:w-12'
             )}
             {...props}
           >
@@ -70,7 +71,7 @@ export default function TabButtonProductJudge({
             </div>
               {/* {isPending ? 'loading' : children} */}
           </button>
-      ) : isPortrait ? (
+      ) : isTouch ? (
         <button
           className={cn(
             activeTab === value ? activeClass : inactiveClass,

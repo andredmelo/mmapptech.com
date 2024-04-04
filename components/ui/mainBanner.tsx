@@ -11,7 +11,7 @@ const MainBanner = React.forwardRef<
     className={cn(
       "flex flex-col relative justify-center",
       "max-w-[1536px] h-full mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] 3xl:min-w-[1536px] 3xl:mx-auto",
-      "px-12 md:px-28 lg:px-44 py-20 md:py-36 lg:py-44",
+      "px-12 md:px-28 lg:px-44 py-12 md:py-36 lg:py-44",
       "rounded-[3rem] bg-no-repeat ", // border-2 border-fuchsia-600
       className
     )}

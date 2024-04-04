@@ -74,7 +74,7 @@ const Product = () => {
   return (
     <>
     {/* <article className="prose-stone lg:prose-xl"> */}
-      <section id="Features" className="flex flex-col pt-0 md:pt-12 lg:pt-20">
+      {/* <section id="MMAPP-Methodology" className="flex flex-col h-[65vw] py-0 md:py-0 lg:py-0 pt-0 md:pt-12 lg:pt-20">
           <MainBanner className="bg-bgRadialGradientDown">
             <MainBannerTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               MMAPP Methodology
@@ -82,70 +82,92 @@ const Product = () => {
             <MainBannerHeading className="flex flex-col justify-start z-20 pr-[0%] md:pr-[32%] lg:pr-[20%] text-left">
               A consistent and standardised unit of measurement for officiating MMA
             </MainBannerHeading>
-            <MainBannerDescription className="flex flex-col justify-start z-20 pr-[0%] md:pr-[30%] lg:pr-[25%] text-left">
+            <MainBannerDescription className="flex flex-col justify-start z-20 pr-[0%] md:pr-[30%] lg:pr-[25%] text-left mb-2 md:mb-0">
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.<br/><br/>
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/><br/>
               This allows officials to make more informed decisions for longer.<br/><br/>
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </MainBannerDescription>
           </MainBanner>
+      </section> */}
+
+      <section id="MMAPP-Methodology" className="flex flex-col h-[65vw] py-0 md:py-0 lg:py-0 pt-0 md:pt-[3.35vw] lg:pt-[3.35vw]">
+          <div className={clsx(
+            "flex flex-col relative justify-center",
+            "h-full mx-1 md:mx-[5.6vw]",//max-w-[1536px] 3xl:min-w-[1536px] 3xl:mx-auto
+            "px-12 md:px-[7.65vw] py-12 md:py-[4vw]",
+            "rounded-[3rem] bg-no-repeat bg-bgRadialGradientDown")}
+          >
+            <h5 className="flex flex-col justify-center z-20 text-md md:text-[2.175vw] text-center mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
+              MMAPP Methodology
+            </h5>
+            <h3 className={clsx(
+              "flex flex-col justify-center text-center z-20 mx-[6vw] mb-12 md:mb-[3.5vw]",
+              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}
+              >
+              A consistent and standardised unit of measurement for officiating MMA
+            </h3>
+            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22.8vw] lg:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] mb-6 md:mb-[2vw]">
+              The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
+            </h6>
+            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[22.8vw] lg:pl-[19vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw] mb-6 md:mb-[2vw]">
+              Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
+              This allows officials to make more informed decisions for longer.
+            </h6>
+            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22.8vw] lg:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
+              By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
+            </h6>
+          </div>
       </section>
 
-      <div className="borderBottom"></div>
+      <div id="productLineDesktop"
+        className={clsx(
+          "portrait:flex portrait:touch:hidden flex flex-col relative justify-center items-center",
+          "mx-1 md:mx-[5.6vw]",
+        )}>
+        <svg viewBox="0 0 1536 3500" id="Layer_1" data-name="Layer 1" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
+        <path d="m15.13,3499.9v-300.61c0-17.67,14.33-32,32-32h1442c17.67,0,32-14.33,32-32v-996c0-17.67-14.33-32-32-32h-690.98c-17.68,0-32.01-14.34-32-32.02l-.02-1067.98c0-17.67-14.33-32-32-32H43.12c-17.67,0-32-14.33-32-32V229.29c0-17.67,14.33-32,32-32h690.98c17.68,0,32.01-14.34,32-32.02l.02-19.37v-56" fill="none" stroke="#4d004d" stroke-linecap="round" stroke-width="10"/>
+  <path d="m766,120.07S765.47-.1,959.21.29C1532.47-.1,0-.1,573.26.29c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" stroke-width="0"/>
+        </svg>
+      </div>
 
-      <section id="Judge" className="flex flex-col justify-center">
-          <MainBanner className="bg-bgRadialGradientUp">
-            <MainBannerTitle className="flex flex-col justify-center z-20 text-center">
+<div id="productLineTablets"
+  className={clsx(
+    "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
+    "mx-1 md:mx-[5.6vw]",
+  )}>
+  <svg viewBox="0 0 1536 3500" id="Layer_1" data-name="Layer 1" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
+  <path d="m15.13,3499.9v-587.61c0-17.67,14.33-32,32-32h1442c17.67,0,32-14.33,32-32v-878c0-17.67-14.33-32-32-32h-690.98c-17.68,0-32.01-14.34-32-32.02l-.02-898.98c0-17.67-14.33-32-32-32H43.12c-17.67,0-32-14.33-32-32V229.29c0-17.67,14.33-32,32-32h690.98c17.68,0,32.01-14.34,32-32.02l.02-19.37v-56" fill="none" stroke="#cc0000" stroke-linecap="round" stroke-width="10"/>
+<path d="m766,120.07S765.47-.1,959.21.29C1532.47-.1,0-.1,573.26.29c193.74-.39,193.21,119.78,193.21,119.78" fill="#cc0000" stroke-width="0"/>
+  </svg>
+</div>
+
+      {/* <div className="borderBottom"></div> */}
+
+      <section id="Judge" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[3.35vw] lg:pt-[3.35vw] justify-center">
+          <div className={clsx(
+            "flex flex-col relative justify-center",
+            "h-full mx-1 md:mx-[5.6vw]",
+            "px-12 md:px-[7.65vw] pt-12 md:pt-[14.65vw] pb-12 md:pb-[14.1vw]",
+            "rounded-[3rem] bg-no-repeat ",
+          )}> {/* //bg-bgRadialGradientUp */}
+            <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
               Judge
-            </MainBannerTitle>
-            <MainBannerHeading className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[5%]">
+            </h5>
+            <h3 className={clsx(
+              "flex flex-col justify-start text-left z-20 pr-[0%] md:pr-[15vw] mb-12 md:mb-[3.5vw]",
+              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
               Designed for officials and their mobile devices
-            </MainBannerHeading>
-            <MainBannerDescription className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[10%]">
+            </h3>
+            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22.8vw] lg:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
               The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
               It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
               Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
-            </MainBannerDescription>
-          </MainBanner>
-
-        {/* <div className={clsx("hero1ContainerMargins w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
-          "rounded-[3rem] px-10 md:px-20 lg:px-32 py-24 md:py-32 lg:py-32")}>
-
-          <div className="flex flex-col justify-top z-20 text-center">
-            <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
-              Judge
-            </h5>
-            <div className="flex flex-col justify-center items-start px-2 md:px-12 lg:px-32">
-              <h3 className="mb-8 md:mb-12 lg:mb-16 pr-0 md:pr-20 lg:pr-80 py-8 text-left text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100">
-                Designed for officials and their mobile devices
-              </h3>
-              <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem]">
-                The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
-                It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
-                Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
-              </h6>
-            </div>
+            </h6>
           </div>
-        </div> */}
-
-        {/* <div className="flex h-[10rem] items-center border-2 border-white/100">
-          <button className="group relative rounded-full p-px text-[0.8125rem] font-semibold leading-6 shadow-xl shadow-zinc-950 text-white">
-            <span className="absolute inset-0 overflow-hidden rounded-full">
-              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-              </span>
-            </span>
-            <div className="relative z-10 rounded-full bg-gradient-to-b from-zinc-800 to-zinc-900 py-1 px-4 ring-1 ring-white/10 flex items-center space-x-2">
-              <span>
-                Download
-              </span>
-            </div>
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40">
-            </span>
-          </button>
-        </div> */}
 
         {/* Titles for big mobile devices */}
-        <div className="landscape:hidden portrait:hidden portrait:md:flex w-full justify-center items-center relative mb-6 md:mb-10 lg:mb-12 py-8">
+        <div className="landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex w-full justify-center items-center relative mb-6 md:mb-10 lg:mb-12 py-8 px-[10%]">
           <h3 className={clsx("text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
           "two-lines-always")}>
             {descriptionSrcMap[activeTabProductJudge]}
@@ -164,7 +186,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge1')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                 <path d="M12 5v2" />
@@ -186,7 +208,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge2')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -203,7 +225,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge3')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M7 12h3v4h-3z" />
                 <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
@@ -215,9 +237,9 @@ const Product = () => {
           </div>
 
           {/* // Use the loading state to conditionally render the image */}
-          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-auto landscape:max-w-[25vw] portrait:max-w-[120vw] max-h-[110vh] z-10")}>
+          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-auto landscape:max-w-[25vw] portrait:max-w-[25vw] portrait:touch:md:max-w-max touch:max-w-[120vw] max-h-[110vh] z-10")}>
             <img
-              className="object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max landscape:rounded-[5.25rem] portrait:rounded-[4.5rem] shadow-2xl shadow-neutral-50/10 ring-4 ring-fuchsia-950/25"
+              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[5.5vw] portrait:lg:rounded-[6.5rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iphone-12"
               onLoad={() => setIsLoading(false)}
@@ -235,7 +257,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge4')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M2 12h1" />
                 <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
@@ -255,7 +277,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge5')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
                 <path d="M3 10h18" />
@@ -273,7 +295,7 @@ const Product = () => {
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge6')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive">
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                 <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
@@ -293,7 +315,7 @@ const Product = () => {
         {/* // Use the loading state to conditionally render the image in small mobile device*/}
         <div className={clsx("flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto landscape:max-w-[25vw] portrait:max-w-[120vw] max-h-[110vh] z-10")}>
           <img
-            className="object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max landscape:rounded-[5.25rem] portrait:rounded-[4.5rem] shadow-2xl shadow-neutral-50/10 ring-4 ring-fuchsia-950/50"
+            className="object-scale-down max-h-[65vh] rounded-[4.5rem] shadow-2xl shadow-neutral-50/10 ring-4 ring-fuchsia-950/50"
             src={(preloadedImages as any)[activeTabProductJudge]?.src}
             alt="iphone-12"
             onLoad={() => setIsLoading(false)}
@@ -303,7 +325,41 @@ const Product = () => {
 
       </section>
 
-      <section id="Benefits" className='z-20 benefits'>
+      <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[3.35vw] lg:pt-[3.35vw] justify-center">
+          <div className={clsx(
+            "flex flex-col relative justify-center",
+            "h-full mx-1 md:mx-[5.6vw]",
+            "px-12 md:px-[7.65vw] pt-12 md:pt-[10.3vw] pb-12 md:pb-[14.1vw]",
+            "rounded-[3rem] bg-no-repeat ",
+          )}> {/* //bg-bgRadialGradientUp */}
+            <h5 className="flex flex-col justify-end text-right z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
+              RecordKeeper
+            </h5>
+            <h3 className={clsx(
+              "flex flex-col justify-end text-right z-20 pl-[0%] md:pl-[15vw] mb-12 md:mb-[3.5vw]",
+              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
+              Designed for officials performing Scorekeeping and Timekeeping duties
+            </h3>
+            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[15vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw]">
+              The “RecordKeeper” is our tool designed for officials performing Scorekeeping and Timekeeping duties.<br/><br/>
+              Because it is capable of automating most of the responsibilities, we are able to combine the roles of Scorekeeper and Timekeeper into one, called the RecordKeeper.<br/><br/>
+              Outperforming the roles when done individually, the RecordKeeper connects to the Judges, receives and calculates their score, and has outstanding timing capabilities, timing simultaneously Round Time, Breaks and In-between rounds, as well as important event logging, such as Reasons for Point deductions or Break duration.<br/><br/>
+              At the end of fights, it provides a clear display of the winner for easy visualization, for quick dispatch to the speaker. Once completed, every detail is instantly delivered to the Federation dashboard.
+            </h6>
+          </div>
+
+          {/* Titles for big mobile devices */}
+          <div className="landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex w-full justify-center items-center relative mb-6 md:mb-10 lg:mb-12 py-8 px-[10%]">
+            <h3 className={clsx("text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
+            "two-lines-always")}>
+              {descriptionSrcMap[activeTabProductJudge]}
+            </h3>
+          </div>
+
+        </section>
+
+
+      {/* <section id="Benefits" className='z-20 benefits'>
         <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Benefits for everyone else
@@ -316,7 +372,7 @@ const Product = () => {
           </p>
         </div>
         <Benefits />
-      </section>
+      </section> */}
 
 
       <div className="borderBottom"></div>
