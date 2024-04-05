@@ -66,7 +66,7 @@ const Company = (props: any) => {
     <>
       <div className="companyPage">
 
-        <section id="Mission" className="flex flex-col pt-0 lg:pt-20">
+        <section id="Mission" className="w-full flex flex-col pt-0 lg:pt-20 py-32 md:py-40 lg:py-52">
           {/* <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
           "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")}>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
@@ -101,7 +101,7 @@ const Company = (props: any) => {
 
         <div className="borderBottom"></div>
 
-        <section id="Vision" className="flex flex-col justify-center">
+        <section id="Vision" className="flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainBanner className="bg-bgRadialGradientUp ring-1 ring-white/5">
             <MainBannerTitle className="justify-center">
               Our Vision
@@ -261,7 +261,7 @@ const Company = (props: any) => {
 
         <div className="borderBottom"></div>
 
-        <section id="CoreValues" className="flex flex-col items-center">
+        <section id="CoreValues" className="flex flex-col items-center py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Core Values
           </h5>
@@ -678,7 +678,7 @@ const Company = (props: any) => {
 
         <div className="borderBottom"></div>
 
-        <section id="SecurityCompliance" className="flex flex-col items-center min-h-[calc(50vh)]">
+        <section id="SecurityCompliance" className="flex flex-col items-center min-h-[calc(50vh)] py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Security & Compliance
           </h5>
@@ -732,7 +732,7 @@ const Company = (props: any) => {
 
         <div className="borderBottom"></div>
 
-        <section id="Policies" className="flex flex-col items-center min-h-[calc(50vh)]">
+        <section id="Policies" className="flex flex-col items-center min-h-[calc(50vh)] py-32 md:py-40 lg:py-52">
             <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
               Company Policies
             </h5>

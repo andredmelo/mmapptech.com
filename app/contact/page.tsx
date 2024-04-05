@@ -8,7 +8,7 @@ const Contacts = () => {
   return (
     <>
 
-      <section id="ContactUs" className="flex flex-col items-center">
+      <section id="ContactUs" className="flex flex-col items-center py-32 md:py-40 lg:py-52">
         {/* <h1 className='text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>
           Contact Us
         </h1> */}
@@ -20,7 +20,7 @@ const Contacts = () => {
         
         <div className="borderBottom"></div>
 
-      <section id="FAQSupport" className="flex flex-col items-center">
+      <section id="FAQSupport" className="flex flex-col items-center py-32 md:py-40 lg:py-52">
         {/* <h1 className='text-center py-14 md:py-20 lg:py-24 xl:py-32 text-3xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>
           FAQ Support
         </h1> */}

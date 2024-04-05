@@ -152,7 +152,7 @@ const Product = () => {
           start: "top bottom",
           end: "bottom top",
           scrub: 1,
-          markers:true,
+          /* markers:true, */
           preventOverlaps:true,
           /* onUpdate: (self) => {
             if (self.direction === -1 && self.getVelocity() > 1) {
@@ -185,7 +185,7 @@ const Product = () => {
           start: "top top",
           end: "bottom top",
           scrub: 1,
-          markers:true,
+          /* markers:true, */
           preventOverlaps:true,
         }
         })
@@ -200,7 +200,7 @@ const Product = () => {
           start: "top top",
           end: "bottom top",
           scrub: 1,
-          markers:true,
+          /* markers:true, */
           preventOverlaps:true,
         }
         })
@@ -215,7 +215,7 @@ const Product = () => {
           start: "top top",
           end: "bottom bottom",
           scrub: 1,
-          markers:true,
+          /* markers:true, */
           preventOverlaps:true,
         }
         })

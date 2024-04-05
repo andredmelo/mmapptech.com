@@ -574,7 +574,7 @@ export default function Home() {
         </div>
 
 
-        <section id="SmallMission" className="z-20 flex flex-col justify-center">
+        <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainBanner className="bg-bgRadialGradientDown">
             <MainBannerTitle className="flex flex-col justify-center z-20 text-center">
               Small Mission
@@ -728,7 +728,7 @@ export default function Home() {
 
         <div className="borderBottom"></div>
 
-        <section id="Features" className="">
+        <section id="Features" className="py-32 md:py-40 lg:py-52">
 
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
@@ -1083,7 +1083,7 @@ export default function Home() {
         <div className="borderBottom featuresRecordKeeperBottom"></div>
 
 
-        <section id="Benefits" className='z-20 benefits'>
+        <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
           <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
             <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
               Benefits for everyone else
@@ -1147,7 +1147,7 @@ export default function Home() {
         <div className="borderBottom"></div> */}
 
 
-        <section id="FAQSupport" className="">
+        <section id="FAQSupport" className=" py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
@@ -1158,7 +1158,7 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        <section id="ContactUs" className="">
+        <section id="ContactUs" className=" py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Contact Us
           </h5>

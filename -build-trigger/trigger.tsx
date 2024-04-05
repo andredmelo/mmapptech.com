@@ -1,2 +1,2 @@
-let vNumber = "v0.1.2-β.13 | Product traveling line animation working!";
+let vNumber = "v0.1.2-β.14 | Sections py fix";
 

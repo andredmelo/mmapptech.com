@@ -65,7 +65,7 @@
     @apply relative mx-12 md:mx-72 border-b border-white/5;  /* This is to account for the Navbar */
   }
 
-  .homePageSection {
+  /* .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;
   }
   .homePageSection div{
@@ -79,9 +79,9 @@
   }
   .homePageSection div p{
     @apply pb-8;
-  }
-  .companyPage section {
-    @apply w-full ; /* min-h-[calc(100vh)] */
+  } */
+  /* .companyPage section {
+    @apply w-full ;
   }
   .companyPage section .defaultDiv{
     @apply w-full space-y-6 p-4 md:p-14 pb-8;
@@ -97,7 +97,7 @@
   }
   .companyPage section .defaultDiv p{
     @apply pb-8;
-  }
+  } */
   .companyPage .carouselWrapper{
     @apply w-[110vw] h-[30rem] md:h-[46rem] relative flex items-center overflow-visible bg-transparent;
   }
