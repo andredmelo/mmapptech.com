@@ -41,7 +41,7 @@ const CardBenefitsTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("font-semibold leading-none tracking-tight text-shadow shadow-[rgba(0,0,0,0.35)]", className)}
+    className={cn("font-semibold leading-none tracking-tight text-shadow text-shadow-[rgba(0,0,0,0.35)]", className)}
     {...props}
   />
 ))

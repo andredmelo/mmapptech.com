@@ -55,9 +55,9 @@
       text-neutral-600 hover:text-fuchsia-800
       hover:ring-4 ring-fuchsia-700 ring-opacity-60;
   }
-  section {
-    @apply py-32 md:py-40 lg:py-52;  /* This is to account for the Navbar */
-  }
+  /* section {
+    @apply py-32 md:py-40 lg:py-52;  / This is to account for the Navbar
+  } */
   section:last-child {
     @apply min-h-[calc(75vh)];
   }
@@ -195,11 +195,11 @@
   --fuchsia-400: hsl(292, 91%, 73%);
   --fuchsia-450: hsl(292, 88.5%, 67%);
   --fuchsia-500: hsl(292, 84%, 61%);
-  --fuchsia-550: hsl(292.5, 76.5%, 55%);
+  --fuchsia-550: #ce34e4;
   --fuchsia-600: hsl(293, 69%, 49%);
   --fuchsia-650: hsl(294, 70.5%, 44.5%);
   --fuchsia-700: hsl(295, 72%, 40%);
-  --fuchsia-750: hsl(295, 71%, 36.5%);
+  --fuchsia-750: #941b9f;
   --fuchsia-800: hsl(295, 70%, 33%);
   --fuchsia-850: rgb(123, 26, 130);
   --fuchsia-900: rgb(113, 26, 117);
@@ -556,6 +556,14 @@ a {
   align-items: center;
   min-height: 2.5em; /* Adjust this value based on your line-height and font-size */
   line-height: 1.25em; /* Example line-height */
+  overflow: hidden;
+}
+
+.twoLinesAlwaysProductRecordKeeper {
+  display: flex;
+  align-items: center;
+  min-height: 5.5vw; /* Adjust this value based on your line-height and font-size */
+  line-height: 2.75vw; /* Example line-height */
   overflow: hidden;
 }
 

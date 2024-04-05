@@ -52,7 +52,7 @@ export default function TabButtonProductJudge({
               'flex flex-row items-center',
               'py-1 px-4',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
-              'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission hover:w-12'
+              'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission'
             )}
             {...props}
           >

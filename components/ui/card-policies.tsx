@@ -40,7 +40,7 @@ const CardPoliciesTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h6
     ref={ref}
-    className={cn("text-white text-shadow shadow-[rgba(0,0,0,0.15)] dark:shadow-[rgba(255,255,255,0.15)]", className)}
+    className={cn("text-white text-shadow text-shadow-[rgba(0,0,0,0.15)] dark:text-shadow-[rgba(255,255,255,0.15)]", className)}
     {...props}
   />
 ))
