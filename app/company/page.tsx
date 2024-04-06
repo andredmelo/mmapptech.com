@@ -13,7 +13,7 @@ import { Dialog } from '@/components/ui/dialog'
 //import heroBGSVG from '@/public/images/bg/heroBG.svg';
 //import { HeroBGSVG } from '@/components/ui/svg/heroBGSVG';
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
-import { MainBanner, MainBannerTitle, MainBannerHeading, MainBannerDescription } from '@/components/ui/mainBanner'
+import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 
 /* export const metadata: Metadata = {
   title: 'Company',
@@ -85,33 +85,34 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div> */}
 
-          <MainBanner className=" justify-start bg-bgRadialGradientDown min-h-[50rem] md:min-h-[74rem] lg:min-h-[74rem] xl:min-h-[78rem] 2xl:min-h-[85rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem]">
-            <MainBannerTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[62rem] md:min-h-[60rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] py-28 md:py-32 lg:py-52">
+            <MainFCTitle className="flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               Our Mission
-            </MainBannerTitle>
-            <MainBannerHeading className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+            </MainFCTitle>
+            <MainFCHeading className="flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
-            </MainBannerHeading>
-            <MainBannerDescription className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+            </MainFCHeading>
+            <MainFCDescription className="flex-col justify-start z-20 max-w-[100%] md:max-w-[40rem] lg:max-w-[50rem] text-left">
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
-            </MainBannerDescription>
-            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
-          </MainBanner>
+            </MainFCDescription>
+            {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
+            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[33vw] xl:max-w-[36vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/_fb727da5-faed-480e-9fa0-f99466194f90 copy.webp" alt="herb dean"/>
+          </MainFC>
         </section>
 
         <div className="borderBottom"></div>
 
         <section id="Vision" className="flex flex-col justify-center py-32 md:py-40 lg:py-52">
-          <MainBanner className="bg-bgRadialGradientUp ring-1 ring-white/5">
-            <MainBannerTitle className="justify-center">
+          <MainFC className="bg-bgRadialGradientUp ring-1 ring-white/5">
+            <MainFCTitle className="justify-center">
               Our Vision
-            </MainBannerTitle>
-            <MainBannerHeading className="text-center">
+            </MainFCTitle>
+            <MainFCHeading className="text-center">
               Create a common language and unit of measurement for officiating MMA
-            </MainBannerHeading>
-            <MainBannerDescription>
+            </MainFCHeading>
+            <MainFCDescription className="text-center mx-5 md:mx-12 lg:mx-44">
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
-            </MainBannerDescription>
+            </MainFCDescription>
             <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
 
               <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
@@ -174,7 +175,7 @@ const Company = (props: any) => {
                 </p>
               </div>
             </div>
-          </MainBanner>
+          </MainFC>
 
           {/* <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
           "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>

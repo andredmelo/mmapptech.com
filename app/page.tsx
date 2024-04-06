@@ -9,14 +9,16 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-import { MainBanner, MainBannerTitle, MainBannerHeading, MainBannerDescription } from '@/components/ui/mainBanner'
+import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesLeftCard, FeaturesLeftCardHeader, FeaturesLeftCardTitle, FeaturesLeftCardDescription } from '@/components/ui/featuresLeftCard'
 import { FeaturesRightCard, FeaturesRightCardHeader, FeaturesRightCardTitle, FeaturesRightCardDescription } from '@/components/ui/featuresRightCard'
-//import ProDisplayShadowSVG from "@/components/ui/svg/proDisplayShadowSVG";
+
+
+import { CardPoliciesButton } from '@/components/ui/card-policies'
 
 import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
@@ -575,16 +577,16 @@ export default function Home() {
 
 
         <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
-          <MainBanner className="bg-bgRadialGradientDown">
-            <MainBannerTitle className="flex flex-col justify-center z-20 text-center">
+          <MainFC className="bg-bgRadialGradientDown">
+            <MainFCTitle className="flex flex-col justify-center z-20 text-center">
               Small Mission
-            </MainBannerTitle>
-            <MainBannerHeading className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[15%]">
+            </MainFCTitle>
+            <MainFCHeading className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[8%]">
               Accelerate the Recognition of MMA as an Olympic Sport
-            </MainBannerHeading>
-            <MainBannerDescription className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
+            </MainFCHeading>
+            <MainFCDescription className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
-            </MainBannerDescription>
+            </MainFCDescription>
             <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
               <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
                 <div>
@@ -644,7 +646,7 @@ export default function Home() {
                 <img className="smallMissionImg max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
               </div>
             </div>
-          </MainBanner>
+          </MainFC>
             {/* <div
               className={clsx("h-full flex flex-col md:flex-row relative ", //shadow-inset-mission
               "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
@@ -1072,6 +1074,14 @@ export default function Home() {
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
+                <CardPoliciesButton
+                  href="/product#MMAPP-Methodology"
+                  data-page="/product"
+                  data-link="#MMAPP-Methodology"
+                  className="w-fit px-14 mx-auto"
+                >
+                  Learn more in our product page <span aria-hidden="true">→</span>
+                </CardPoliciesButton>
 
               </div>
             </div>
@@ -1147,7 +1157,7 @@ export default function Home() {
         <div className="borderBottom"></div> */}
 
 
-        <section id="FAQSupport" className=" py-32 md:py-40 lg:py-52">
+        <section id="FAQSupport" className="mx-1 md:mx-[8vw] py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
@@ -1158,7 +1168,7 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        <section id="ContactUs" className=" py-32 md:py-40 lg:py-52">
+        <section id="ContactUs" className="mx-1 md:mx-[4.5vw] py-32 md:py-40 lg:py-52">
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Contact Us
           </h5>

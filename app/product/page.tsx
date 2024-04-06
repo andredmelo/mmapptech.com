@@ -11,7 +11,8 @@ import CustomEase from 'gsap/CustomEase';
 import Benefits from '@/app/home/benefits'
 import ContactUs from '@/app/contact/contact-us'
 
-import { MainBanner, MainBannerTitle, MainBannerHeading, MainBannerDescription } from '@/components/ui/mainBanner'
+import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
+import { ProductFC, ProductFCTitle, ProductFCHeading, ProductFCDescription } from '@/components/ui/productFunctionalComponent'
 import TabButtonProductJudge from '@/components/ui/tab-button-product-judge'
 import TabButtonProductRecordKeeper from '@/components/ui/tab-button-product-RecordKeeper'
 
@@ -145,7 +146,7 @@ const Product = () => {
       }); */
       let drawMainPath1 = gsap.timeline({
         defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.318,0.105 0.368,0.5 0.453,0.6 0.453,0.812 0.723,0.733 0.9,0.827 0.97,0.864 0.98,0.934 1,1 "),
+          ease: CustomEase.create("custom", "M0,0 C0.086,0.022 0.128,0.031 0.188,0.042 0.276,0.057 0.385,0.52 0.453,0.6 0.453,0.812 0.723,0.733 0.9,0.827 0.97,0.864 0.98,0.934 1,1 "),//
         },
         scrollTrigger: {
           trigger: "#Judge",
@@ -219,7 +220,7 @@ const Product = () => {
           preventOverlaps:true,
         }
         })
-        .fromTo("#mainPath-4", { drawSVG: "100% 100%" }, { drawSVG: "0% 100%" }, 0)
+        .from("#mainPath-4", { drawSVG: 0 }, 0)
 
 
         ScrollTrigger.refresh()
@@ -243,105 +244,158 @@ const Product = () => {
     <>
     {/* <article className="prose-stone lg:prose-xl"> */}
       {/* <section id="MMAPP-Methodology" className="flex flex-col h-[65vw] py-0 md:py-0 lg:py-0 pt-0 md:pt-12 lg:pt-20">
-          <MainBanner className="bg-bgRadialGradientDown">
-            <MainBannerTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+          <MainFC className="bg-bgRadialGradientDown">
+            <MainFCTitle className="flex flex-col justify-start z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               MMAPP Methodology
-            </MainBannerTitle>
-            <MainBannerHeading className="flex flex-col justify-start z-20 pr-[0%] md:pr-[32%] lg:pr-[20%] text-left">
+            </MainFCTitle>
+            <MainFCHeading className="flex flex-col justify-start z-20 pr-[0%] md:pr-[32%] lg:pr-[20%] text-left">
               A consistent and standardised unit of measurement for officiating MMA
-            </MainBannerHeading>
-            <MainBannerDescription className="flex flex-col justify-start z-20 pr-[0%] md:pr-[30%] lg:pr-[25%] text-left mb-2 md:mb-0">
+            </MainFCHeading>
+            <MainFCDescription className="flex flex-col justify-start z-20 pr-[0%] md:pr-[30%] lg:pr-[25%] text-left mb-2 md:mb-0">
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.<br/><br/>
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/><br/>
               This allows officials to make more informed decisions for longer.<br/><br/>
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
-            </MainBannerDescription>
-          </MainBanner>
+            </MainFCDescription>
+          </MainFC>
       </section> */}
 
-      <section id="MMAPP-Methodology" className="flex flex-col h-[65vw] py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
-          <div className={clsx(
+      <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
+          <ProductFC className="p-12 md:p-[7.65vw] bg-bgRadialGradientDown">
+            <ProductFCTitle className="
+            pt-[3vw]">
+              MMAPP Methodology
+            </ProductFCTitle>
+            <ProductFCHeading className="mx-[5vw]">
+              A consistent and standardised unit of measurement for officiating MMA
+            </ProductFCHeading>
+            <ProductFCDescription className="justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
+              The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
+            </ProductFCDescription>
+            <ProductFCDescription className="justify-end pl-[0vw] md:pl-[19vw] text-right mb-6 md:mb-[2vw]">
+              Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
+              This allows officials to make more informed decisions for longer.
+            </ProductFCDescription>
+            <ProductFCDescription className="justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
+              By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
+            </ProductFCDescription>
+            <p className="text-xl hover:text-white text-neutral-200 text-center justify-center pt-[2.5vw]">
+            ↓
+            </p>
+          </ProductFC>
+
+          {/* <div className={clsx(
             "flex flex-col relative justify-center",
             "h-full mx-1 md:mx-[5.6vw]",//max-w-[1536px] 3xl:min-w-[1536px] 3xl:mx-auto
-            "px-12 md:px-[7.65vw] py-12 md:py-[4vw]",
+            "p-12 md:p-[7.65vw]",
             "rounded-[3rem] bg-no-repeat bg-bgRadialGradientDown")}
           >
-            <h5 className="flex flex-col justify-center z-20 text-md md:text-[2.175vw] text-center mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
+            <h5 className="flex flex-col justify-center z-20 text-md md:text-[2.175vw] portrait:touch:text-[3.15vw] text-center mb-12 md:mb-[3.5vw] pt-[3vw] text-neutral-200 deboss">
               MMAPP Methodology
             </h5>
+
             <h3 className={clsx(
               "flex flex-col justify-center text-center z-20 mx-[5vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}
+              "text-xl md:text-[4.35vw] portrait:touch:text-[6.75vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}
               >
               A consistent and standardised unit of measurement for officiating MMA
             </h3>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] mb-6 md:mb-[2vw]">
+            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw] mb-6 md:mb-[2vw]">
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
             </h6>
-            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[19vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw] mb-6 md:mb-[2vw]">
+            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[19vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw] mb-6 md:mb-[2vw]">
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
               This allows officials to make more informed decisions for longer.
             </h6>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
+            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw]">
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </h6>
-          </div>
+            <p className="text-xl hover:text-white text-neutral-200 text-center justify-center pt-[2.5vw]">
+            ↓
+            </p>
+          </div> */}
+
       </section>
+      
 
       <div id="productLineDesktop"
         className={clsx(
-          "portrait:flex portrait:touch:hidden flex flex-col relative justify-center items-center",
+          "portrait:touch:hidden flex flex-col relative justify-center items-center", // portrait:touch:
           "mx-1 md:mx-[5.6vw] mt-[-2px]",
         )}>
         <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
-          <path id="backgroundPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h686.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-1" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h607.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-2" d="m1399.88,2112.39h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H138.88" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-3" d="m138.88,4195.29H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h605.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-4" d="m778.14,7442.32c0-17.67-14.33-32-32-32H41.14c-17.67,0-32-14.33-32-32v-400c0-17.67,14.33-32,32-32h1442c17.67,0,32-14.33,32-32l.12-773.61c0-17.67-14.33-32-32-32h-81.88" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-1" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37.27c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-3" d="m139.14,4195.6H41.27c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-4" d="m1401.39,6108.7h81.88c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
           {/* <path id="mainPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="1px 1px"/> */}
-          <path id="funnel" d="m759.88,122.16s-.53-120.16,193.21-119.78C1239.71,2.19,999.91,0,760.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
+          <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
         </svg>
       </div>
 
 
       {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" stroke-width="3" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="0.98052660449808px 1px"></path> */}
 
-{/* <div id="productLineTablets"
-  className={clsx(
-    "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
-    "mx-1 md:mx-[5.6vw]",
-  )}>
-  <svg viewBox="0 0 1536 3500" id="Layer_1" data-name="Layer 1" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
-  <path d="m15.13,3499.9v-587.61c0-17.67,14.33-32,32-32h1442c17.67,0,32-14.33,32-32v-878c0-17.67-14.33-32-32-32h-690.98c-17.68,0-32.01-14.34-32-32.02l-.02-898.98c0-17.67-14.33-32-32-32H43.12c-17.67,0-32-14.33-32-32V229.29c0-17.67,14.33-32,32-32h690.98c17.68,0,32.01-14.34,32-32.02l.02-19.37v-56" fill="none" stroke="#cc0000" strokeLinecap="round" stroke-width="10"/>
-<path d="m766,120.07S765.47-.1,959.21.29C1532.47-.1,0-.1,573.26.29c193.74-.39,193.21,119.78,193.21,119.78" fill="#cc0000" stroke-width="0"/>
-  </svg>
-</div> */}
+      <div id="productLineTablets"
+        className={clsx(
+          "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
+          "mx-1 md:mx-[5.6vw]",
+        )}>
+        <svg viewBox="0 0 1536 3500" id="Layer_1" data-name="Layer 1" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
+        <path d="m15.13,3499.9v-587.61c0-17.67,14.33-32,32-32h1442c17.67,0,32-14.33,32-32v-878c0-17.67-14.33-32-32-32h-690.98c-17.68,0-32.01-14.34-32-32.02l-.02-898.98c0-17.67-14.33-32-32-32H43.12c-17.67,0-32-14.33-32-32V229.29c0-17.67,14.33-32,32-32h690.98c17.68,0,32.01-14.34,32-32.02l.02-19.37v-56" fill="none" stroke="#cc0000" strokeLinecap="round" stroke-width="10"/>
+      <path d="m766,120.07S765.47-.1,959.21.29C1532.47-.1,0-.1,573.26.29c193.74-.39,193.21,119.78,193.21,119.78" fill="#cc0000" stroke-width="0"/>
+        </svg>
+      </div>
 
       {/* <div className="borderBottom"></div> */}
 
-      <section id="Judge" className="flex flex-col mt-0 md:mt-[6vw] justify-center">
-          <div className={clsx(
-            "flex flex-col relative justify-center",
-            "h-full mx-1 md:mx-[5.6vw]",
-            "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14.1vw]",
-            "rounded-[3rem] bg-no-repeat ",
-            )}
-          > {/* //bg-bgRadialGradientUp */}
-            <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
-              Judge
-            </h5>
-            <h3 className={clsx(
-              "flex flex-col justify-start text-left z-20 pr-[0%] md:pr-[15vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
-              Designed for officials and their mobile devices
-            </h3>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
-              The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
-              It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
-              Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
-            </h6>
-          </div>
+    <section id="Judge" className="flex flex-col mt-0 md:mt-[6vw] justify-center">
+        {/* <div id="bgGlowRight" className={clsx(
+              "flex justify-end",
+              "h-full ml-auto",
+              )}
+            >
+            <img
+              className="object-scale-down absolute"
+              src="/images/bg/glow-right.webp"
+              alt="bg GlowRight"
+            />
+        </div> */}
+        <ProductFC className="px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14.1vw]">
+          <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
+            Judge
+          </ProductFCTitle>
+          <ProductFCHeading className="justify-start text-left pr-[0%] md:pr-[15vw]">
+            Designed for officials and their mobile devices
+          </ProductFCHeading>
+          <ProductFCDescription className="justify-start pr-[0vw] md:pr-[19vw] text-left">
+            The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
+            It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
+            Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
+          </ProductFCDescription>
+        </ProductFC>
+        {/* <div className={clsx(
+          "flex flex-col relative justify-center",
+          "h-full mx-1 md:mx-[5.6vw]",
+          "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14.1vw]",
+          "rounded-[3rem] bg-no-repeat ",
+          )}
+        >
+          <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
+            Judge
+          </h5>
+          <h3 className={clsx(
+            "flex flex-col justify-start text-left z-20 pr-[0%] md:pr-[15vw] mb-12 md:mb-[3.5vw]",
+            "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
+            Designed for officials and their mobile devices
+          </h3>
+          <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
+            The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
+            It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
+            Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
+          </h6>
+        </div> */}
 
         {/* Titles for big mobile devices */}
         <div className="landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex w-full justify-center items-center relative mb-6 md:mb-10 lg:mb-12 py-8 px-[10%]">
@@ -503,12 +557,27 @@ const Product = () => {
       </section>
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <div className={clsx(
+        <ProductFC className="px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[6.5vw]">
+          <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
+            RecordKeeper
+          </ProductFCTitle>
+          <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
+            Designed for officials performing Scorekeeping and Timekeeping duties
+          </ProductFCHeading>
+          <ProductFCDescription className="justify-end text-right pl-[0vw] md:pl-[15vw]">
+            The “RecordKeeper” is our tool designed for officials performing Scorekeeping and Timekeeping duties.<br/><br/>
+            Because it is capable of automating most of the responsibilities, we are able to combine the roles of Scorekeeper and Timekeeper into one, called the RecordKeeper.<br/><br/>
+            Outperforming the roles when done individually, the RecordKeeper connects to the Judges, receives and calculates their score, and has outstanding timing capabilities, timing simultaneously Round Time, Breaks and In-between rounds, as well as important event logging, such as Reasons for Point deductions or Break duration.<br/><br/>
+            At the end of fights, it provides a clear display of the winner for easy visualization, for quick dispatch to the speaker. Once completed, every detail is instantly delivered to the Federation dashboard.
+          </ProductFCDescription>
+        </ProductFC>
+
+          {/* <div className={clsx(
             "flex flex-col relative justify-center",
             "h-full mx-1 md:mx-[5.6vw]",
             "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[6.5vw]",
             "rounded-[3rem] bg-no-repeat ",
-          )}> {/* //bg-bgRadialGradientUp */}
+          )}>
             <h5 className="flex flex-col justify-end text-right z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
               RecordKeeper
             </h5>
@@ -523,7 +592,7 @@ const Product = () => {
               Outperforming the roles when done individually, the RecordKeeper connects to the Judges, receives and calculates their score, and has outstanding timing capabilities, timing simultaneously Round Time, Breaks and In-between rounds, as well as important event logging, such as Reasons for Point deductions or Break duration.<br/><br/>
               At the end of fights, it provides a clear display of the winner for easy visualization, for quick dispatch to the speaker. Once completed, every detail is instantly delivered to the Federation dashboard.
             </h6>
-          </div>
+          </div> */}
 
           {/* RecordKeeper Titles */}
           <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw]">
@@ -635,13 +704,26 @@ const Product = () => {
         </section>
 
         <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <div className={clsx(
+          <ProductFC className="px-12 md:px-[7.65vw] pt-12 md:pt-[13.625vw] pb-12 md:pb-[13.75vw]">
+            <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
+              Dashboard
+            </ProductFCTitle>
+            <ProductFCHeading className="justify-start text-left pr-[0%] md:pr-[15vw]">
+              Enables Federations to easily manage all affairs
+            </ProductFCHeading>
+            <ProductFCDescription className="justify-start pr-[0vw] md:pr-[19vw] text-left">
+              The Dashboard is the component Federations interact with the most.<br/><br/>
+              Here they will be able to visualize and manage every aspect of the sport.<br/>
+              The dashboard provides an intuitive interface that allows Federations to easily manage various topics, while offering easy-to-digest reports and analysis on the various affairs of the Federation, such as fights statistics and trends from a regulatory perspective, as well as insights into members.
+            </ProductFCDescription>
+          </ProductFC>
+          {/* <div className={clsx(
             "flex flex-col relative justify-center",
             "h-full mx-1 md:mx-[5.6vw]",
             "px-12 md:px-[7.65vw] pt-12 md:pt-[13.625vw] pb-12 md:pb-[13.75vw]",
             "rounded-[3rem] bg-no-repeat ",
             )}
-          > {/* //bg-bgRadialGradientUp */}
+          >
             <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
               Dashboard
             </h5>
@@ -655,7 +737,7 @@ const Product = () => {
               Here they will be able to visualize and manage every aspect of the sport.<br/>
               The dashboard provides an intuitive interface that allows Federations to easily manage various topics, while offering easy-to-digest reports and analysis on the various affairs of the Federation, such as fights statistics and trends from a regulatory perspective, as well as insights into members.
             </h6>
-          </div>
+          </div> */}
 
           <div className={clsx(
             "flex flex-col items-center justify-start relative z-10",
@@ -704,12 +786,26 @@ const Product = () => {
         </section>
 
         <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-            <div className={clsx(
+          <ProductFC className="px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14vw]">
+            <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
+              Dashboard (Members)
+            </ProductFCTitle>
+            <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
+              A platform to seemlessly interact with your Federation
+            </ProductFCHeading>
+            <ProductFCDescription className="justify-end text-right pl-[0vw] md:pl-[15vw]">
+              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
+              Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
+              You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
+              Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
+            </ProductFCDescription>
+          </ProductFC>
+            {/* <div className={clsx(
               "flex flex-col relative justify-center",
               "h-full mx-1 md:mx-[5.6vw]",
               "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14vw]",
               "rounded-[3rem] bg-no-repeat ",
-            )}> {/* //bg-bgRadialGradientUp */}
+            )}>
               <h5 className="flex flex-col justify-end text-right z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
                 Dashboard (Members)
               </h5>
@@ -718,14 +814,14 @@ const Product = () => {
                 "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
                 A platform to seemlessly interact with your Federation
               </h3>
-              <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[15vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw]">
+              <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[25vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw]">
                 The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
                 Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
                 You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
                 Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
 
               </h6>
-            </div>
+            </div> */}
 
             <div className={clsx(
               "w-full flex lanscape:flex-row portrait:flex-col gap-4 md:gap-0 relative",
@@ -808,7 +904,7 @@ const Product = () => {
       <div className="borderBottom"></div>
 
 
-      <section id="ContactUs" className=" mx-1 md:mx-[4.5vw]">
+      <section id="ContactUs" className="mx-1 md:mx-[4.5vw] py-32 md:py-40 lg:py-52">
         <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
           Contact Us
         </h5>

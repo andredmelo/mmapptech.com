@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const MainBanner = React.forwardRef<
+const MainFC = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -10,17 +10,17 @@ const MainBanner = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col relative justify-center",
-      "max-w-[1536px] h-full mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] 3xl:min-w-[1536px] 3xl:mx-auto",
-      "px-12 md:px-28 lg:px-44 py-12 md:py-36 lg:py-44",
+      "max-w-[1536px] h-full mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[12rem] 3xl:min-w-[1536px] 3xl:mx-auto",
+      "px-10 md:px-24 lg:px-20 xl:px-36 py-12 md:py-36 lg:py-44",
       "rounded-[3rem] bg-no-repeat ", // border-2 border-fuchsia-600
       className
     )}
     {...props}
   />
 ))
-MainBanner.displayName = "MainBanner"
+MainFC.displayName = "MainFC"
 
-const MainBannerTitle = React.forwardRef<
+const MainFCTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -33,9 +33,9 @@ const MainBannerTitle = React.forwardRef<
     {...props}
   />
 ))
-MainBannerTitle.displayName = "MainBannerTitle"
+MainFCTitle.displayName = "MainFCTitle"
 
-const MainBannerHeading = React.forwardRef<
+const MainFCHeading = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -49,9 +49,9 @@ const MainBannerHeading = React.forwardRef<
     {...props}
   />
 ))
-MainBannerHeading.displayName = "MainBannerHeading"
+MainFCHeading.displayName = "MainFCHeading"
 
-const MainBannerDescription = React.forwardRef<
+const MainFCDescription = React.forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
@@ -59,15 +59,15 @@ const MainBannerDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "flex",
-      "h7 font-medium text-center leading-[2.1rem] md:leading-[2.5rem]",
+      "h7 font-medium text-center leading-snug",
       className
     )}
     {...props}
   />
 ))
-MainBannerDescription.displayName = "MainBannerDescription"
+MainFCDescription.displayName = "MainFCDescription"
 
-export { MainBanner, MainBannerTitle, MainBannerHeading, MainBannerDescription }
+export { MainFC, MainFCTitle, MainFCHeading, MainFCDescription }
 
 
 // Old version

@@ -36,9 +36,9 @@
   .smallP {
     @apply text-[1.2rem] md:text-[1.2rem] lg:text-[1.3rem] font-medium md:font-normal leading-[1.8rem] md:leading-[2rem] tracking-normal;
   }
-  button {
+  /* button {
     @apply border-none cursor-pointer text-sm md:text-md lg:text-md;
-  }
+  } */
   form input {
     @apply mb-6 mt-1 p-4 rounded-lg border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
