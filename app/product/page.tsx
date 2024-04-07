@@ -144,14 +144,15 @@ const Product = () => {
         ease: "none",
         duration: 1
       }); */
-      let drawMainPath1 = gsap.timeline({
+      let drawMainPath0 = gsap.timeline({
         defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.086,0.022 0.128,0.031 0.188,0.042 0.276,0.057 0.385,0.52 0.453,0.6 0.453,0.812 0.723,0.733 0.9,0.827 0.97,0.864 0.98,0.934 1,1 "),//
+          ease: "linear",//
         },
         scrollTrigger: {
-          trigger: "#Judge",
-          start: "top bottom",
-          end: "bottom top",
+          trigger: "#MMAPP-Methodology",
+          start: "bottom 70%",
+          endTrigger: "#Judge",
+          end: "top top",
           scrub: 1,
           /* markers:true, */
           preventOverlaps:true,
@@ -167,7 +168,7 @@ const Product = () => {
         }
         })
         //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
-        .from("#mainPath-1", { drawSVG: 0 }, 0)
+        .from("#mainPath-0", { drawSVG: 0 }, 0)
         //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
         /* .add(() => {
           if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
@@ -176,6 +177,20 @@ const Product = () => {
             dotAnimation.play();
           }
         }, 2.48); */
+      let drawMainPath1 = gsap.timeline({
+        defaults: {
+          ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
+        },
+        scrollTrigger: {
+          trigger: "#Judge",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+          /* markers:true, */
+          preventOverlaps:true,
+        }
+        })
+        .from("#mainPath-1", { drawSVG: 0 }, 0)
 
       let drawMainPath2 = gsap.timeline({
         defaults: {
@@ -325,7 +340,8 @@ const Product = () => {
         )}>
         <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
           <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-1" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37.27c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-0" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-598.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPath-1" d="m139.14,200l-101.87-.3c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
           <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
           <path id="mainPath-3" d="m139.14,4195.6H41.27c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
           <path id="mainPath-4" d="m1401.39,6108.7h81.88c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
