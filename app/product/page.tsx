@@ -436,7 +436,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <p className="text-lg md:text-xl hover:text-white text-neutral-200 text-left md:text-center pl-[2vw] md:pl-0 pt-[3vw] justify-center bounce-arrow">
             ↓
             </p>
-            <img className="z-10 max-h-full max-w-[90vw] portrait:touch:md:max-w-[71vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
+            <img className="z-10 max-h-full max-w-[90vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
             
           </ProductFC>
 
