@@ -1,2 +1,2 @@
-let vNumber = "v0.1.2-β.18 | Company and Product main candidate shots, other minor fixes";
+let vNumber = "v0.1.3-β.1 | Product TAblet animations √, other minor fixes";
 

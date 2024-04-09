@@ -178,6 +178,119 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   useGSAP(
     () => {
       //drawMainPath Animations
+
+      let matchMedia = gsap.matchMedia();
+      matchMedia.add("(orientation: portrait)", () => {
+          /* gsap.defaults({
+          ease: "none",
+          duration: 1
+        }); */
+        let drawMainPath0 = gsap.timeline({
+          defaults: {
+            ease: "power1.in",//
+          },
+          scrollTrigger: {
+            trigger: "#MMAPP-Methodology",
+            start: "bottom 80%",
+            endTrigger: "#Judge",
+            end: "top top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+            /* onUpdate: (self) => {
+              if (self.direction === -1 && self.getVelocity() > 1) {
+                // The user is scrolling up fast, so rewind the animation faster
+                gsap.to("#myAnimation", { timeScale: self.getVelocity() });
+              } else {
+                // The user is scrolling normally or down, so play the animation at normal speed
+                gsap.to("#myAnimation", { timeScale: 1 });
+              }
+            } */
+          }
+          })
+          //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
+          .from("#mainPathTouchMD-0", { drawSVG: 0 }, 0)
+          //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
+          /* .add(() => {
+            if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
+              dotAnimation.reverse();
+            } else { // if scrolling forward, play forward
+              dotAnimation.play();
+            }
+          }, 2.48); */
+        let drawMainPathTablet1 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
+          },
+          scrollTrigger: {
+            trigger: "#Judge",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPathTouchMD-1", { drawSVG: 0 }, 0)
+
+        let drawMainPathTablet2 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.097,0.318 0.202,0.019 0.453,0.6 0.561,0.85 0.626,0.733 0.803,0.827 0.873,0.864 0.98,0.934 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#RecordKeeper",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPathTouchMD-2", { drawSVG: 0 }, 0)
+
+        let drawMainPathTablet3 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.187,0.5 0.273,0.6 0.433,0.808 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#Dashboard",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPathTouchMD-3", { drawSVG: 0 }, 0)
+
+        let drawMainPathTablet4 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.256 0.392,0.277 0.5,0.4 0.669,0.595 0.614,0.545 0.754,0.706 0.805,0.765 1,0.851 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#Dashboard-Members",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPathTouchMD-4", { drawSVG: 0 }, 0)
+
+
+        ScrollTrigger.refresh()
+        // ScrollTrigger to refresh the markers
+        ScrollTrigger.create({
+          trigger: 'body',
+          start: 'top -20%',
+          onEnter: (self) => {
+            console.log('ScrollTriggerRefresh');
+            ScrollTrigger.refresh();
+          }
+        });
+      });
+
       /* gsap.defaults({
         ease: "none",
         duration: 1
@@ -276,39 +389,39 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         .from("#mainPath-4", { drawSVG: 0 }, 0)
 
 
-        ScrollTrigger.refresh()
-        // ScrollTrigger to refresh the markers
-        ScrollTrigger.create({
-          trigger: 'body',
-          start: 'top -20%',
-          onEnter: (self) => {
-            console.log('ScrollTriggerRefresh');
-            ScrollTrigger.refresh();
+      ScrollTrigger.refresh()
+      // ScrollTrigger to refresh the markers
+      ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top -20%',
+        onEnter: (self) => {
+          console.log('ScrollTriggerRefresh');
+          ScrollTrigger.refresh();
+        }
+      });
+
+      // Product Dashboard Titles
+      const productDashboardTitles = gsap.utils.toArray("#productDashboardTitles")
+      gsap.set(productDashboardTitles, { autoAlpha: 0 })
+      const totalDashboardTitles = productDashboardTitles.length;
+      const duration = 0.5; // duration of the animation in seconds
+      const delay = 3; // delay before the next title appears
+      let iteration = 0; // iteration counter for the infinite scrolling effect
+
+      const revealTitles = () => {
+        const currentTitle = productDashboardTitles[iteration] as EventTarget;
+        gsap.from(currentTitle, {
+          autoAlpha: 1,
+          duration: duration,
+          delay: delay,
+          ease: "power1.out",
+          onComplete: () => {
+            iteration = (iteration + 1) % totalDashboardTitles;
+            revealTitles();
           }
         });
-
-        // Product Dashboard Titles
-        const productDashboardTitles = gsap.utils.toArray("#productDashboardTitles")
-        gsap.set(productDashboardTitles, { autoAlpha: 0 })
-        const totalDashboardTitles = productDashboardTitles.length;
-        const duration = 0.5; // duration of the animation in seconds
-        const delay = 3; // delay before the next title appears
-        let iteration = 0; // iteration counter for the infinite scrolling effect
-
-        const revealTitles = () => {
-          const currentTitle = productDashboardTitles[iteration] as EventTarget;
-          gsap.from(currentTitle, {
-            autoAlpha: 1,
-            duration: duration,
-            delay: delay,
-            ease: "power1.out",
-            onComplete: () => {
-              iteration = (iteration + 1) % totalDashboardTitles;
-              revealTitles();
-            }
-          });
-        }
-        revealTitles();
+      }
+      revealTitles();
 
       // Product Dashboard Titles
         /* const productDashboardMembersTitles = gsap.utils.toArray("#productDashboardMembersTitles")
@@ -436,7 +549,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <p className="text-lg md:text-xl hover:text-white text-neutral-200 text-left md:text-center pl-[2vw] md:pl-0 pt-[3vw] justify-center bounce-arrow">
             ↓
             </p>
-            <img className="z-10 max-h-full max-w-[90vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
+            <img className="z-10 max-h-full max-w-[45vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
             
           </ProductFC>
 
@@ -499,14 +612,14 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
           "mx-1 md:mx-[5.6vw] mt-[-2px]",
         )}>
-        <svg viewBox="0 0 1536 7500" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
-          <path id="backgroundPathTouchMD" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-0" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-598.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-1" d="m139.14,200l-101.87-.3c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-3" d="m139.14,4195.6H41.27c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-4" d="m1401.39,6108.7h81.88c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v400c0,17.67,14.33,32,32,32h714c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="funnelTouchMD" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
+        <svg viewBox="0 0 1536 13000" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
+          <path id="backgroundPathTouchMD" d="m759.88,92l.13,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h687.98c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h688.98c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPathTouchMD-0" d="m759.88,92.32l.39,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-589.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPathTouchMD-1" d="m139.14,320l-101.87-.3c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h604.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPathTouchMD-2" d="m1400.14,3832.7h83.13c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPathTouchMD-3" d="m139.14,7733.6H41.27c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h607.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="mainPathTouchMD-4" d="m1401.39,10819.7h81.88c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+          <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
         </svg>
       </div>
 
@@ -524,7 +637,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               alt="bg GlowRight"
             />
         </div> */}
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] pb-[14.1vw] md:pb-[14.1vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:touch:md:pt-[19.5vw] pb-[14.1vw] md:pb-[14.1vw] portrait:touch:md:pb-[12vw]">
           <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Judge
           </ProductFCTitle>
@@ -558,14 +671,14 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
           </h6>
         </div> */}
-
+      <div className="portrait:md:h-[112vw]">
         {/* Titles for portrait devices */}
-        <div className="landscape:hidden portrait:hidden portrait:touch:flex portrait:touch:md:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:touch:md:pb-[1.5vw] px-0 portrait:touch:md:px-[10%]">
-          <h4 className={clsx("text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
+        {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:touch:md:pb-[1.5vw] px-0 portrait:touch:md:px-[10%]">
+          <h4 className={clsx("text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
           "two-lines-always")}>
             {descriptionSrcMapJudge[activeTabProductJudge]}
           </h4>
-        </div>
+        </div>}
 
         {/* // Use the loading state to conditionally render the images in small mobile device*/}
         <div className={clsx("flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
@@ -640,9 +753,9 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
 
           {/* // Use the loading state to conditionally render the image */}
-          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-auto landscape:max-w-[25vw] portrait:max-w-[25vw] portrait:touch:md:max-w-max touch:max-w-[120vw] max-h-[100%] z-10")}>
+          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center landscape:max-w-[25vw] landscape:touch:max-w-[100vw] z-10")}>
             <img
-              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[4.75rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
+              className="object-scale-down max-h-[100%] landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iPhone Judge images"
               onLoad={() => setIsLoading(false)}
@@ -708,12 +821,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
 
         </div>
-        
+      </div>
 
       </section>
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] pb-[6.5vw] md:pb-[6.5vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:touch:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
           <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
@@ -739,7 +852,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         <div className={clsx(
           "w-full flex flex-row portrait:touch:flex-col gap-1 portrait:touch:md:gap-1 md:gap-0 relative",
           "min-w-auto max-w-[100%] md:max-w-[90%] portrait:touch:md:max-w-[92.5%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:touch:mx-auto",
-          "px-2 md:px-[6.25vw]",
+          "px-2 md:px-[6.25vw] portrait:md:mb-[2vw]",
           )}
         >
 
@@ -845,7 +958,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       </section>
 
       <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] pb-12 md:pb-[13.75vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] portrait:md:pt-[19.1vw] pb-12 md:pb-[13.75vw]">
           <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Dashboard
           </ProductFCTitle>
@@ -882,34 +995,34 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         <div className={clsx(
           "flex flex-col items-center justify-start relative z-10",
-          "min-w-auto max-w-[100%] md:max-w-[95%] h-full max-h-[100%] mx-0 md:mx-[5.6vw] portrait:touch:md:mx-[1vw] portrait:touch:mx-[1vw]",
-          "px-0 md:px-[12vw] pb-12",
+          "min-w-auto max-w-[100%] md:max-w-[95%] h-full max-h-[100%] mx-0 md:mx-[5.6vw] portrait:mx-[1vw] portrait:md:mx-[3vw]",
+          "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 portrait:md:pb-[0vw]",
           )}
         >
           <img
-            className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max"
+            className="object-scale-down"
             src="/images/hardware/proDisplay.webp"
             alt="Pro Display image"
             onLoad={() => setIsLoading(false)}
           />
           <img
-            className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max px-12 md:px-[8vw] pt-[2vw] md:pt-[0.5vw]"
+            className="object-scale-down px-12 md:px-[8vw] portrait:md:px-[2vw] pt-[2vw] md:pt-[0.5vw]"
             src="/images/hardware/magicKeyboardMouse.webp"
-            alt="Pro Display image"
+            alt="Magic Keyboard & Mouse image"
             onLoad={() => setIsLoading(false)}
           />
           {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
           {/* Dashboard Video */}
-          <div className="flex absolute w-full justify-center items-end md:pt-[0vw] px-[1.65vw] md:px-[13.1vw]">
+          <div className="flex absolute w-full justify-center items-end md:pt-[0vw] portrait:md:pt-[0.35vw] px-[1.65vw] md:px-[13.1vw] portrait:md:px-[1.45vw]">
             {/* <video
-              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max"
+              className="object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max"
               src="/videos/product/mmappdemo5spedup.webm"
               autoPlay
               loop
             /> */}
             <img
-              className="object-contain w-full portrait:touch:max-h-max portrait:touch:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw]"
+              className="object-contain w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw]"
               src="/videos/product/Sharingofadashboard.webp"
               alt="Animated WebP"
               onLoad={() => setIsLoading(false)}
@@ -917,7 +1030,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
           
           <ProductDashboardTitles
-            className="flex absolute w-full justify-center items-end pt-[65vw] md:pt-[42vw] portrait:touch:md:pt-[47vw] px-[14vw] portrait:touch:px-[1vw] portrait:touch:md:px-[1vw]"
+            className="flex absolute w-full justify-center items-end pt-[65vw] md:pt-[42vw] portrait:md:pt-[62vw] px-[14vw] portrait:px-[1vw] portrait:md:px-[1vw]"
             productDashboardItems={productDashboardItems}
           />
           {/* <div className="flex absolute w-full justify-center items-end md:pt-[38.5vw] px-[14vw]">
@@ -932,7 +1045,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       </section>
 
       <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] pb-12 md:pb-[14vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[16.75vw] portrait:touch:md:pt-[19.75vw] pb-12 md:pb-[14vw]">
           <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
             Dashboard (Members)
           </ProductFCTitle>
@@ -971,7 +1084,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         <div className={clsx(
           "w-full flex landscape:flex-row portrait:flex-col gap-0 md:gap-0 relative",
-          "min-w-auto max-w-[100%] md:max-w-[90%] portrait:touch:md:max-w-[100%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:touch:md:mx-auto portrait:touch:mx-auto",
+          "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[94%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:md:mx-auto portrait:mx-auto",
           )}
         >
           <div className={clsx(
@@ -1008,12 +1121,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* Dashboard (Members) Titles */}
           <div className={clsx(
             "basis-[45%] relative flex flex-col justify-start items-left",
-            "w-full min-w-[20vw] portrait:touch:min-w-[70vw] max-h-[40vw] md:max-h-[27vw]  portrait:md:max-h-[40vw] portrait:touch:max-h-[65vw] portrait:touch:md:max-h-[50vw] overflow-hidden",
-            "ml-[2vw] portrait:touch:ml-[0vw] mr-[6vw] portrait:touch:mr-[0vw]",
+            "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[65vw] portrait:md:max-h-[40vw] overflow-hidden",
+            "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw]",
             )}
           >
             <ProductDashboardMembersTitles
-              className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:touch:min-h-[15vw] portrait:md:min-h-[13vw] mx-1 md:mx-0 group"
+              className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:min-h-[15vw] portrait:md:min-h-[11vw] mx-1 md:mx-0 group"
               productDashboardMembersItems={productDashboardMembersItems}
             />
 

@@ -1,3 +1,4 @@
+"use client"
 import { cn } from '@/lib/utils'
 import { useMediaQuery } from '@react-hook/media-query';
 
@@ -71,7 +72,7 @@ export default function TabButtonProductJudge({
             </div>
               {/* {isPending ? 'loading' : children} */}
           </button>
-      ) : isTouch ? (
+      ) : isPortrait ? (
         <button
           className={cn(
             activeTab === value ? activeClass : inactiveClass,
