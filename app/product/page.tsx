@@ -358,13 +358,14 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         showAndAnimateTitles(); */
 
-      const productDashboardMembersTitles = gsap.utils.toArray(".productDashboardMembersTitles")
+      const productDashboardMembersTitles = gsap.utils.toArray(".productDashboardMembersTitles") as HTMLElement[];
       let activeElement: HTMLElement | undefined;
       let verticalLoopSpeed = isUnder768 ? 0.2 : 0.3;
       const loop = verticalLoop(productDashboardMembersTitles, {
         paused: false,
         speed: verticalLoopSpeed,
         repeat: -1,
+        draggable: true, // make it draggable
         center: true, // active element is the one in the center of the container rather than the top edge
         onChange: (element: HTMLElement, index: number) => { // when the active element changes, this function gets called.
           //console.log(element);
@@ -373,6 +374,13 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           activeElement = element;
         }
       });
+
+      productDashboardMembersTitles.forEach((box: HTMLElement, i: number) => box.addEventListener("click", () => {
+        loop.toIndex(i, {duration: 0.8, ease: "power1.inOut"});
+        setTimeout(() => {
+          loop.play();
+        }, 3000); // 3000 milliseconds = 3 seconds
+      }));
 
 
     /* GSDevTools.create(); */
@@ -631,7 +639,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* // Use the loading state to conditionally render the image */}
           <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-auto landscape:max-w-[25vw] portrait:max-w-[25vw] portrait:touch:md:max-w-max touch:max-w-[120vw] max-h-[100%] z-10")}>
             <img
-              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[5.5vw] portrait:lg:rounded-[6.5rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
+              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[4.75rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iPhone Judge images"
               onLoad={() => setIsLoading(false)}
@@ -736,7 +744,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           <div className={clsx(
             "basis-[67.5%] portrait:touch:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10",
             "min-w-auto max-w-[100%] landscape:md:max-w-[90%] portrait:max-w-[100%] h-full max-h-[100%]",
-            "px-[0vw] pb-[3vw]",
+            "px-[0vw] pb-[0vw] portrait:pb-[0vw] md:pb-[3vw]",
             )}
           >
             <img
@@ -960,12 +968,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         <div className={clsx(
           "w-full flex landscape:flex-row portrait:flex-col gap-0 md:gap-0 relative",
-          "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[100%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:touch:md:mx-auto portrait:touch:mx-auto",
+          "min-w-auto max-w-[100%] md:max-w-[90%] portrait:touch:md:max-w-[100%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:touch:md:mx-auto portrait:touch:mx-auto",
           )}
         >
           <div className={clsx(
-            "basis-[55%] flex landscape:items-left portrait:items-center justify-center relative z-10",
-            "min-w-auto max-w-[100%] md:max-w-[90%] portrait:touch:md:max-w-[100%] h-full max-h-[100%]",
+            "basis-[55%] flex landscape:items-left portrait:items-start justify-center relative z-10",
+            "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[100%] h-full max-h-[100%]",
             "px-0 md:px-[0vw] pb-0 md:pb-0",
             )}
           >
@@ -978,7 +986,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
             {/* Dashboard (Members) Video */}
-            <div className="flex absolute w-full justify-start items-start md:pt-[2.5vw] portrait:touch:pt-[0vw] portrait:touch:md:pt-[0vw] px-[4.5vw] portrait:touch:px-[9.5vw] portrait:touch:md:px-[10vw]">
+            <div className="flex absolute w-full justify-start portrait:justify-center items-start md:pt-[2.5vw] portrait:pt-[4.5vw] portrait:touch:pt-[6vw] portrait:touch:md:pt-[7vw] px-[4.5vw] portrait:touch:px-[9.5vw] portrait:touch:md:px-[10vw]">
               {/* <video
                 className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max"
                 src="/videos/product/mmappdemo5spedup.webm"
@@ -994,15 +1002,15 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             </div>
           </div>
 
-          {/* RecordKeeper Titles */}
+          {/* Dashboard (Members) Titles */}
           <div className={clsx(
             "basis-[45%] relative flex flex-col justify-start items-left",
-            "w-full min-w-[20vw] portrait:touch:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:touch:max-h-[65vw] portrait:touch:md:max-h-[50vw] overflow-hidden",
+            "w-full min-w-[20vw] portrait:touch:min-w-[70vw] max-h-[40vw] md:max-h-[27vw]  portrait:md:max-h-[40vw] portrait:touch:max-h-[65vw] portrait:touch:md:max-h-[50vw] overflow-hidden",
             "ml-[2vw] portrait:touch:ml-[0vw] mr-[6vw] portrait:touch:mr-[0vw]",
             )}
           >
             <ProductDashboardMembersTitles
-              className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:touch:min-h-[15vw] portrait:touch:md:min-h-[13vw] group"
+              className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:touch:min-h-[15vw] portrait:md:min-h-[13vw] mx-1 md:mx-0 group"
               productDashboardMembersItems={productDashboardMembersItems}
             />
 

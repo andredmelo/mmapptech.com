@@ -23,7 +23,7 @@ export const ProductDashboardTitles = (props: ProductDashboardTitlesProps) => {
             id={"productDashboardTitle"+i}
             className={clsx(
               "absolute py-2",
-              "text-center text-[4vw] md:text-[2.25vw] portrait:touch:md:text-[3vw] leading-[2.5vw] tracking-normal",
+              "text-center text-[4vw] md:text-[2.5vw] portrait:touch:md:text-[3vw] leading-[2.5vw] tracking-normal",
               "text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-400)] to-white"
             )}>
             {header}
@@ -48,6 +48,7 @@ export const ProductDashboardMembersTitles = (props: ProductDashboardMembersTitl
               "w-[90%] group-[.active]:w-[100%] h-[90%] group-[.active]:h-[100%]",
               "text-center text-[3.25vw] group-[.active]:text-[3.75vw] leading-[5vw]",
               "md:text-[1.25vw] group-[.active]:md:text-[1.4vw] md:leading-[2vw]",
+              "portrait:md:text-[3vw] group-[.active]:portrait:md:text-[3.5vw] portrait:md:leading-[4vw]",
               "portrait:touch:md:text-[3vw] group-[.active]:portrait:touch:md:text-[3.25vw] portrait:touch:md:leading-[5vw] tracking-normal",
               "text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-white",
               "cursor-pointer transition-all duration-700"
