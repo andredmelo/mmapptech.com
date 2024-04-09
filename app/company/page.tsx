@@ -92,11 +92,11 @@ const Company = (props: any) => {
             <MainFCHeading className="flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className="flex-col justify-start z-20 max-w-[100%] md:max-w-[40rem] lg:max-w-[50rem] text-left">
+            <MainFCDescription className="flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[33vw] xl:max-w-[36vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/_fb727da5-faed-480e-9fa0-f99466194f90 copy.webp" alt="herb dean"/>
+            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[36vw] xl:max-w-[34vw] bottom-[-0.1rem] right-[-2vw] portrait:touch:md:right-[-3vw] absolute md:absolute object-contain overflow-hidden" src="/images/referees/Temp/stock-photo-minsk-belarus-september-new-fighting-generation-mixed-martial-arts-1774520465.webp" alt="herb dean"/>
           </MainFC>
         </section>
 
@@ -110,7 +110,7 @@ const Company = (props: any) => {
             <MainFCHeading className="text-center">
               Create a common language and unit of measurement for officiating MMA
             </MainFCHeading>
-            <MainFCDescription className="text-center mx-5 md:mx-12 lg:mx-44">
+            <MainFCDescription className="text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </MainFCDescription>
             <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
