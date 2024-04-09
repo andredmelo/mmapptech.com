@@ -566,6 +566,51 @@ a {
   line-height: 2.75vw; /* Example line-height */
   overflow: hidden;
 }
+@media (max-width: 767px) {
+  .twoLinesAlwaysProductRecordKeeper {
+    min-height: 21vw; /* Adjust this value based on your line-height and font-size */
+    line-height: 7vw; /* Example line-height */
+    overflow: visible;
+  }
+}
+@media (orientation: portrait) {
+  @media (min-width: 768px) {
+    .twoLinesAlwaysProductRecordKeeper {
+      min-height: 15vw; /* Adjust this value based on your line-height and font-size */
+      line-height: 5vw; /* Example line-height */
+      overflow: visible;
+    }
+  }
+}
+
+.twoLinesAlwaysProductDashboardTitle {
+  display: flex;
+  align-items: center;
+  /* min-height: 5.25vw; Adjust this value based on your line-height and font-size */
+  line-height: 2vw; /* Example line-height */
+  overflow: hidden;
+}
+
+/* .productDashboardMembersTitles.active .productDashboardMembersTitle {
+  height: 100%;
+  width: 100%;
+  transition: all ease-in-out 0.5s;
+} */
+
+.bounce-arrow {
+  animation: bounce 3s infinite;
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(-25%);
+      animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
 
 /* ========= NavBar ============*/
 

@@ -2,7 +2,7 @@
 import { useState, useTransition } from 'react'
 import TabButtonBenefits from '@/components/ui/tab-button-benefits'
 
-import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/app/home/benefitsFC';
+import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/components/ui/benefitsFC';
 
 import { IconTablerMinimize, IconTablerUniverse } from '@/components/ui/svg/benefitsSVGs';
 

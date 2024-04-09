@@ -56,7 +56,7 @@ const FeaturesRightCardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h6
     ref={ref}
-    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-700 dark:text-neutral-300 pt-8 md:pt-8 lg:pt-10 portrait:px-[1%] portrait:md:px-[5%] text-shadow-lg", className)}
+    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-700 dark:text-neutral-300 pt-8 md:pt-8 lg:pt-10 portrait:px-[1%] portrait:md:px-[5%] text-shadow-sm", className)}
     {...props}
   />
 ))

@@ -40,7 +40,7 @@ export default function TabButtonProductJudge({
   const gradientSide = leftOrRight === 'left' ? 'bg-right bg-bgRadialGradientLeft' : 'bg-left bg-bgRadialGradientRight';
   const rowDirection = leftOrRight === 'left' ? 'flex-row' : 'flex-row-reverse';
   const textDirection = leftOrRight === 'left' ? 'text-right' : 'text-left';
-  const svgDirection = leftOrRight === 'left' ? 'pl-6 portrait:pl-2 portrait:md:pl-6' : 'pr-6 portrait:pr-2 portrait:md:pr-6';
+  const svgDirection = leftOrRight === 'left' ? 'pl-6 portrait:pl-2 portrait:md:pl-4' : 'pr-6 portrait:pr-2 portrait:md:pr-4';
 
   return (
     <>
@@ -50,22 +50,22 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               isPending && 'opacity-100',
               'flex flex-row items-center',
-              'py-1 px-4',
-              'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
+              'py-0 px-4',
+              'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission'
             )}
             {...props}
           >
             <div className={cn("flex flex-row items-center")}>
               <div className={cn("flex text-center pl-2")}>
-                <h6 className={cn(
+                <p className={cn(
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   isPending && ''
                 )}>
                   {smallHeading}
-                </h6>
+                </p>
               </div>
-              <div className={cn("flex items-center justify-center py-4 pl-3 pr-0")}>
+              <div className={cn("flex items-center justify-center py-[1.75vw] pl-2 pr-0")}>
                 {children}
               </div>
             </div>
@@ -77,7 +77,7 @@ export default function TabButtonProductJudge({
             activeTab === value ? activeClass : inactiveClass,
             isPending && 'opacity-100',
             'flex flex-row items-center',
-            'py-6 px-12',
+            'py-6 px-10',
             'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
             'rounded-[3rem] bg-no-repeat shadow-inset-mission',gradientSide
           )}
@@ -104,7 +104,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               isPending && 'opacity-100',
               'flex flex-row items-center',
-              'max-w-[48rem] py-10 px-16',
+              'w-fit max-w-[48rem] py-10 px-16',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',gradientSide
             )}

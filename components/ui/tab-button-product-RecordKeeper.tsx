@@ -22,16 +22,26 @@ export default function TabButtonProductRecordKeeper({
 }: TabButtonProductRecordKeeperProps) {
   //const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
-  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
   const isTouch = useMediaQuery('(hover: none)');
 
-  const activeClass = 
-    'ml-0 mr-12 transition-all duration-500 ease-out ring-4 ring-purple-950/50 brightness-[1.4]';
-  const inactiveClass =
-    'ml-12 mr-0 hover:ml-8 hover:mr-4 transition-all duration-500 ease-out ring-1 ring-white/5';
-  const activeHeadingClass = 
-    'text-[1.5rem] md:text-[1.3vw] py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
-  const inactiveHeadingClass = 'text-[1.5rem] md:text-[1.3vw] text-white py-1';
+  const activeClass = cn(
+    'ml-0 mr-12 mt-0 mb-0',
+    'portrait:touch:md:mt-0 portrait:md:touch:mb-12 portrait:md:touch:ml-0 portrait:md:touch:mr-0',
+    'portrait:touch:mt-0 portrait:touch:mb-0 portrait:touch:ml-0 portrait:touch:mr-0',
+    'md:transition-all md:duration-500 md:ease-out ring-4 ring-purple-950/50 brightness-[1.4]'
+    )
+  const inactiveClass = cn(
+    'ml-12 mr-0 mt-0 mb-0 hover:ml-8 hover:mr-4',
+    'portrait:touch:md:mt-12 portrait:touch:md:mb-0 portrait:touch:md:ml-0 portrait:touch:md:mr-0 portrait:touch:md:hover:ml-0 portrait:touch:md:hover:mr-0',
+    'portrait:touch:mt-0 portrait:touch:mb-0 portrait:touch:ml-0 portrait:touch:mr-0 portrait:touch:hover:ml-0 portrait:touch:hover:mr-0',
+    'md:transition-all md:duration-500 md:ease-out ring-1 ring-white/5'
+    )
+  const activeHeadingClass = cn(
+    'text-[3.5vw] md:text-[1.3vw] portrait:touch:md:text-[2.25vw] py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100',
+    'md:transition-all md:duration-500 md:ease-out'
+    )
+  const inactiveHeadingClass = 'text-[3.5vw] md:text-[1.3vw] portrait:touch:md:text-[2.25vw] text-white py-1';
 
   return (
     <>
@@ -39,24 +49,24 @@ export default function TabButtonProductRecordKeeper({
         className={cn(
           activeTab === value ? activeClass : inactiveClass,
           isPending && 'opacity-100',
-          'flex flex-row items-center max-w-[19vw]',
-          'py-1 px-4 md:py-[0.9vw] md:px-[2.25vw]',
+          'flex flex-row items-center w-fit max-w-[20vw] portrait:touch:max-w-fit portrait:touch:md:max-w-[20vw] portrait:touch:min-h-[13vw]',
+          'py-[1vw] px-6 md:py-[1.1vw] md:px-[2.25vw] portrait:touch:py-[1.25vw] portrait:touch:md:py-[1vw] portrait:touch:md:px-[1.75vw]',
           'font-semibold leading-none tracking-normal',
           'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission'
         )}
         {...props}
       >
         <div className={cn("flex flex-row items-center")}>
-          <div className={cn("flex text-center")}>
+          <div className={cn("flex items-center justify-center py-2 md:py-4 pr-[0vw] md:pr-[0.8vw] portrait:touch:md:pr-[0.4vw] pl-0")}>
+            {children}
+          </div>
+          <div className={cn("flex text-left pr-[2.5vw] md:pr-[0vw] portrait:touch:md:pr-[1vw]")}>
             <h6 className={cn(
               activeTab === value ? activeHeadingClass : inactiveHeadingClass,
               isPending && ''
             )}>
-              {isUnder768 ? smallHeading : heading}
+              {isUnder768 ? smallHeading : ( isTouch ? smallHeading : heading )}
             </h6>
-          </div>
-          <div className={cn("flex items-center justify-center py-4 pl-3 pr-0")}>
-            {children}
           </div>
         </div>
           {/* {isPending ? 'loading' : children} */}

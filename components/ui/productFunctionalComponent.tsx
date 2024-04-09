@@ -10,7 +10,7 @@ const ProductFC = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col relative justify-center",
-      "h-full mx-1 md:mx-[5.6vw]",
+      "h-full mx-[1.5vw] md:mx-[5.6vw]",
       "",
       "rounded-[3rem] bg-no-repeat ", // border-2 border-fuchsia-600
       className
@@ -28,8 +28,8 @@ const ProductFCTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "mb-12 md:mb-[3.5vw]", // border-2 border-green-500,
-      "text-md md:text-[2.175vw] portrait:touch:text-[3.15vw] text-neutral-200 deboss text-center",
+      "mb-[3.5vw] md:mb-[3.5vw]", // border-2 border-green-500,
+      "text-md md:text-[2.175vw] portrait:touch:text-[5vw] portrait:touch:md:text-[3.15vw] text-neutral-200 deboss text-center",
       className
     )}
     {...props}
@@ -45,8 +45,8 @@ const ProductFCHeading = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "mb-12 md:mb-[3.5vw] py-2",
-      "text-xl md:text-[4.35vw] portrait:touch:text-[6.75vw] text-center text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100", // border-2 border-blue-500
+      "mb-[3.5vw] md:mb-[3.5vw] py-2",
+      "text-xl md:text-[4.35vw] portrait:touch:text-[7.5vw] portrait:touch:md:text-[6.75vw] text-center text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100", // border-2 border-blue-500
       className
     )}
     {...props}
@@ -62,7 +62,7 @@ const ProductFCDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "text-center font-medium text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw]",
+      "text-center font-medium text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[3.5vw] portrait:touch:md:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[4.75vw] portrait:touch:md:leading-[2.8vw]",
       className
     )}
     {...props}
