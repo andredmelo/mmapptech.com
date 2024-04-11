@@ -1,10 +1,11 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
+  CardContactUs,
+  CardContactUsContent,
+  CardContactUsDescription,
+  CardContactUsFooter,
+  CardContactUsHeader,
+  CardContactUsTitle,
+  CardContactUsButton
 } from '@/components/ui/card-contact-us'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
@@ -62,15 +63,15 @@ export default function General() {
   } */
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>General Inquiries</CardTitle>
-        <CardDescription>
+    <CardContactUs>
+      <CardContactUsHeader>
+        <CardContactUsTitle>General Inquiries</CardContactUsTitle>
+        <CardContactUsDescription>
           Inquire about general questions.<br/>
           Any information solicited will be used solely to provide requester with the information they have requested.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className='h-full'>
+        </CardContactUsDescription>
+      </CardContactUsHeader>
+      <CardContactUsContent className='h-full'>
         <div className='h-full rounded-lg bg-emerald-100'>
 
           <form
@@ -137,21 +138,24 @@ export default function General() {
               )}
             </div>
             <div className="flex flex-col items-center">
-              <button
+              {/* <button
                 disabled={isSubmitting}
                 className=""
-                /* type="submit" */
+                // type="submit"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
+              </button> */}
+              <CardContactUsButton disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </CardContactUsButton>
             </div>
           </form>
 
         </div>
-      </CardContent>
-      <CardFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
+      </CardContactUsContent>
+      <CardContactUsFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
         <p className='text-sm italic text-neutral-400 dark:text-neutral-500'>General Inquiries Submission Form</p>
-      </CardFooter>
-    </Card>
+      </CardContactUsFooter>
+    </CardContactUs>
   )
 }

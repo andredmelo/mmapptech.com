@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const Card = React.forwardRef<
+const CardContactUs = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -15,9 +15,9 @@ const Card = React.forwardRef<
     {...props}
   />
 ))
-Card.displayName = "Card"
+CardContactUs.displayName = "CardContactUs"
 
-const CardHeader = React.forwardRef<
+const CardContactUsHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -27,41 +27,59 @@ const CardHeader = React.forwardRef<
     {...props}
   />
 ))
-CardHeader.displayName = "CardHeader"
+CardContactUsHeader.displayName = "CardContactUsHeader"
 
-const CardTitle = React.forwardRef<
+const CardContactUsTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  <h4
     ref={ref}
-    className={cn("font-semibold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-400)] to-purple-900 dark:bg-gradient-to-br dark:from-[var(--purple-250)] dark:to-purple-100", className)}
+    className={cn("text-xl md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] font-semibold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-400)] to-purple-900 dark:bg-gradient-to-br dark:from-[var(--purple-350)] dark:to-purple-100", className)}
     {...props}
   />
 ))
-CardTitle.displayName = "CardTitle"
+CardContactUsTitle.displayName = "CardContactUsTitle"
 
-const CardDescription = React.forwardRef<
+const CardContactUsDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("font-medium text-[1.4rem] md:text-md lg:text-[1.8rem] xl:text-lg 2xl:text-lg text-neutral-500 dark:text-neutral-300 py-10", className)}
+    className={cn("font-medium leading-snug text-neutral-500 dark:text-neutral-300 py-10", className)}
     {...props}
   />
 ))
-CardDescription.displayName = "CardDescription"
+CardContactUsDescription.displayName = "CardContactUsDescription"
 
-const CardContent = React.forwardRef<
+const CardContactUsContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("px-10 md:px-15 xl:px-20 pb-6 md:pb-6 xl:pb-6 pt-0", className)} {...props} />
 ))
-CardContent.displayName = "CardContent"
+CardContactUsContent.displayName = "CardContactUsContent"
 
-const CardFooter = React.forwardRef<
+const CardContactUsButton = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ className, disabled, ...props }, ref) => (
+  <button
+    ref={ref}
+    disabled={disabled}
+    className={cn("p-3 w-[20%]",
+    "text-sm md:text-sm lg:text-md",
+    "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
+    "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
+    "hover:ring-1 ring-purple-600 ring-opacity-100", className)}
+    {...props}
+  />
+))
+CardContactUsButton.displayName = "CardContactUsButton"
+
+const CardContactUsFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -71,6 +89,6 @@ const CardFooter = React.forwardRef<
     {...props}
   />
 ))
-CardFooter.displayName = "CardFooter"
+CardContactUsFooter.displayName = "CardContactUsFooter"
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { CardContactUs, CardContactUsHeader, CardContactUsTitle, CardContactUsDescription, CardContactUsContent, CardContactUsButton, CardContactUsFooter }

@@ -26,6 +26,7 @@ export default function TabButtonProductJudge({
   //const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isXL = useMediaQuery('(min-width: 1280px)');
   const isTouch = useMediaQuery('(hover: none)');
 
   const activeClass = leftOrRight === 'right' ?
@@ -72,28 +73,28 @@ export default function TabButtonProductJudge({
             </div>
               {/* {isPending ? 'loading' : children} */}
           </button>
-      ) : isPortrait ? (
+      ) : isXL ? (
         <button
           className={cn(
             activeTab === value ? activeClass : inactiveClass,
             isPending && 'opacity-100',
             'flex flex-row items-center',
-            'py-6 px-10',
+            'w-fit max-w-[43rem] py-10 px-16',
             'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
             'rounded-[3rem] bg-no-repeat shadow-inset-mission',gradientSide
           )}
           {...props}
         >
           <div className={cn("flex items-center", rowDirection)}>
-            <div className={cn("flex", textDirection)}>
+            <div className={cn("shrink flex", textDirection)}>
               <h6 className={cn(
                 activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                 isPending && ''
               )}>
-                {smallHeading}
+                {heading}
               </h6>
             </div>
-            <div className={cn("flex items-center justify-center py-4", svgDirection)}>
+            <div className={cn("shrink-0 flex items-center justify-center py-4", svgDirection)}>
               {children}
             </div>
           </div>
@@ -105,7 +106,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               isPending && 'opacity-100',
               'flex flex-row items-center',
-              'w-fit max-w-[48rem] py-10 px-16',
+              'py-6 px-10',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',gradientSide
             )}
@@ -117,7 +118,7 @@ export default function TabButtonProductJudge({
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   isPending && ''
                 )}>
-                  {heading}
+                  {smallHeading}
                 </h6>
               </div>
               <div className={cn("flex items-center justify-center py-4", svgDirection)}>

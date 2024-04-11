@@ -12,6 +12,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 
 import Benefits from '@/app/home/benefits'
 import ContactUs from '@/app/contact/contact-us'
+import CallToActionButton from '@/app/CallToActionButton'
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import { ProductFC, ProductFCTitle, ProductFCHeading, ProductFCDescription } from '@/components/ui/productFunctionalComponent'
@@ -589,7 +590,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <div id="productLineDesktop"
         className={clsx(
-          "portrait:touch:hidden flex flex-col relative justify-center items-center", // portrait:touch:
+          "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
           "mx-1 md:mx-[5.6vw] mt-[-2px]",
         )}>
         <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
@@ -703,7 +704,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge1')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
                 <path d="M4 16v2a2 2 0 0 0 2 2h2" />
@@ -724,7 +725,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge2')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -741,7 +742,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge3')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M7 12h3v4h-3z" />
                 <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
@@ -773,7 +774,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge4')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M2 12h1" />
                 <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
@@ -793,7 +794,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge5')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
                 <path d="M3 10h18" />
@@ -811,7 +812,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge6')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[85%] md:w-[100%] h-[85%w] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                 <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
@@ -843,7 +844,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         {/* RecordKeeper Titles */}
         <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[1vw] portrait:touch:md:px-[13vw]">
-          <h4 className={clsx("text-xl md:text-[2.25vw] portrait:touch:text-[5vw] portrait:touch:md:text-[3.75vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+          <h4 className={clsx("text-xl md:text-[2.25vw] portrait:touch:text-[5vw] portrait:md:text-[3.75vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
           "twoLinesAlwaysProductRecordKeeper")}>
             {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
           </h4>
@@ -1150,32 +1151,18 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             </h4> */}
           </div>
         </div>
+        <CallToActionButton className="mt-[5vw]" />
       </section>
-
-
-      {/* <section id="Benefits" className='z-20 benefits'>
-        <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
-            Benefits for everyone else
-          </h5>
-          <h2 id="featuresJudgeTitle" className="text-transparent text-center pb-12 bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[85%]">
-          Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
-          </h2>
-          <p className=" text-center w-[95%] md:w-[60%] pb-10">
-            Choose your category below to find out how you stand to gain
-          </p>
-        </div>
-        <Benefits />
-      </section> */}
-
 
       <div className="borderBottom"></div>
 
-
-      <section id="ContactUs" className="mx-1 md:mx-[4.5vw] py-32 md:py-40 lg:py-52">
-        <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+      <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
+        <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
           Contact Us
         </h5>
+        <p className="text-center mb-8 md:mb-10 lg:mb-12">
+          Please select your kind of inquiry
+        </p>
         <ContactUs id={ContactUs} className=""/>
       </section>
   </>

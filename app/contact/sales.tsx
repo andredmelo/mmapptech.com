@@ -1,10 +1,10 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
+  CardContactUs,
+  CardContactUsContent,
+  CardContactUsDescription,
+  CardContactUsFooter,
+  CardContactUsHeader,
+  CardContactUsTitle
 } from '@/components/ui/card-contact-us'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
@@ -43,15 +43,15 @@ export default function Sales() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Sales Inquiries</CardTitle>
-        <CardDescription>
+    <CardContactUs>
+      <CardContactUsHeader>
+        <CardContactUsTitle>Sales Inquiries</CardContactUsTitle>
+        <CardContactUsDescription>
           Inquire about sales questions.<br/>
           Any information solicited will be used solely to provide requester with the information they have requested.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className='h-full'>
+        </CardContactUsDescription>
+      </CardContactUsHeader>
+      <CardContactUsContent className='h-full'>
         <div className='h-full rounded-lg bg-emerald-100'>
 
           <form
@@ -129,10 +129,10 @@ export default function Sales() {
           </form>
 
         </div>
-      </CardContent>
-      <CardFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
+      </CardContactUsContent>
+      <CardContactUsFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
         <p className='text-sm italic text-neutral-400 dark:text-neutral-500'>Sales Inquiries Submission Form</p>
-      </CardFooter>
-    </Card>
+      </CardContactUsFooter>
+    </CardContactUs>
   )
 }

@@ -21,7 +21,7 @@ const Accordion = (props: AccordionProps) => {
         <AccordionPrimitive.Item
           key={`header-${i}`}
           value={`item-${i + 1}`}
-          className="rounded-xl focus-within:ring focus-within:ring-fuchsia-700 focus-within:ring-opacity-75 focus:outline-none w-full"
+          className="rounded-xl border radix-state-closed:border-transparent radix-state-open:border-[var(--purple-750)] radix-state-open:border-opacity-75 focus:outline-none w-full"
         >
           <AccordionPrimitive.Header className="w-full h-full leading-[3rem]">
             <AccordionPrimitive.Trigger
@@ -33,24 +33,25 @@ const Accordion = (props: AccordionProps) => {
                 /* "bg-neutral-50 hover:bg-neutral-200",
                 "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
                 "radix-state-open:bg-white radix-state-closed:bg-neutral-200 radix-state-closed:hover:bg-neutral-100",
-                "dark:radix-state-open:bg-neutral-600 dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
+                "dark:radix-state-open:bg-[var(--purple-1200)] dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
-              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-r dark:group-radix-state-open:from-[var(--purple-300)] dark:group-radix-state-open:to-purple-200">
+              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100">
                 {header}
               </span>
               <ChevronDownIcon
                 className={clsx(
                   "ml-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
-                  "group-radix-state-open:rotate-180 group-radix-state-open:duration-300"
+                  "group-radix-state-open:rotate-180 group-radix-state-open:duration-300",
+                  "group-radix-state-closed:rotate-0 group-radix-state-closed:duration-200"
                 )}
               />
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-neutral-700 px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
-            <h6 className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-900 dark:text-neutral-300">
+          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-[var(--purple-750)] px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
+            <p className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-900 dark:text-neutral-300">
               {content}
-            </h6>
+            </p>
           </AccordionPrimitive.Content>
         </AccordionPrimitive.Item>
       ))}

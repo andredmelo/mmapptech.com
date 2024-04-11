@@ -10,7 +10,7 @@ const CardBenefits = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex flex-col h-full rounded-xl md:rounded-xl md:mx-0 text-neutral-950 dark:text-neutral-50",
+        "flex flex-col h-full rounded-xl md:rounded-xl md:mx-0 text-neutral-50",
         /*  bg-white dark:bg-gradient-to-r from-[var(--primary-fuchsia-dark4)] to-[var(--background-grey)] to-85% */
         "bg-no-repeat bg-left bg-cover bg-bgRadialGradientUp md:bg-bgRadialGradientRight",
         /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
@@ -29,7 +29,7 @@ const CardBenefitsHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-3 md:space-y-0", "rounded-2xl md:rounded-2xl bg-white text-neutral-950 shadow-xl dark:bg-[var(--background-grey-50)] dark:text-neutral-50 shadow-inset-right p-8 md:p-10 lg:p-10", className)}
+    className={cn("flex flex-col space-y-3 md:space-y-0", "rounded-2xl md:rounded-2xl shadow-xl bg-[var(--background-grey-50)] text-neutral-50 shadow-inset-right p-8 md:p-10 lg:p-10", className)}
     {...props}
   />
 ))
@@ -39,7 +39,7 @@ const CardBenefitsTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h5
+  <h6
     ref={ref}
     className={cn("font-semibold leading-none tracking-tight text-shadow text-shadow-[rgba(0,0,0,0.35)]", className)}
     {...props}
@@ -53,7 +53,7 @@ const CardBenefitsDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-700 dark:text-neutral-300 pt-2 md:pt-4 lg:pt-4", className)}
+    className={cn("font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-300 pt-2 md:pt-4 lg:pt-4", className)}
     {...props}
   />
 ))

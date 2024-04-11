@@ -65,7 +65,12 @@ const CardPoliciesButton = React.forwardRef<
   <a
     ref={ref}
     /* href={url} */
-    className={cn("text-md text-center w-full py-2 px-6 mt-auto border focus:ring-2 rounded-full border-transparent dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white hover:bg-neutral-100 bg-neutral-700 text-white hover:text-black duration-200 focus:ring-offset-2 focus:ring-white inline-flex items-center justify-center ring-1 ring-transparent", className)}
+    className={cn("w-full inline-flex items-center justify-center py-2 px-6 mt-auto",
+    "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
+    "text-md text-center duration-200",
+    "border focus:ring-2 rounded-full border-transparent",
+    "focus:ring-offset-2 focus:ring-white ring-1 ring-transparent", className)}
     {...props}
   />
   /*  */

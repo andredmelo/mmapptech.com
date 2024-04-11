@@ -19,6 +19,7 @@ import { FeaturesRightCard, FeaturesRightCardHeader, FeaturesRightCardTitle, Fea
 
 
 import { CardPoliciesButton } from '@/components/ui/card-policies'
+import CallToActionButton from '@/app/CallToActionButton'
 
 import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
@@ -1080,7 +1081,7 @@ export default function Home() {
                   data-link="#MMAPP-Methodology"
                   className="w-fit px-14 mx-auto"
                 >
-                  Learn more in our product page <span aria-hidden="true">→</span>
+                  Learn more in our product page<span aria-hidden="true" className="pl-2"> →</span>
                 </CardPoliciesButton>
 
               </div>
@@ -1095,17 +1096,19 @@ export default function Home() {
 
         <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
           <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
-            <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+            <h5 className="mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h2 id="featuresJudgeTitle" className="text-transparent text-center pb-12 bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[85%]">
+            <h3 id="featuresJudgeTitle" className="text-transparent text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[85%]">
             Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
-            </h2>
-            <p className=" text-center w-[95%] md:w-[60%] pb-10">
+            </h3>
+            <p className=" text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">
               Choose your category below to find out how you stand to gain
             </p>
           </div>
           <Benefits /* items={items} */ />
+
+          <CallToActionButton className="mt-[5vw]" />
         </section>
         
 
@@ -1157,10 +1160,13 @@ export default function Home() {
         <div className="borderBottom"></div> */}
 
 
-        <section id="FAQSupport" className="mx-1 md:mx-[8vw] py-32 md:py-40 lg:py-52">
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+        <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
+          <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
+          <p className="text-center mb-8 md:mb-10 lg:mb-12">
+            If you have any other questions, or need any assistance, please feel free to use the contact us form below
+          </p>
           <FAQ />
         </section>
         
@@ -1168,10 +1174,13 @@ export default function Home() {
         <div className="borderBottom"></div>
 
 
-        <section id="ContactUs" className="mx-1 md:mx-[4.5vw] py-32 md:py-40 lg:py-52">
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+        <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
+          <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             Contact Us
           </h5>
+          <p className="text-center mb-8 md:mb-10 lg:mb-12">
+            Please select your kind of inquiry
+          </p>
           <ContactUs id={ContactUs} className=""/>
         </section>
 

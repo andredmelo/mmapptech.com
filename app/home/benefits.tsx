@@ -205,7 +205,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[111rem] portrait:md:min-h-[111rem] mx-4 md:mx-12 lg:mx-12 2xl:mx-96'>
+      <div className='flex flex-col md:flex-row md:min-h-[119rem] portrait:md:min-h-[107rem] max-w-[1536px] mx-auto px-2 md:px-[2vw] md:xl-[5vw]'>
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}

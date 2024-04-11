@@ -48,13 +48,13 @@
   form textarea {
     @apply mb-6 mt-1 p-4 rounded border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
-  form button {
-    @apply p-4 w-[20%] rounded-lg border-solid border-2 border-neutral-300 hover:border-neutral-100 hover:border-opacity-85 dark:hover:border-opacity-85
+  /* form button {
+    @apply p-4 w-[20%] rounded-full border-solid border-2 border-neutral-300 hover:border-neutral-100 hover:border-opacity-85 dark:hover:border-opacity-85
       text-sm md:text-sm lg:text-md
       bg-white hover:bg-fuchsia-50 dark:bg-neutral-100
       text-neutral-600 hover:text-fuchsia-800
       hover:ring-4 ring-fuchsia-700 ring-opacity-60;
-  }
+  } */
   /* section {
     @apply py-32 md:py-40 lg:py-52;  / This is to account for the Navbar
   } */
@@ -141,8 +141,9 @@
 :root {
   /* --background-grey: #131316; */
   --background2-grey: #1a1515;
-  --background-grey: #140f0f;
+  --background-grey: rgb(20, 15, 15);
   --background-grey-50: rgba(20, 15, 15, 0.65);
+  --background-grey-95: rgba(20, 15, 15, 0.95);
   --background-grey-light: hsl(0, 14%,10%);
   --background-grey-highlight: rgb(33, 33, 33, 0.5);
   --dark-grey: #131010;
