@@ -23,6 +23,9 @@ import CallToActionButton from '@/app/CallToActionButton'
 
 import(/* webpackPreload: true */ '@/components/three.js');
 import { HomeIntroR3F } from '@/components/three.js';
+import { HomeiPhoneIntroR3F } from '@/components/three.js';
+import { HomeCageR3F } from '@/components/three.js';
+
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import { TestR3F } from '@/components/three.js';
 
@@ -551,6 +554,38 @@ export default function Home() {
           //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
           setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
 
+
+          //Home Animation
+          const heroBG = document.getElementById("heroBG");
+          const heroSpotLeft = document.getElementById("heroSpotLeft");
+          const heroSpotRight = document.getElementById("heroSpotRight");
+          const heroFighterRight = document.getElementById("heroFighterRight");
+          const heroFighterLeft = document.getElementById("heroFighterLeft");
+          const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
+          const heroMMAPPText = document.getElementById("heroMMAPPText");
+
+          const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
+          const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
+
+          gsap.set(heroBG, {autoAlpha: 0});
+          gsap.set(heroSpotLeft, {autoAlpha: 0});
+          gsap.set(heroSpotRight, {autoAlpha: 0});
+          gsap.set(heroFighterRight, {autoAlpha: 0});
+          gsap.set(heroFighterLeft, {autoAlpha: 0});
+          gsap.set(heroMMAPPLogo, {autoAlpha: 0, xPercent: -50, left: "50%", top: heroMMAPPLogoTop});
+          gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
+
+          const Intro = gsap.timeline({paused:true})
+            .fromTo(heroBG, {autoAlpha: 0, yPercent: 5}, {autoAlpha: 1, yPercent: 0, duration: 4, ease: "power2.in"})
+            .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.25)
+            .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.5)
+            .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out", delay: 0}, 4)
+            .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out", delay: 0}, 4.05)
+            .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.5)
+            .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.75)
+
+          Intro.play();
+
         }
       }, 50); // Check every 50ms
   
@@ -564,15 +599,21 @@ export default function Home() {
       <div className="homeRoot">
 
         <div id="Home" className="homeSection">
-          <div className="homeBackground">
-            <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/>
+          <div className="relative w-[100vw] h-[100vh]">
+            {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
+            <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100vh]"/>
+            <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
+            <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
+            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[3] absolute object-scale-down bottom-0 right-0 max-h-[75vh]"/>
+            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[3] absolute object-scale-down bottom-0 left-0 max-h-[75vh]"/>
+            <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="z-[4] absolute"/>
+            <h2 id="heroMMAPPText" className="z-[4] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[9rem] text-center font-semibold deboss">Mapping MMA</h2> 
           </div>
-          <div className="homeMain">
-            <img src="/images/logo_on_black.svg" alt="MMAPP Logo" />
-            <h2>Mapping MMA</h2>
-          </div>
-          <HomeIntroR3F />
-          {/* <TestR3F /> */}
+          {/* <div className="homeMain">
+          </div> */}
+          {/* <HomeIntroR3F /> */}
+          <HomeiPhoneIntroR3F />
+          <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
         </div>
 
@@ -772,7 +813,7 @@ export default function Home() {
                       Overview of Federation Affairs
                     </FeaturesLeftCardTitle>
                     <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Have relevant information viewable at a glance in the Overview screen.
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
@@ -783,7 +824,7 @@ export default function Home() {
                       Visual Reports with Actionable Insights
                     </FeaturesLeftCardTitle>
                     <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Gain a better understanding on judge scoring and the differences between officials, to create a more cohesive team.
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
@@ -794,7 +835,7 @@ export default function Home() {
                       Easy Form Management and Seamless Sign-up process for all (Officials, Athletes, Coaches, Promoters and Clubs)
                     </FeaturesLeftCardTitle>
                     <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Registering is as simple as filling out a form online, and managing forms is just as simple.
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
@@ -805,7 +846,7 @@ export default function Home() {
                       Intuitive Member Management
                     </FeaturesLeftCardTitle>
                     <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Easily view and filter your members, according to your needs to quickly drill down on what’s important.
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
@@ -816,7 +857,7 @@ export default function Home() {
                       Centralized Database
                     </FeaturesLeftCardTitle>
                     <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                      Easily accessible foreign fighter profiles and competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
                     </FeaturesLeftCardDescription>
                   </FeaturesLeftCardHeader>
                 </FeaturesLeftCard>
@@ -954,7 +995,8 @@ export default function Home() {
                 <FeaturesRightCard className="judgeCard z-10">
                   <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
                     <FeaturesRightCardTitle>
-                      Make more Informed Decisions with a Coherent and Consistent Methodology
+                      Make more Informed Decisions for longer<br/>
+                      With a Coherent and Consistent Methodology
                     </FeaturesRightCardTitle>
                     <FeaturesRightCardDescription>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useContext } from 'react'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Texture, Mesh, Color, SRGBColorSpace, LinearSRGBColorSpace, RepeatWrapping, MeshStandardMaterial, ACESFilmicToneMapping, Object3D, PerspectiveCamera, Clock, Material } from 'three';
 import { OrbitControls, ScrollControls, useScroll} from '@react-three/drei';
+import { useMediaQuery } from '@react-hook/media-query';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -37,26 +38,83 @@ const IPhoneBobAnimation = ({ iPhoneRef }: { iPhoneRef: React.RefObject<Mesh> })
 };
 
 
-// Intro Home
-export const HomeIntroR3F: React.FC = () => {
+// Home Cage R3F
+export const HomeCageR3F: React.FC = () => {
+  const { cage, textures } = useLoadAssets();
+  const container = useRef(null);
+  const cageRef = useRef<Mesh>(null);
+  
+
+  /* ===== GSAP React ===== */
+  useGSAP(
+    () => {
+      gsap.set(".HomeCageR3F", {autoAlpha:0});
+      const Test4CageR3F = setInterval(() => {
+        if (cage?.scene) {
+          clearInterval(Test4CageR3F);
+
+          // cageHomeAnimIn
+          const cageHomeAnimIn = gsap.timeline({paused:true, delay:0, fastScrollEnd: 3000})
+            .set(cage.scene.scale, {x: 0.01, y: 0.01, z: 0.01})
+            .set(cage.scene.position, {y: -8})
+            .to(".HomeCageR3F", {autoAlpha:1, duration:0.1}, "<")
+            .fromTo(cage.scene.position, {y: -2}, {y: -0.5, ease:"power4.out", duration:3}, "<")
+            .fromTo(cage.scene.rotation, {x: 0.6, y: -9}, {x: 0.15, y: -2.38, ease:"power3.out", duration:3}, "<")
+            .fromTo(cage.scene.scale, {x: 0.25, y: 0.25, z: 0.25}, {x: 0.75, y: 0.75, z: 0.75, ease:"power1.out", duration:3}, "<")
+            .fromTo(cage.scene.position, {z: 0}, {z: 7, ease:"power1.in", duration:1.75}, 1.25)
+            .set(".HomeCageR3F", {autoAlpha:0});
+          cageHomeAnimIn.play()
+        }
+      }, 50); // Check every 50ms
+    },
+    { dependencies: [cage?.scene], revertOnUpdate: true }
+  );
+
+  return (
+    <div ref={container} className="HomeCageR3F absolute z-[5] h-screen w-screen overflow-visible">
+      <Canvas linear>
+        <CustomCamera />
+          <ambientLight intensity={2}/>
+          <pointLight position={[2, 3, 4]} />
+          <directionalLight position={[2, 1, 1]}/>
+
+          {cage && (
+            <CageModel cage={cage} innerRef={cageRef}/>
+          )}
+
+      </Canvas>
+    </div>
+  )
+}
+
+// Home iPhone Intro R3F
+export const HomeiPhoneIntroR3F: React.FC = () => {
   const { iPhone, textures } = useLoadAssets();
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
 
   const container = useRef(null);
   const iPhoneRef = useRef<Mesh>(null);
 
+  const isLandscape = useMediaQuery('(orientation: landscape)');
+  const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isOver1536 = useMediaQuery('(min-width: 1536px)');
+
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-      const checkintroHomer3FViewer = setInterval(() => {
-        if (document.querySelector('.introHomer3FViewer') && document.querySelector('.homeSection') && iPhone?.scene) {
-          clearInterval(checkintroHomer3FViewer);
+      const checkhomeiPhoneIntro = setInterval(() => {
+        if (document.querySelector('.homeiPhoneIntro') && document.querySelector('.homeSection') && iPhone?.scene) {
+          clearInterval(checkhomeiPhoneIntro);
 
-          const setintroHomer3FViewerOpacity = gsap.quickSetter(".introHomer3FViewer", "opacity");
+          const sethomeiPhoneIntroOpacity = gsap.quickSetter(".homeiPhoneIntro", "opacity");
+          const iPhoneScale = isLandscape ? 5 : ( isUnder768 ? 7.5 : 6);
+          const iPhoneYRestingPosition = isLandscape ? -0.45 : ( isUnder768 ? 0.22 : 0.23);
+          const iPhoneXDropPosition = isLandscape ? 2 : ( isUnder768 ? 0 : 1);
 
           // Initial settings and positioning
-          setintroHomer3FViewerOpacity(0);
-          gsap.set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
+          sethomeiPhoneIntroOpacity(0);
+          gsap.set(iPhone.scene.scale, {x: iPhoneScale, y: iPhoneScale, z: iPhoneScale})
           gsap.set(iPhone.scene.position, {x: 0, y: 1.5, z: 0})
           gsap.set(iPhone.scene.rotation, {x: 0, y: -3, z: 0});
           //console.log("Initial settings and positioning done");
@@ -69,7 +127,7 @@ export const HomeIntroR3F: React.FC = () => {
             endTrigger: ".homeSection",
             end: "bottom 50%",
             //end: () => lastCardST.start + bottomDistance,
-            pin: ".introHomer3FViewer",
+            pin: ".homeiPhoneIntro",
             markers:false,
             onUpdate: (self) => {
               ///console.log(self.progress);
@@ -77,9 +135,9 @@ export const HomeIntroR3F: React.FC = () => {
           });
 
           // iPhoneHomeAnimIn
-          const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
-              .to(".introHomer3FViewer", {opacity:1, duration:0.1}, "<")
-              .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.3, ease:"power1.out", duration:1}, "<")
+          const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:4.5, fastScrollEnd: 3000})
+              .to(".homeiPhoneIntro", {opacity:1, duration:0.1}, "<")
+              .fromTo(iPhone.scene.position, {y: 1.5}, {y: iPhoneYRestingPosition, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {y: -3}, {y: 0, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
           iPhoneHomeAnimIn.play();
@@ -98,10 +156,10 @@ export const HomeIntroR3F: React.FC = () => {
                 }
             },
           })
-            .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
-            .set(iPhone.scene.position, {x: 0, y: -0.3, z: 0}, 0)
+            .set(iPhone.scene.scale, {x: iPhoneScale, y: iPhoneScale, z: iPhoneScale})
+            .set(iPhone.scene.position, {x: 0, y: iPhoneYRestingPosition, z: 0}, 0)
             .set(iPhone.scene.rotation, {x: -0.5, y: 0, z: 0}, 0)
-            .fromTo(iPhone.scene.position, {x: 0, y: -0.3}, {x: 2, y: -3, ease:"power1.in"}, 0)
+            .fromTo(iPhone.scene.position, {x: 0, y: iPhoneYRestingPosition}, {x: iPhoneXDropPosition, y: -3, ease:"power1.in"}, 0)
             .to(iPhone.scene.scale, {x: 9, y: 9, z: 9, ease:"linear"}, "<")
             .fromTo(iPhone.scene.rotation, {x: -0.5}, {x: -2.2, ease:"power1.out"}, "<")
 
@@ -114,7 +172,7 @@ export const HomeIntroR3F: React.FC = () => {
   );
 
   return (
-    <div ref={container} className="introHomer3FViewer absolute z-[2] h-screen w-screen overflow-visible">
+    <div ref={container} className="homeiPhoneIntro absolute z-[3] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
@@ -725,6 +783,115 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
 
 
 
+
+/* ======================================== Testing Grounds below this point ======================================== */
+/* ======================================== Testing Grounds below this point ======================================== */
+/* ======================================== Testing Grounds below this point ======================================== */
+
+
+
+
+
+// Intro Home
+export const HomeIntroR3F: React.FC = () => {
+  const { iPhone, textures } = useLoadAssets();
+  const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
+
+  const container = useRef(null);
+  const iPhoneRef = useRef<Mesh>(null);
+
+  /* ===== GSAP React ===== */
+  useGSAP(
+    () => {
+      const checkintroHomer3FViewer = setInterval(() => {
+        if (document.querySelector('.introHomer3FViewer') && document.querySelector('.homeSection') && iPhone?.scene) {
+          clearInterval(checkintroHomer3FViewer);
+
+          const setintroHomer3FViewerOpacity = gsap.quickSetter(".introHomer3FViewer", "opacity");
+
+          // Initial settings and positioning
+          setintroHomer3FViewerOpacity(0);
+          gsap.set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
+          gsap.set(iPhone.scene.position, {x: 0, y: 1.5, z: 0})
+          gsap.set(iPhone.scene.rotation, {x: 0, y: -3, z: 0});
+          //console.log("Initial settings and positioning done");
+          setiPhoneOpacity(1);
+
+          // Pin it
+          ScrollTrigger.create({
+            trigger: "body",
+            start: "top top",
+            endTrigger: ".homeSection",
+            end: "bottom 50%",
+            //end: () => lastCardST.start + bottomDistance,
+            pin: ".introHomer3FViewer",
+            markers:false,
+            onUpdate: (self) => {
+              ///console.log(self.progress);
+            }
+          });
+
+          // iPhoneHomeAnimIn
+          const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:0.25, fastScrollEnd: 3000})
+              .to(".introHomer3FViewer", {opacity:1, duration:0.1}, "<")
+              .fromTo(iPhone.scene.position, {y: 1.5}, {y: -0.3, ease:"power1.out", duration:1}, "<")
+              .fromTo(iPhone.scene.rotation, {y: -3}, {y: 0, ease:"power1.out", duration:1}, "<")
+              .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
+          iPhoneHomeAnimIn.play();
+
+          // iPhoneHomeAnimOut
+          const iPhoneHomeAnimOut = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.homeSection',
+                start: 'top top',
+                end: 'bottom 75%',
+                markers: false,
+                scrub: true,
+                toggleActions: "play none none reverse",
+                onEnterBack: () => {
+                  setiPhoneOpacity(1);
+                }
+            },
+          })
+            .set(iPhone.scene.scale, {x: 6, y: 6, z: 6})
+            .set(iPhone.scene.position, {x: 0, y: -0.3, z: 0}, 0)
+            .set(iPhone.scene.rotation, {x: -0.5, y: 0, z: 0}, 0)
+            .fromTo(iPhone.scene.position, {x: 0, y: -0.3}, {x: 2, y: -3, ease:"power1.in"}, 0)
+            .to(iPhone.scene.scale, {x: 9, y: 9, z: 9, ease:"linear"}, "<")
+            .fromTo(iPhone.scene.rotation, {x: -0.5}, {x: -2.2, ease:"power1.out"}, "<")
+
+        }
+      }, 50); // Check every 50ms
+
+      /* GSDevTools.create(); */
+    },
+    { dependencies: [iPhone?.scene], revertOnUpdate: true }
+  );
+
+  return (
+    <div ref={container} className="introHomer3FViewer absolute z-[2] h-screen w-screen overflow-visible">
+      <Canvas linear>
+        <CustomCamera />
+        {/* <ScrollControls pages={5} damping={0.1}> */}
+
+          {/* <OrbitControls enableZoom={false} enablePan={false}/> */}
+          <ambientLight intensity={2}/>
+          <pointLight position={[2, 3, 4]} />
+          <directionalLight position={[2, 1, 1]}/>
+
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
+          )}
+
+          {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
+
+        {/* </ScrollControls> */}
+      </Canvas>
+    </div>
+  )
+}
+
+
 // TestR3F
 export const TestR3F: React.FC = () => {
   const { iPhone, iPad, macBookPro, cage, textures } = useLoadAssets();
@@ -742,6 +909,7 @@ export const TestR3F: React.FC = () => {
   useGSAP(
     () => {
 
+      gsap.set(".TestR3F", {opacity:0});
       //setiPhoneOpacity(1);
       const TestiPadR3F = setInterval(() => {
         if (iPad?.scene) {
@@ -802,13 +970,17 @@ export const TestR3F: React.FC = () => {
       const TestcageR3F = setInterval(() => {
         if (cage?.scene) {
           clearInterval(TestcageR3F);
-          gsap.set(cage.scene.scale, {x: 0.85, y: 0.85, z: 0.85});
 
           // cageHomeAnimIn
           const cageHomeAnimIn = gsap.timeline({paused:true, delay:0.1, fastScrollEnd: 3000})
+            .set(cage.scene.scale, {x: 0.01, y: 0.01, z: 0.01})
+            .set(cage.scene.position, {y: -8})
             .to(".TestR3F", {opacity:1, duration:0.1}, "<")
-            .fromTo(cage.scene.position, {y: -4}, {y: -0.65, ease:"power1.out", duration:1}, "<")
-            .fromTo(cage.scene.rotation, {x: 0.6, y: -6}, {x: 0.15, y: -2.38, ease:"power1.out", duration:1.125}, "<")
+            .fromTo(cage.scene.position, {y: -2}, {y: -0.5, ease:"power4.out", duration:3}, "<")
+            .fromTo(cage.scene.rotation, {x: 0.6, y: -9}, {x: 0.15, y: -2.38, ease:"power3.out", duration:3}, "<")
+            .fromTo(cage.scene.scale, {x: 0.25, y: 0.25, z: 0.25}, {x: 0.75, y: 0.75, z: 0.75, ease:"power1.out", duration:3}, "<")
+            .fromTo(cage.scene.position, {z: 0}, {z: 7, ease:"power1.in", duration:1.75}, 1.25)
+            //.fromTo(cage.scene.position, {y: -0.65}, {y: -0.55, ease:"power1.out", duration:1.5}, 1.5) 
           cageHomeAnimIn.play()
         }
       }, 50); // Check every 50ms
@@ -819,7 +991,7 @@ export const TestR3F: React.FC = () => {
   );
 
   return (
-    <div ref={container} className="TestR3F absolute z-[2] h-screen w-screen overflow-visible">
+    <div ref={container} className="TestR3F absolute z-[5] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
@@ -837,13 +1009,13 @@ export const TestR3F: React.FC = () => {
             <IPadModel iPad={iPad} textures={textures} innerRef={iPadRef}/>
           )} */}
 
-          {macBookPro && textures.macBookPro_texture_1 && textures.macBookPro_texture_2 && textures.macBookPro_texture_3 && textures.macBookPro_texture_4 && textures.macBookPro_texture_5 && (
+          {/* {macBookPro && textures.macBookPro_texture_1 && textures.macBookPro_texture_2 && textures.macBookPro_texture_3 && textures.macBookPro_texture_4 && textures.macBookPro_texture_5 && (
             <MacBookProModel macBookPro={macBookPro} textures={textures} innerRef={macBookProRef}/>
-          )}
-
-          {/* {cage && (
-            <CageModel cage={cage} innerRef={cageRef}/>
           )} */}
+
+          {cage && (
+            <CageModel cage={cage} innerRef={cageRef}/>
+          )}
 
           {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
 

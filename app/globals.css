@@ -511,7 +511,7 @@ a {
   align-items: center;
   /* justify-content: center; */
 }
-.homeBackground img{
+/* .homeBackground img{
   position: absolute;
   top: 0px;
   left:0;
@@ -519,10 +519,10 @@ a {
   height: 100vh;
   object-fit: cover;
   z-index: 1;
-  /* border-radius: 0.5rem; */
-}
+} */
 
-.homeMain{
+/* .homeMain{
+  position: absolute;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -542,7 +542,7 @@ a {
   max-width: 90%;
   top: 13vh;
   font-size: 8rem;
-}
+} */
 
 .borderImage {
   border-image-source: url(/images/features/proDisplay.webp);

@@ -1,1 +1,1 @@
-let vNumber = "v0.1.3-β.2 | Call to Action button with Dialog and JSON mapping working √";
+let vNumber = "v0.1.4-β.1 | Home Animation working with low quality assets";
