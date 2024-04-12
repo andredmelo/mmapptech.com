@@ -780,8 +780,8 @@ const Company = (props: any) => {
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
-                  href="/company/policies/privacy-policy"
-                  data-page="/company/policies/privacy-policy"
+                  href="/company/policies/cookie-policy"
+                  data-page="/company/policies/cookie-policy"
                   className=""
                 >
                   Cookie Policy
@@ -799,8 +799,8 @@ const Company = (props: any) => {
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
-                  href="/company/policies/privacy-policy"
-                  data-page="/company/policies/privacy-policy"
+                  href="/company/policies/terms-conditions"
+                  data-page="/company/policies/terms-conditions"
                   className=""
                 >
                   Terms & Conditions
@@ -818,8 +818,8 @@ const Company = (props: any) => {
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
-                  href="/company/policies/privacy-policy"
-                  data-page="/company/policies/privacy-policy"
+                  href="/company/policies/eula"
+                  data-page="/company/policies/eula"
                   className=""
                 >
                   EULA
@@ -836,8 +836,8 @@ const Company = (props: any) => {
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
-                  href="/company/policies/privacy-policy"
-                  data-page="/company/policies/privacy-policy"
+                  href="/company/policies/disclaimer"
+                  data-page="/company/policies/disclaimer"
                   className=""
                 >
                   Disclaimer
@@ -855,8 +855,8 @@ const Company = (props: any) => {
                   </CardPoliciesDescription>
                 </CardPoliciesHeader>
                 <CardPoliciesButton
-                  href="/company/policies/privacy-policy"
-                  data-page="/company/policies/privacy-policy"
+                  href="/company/policies/acceptable-use-policy"
+                  data-page="/company/policies/acceptable-use-policy"
                   className=""
                 >
                   Acceptable Use Policy
@@ -887,10 +887,10 @@ const Company = (props: any) => {
   )
 };
 
-Company.getInitialProps = async (context: any) => {
-  /* console.log('This component is being rendered by a Next.js page.'); */
+/* Company.getInitialProps = async (context: any) => {
+  console.log('This component is being rendered by a Next.js page.');
   return {};
-};
+}; */
 
 export default Company;
 

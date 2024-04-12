@@ -19,6 +19,20 @@ const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'
   ssr: false, // Disable server-side rendering
 });
 
+//This custom hook listens for resize events and updates the state with the current viewport dimensions without using window or document
+const useViewportSize = () => {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  useEffect(() => {
+    const updateSize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener('resize', updateSize);
+    updateSize(); // Initialize size
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
+};
+
 
 const IPhoneBobAnimation = ({ iPhoneRef }: { iPhoneRef: React.RefObject<Mesh> }) => {
   useFrame((_state, delta) => {
@@ -100,6 +114,8 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
   const isUnder768 = useMediaQuery('(max-width: 768px)');
   const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
+  const { width, height } = useViewportSize();
+
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
@@ -167,16 +183,16 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
             console.log("Viewport is 16:9 or wider");
           } */
 
-          const detectiPhoneScaleLandscape = () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
+          const detectiPhoneScaleLandscape = (width: number, height: number) => {
+            /* const width = window.innerWidth;
+            const height = window.innerHeight; */
             const ratio = width / height;
 
             if (isLandscape) {
               if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
                 return 4.8;
               } else if (ratio < 16/9) { //console.log("Viewport is narrower than 16:9");
-                return gsap.utils.mapRange(1, 1.777, 3.75, 4.8, ratio);
+                return gsap.utils.mapRange(1, 1.777, 3.5, 4.8, ratio);
               }
             } else if (isUnder768) {
               return 7.5;
@@ -184,17 +200,18 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
               return 6;
             }
           };
+          //console.log("detectiPhoneScaleLandscape = "+detectiPhoneScaleLandscape( width, height ));
 
-          const detectiPhoneYRestingPositionLandscape = () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
+          const detectiPhoneYRestingPositionLandscape = (width: number, height: number) => {
+            /* const width = window.innerWidth;
+            const height = window.innerHeight; */
             const ratio = width / height;
 
             if (isLandscape) {
               if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
                 return -0.45;
               } else if (ratio < 16/9) { //console.log("Viewport is narrower than 16:9");
-                return gsap.utils.mapRange(1, 1.777, -0.55, -0.45, ratio);
+                return gsap.utils.mapRange(1, 1.777, -0.565, -0.45, ratio);
               }
             } else if (isUnder768) {
               return 0.22;
@@ -202,10 +219,11 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
               return 0.32;
             }
           };
+          //console.log("detectiPhoneYRestingPositionLandscape = "+detectiPhoneYRestingPositionLandscape( width, height ));
 
           const sethomeiPhoneIntroOpacity = gsap.quickSetter(".homeiPhoneIntro", "opacity");
-          const iPhoneScale = isLandscape ? detectiPhoneScaleLandscape() : ( isUnder768 ? 7.5 : 6);
-          const iPhoneYRestingPosition = isLandscape ? detectiPhoneYRestingPositionLandscape : ( isUnder768 ? 0.22 : 0.32);
+          const iPhoneScale = isLandscape ? detectiPhoneScaleLandscape( width, height ) : ( isUnder768 ? 7.5 : 6);
+          const iPhoneYRestingPosition = isLandscape ? detectiPhoneYRestingPositionLandscape( width, height ) : ( isUnder768 ? 0.22 : 0.32);
           const iPhoneXDropPosition = isLandscape ? 2 : ( isUnder768 ? 0 : 1);
 
           // Initial settings and positioning
@@ -226,7 +244,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
             pin: ".homeiPhoneIntro",
             markers:false,
             onUpdate: (self) => {
-              ///console.log(self.progress);
+              //console.log(self.progress);
             }
           });
 
@@ -264,7 +282,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, width, height], revertOnUpdate: true }
   );
 
   return (
