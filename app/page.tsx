@@ -556,6 +556,7 @@ export default function Home() {
 
 
           //Home Animation
+          const heroVeil = document.getElementById("heroVeil");
           const heroBG = document.getElementById("heroBG");
           const heroSpotLeft = document.getElementById("heroSpotLeft");
           const heroSpotRight = document.getElementById("heroSpotRight");
@@ -564,9 +565,11 @@ export default function Home() {
           const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
           const heroMMAPPText = document.getElementById("heroMMAPPText");
 
+          //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? 1 : 0.75) : 0.75;
           const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
           const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
 
+          gsap.set(heroVeil, {autoAlpha: 1});
           gsap.set(heroBG, {autoAlpha: 0});
           gsap.set(heroSpotLeft, {autoAlpha: 0});
           gsap.set(heroSpotRight, {autoAlpha: 0});
@@ -576,6 +579,7 @@ export default function Home() {
           gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
 
           const Intro = gsap.timeline({paused:true})
+            .set(heroVeil, {autoAlpha: 0})
             .fromTo(heroBG, {autoAlpha: 0, yPercent: 5}, {autoAlpha: 1, yPercent: 0, duration: 4, ease: "power2.in"})
             .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.25)
             .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.5)
@@ -598,8 +602,8 @@ export default function Home() {
     <>
       <div className="homeRoot">
 
-        <div id="Home" className="homeSection">
-          <div className="relative w-[100vw] h-[100vh]">
+        <section id="Home" className="homeSection border-b-4 border-[var(--primary-fuchsia)] overflow-hidden">
+          <div className="hero relative w-[100vw] h-[100svh]">
             {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
             <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100vh]"/>
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
@@ -607,7 +611,7 @@ export default function Home() {
             <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[3] absolute object-scale-down bottom-0 right-0 max-h-[75vh]"/>
             <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[3] absolute object-scale-down bottom-0 left-0 max-h-[75vh]"/>
             <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="z-[4] absolute"/>
-            <h2 id="heroMMAPPText" className="z-[4] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[9rem] text-center font-semibold deboss">Mapping MMA</h2> 
+            <h2 id="heroMMAPPText" className="z-[4] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[6vw] portrait:lg:text-[13vw] 2xl:text-[5.75vw] 3xl:text-[5vw] text-center font-semibold deboss">Mapping MMA</h2> 
           </div>
           {/* <div className="homeMain">
           </div> */}
@@ -615,7 +619,9 @@ export default function Home() {
           <HomeiPhoneIntroR3F />
           <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
-        </div>
+
+          <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
+        </section>
 
 
         <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">

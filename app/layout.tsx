@@ -7,7 +7,7 @@ import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, Mac
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
-import Footer from "@/components/footer";
+import Footer from "@/app/footer";
 //import Loading from "./loading";
 import Template from "./template";
 import Providers from './providers'

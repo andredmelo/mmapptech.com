@@ -1,1 +1,1 @@
-let vNumber = "v0.1.4-β.1 | Home Animation working with low quality assets";
+let vNumber = "v0.1.4-β.2 | Mobile nav fixed and enhanced with some animations";

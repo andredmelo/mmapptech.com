@@ -51,6 +51,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
       btn.addEventListener("click", function (e) {
         const dropdownIndex = (e.currentTarget as HTMLElement)?.dataset.dropdown;
         const dropdownElement = document.getElementById(dropdownIndex as string) as HTMLElement;
+        const dropdownContent = dropdownElement.querySelector('ul');
+        const dropdownContentLi = dropdownContent?.querySelectorAll('li') as NodeListOf<HTMLLIElement>;
+        //const dropdownContentLiS = gsap.utils.toArray('[role="menuitem"]');
+        //console.log(dropdownContentLiS)
 
         /* if (btn.getAttribute("aria-expanded") === "true") {
           closeDropdownMenu();
@@ -59,10 +63,21 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         if (dropdownElement?.classList.contains("active")){
           closeDropdownMenu();
           setAriaExpandedFalse();
+          console.log("Close");
+          gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05})
+          /* dropdownContentLi?.forEach(box => {
+            gsap.from(box, {
+              ease: "power1.in",
+              duration:3,
+              stagger: 0.9,
+            });
+          }); */
         } else {
           dropdownElement?.classList.toggle("active");
           setAriaExpandedFalse();
           btn.setAttribute("aria-expanded", "true")
+          console.log("Open")
+          gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1})
         }
 
         dropdown.forEach((drop) => {
@@ -120,10 +135,27 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
+      
+    /* const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
+    const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
+
+
+    function openDropdownMenu() {
+      dropdown.forEach((drop) => {
+        if (drop?.classList.contains("active")){
+          gsap.fromTo(drop, {height: 0, duration: 5}, {height: "100%", duration: 5})
+          console.log("Open")
+        } else {
+          gsap.fromTo(drop, {height: "100%", duration: 5}, {height: 0, duration: 5})
+          console.log("Close")
+        }
+      });
+    } */
+
   /* GSDevTools.create(); */
 
   },
-  { dependencies: [/* color, noHover, portrait, under768, isGecko, lettersYInit, lettersYLiftoff, lettersYDrop, lettersYRise */], revertOnUpdate: true, /* scope: main */ }
+  { dependencies: [ /* color, noHover, portrait, under768, isGecko, lettersYInit, lettersYLiftoff, lettersYDrop, lettersYRise */], revertOnUpdate: true, /* scope: main */ }
   );
 
   return (
@@ -138,14 +170,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             <nav className="menu">
               <ul className="menu-bar">
                 <li>
-                  <button className="nav-link dropdown-btn" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
+                  <button className="nav-link dropdown-btn group" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
                   <img
                     src="/images/logo_on_black.svg"
                     alt="MMAPP Logo"/>
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                   </button>
-                  <div id="dropdown1" className="dropdown">
+                  <div id="dropdown1" className="dropdown transition-transform">
                     <ul role="menu1">
                       <li role="menuitem">
                           <a
@@ -205,10 +237,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   </div>
                 </li>
                 <li>
-                  <button className="nav-link dropdown-btn" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="Company">
+                  <button className="nav-link dropdown-btn group" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="Company">
                     Company
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown2" className="dropdown">
                     <ul role="menu2">
@@ -265,10 +297,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 </li>
                 {/* <li><a className="nav-link" href="/">Security & Compliance</a></li> */}
                 <li>
-                  <button className="nav-link dropdown-btn" data-dropdown="dropdown3" aria-haspopup="true" aria-expanded="false" aria-label="Product">
+                  <button className="nav-link dropdown-btn group" data-dropdown="dropdown3" aria-haspopup="true" aria-expanded="false" aria-label="Product">
                     Product
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
-                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown3" className="dropdown">
                     <ul role="menu3">
@@ -330,9 +362,9 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   </div>
                 </li>
                 <li>
-                  <button className="nav-link dropdown-btn" data-dropdown="dropdown4" aria-haspopup="true" aria-expanded="false" aria-label="Contact">
+                  <button className="nav-link dropdown-btn group" data-dropdown="dropdown4" aria-haspopup="true" aria-expanded="false" aria-label="Contact">
                     Contact
-                    <div className="arrowDown"><ArrowDown aria-hidden="true"/></div>
+                    <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                   </button>
                   <div id="dropdown4" className="dropdown">
                     <ul role="menu4">

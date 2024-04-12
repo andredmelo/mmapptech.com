@@ -107,9 +107,105 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
         if (document.querySelector('.homeiPhoneIntro') && document.querySelector('.homeSection') && iPhone?.scene) {
           clearInterval(checkhomeiPhoneIntro);
 
+          /* const detectViewportRatio = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = width / height;
+
+            if (isLandscape) {
+              if (ratio > 16/9) {
+                //console.log("Viewport is wider than 16:9");
+                return 4.8;
+              } else if (ratio < 16/9) {
+                //console.log("Viewport is narrower than 16:9");                
+                return gsap.utils.mapRange(1, 1.777, 3, 4.8, ratio);
+              }
+            } else if (isUnder768) {
+              return 7.5;
+            } else {
+              return 6;
+            }
+
+            if (ratio > 16/9) {
+              console.log("Viewport is wider than 16:9");
+              //return 4.9;
+            } else if (ratio < 16/9) {
+              console.log("Viewport is narrower than 16:9");
+              //return ratio;
+            } else {
+              console.log("Viewport is 16:9");
+            }
+            if (ratio < 4/3) {
+              console.log("Viewport is narrower than 4:3");
+
+            } else if (ratio > 4/3) {
+              console.log("Viewport is wider than 4:3");
+            } else {
+              console.log("Viewport is 4:3");
+            }
+            //console.log("ratio is "+ratio);
+
+            if (ratio > 1.54) {
+              //gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
+            }
+          }
+          detectViewportRatio();
+          window.addEventListener('resize', () => {
+            console.log(detectViewportRatio());
+            detectViewportRatio();
+          }); */
+          //To detect if a viewport is ultra-wide 1.9265 = 920px height
+          /* function isViewportNarrowerThan169() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = width / height;
+            return ratio < 16/9;
+          }
+          if (isViewportNarrowerThan169()) {
+            console.log("Viewport is narrower than 16:9");
+          } else {
+            console.log("Viewport is 16:9 or wider");
+          } */
+
+          const detectiPhoneScaleLandscape = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = width / height;
+
+            if (isLandscape) {
+              if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
+                return 4.8;
+              } else if (ratio < 16/9) { //console.log("Viewport is narrower than 16:9");
+                return gsap.utils.mapRange(1, 1.777, 3.75, 4.8, ratio);
+              }
+            } else if (isUnder768) {
+              return 7.5;
+            } else {
+              return 6;
+            }
+          };
+
+          const detectiPhoneYRestingPositionLandscape = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = width / height;
+
+            if (isLandscape) {
+              if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
+                return -0.45;
+              } else if (ratio < 16/9) { //console.log("Viewport is narrower than 16:9");
+                return gsap.utils.mapRange(1, 1.777, -0.55, -0.45, ratio);
+              }
+            } else if (isUnder768) {
+              return 0.22;
+            } else {
+              return 0.32;
+            }
+          };
+
           const sethomeiPhoneIntroOpacity = gsap.quickSetter(".homeiPhoneIntro", "opacity");
-          const iPhoneScale = isLandscape ? 5 : ( isUnder768 ? 7.5 : 6);
-          const iPhoneYRestingPosition = isLandscape ? -0.45 : ( isUnder768 ? 0.22 : 0.23);
+          const iPhoneScale = isLandscape ? detectiPhoneScaleLandscape() : ( isUnder768 ? 7.5 : 6);
+          const iPhoneYRestingPosition = isLandscape ? detectiPhoneYRestingPositionLandscape : ( isUnder768 ? 0.22 : 0.32);
           const iPhoneXDropPosition = isLandscape ? 2 : ( isUnder768 ? 0 : 1);
 
           // Initial settings and positioning
@@ -137,7 +233,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
           // iPhoneHomeAnimIn
           const iPhoneHomeAnimIn = gsap.timeline({paused:true, delay:4.5, fastScrollEnd: 3000})
               .to(".homeiPhoneIntro", {opacity:1, duration:0.1}, "<")
-              .fromTo(iPhone.scene.position, {y: 1.5}, {y: iPhoneYRestingPosition, ease:"power1.out", duration:1}, "<")
+              .fromTo(iPhone.scene.position, {y: 1.5}, {y: Number(iPhoneYRestingPosition), ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {y: -3}, {y: 0, ease:"power1.out", duration:1}, "<")
               .fromTo(iPhone.scene.rotation, {x: 0}, {x: -0.5, ease:"power1.in", duration:1}, "<")
           iPhoneHomeAnimIn.play();
@@ -156,10 +252,10 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
                 }
             },
           })
-            .set(iPhone.scene.scale, {x: iPhoneScale, y: iPhoneScale, z: iPhoneScale})
-            .set(iPhone.scene.position, {x: 0, y: iPhoneYRestingPosition, z: 0}, 0)
+            .set(iPhone.scene.scale, {x: Number(iPhoneScale), y: Number(iPhoneScale), z: Number(iPhoneScale)})
+            .set(iPhone.scene.position, {x: 0, y: Number(iPhoneYRestingPosition), z: 0}, 0)
             .set(iPhone.scene.rotation, {x: -0.5, y: 0, z: 0}, 0)
-            .fromTo(iPhone.scene.position, {x: 0, y: iPhoneYRestingPosition}, {x: iPhoneXDropPosition, y: -3, ease:"power1.in"}, 0)
+            .fromTo(iPhone.scene.position, {x: 0, y: Number(iPhoneYRestingPosition)}, {x: Number(iPhoneXDropPosition), y: -3, ease:"power1.in"}, 0)
             .to(iPhone.scene.scale, {x: 9, y: 9, z: 9, ease:"linear"}, "<")
             .fromTo(iPhone.scene.rotation, {x: -0.5}, {x: -2.2, ease:"power1.out"}, "<")
 
