@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
+import { useMediaQuery } from '@react-hook/media-query';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import MenuSVG from "@/components/ui/svg/MenuSVG";
@@ -12,6 +13,7 @@ import ArrowDown from "@/components/ui/svg/bx-chevron-down";
 gsap.registerPlugin(useGSAP);
 
 const Navbar = (/* { toggle }: { toggle: () => void } */) => {
+  const isUnder768 = useMediaQuery('(max-width: 768px)');
   
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
@@ -53,6 +55,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         const dropdownElement = document.getElementById(dropdownIndex as string) as HTMLElement;
         const dropdownContent = dropdownElement.querySelector('ul');
         const dropdownContentLi = dropdownContent?.querySelectorAll('li') as NodeListOf<HTMLLIElement>;
+        const dropdownElementA = dropdownElement.querySelectorAll("a") as NodeListOf<HTMLAnchorElement>;
         //const dropdownContentLiS = gsap.utils.toArray('[role="menuitem"]');
         //console.log(dropdownContentLiS)
 
@@ -64,7 +67,12 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           closeDropdownMenu();
           setAriaExpandedFalse();
           console.log("Close");
-          gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05})
+          /* gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05}) */
+          if (isUnder768) {
+            gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 200, duration: 0.1, ease:"power1.in", stagger: 0.05})
+          } else {
+            //gsap.fromTo(dropdownElementA, {yPercent: 0}, {yPercent: -100, duration: 0.25, ease:"power1.out", stagger: 0.05})
+          }
           /* dropdownContentLi?.forEach(box => {
             gsap.from(box, {
               ease: "power1.in",
@@ -77,7 +85,12 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           setAriaExpandedFalse();
           btn.setAttribute("aria-expanded", "true")
           console.log("Open")
-          gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1})
+          /* gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1}) */
+          if (isUnder768) {
+            gsap.fromTo(dropdownContentLi, {xPercent: -200}, {xPercent: 0, duration: 0.125, ease:"power1.out", stagger: 0.05})
+          } else {
+            gsap.fromTo(dropdownContentLi, {autoAlpha: 0, yPercent: -35}, {autoAlpha: 1, yPercent: 0, duration: 0.175, ease:"power1.in", stagger: 0.05})
+          }
         }
 
         dropdown.forEach((drop) => {
