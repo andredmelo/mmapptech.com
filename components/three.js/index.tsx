@@ -520,7 +520,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   scrub: false,
                   invalidateOnRefresh: true,
                   onEnter: () => {
-                    console.log("onEnter InitialAnim");
+                    //console.log("onEnter InitialAnim");
                     setMacBookProOpacity(1);
                     setiPhoneOpacity(0);
                     setContainerOpacity(1);

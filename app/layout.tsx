@@ -1,8 +1,7 @@
 "use client";
-/* import type { Metadata } from "next"; */
 import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter, usePathname } from "next/navigation";
-import { HrefContext } from '@/lib/contexts/HrefContext';
+import { AppContext } from '@/lib/contexts/AppContext';
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
@@ -27,22 +26,12 @@ export const siteTitle = 'MMAPP'; */
 const inter = Inter({ subsets: ["latin"] });
 const CalSans = localFont({ src: "../components/ui/fonts/cal-sans/webfonts/CalSans-SemiBold.woff2" });
 
-/* export const metadata: Metadata = {
-  title: {
-    template: '%s | MMAPP',
-    default: 'MMAPP',
-  },
-  description: "Mapping MMA, the Language of MMA Officials",
-}; */
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const main: any = useRef();
-  let smoother = useRef<ScrollSmoother>();
   /* ===== Media Queries ===== */
   /* const [noHover] = useMediaQuery('(hover: none)')
   const [portrait] = useMediaQuery('(orientation: portrait)')
@@ -59,6 +48,7 @@ export default function RootLayout({
 
   const router = useRouter();
   const [href, setHref] = useState('');
+  const smoother = useRef<ScrollSmoother>();
   const [isPending, startTransition] = useTransition();
 
   // Initialize currentPage with the current path
@@ -94,31 +84,27 @@ export default function RootLayout({
         let ScrollSmootherTop = "top 0px";
       });
 
-      smoother.current = ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
-        effects: true, // looks for data-speed and data-lag attributes on elements
-        smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-      });
+      matchMedia.add("(hover: hover)", () => {
+        smoother.current = ScrollSmoother.create({
+          wrapper: "#smooth-wrapper",
+          content: "#smooth-content",
+          smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+          effects: true, // looks for data-speed and data-lag attributes on elements
+          smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+        });
 
-      //let currentPage: string = "/";
-      let ScrollSmootherTop = "top 0px"; //"top 52px"
+        //let currentPage: string = "/";
+        let ScrollSmootherTop = "top 0px"; //"top 52px"
+      });
 
       //ScrollTrigger.config({ ignoreMobileResize: true });
       //ScrollTrigger.normalizeScroll(true);
 
       // Navigation
-      /* const animIn = gsap.timeline({paused: true, immediateRender: true})
-        .fromTo("#smooth-content", {opacity: 0, xPercent: -100, }, {duration: 0.5, opacity: 1, xPercent: 0, ease: "power2.out"}); */
-        //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 0, y: -100}, {duration: 0.1, opacity: 1, y: 0, stagger: 0.01, ease: "power2.inOut"})
       const checktemplateAnimIn = setInterval(() => {
         if (document.querySelector('.templateAnimIn')) {
           clearInterval(checktemplateAnimIn);
           //console.log("Template animations are ready");
-          const animOut = gsap.timeline({paused: true, immediateRender: true})
-          //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
-            .fromTo(".templateAnimIn", {opacity: 1, x: 0},{duration: 0.25, opacity: 0, x: -100, ease: "power2.out"})
 
           if (smoother && smoother.current) {
             const dropdownLinks = gsap.utils.toArray('.dropdown-link');
@@ -127,14 +113,10 @@ export default function RootLayout({
               link.addEventListener("click", (e: any) => {
 
                 e.preventDefault();
-                /* console.log("Clicked && currentPage is "+currentPage);
-                console.log("New page is "+link.dataset.page);
-                console.log("New link is "+link.dataset.link);
-                console.log("New href is "+link.href); */
 
                 if (link.dataset.page == currentPage.current && smoother.current) {
                   console.log("currentPage is = "+currentPage.current);
-                  smoother.current.scrollTo(link.dataset.link, true, ScrollSmootherTop);
+                  smoother.current.scrollTo(link.dataset.link, true, "top 0px");
                   //router.replace(link.href, { scroll: false });
                   //console.log("currentPage remains = "+currentPage);
                 } else {
@@ -144,17 +126,23 @@ export default function RootLayout({
                   currentPage = link.dataset.page;
                   console.log("currentPage changed to " + currentPage); */
 
-                  animOut.eventCallback("onComplete", () => {
-                    setHref(link.dataset.link);
-                    startTransition(() => {
-                      router.push(link.dataset.page, { scroll: false });
-                      //router.push(link.href, { scroll: false });
-                    });
-                    currentPage.current = link.dataset.page;
-                    //console.log("currentPage changed to " + currentPage);
-                  });
-                  animOut.invalidate();
-                  animOut.restart().play();
+                  const animOut = gsap.timeline({
+                    paused: true,
+                    immediateRender: true,
+                    onComplete: () => {
+                      setHref(link.dataset.link);
+                      startTransition(() => {
+                        router.push(link.dataset.page, { scroll: false });
+                        //router.push(link.href, { scroll: false });
+                      });
+                      currentPage.current = link.dataset.page;
+                      //console.log("currentPage changed to " + currentPage);
+                    }
+                  })
+                    .fromTo(".templateAnimIn", {opacity: 1, x: 0},{opacity: 0, x: 100, duration: 0.25, ease: "power2.out"})
+                  //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
+
+                  animOut.invalidate().restart().play();
                 }
               });
             });
@@ -195,7 +183,7 @@ export default function RootLayout({
   //console.log(smoother);
 
   return (
-    <HrefContext.Provider value={{ href, setHref }}>
+    <AppContext.Provider value={{ href, setHref, smoother }}>
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
@@ -217,7 +205,7 @@ export default function RootLayout({
               <Navbar />
               <div id="smooth-wrapper">
                 <div id="smooth-content">
-                  <Template /* key={routeParam} */ smoother={smoother} isPending={isPending}>
+                  <Template /* key={routeParam} */ /* smoother={smoother} */ isPending={isPending}>
                     <main id="main">{children}</main>
                   </Template>
                   <Footer />
@@ -232,6 +220,6 @@ export default function RootLayout({
           </Providers>
         </body>
       </html>
-    </HrefContext.Provider>
+    </AppContext.Provider>
   );
 };

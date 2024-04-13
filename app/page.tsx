@@ -31,9 +31,19 @@ import { TestR3F } from '@/components/three.js';
 
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
+import { useAppContext } from '@/lib/contexts/AppContext';
+/* interface TemplateProps {
+  smoother: {
+    scrollTo: (target: string, animate: boolean, position: string) => void;
+  };
+} */
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+
+  const { href, smoother } = useAppContext();
+
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
@@ -94,7 +104,7 @@ export default function Home() {
       ScrollTrigger.refresh();
 
       hasLoadedOnceRef.current = true; // Mark as called
-      console.log("Home Features R3F is loaded and its ScrollTrigger is set");
+      //console.log("Home Features R3F is loaded and its ScrollTrigger is set");
     }
   };
 
@@ -108,6 +118,30 @@ export default function Home() {
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
+
+
+      //let ScrollSmootherTop = "top 0px"; //"top 52px"
+      const checkAllConditionsReady = setInterval(() => {
+        if (smoother?.current && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
+          clearInterval(checkAllConditionsReady);
+          //console.log("All conditions met!")
+
+          const animIn = gsap.timeline({ paused: true })
+            .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { duration: 0.25, opacity: 1, x: 0, ease: "power2.out" });
+
+          setShowHomeFeaturesR3F(true);
+          /* smoother.current.scrollTo("#Features");// This is to force it to go to the top after force loading the 3D
+          console.log("scrolled Home?"); */
+          smoother.current.scrollTo(href);
+          animIn.invalidate();
+          animIn.restart().play();
+          console.log("scrollingTo : " + href);
+
+        } else {
+          console.log("Conditions for scrollTo not met");
+        }
+      }, 100); // Check every 100ms
+
       let matchMedia = gsap.matchMedia();
 
       // Pin Small Mission Image
@@ -540,6 +574,13 @@ export default function Home() {
             //setiPadOpacity(0);
           });
 
+          // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
+          ScrollTrigger.create({
+            trigger: '.featuresRecordKeeper',
+            start: 'bottom top',
+            onLeaveBack: () => { setMacBookProOpacity(0)},
+          });
+
           // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
           /* ScrollTrigger.create({
             trigger: "#featuresJudge",
@@ -554,48 +595,48 @@ export default function Home() {
           //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
           setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
 
-
-          //Home Animation
-          const heroVeil = document.getElementById("heroVeil");
-          const heroBG = document.getElementById("heroBG");
-          const heroSpotLeft = document.getElementById("heroSpotLeft");
-          const heroSpotRight = document.getElementById("heroSpotRight");
-          const heroFighterRight = document.getElementById("heroFighterRight");
-          const heroFighterLeft = document.getElementById("heroFighterLeft");
-          const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
-          const heroMMAPPText = document.getElementById("heroMMAPPText");
-
-          //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? 1 : 0.75) : 0.75;
-          const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
-          const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
-
-          gsap.set(heroVeil, {autoAlpha: 1});
-          gsap.set(heroBG, {autoAlpha: 0});
-          gsap.set(heroSpotLeft, {autoAlpha: 0});
-          gsap.set(heroSpotRight, {autoAlpha: 0});
-          gsap.set(heroFighterRight, {autoAlpha: 0});
-          gsap.set(heroFighterLeft, {autoAlpha: 0});
-          gsap.set(heroMMAPPLogo, {autoAlpha: 0, xPercent: -50, left: "50%", top: heroMMAPPLogoTop});
-          gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
-
-          const Intro = gsap.timeline({paused:true})
-            .set(heroVeil, {autoAlpha: 0})
-            .fromTo(heroBG, {autoAlpha: 0, yPercent: 5}, {autoAlpha: 1, yPercent: 0, duration: 4, ease: "power2.in"})
-            .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.25)
-            .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.5)
-            .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out", delay: 0}, 4)
-            .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out", delay: 0}, 4.05)
-            .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.5)
-            .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.75)
-
-          Intro.play();
-
         }
       }, 50); // Check every 50ms
+
+
+      //Home Animation
+      const heroVeil = document.getElementById("heroVeil");
+      const heroBG = document.getElementById("heroBG");
+      const heroSpotLeft = document.getElementById("heroSpotLeft");
+      const heroSpotRight = document.getElementById("heroSpotRight");
+      const heroFighterRight = document.getElementById("heroFighterRight");
+      const heroFighterLeft = document.getElementById("heroFighterLeft");
+      const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
+      const heroMMAPPText = document.getElementById("heroMMAPPText");
+
+      //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? 1 : 0.75) : 0.75;
+      const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
+      const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
+
+      gsap.set(heroVeil, {autoAlpha: 1});
+      gsap.set(heroBG, {autoAlpha: 0});
+      gsap.set(heroSpotLeft, {autoAlpha: 0});
+      gsap.set(heroSpotRight, {autoAlpha: 0});
+      gsap.set(heroFighterRight, {autoAlpha: 0});
+      gsap.set(heroFighterLeft, {autoAlpha: 0});
+      gsap.set(heroMMAPPLogo, {autoAlpha: 0, xPercent: -50, left: "50%", top: heroMMAPPLogoTop});
+      gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
+
+      const Intro = gsap.timeline({paused:true})
+        .set(heroVeil, {autoAlpha: 0})
+        .fromTo(heroBG, {autoAlpha: 0, yPercent: 5}, {autoAlpha: 1, yPercent: 0, duration: 4, ease: "power2.in"})
+        .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.25)
+        .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.5)
+        .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out", delay: 0}, 4)
+        .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out", delay: 0}, 4.05)
+        .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.5)
+        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.75)
+
+      Intro.play();
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
+    { dependencies: [smoother, href, isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
   );
 
   return (
@@ -616,7 +657,7 @@ export default function Home() {
           {/* <div className="homeMain">
           </div> */}
           {/* <HomeIntroR3F /> */}
-          <HomeiPhoneIntroR3F />
+          {/* <HomeiPhoneIntroR3F /> */}
           <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
 

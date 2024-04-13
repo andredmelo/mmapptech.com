@@ -20,6 +20,15 @@ import TabButtonProductJudge from '@/components/ui/tab-button-product-judge'
 import TabButtonProductRecordKeeper from '@/components/ui/tab-button-product-RecordKeeper'
 import { ProductTitlesItem, ProductDashboardTitles, ProductDashboardMembersTitles } from '@/components/ui/productTitlesFC'
 
+
+
+import { useAppContext } from '@/lib/contexts/AppContext';
+/* interface TemplateProps {
+  smoother: {
+    scrollTo: (target: string, animate: boolean, position: string) => void;
+  };
+} */
+
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, CustomEase);
 
 /* export const metadata: Metadata = {
@@ -27,6 +36,9 @@ gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, CustomEase);
 } */
 
 const Product = () => {
+
+  const { href, smoother } = useAppContext();
+
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
@@ -178,6 +190,96 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
+
+
+      //let ScrollSmootherTop = "top 0px"; //"top 52px"
+      const checkAllConditionsReady = setInterval(() => {
+        if (smoother?.current && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
+          clearInterval(checkAllConditionsReady);
+          //console.log("All conditions met!")
+
+          const animIn = gsap.timeline({ paused: true })
+            .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { duration: 0.25, opacity: 1, x: 0, ease: "power2.out" });
+
+          smoother.current.scrollTo(href);
+          animIn.invalidate();
+          animIn.restart().play();
+          console.log("scrollingTo : " + href);
+
+        } else {
+          console.log("Conditions for scrollTo not met");
+        }
+      }, 100); // Check every 100ms
+
+
+
+
+
+
+
+      /* let ScrollSmootherTop = "top 0px"; //"top 52px"
+      let attempts = 0;
+      const maxAttempts = 5; // Maximum number of attempts to try scrollTo
+      const attemptInterval = 50; // Milliseconds between attempts
+
+      const checkAndExecuteScroll = () => {
+        //console.log("checkAndExecuteScroll "+attempts);
+        attempts++;
+        // Check if conditions are met to execute the scroll
+        if (smoother?.current && typeof smoother.current.scrollTo === "function") {
+          const templateAnimInExists = document.querySelector('.templateAnimIn');
+
+          console.log("Conditions for scrollTo met!:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+
+          if (templateAnimInExists) {
+
+            const animIn = gsap.timeline({ paused: true })
+              .fromTo(".templateAnimIn", { opacity: 0, x: -20 }, { duration: 0.75, opacity: 1, x: 0, ease: "power2.out" });
+
+            // Additional check to ensure smoother is in a ready state
+            const checkSmootherCurrentIsReady = setInterval(() => {
+              if (smoother.current) {
+                clearInterval(checkSmootherCurrentIsReady);
+                smoother.current.scrollTo(href, true, ScrollSmootherTop);
+                animIn.invalidate();
+                animIn.restart().play();
+                //console.log("scrollTo : " + href);
+              }
+            }, 100); // Check every 100ms
+          }
+        } else if (attempts < maxAttempts) {
+          console.log("Conditions for scrollTo not met:", { isPending, smootherExists: !!smoother, scrollToIsFunction: typeof smoother?.current?.scrollTo === "function" });
+          // If conditions are not met, retry after a delay
+          setTimeout(checkAndExecuteScroll, attemptInterval);
+        } else {
+          console.log("Conditions for scrollTo not met after maximum attempts.");
+        }
+      };
+    
+      // Initial attempt
+      setTimeout(checkAndExecuteScroll, attemptInterval); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       //drawMainPath Animations
 
       let matchMedia = gsap.matchMedia();
@@ -500,7 +602,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
     /* GSDevTools.create(); */
     },
-    { dependencies: [verticalLoop], revertOnUpdate: true }
+    { dependencies: [smoother, href, verticalLoop], revertOnUpdate: true }
   );
 
   return (
