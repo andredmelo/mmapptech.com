@@ -8,6 +8,8 @@ import { useMediaQuery } from '@react-hook/media-query';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useViewportSize } from '@/lib/hooks/useViewportSize';
+import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
 import { CustomCamera, IPhoneModel, IPadModel, MacBookProModel, CageModel } from '@/components/three.js/assets';
 import { useLoadAssets } from '@/components/three.js/useLoadAssets';
@@ -18,20 +20,6 @@ import { IPhoneTextureContext, IPadTextureContext, IPhoneOpacityContext, IPadOpa
 const DatGuiWrapper = dynamic(() => import('@/components/three.js/datGuiWrapper'), {
   ssr: false, // Disable server-side rendering
 });
-
-//This custom hook listens for resize events and updates the state with the current viewport dimensions without using window or document
-const useViewportSize = () => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
-  useEffect(() => {
-    const updateSize = () => {
-      setSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener('resize', updateSize);
-    updateSize(); // Initialize size
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return size;
-};
 
 
 const IPhoneBobAnimation = ({ iPhoneRef }: { iPhoneRef: React.RefObject<Mesh> }) => {
@@ -58,7 +46,7 @@ export const HomeCageR3F: React.FC = () => {
   const container = useRef(null);
   const cageRef = useRef<Mesh>(null);
   
-
+  const { setHeroIntro3DComplete } = useHeroIntroContext();
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
@@ -66,9 +54,27 @@ export const HomeCageR3F: React.FC = () => {
       const Test4CageR3F = setInterval(() => {
         if (cage?.scene) {
           clearInterval(Test4CageR3F);
-
+          
+          let isHeroIntro3DOver90 = false; // Flag to track if completion state has been set
           // cageHomeAnimIn
-          const cageHomeAnimIn = gsap.timeline({paused:true, delay:0, fastScrollEnd: 3000})
+          const cageHomeAnimIn = gsap.timeline(
+            {
+              paused:true,
+              delay:0,
+              fastScrollEnd: 3000,
+              onUpdate: () => {
+                //console.log(cageHomeAnimIn.progress());
+                if (cageHomeAnimIn.progress() > 0.9 && !isHeroIntro3DOver90) {
+                  isHeroIntro3DOver90 = true; // Set the flag to true
+                  setHeroIntro3DComplete(true); // Set the completion state
+                  console.log("cageHomeAnimIn progress over 90%");
+                }
+              },
+              onComplete: () => {
+                //console.log("cageHomeAnimIn completed");
+                //setHeroIntro3DComplete(true); // Set the completion state
+              }
+            })
             .set(cage.scene.scale, {x: 0.01, y: 0.01, z: 0.01})
             .set(cage.scene.position, {y: -8})
             .to(".HomeCageR3F", {autoAlpha:1, duration:0.1}, "<")
@@ -114,7 +120,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
   const isUnder768 = useMediaQuery('(max-width: 768px)');
   const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
-  const { width, height } = useViewportSize();
+  const { widthViewport, heightViewport } = useViewportSize();
 
   /* ===== GSAP React ===== */
   useGSAP(
@@ -183,10 +189,10 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
             console.log("Viewport is 16:9 or wider");
           } */
 
-          const detectiPhoneScaleLandscape = (width: number, height: number) => {
+          const detectiPhoneScaleLandscape = (widthViewport: number, heightViewport: number) => {
             /* const width = window.innerWidth;
             const height = window.innerHeight; */
-            const ratio = width / height;
+            const ratio = widthViewport / heightViewport;
 
             if (isLandscape) {
               if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
@@ -202,10 +208,10 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
           };
           //console.log("detectiPhoneScaleLandscape = "+detectiPhoneScaleLandscape( width, height ));
 
-          const detectiPhoneYRestingPositionLandscape = (width: number, height: number) => {
+          const detectiPhoneYRestingPositionLandscape = (widthViewport: number, heightViewport: number) => {
             /* const width = window.innerWidth;
             const height = window.innerHeight; */
-            const ratio = width / height;
+            const ratio = widthViewport / heightViewport;
 
             if (isLandscape) {
               if (ratio > 16/9) { //console.log("Viewport is wider than 16:9");
@@ -222,8 +228,8 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
           //console.log("detectiPhoneYRestingPositionLandscape = "+detectiPhoneYRestingPositionLandscape( width, height ));
 
           const sethomeiPhoneIntroOpacity = gsap.quickSetter(".homeiPhoneIntro", "opacity");
-          const iPhoneScale = isLandscape ? detectiPhoneScaleLandscape( width, height ) : ( isUnder768 ? 7.5 : 6);
-          const iPhoneYRestingPosition = isLandscape ? detectiPhoneYRestingPositionLandscape( width, height ) : ( isUnder768 ? 0.22 : 0.32);
+          const iPhoneScale = isLandscape ? detectiPhoneScaleLandscape( widthViewport, heightViewport ) : ( isUnder768 ? 7.5 : 6);
+          const iPhoneYRestingPosition = isLandscape ? detectiPhoneYRestingPositionLandscape( widthViewport, heightViewport ) : ( isUnder768 ? 0.22 : 0.32);
           const iPhoneXDropPosition = isLandscape ? 2 : ( isUnder768 ? 0 : 1);
 
           // Initial settings and positioning
@@ -282,7 +288,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, width, height], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, widthViewport, heightViewport], revertOnUpdate: true }
   );
 
   return (
@@ -863,7 +869,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   );
 
   return (
-    <div ref={container} className="homeFeaturesR3FViewer absolute z-[2] h-screen w-screen overflow-visible">
+    <div ref={container} className="homeFeaturesR3FViewer absolute z-[50] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}

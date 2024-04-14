@@ -16,33 +16,23 @@ import FAQ from '@/app/contact/faq'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesLeftCard, FeaturesLeftCardHeader, FeaturesLeftCardTitle, FeaturesLeftCardDescription } from '@/components/ui/featuresLeftCard'
 import { FeaturesRightCard, FeaturesRightCardHeader, FeaturesRightCardTitle, FeaturesRightCardDescription } from '@/components/ui/featuresRightCard'
-
-
 import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/app/CallToActionButton'
 
 import(/* webpackPreload: true */ '@/components/three.js');
+import { TestR3F } from '@/components/three.js';
 import { HomeIntroR3F } from '@/components/three.js';
 import { HomeiPhoneIntroR3F } from '@/components/three.js';
 import { HomeCageR3F } from '@/components/three.js';
-
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
-import { TestR3F } from '@/components/three.js';
-
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
-import { useAppContext } from '@/lib/contexts/AppContext';
-/* interface TemplateProps {
-  smoother: {
-    scrollTo: (target: string, animate: boolean, position: string) => void;
-  };
-} */
+import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
+//import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-
-  const { href, smoother } = useAppContext();
 
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
@@ -56,6 +46,7 @@ export default function Home() {
   const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
   const { setMacBookProTextureName } = useContext(MacBookProTextureContext);
 
+  //const { isHeroIntro3DComplete } = useHeroIntroContext();
 
   // IntersectionObserver for HomeFeaturesR3F
   const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
@@ -108,40 +99,9 @@ export default function Home() {
     }
   };
 
-  /* const svgString = encodeURIComponent(
-    ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
-  );
-  const svgString180 = encodeURIComponent(
-    ReactDOMServer.renderToStaticMarkup(<HeroBGSVG180 />)
-  ); */
-
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-
-
-      //let ScrollSmootherTop = "top 0px"; //"top 52px"
-      const checkAllConditionsReady = setInterval(() => {
-        if (smoother?.current && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
-          clearInterval(checkAllConditionsReady);
-          //console.log("All conditions met!")
-
-          const animIn = gsap.timeline({ paused: true })
-            .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { duration: 0.25, opacity: 1, x: 0, ease: "power2.out" });
-
-          setShowHomeFeaturesR3F(true);
-          /* smoother.current.scrollTo("#Features");// This is to force it to go to the top after force loading the 3D
-          console.log("scrolled Home?"); */
-          smoother.current.scrollTo(href);
-          animIn.invalidate();
-          animIn.restart().play();
-          console.log("scrollingTo : " + href);
-
-        } else {
-          console.log("Conditions for scrollTo not met");
-        }
-      }, 100); // Check every 100ms
-
       let matchMedia = gsap.matchMedia();
 
       // Pin Small Mission Image
@@ -576,8 +536,9 @@ export default function Home() {
 
           // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
           ScrollTrigger.create({
-            trigger: '.featuresRecordKeeper',
+            trigger: '#featuresRecordKeeperContainer',
             start: 'bottom top',
+            onEnter: () => { setMacBookProOpacity(0) },
             onLeaveBack: () => { setMacBookProOpacity(0)},
           });
 
@@ -608,10 +569,13 @@ export default function Home() {
       const heroFighterLeft = document.getElementById("heroFighterLeft");
       const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
       const heroMMAPPText = document.getElementById("heroMMAPPText");
+      const heroMMAPPiPhone = document.getElementById("heroMMAPPiPhone");
 
       //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? 1 : 0.75) : 0.75;
       const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
       const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
+      const heroMMAPPiPhoneScale = isPortrait ? ( isUnder768 ? "40svh" : "30svh") : "40svh";
+      const heroMMAPPiPhoneBottom = isPortrait ? ( isUnder768 ? "35%" : "45%") : "2%";
 
       gsap.set(heroVeil, {autoAlpha: 1});
       gsap.set(heroBG, {autoAlpha: 0});
@@ -621,38 +585,56 @@ export default function Home() {
       gsap.set(heroFighterLeft, {autoAlpha: 0});
       gsap.set(heroMMAPPLogo, {autoAlpha: 0, xPercent: -50, left: "50%", top: heroMMAPPLogoTop});
       gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
+      gsap.set(heroMMAPPiPhone, {autoAlpha: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "100%"});
 
-      const Intro = gsap.timeline({paused:true})
-        .set(heroVeil, {autoAlpha: 0})
-        .fromTo(heroBG, {autoAlpha: 0, yPercent: 5}, {autoAlpha: 1, yPercent: 0, duration: 4, ease: "power2.in"})
-        .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.25)
-        .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 3.5)
-        .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out", delay: 0}, 4)
-        .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out", delay: 0}, 4.05)
-        .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.5)
-        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in", delay: 0}, 4.75)
+      const HeroIntroBGReveal = gsap.timeline({paused:false})
+        .fromTo(heroVeil, {autoAlpha: 1}, {autoAlpha: 0})
 
-      Intro.play();
+
+      let hasHeroIntroStageRan = false;
+      const HeroIntroStage = gsap.timeline({
+        paused:true,
+        onComplete: () => {
+          hasHeroIntroStageRan = true;
+        },
+        defaults: {delay: 3},
+      })
+        .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0)
+        .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0.25)
+        .fromTo(heroBG, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.5)
+        .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.75)
+        .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.8)
+        .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in"}, 1.25)
+        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in"}, 1.5)
+        .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.5, ease: "power1.in"}, 1.75)
+
+      /* if (isHeroIntro3DComplete && !hasHeroIntroStageRan) {
+        HeroIntroStage.play();
+      } */
+      HeroIntroStage.play();
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [smoother, href, isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
   );
 
   return (
     <>
+    <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
       <div className="homeRoot">
 
-        <section id="Home" className="homeSection border-b-4 border-[var(--primary-fuchsia)] overflow-hidden">
+        <section id="Home" className="homeSection overflow-hidden">
           <div className="hero relative w-[100vw] h-[100svh]">
             {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
-            <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100vh]"/>
+            <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/>
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
             <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
-            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[3] absolute object-scale-down bottom-0 right-0 max-h-[75vh]"/>
-            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[3] absolute object-scale-down bottom-0 left-0 max-h-[75vh]"/>
+            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[3] absolute object-scale-down bottom-0 right-0 max-h-[75svh]"/>
+            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[3] absolute object-scale-down bottom-0 left-0 max-h-[75svh]"/>
+            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-0 left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="z-[4] absolute"/>
-            <h2 id="heroMMAPPText" className="z-[4] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[6vw] portrait:lg:text-[13vw] 2xl:text-[5.75vw] 3xl:text-[5vw] text-center font-semibold deboss">Mapping MMA</h2> 
+            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain h-[40svh]" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+            <h2 id="heroMMAPPText" className="z-[5] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[6vw] portrait:lg:text-[13vw] 2xl:text-[5.75vw] 3xl:text-[5vw] text-center font-semibold deboss">Mapping MMA</h2>
           </div>
           {/* <div className="homeMain">
           </div> */}
@@ -660,7 +642,6 @@ export default function Home() {
           {/* <HomeiPhoneIntroR3F /> */}
           <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
-
           <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
@@ -1094,7 +1075,7 @@ export default function Home() {
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
-              <div className="flex flex-col z-20 text-left">
+            <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">

@@ -64,13 +64,18 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           console.log("Here")
         } */
         if (dropdownElement?.classList.contains("active")){
-          closeDropdownMenu();
-          setAriaExpandedFalse();
-          console.log("Close");
+          //closeDropdownMenu();
+          //setAriaExpandedFalse();
+          //console.log("Close");
           /* gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05}) */
           if (isUnder768) {
-            gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 200, duration: 0.1, ease:"power1.in", stagger: 0.05})
+            gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 200, duration: 0.1, ease:"power1.in", stagger: 0.05, onComplete: () => {
+              closeDropdownMenu();
+              setAriaExpandedFalse();
+            }})
           } else {
+            closeDropdownMenu();
+            setAriaExpandedFalse();
             //gsap.fromTo(dropdownElementA, {yPercent: 0}, {yPercent: -100, duration: 0.25, ease:"power1.out", stagger: 0.05})
           }
           /* dropdownContentLi?.forEach(box => {
@@ -84,7 +89,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           dropdownElement?.classList.toggle("active");
           setAriaExpandedFalse();
           btn.setAttribute("aria-expanded", "true")
-          console.log("Open")
+          //console.log("Open")
           /* gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1}) */
           if (isUnder768) {
             gsap.fromTo(dropdownContentLi, {xPercent: -200}, {xPercent: 0, duration: 0.125, ease:"power1.out", stagger: 0.05})

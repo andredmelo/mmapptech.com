@@ -17,6 +17,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
+import { HeroIntroProvider } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -190,13 +191,23 @@ export default function RootLayout({
           <link rel="icon" href="@/public/images/logo.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <link rel="apple-touch-icon" href="@/public/images/logo.webp" />
+          {/* <!-- Google tag (gtag.js) --> */}
+          {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKR4VB95HV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-XKR4VB95HV');
+          </script> */}
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           <Providers>
-            <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}> 
+            <HeroIntroProvider>
+            <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}>
             <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
             <IPadTextureContext.Provider value={{ iPadTextureName, setiPadTextureName }}>
             <MacBookProOpacityContext.Provider value={{ macBookProOpacity, setMacBookProOpacity }}>
@@ -217,6 +228,7 @@ export default function RootLayout({
             </IPadTextureContext.Provider>
             </IPhoneTextureContext.Provider>
             </MacBookProTextureContext.Provider>
+            </HeroIntroProvider>
           </Providers>
         </body>
       </html>

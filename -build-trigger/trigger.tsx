@@ -1,2 +1,2 @@
-let vNumber = "v0.1.4-β.5 | Fixed big issue of the page transitions by extracting the AnimIn And ScrollTo from the Template into each page. Fixed the issue that Features 3D doesn't show up when page transitioning from a direct link below it by adding a setShowHomeFeaturesR3F(true) when transitioning pages + a ScrollTrigger to hide MacBookPro when scrolling back up after a page transition below #Features";
+let vNumber = "v0.1.4-β.6 | Moved AnimIn And ScrollTo page transitions from each page into 'PagesTransitionScroll.tsx'. Several small fixes including Z-index values. Tried implementing HeroIntroContext from 3D animation finish but several issues including the screwing up the ScrollTriggers of Features?!?";
 
