@@ -78,7 +78,7 @@ export default function RootLayout({
         smoother.current = ScrollSmoother.create({
           smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
           effects: true, // looks for data-speed and data-lag attributes on elements
-          smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+          smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
           /* ignoreMobileResize: true,
           normalizeScroll: true, */
         });
@@ -140,6 +140,7 @@ export default function RootLayout({
                       //console.log("currentPage changed to " + currentPage);
                     }
                   })
+                    .set(".footer", {opacity: 0})
                     .fromTo(".templateAnimIn", {opacity: 1, x: 0},{opacity: 0, x: 100, duration: 0.25, ease: "power2.out"})
                   //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
 

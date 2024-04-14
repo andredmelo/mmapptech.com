@@ -1,4 +1,4 @@
-"use client";
+/* "use client"; */
 /* import { useEffect, useState, useRef } from "react"; */
 /* import { useAppContext } from '@/lib/contexts/AppContext'; */
 /* import { gsap } from "gsap";

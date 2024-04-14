@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 interface PagesTransitionScrollProps {
   onConditionMet?: () => void; // Optional callback
@@ -16,27 +16,45 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
 
   useGSAP(() => {
     const checkAllConditionsReady = setInterval(() => {
-      if (smoother?.current && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
+      if (smoother?.current && typeof smoother.current.offset === "function" && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
         clearInterval(checkAllConditionsReady);
 
+        gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
         const animIn = gsap.timeline({ paused: true })
-          .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" });
+          .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" })
+          .set(".footer", {opacity: 1})
 
         if (!href.includes("company") && !href.includes("product")) {
           //console.log("condition met");
           onConditionMet?.(); // Call the callback if the condition is met
         }
         try {
-          // Your code that might throw an error
-          smoother.current.scrollTo(href, false);
+          // Code that might throw an error
+          //smoother.current.scrollTo(href, false);
+          gsap.to(smoother.current, {
+            // don't let it go beyond the maximum scrollable area
+            scrollTop: Math.min(
+              ScrollTrigger.maxScroll(window),
+              smoother.current.offset(href, "top 0px")
+            ),
+            duration: 0.01,
+            onComplete: () => {
+              //console.log("ScrollComplete, now animatingIn");
+              animIn.invalidate().restart().play();
+            }
+          });
         } catch (error) {
           console.error("Trying to scrollTo");
           //console.error("Error accessing element's style:", error);
           // Optional: retry logic or other error handling
         }
-        
-        animIn.invalidate();
-        animIn.restart().play();
+
+        if (href == '') {
+          //console.log("href = is null");
+          animIn.invalidate().restart().play();
+        }
+        //animIn.invalidate();
+        //animIn.restart().play();
         //console.log("scrollingTo : " + href);
       } else {
         console.log("Conditions for scrollTo not met");

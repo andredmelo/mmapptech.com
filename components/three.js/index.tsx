@@ -55,21 +55,21 @@ export const HomeCageR3F: React.FC = () => {
         if (cage?.scene) {
           clearInterval(Test4CageR3F);
           
-          let isHeroIntro3DOver90 = false; // Flag to track if completion state has been set
+          //let isHeroIntro3DOver90 = false; // Flag to track if completion state has been set
           // cageHomeAnimIn
           const cageHomeAnimIn = gsap.timeline(
             {
               paused:true,
               delay:0,
               fastScrollEnd: 3000,
-              onUpdate: () => {
+              /* onUpdate: () => {
                 //console.log(cageHomeAnimIn.progress());
                 if (cageHomeAnimIn.progress() > 0.9 && !isHeroIntro3DOver90) {
                   isHeroIntro3DOver90 = true; // Set the flag to true
                   setHeroIntro3DComplete(true); // Set the completion state
                   console.log("cageHomeAnimIn progress over 90%");
                 }
-              },
+              }, */
               onComplete: () => {
                 //console.log("cageHomeAnimIn completed");
                 //setHeroIntro3DComplete(true); // Set the completion state
@@ -869,7 +869,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   );
 
   return (
-    <div ref={container} className="homeFeaturesR3FViewer absolute z-[50] h-screen w-screen overflow-visible">
+    <div ref={container} className="homeFeaturesR3FViewer hidden md:block absolute z-[50] h-screen w-screen overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}

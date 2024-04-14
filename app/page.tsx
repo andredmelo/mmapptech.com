@@ -177,387 +177,389 @@ export default function Home() {
       } else {
         sectionTitlePaddingTop = "90px";
       }
+    
+      matchMedia.add("(min-width: 768px)", () => {
+        //Dashboard Animations
+        const checkDashboardAnimIn = setInterval(() => {
+          if (document.querySelector('.dashboardCard') && document.getElementById('featuresDashboardTitle')) {
+                clearInterval(checkDashboardAnimIn);
+                //console.log("Dashboard animations are ready");
+            let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
+            let dashboardTitle = document.getElementById('featuresDashboardTitle');
+            let dashboardContainer = document.getElementById('featuresDashboardContainer');
 
-      //Dashboard Animations
-      const checkDashboardAnimIn = setInterval(() => {
-        if (document.querySelector('.dashboardCard') && document.getElementById('featuresDashboardTitle')) {
-              clearInterval(checkDashboardAnimIn);
-              //console.log("Dashboard animations are ready");
-          let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
-          let dashboardTitle = document.getElementById('featuresDashboardTitle');
-          let dashboardContainer = document.getElementById('featuresDashboardContainer');
+            let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
 
-          let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
+            fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
+            gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
 
-          fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
-          gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
+            let bottomDistance = dashboardCards[dashboardCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
 
-          let bottomDistance = dashboardCards[dashboardCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+            let lastDashboardCardST = ScrollTrigger.create({
+              trigger: dashboardCards[dashboardCards.length-1] as HTMLElement,
+              start: "center 50%",
+              markers:false,
+            });
 
-          let lastDashboardCardST = ScrollTrigger.create({
-            trigger: dashboardCards[dashboardCards.length-1] as HTMLElement,
-            start: "center 50%",
-            markers:false,
-          });
-
-          dashboardCards.forEach((card, i) => {
-            switch (i) {
-              case 0: // case to pin both card[0] and header
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: card,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                  onLeaveBack: ({}) => {
-                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                  }
-                });
-                // Pin Dashboard Title
-                ScrollTrigger.create({
-                  trigger: dashboardTitle,
-                  start: "top "+sectionTitlePaddingTop,
-                  end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: dashboardTitle,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                /* ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: dashboardContainer,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                }); */
-                break;
-              case dashboardCards.length-1: // case to pinSpacing the last card
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: true,
-                  invalidateOnRefresh: true,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-                break;
-              default: // default case
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastDashboardCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: false,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setMacBookProTextureName('macBookPro_texture_'+(i+1));
-                    gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setMacBookProTextureName('macBookPro_texture_'+(i));
-                    gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            //setiPhoneOpacity(1);
-            //setiPadOpacity(0);
-          });
-
-        }
-      }, 50); // Check every 50ms
-
-      // macBookProiPhoneSwitch Animation
-      ScrollTrigger.create({
-        trigger: '.featuresDashboard',
-        start: 'bottom 50%',
-        //end: 'bottom 75%',
-        markers: false,
-        scrub: false,
-        onEnter: ({progress, direction, isActive}) => {
-          setMacBookProOpacity(0);
-          setiPhoneOpacity(1);
-        },
-        onLeaveBack: ({progress, direction, isActive}) => {
-          setMacBookProOpacity(1);
-          setiPhoneOpacity(0);
-        },
-      });
-
-      //Judge Animations
-      const checkJudgeAnimIn = setInterval(() => {
-        if (document.querySelector('.judgeCard') && document.getElementById('featuresJudgeTitle')) {
-              clearInterval(checkJudgeAnimIn);
-              //console.log("Judge animations are ready");
-          let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
-          let judgeTitle = document.getElementById('featuresJudgeTitle');
-
-          let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
-
-          fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
-          gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
-
-          let bottomDistance = judgeCards[judgeCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
-
-          let lastJudgeCardST = ScrollTrigger.create({
-            trigger: judgeCards[judgeCards.length-1] as HTMLElement,
-            start: "center 50%",
-            markers:false,
-          });
-
-          judgeCards.forEach((card, i) => {
-            switch (i) {
-              case 0: // case to pin both card[0] and header
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: card,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                  onLeaveBack: ({}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
-                  }
-                });
-                // Pin Judge Title
-                ScrollTrigger.create({
-                  trigger: judgeTitle,
-                  start: "top "+sectionTitlePaddingTop,
-                  end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: judgeTitle,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                /* if (isViewportRatioLessThan192()) {
+            dashboardCards.forEach((card, i) => {
+              switch (i) {
+                case 0: // case to pin both card[0] and header
                   ScrollTrigger.create({
                     trigger: card,
                     start: "center 50%",
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: card,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                    onLeaveBack: ({}) => {
+                      setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                    }
+                  });
+                  // Pin Dashboard Title
+                  ScrollTrigger.create({
+                    trigger: dashboardTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: dashboardTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                  /* ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: dashboardContainer,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  }); */
+                  break;
+                case dashboardCards.length-1: // case to pinSpacing the last card
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                      gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setMacBookProTextureName('macBookPro_texture_'+(i));
+                      gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+                  break;
+                default: // default case
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: false,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setMacBookProTextureName('macBookPro_texture_'+(i+1));
+                      gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setMacBookProTextureName('macBookPro_texture_'+(i));
+                      gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+              //setiPhoneOpacity(1);
+              //setiPadOpacity(0);
+            });
+
+          }
+        }, 50); // Check every 50ms
+
+        // macBookProiPhoneSwitch Animation
+        ScrollTrigger.create({
+          trigger: '.featuresDashboard',
+          start: 'bottom 50%',
+          //end: 'bottom 75%',
+          markers: false,
+          scrub: false,
+          onEnter: ({progress, direction, isActive}) => {
+            setMacBookProOpacity(0);
+            setiPhoneOpacity(1);
+          },
+          onLeaveBack: ({progress, direction, isActive}) => {
+            setMacBookProOpacity(1);
+            setiPhoneOpacity(0);
+          },
+        });
+
+        //Judge Animations
+        const checkJudgeAnimIn = setInterval(() => {
+          if (document.querySelector('.judgeCard') && document.getElementById('featuresJudgeTitle')) {
+                clearInterval(checkJudgeAnimIn);
+                //console.log("Judge animations are ready");
+            let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
+            let judgeTitle = document.getElementById('featuresJudgeTitle');
+
+            let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
+
+            fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
+            gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
+
+            let bottomDistance = judgeCards[judgeCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+
+            let lastJudgeCardST = ScrollTrigger.create({
+              trigger: judgeCards[judgeCards.length-1] as HTMLElement,
+              start: "center 50%",
+              markers:false,
+            });
+
+            judgeCards.forEach((card, i) => {
+              switch (i) {
+                case 0: // case to pin both card[0] and header
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    pin: card,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                    onLeaveBack: ({}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    }
+                  });
+                  // Pin Judge Title
+                  ScrollTrigger.create({
+                    trigger: judgeTitle,
+                    start: "top "+sectionTitlePaddingTop,
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: judgeTitle,
                     pinSpacing: false,
                     invalidateOnRefresh: true,
                   });
-                } */
-                break;
-              case judgeCards.length-1: // case to pinSpacing the last card
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: true,
-                  invalidateOnRefresh: true,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-                break;
-              default: // default case
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastJudgeCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: false,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
-                    gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i));
-                    gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            //setiPhoneOpacity(1);
-            //setiPadOpacity(0);
-          });
+                  /* if (isViewportRatioLessThan192()) {
+                    ScrollTrigger.create({
+                      trigger: card,
+                      start: "center 50%",
+                      end: () => lastJudgeCardST.start + bottomDistance,
+                      pin: judgeTitle,
+                      pinSpacing: false,
+                      invalidateOnRefresh: true,
+                    });
+                  } */
+                  break;
+                case judgeCards.length-1: // case to pinSpacing the last card
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i+1));
+                      gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i));
+                      gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+                  break;
+                default: // default case
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: false,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i+1));
+                      gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i));
+                      gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+              //setiPhoneOpacity(1);
+              //setiPadOpacity(0);
+            });
 
-        }
-      }, 50); // Check every 50ms
+          }
+        }, 50); // Check every 50ms
 
-      // iPhoneiPadSwitch Animation
-      ScrollTrigger.create({
-        trigger: '.featuresJudge',
-        start: 'bottom 50%',
-        //end: 'bottom 75%',
-        markers: false,
-        scrub: false,
-        onEnter: ({progress, direction, isActive}) => {
-          setiPhoneOpacity(0);
-          setiPadOpacity(1);
-        },
-        onLeaveBack: ({progress, direction, isActive}) => {
-          setiPhoneOpacity(1);
-          setiPadOpacity(0);
-        },
+        // iPhoneiPadSwitch Animation
+        ScrollTrigger.create({
+          trigger: '.featuresJudge',
+          start: 'bottom 50%',
+          //end: 'bottom 75%',
+          markers: false,
+          scrub: false,
+          onEnter: ({progress, direction, isActive}) => {
+            setiPhoneOpacity(0);
+            setiPadOpacity(1);
+          },
+          onLeaveBack: ({progress, direction, isActive}) => {
+            setiPhoneOpacity(1);
+            setiPadOpacity(0);
+          },
+        });
+
+
+        //RecordKeeper Animations
+        const checkRecordKeeperAnimIn = setInterval(() => {
+          if (document.querySelector('.recordKeeperCard') && document.getElementById('featuresRecordKeeperTitle')) {
+                clearInterval(checkRecordKeeperAnimIn);
+                //console.log("RecordKeeper animations are ready");
+            let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
+            let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
+
+            let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
+
+            fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
+            gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
+
+            let bottomDistance = recordKeeperCards[recordKeeperCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
+
+            let lastRecordKeeperCardST = ScrollTrigger.create({
+              trigger: recordKeeperCards[recordKeeperCards.length-1] as HTMLElement,
+              start: "center 50%",
+              markers:false,
+            });
+
+            recordKeeperCards.forEach((card, i) => {
+              switch (i) {
+                case 0: // case to pin both card[0] and header
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: card,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                    onLeaveBack: ({}) => {
+                      setiPhoneTextureName('iPhone_texture_'+(i+1));
+                    }
+                  });
+                  // Pin RecordKeeper Title
+                  ScrollTrigger.create({
+                    trigger: recordKeeperTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: recordKeeperTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  });
+                  /* ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 60%",
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: header,
+                    pinSpacing: false,
+                    invalidateOnRefresh: true,
+                  }); */
+                  break;
+                case recordKeeperCards.length-1: // case to pinSpacing the last card
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setiPadTextureName('iPad_texture_'+(i+1));
+                      gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setiPadTextureName('iPad_texture_'+(i));
+                      gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+                  break;
+                default: // default case
+                  ScrollTrigger.create({
+                    trigger: card,
+                    start: "center 50%",
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: true,
+                    pinSpacing: false,
+                    onEnter: ({progress, direction, isActive}) => {
+                      setiPadTextureName('iPad_texture_'+(i+1));
+                      gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                    },
+                    onLeaveBack: ({progress, direction, isActive}) => {
+                      setiPadTextureName('iPad_texture_'+(i));
+                      gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
+                      gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                    }
+                  });
+              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+              //setiPhoneOpacity(1);
+              //setiPadOpacity(0);
+            });
+
+            // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
+            ScrollTrigger.create({
+              trigger: '#featuresRecordKeeperContainer',
+              start: 'bottom top',
+              onEnter: () => { setMacBookProOpacity(0) },
+              onLeaveBack: () => { setMacBookProOpacity(0)},
+            });
+
+            // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
+            /* ScrollTrigger.create({
+              trigger: "#featuresJudge",
+              start: "top top",
+              //endTrigger: ".featuresRecordKeeperBottom",
+              //end: "bottom bottom",
+              end: () => lastRecordKeeperCardST.start + bottomDistance,
+              pin: ".homeFeaturesR3FViewer",
+              markers: true,
+            }); */
+
+            //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
+            setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
+
+          }
+        }, 50); // Check every 50ms
       });
-
-
-      //RecordKeeper Animations
-      const checkRecordKeeperAnimIn = setInterval(() => {
-        if (document.querySelector('.recordKeeperCard') && document.getElementById('featuresRecordKeeperTitle')) {
-              clearInterval(checkRecordKeeperAnimIn);
-              //console.log("RecordKeeper animations are ready");
-          let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
-          let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
-
-          let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
-
-          fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
-          gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
-
-          let bottomDistance = recordKeeperCards[recordKeeperCards.length-1].offsetHeight; // extra distance to have things stick after the last card pins (pixels). Careful as not having any could cover up the content bellow
-
-          let lastRecordKeeperCardST = ScrollTrigger.create({
-            trigger: recordKeeperCards[recordKeeperCards.length-1] as HTMLElement,
-            start: "center 50%",
-            markers:false,
-          });
-
-          recordKeeperCards.forEach((card, i) => {
-            switch (i) {
-              case 0: // case to pin both card[0] and header
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastRecordKeeperCardST.start + bottomDistance,
-                  pin: card,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                  onLeaveBack: ({}) => {
-                    setiPhoneTextureName('iPhone_texture_'+(i+1));
-                  }
-                });
-                // Pin RecordKeeper Title
-                ScrollTrigger.create({
-                  trigger: recordKeeperTitle,
-                  start: "top "+sectionTitlePaddingTop,
-                  end: () => lastRecordKeeperCardST.start + bottomDistance,
-                  pin: recordKeeperTitle,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-                /* ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 60%",
-                  end: () => lastRecordKeeperCardST.start + bottomDistance,
-                  pin: header,
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                }); */
-                break;
-              case recordKeeperCards.length-1: // case to pinSpacing the last card
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastRecordKeeperCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: true,
-                  invalidateOnRefresh: true,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setiPadTextureName('iPad_texture_'+(i+1));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setiPadTextureName('iPad_texture_'+(i));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-                break;
-              default: // default case
-                ScrollTrigger.create({
-                  trigger: card,
-                  start: "center 50%",
-                  end: () => lastRecordKeeperCardST.start + bottomDistance,
-                  pin: true,
-                  pinSpacing: false,
-                  onEnter: ({progress, direction, isActive}) => {
-                    setiPadTextureName('iPad_texture_'+(i+1));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                  },
-                  onLeaveBack: ({progress, direction, isActive}) => {
-                    setiPadTextureName('iPad_texture_'+(i));
-                    gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                    gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
-                    gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                  }
-                });
-            }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-            //setiPhoneOpacity(1);
-            //setiPadOpacity(0);
-          });
-
-          // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
-          ScrollTrigger.create({
-            trigger: '#featuresRecordKeeperContainer',
-            start: 'bottom top',
-            onEnter: () => { setMacBookProOpacity(0) },
-            onLeaveBack: () => { setMacBookProOpacity(0)},
-          });
-
-          // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
-          /* ScrollTrigger.create({
-            trigger: "#featuresJudge",
-            start: "top top",
-            //endTrigger: ".featuresRecordKeeperBottom",
-            //end: "bottom bottom",
-            end: () => lastRecordKeeperCardST.start + bottomDistance,
-            pin: ".homeFeaturesR3FViewer",
-            markers: true,
-          }); */
-
-          //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
-          setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
-
-        }
-      }, 50); // Check every 50ms
 
 
       //Home Animation
