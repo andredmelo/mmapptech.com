@@ -70,7 +70,7 @@ const Company = (props: any) => {
 
   return (
     <>
-    <PagesTransitionScroll />
+      <PagesTransitionScroll />
     
       <div className="companyPage">
 

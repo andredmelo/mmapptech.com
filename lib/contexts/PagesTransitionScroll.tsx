@@ -19,9 +19,10 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
       if (smoother?.current && typeof smoother.current.offset === "function" && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
         clearInterval(checkAllConditionsReady);
 
-        gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
+        //gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
         const animIn = gsap.timeline({ paused: true })
-          .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" })
+          .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: -25, duration: 0.125, ease: "power2.out"})
+          .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out"}, 0.125)
           .set(".footer", {opacity: 1})
 
         if (!href.includes("company") && !href.includes("product")) {

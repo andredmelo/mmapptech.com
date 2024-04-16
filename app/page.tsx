@@ -14,8 +14,7 @@ import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
-import { FeaturesLeftCard, FeaturesLeftCardHeader, FeaturesLeftCardTitle, FeaturesLeftCardDescription } from '@/components/ui/featuresLeftCard'
-import { FeaturesRightCard, FeaturesRightCardHeader, FeaturesRightCardTitle, FeaturesRightCardDescription } from '@/components/ui/featuresRightCard'
+import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/app/CallToActionButton'
 
@@ -76,6 +75,7 @@ export default function Home() {
   const createScrollTriggerWhenHomeFeaturesR3FLoaded = () => {
     if (!hasLoadedOnceRef.current) { // Check if the function hasn't been called yet
       setIsHomeFeaturesR3FLoaded(true);
+      //console.log("createScrollTriggerWhenHomeFeaturesR3FLoaded endPosition = "+endPosition);
 
       ScrollTrigger.create({
         trigger: "#featuresDashboard",
@@ -102,6 +102,23 @@ export default function Home() {
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
+
+
+
+
+      /* ScrollTrigger.create({
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        pin: "#topOverlay",
+        markers: false,
+      }); */
+
+
+
+
+
+
       let matchMedia = gsap.matchMedia();
 
       // Pin Small Mission Image
@@ -154,7 +171,10 @@ export default function Home() {
       }
       detectViewportRatio();
       window.addEventListener('resize', detectViewportRatio); */
-      window.addEventListener('resize', () => {ScrollTrigger.refresh();/* console.log("Refreshed ScrollTrigger"); */});
+      /* window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+        // console.log("Refreshed ScrollTrigger");
+      }); */
       
       //To detect if a viewport is ultra-wide 1.9265 = 920px height
       /* function isViewportRatioLessThan192() {
@@ -178,7 +198,17 @@ export default function Home() {
         sectionTitlePaddingTop = "90px";
       }
     
-      matchMedia.add("(min-width: 768px)", () => {
+      /* matchMedia.add("(min-width: 768px)", () => { */
+
+        // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
+        ScrollTrigger.create({
+          trigger: '#featuresDashboard',
+          start: 'top 1%',
+          invalidateOnRefresh: false,
+          onEnter: () => { setiPhoneOpacity(0) },
+          onLeaveBack: () => { setiPhoneOpacity(0)},
+        });
+
         //Dashboard Animations
         const checkDashboardAnimIn = setInterval(() => {
           if (document.querySelector('.dashboardCard') && document.getElementById('featuresDashboardTitle')) {
@@ -189,6 +219,8 @@ export default function Home() {
             let dashboardContainer = document.getElementById('featuresDashboardContainer');
 
             let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
+            let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
+            //console.log("fDI is "+fDI);
 
             fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
             gsap.set(fDHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -199,6 +231,7 @@ export default function Home() {
               trigger: dashboardCards[dashboardCards.length-1] as HTMLElement,
               start: "center 50%",
               markers:false,
+              invalidateOnRefresh: false,
             });
 
             dashboardCards.forEach((card, i) => {
@@ -210,7 +243,7 @@ export default function Home() {
                     end: () => lastDashboardCardST.start + bottomDistance,
                     pin: card,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onLeaveBack: ({}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                     }
@@ -222,7 +255,7 @@ export default function Home() {
                     end: () => lastDashboardCardST.start + bottomDistance,
                     pin: dashboardTitle,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                   });
                   /* ScrollTrigger.create({
                     trigger: card,
@@ -240,20 +273,24 @@ export default function Home() {
                     end: () => lastDashboardCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: true,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDI[i-1], {xPercent: 0}, {xPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDI[i], {xPercent: -24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDI[i-1], {xPercent: 24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDI[i], {xPercent: 0}, {xPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -264,19 +301,24 @@ export default function Home() {
                     end: () => lastDashboardCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: false,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDI[i-1], {xPercent: 0, yPercent: 0}, {xPercent: 24, yPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDI[i], {xPercent: -24, yPercent: -24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fDI[i-1], {xPercent: 24, yPercent: 24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fDI[i], {xPercent: 0, yPercent: 0}, {xPercent: -24, yPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -294,6 +336,7 @@ export default function Home() {
           //end: 'bottom 75%',
           markers: false,
           scrub: false,
+          invalidateOnRefresh: false,
           onEnter: ({progress, direction, isActive}) => {
             setMacBookProOpacity(0);
             setiPhoneOpacity(1);
@@ -313,6 +356,7 @@ export default function Home() {
             let judgeTitle = document.getElementById('featuresJudgeTitle');
 
             let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
+            let fJI: HTMLImageElement[] = gsap.utils.toArray(".featuresJudgeImage");
 
             fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
             gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -323,6 +367,7 @@ export default function Home() {
               trigger: judgeCards[judgeCards.length-1] as HTMLElement,
               start: "center 50%",
               markers:false,
+              invalidateOnRefresh: false,
             });
 
             judgeCards.forEach((card, i) => {
@@ -334,7 +379,7 @@ export default function Home() {
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: card,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onLeaveBack: ({}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                     }
@@ -346,7 +391,7 @@ export default function Home() {
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: judgeTitle,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                   });
                   /* if (isViewportRatioLessThan192()) {
                     ScrollTrigger.create({
@@ -366,20 +411,24 @@ export default function Home() {
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: true,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -390,19 +439,24 @@ export default function Home() {
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: false,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -420,6 +474,7 @@ export default function Home() {
           //end: 'bottom 75%',
           markers: false,
           scrub: false,
+          invalidateOnRefresh: false,
           onEnter: ({progress, direction, isActive}) => {
             setiPhoneOpacity(0);
             setiPadOpacity(1);
@@ -440,6 +495,7 @@ export default function Home() {
             let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
 
             let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
+            let fRKI: HTMLImageElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
 
             fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
             gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -461,7 +517,7 @@ export default function Home() {
                     end: () => lastRecordKeeperCardST.start + bottomDistance,
                     pin: card,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onLeaveBack: ({}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                     }
@@ -473,7 +529,7 @@ export default function Home() {
                     end: () => lastRecordKeeperCardST.start + bottomDistance,
                     pin: recordKeeperTitle,
                     pinSpacing: false,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                   });
                   /* ScrollTrigger.create({
                     trigger: card,
@@ -491,20 +547,24 @@ export default function Home() {
                     end: () => lastRecordKeeperCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: true,
-                    invalidateOnRefresh: true,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -515,19 +575,24 @@ export default function Home() {
                     end: () => lastRecordKeeperCardST.start + bottomDistance,
                     pin: true,
                     pinSpacing: false,
+                    invalidateOnRefresh: false,
                     onEnter: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
+                      gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
+                      gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -539,6 +604,7 @@ export default function Home() {
             ScrollTrigger.create({
               trigger: '#featuresRecordKeeperContainer',
               start: 'bottom top',
+              invalidateOnRefresh: false,
               onEnter: () => { setMacBookProOpacity(0) },
               onLeaveBack: () => { setMacBookProOpacity(0)},
             });
@@ -556,10 +622,11 @@ export default function Home() {
 
             //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
             setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
+            //console.log("GSAP endPosition = "+(lastRecordKeeperCardST.start + bottomDistance));
 
           }
         }, 50); // Check every 50ms
-      });
+      /* }); */
 
 
       //Home Animation
@@ -617,12 +684,17 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: true }
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
   );
 
   return (
     <>
     <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
+      {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
+        <h4 className="text-white">endPosition = {endPosition}</h4>
+        <h4 id="topOverlayh4" className="text-white">FeaturesCard = {document.querySelector('.recordKeeperCard')?.clientHeight}</h4>
+      </div> */}
+
       <div className="homeRoot">
 
         <section id="Home" className="homeSection overflow-hidden">
@@ -715,7 +787,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                <img className="smallMissionImg max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+                <img className="smallMissionImg landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
               </div>
             </div>
           </MainFC>
@@ -812,7 +884,7 @@ export default function Home() {
           {/* <HomeFeaturesR3F /> */}
           <div ref={homeFeaturesR3FobserverRef} />
           {showHomeFeaturesR3F && (
-            <Suspense fallback={<div>Loading 3D...</div>}>
+            <Suspense fallback={<div className="z-[999]"><h2>Loading 3D...</h2></div>}>
               <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
             </Suspense>
           )}
@@ -820,8 +892,8 @@ export default function Home() {
           {/* // Dashboard */}
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
-              <div className="flex flex-col z-20 text-left">
+            "hero1ContainerMargins rounded-[3rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+              <div className="flex flex-col items-center z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
@@ -837,60 +909,85 @@ export default function Home() {
                   </div>
                 </div>
 
-                <FeaturesLeftCard className="dashboardCard z-10">
-                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
-                    <FeaturesLeftCardTitle>
+                <FeaturesCard className="dashboardCard z-10">
+                  <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
                       Overview of Federation Affairs
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Have relevant information viewable at a glance in the Overview screen.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Relevant information for everyday management viewable at a glance in the Overview screen.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresDashboardImage"
+                      src="/images/features/federationsDashboard/featuresFederationsDashboard-1.webp"
+                      alt="features Federations Dashboard image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="dashboardCard z-10">
-                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
-                    <FeaturesLeftCardTitle>
+                <FeaturesCard className="dashboardCard z-10">
+                  <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
                       Visual Reports with Actionable Insights
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Gain a better understanding on judge scoring and the differences between officials, to create a more cohesive team.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Gain a better understanding on judge scoring and the differences between your officials, to create a more cohesive team.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresDashboardImage"
+                      src="/images/features/federationsDashboard/featuresFederationsDashboard-2.webp"
+                      alt="features Federations Dashboard image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="dashboardCard z-10">
-                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Easy Form Management and Seamless Sign-up process for all (Officials, Athletes, Coaches, Promoters and Clubs)
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Registering is as simple as filling out a form online, and managing forms is just as simple.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="dashboardCard z-10">
+                  <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      Easy Form Management and Sign-up process for all your members
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Registering is as simple as filling out a form online, and managing them is even easier..
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresDashboardImage"
+                      src="/images/features/federationsDashboard/featuresFederationsDashboard-3.webp"
+                      alt="features Federations Dashboard image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="dashboardCard z-10">
-                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
-                    <FeaturesLeftCardTitle>
+                <FeaturesCard className="dashboardCard z-10">
+                  <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
                       Intuitive Member Management
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
                       Easily view and filter your members, according to your needs to quickly drill down on what’s important.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresDashboardImage"
+                      src="/images/features/federationsDashboard/featuresFederationsDashboard-4.webp"
+                      alt="features Federations Dashboard image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="dashboardCard z-10">
-                  <FeaturesLeftCardHeader className="featuresDashboardHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Centralized Database
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Easily accessible foreign fighter profiles and competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="dashboardCard z-10">
+                  <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      International Database
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Easily accessible foreign fighter profiles with competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresDashboardImage"
+                      src="/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
+                      alt="features Federations Dashboard image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
               </div>
             </div>
@@ -1011,63 +1108,85 @@ export default function Home() {
                   </h2>
                 </div>
 
-                <FeaturesRightCard className="judgeCard z-10">
-                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
-                    <FeaturesRightCardTitle>
+                <FeaturesCard className="judgeCard z-10">
+                  <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
+                    <FeaturesCardTitle>
                       Personalized Fight Card
-                    </FeaturesRightCardTitle>
-                    <FeaturesRightCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesRightCardDescription>
-                  </FeaturesRightCardHeader>
-                </FeaturesRightCard>
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Even with last-minute changes, have your upcoming roles and fight rules at your fingertips.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresJudgeImage"
+                      src="/images/features/officialsJudge/featuresOfficialsJudge-1.webp"
+                      alt="features Officials Judge image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesRightCard className="judgeCard z-10">
-                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
-                    <FeaturesRightCardTitle>
-                      Make more Informed Decisions for longer<br/>
-                      With a Coherent and Consistent Methodology
-                    </FeaturesRightCardTitle>
-                    <FeaturesRightCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesRightCardDescription>
-                  </FeaturesRightCardHeader>
-                </FeaturesRightCard>
+                <FeaturesCard className="judgeCard z-10">
+                  <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
+                    <FeaturesCardTitle>
+                      Informed Decisions, for longer
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      With an analysis of their own evaluation of the fight provided immediately after each round, officials are able to make better decisions, with less pressure, and support for their scoring.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresJudgeImage"
+                      src="/images/features/officialsJudge/featuresOfficialsJudge-2.webp"
+                      alt="features Officials Judge image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesRightCard className="judgeCard z-10">
-                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
-                    <FeaturesRightCardTitle>
-                      Discuss scoring more deeply with your colleagues<br/>
-                      Reduce Fatigue
-                    </FeaturesRightCardTitle>
-                    <FeaturesRightCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesRightCardDescription>
-                  </FeaturesRightCardHeader>
-                </FeaturesRightCard>
+                <FeaturesCard className="judgeCard z-10">
+                  <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
+                    <FeaturesCardTitle>
+                      Discuss Scoring discussions and debates
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques in a with precision never before possible.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresJudgeImage"
+                      src="/images/features/officialsJudge/featuresOfficialsJudge-3.webp"
+                      alt="features Officials Judge image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesRightCard className="judgeCard z-10">
-                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
-                    <FeaturesRightCardTitle>
-                      Instantly submit your scorecards to the RecordKeeper
-                    </FeaturesRightCardTitle>
-                    <FeaturesRightCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesRightCardDescription>
-                  </FeaturesRightCardHeader>
-                </FeaturesRightCard>
+                <FeaturesCard className="judgeCard z-10">
+                  <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
+                    <FeaturesCardTitle>
+                      Instantly Scorecard Submission
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Once a decision has been made, instantly submit them to the RecordKeeper for scorecard calculation and archival.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresJudgeImage"
+                      src="/images/features/officialsJudge/featuresOfficialsJudge-4.webp"
+                      alt="features Officials Judge image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesRightCard className="judgeCard z-10">
-                  <FeaturesRightCardHeader className="featuresJudgeHeaderItem">
-                    <FeaturesRightCardTitle>
-                      Training Mode<br/>
-                      Create Own Fights, Improve your skills and share with your colleagues
-                    </FeaturesRightCardTitle>
-                    <FeaturesRightCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesRightCardDescription>
-                  </FeaturesRightCardHeader>
-                </FeaturesRightCard>
+                <FeaturesCard className="judgeCard z-10">
+                  <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
+                    <FeaturesCardTitle>
+                      Training Mode
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Create your Own Fights, Improve your skills and share fight assessments with your colleagues.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresJudgeImage"
+                      src="/images/features/officialsJudge/featuresOfficialsJudge-5.webp"
+                      alt="features Officials Judge image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
                 
               </div>
             </div>
@@ -1077,7 +1196,7 @@ export default function Home() {
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
             "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
-            <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
+              <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
@@ -1093,61 +1212,88 @@ export default function Home() {
                   </div>
                 </div>
 
-                <FeaturesLeftCard className="recordKeeperCard z-10">
-                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Pre-filled in Information
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="recordKeeperCard z-10">
+                  <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      Pre-filled in Information & Quick Edits
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      All information is pre-filled, and accessible, and any last minute change can be easily accomplished and instantly shared with everyone.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresRecordKeeperImage"
+                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp"
+                      alt="features Officials RecordKeeper image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="recordKeeperCard z-10">
-                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Effortlessly monitor all relevant details during a fight - Assigned Officials, Rules
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="recordKeeperCard z-10">
+                  <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      Effortlessly record all relevant details
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      From reason for breaks or point deduction to submission types, everything is recorded, with no extra effort..
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresRecordKeeperImage"
+                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp"
+                      alt="features Officials RecordKeeper image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="recordKeeperCard z-10">
-                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Flawlessly perform all timing duties (Round time, Break Time, Breaks, Point Deductions and more)
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="recordKeeperCard z-10">
+                  <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      Automatic timing duties
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Flawlessly perform all timing duties with a push of a button. Record (Round time, Break Time, Breaks, Point Deductions and more).
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresRecordKeeperImage"
+                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp"
+                      alt="features Officials RecordKeeper image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="recordKeeperCard z-10">
-                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
-                    <FeaturesLeftCardTitle>
-                      Notifications for actions needed to perform
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                <FeaturesCard className="recordKeeperCard z-10">
+                  <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
+                      Action Notifications
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Get alerted when a task must be performed such as sounding the clack for the final 10s, or to remove corners from the cage.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresRecordKeeperImage"
+                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp"
+                      alt="features Officials RecordKeeper image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
 
-                <FeaturesLeftCard className="recordKeeperCard z-10">
-                  <FeaturesLeftCardHeader className="featuresRecordKeeperHeaderItem">
-                    <FeaturesLeftCardTitle>
+                <FeaturesCard className="recordKeeperCard z-10">
+                  <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
+                    <FeaturesCardTitle>
                       Instant Score Delivery and Calculation
-                    </FeaturesLeftCardTitle>
-                    <FeaturesLeftCardDescription>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </FeaturesLeftCardDescription>
-                  </FeaturesLeftCardHeader>
-                </FeaturesLeftCard>
+                    </FeaturesCardTitle>
+                    <FeaturesCardDescription>
+                      Never collect scores at the end of each round or fumble with a calculator. Scores are instantly received from judges and automatically calculated.
+                    </FeaturesCardDescription>
+                    <FeaturesCardImage
+                      className="featuresRecordKeeperImage"
+                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp"
+                      alt="features Officials RecordKeeper image"
+                    />
+                  </FeaturesCardHeader>
+                </FeaturesCard>
+
                 <CardPoliciesButton
+                  id="featuresRecordKeeperBottomButton"
                   href="/product#MMAPP-Methodology"
                   data-page="/product"
                   data-link="#MMAPP-Methodology"

@@ -67,6 +67,9 @@
   .borderBottom{
     @apply relative mx-12 md:mx-72 border-b border-white/5;  /* This is to account for the Navbar */
   }
+  .productDivider{
+    @apply relative block md:hidden mx-32 mt-24 border-b border-fuchsia-700/75;  /* This is to account for the Navbar */
+  }
 
   /* .homePageSection {
     @apply flex flex-col items-center justify-center w-full min-h-[calc(100vh)] pb-[25rem] pt-2 md:pt-6 px-2 md:px-6 space-y-8;

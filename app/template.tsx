@@ -4,6 +4,7 @@
 /* import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react'; */
 import Loading from './loading';
+import { Suspense } from 'react';
 
 /* interface TemplateProps {
   smoother: {
@@ -146,16 +147,16 @@ export default function Template({
   { dependencies: [smoother, href, isPending]}
   ); */
 
-  const checkPendingAndSmootherLoad = setInterval(() => {
-    if (/* isPending === undefined || */ isPending === true /* || smoother */) {
+  /* const checkPendingAndSmootherLoad = setInterval(() => {
+    if (isPending) { //isPending === undefined ||    || smoother
       clearInterval(checkPendingAndSmootherLoad);
-      return <div className="templateAnimIn"><Loading /></div>;
+      return <div className=""><Loading />{children}</div>;
     }
-  }, 100); // Check every 100ms
+  }, 100); // Check every 100ms */
 
   return (
-    <div className="templateAnimIn">
-      {children}
-    </div>
+      <div className="templateAnimIn">
+        {children}
+      </div>
   )
 }

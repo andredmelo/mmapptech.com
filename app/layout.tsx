@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, useTransition } from 'react';
+import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
 import { AppContext } from '@/lib/contexts/AppContext';
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
-//import Loading from "./loading";
+import Loading from "./loading";
 import Template from "./template";
 import Providers from './providers'
 import "./globals.css";
@@ -74,15 +74,28 @@ export default function RootLayout({
     () => {
       let matchMedia = gsap.matchMedia();
       matchMedia.add("(hover: none)", () => {
-        //console.log("hover none");
-        smoother.current = ScrollSmoother.create({
-          smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
-          effects: true, // looks for data-speed and data-lag attributes on elements
-          smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-          /* ignoreMobileResize: true,
-          normalizeScroll: true, */
+        matchMedia.add("(max-width: 767px)", () => {
+          //console.log("hover none");
+          smoother.current = ScrollSmoother.create({
+            smooth: 0.01, // how long (in seconds) it takes to "catch up" to the native scroll position
+            effects: true, // looks for data-speed and data-lag attributes on elements
+            smoothTouch: 0.01, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            // ignoreMobileResize: true,
+            //normalizeScroll: true,
+          });
+          let ScrollSmootherTop = "top 0px";
         });
-        let ScrollSmootherTop = "top 0px";
+        matchMedia.add("(min-width: 768px)", () => {
+          //console.log("hover none");
+          smoother.current = ScrollSmoother.create({
+            smooth: 0.1, // how long (in seconds) it takes to "catch up" to the native scroll position
+            effects: true, // looks for data-speed and data-lag attributes on elements
+            smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            ignoreMobileResize: true,
+            /* normalizeScroll: true, */
+          });
+          let ScrollSmootherTop = "top 0px";
+        });
       });
 
       matchMedia.add("(hover: hover)", () => {
@@ -91,7 +104,7 @@ export default function RootLayout({
           content: "#smooth-content",
           smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
           effects: true, // looks for data-speed and data-lag attributes on elements
-          smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+          //smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
         });
 
         //let currentPage: string = "/";
@@ -141,7 +154,8 @@ export default function RootLayout({
                     }
                   })
                     .set(".footer", {opacity: 0})
-                    .fromTo(".templateAnimIn", {opacity: 1, x: 0},{opacity: 0, x: 100, duration: 0.25, ease: "power2.out"})
+                    .fromTo(".templateAnimIn", {opacity: 1, x: 0},{opacity: 0, x: 100, duration: 0.3, ease: "power2.out"})
+                    .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
                   //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
 
                   animOut.invalidate().restart().play();
@@ -217,9 +231,19 @@ export default function RootLayout({
               <Navbar />
               <div id="smooth-wrapper">
                 <div id="smooth-content">
-                  <Template /* key={routeParam} */ /* smoother={smoother} */ isPending={isPending}>
-                    <main id="main">{children}</main>
-                  </Template>
+                  <Loading />
+                  <main id="main" className="templateAnimIn">{children}</main>
+
+                  {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
+                    <main id="main" className="templateAnimIn">{children}</main>
+                  </Template> */}
+
+                  {/* <Suspense fallback={<Loading />}>
+                      <main id="main">
+                        {children}
+                      </main>
+                  </Suspense> */}
+
                   <Footer />
                 </div>
               </div>

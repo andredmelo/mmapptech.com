@@ -514,6 +514,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   return (
     <>
     <PagesTransitionScroll />
+    
+    <div className="productPage">
 
       <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
           <ProductFC className="p-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown">
@@ -818,9 +820,11 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       </section>
 
+      <div className="productDivider"></div>
+
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:touch:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
-          <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
+          <ProductFCTitle className="justify-end text-right max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
           <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
@@ -835,8 +839,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </ProductFC>
 
         {/* RecordKeeper Titles */}
-        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[1vw] portrait:touch:md:px-[13vw]">
-          <h4 className={clsx("text-xl md:text-[2.25vw] portrait:touch:text-[5vw] portrait:md:text-[3.75vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[13vw]">
+          <h4 className={clsx("text-[3vw] md:text-[2.25vw] portrait:touch:text-[5vw] portrait:md:text-[3.75vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
           "twoLinesAlwaysProductRecordKeeper")}>
             {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
           </h4>
@@ -853,7 +857,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           <div className={clsx(
             "basis-[67.5%] portrait:touch:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10",
             "min-w-auto max-w-[100%] landscape:md:max-w-[90%] portrait:max-w-[100%] h-full max-h-[100%]",
-            "px-[0vw] pb-[0vw] portrait:pb-[0vw] md:pb-[3vw]",
+            "px-[0vw] pb-[0vw] portrait:pb-[4vw] md:portrait:pb-[0vw] md:pb-[3vw]",
             )}
           >
             <img
@@ -950,6 +954,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       </section>
 
+      <div className="productDivider"></div>
+
       <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] portrait:md:pt-[19.1vw] pb-12 md:pb-[13.75vw]">
           <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
@@ -1037,9 +1043,11 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </div>
       </section>
 
+      <div className="productDivider"></div>
+
       <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[16.75vw] portrait:touch:md:pt-[19.75vw] pb-12 md:pb-[14vw]">
-          <ProductFCTitle className="justify-end text-right max-w-[30rem] md:max-w-[100%]">
+          <ProductFCTitle className="justify-end text-right max-w-[100%]">
             Dashboard (Members)
           </ProductFCTitle>
           <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
@@ -1157,6 +1165,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </p>
         <ContactUs id={ContactUs} className=""/>
       </section>
+    </div>
   </>
 )};
 
