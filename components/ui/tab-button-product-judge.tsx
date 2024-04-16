@@ -35,10 +35,10 @@ export default function TabButtonProductJudge({
   const inactiveClass = leftOrRight === 'right' ?
     'portrait:ml-0 portrait:mr-0 portrait:md:ml-12 landscape:ml-12 portrait:hover:ml-0 portrait:hover:mr-0 portrait:md:hover:ml-8 portrait:md:hover:mr-4 landscape:hover:ml-8 landscape:hover:mr-4 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out' :
     'portrait:ml-0 portrait:mr-0 portrait:md:mr-12 landscape:mr-12 portrait:hover:ml-0 portrait:hover:mr-0 portrait:md:hover:ml-4 portrait:md:hover:mr-8 landscape:hover:ml-4 landscape:hover:mr-8 ring-1 ring-white/5 md:transition-all md:duration-500 md:ease-out';
-    const activeHeadingClass = leftOrRight === 'right' ?
-      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out' :
-      'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tr from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
-    const inactiveHeadingClass = 'text-white py-1';
+  const activeHeadingClass = leftOrRight === 'right' ?
+    'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out' :
+    'py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tr from-[var(--purple-500)] to-purple-100 md:transition-all md:duration-500 md:ease-out';
+  const inactiveHeadingClass = 'text-white py-1';
   const gradientSide = leftOrRight === 'left' ? 'bg-right bg-bgRadialGradientLeft' : 'bg-left bg-bgRadialGradientRight';
   const rowDirection = leftOrRight === 'left' ? 'flex-row' : 'flex-row-reverse';
   const textDirection = leftOrRight === 'left' ? 'text-right' : 'text-left';

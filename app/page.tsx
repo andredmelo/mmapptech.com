@@ -8,6 +8,7 @@ import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
+import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import ContactUs from '@/app/contact/contact-us'
@@ -17,6 +18,7 @@ import FAQ from '@/app/contact/faq'
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/app/CallToActionButton'
+import ProgressCircle from '@/components/ui/svg/progressCircle'
 
 import(/* webpackPreload: true */ '@/components/three.js');
 import { TestR3F } from '@/components/three.js';
@@ -29,7 +31,7 @@ import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, Mac
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin);
 
 export default function Home() {
 
@@ -195,7 +197,7 @@ export default function Home() {
       } else if (isUnder768) {
         sectionTitlePaddingTop = "50px";
       } else {
-        sectionTitlePaddingTop = "90px";
+        sectionTitlePaddingTop = "80px";
       }
     
       /* matchMedia.add("(min-width: 768px)", () => { */
@@ -209,6 +211,20 @@ export default function Home() {
           onLeaveBack: () => { setiPhoneOpacity(0)},
         });
 
+        /* ScrollTrigger.create({
+          trigger:"featuresDashboard",
+          start:"top top",
+          scrub:true,
+          end:"bottom bottom",
+          once:true,
+          onUpdate:function(self){
+            console.log('dashboardProgress = '+self.progress)
+            if(self.progress > dashboardProgressCircleTween.progress()){
+              dashboardProgressCircleTween.progress(self.progress)
+            }
+          }
+        }) */
+
         //Dashboard Animations
         const checkDashboardAnimIn = setInterval(() => {
           if (document.querySelector('.dashboardCard') && document.getElementById('featuresDashboardTitle')) {
@@ -217,6 +233,9 @@ export default function Home() {
             let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
             let dashboardTitle = document.getElementById('featuresDashboardTitle');
             let dashboardContainer = document.getElementById('featuresDashboardContainer');
+            const dashboardProgressCircle = document.getElementById("dashboardProgressCircle")
+            const dashboardProgressCircleProgress = document.querySelector("#dashboardProgressCircle #progress")
+            const dashboardProgressCircleTween = gsap.from(dashboardProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
             let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
@@ -256,6 +275,24 @@ export default function Home() {
                     pin: dashboardTitle,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
+                  });
+                  // Pin Dashboard Progress Circle
+                  ScrollTrigger.create({
+                    trigger: dashboardTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    //pin: dashboardProgressCircle,
+                    scrub:true,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                    onUpdate:function(self){
+                      let progress: number = Number(self.progress.toFixed(3));
+                      //console.log('dashboardProgress = '+progress);
+                      dashboardProgressCircleTween.progress(progress)
+                      /* if(self.progress > dashboardProgressCircleTween.progress()){
+                        dashboardProgressCircleTween.progress(progress)
+                      } */ // This will make it once:true
+                    }
                   });
                   /* ScrollTrigger.create({
                     trigger: card,
@@ -354,6 +391,9 @@ export default function Home() {
                 //console.log("Judge animations are ready");
             let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
             let judgeTitle = document.getElementById('featuresJudgeTitle');
+            const judgeProgressCircle = document.getElementById("judgeProgressCircle")
+            const judgeProgressCircleProgress = document.querySelector("#judgeProgressCircle #progress")
+            const judgeProgressCircleTween = gsap.from(judgeProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
             let fJI: HTMLImageElement[] = gsap.utils.toArray(".featuresJudgeImage");
@@ -392,6 +432,24 @@ export default function Home() {
                     pin: judgeTitle,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
+                  });
+                  // Pin Judge Progress Circle
+                  ScrollTrigger.create({
+                    trigger: judgeTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    //pin: judgeProgressCircle,
+                    scrub:true,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                    onUpdate:function(self){
+                      let progress: number = Number(self.progress.toFixed(3));
+                      //console.log('judgeProgress = '+progress);
+                      judgeProgressCircleTween.progress(progress)
+                      /* if(self.progress > judgeProgressCircleTween.progress()){
+                        judgeProgressCircleTween.progress(progress)
+                      } */ // This will make it once:true
+                    }
                   });
                   /* if (isViewportRatioLessThan192()) {
                     ScrollTrigger.create({
@@ -493,6 +551,9 @@ export default function Home() {
                 //console.log("RecordKeeper animations are ready");
             let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
             let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
+            const recordKeeperProgressCircle = document.getElementById("recordKeeperProgressCircle")
+            const recordKeeperProgressCircleProgress = document.querySelector("#recordKeeperProgressCircle #progress")
+            const recordKeeperProgressCircleTween = gsap.from(recordKeeperProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
             let fRKI: HTMLImageElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
@@ -530,6 +591,24 @@ export default function Home() {
                     pin: recordKeeperTitle,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
+                  });
+                  // Pin RecordKeeper Progress Circle
+                  ScrollTrigger.create({
+                    trigger: recordKeeperTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    //pin: recordKeeperProgressCircle,
+                    scrub:true,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                    onUpdate:function(self){
+                      let progress: number = Number(self.progress.toFixed(3));
+                      //console.log('recordKeeperProgress = '+progress);
+                      recordKeeperProgressCircleTween.progress(progress)
+                      /* if(self.progress > recordKeeperProgressCircleTween.progress()){
+                        recordKeeperProgressCircleTween.progress(progress)
+                      } */ // This will make it once:true
+                    }
                   });
                   /* ScrollTrigger.create({
                     trigger: card,
@@ -691,8 +770,7 @@ export default function Home() {
     <>
     <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
       {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
-        <h4 className="text-white">endPosition = {endPosition}</h4>
-        <h4 id="topOverlayh4" className="text-white">FeaturesCard = {document.querySelector('.recordKeeperCard')?.clientHeight}</h4>
+        <h4 id="topOverlayh4" className="text-white">orientation = {isPortrait}</h4>
       </div> */}
 
       <div className="homeRoot">
@@ -893,7 +971,7 @@ export default function Home() {
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
             "hero1ContainerMargins rounded-[3rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
-              <div className="flex flex-col items-center z-20 text-left">
+              <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
@@ -907,7 +985,9 @@ export default function Home() {
                       Dashboard App
                     </h4>
                   </div>
+                <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>
                 </div>
+
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
@@ -1106,7 +1186,9 @@ export default function Home() {
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0">
                     Officials
                   </h2>
+                  <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>
                 </div>
+
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
@@ -1143,7 +1225,7 @@ export default function Home() {
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
                     <FeaturesCardTitle>
-                      Discuss Scoring discussions and debates
+                      Deeper Scoring discussions and debates
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
                       With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques in a with precision never before possible.
@@ -1210,7 +1292,9 @@ export default function Home() {
                       RecordKeeper
                     </h4>
                   </div>
+                  <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>
                 </div>
+
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>

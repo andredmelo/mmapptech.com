@@ -632,7 +632,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               alt="bg GlowRight"
             />
         </div> */}
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:touch:md:pt-[19.5vw] pb-[14.1vw] md:pb-[14.1vw] portrait:touch:md:pb-[12vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19.5vw] pb-[14.1vw] md:pb-[14.1vw] portrait:md:pb-[12vw]">
           <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Judge
           </ProductFCTitle>
@@ -668,7 +668,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </div> */}
       <div className="portrait:md:h-[112vw]">
         {/* Titles for portrait devices */}
-        {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:touch:md:pb-[1.5vw] px-0 portrait:touch:md:px-[10%]">
+        {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[1.5vw] px-0 portrait:md:px-[10%]">
           <h4 className={clsx("text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
           "two-lines-always")}>
             {descriptionSrcMapJudge[activeTabProductJudge]}
@@ -823,7 +823,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <div className="productDivider"></div>
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:touch:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
           <ProductFCTitle className="justify-end text-right max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
@@ -839,8 +839,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </ProductFC>
 
         {/* RecordKeeper Titles */}
-        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[13vw]">
-          <h4 className={clsx("text-[3vw] md:text-[2.25vw] portrait:touch:text-[5vw] portrait:md:text-[3.75vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[10vw]">
+          <h4 className={clsx("text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
           "twoLinesAlwaysProductRecordKeeper")}>
             {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
           </h4>

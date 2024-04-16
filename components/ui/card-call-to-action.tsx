@@ -172,9 +172,9 @@ const CardCallToActionButton = React.forwardRef<
     className={cn("py-3 px-16 w-fit",
     "text-sm md:text-sm lg:text-md cursor-pointer",
     "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
-    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
+    "dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
     "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
-    "hover:ring-1 ring-purple-600 ring-opacity-100", className)}
+    "ring-1 ring-offset-4 ring-offset-[var(--background-grey)] hover:ring-2 hover:ring-offset-0 ring-purple-600 ring-opacity-100", className)}
     {...props}
   />
 ))

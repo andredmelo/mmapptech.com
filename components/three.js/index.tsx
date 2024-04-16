@@ -774,7 +774,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   toggleActions: "play none none reverse"
                 },
               })
-                .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -0.95, ease:"linear", duration:1})
+                .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -1.05, ease:"linear", duration:1})
                 .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
                 .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
                 //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
@@ -796,7 +796,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
                 //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
                 .fromTo(macBookPro.scene.position, {x: 0}, {x: 0, ease:"power1.out", duration:0.75}, "<")
-                .fromTo(macBookPro.scene.position, {y: -0.95}, {y: -0.03, ease:"linear", duration:0.75}, "<")
+                .fromTo(macBookPro.scene.position, {y: -1.05}, {y: -0.03, ease:"linear", duration:0.75}, "<")
                 .fromTo(macBookPro.scene.rotation, {x: -0.075, y: 0, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
                 .fromTo(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
 
@@ -856,7 +856,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   toggleActions: "play none none reverse"
                 },
               })
-                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: 0, y: -0.42, ease:"power1.out"}, "<")
+                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: -0.0125, y: -0.50, ease:"power1.out"}, "<")
                 .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: -0.25, y: 0, z: 0, ease:"power1.in"}, "<")
                 .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: macBookProScale*1.325, y: macBookProScale*1.325, z: macBookProScale*1.325, ease:"power3.in"}, "<")
             }
@@ -874,7 +874,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   //border-2 border-red-600
 
   return (
-    <div ref={container} className="homeFeaturesR3FViewer hidden md:block absolute z-[50] w-screen h-screen overflow-visible">
+    <div ref={container} className="homeFeaturesR3FViewer hidden md:block absolute z-[50] w-auto h-auto min-w-[100vw] min-h-[100svh] max-w-[100vw] max-h-[100svh] overflow-visible">
       <Canvas linear>
         <CustomCamera />
         {/* <ScrollControls pages={5} damping={0.1}> */}
