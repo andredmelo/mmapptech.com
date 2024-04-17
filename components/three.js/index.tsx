@@ -662,7 +662,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   toggleActions: "play none none reverse"
                 },
               })
-                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: iPadPosX, y: -0.085, ease:"power1.out"}, "<")
+                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: iPadPosX, y: -0.15, ease:"power1.out"}, "<")
                 .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.65, z: 0, ease:"power1.in"}, "<")
                 .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: deviceScale*1.25, y: deviceScale*1.25, z: deviceScale*1.25, ease:"power3.in"}, "<")
             }
