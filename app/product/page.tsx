@@ -678,7 +678,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         {/* // Use the loading state to conditionally render the images in small mobile device*/}
         <div className={clsx("flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
           <img
-            className="object-scale-down max-h-[62.5vh] rounded-[4.5rem] shadow-2xl shadow-neutral-50/10 ring-4 ring-fuchsia-950/50"
+            className="object-scale-down max-h-[62.5vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
             src={(preloadedImages as any)[activeTabProductJudge]?.src}
             alt="iphone-12"
             onLoad={() => setIsLoading(false)}

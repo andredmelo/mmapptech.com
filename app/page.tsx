@@ -715,15 +715,18 @@ export default function Home() {
       const heroSpotRight = document.getElementById("heroSpotRight");
       const heroFighterRight = document.getElementById("heroFighterRight");
       const heroFighterLeft = document.getElementById("heroFighterLeft");
+      const heroMMAPPHeader = document.getElementById("heroMMAPPHeader");
       const heroMMAPPLogo = document.getElementById("heroMMAPPLogo");
       const heroMMAPPText = document.getElementById("heroMMAPPText");
       const heroMMAPPiPhone = document.getElementById("heroMMAPPiPhone");
+      const heroMMAPPiPhone2 = document.getElementById("heroMMAPPiPhone2");
 
-      //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? 1 : 0.75) : 0.75;
-      const heroMMAPPLogoTop = isPortrait ? ( isUnder768 ? "7%" : "7%") : "6.5%";
-      const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
-      const heroMMAPPiPhoneScale = isPortrait ? ( isUnder768 ? "40svh" : "30svh") : "40svh";
-      const heroMMAPPiPhoneBottom = isPortrait ? ( isUnder768 ? "35%" : "45%") : "2%";
+      const heroMMAPPHeaderTop = isPortrait ? ( isUnder768 ? "42px" : "70px") : "70px";
+      const heroMMAPPLogoWidth = isPortrait ? ( isUnder768 ? "85vw" : "80vw") : "50vw";
+      //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? "1.5" : "1.5") : "2";
+      //const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
+      const heroMMAPPiPhoneScale = isPortrait ? "65svh" : "55svh";
+      const heroMMAPPiPhoneBottom = isPortrait ? ( isUnder768 ? "4%" : "4%") : "4%";
 
       gsap.set(heroVeil, {autoAlpha: 1});
       gsap.set(heroBG, {autoAlpha: 0});
@@ -731,9 +734,10 @@ export default function Home() {
       gsap.set(heroSpotRight, {autoAlpha: 0});
       gsap.set(heroFighterRight, {autoAlpha: 0});
       gsap.set(heroFighterLeft, {autoAlpha: 0});
-      gsap.set(heroMMAPPLogo, {autoAlpha: 0, xPercent: -50, left: "50%", top: heroMMAPPLogoTop});
-      gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
-      gsap.set(heroMMAPPiPhone, {autoAlpha: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "100%"});
+      gsap.set(heroMMAPPHeader, {xPercent: -50, left: "50%", top: heroMMAPPHeaderTop});
+      //gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
+      gsap.set(heroMMAPPiPhone, {autoAlpha: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
+      gsap.set(heroMMAPPiPhone2, {opacity: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
 
       const HeroIntroBGReveal = gsap.timeline({paused:false})
         .fromTo(heroVeil, {autoAlpha: 1}, {autoAlpha: 0})
@@ -752,9 +756,11 @@ export default function Home() {
         .fromTo(heroBG, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.5)
         .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.75)
         .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.8)
-        .fromTo(heroMMAPPLogo, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in"}, 1.25)
-        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 0.75, duration: 0.25, ease: "power1.in"}, 1.5)
-        .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.5, ease: "power1.in"}, 1.75)
+        //.fromTo(heroMMAPPHeader, {autoAlpha: 0}, {autoAlpha: 1, duration: 0.25, ease: "power1.in"}, 1.25)
+        .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out"}, 1.25)
+        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
+        .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
+        .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
 
       /* if (isHeroIntro3DComplete && !hasHeroIntroStageRan) {
         HeroIntroStage.play();
@@ -781,12 +787,17 @@ export default function Home() {
             <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/>
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
             <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
-            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[3] absolute object-scale-down bottom-0 right-0 max-h-[75svh]"/>
-            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[3] absolute object-scale-down bottom-0 left-0 max-h-[75svh]"/>
+            <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
+              <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="relative"/>
+              <h4 id="heroMMAPPText" className="relative pt-0 portrait:pt-[1%] text-[3.5rem] md:text-[7rem] lg:text-[4vw] portrait:md:text-[8vw] 2xl:text-[4vw] 3xl:text-[4vw] text-center text-white font-bold deboss">
+                Mapping MMA
+              </h4>
+            </div>
+            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
+            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
+            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
             <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-0 left-0 w-[100vw] h-[100svh]"/>
-            <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="z-[4] absolute"/>
-            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain h-[40svh]" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
-            <h2 id="heroMMAPPText" className="z-[5] absolute bottom-0 text-[6rem] md:text-[11rem] lg:text-[6vw] portrait:lg:text-[13vw] 2xl:text-[5.75vw] 3xl:text-[5vw] text-center font-semibold deboss">Mapping MMA</h2>
+            <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
           {/* <div className="homeMain">
           </div> */}

@@ -8,12 +8,20 @@ import { useMediaQuery } from '@react-hook/media-query';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import MenuSVG from "@/components/ui/svg/MenuSVG";
+import { LineMdMenu, LineMdMenuToCloseTransition, LineMdCloseToMenuTransition, LineMdCloseToMenuAltTransition } from "@/components/ui/svg/mobileMenu";
 import ArrowDown from "@/components/ui/svg/bx-chevron-down";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(gsap, useGSAP);
 
 const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0); //This key forces the SVG components to re-mount triggereing the animations again
+
+  function toggleHamburgerSVG() { // Switch the SVGs and trigger the animations
+    setIsMenuOpen(!isMenuOpen);
+    setAnimationKey(prevKey => prevKey + 1); // Increment the key to force the SVG components to re-mount and trigger the animation again
+  }
   
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
@@ -21,12 +29,15 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
     const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
     const hamburgerBtn = document.getElementById("hamburger") as HTMLButtonElement | null;
-    const loginLink = document.getElementById("loginLink") as HTMLButtonElement | null;
+    const loginLink = document.querySelector(".login-link") as HTMLButtonElement | null;
     const navMenu = document.querySelector(".menu") as HTMLElement | null;
     const navMenuSpacer = document.querySelector(".menu-spacer") as HTMLElement | null;
     const links = document.querySelectorAll(".dropdown a") as NodeListOf<HTMLAnchorElement>;
 
-    
+    if (isUnder768) {
+      gsap.set(loginLink, {autoAlpha: 0});
+    }
+
     function setAriaExpandedFalse() {
       dropdownBtn.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
     }
@@ -39,9 +50,67 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     }
 
     function toggleHamburger() {
-      navMenu?.classList.toggle("show");
-      navMenuSpacer?.classList.toggle("show");
-      loginLink?.classList.toggle("show");
+      if (navMenuSpacer?.classList.contains("show")){
+        gsap.fromTo(navMenuSpacer,
+          {
+            xPercent: 0,
+          },
+          {
+            xPercent: 100,
+            duration: 0.15,
+            ease:"power1.in",
+            delay: 0.2,
+            onComplete: () => {
+              navMenu?.classList.toggle("show");
+              navMenuSpacer?.classList.toggle("show");
+              loginLink?.classList.toggle("show");
+            },
+            onStart: () => {
+              gsap.fromTo(loginLink, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
+            }
+          },
+        );
+        gsap.fromTo(dropdownBtn,
+          {
+            xPercent: 0,
+          },
+          {
+            xPercent: 100,
+            duration: 0.075,
+            ease:"power1.out",
+            stagger: -0.05,
+          },
+        );
+      } else {
+        gsap.fromTo(navMenuSpacer,
+          {
+            xPercent: 100,
+          },
+          {
+            xPercent: 0,
+            duration: 0.15,
+            ease:"power1.in",
+            onStart: () => {
+              navMenu?.classList.toggle("show");
+              navMenuSpacer?.classList.toggle("show");
+              loginLink?.classList.toggle("show");
+              gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
+            }
+          },
+        );
+        gsap.fromTo(dropdownBtn,
+          {
+            xPercent: 100,
+          },
+          {
+            xPercent: 0,
+            delay: 0.15,
+            duration: 0.1,
+            ease:"power1.in",
+            stagger: 0.05,
+          },
+        );
+      }
     }
 
     /* function toggleHamburgerIfActive() {
@@ -69,10 +138,19 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           //console.log("Close");
           /* gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05}) */
           if (isUnder768) {
-            gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 200, duration: 0.1, ease:"power1.in", stagger: 0.05, onComplete: () => {
-              closeDropdownMenu();
-              setAriaExpandedFalse();
-            }})
+            gsap.fromTo(dropdownContentLi,
+              {xPercent: 0},
+              {
+                xPercent: 100,
+                duration: 0.1,
+                ease:"power1.in",
+                stagger: 0.05,
+                onComplete: () => {
+                  closeDropdownMenu();
+                  setAriaExpandedFalse();
+                }
+              }
+            )
           } else {
             closeDropdownMenu();
             setAriaExpandedFalse();
@@ -92,7 +170,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           //console.log("Open")
           /* gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1}) */
           if (isUnder768) {
-            gsap.fromTo(dropdownContentLi, {xPercent: -200}, {xPercent: 0, duration: 0.125, ease:"power1.out", stagger: 0.05})
+            gsap.fromTo(dropdownContentLi, {xPercent: -100}, {xPercent: 0, duration: 0.125, ease:"power1.out", stagger: 0.05})
           } else {
             gsap.fromTo(dropdownContentLi, {autoAlpha: 0, yPercent: -35}, {autoAlpha: 1, yPercent: 0, duration: 0.175, ease:"power1.in", stagger: 0.05})
           }
@@ -428,9 +506,16 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
 
             <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
               {/* <i className="bx bx-menu" aria-hidden="true"></i> */}
-              <div className="menuSVG">
-                <MenuSVG aria-hidden="true"/>
+              <div className="hamburgerMenu" onClick={toggleHamburgerSVG}>
+                {isMenuOpen ? (
+                  <LineMdMenuToCloseTransition key={animationKey} aria-hidden="true" />
+                ) : (
+                  <LineMdCloseToMenuAltTransition key={animationKey} aria-hidden="true" />
+                )}
               </div>
+              {/* <div className="menuSVG">
+                <MenuSVG aria-hidden="true"/>
+              </div> */}
             </button>
           </div>
         </div>

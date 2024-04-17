@@ -631,6 +631,15 @@ a {
   justify-content: center;
 }
 
+.hamburgerMenu {
+  position: relative;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .arrowDown {
   position: relative;
   justify-content: center;
@@ -968,6 +977,7 @@ li:nth-child(4) .nav-link:nth-child(1) {
 @media (max-width: 767px) {
   .btn {
     display: none;
+    visibility: hidden;
   }
   #hamburger {
     display: block;
@@ -1130,7 +1140,7 @@ li:nth-child(4) .nav-link:nth-child(1) {
   }
   .nav-container {
     column-gap: 1.6rem;
-    padding: 1rem 1rem;
+    padding: 1rem 0rem;
   }
 }
 
