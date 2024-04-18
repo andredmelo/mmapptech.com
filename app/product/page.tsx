@@ -1013,18 +1013,25 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
           {/* Dashboard Video */}
-          <div className="flex absolute w-full justify-center items-end md:pt-[0vw] portrait:md:pt-[0.35vw] px-[1.65vw] md:px-[13.1vw] portrait:md:px-[1.45vw]">
+          <div className="flex absolute w-full justify-center items-end md:pt-[0vw] px-[1.65vw] md:px-[13vw] portrait:md:px-[1.45vw]">
             {/* <video
               className="object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max"
               src="/videos/product/mmappdemo5spedup.webm"
               autoPlay
               loop
             /> */}
-            <img
+            {/* <img
               className="object-contain w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw]"
               src="/videos/product/Sharingofadashboard.webp"
               alt="Animated WebP"
               onLoad={() => setIsLoading(false)}
+            /> */}
+            <video
+              className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw] portrait:md:pt-[1.475vw]"
+              src="/videos/product/dashboard.1286x720.24fps.x264.CRF27.veryslow.mp4"
+              playsInline
+              autoPlay
+              loop
             />
           </div>
           
@@ -1103,18 +1110,25 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
             {/* Dashboard (Members) Video */}
-            <div className="flex absolute w-full justify-start portrait:justify-center items-start md:pt-[2.5vw] portrait:pt-[4.5vw] portrait:touch:pt-[6vw] portrait:touch:md:pt-[7vw] px-[4.5vw] portrait:touch:px-[9.5vw] portrait:touch:md:px-[10vw]">
+            <div className="flex absolute w-full justify-start portrait:justify-center items-start px-[9.5vw] md:px-[4.25vw] portrait:md:px-[9vw]">
               {/* <video
                 className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max"
                 src="/videos/product/mmappdemo5spedup.webm"
                 autoPlay
                 loop
               /> */}
-              <img
+              {/* <img
                 className="object-cover"
                 src="/videos/product/Sharingofadashboard.webp"
                 alt="Animated WebP"
                 onLoad={() => setIsLoading(false)}
+              /> */}
+              <video
+                className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[4vw]"
+                src="/videos/product/dashboard.1624x1040.24fps.x264.CRF27.veryslow.mp4"
+                playsInline
+                autoPlay
+                loop
               />
             </div>
           </div>

@@ -573,6 +573,7 @@ export const MacBookProModel: React.FC<{
           macBookProScreenMaterial.emissiveMap = texture;
           macBookProScreenMaterial.emissiveIntensity = 0.125;
           macBookProScreenMaterial.needsUpdate = true;
+          //textures[newMacBookProTextureName].image.play();
         }
       });
     }

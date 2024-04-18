@@ -104,26 +104,82 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const iPadTexture3 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp");
       const iPadTexture4 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp");
       const iPadTexture5 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp");
-      /* const macBookProTexture1 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-1.webp");
+      const macBookProTexture1 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-1.webp");
       const macBookProTexture2 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-2.webp");
       const macBookProTexture3 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-3.webp");
       const macBookProTexture4 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-4.webp");
-      const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"); */
+      const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp");
 
       // Define your video sources
-      const videoSources = [
-        "/images/features/federationsDashboard/featuresFederationsDashboard-1.mp4",
-        "/images/features/federationsDashboard/featuresFederationsDashboard-2.mp4",
-        "/images/features/federationsDashboard/featuresFederationsDashboard-3.mp4",
-        "/images/features/federationsDashboard/featuresFederationsDashboard-4.mp4",
-        "/images/features/federationsDashboard/featuresFederationsDashboard-5.mp4"
+      const macBookProVideoSources = [
+        "/videos/features/federationsDashboard/featuresFederationsDashboard-1.mp4",
+        "/videos/features/federationsDashboard/featuresFederationsDashboard-2.mp4",
+        "/videos/features/federationsDashboard/featuresFederationsDashboard-3.mp4",
+        "/videos/features/federationsDashboard/featuresFederationsDashboard-4.mp4",
+        "/videos/features/federationsDashboard/featuresFederationsDashboard-5.mp4"
       ];
-      // Map over the sources to create video textures
-      const videoTextures = await Promise.all(videoSources.map(async (src) => {
+      // Define your image fallback sources
+      const macBookProImageSources = [
+        "/images/features/federationsDashboard/featuresFederationsDashboard-1.webp",
+        "/images/features/federationsDashboard/featuresFederationsDashboard-2.webp",
+        "/images/features/federationsDashboard/featuresFederationsDashboard-3.webp",
+        "/images/features/federationsDashboard/featuresFederationsDashboard-4.webp",
+        "/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
+      ];
+      /* const macBookProVideoTextures = await Promise.all(macBookProVideoSources.map(async (src, index) => {
         const video = document.createElement('video');
         video.src = src;
         video.loop = true;
         video.muted = true;
+        video.setAttribute("playsinline", "");
+
+        try {
+          await video.play(); // Attempt to play to check if autoplay is possible
+          video.pause(); // Pause immediately if autoplay is successful, to not actually play
+          return new VideoTexture(video); // Return the video texture if successful
+        } catch (error) {
+          console.error(`Autoplay failed or video couldn't be played: ${src}. Error: ${error}. Loading fallback image.`);
+          // Load fallback image if autoplay fails or video cannot be played
+          const textureLoader = new TextureLoader();
+          const fallbackSrc = macBookProImageSources[index];
+          return textureLoader.loadAsync(fallbackSrc);
+        }
+
+        const videoTexturePromise = new Promise<VideoTexture | Texture>((resolve, reject) => {
+          video.addEventListener('loadeddata', () => {
+            resolve(new VideoTexture(video));
+          }, { once: true });
+
+          video.addEventListener('error', async () => {
+            console.error(`Error loading video: ${src}. Falling back to image.`);
+            // Fallback to an image texture. Adjust the path as necessary.
+            const textureLoader = new TextureLoader();
+            const fallbackSrc = macBookProImageSources[index];
+            textureLoader.load(fallbackSrc, (texture) => {
+              resolve(texture); // Resolve with the fallback texture
+            }, undefined, (err) => {
+              reject(err); // Reject the promise if there's an error loading the fallback image
+            });
+          }, { once: true });
+        });
+
+        // Attempt to play the video. This is necessary to trigger the 'loadeddata' event.
+        video.play().catch((error) => {
+          console.error("Error attempting to play video:", error);
+          // Error handling for failed play attempt can be done here if needed.
+        });
+
+        return videoTexturePromise;
+      })); */
+      // Map over the sources to create video textures
+      const macBookProVideoTextures = await Promise.all(macBookProVideoSources.map(async (src) => {
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        //video.playsInline = true; // This doesn't seem to work
+        video.setAttribute("playsinline", ""); // This is the magic attribute that makes them play on mobile browsers !!!
+        //video.pause();
         await video.play(); // Consider autoplay policies in modern browsers
         return new VideoTexture(video);
       }));
@@ -152,12 +208,12 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         macBookPro_texture_4: macBookProTexture4,
         macBookPro_texture_5: macBookProTexture5,
         newMacBookProTextureName: macBookProTexture1, */
-        macBookPro_texture_1: videoTextures[0],// Use the video textures for your models
-        macBookPro_texture_2: videoTextures[1],
-        macBookPro_texture_3: videoTextures[2],
-        macBookPro_texture_4: videoTextures[3],
-        macBookPro_texture_5: videoTextures[4],
-        newMacBookProTextureName: videoTextures[0]
+        macBookPro_texture_1: macBookProVideoTextures[0],// Use the video textures for your models
+        macBookPro_texture_2: macBookProVideoTextures[1],
+        macBookPro_texture_3: macBookProVideoTextures[2],
+        macBookPro_texture_4: macBookProVideoTextures[3],
+        macBookPro_texture_5: macBookProVideoTextures[4],
+        newMacBookProTextureName: macBookProVideoTextures[0]
       });
     };
 

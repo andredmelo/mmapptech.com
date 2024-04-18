@@ -379,7 +379,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               macBookProGlass = child.material as MeshStandardMaterial;
               //console.log(macBookProGlass);
               macBookProGlass.transparent = true;
-              macBookProGlass.opacity = 1; //Set the screen to OFF
+              macBookProGlass.opacity = 0; //Set the screen to OFF
             }
             if (child instanceof Mesh && child.material.name === 'Keyboard_Backlight') {
               macBookProKeyboardBacklight = child.material as MeshStandardMaterial;
@@ -408,6 +408,42 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               //macBookProScreenOutline.needsUpdate = true;
             } */
           });
+
+          // Video control
+
+          /* ScrollTrigger.create({
+            trigger: '#featuresDashboard',
+            start: 'top 90%',
+            end: 'bottom 50%',
+            markers: true,
+            //scrub: true,
+            invalidateOnRefresh: false,
+            //toggleActions: "play none none reverse",
+            onEnter: () => {
+              // Play all videos when the section enters the viewport
+              textures.macBookPro_texture_1?.image.play();
+              textures.macBookPro_texture_2?.image.play();
+              textures.macBookPro_texture_3?.image.play();
+              textures.macBookPro_texture_4?.image.play();
+              textures.macBookPro_texture_5?.image.play();
+            },
+            onLeave: () => {
+              // Pause all videos when the section leaves the viewport
+              textures.macBookPro_texture_1?.image.pause();
+              textures.macBookPro_texture_2?.image.pause();
+              textures.macBookPro_texture_3?.image.pause();
+              textures.macBookPro_texture_4?.image.pause();
+              textures.macBookPro_texture_5?.image.pause();
+            },
+            onEnterBack: () => {
+              // Play videos when scrolling back into the section
+              textures.macBookPro_texture_1?.image.play();
+              textures.macBookPro_texture_2?.image.play();
+              textures.macBookPro_texture_3?.image.play();
+              textures.macBookPro_texture_4?.image.play();
+              textures.macBookPro_texture_5?.image.play();
+            }
+          }) */
 
           {/* Landscape Animation */}
           matchMedia.add("(orientation: landscape)", (context) => {
@@ -583,14 +619,13 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   markers: false,
                   scrub: true,
                   invalidateOnRefresh: true,
-                  toggleActions: "play none none reverse"
+                  toggleActions: "play none none reverse",
                 },
               })
                 .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -macBookProPosY, ease:"linear", duration:1})
                 .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
                 .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<65%")
                 .fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.25}, "<")
-                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
 
               // macBookProFeaturesAnimOut
               const macBookProFeaturesAnimOut = gsap.timeline({
@@ -692,18 +727,18 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               const calculateMacBookProScale = (width: number, height: number): number => {
                 // Calculate the aspect ratio
                 const aspectRatio = width / height;
-              
+
                 // Define thresholds for "iPad-like" and "iPhone-like" aspect ratios
                 const iPadAspectRatioThreshold = 0.75; // Example threshold for iPad-like devices
                 const iPhoneAspectRatioThreshold = 0.5; // Example threshold for iPhone-like devices
-              
+
                 // Adjust the normalization factor to fine-tune the base scale calculation
                 // Decreasing this value will generally increase the base scale values
                 let normalizationFactor = 1600;
 
                 // Calculate a base scale based on the screen size
                 let baseScale = Math.sqrt(width * height) / normalizationFactor;
-              
+
                 // Adjust the base scale based on the aspect ratio
                 if (aspectRatio >= iPadAspectRatioThreshold) {
                   // Closer to iPad-like devices
@@ -739,6 +774,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               })
                 .set(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale})
                 .set((macBookProDisplay as Mesh).rotation, {x: 6.285})
+                .set((macBookProGlass as MeshStandardMaterial), {opacity: 1})
                 .set((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0})
                 //.set((macBookProScreenOutline as MeshStandardMaterial).emissive, {r: 0.5, g: 0.5, b: 0.5})
 
@@ -785,14 +821,14 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 .fromTo(macBookPro.scene.position, {y: -0.5}, {y: -1.05, ease:"linear", duration:1})
                 .fromTo((macBookProDisplay as Mesh).rotation, {x: 6.285}, {x: 4.6, ease:"power1.in", duration:1}, "<")
                 .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 0, g: 0, b: 0}, {r: 1, g: 1, b: 1, ease:"power1.out", duration:0.25}, "<75%")
-                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.5}, "<")
+                .fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 1}, {opacity: 0, ease:"power1.out", duration:0.25}, "<")
 
               // macBookProFeaturesAnimOut
               const macBookProFeaturesAnimOut = gsap.timeline({
                 paused:true,
                 scrollTrigger:{
                   trigger: '#featuresDashboard',
-                  start: 'bottom bottom',
+                  start: 'bottom 108.5%',
                   end: 'bottom 52%',
                   markers: false,
                   scrub: true,
@@ -800,13 +836,12 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   toggleActions: "play none none reverse"
                 }
               })
-                .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"power1.in", duration:1})
-                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:1}, "<")
-                //.fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:1}, "<")
-                .fromTo(macBookPro.scene.position, {x: 0}, {x: 0, ease:"power1.out", duration:0.75}, "<")
-                .fromTo(macBookPro.scene.position, {y: -1.05}, {y: -0.03, ease:"linear", duration:0.75}, "<")
-                .fromTo(macBookPro.scene.rotation, {x: -0.075, y: 0, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1}, "<")
-                .fromTo(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale}, {x: 0.3, y: 0.3, z: 0.3, ease:"power2.out", duration:1}, "<")
+                .fromTo(macBookPro.scene.position, {y: -1.05}, {y: -0.03, ease:"linear", duration:0.75}, 0)
+                .fromTo(macBookPro.scene.rotation, {x: -0.075, y: 0, z: 0}, {x: 0, y: 0, z: 0, ease:"power1.out", duration:1.35}, "<")
+                .fromTo(macBookPro.scene.scale, {x: macBookProScale, y: macBookProScale, z: macBookProScale}, {x: 0.3, y: 0.3, z: 0.3, ease:"power1.out", duration:1.1}, "<")
+                .fromTo((macBookProDisplay as Mesh).rotation, {x: 4.6}, {x: 6.285, ease:"circ.in", duration:1}, 0.25)
+                .fromTo((macBookProKeyboardBacklight as MeshStandardMaterial).emissive, {r: 1, g: 1, b: 1}, {r: 0, g: 0, b: 0, ease:"power1.in", duration:0.15}, 1.1)
+                .fromTo((macBookProGlass as MeshStandardMaterial), {opacity: 0}, {opacity: 1, ease:"power1.in", duration:0.15}, "<")
 
                 // iPhoneFeaturesAnimIn
               const iPhoneFeaturesAnimIn = gsap.timeline({
