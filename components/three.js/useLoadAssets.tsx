@@ -146,6 +146,12 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         iPad_texture_4: iPadTexture4,
         iPad_texture_5: iPadTexture5,
         newiPadTextureName: iPadTexture1,
+        /* macBookPro_texture_1: macBookProTexture1,
+        macBookPro_texture_2: macBookProTexture2,
+        macBookPro_texture_3: macBookProTexture3,
+        macBookPro_texture_4: macBookProTexture4,
+        macBookPro_texture_5: macBookProTexture5,
+        newMacBookProTextureName: macBookProTexture1, */
         macBookPro_texture_1: videoTextures[0],// Use the video textures for your models
         macBookPro_texture_2: videoTextures[1],
         macBookPro_texture_3: videoTextures[2],
@@ -160,4 +166,3 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
 
   return { iPhone, iPad, macBookPro, cage, textures };
 };
-

@@ -971,7 +971,7 @@ export default function Home() {
 
 
           {/* <HomeFeaturesR3F /> */}
-          <div ref={homeFeaturesR3FobserverRef} />
+          <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
           {showHomeFeaturesR3F && (
             <Suspense fallback={<div className="z-[999]"><h2>Loading 3D...</h2></div>}>
               <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />

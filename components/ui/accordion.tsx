@@ -15,6 +15,7 @@ const Accordion = (props: AccordionProps) => {
     <AccordionPrimitive.Root
       type="single"
       defaultValue="item-1"
+      collapsible
       className={clsx("space-y-4 w-full")}
     >
       {props.items.map(({ header, content }, i) => (

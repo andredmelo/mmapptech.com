@@ -50,68 +50,79 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     }
 
     function toggleHamburger() {
-      if (navMenuSpacer?.classList.contains("show")){
-        gsap.fromTo(navMenuSpacer,
-          {
-            xPercent: 0,
-          },
-          {
-            xPercent: 100,
-            duration: 0.15,
-            ease:"power1.in",
-            delay: 0.2,
-            onComplete: () => {
-              navMenu?.classList.toggle("show");
-              navMenuSpacer?.classList.toggle("show");
-              loginLink?.classList.toggle("show");
+      let matchMedia = gsap.matchMedia();
+      
+      matchMedia.add("(min-width: 768px)", () => {
+        navMenu?.classList.toggle("show");
+        navMenuSpacer?.classList.toggle("show");
+        loginLink?.classList.toggle("show");
+      });
+
+      matchMedia.add("(max-width: 767px)", () => {
+        if (navMenuSpacer?.classList.contains("show")){
+          gsap.fromTo(navMenuSpacer,
+            {
+              xPercent: 0,
             },
-            onStart: () => {
-              gsap.fromTo(loginLink, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
-            }
-          },
-        );
-        gsap.fromTo(dropdownBtn,
-          {
-            xPercent: 0,
-          },
-          {
-            xPercent: 100,
-            duration: 0.075,
-            ease:"power1.out",
-            stagger: -0.05,
-          },
-        );
-      } else {
-        gsap.fromTo(navMenuSpacer,
-          {
-            xPercent: 100,
-          },
-          {
-            xPercent: 0,
-            duration: 0.15,
-            ease:"power1.in",
-            onStart: () => {
-              navMenu?.classList.toggle("show");
-              navMenuSpacer?.classList.toggle("show");
-              loginLink?.classList.toggle("show");
-              gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
-            }
-          },
-        );
-        gsap.fromTo(dropdownBtn,
-          {
-            xPercent: 100,
-          },
-          {
-            xPercent: 0,
-            delay: 0.15,
-            duration: 0.1,
-            ease:"power1.in",
-            stagger: 0.05,
-          },
-        );
-      }
+            {
+              xPercent: 100,
+              duration: 0.15,
+              ease:"power1.in",
+              delay: 0.2,
+              onComplete: () => {
+                navMenu?.classList.toggle("show");
+                navMenuSpacer?.classList.toggle("show");
+                loginLink?.classList.toggle("show");
+              },
+              onStart: () => {
+                gsap.fromTo(loginLink, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
+              }
+            },
+          );
+          gsap.fromTo(dropdownBtn,
+            {
+              xPercent: 0,
+            },
+            {
+              xPercent: 100,
+              duration: 0.075,
+              ease:"power1.out",
+              stagger: -0.05,
+            },
+          );
+        } else {
+          gsap.fromTo(navMenuSpacer,
+            {
+              xPercent: 100,
+            },
+            {
+              xPercent: 0,
+              duration: 0.15,
+              ease:"power1.in",
+              onStart: () => {
+                navMenu?.classList.toggle("show");
+                navMenuSpacer?.classList.toggle("show");
+                loginLink?.classList.toggle("show");
+                gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
+              }
+            },
+          );
+          gsap.fromTo(dropdownBtn,
+            {
+              xPercent: 100,
+            },
+            {
+              xPercent: 0,
+              delay: 0.15,
+              duration: 0.1,
+              ease:"power1.in",
+              stagger: 0.05,
+            },
+          );
+        }
+      });
     }
+    
 
     /* function toggleHamburgerIfActive() {
       navMenu?.classList.remove("show");
