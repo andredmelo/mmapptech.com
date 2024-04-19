@@ -4,7 +4,8 @@ import {
   CardContactUsDescription,
   CardContactUsFooter,
   CardContactUsHeader,
-  CardContactUsTitle
+  CardContactUsTitle,
+  CardContactUsButton
 } from '@/components/ui/card-contact-us'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
@@ -118,13 +119,16 @@ export default function Sales() {
               )}
             </div>
             <div className="flex flex-col items-center">
-              <button
+              {/* <button
                 disabled={isSubmitting}
                 className=""
-                /* type="submit" */
+                // type="submit"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
+              </button> */}
+              <CardContactUsButton disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </CardContactUsButton>
             </div>
           </form>
 

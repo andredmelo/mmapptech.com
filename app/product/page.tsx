@@ -748,7 +748,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
 
           {/* // Use the loading state to conditionally render the image */}
-          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center landscape:max-w-[25vw] landscape:touch:max-w-[100vw] z-10")}>
+          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center landscape:touch:max-w-[100vw] z-10")}> {/* landscape:max-w-[25vw] */}
             <img
               className="object-scale-down max-h-[100%] landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}

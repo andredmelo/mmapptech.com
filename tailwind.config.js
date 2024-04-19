@@ -82,6 +82,10 @@ module.exports = {
         'bgRadialGradientDown': "var(--bgRadialGradientDown)",
         'bgRadialGradientRight': "var(--bgRadialGradientRight)",
         'bgRadialGradientLeft': "var(--bgRadialGradientLeft)",
+        'bgRadialGradientDarkUp': "var(--bgRadialGradientDarkUp)",
+        'bgRadialGradientDarkDown': "var(--bgRadialGradientDarkDown)",
+        'bgRadialGradientDarkRight': "var(--bgRadialGradientDarkRight)",
+        'bgRadialGradientDarkLeft': "var(--bgRadialGradientDarkLeft)",
       },
       /* textShadow: {
         sm: '0 1px 2px var(--tw-shadow-color)',

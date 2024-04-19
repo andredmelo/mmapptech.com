@@ -1,4 +1,4 @@
-import { CardBenefits, CardBenefitsDescription, CardBenefitsHeader, CardBenefitsTitle } from '@/components/ui/card-benefits'
+import { CardBenefits, CardBenefitsDescription, CardBenefitsHeader, CardBenefitsTitleWrapper,CardBenefitsTitle } from '@/components/ui/card-benefits'
 
 
 export interface BenefitsItem {
@@ -17,14 +17,14 @@ export const BenefitsAthletes = (props: BenefitsAthletesProps) => {
     >
       {props.athletesItems.map(({ header, content, svg }, i) => (
         <CardBenefitsHeader key={i}>
-          <dt className="inline-flex items-center gap-3 max-w-full">
+          <CardBenefitsTitleWrapper>
+            <div className="flex items-center justify-center pr-3">
+              {svg}
+            </div>
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 pb-0">
-              {svg}
-            </div>
-          </dt>
+          </CardBenefitsTitleWrapper>
           <CardBenefitsDescription>
           {content}
           </CardBenefitsDescription>
@@ -43,14 +43,14 @@ export const BenefitsCoaches = (props: BenefitsCoachesProps) => {
     >
       {props.coachesItems.map(({ header, content, svg }, i) => (
         <CardBenefitsHeader key={i}>
-          <dt className="inline-flex items-center gap-3 max-w-full">
+          <CardBenefitsTitleWrapper>
+            <div className="flex items-center justify-center pr-3">
+              {svg}
+            </div>
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 pb-0">
-              {svg}
-            </div>
-          </dt>
+          </CardBenefitsTitleWrapper>
           <CardBenefitsDescription>
           {content}
           </CardBenefitsDescription>
@@ -69,14 +69,14 @@ export const BenefitsClubs = (props: BenefitsClubsProps) => {
     >
       {props.clubsItems.map(({ header, content, svg }, i) => (
         <CardBenefitsHeader key={i}>
-          <dt className="inline-flex items-center gap-3 max-w-full">
+          <CardBenefitsTitleWrapper>
+            <div className="flex items-center justify-center pr-3">
+              {svg}
+            </div>
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 pb-0">
-              {svg}
-            </div>
-          </dt>
+          </CardBenefitsTitleWrapper>
           <CardBenefitsDescription>
           {content}
           </CardBenefitsDescription>
@@ -95,14 +95,14 @@ export const BenefitsPromoters = (props: BenefitsPromotersProps) => {
     >
       {props.promotersItems.map(({ header, content, svg }, i) => (
         <CardBenefitsHeader key={i}>
-          <dt className="inline-flex items-center gap-3 max-w-full">
+          <CardBenefitsTitleWrapper>
+            <div className="flex items-center justify-center pr-3">
+              {svg}
+            </div>
             <CardBenefitsTitle>
             {header}
             </CardBenefitsTitle>
-            <div className="flex items-center justify-center text-white pr-4 pb-0">
-              {svg}
-            </div>
-          </dt>
+          </CardBenefitsTitleWrapper>
           <CardBenefitsDescription>
           {content}
           </CardBenefitsDescription>

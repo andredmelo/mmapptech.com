@@ -1,1 +1,1 @@
-let vNumber = "v0.1.1-β.6 | Home Features 3D Videos loading issues fixed, macBookPro display On/OFF re-implemented. Initial videos for Product integrated.";
+let vNumber = "v0.1.1-β.7 | Benefits aesthetic revamp. Contact Us fixes.";

@@ -164,10 +164,10 @@
   --primary-fuchsia-dark1: #660066;
   --primary-fuchsia-dark2: #660066;
   --primary-fuchsia-dark3: #4d004d;
-  --primary-fuchsia-dark4: hsl(300, 100%, 10%);
-  --primary-fuchsia-dark5: hsl(300, 100%, 7.5%);
-  --primary-fuchsia-dark6: hsl(300, 100%, 5%);
-  --primary-fuchsia-dark7: hsl(300, 100%, 2.5%);
+  --primary-fuchsia-dark4: #330033;
+  --primary-fuchsia-dark5: #260026;
+  --primary-fuchsia-dark6: #1a001a;
+  --primary-fuchsia-dark7: #0d000d;
   --purple-50: hsl(270, 100%, 98%);
   --purple-100: hsl(269, 100%, 95%);
   --purple-150: hsl(269, 100%, 93.5%);
@@ -230,6 +230,11 @@
   --bgRadialGradientDown: radial-gradient(140% 107.13% at 50% 20%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
   --bgRadialGradientRight: radial-gradient(109.77% 131.66% at 97.75% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
   --bgRadialGradientLeft: radial-gradient(107.13% 140% at 10% 50%,transparent 37.41%,#4d004d 69.27%,#4d004d 100%);
+
+  --bgRadialGradientDarkUp: radial-gradient(131.66% 109.77% at 50% 97.75%,transparent 37.41%,#330033 69.27%,#330033 100%);
+  --bgRadialGradientDarkDown: radial-gradient(140% 107.13% at 50% 20%,transparent 37.41%,#330033 69.27%,#330033 100%);
+  --bgRadialGradientDarkRight: radial-gradient(109.77% 131.66% at 97.75% 50%,transparent 37.41%,#330033 69.27%,#330033 100%);
+  --bgRadialGradientDarkLeft: radial-gradient(107.13% 140% at 10% 50%,transparent 37.41%,#330033 69.27%,#330033 100%);
 
   --test-color: rgb(186, 186, 186);
   --pen-red: #960200;

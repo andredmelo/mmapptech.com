@@ -4,7 +4,7 @@ import TabButtonBenefits from '@/components/ui/tab-button-benefits'
 
 import { BenefitsItem, BenefitsAthletes, BenefitsCoaches, BenefitsClubs, BenefitsPromoters } from '@/components/ui/benefitsFC';
 
-import { IconTablerMinimize, IconTablerUniverse } from '@/components/ui/svg/benefitsSVGs';
+import { IconTablerMinimize, IconTablerRefreshDot, IconTablerAssembly, IconTablerAtom2, IconTablerKarate, IconTablerUserScan, IconTablerUserCircle, IconTablerProgressBolt, IconTablerFreeRights, IconTablerAffiliate, IconTablerFileDigit, IconTablerTruckLoading, IconTablerSpeedtest, IconTablerCalendarCheck, IconTablerAccessPoint, IconTablerFileIsr } from '@/components/ui/svg/benefitsSVGs';
 
 
 const athletesItems: BenefitsItem[] = [
@@ -14,7 +14,7 @@ const athletesItems: BenefitsItem[] = [
     content: [
       "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result wherever you are."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAtom2 />
   },
   {
     header:
@@ -30,7 +30,7 @@ const athletesItems: BenefitsItem[] = [
     content: [
       "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency around the world, no matter where you fight."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAssembly />
   },
   {
     header:
@@ -38,7 +38,7 @@ const athletesItems: BenefitsItem[] = [
     content: [
       "Sign up only once, and simply keep your profile documents up to date (with reminders of their expiration date) to remain affiliated with your Federation."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerKarate />
   },
   {
     header:
@@ -46,7 +46,7 @@ const athletesItems: BenefitsItem[] = [
     content: [
       "When registered to your Federation, you are automatically added to the country’s roster, at the disposal of all national promoters."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerProgressBolt />
   },
   {
     header:
@@ -58,7 +58,7 @@ const athletesItems: BenefitsItem[] = [
       <br key="br2" />,
       "Access profile anytime, anywhere."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerFreeRights />
   },
 ];
 
@@ -69,7 +69,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Easily keep your profile always up-to-date, with reminders of expiration dates for documents."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerUserCircle />
   },
   {
     header:
@@ -77,7 +77,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAffiliate />
   },
   {
     header:
@@ -85,7 +85,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerUserScan />
   },
   {
     header:
@@ -93,7 +93,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency worldwide, no matter where your athletes fight."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAssembly />
   },
   {
     header:
@@ -101,7 +101,7 @@ const coachesItems: BenefitsItem[] = [
     content: [
       "Our platform is 100% free to use for coaches (Federation fees still apply)."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerFreeRights />
   },
 ];
 
@@ -112,7 +112,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAffiliate />
   },
   {
     header:
@@ -120,7 +120,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "When registered to the Federation, your athletes are automatically added to the country’s roster, at the disposal of all national promoters."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerUserScan />
   },
   {
     header:
@@ -128,7 +128,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Help bring your Federation to the 21st century with the MMAPP platform, and take care of all your Federation needs and duties through one simple website."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerFileDigit />
   },
   {
     header:
@@ -136,7 +136,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "By having your Federation use MMAPP, you are assured they have access to tools that can provide analysis and fundament to judging decisions, contributing to a cycle of continuous improvement."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerRefreshDot />
   },
   {
     header:
@@ -144,7 +144,7 @@ const clubsItems: BenefitsItem[] = [
     content: [
       "Our platform is 100% free to use for clubs (Federation fees still apply)."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerFreeRights />
   },
 ];
 
@@ -155,7 +155,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "With a standardised methodology and an electronic scoring system, MMAPP allows for higher-quality officiating with less effort, ensuring a fair result and a successful event."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAtom2 />
   },
   {
     header:
@@ -163,7 +163,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "With our Judge and RecordKeeper tools, Scores are more consistent and calculations are done instantly, speeding up officiating tasks, and making your event run smoother."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerSpeedtest />
   },
   {
     header:
@@ -171,7 +171,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "Sign up once, and keep your documents up to date with reminders of their expiration to stay registered."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerFileIsr />
   },
   {
     header:
@@ -179,7 +179,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "Register your Events with your Federation in under 5 minutes."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerCalendarCheck />
   },
   {
     header:
@@ -187,7 +187,7 @@ const promotersItems: BenefitsItem[] = [
     content: [
       "View every athlete eligible for competition within your Federation in one simple list."
     ],
-    svg: <IconTablerMinimize />
+    svg: <IconTablerAccessPoint />
   },
 ];
 
@@ -205,7 +205,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[119rem] portrait:md:min-h-[107rem] max-w-[1536px] mx-auto px-2 md:px-[2vw] md:xl-[5vw]'>
+      <div className='flex flex-col md:flex-row md:min-h-[116.125rem] portrait:touch:md:min-h-[108rem] max-w-[1400px] mx-auto px-2 md:px-[2vw] md:xl-[5vw]'>
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}
