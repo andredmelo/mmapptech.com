@@ -1,1 +1,1 @@
-let vNumber = "v0.1.1-β.7 | Benefits aesthetic revamp. Contact Us fixes.";
+let vNumber = "v0.1.1-β.8 | Hero bg video and high-res images of fighters implemented.";

@@ -28,6 +28,8 @@ import { HomeCageR3F } from '@/components/three.js';
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
+//import heroVideo from '@/public/videos/hero/empty-fighting-cage-ready-fight.1620x1080p.x264.AVBR1500kbps.veryslow.mp4';
+
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
@@ -37,7 +39,11 @@ export default function Home() {
 
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isTouch = useMediaQuery('(hover: none)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isUnder1280 = useMediaQuery('(max-width: 1280px)');
+  const isUnder1536 = useMediaQuery('(max-width: 1536px)');
+  const isOver1280 = useMediaQuery('(min-width: 1280px)');
   const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
   const { setiPhoneTextureName } = useContext(IPhoneTextureContext);
@@ -710,7 +716,8 @@ export default function Home() {
 
       //Home Animation
       const heroVeil = document.getElementById("heroVeil");
-      const heroBG = document.getElementById("heroBG");
+      //const heroBG = document.getElementById("heroBG");
+      const heroBGVideo = document.getElementById("heroBGVideo");
       const heroSpotLeft = document.getElementById("heroSpotLeft");
       const heroSpotRight = document.getElementById("heroSpotRight");
       const heroFighterRight = document.getElementById("heroFighterRight");
@@ -721,7 +728,7 @@ export default function Home() {
       const heroMMAPPiPhone = document.getElementById("heroMMAPPiPhone");
       const heroMMAPPiPhone2 = document.getElementById("heroMMAPPiPhone2");
 
-      const heroMMAPPHeaderTop = isPortrait ? ( isUnder768 ? "42px" : "70px") : "70px";
+      const heroMMAPPHeaderTop = isPortrait ? ( isUnder768 ? "42px" : "70px") : (isTouch ? (isUnder768 ? "5px" : "70px") : "70px");
       const heroMMAPPLogoWidth = isPortrait ? ( isUnder768 ? "85vw" : "80vw") : "50vw";
       //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? "1.5" : "1.5") : "2";
       //const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
@@ -729,7 +736,8 @@ export default function Home() {
       const heroMMAPPiPhoneBottom = isPortrait ? ( isUnder768 ? "4%" : "4%") : "4%";
 
       gsap.set(heroVeil, {autoAlpha: 1});
-      gsap.set(heroBG, {autoAlpha: 0});
+      //gsap.set(heroBG, {autoAlpha: 0});
+      gsap.set(heroBGVideo, {autoAlpha: 0});
       gsap.set(heroSpotLeft, {autoAlpha: 0});
       gsap.set(heroSpotRight, {autoAlpha: 0});
       gsap.set(heroFighterRight, {autoAlpha: 0});
@@ -753,10 +761,9 @@ export default function Home() {
       })
         .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0)
         .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0.25)
-        .fromTo(heroBG, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.5)
+        .fromTo(heroBGVideo, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.5)
         .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.75)
         .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.8)
-        //.fromTo(heroMMAPPHeader, {autoAlpha: 0}, {autoAlpha: 1, duration: 0.25, ease: "power1.in"}, 1.25)
         .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out"}, 1.25)
         .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
         .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
@@ -772,6 +779,27 @@ export default function Home() {
     { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
   );
 
+  let heroVideo = "/videos/hero/hero.1080p.mp4";
+  if (isUnder768) {
+    heroVideo = "/videos/hero/hero.720p.mp4";
+  }
+
+  let heroFighterRight = "/images/hero/fighter_red_2xl.webp";
+  if (isUnder1280) {
+    heroVideo = "/images/hero/fighter_red_xl.webp";
+    if (isUnder768) {
+      heroVideo = "/images/hero/fighter_red_md.webp";
+    }
+  }
+
+  let heroFighterLeft = "/images/hero/fighter_blue_2xl.webp";
+  if (isUnder1280) {
+    heroVideo = "/images/hero/fighter_blue_xl.webp";
+    if (isUnder768) {
+      heroVideo = "/images/hero/fighter_blue_md.webp";
+    }
+  }
+
   return (
     <>
     <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
@@ -784,7 +812,29 @@ export default function Home() {
         <section id="Home" className="homeSection overflow-hidden">
           <div className="hero relative w-[100vw] h-[100svh]">
             {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
-            <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/>
+            <video
+              className="z-[1] absolute object-cover top-0 left-0 w-screen h-[100svh]"
+              src={heroVideo}
+              typeof="video/mp4"
+              playsInline
+              muted
+              autoPlay
+              loop
+              id="heroBGVideo"
+            />
+            {/* <video
+              className="z-[1] absolute object-cover top-0 left-0 h-[100svh]"
+              playsInline
+              muted
+              autoPlay
+              loop
+              id="heroBGVideo"
+            >
+              <source
+              src="/videos/hero/empty-fighting-cage-ready-fight.1620x1080p.x264.AVBR1500kbps.veryslow.mp4"
+              type="video/mp4" />
+            </video> */}
+            {/* <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/> */}
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
             <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
@@ -794,8 +844,8 @@ export default function Home() {
               </h4>
             </div>
             <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
-            <img id="heroFighterRight" src="/images/hero/fighter_red.webp" alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
-            <img id="heroFighterLeft" src="/images/hero/fighter_blue.webp" alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
+            <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
+            <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
             <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-0 left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
