@@ -1,1 +1,1 @@
-let vNumber = "v0.1.1-β.8 | Hero bg video and high-res images of fighters implemented.";
+let vNumber = "v0.1.1-β.9 | Various fixes in Product Judge, RecordKeeper, FAQs. MMA glove added to mobile menu.";

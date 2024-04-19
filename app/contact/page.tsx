@@ -30,7 +30,7 @@ const Contacts = () => {
           <h5 className=" mb-8 md:mb-10 lg:mb-12 text-neutral-200 deboss">
             FAQ Support
           </h5>
-          <p className="text-center mb-8 md:mb-10 lg:mb-12">
+          <p className="text-center mb-8 md:mb-10 lg:mb-12 md:px-56">
             If you have any other questions, or need any assistance, please feel free to use the contact us form above
           </p>
           <FAQ />

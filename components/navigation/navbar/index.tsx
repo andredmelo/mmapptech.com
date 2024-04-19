@@ -10,6 +10,7 @@ import { useGSAP } from '@gsap/react';
 import MenuSVG from "@/components/ui/svg/MenuSVG";
 import { LineMdMenu, LineMdMenuToCloseTransition, LineMdCloseToMenuTransition, LineMdCloseToMenuAltTransition } from "@/components/ui/svg/mobileMenu";
 import ArrowDown from "@/components/ui/svg/bx-chevron-down";
+import { MenuGlove } from '@/components/ui/svg/MenuGloveSVG';
 
 gsap.registerPlugin(gsap, useGSAP);
 
@@ -29,6 +30,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
     const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
     const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
     const hamburgerBtn = document.getElementById("hamburger") as HTMLButtonElement | null;
+    const MenuGloveSVG = document.getElementById("MenuGloveSVG") as HTMLButtonElement | null;
     const loginLink = document.querySelector(".login-link") as HTMLButtonElement | null;
     const navMenu = document.querySelector(".menu") as HTMLElement | null;
     const navMenuSpacer = document.querySelector(".menu-spacer") as HTMLElement | null;
@@ -76,6 +78,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               },
               onStart: () => {
                 gsap.fromTo(loginLink, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
+                //gsap.fromTo(MenuGloveSVG, {xPercent: -50, autoAlpha: 1}, {xPercent: 100, autoAlpha: 1, duration: 0.3, delay: 0.2, ease:"power1.out"});
               }
             },
           );
@@ -97,13 +100,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             },
             {
               xPercent: 0,
-              duration: 0.15,
+              duration: 0.45,
               ease:"power1.in",
               onStart: () => {
                 navMenu?.classList.toggle("show");
                 navMenuSpacer?.classList.toggle("show");
                 loginLink?.classList.toggle("show");
                 gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
+                gsap.fromTo(MenuGloveSVG, {xPercent: 100, autoAlpha: 1}, {xPercent: -50, autoAlpha: 1, duration: 0.55, ease:"power1.out"});
               }
             },
           );
@@ -113,10 +117,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             },
             {
               xPercent: 0,
-              delay: 0.15,
+              delay: 0.3,
               duration: 0.1,
               ease:"power1.in",
-              stagger: 0.05,
+              stagger: 0.075,
             },
           );
         }
@@ -503,6 +507,9 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
 
           <div className="nav-end">
             <div className="right-container">
+            <div id="MenuGloveSVG" className="absolute MenuGloveSVG block md:hidden invisible w-[200vw] h-screen top-0 right-0">
+              <MenuGlove />
+            </div>
               {/* <form className="search" role="search">
                 <input type="search" name="search" placeholder="Search" />
                 <i className="bx bx-search" aria-hidden="true"></i>

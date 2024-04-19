@@ -698,7 +698,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge1')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
                 <path d="M4 16v2a2 2 0 0 0 2 2h2" />
@@ -719,7 +719,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge2')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -736,7 +736,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge3')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M7 12h3v4h-3z" />
                 <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
@@ -748,9 +748,9 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
 
           {/* // Use the loading state to conditionally render the image */}
-          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center landscape:touch:max-w-[100vw] z-10")}> {/* landscape:max-w-[25vw] */}
+          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
             <img
-              className="object-scale-down max-h-[100%] landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
+              className="object-scale-down landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iPhone Judge images"
               onLoad={() => setIsLoading(false)}
@@ -768,7 +768,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge4')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M2 12h1" />
                 <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
@@ -788,7 +788,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge5')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
                 <path d="M3 10h18" />
@@ -806,7 +806,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               activeTab={activeTabProductJudge}
               onClick={() => selectTabProductJudge('ProductJudge6')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[85%] md:w-[100%] h-[85%] md:h-[100%]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                 <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
@@ -879,7 +879,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductRecordKeeper}
                 onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper1')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-time-duration-30 w-[85%] md:w-[100%] portrait:touch:md:w-[75%] h-[85%w] md:h-[100%] portrait:touch:md:h-[75%]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-time-duration-30 w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M14 10.5v3a1.5 1.5 0 0 0 3 0v-3a1.5 1.5 0 0 0 -3 0z" />
                   <path d="M8 9h1.5a1.5 1.5 0 0 1 0 3h-.5h.5a1.5 1.5 0 0 1 0 3h-1.5" />
@@ -899,7 +899,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductRecordKeeper}
                 onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper2')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics w-[85%] md:w-[100%] portrait:touch:md:w-[75%] h-[85%w] md:h-[100%] portrait:touch:md:h-[75%]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
                   <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
@@ -918,7 +918,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductRecordKeeper}
                 onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper3')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard w-[85%] md:w-[100%] portrait:touch:md:w-[75%] h-[85%w] md:h-[100%] portrait:touch:md:h-[75%]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                   <path d="M12 5v2" />
@@ -939,7 +939,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductRecordKeeper}
                 onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper4')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[85%] md:w-[100%] portrait:touch:md:w-[75%] h-[85%] md:h-[100%] portrait:touch:md:h-[75%]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />

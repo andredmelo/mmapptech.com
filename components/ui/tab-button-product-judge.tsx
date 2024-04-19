@@ -52,7 +52,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               isPending && 'opacity-100',
               'flex flex-row items-center',
-              'py-0 px-4',
+              'py-1 px-4',
               'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission'
             )}

@@ -813,7 +813,7 @@ export default function Home() {
           <div className="hero relative w-[100vw] h-[100svh]">
             {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
             <video
-              className="z-[1] absolute object-cover top-0 left-0 w-screen h-[100svh]"
+              className="z-[1] absolute object-cover top-0 left-0 w-screen h-[99svh]"
               src={heroVideo}
               typeof="video/mp4"
               playsInline
@@ -846,7 +846,7 @@ export default function Home() {
             <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
             <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
             <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
-            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-0 left-0 w-[100vw] h-[100svh]"/>
+            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
           {/* <div className="homeMain">
@@ -1527,7 +1527,7 @@ export default function Home() {
           <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
-          <p className="text-center mb-8 md:mb-10 lg:mb-12">
+          <p className="text-center mb-8 md:mb-10 lg:mb-12 md:px-56">
             If you have any other questions, or need any assistance, please feel free to use the contact us form below
           </p>
           <FAQ />

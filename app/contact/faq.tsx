@@ -1,7 +1,7 @@
-import { Accordion, AccordionItem } from '@/components/ui/accordion'
+import { AccordionFAQs, AccordionFAQsItem } from '@/components/ui/accordionFAQs'
 import React from "react";
 
-const items: AccordionItem[] = [
+const items: AccordionFAQsItem[] = [
   {
     header: "Who is this platform for?",
     content: [
@@ -88,7 +88,7 @@ const items: AccordionItem[] = [
 export default function FAQ() {
   return (
     <div className='w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]'>
-      <Accordion items={items} />
+      <AccordionFAQs items={items} />
     </div>
   )
 }

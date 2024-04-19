@@ -26,15 +26,15 @@ export default function TabButtonProductRecordKeeper({
   const isTouch = useMediaQuery('(hover: none)');
 
   const activeClass = cn(
-    'ml-0 mr-12 mt-0 mb-0',
-    'portrait:touch:md:mt-0 portrait:md:touch:mb-12 portrait:md:touch:ml-0 portrait:md:touch:mr-0',
-    'portrait:touch:mt-0 portrait:touch:mb-0 portrait:touch:ml-0 portrait:touch:mr-0',
+    'ml-0 mr-0 mt-0 mb-0',
+    'md:ml-0 md:mr-12 md:mt-0 md:mb-0',
+    'portrait:md:ml-0 portrait:md:mr-0 portrait:md:mt-0 portrait:md:mb-12',
     'md:transition-all md:duration-500 md:ease-out ring-4 ring-purple-950/50 brightness-[1.4]'
     )
   const inactiveClass = cn(
-    'ml-12 mr-0 mt-0 mb-0 hover:ml-8 hover:mr-4',
-    'portrait:touch:md:mt-12 portrait:touch:md:mb-0 portrait:touch:md:ml-0 portrait:touch:md:mr-0 portrait:touch:md:hover:ml-0 portrait:touch:md:hover:mr-0',
-    'portrait:touch:mt-0 portrait:touch:mb-0 portrait:touch:ml-0 portrait:touch:mr-0 portrait:touch:hover:ml-0 portrait:touch:hover:mr-0',
+    'mt-0 mb-0 ml-0 mr-0 hover:ml-0 hover:mr-0',
+    'md:ml-12 md:mr-0 md:mt-0 md:mb-0 md:hover:ml-8 md:hover:mr-4',
+    'portrait:md:mt-12 portrait:md:mb-0 portrait:md:ml-0 portrait:md:mr-0 portrait:md:hover:ml-0 portrait:md:hover:mr-0',
     'md:transition-all md:duration-500 md:ease-out ring-1 ring-white/5'
     )
   const activeHeadingClass = cn(

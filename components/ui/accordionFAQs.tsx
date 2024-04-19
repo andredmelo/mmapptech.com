@@ -3,14 +3,14 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { clsx } from "clsx";
 import React from "react";
 
-export interface AccordionItem {
+export interface AccordionFAQsItem {
   header: string;
   content: React.ReactNode[]; // Use React.ReactNode for flexible content
 }
 
-interface AccordionProps { items: AccordionItem[]; }
+interface AccordionProps { items: AccordionFAQsItem[]; }
 
-const Accordion = (props: AccordionProps) => {
+const AccordionFAQs = (props: AccordionProps) => {
   return (
     <AccordionPrimitive.Root
       type="single"
@@ -30,14 +30,14 @@ const Accordion = (props: AccordionProps) => {
                 "group",
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
-                "inline-flex w-full items-center justify-between px-10 md:px-16 py-6 md:py-10 text-left",
+                "inline-flex w-full items-center justify-between px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 text-left",
                 /* "bg-neutral-50 hover:bg-neutral-200",
                 "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
                 "radix-state-open:bg-white radix-state-closed:bg-neutral-200 radix-state-closed:hover:bg-neutral-100",
                 "dark:radix-state-open:bg-[var(--purple-1200)] dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
-              <span className="text-[1.8rem] md:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100">
+              <span className="text-[1.8rem] md:text-[2.2rem] lg:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100">
                 {header}
               </span>
               <ChevronDownIcon
@@ -49,7 +49,7 @@ const Accordion = (props: AccordionProps) => {
               />
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-[var(--purple-750)] px-10 md:px-16 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
+          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-[var(--purple-750)] px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
             <p className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-900 dark:text-neutral-300">
               {content}
             </p>
@@ -60,7 +60,7 @@ const Accordion = (props: AccordionProps) => {
   );
 };
 
-export { Accordion };
+export { AccordionFAQs };
 
 
 
