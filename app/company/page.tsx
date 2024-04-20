@@ -6,7 +6,10 @@ import { useRouter } from 'next/navigation'; */
 import { Metadata } from 'next'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { clsx } from "clsx";
+import { useMediaQuery } from '@react-hook/media-query';
 
 import horizontalLoop from '@/components/HorizontalLoop';
 import { Dialog } from '@/components/ui/dialog'
@@ -15,6 +18,11 @@ import { Dialog } from '@/components/ui/dialog'
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
+import { Body } from "@react-email/components";
+
+
+gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
+
 /* interface TemplateProps {
   smoother: {
     scrollTo: (target: string, animate: boolean, position: string) => void;
@@ -30,6 +38,7 @@ import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 ); */
 
 const Company = (props: any) => {
+  const isPortrait = useMediaQuery('(orientation: portrait)');
   //console.log(props);
   /* const router = useRouter();
   const keyValue = router.query.key;
@@ -62,6 +71,139 @@ const Company = (props: any) => {
       const boxes = gsap.utils.toArray(".box");
       const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:0.75});
 
+
+      /* == a1mWarpIn Effect == */
+      gsap.registerEffect({
+        name:"mmappParagraphsReveal",
+        extendTimeline:true,
+        defaults:{
+          y: '10vh',
+          scale: '0.5',
+          rotate:"10deg",
+          rotationX:-75,
+          // rotationY:25,
+          transformOrigin: '50% 50% -50',
+          duration: 0.25,
+          stagger: 0.05,
+          delay: 0,
+        },
+        effect: (targets:any, config:any) => {
+          let tl = gsap.timeline()
+          tl.from(targets, {
+            autoAlpha:0,
+            y:config.y,
+            scale:config.scale,
+            rotate:config.rotate,
+            rotationX:config.rotationX,
+            // rotationY:25,
+            transformOrigin:config.transformOrigin,
+            duration:config.duration,
+            stagger:config.stagger,
+            delay:config.delay,
+          })
+        return tl
+        }
+      })
+
+      /* const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
+      splitTypesH.forEach((title, index) => {
+        let split = new SplitText(title, {types: 'chars' });
+        const titlesAnim = gsap.fromTo(
+          split.chars,
+          {xPercent:200, scale:0},
+          {xPercent:0, scale:1, stagger:0.065, duration: 0.25,})
+      }); */
+      let viewportTrigger = isPortrait ? '0% 97%' : '0% 90%';
+
+      const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
+      splitTypesH.forEach((Heading, index) => {
+        /* let split = new SplitText(Heading, {types: 'words', linesClass: "text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100" }); */
+        let split = new SplitText(Heading, {
+          types: 'lines,words,chars',
+          linesClass: "overflow-hidden",
+          //wordsClass: "opacity-0",
+          charsClass: "text-transparent bg-clip-text pb-1 md:pb-2 bg-gradient-to-tl from-[var(--purple-250)] to-purple-100",
+        });
+        /* split.lines.forEach((lines) => { // == Add overflow-hidden to each line ==
+          lines.classList.add('overflow-hidden');
+        }); */
+        const HeadingsAnim = gsap.timeline({
+          paused:true,
+          scrollTrigger: {
+            trigger: Heading,
+            start: viewportTrigger,
+            //once:true,
+            //markers: true,
+            //invalidateOnRefresh: true,
+            toggleActions: 'play none none reverse',
+          },
+        })
+          .fromTo(split.words,
+          {yPercent:150},
+          {yPercent:0, stagger:{each:0.125, ease:"power1.out"}, duration: 0.4, ease: "circ.out"})
+          //.fromTo(split.words, {opacity:0}, {opacity:1, duration: 0.001}, 0)
+        });
+
+
+      // == Reveal Paragraphs On Load ==
+      const splitTypesParagraphsOnLoad: HTMLElement[] = gsap.utils.toArray('.mmappParagraphsRevealOnLoad');
+      splitTypesParagraphsOnLoad.forEach((paragraph, i) => {
+        const split = new SplitText(paragraph, { types: 'lines' });
+        const introParagraphsOnLoad = gsap.timeline({ paused:false })
+          .mmappParagraphsReveal(split.lines, {delay: 1.25})
+      });
+
+      // == Reveal Paragraphs ==
+      const mmappBlockReveal: HTMLElement[] = gsap.utils.toArray('.mmappBlockReveal');
+      mmappBlockReveal.forEach((block, i) => {
+        const revealBlock = gsap.timeline({
+          paused:true,
+          scrollTrigger: {
+            trigger: block,
+            start: viewportTrigger,
+            //once:true,
+            //markers: true,
+            //invalidateOnRefresh: true,
+            toggleActions: 'play none none reverse',
+          },
+        })
+          .from(block, {yPercent: 5, autoAlpha:0}) // Carefull as this 'yPercent' property when applied to the trigger being the animated element makes the markers move accordingly, therefore the very low value
+
+        /* const paragraphsAnim = gsap.from(
+          split.lines,
+          {
+            opacity: '0',
+            y: '10vh',
+            scale: '0.5',
+            rotate:"10deg",
+            rotationX:-75,
+            // rotationY:25,
+            transformOrigin: '50% 50% -50',
+            duration: 0.25,
+            stagger: 0.05,
+            delay: 1.25,
+            // stagger:{each:0.2, from:"random"},
+            scrollTrigger: {
+              trigger: 'body',
+              start: 'top top',
+              end: 'top 65%',
+              scrub: false,
+              markers: false,
+              toggleActions: 'play none none none',
+            },
+          }
+        ); */
+      });
+      
+      /* ScrollTrigger.create({
+        trigger: 'body',
+        start: 'top -20%',
+        onEnter: (self) => {
+          console.log('ScrollTriggerRefresh');
+          ScrollTrigger.refresh();
+        }
+      }); */
+
   /* GSDevTools.create(); */
 
   },
@@ -74,7 +216,7 @@ const Company = (props: any) => {
     
       <div className="companyPage">
 
-        <section id="Mission" className="w-full flex flex-col pt-0 lg:pt-20 py-32 md:py-40 lg:py-52">
+        <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-52">
           {/* <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
           "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")}>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
@@ -93,14 +235,14 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div> */}
 
-          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[62rem] md:min-h-[60rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] py-28 md:py-32 lg:py-52">
-            <MainFCTitle className="flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[62rem] md:min-h-[60rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-28 md:pt-24 lg:pt-32">
+            <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               Our Mission
             </MainFCTitle>
-            <MainFCHeading className="flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className="flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
+            <MainFCDescription className="mmappParagraphsRevealOnLoad flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
@@ -112,18 +254,18 @@ const Company = (props: any) => {
 
         <section id="Vision" className="flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainFC className="bg-bgRadialGradientUp ring-1 ring-white/5">
-            <MainFCTitle className="justify-center">
+            <MainFCTitle className="mmappBlockReveal justify-center">
               Our Vision
             </MainFCTitle>
-            <MainFCHeading className="text-center">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-center text-center">
               Create a common language and unit of measurement for officiating MMA
             </MainFCHeading>
-            <MainFCDescription className="text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
+            <MainFCDescription className="mmappBlockReveal text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </MainFCDescription>
             <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
 
-              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
+              <div className="mmappBlockReveal flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-assembly w-[24px] h-[24px]">
@@ -141,7 +283,7 @@ const Company = (props: any) => {
                 </p>
               </div>
 
-              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
+              <div className="mmappBlockReveal flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot w-[24px] h-[24px]">
@@ -160,7 +302,7 @@ const Company = (props: any) => {
                 </p>
               </div>
 
-              <div className="flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4">
+              <div className="mmappBlockReveal flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4">
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-atom-2 w-[24px] h-[24px]">
@@ -271,13 +413,13 @@ const Company = (props: any) => {
         <div className="borderBottom"></div>
 
         <section id="CoreValues" className="flex flex-col items-center py-32 md:py-40 lg:py-52">
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
+          <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Core Values
           </h5>
-          <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-l from-[var(--purple-250)] to-purple-100">
+          <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-l from-[var(--purple-250)] to-purple-100">
             What keeps us grounded
           </h3>
-          <div className="carouselWrapper">
+          <div className="mmappBlockReveal carouselWrapper">
             <div className="box">
               <div className="card">
                 <div><h4>Objectivity</h4></div>
@@ -688,17 +830,17 @@ const Company = (props: any) => {
         <div className="borderBottom"></div>
 
         <section id="SecurityCompliance" className="flex flex-col items-center min-h-[calc(50vh)] py-32 md:py-40 lg:py-52">
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
+          <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Security & Compliance
           </h5>
           <ul className="flex flex-col items-center text-left md:text-center gap-12 md:gap-12 px-8 md:px-12 lg:px-24" role="list">
             <li className="w-[98%] md:w-[90%] lg:w-[80%]">
-              <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100">
+              <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100">
                 We take Privacy, Security, and Compliance with the utmost seriousness
               </h3>
             </li>
             <li className="flex flex-col md:flex-row mb-0 lg:mb-20">
-              <ol className="basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
+              <ol className="mmappBlockReveal basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
                 <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
                   Security
                 </h4>
@@ -706,12 +848,12 @@ const Company = (props: any) => {
                 The privacy of our users is paramount, and we take industry‑excelling measures to guarantee their safety.
                 </p>
               </ol>
-              <ol className="hidden md:inline-flex items-center basis-1/3 content-center justify-center">
+              <ol className="mmappBlockReveal hidden md:inline-flex items-center basis-1/3 content-center justify-center">
                 <div className="md:w-[25rem] md:h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-10">
                   <img className="" src="/images/icons/shield.svg" alt="shield"/>
                 </div>
               </ol>
-              <ol className="flex flex-col basis-1/3 mt-0 md:mt-20 lg:mt-32">
+              <ol className="mmappBlockReveal flex flex-col basis-1/3 mt-0 md:mt-20 lg:mt-32">
                 <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
                   Privacy
                 </h4>
@@ -721,7 +863,7 @@ const Company = (props: any) => {
                 </p>
               </ol>
             </li>
-            <li className="w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[60%]">
+            <li className="mmappBlockReveal w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[60%]">
               <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
               Compliance
               </h4>
@@ -730,7 +872,7 @@ const Company = (props: any) => {
               Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
               </p>
             </li>
-            <div className="flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
+            <div className="mmappBlockReveal flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
               <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/gdpr.webp" alt="gdpr"/>
               <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/cppa.webp" alt="cppa"/>
               <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/apa.webp" alt="apa"/>
@@ -742,13 +884,13 @@ const Company = (props: any) => {
         <div className="borderBottom"></div>
 
         <section id="Policies" className="flex flex-col items-center min-h-[calc(50vh)] py-32 md:py-40 lg:py-52">
-            <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
+            <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
               Company Policies
             </h5>
-            <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
+            <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
               Policies and Guidelines of Usage
             </h3>
-            <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
+            <h6 className="mmappBlockReveal h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
               It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
               You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.
@@ -756,7 +898,7 @@ const Company = (props: any) => {
             {/* <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
             <br/> */}
 
-            <div className="flex flex-row flex-wrap justify-center mx-8 md:mx-6 lg:mx-8">
+            <div className="mmappBlockReveal flex flex-row flex-wrap justify-center mx-8 md:mx-6 lg:mx-8">
               <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Privacy Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>

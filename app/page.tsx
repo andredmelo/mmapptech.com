@@ -28,8 +28,6 @@ import { HomeCageR3F } from '@/components/three.js';
 const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
-//import heroVideo from '@/public/videos/hero/empty-fighting-cage-ready-fight.1620x1080p.x264.AVBR1500kbps.veryslow.mp4';
-
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
@@ -110,22 +108,14 @@ export default function Home() {
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-
-
-
-
-      /* ScrollTrigger.create({
+      /* //ScrollTrigger for debugging
+      ScrollTrigger.create({
         trigger: "body",
         start: "top top",
         end: "bottom bottom",
         pin: "#topOverlay",
         markers: false,
       }); */
-
-
-
-
-
 
       let matchMedia = gsap.matchMedia();
 
@@ -549,7 +539,6 @@ export default function Home() {
           },
         });
 
-
         //RecordKeeper Animations
         const checkRecordKeeperAnimIn = setInterval(() => {
           if (document.querySelector('.recordKeeperCard') && document.getElementById('featuresRecordKeeperTitle')) {
@@ -681,8 +670,6 @@ export default function Home() {
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-              //setiPhoneOpacity(1);
-              //setiPadOpacity(0);
             });
 
             // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
@@ -849,15 +836,12 @@ export default function Home() {
             <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
-          {/* <div className="homeMain">
-          </div> */}
           {/* <HomeIntroR3F /> */}
           {/* <HomeiPhoneIntroR3F /> */}
           <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
           <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
-
 
         <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainFC className="bg-bgRadialGradientDown">
@@ -930,86 +914,7 @@ export default function Home() {
               </div>
             </div>
           </MainFC>
-            {/* <div
-              className={clsx("h-full flex flex-col md:flex-row relative ", //shadow-inset-mission
-              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
-              "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
-            >
-              <div className="flex flex-col justify-top z-20 mx-[2rem] md:mx-[6rem] xl:mx-[12rem] 2xl:mx-[16rem]"> 
-                <h5 className="mb-4 md:mb-8 lg:mb-12 text-center text-neutral-200 deboss">
-                  Small Mission
-                </h5>
-                <div className="flex flex-col justify-center items-center">
-                  <h3 className="mb-8 md:mb-12 lg:mb-12 py-8 text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[80%]">
-                    Accelerate the Recognition of MMA as an Olympic Sport
-                  </h3>
-                  <p className="mb-8 md:mb-12 lg:mb-12 leading-[2.1rem] md:leading-[2.5rem] text-center w-[95%] md:w-[70%] lg:w-[62%]">
-                    MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
-                  </p>
-                </div>
-                <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
-                  <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
-                    <div>
-                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                        Management, Scheduling, Officiation
-                      </h5>
-                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                        Our platform solves all issues Federations face in membership approval and management and event scheduling and approval.<br/>
-                        On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                        Common Language & Unit of Measurement
-                      </h5>
-                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                        Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
-                        By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                        The “Dashboard” app
-                      </h5>
-                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                        Easy & Quick sign up for members, with minimal input from Federations.<br/>
-                        Manage Members and Events with a few clicks.<br/>
-                        Gain insights into your officials performances.<br/>
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                        The “Judge” app
-                      </h5>
-                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                        Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
-                        Discuss scoring in a deeper manner.<br/>
-                        Lifetime archive of your scoring.<br/>
-                        Contribute to the improvement of MMA Judging.<br/>
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                        The “RecordKeeper” app
-                      </h5>
-                      <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                        All Timing duties done automatically.<br/>
-                        Receive and calculate scores instantly.<br/>
-                        Record fight events like never before.<br/>
-                      </p>
-                    </div>
-                    <p className="text-md hover:text-white text-neutral-200 text-left pb-14 md:pb-0 pl-10">
-                    <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
-                    </p>
-                  </div>
-                  <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                    <img className="smallMissionImg max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pb-4 md:pb-6 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
-                  </div>
-                </div>
-              </div>
-            </div> */}
         </section>
-
 
         <div className="borderBottom"></div>
 
@@ -1018,7 +923,6 @@ export default function Home() {
           <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
           </h5>
-
 
           {/* <HomeFeaturesR3F /> */}
           <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
@@ -1048,7 +952,6 @@ export default function Home() {
                   </div>
                 <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>
                 </div>
-
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
@@ -1330,7 +1233,7 @@ export default function Home() {
                     />
                   </FeaturesCardHeader>
                 </FeaturesCard>
-                
+
               </div>
             </div>
           </div>
@@ -1355,7 +1258,6 @@ export default function Home() {
                   </div>
                   <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>
                 </div>
-
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
@@ -1453,9 +1355,7 @@ export default function Home() {
 
         </section>
 
-
         <div className="borderBottom featuresRecordKeeperBottom"></div>
-
 
         <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
           <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
@@ -1473,55 +1373,8 @@ export default function Home() {
 
           <CallToActionButton className="mt-[5vw]" />
         </section>
-        
 
         <div className="borderBottom"></div>
-
-
-        {/* <section id="SmallMission" className="z-20 flex flex-col justify-center">
-            <div
-              className={clsx("h-full flex flex-col md:flex-row relative shadow-inset-mission",
-              "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[100rem] rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown",
-              "pb-[2rem] md:pb-[6rem] lg:pb-[10rem]")}
-            >
-              <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[47rem] lg:max-w-[65rem] ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] pt-[5rem] md:pt-[6rem] lg:pt-[10rem] text-left">
-                <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
-                  Our Mission
-                </h5>
-                <h3 className="mb-8 md:mb-12 lg:mb-12 py-8 text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100">
-                  Accelerate the Recognition of MMA as an Olympic Sport
-                </h3>
-                <p className="mb-8 md:mb-12 lg:mb-12 leading-[2.1rem] md:leading-[2.5rem] text-left">
-                  At MMAPP, we want to elevate MMA to the highest level, by enabling Federations to quickly and effortlessly transition to the digital age.
-                </p>
-                <div className="flex flex-col w-[27rem] md:w-[35rem] lg:w-[65rem] gap-10">
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      Management, Scheduling, Officiation
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our platform solves all issues Federations face in the realms of membership approval and management, as well as event scheduling.<br/>
-                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to RecordKeeping.
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
-                      Common Language & Unit of Measurement
-                    </h5>
-                    <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our aim is to revolutionize MMA Judging by providing a common language and unit of measurement to officials.<br/>
-                      By providing these stepping stones, we are able to increase preciseness in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <img className="z-10 max-h-full max-w-[60vw] md:max-w-[28vw] lg:max-w-[22vw] bottom-[0rem] right-[0rem] md:bottom-[1.5rem] md:right-[6rem] lg:bottom-[4rem] lg:right-[10rem] relative md:absolute object-contain self-center py-20 md:pt-0" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
-            </div>
-        </section>
-        
-
-        <div className="borderBottom"></div> */}
-
 
         <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
           <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
@@ -1532,7 +1385,6 @@ export default function Home() {
           </p>
           <FAQ />
         </section>
-        
 
         <div className="borderBottom"></div>
 
@@ -1547,7 +1399,6 @@ export default function Home() {
           <ContactUs id={ContactUs} className=""/>
         </section>
 
-        {/* <ThreeJSViewer /> */}
       </div>
     </>
   );

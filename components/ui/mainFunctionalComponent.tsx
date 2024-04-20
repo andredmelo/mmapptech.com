@@ -43,7 +43,7 @@ const MainFCHeading = React.forwardRef<
     ref={ref}
     className={cn(
       "flex mb-12 md:mb-16 lg:mb-20",
-      "text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100", // border-2 border-blue-500
+      //"text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100", // border-2 border-blue-500
       className
     )}
     {...props}
