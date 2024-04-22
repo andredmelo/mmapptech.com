@@ -29,6 +29,7 @@ const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module =
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
+import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin);
@@ -789,7 +790,12 @@ export default function Home() {
 
   return (
     <>
-    <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
+      <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
+      <MmappBlockReveal />
+      <MmappHeadingReveal />
+      <MmappParagraphsReveal />
+      <MmappParagraphsRevealRight />
+      {/* <MainAnimations /> */}
       {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
         <h4 id="topOverlayh4" className="text-white">orientation = {isPortrait}</h4>
       </div> */}
@@ -845,50 +851,50 @@ export default function Home() {
 
         <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainFC className="bg-bgRadialGradientDown">
-            <MainFCTitle className="flex flex-col justify-center z-20 text-center">
+            <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
               Small Mission
             </MainFCTitle>
-            <MainFCHeading className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[8%]">
+            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[8%]">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className="flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
+            <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
             </MainFCDescription>
             <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
               <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
                 <div>
-                  <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     Management, Scheduling, Officiation
                   </h5>
-                  <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Our platform solves all issues Federations face in membership approval and management and event scheduling and approval.<br/>
                     On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
                   </p>
                 </div>
                 <div>
-                  <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     Common Language & Unit of Measurement
                   </h5>
-                  <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
                     By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
                   </p>
                 </div>
                 <div>
-                  <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “Dashboard” app
                   </h5>
-                  <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Easy & Quick sign up for members, with minimal input from Federations.<br/>
                     Manage Members and Events with a few clicks.<br/>
                     Gain insights into your officials performances.<br/>
                   </p>
                 </div>
                 <div>
-                  <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “Judge” app
                   </h5>
-                  <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
                     Discuss scoring in a deeper manner.<br/>
                     Lifetime archive of your scoring.<br/>
@@ -896,16 +902,16 @@ export default function Home() {
                   </p>
                 </div>
                 <div>
-                  <h5 className="py-6 text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100">
+                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “RecordKeeper” app
                   </h5>
-                  <p className="leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
                     All Timing duties done automatically.<br/>
                     Receive and calculate scores instantly.<br/>
                     Record fight events like never before.<br/>
                   </p>
                 </div>
-                <p className="text-md hover:text-white text-neutral-200 text-left pb-14 md:pb-0 pl-10">
+                <p className="mmappBlockReveal text-md hover:text-white text-neutral-200 text-left pb-14 md:pb-0 pl-10">
                 <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
                 </p>
               </div>
@@ -920,7 +926,7 @@ export default function Home() {
 
         <section id="Features" className="py-32 md:py-40 lg:py-52">
 
-          <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
+          <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
           </h5>
 
@@ -1359,44 +1365,44 @@ export default function Home() {
 
         <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
           <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
-            <h5 className="mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
+            <h5 className="mmappBlockReveal mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h3 id="featuresJudgeTitle" className="text-transparent text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 w-[95%] md:w-[85%]">
+            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[85%]">
             Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
             </h3>
-            <p className=" text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">
+            <p className="mmappBlockReveal text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">
               Choose your category below to find out how you stand to gain
             </p>
           </div>
           <Benefits /* items={items} */ />
 
-          <CallToActionButton className="mt-[5vw]" />
+          <CallToActionButton className="mmappBlockReveal mt-[5vw]" />
         </section>
 
         <div className="borderBottom"></div>
 
         <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
-          <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
+          <h5 className="mmappBlockReveal mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
-          <p className="text-center mb-8 md:mb-10 lg:mb-12 md:px-56">
+          <p className="mmappBlockReveal text-center mb-8 md:mb-10 lg:mb-12 md:px-56">
             If you have any other questions, or need any assistance, please feel free to use the contact us form below
           </p>
-          <FAQ />
+          <FAQ className="mmappBlockReveal" />
         </section>
 
         <div className="borderBottom"></div>
 
 
         <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
-          <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
+          <h5 className="mmappBlockReveal mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             Contact Us
           </h5>
-          <p className="text-center mb-8 md:mb-10 lg:mb-12">
+          <p className="mmappBlockReveal text-center mb-8 md:mb-10 lg:mb-12">
             Please select your kind of inquiry
           </p>
-          <ContactUs id={ContactUs} className=""/>
+          <ContactUs id={ContactUs} className="mmappBlockReveal"/>
         </section>
 
       </div>

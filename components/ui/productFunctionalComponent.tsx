@@ -46,7 +46,7 @@ const ProductFCHeading = React.forwardRef<
     className={cn(
       "flex flex-col justify-center z-20",
       "mb-[3.5vw] md:mb-[3.5vw] py-2",
-      "text-xl md:text-[4.35vw] portrait:touch:text-[7.5vw] portrait:touch:md:text-[6.75vw] text-center text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100", // border-2 border-blue-500
+      "text-xl md:text-[4.35vw] portrait:touch:text-[7.5vw] portrait:touch:md:text-[6.75vw] text-center text-[var(--purple-250)]", // border-2 border-blue-500
       className
     )}
     {...props}

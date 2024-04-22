@@ -1,5 +1,6 @@
 'use client'
 import { useState, useTransition } from 'react'
+import { clsx } from "clsx";
 
 import General from '@/app/contact/general'
 import Sales from '@/app/contact/sales'
@@ -19,7 +20,10 @@ const ContactUs = (props: any) => {
 
   return (
     <>
-      <div className='w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]'>
+      <div className={clsx(
+        'w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]',
+        props.className
+      )}>
         <div className='flex flex-col md:flex-row w-full h-80 md:h-24 lg:h-28 xl:h-32 2xl:h-36 items-center justify-center gap-1.5 rounded-lg bg-neutral-200 p-1.5 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400'>
           <TabButton
             value='general'

@@ -1,5 +1,6 @@
 import { AccordionFAQs, AccordionFAQsItem } from '@/components/ui/accordionFAQs'
 import React from "react";
+import { clsx } from "clsx";
 
 const items: AccordionFAQsItem[] = [
   {
@@ -85,9 +86,13 @@ const items: AccordionFAQsItem[] = [
   },
 ];
 
-export default function FAQ() {
+export default function FAQ(props: any) {
   return (
-    <div className='w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]'>
+    <div className={clsx(
+      'w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]',
+      props.className
+      )}
+    >
       <AccordionFAQs items={items} />
     </div>
   )

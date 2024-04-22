@@ -12,36 +12,27 @@ import { clsx } from "clsx";
 import { useMediaQuery } from '@react-hook/media-query';
 
 import horizontalLoop from '@/components/HorizontalLoop';
-import { Dialog } from '@/components/ui/dialog'
-//import heroBGSVG from '@/public/images/bg/heroBG.svg';
-//import { HeroBGSVG } from '@/components/ui/svg/heroBGSVG';
+//import { Dialog } from '@/components/ui/dialog'
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
-import { Body } from "@react-email/components";
+import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal } from '@/components/ui/mainAnimations';
+//import { Body } from "@react-email/components";
 
 
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
-
-/* interface TemplateProps {
-  smoother: {
-    scrollTo: (target: string, animate: boolean, position: string) => void;
-  };
-} */
 
 /* export const metadata: Metadata = {
   title: 'Company',
 } */
 
-/* const svgString = encodeURIComponent(
-  ReactDOMServer.renderToStaticMarkup(<HeroBGSVG />)
-); */
-
 const Company = (props: any) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
+  
   //console.log(props);
   /* const router = useRouter();
   const keyValue = router.query.key;
+
 
   const handlePageLoad = () => {
     // Your custom function to run after the new page is loaded
@@ -71,141 +62,7 @@ const Company = (props: any) => {
       const boxes = gsap.utils.toArray(".box");
       const loop = horizontalLoop(boxes, {paused: false, repeat:-1, speed:0.75});
 
-
-      /* == a1mWarpIn Effect == */
-      gsap.registerEffect({
-        name:"mmappParagraphsReveal",
-        extendTimeline:true,
-        defaults:{
-          y: '10vh',
-          scale: '0.5',
-          rotate:"10deg",
-          rotationX:-75,
-          // rotationY:25,
-          transformOrigin: '50% 50% -50',
-          duration: 0.25,
-          stagger: 0.05,
-          delay: 0,
-        },
-        effect: (targets:any, config:any) => {
-          let tl = gsap.timeline()
-          tl.from(targets, {
-            autoAlpha:0,
-            y:config.y,
-            scale:config.scale,
-            rotate:config.rotate,
-            rotationX:config.rotationX,
-            // rotationY:25,
-            transformOrigin:config.transformOrigin,
-            duration:config.duration,
-            stagger:config.stagger,
-            delay:config.delay,
-          })
-        return tl
-        }
-      })
-
-      /* const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
-      splitTypesH.forEach((title, index) => {
-        let split = new SplitText(title, {types: 'chars' });
-        const titlesAnim = gsap.fromTo(
-          split.chars,
-          {xPercent:200, scale:0},
-          {xPercent:0, scale:1, stagger:0.065, duration: 0.25,})
-      }); */
-      let viewportTrigger = isPortrait ? '0% 97%' : '0% 90%';
-
-      const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
-      splitTypesH.forEach((Heading, index) => {
-        /* let split = new SplitText(Heading, {types: 'words', linesClass: "text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100" }); */
-        let split = new SplitText(Heading, {
-          types: 'lines,words,chars',
-          linesClass: "overflow-hidden",
-          //wordsClass: "opacity-0",
-          charsClass: "text-transparent bg-clip-text pb-1 md:pb-2 bg-gradient-to-tl from-[var(--purple-250)] to-purple-100",
-        });
-        /* split.lines.forEach((lines) => { // == Add overflow-hidden to each line ==
-          lines.classList.add('overflow-hidden');
-        }); */
-        const HeadingsAnim = gsap.timeline({
-          paused:true,
-          scrollTrigger: {
-            trigger: Heading,
-            start: viewportTrigger,
-            //once:true,
-            //markers: true,
-            //invalidateOnRefresh: true,
-            toggleActions: 'play none none reverse',
-          },
-        })
-          .fromTo(split.words,
-          {yPercent:150},
-          {yPercent:0, stagger:{each:0.125, ease:"power1.out"}, duration: 0.4, ease: "circ.out"})
-          //.fromTo(split.words, {opacity:0}, {opacity:1, duration: 0.001}, 0)
-        });
-
-
-      // == Reveal Paragraphs On Load ==
-      const splitTypesParagraphsOnLoad: HTMLElement[] = gsap.utils.toArray('.mmappParagraphsRevealOnLoad');
-      splitTypesParagraphsOnLoad.forEach((paragraph, i) => {
-        const split = new SplitText(paragraph, { types: 'lines' });
-        const introParagraphsOnLoad = gsap.timeline({ paused:false })
-          .mmappParagraphsReveal(split.lines, {delay: 1.25})
-      });
-
-      // == Reveal Paragraphs ==
-      const mmappBlockReveal: HTMLElement[] = gsap.utils.toArray('.mmappBlockReveal');
-      mmappBlockReveal.forEach((block, i) => {
-        const revealBlock = gsap.timeline({
-          paused:true,
-          scrollTrigger: {
-            trigger: block,
-            start: viewportTrigger,
-            //once:true,
-            //markers: true,
-            //invalidateOnRefresh: true,
-            toggleActions: 'play none none reverse',
-          },
-        })
-          .from(block, {yPercent: 5, autoAlpha:0}) // Carefull as this 'yPercent' property when applied to the trigger being the animated element makes the markers move accordingly, therefore the very low value
-
-        /* const paragraphsAnim = gsap.from(
-          split.lines,
-          {
-            opacity: '0',
-            y: '10vh',
-            scale: '0.5',
-            rotate:"10deg",
-            rotationX:-75,
-            // rotationY:25,
-            transformOrigin: '50% 50% -50',
-            duration: 0.25,
-            stagger: 0.05,
-            delay: 1.25,
-            // stagger:{each:0.2, from:"random"},
-            scrollTrigger: {
-              trigger: 'body',
-              start: 'top top',
-              end: 'top 65%',
-              scrub: false,
-              markers: false,
-              toggleActions: 'play none none none',
-            },
-          }
-        ); */
-      });
-      
-      /* ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top -20%',
-        onEnter: (self) => {
-          console.log('ScrollTriggerRefresh');
-          ScrollTrigger.refresh();
-        }
-      }); */
-
   /* GSDevTools.create(); */
-
   },
   { dependencies: [horizontalLoop], revertOnUpdate: true, /* scope: main */ }
   );
@@ -213,7 +70,9 @@ const Company = (props: any) => {
   return (
     <>
       <PagesTransitionScroll />
-    
+      <MmappBlockReveal />
+      <MmappHeadingReveal />
+      <MmappParagraphsReveal />
       <div className="companyPage">
 
         <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-52">
@@ -242,7 +101,7 @@ const Company = (props: any) => {
             <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className="mmappParagraphsRevealOnLoad flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
+            <MainFCDescription className="mmappParagraphsReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
@@ -260,7 +119,7 @@ const Company = (props: any) => {
             <MainFCHeading className="mmappHeadingReveal flex-col justify-center text-center">
               Create a common language and unit of measurement for officiating MMA
             </MainFCHeading>
-            <MainFCDescription className="mmappBlockReveal text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
+            <MainFCDescription className="mmappParagraphsReveal text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </MainFCDescription>
             <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
@@ -416,7 +275,7 @@ const Company = (props: any) => {
           <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Core Values
           </h5>
-          <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-l from-[var(--purple-250)] to-purple-100">
+          <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-[var(--purple-250)]">
             What keeps us grounded
           </h3>
           <div className="mmappBlockReveal carouselWrapper">
@@ -835,7 +694,7 @@ const Company = (props: any) => {
           </h5>
           <ul className="flex flex-col items-center text-left md:text-center gap-12 md:gap-12 px-8 md:px-12 lg:px-24" role="list">
             <li className="w-[98%] md:w-[90%] lg:w-[80%]">
-              <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100">
+              <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-[var(--purple-250)]">
                 We take Privacy, Security, and Compliance with the utmost seriousness
               </h3>
             </li>
@@ -887,10 +746,10 @@ const Company = (props: any) => {
             <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
               Company Policies
             </h5>
-            <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-250)] to-purple-100">
+            <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-[var(--purple-250)]">
               Policies and Guidelines of Usage
             </h3>
-            <h6 className="mmappBlockReveal h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
+            <h6 className="mmappParagraphsReveal h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
               It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
               You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.

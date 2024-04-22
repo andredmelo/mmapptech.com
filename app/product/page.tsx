@@ -13,6 +13,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 import ContactUs from '@/app/contact/contact-us'
 import CallToActionButton from '@/app/CallToActionButton'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
+import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import { ProductFC, ProductFCTitle, ProductFCHeading, ProductFCDescription } from '@/components/ui/productFunctionalComponent'
@@ -186,8 +187,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-      //drawMainPath Animations
 
+      //drawMainPath Animations
       let matchMedia = gsap.matchMedia();
       matchMedia.add("(orientation: portrait)", () => {
           /* gsap.defaults({
@@ -506,6 +507,87 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       }));
 
 
+      // Judge Phone animations
+      let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
+      const ProductJudgeButtonLeft: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonLeft');
+      const ProductJudgeButtonRight: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonRight');
+      gsap.set(ProductJudgeButtonLeft, {xPercent: 100, autoAlpha:0})
+      gsap.set(ProductJudgeButtonRight, {xPercent: -100, autoAlpha:0})
+      /* const productJudgeButtonLeftAnim = gsap.timeline({paused:true})
+        .fromTo(ProductJudgeButtonLeft, {autoAlpha:0}, {autoAlpha:1, ease: "power4.out"})
+        .fromTo(ProductJudgeButtonLeft,
+          { xPercent: 100, scale: 0},
+          { xPercent: 0, scale: 1, duration:0.5, ease: "power1.out"}, 0
+        );
+
+      const productJudgeButtonRightAnim = gsap.timeline({paused:true})
+        .fromTo(ProductJudgeButtonRight, {autoAlpha:0}, {autoAlpha:1, ease: "power4.out"})
+        .fromTo(ProductJudgeButtonRight,
+          { xPercent: -100, scale: 0},
+          { xPercent: 0, scale: 1, duration:0.5, ease: "power1.out"}, 0
+        ); */
+
+      const judgePhoneAnim = gsap.timeline({
+        paused:true,
+        scrollTrigger: {
+          trigger: '.judgePhoneWrapper',
+          start: 'top bottom',
+          end: '50% center',
+          //once:true,
+          scrub: 1,
+          //markers: true,
+          //invalidateOnRefresh: true,
+          /* onUpdate: (self: ScrollTrigger) => {
+            //console.log(self.progress);
+            let progressTrigger: number = isPortrait ? 0.82 : 0.6725
+            if (self.progress > progressTrigger) {
+              const mappedProgress = gsap.utils.mapRange(progressTrigger, 0.975, 0, 1, parseFloat(self.progress.toFixed(4)));
+              //console.log(mappedProgress);
+              productJudgeButtonLeftAnim.progress(mappedProgress);
+              productJudgeButtonRightAnim.progress(mappedProgress);
+            }
+          }, */
+          /* onLeave: () => {
+            productJudgeButtonLeftAnim.play();
+            productJudgeButtonRightAnim.play();
+          },
+          onEnterBack: () => {
+            productJudgeButtonLeftAnim.reverse();
+            productJudgeButtonRightAnim.reverse();
+          }, */
+        },
+      })
+        .from('.judgePhone',
+          {
+            yPercent: 100,
+            ease: "power2.out"
+          })
+
+      
+      const productJudgeButtonsAnim = gsap.timeline({
+        paused:true,
+        scrollTrigger: {
+          trigger: '.judgePhoneWrapper',
+          start: 'top 25%',
+          end: 'center center',
+          //once:true,
+          scrub: 1,
+          //markers: true,
+          preventOverlaps:true,
+        },
+      })
+        .set(ProductJudgeButtonLeft, {autoAlpha:1},0)
+        .set(ProductJudgeButtonRight, {autoAlpha:1},0)
+        .fromTo(ProductJudgeButtonLeft,
+          { xPercent: 100, scale: 0},
+          { xPercent: 0, scale: 1, ease: "power1.out"}, 0
+        )
+        .fromTo(ProductJudgeButtonRight,
+          { xPercent: -100, scale: 0},
+          { xPercent: 0, scale: 1, ease: "power1.out"}, 0
+        )
+
+
     /* GSDevTools.create(); */
     },
     { dependencies: [verticalLoop], revertOnUpdate: true }
@@ -513,16 +595,20 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
   return (
     <>
-    <PagesTransitionScroll />
-    
-    <div className="productPage">
+      <PagesTransitionScroll />
+      <MmappBlockReveal />
+      <MmappHeadingReveal />
+      <MmappParagraphsReveal />
+      <MmappParagraphsRevealRight />
 
-      <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
+      <div className="productPage">
+
+        <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
           <ProductFC className="p-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown">
-            <ProductFCTitle className="pt-[15vw] md:pt-[3vw]">
+            <ProductFCTitle className="mmappBlockReveal pt-[15vw] md:pt-[3vw]">
               MMAPP Methodology
             </ProductFCTitle>
-            <ProductFCHeading className="mx-[5vw]">
+            <ProductFCHeading className="mmappHeadingReveal mx-[5vw]">
               A consistent and standardised unit of measurement for officiating MMA
             </ProductFCHeading>
             {/* <ProductFCDescription className="justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
@@ -531,21 +617,21 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               This allows officials to make more informed decisions for longer.<br/><br/>
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </ProductFCDescription> */}
-            <ProductFCDescription className="justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
+            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
             </ProductFCDescription>
-            <ProductFCDescription className="justify-start pr-[0vw] md:pr-[26vw] text-left mb-6 md:mb-[2vw]">
+            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[26vw] text-left mb-6 md:mb-[2vw]">
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
               This allows officials to make more informed decisions for longer.
             </ProductFCDescription>
-            <ProductFCDescription className="justify-start pr-[40vw] md:pr-[39vw] portrait:md:pr-[46vw] text-left mb-[9rem] md:mb-[2vw]">
+            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[40vw] md:pr-[39vw] portrait:md:pr-[46vw] text-left mb-[9rem] md:mb-[2vw]">
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </ProductFCDescription>
             <p className="text-lg md:text-xl hover:text-white text-neutral-200 text-left md:text-center pl-[2vw] md:pl-0 pt-[3vw] justify-center bounce-arrow">
             ↓
             </p>
             <img className="z-10 max-h-full max-w-[45vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
-            
+
           </ProductFC>
 
           {/* <div className={clsx(
@@ -578,49 +664,47 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             ↓
             </p>
           </div> */}
+        </section>
 
-      </section>
-      
-
-      <div id="productLineDesktop"
-        className={clsx(
-          "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
-          "mx-1 md:mx-[5.6vw] mt-[-2px]",
-        )}>
-        <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
-          <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,758.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v376c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-0" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-598.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-1" d="m139.14,200l-101.87-.3c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-3" d="m139.14,4220.6H41.27c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPath-4" d="m1401.39,6147.7h81.88c17.67,0,32,14.33,32,32l-.12,758.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v376c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          {/* <path id="mainPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="1px 1px"/> */}
-          <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
-        </svg>
-      </div>
+        <div id="productLineDesktop"
+          className={clsx(
+            "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
+            "mx-1 md:mx-[5.6vw] mt-[-2px]",
+          )}>
+          <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
+            <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,830.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v304c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-0" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-598.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-1" d="m139.14,200l-101.87-.3c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-3" d="m139.14,4220.6H41.27c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-4" d="m1401.39,6147.7h81.88c17.67,0,32,14.33,32,32l-.12,830.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v304c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            {/* <path id="mainPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="1px 1px"/> */}
+            <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
+          </svg>
+        </div>
 
 
-      {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" stroke-width="3" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="0.98052660449808px 1px"></path> */}
+        {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" stroke-width="3" pathLength="1" stroke-dashoffset="0px" stroke-dasharray="0.98052660449808px 1px"></path> */}
 
-      <div id="productLineTablets"
-        className={clsx(
-          "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
-          "mx-1 md:mx-[5.6vw] mt-[-2px]",
-        )}>
-        <svg viewBox="0 0 1536 13000" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
-          <path id="backgroundPathTouchMD" d="m759.88,92l.13,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h687.98c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h688.98c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-0" d="m759.88,92.32l.39,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-589.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-1" d="m139.14,320l-101.87-.3c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h604.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-2" d="m1400.14,3832.7h83.13c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-3" d="m139.14,7733.6H41.27c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h607.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="mainPathTouchMD-4" d="m1401.39,10819.7h81.88c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-          <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
-        </svg>
-      </div>
+        <div id="productLineTablets"
+          className={clsx(
+            "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
+            "mx-1 md:mx-[5.6vw] mt-[-2px]",
+          )}>
+          <svg viewBox="0 0 1536 13000" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
+            <path id="backgroundPathTouchMD" d="m759.88,92l.13,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h687.98c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h688.98c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPathTouchMD-0" d="m759.88,92.32l.39,176-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-589.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPathTouchMD-1" d="m139.14,320l-101.87-.3c-17.67,0-32,14.33-32,32v1210c0,17.67,14.33,32,32,32h694c17.67,0,32,14.33,32,32l.02,2174.98c-.01,17.68,14.32,32.02,32,32.02h604.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPathTouchMD-2" d="m1400.14,3832.7h83.13c17.67,0,32,14.33,32,32v1982c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,852.61c0,17.67,14.33,32,32,32l1442.13.29c17.67,0,32,14.33,32,32v874c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPathTouchMD-3" d="m139.14,7733.6H41.27c-17.67,0-32,14.33-32,32v1384.1c0,17.67,14.33,32,32,32h689c17.67,0,32,14.33,32,32l.02,1573.98c-.01,17.68,14.32,32.02,32,32.02h607.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPathTouchMD-4" d="m1401.39,10819.7h81.88c17.67,0,32,14.33,32,32l-.12,1401.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v564c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
+          </svg>
+        </div>
 
-      {/* <div className="borderBottom"></div> */}
+        {/* <div className="borderBottom"></div> */}
 
-    <section id="Judge" className="flex flex-col mt-0 md:mt-[6vw] justify-center">
+      <section id="Judge" className="flex flex-col mt-0 md:mt-[6vw] justify-center">
         {/* <div id="bgGlowRight" className={clsx(
               "flex justify-end",
               "h-full ml-auto",
@@ -633,15 +717,19 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             />
         </div> */}
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19.5vw] pb-[14.1vw] md:pb-[14.1vw] portrait:md:pb-[12vw]">
-          <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Judge
           </ProductFCTitle>
-          <ProductFCHeading className="justify-start text-left pr-[0%] md:pr-[15vw]">
+          <ProductFCHeading className="mmappHeadingReveal justify-start text-left pr-[0%] md:pr-[15vw]">
             Designed for officials and their mobile devices
           </ProductFCHeading>
-          <ProductFCDescription className="justify-start pr-[0vw] md:pr-[19vw] text-left">
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
             The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
             It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
             Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
           </ProductFCDescription>
         </ProductFC>
@@ -666,157 +754,163 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
           </h6>
         </div> */}
-      <div className="portrait:md:h-[112vw]">
-        {/* Titles for portrait devices */}
-        {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[1.5vw] px-0 portrait:md:px-[10%]">
-          <h4 className={clsx("text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-400)] to-purple-100",
-          "two-lines-always")}>
-            {descriptionSrcMapJudge[activeTabProductJudge]}
-          </h4>
-        </div>}
+        <div className="portrait:md:h-[112vw]">
+          {/* Titles for portrait devices */}
+          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[1.5vw] px-0 portrait:md:px-[10%]">
+            <h4 className={clsx("mmappBlockReveal text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)",
+            "two-lines-always")}>
+              {descriptionSrcMapJudge[activeTabProductJudge]}
+            </h4>
+          </div>}
 
-        {/* // Use the loading state to conditionally render the images in small mobile device*/}
-        <div className={clsx("flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
-          <img
-            className="object-scale-down max-h-[62.5vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
-            src={(preloadedImages as any)[activeTabProductJudge]?.src}
-            alt="iphone-12"
-            onLoad={() => setIsLoading(false)}
-          />
-          {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
-        </div>
-
-        <div className={clsx("w-full flex flex-col md:flex-row gap-4 md:gap-0 relative pb-0 md:pb-[1.75vw]")}>
-
-          <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative">
-            <TabButtonProductJudge
-              value='ProductJudge1'
-              heading='Assess Fights with the MMAPP Methodology'
-              smallHeading='Assess'
-              leftOrRight='left'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge1')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
-                <path d="M4 16v2a2 2 0 0 0 2 2h2" />
-                <path d="M16 4h2a2 2 0 0 1 2 2v2" />
-                <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
-                <path d="M12 8m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                <path d="M10 17v-1a2 2 0 1 1 4 0v1" />
-                <path d="M8 10c.666 .666 1.334 1 2 1h4c.666 0 1.334 -.334 2 -1" />
-                <path d="M12 11v3" />
-              </svg>
-            </TabButtonProductJudge>
-            <TabButtonProductJudge
-              value='ProductJudge2'
-              heading='Submit Scores Instantly'
-              smallHeading='Submit'
-              leftOrRight='left'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge2')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                <path d="M12 11v6" />
-                <path d="M9.5 13.5l2.5 -2.5l2.5 2.5" />
-              </svg>
-            </TabButtonProductJudge>
-            <TabButtonProductJudge
-              value='ProductJudge3'
-              heading='Personalised Fight Card'
-              smallHeading='Fight Card'
-              leftOrRight='left'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge3')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 12h3v4h-3z" />
-                <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
-                <path d="M10 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
-                <path d="M14 16h2" />
-                <path d="M14 12h4" />
-              </svg>
-            </TabButtonProductJudge>
-          </div>
-
-          {/* // Use the loading state to conditionally render the image */}
-          <div className={clsx("hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
+          {/* // Use the loading state to conditionally render the images in small mobile device*/}
+          <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
             <img
-              className="object-scale-down landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
+              className="judgePhone object-scale-down max-h-[62.5vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
-              alt="iPhone Judge images"
+              alt="iphone-12"
               onLoad={() => setIsLoading(false)}
             />
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
           </div>
 
-          <div className="w-full flex flex-row md:flex-col justify-center items-start gap-4 md:gap-20 relative">
-            <TabButtonProductJudge
-              value='ProductJudge4'
-              heading='Practice at Home'
-              smallHeading='Practice'
-              leftOrRight='right'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge4')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M2 12h1" />
-                <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
-                <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
-                <path d="M9 12h6" />
-                <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
-                <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" />
-                <path d="M22 12h-1" />
-              </svg>
-            </TabButtonProductJudge>
-            <TabButtonProductJudge
-              value='ProductJudge5'
-              heading='Share your results with your colleagues'
-              smallHeading='Share'
-              leftOrRight='right'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge5')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
-                <path d="M3 10h18" />
-                <path d="M10 3v18" />
-                <path d="M16 22l5 -5" />
-                <path d="M21 21.5v-4.5h-4.5" />
-              </svg>
-            </TabButtonProductJudge>
-            <TabButtonProductJudge
-              value='ProductJudge6'
-              heading='Personal Lifetime Archive'
-              smallHeading='Archive'
-              leftOrRight='right'
-              isPending={isPending}
-              activeTab={activeTabProductJudge}
-              onClick={() => selectTabProductJudge('ProductJudge6')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
-                <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-                <path d="M10 12l4 0" />
-              </svg>
-            </TabButtonProductJudge>
-          </div>
+          <div className={clsx("w-full flex flex-col md:flex-row gap-4 md:gap-0 relative pb-0 md:pb-[1.75vw]")}>
 
+            <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative">
+              <TabButtonProductJudge
+                value='ProductJudge1'
+                className="ProductJudgeButtonLeft"
+                heading='Assess Fights with the MMAPP Methodology'
+                smallHeading='Assess'
+                leftOrRight='left'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge1')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+                  <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+                  <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+                  <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+                  <path d="M12 8m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                  <path d="M10 17v-1a2 2 0 1 1 4 0v1" />
+                  <path d="M8 10c.666 .666 1.334 1 2 1h4c.666 0 1.334 -.334 2 -1" />
+                  <path d="M12 11v3" />
+                </svg>
+              </TabButtonProductJudge>
+              <TabButtonProductJudge
+                value='ProductJudge2'
+                className="ProductJudgeButtonLeft"
+                heading='Submit Scores Instantly'
+                smallHeading='Submit'
+                leftOrRight='left'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge2')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                  <path d="M12 11v6" />
+                  <path d="M9.5 13.5l2.5 -2.5l2.5 2.5" />
+                </svg>
+              </TabButtonProductJudge>
+              <TabButtonProductJudge
+                value='ProductJudge3'
+                className="ProductJudgeButtonLeft"
+                heading='Personalised Fight Card'
+                smallHeading='Fight Card'
+                leftOrRight='left'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge3')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M7 12h3v4h-3z" />
+                  <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
+                  <path d="M10 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" />
+                  <path d="M14 16h2" />
+                  <path d="M14 12h4" />
+                </svg>
+              </TabButtonProductJudge>
+            </div>
+
+            {/* // Use the loading state to conditionally render the image */}
+            <div className={clsx("judgePhoneWrapper hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
+              <img
+                className="judgePhone object-scale-down landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
+                src={(preloadedImages as any)[activeTabProductJudge]?.src}
+                alt="iPhone Judge images"
+                onLoad={() => setIsLoading(false)}
+              />
+              {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
+            </div>
+
+            <div className="w-full flex flex-row md:flex-col justify-center items-start gap-4 md:gap-20 relative">
+              <TabButtonProductJudge
+                value='ProductJudge4'
+                className="ProductJudgeButtonRight"
+                heading='Practice at Home'
+                smallHeading='Practice'
+                leftOrRight='right'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge4')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M2 12h1" />
+                  <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
+                  <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                  <path d="M9 12h6" />
+                  <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                  <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" />
+                  <path d="M22 12h-1" />
+                </svg>
+              </TabButtonProductJudge>
+              <TabButtonProductJudge
+                value='ProductJudge5'
+                className="ProductJudgeButtonRight"
+                heading='Share your results with your colleagues'
+                smallHeading='Share'
+                leftOrRight='right'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge5')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
+                  <path d="M3 10h18" />
+                  <path d="M10 3v18" />
+                  <path d="M16 22l5 -5" />
+                  <path d="M21 21.5v-4.5h-4.5" />
+                </svg>
+              </TabButtonProductJudge>
+              <TabButtonProductJudge
+                value='ProductJudge6'
+                className="ProductJudgeButtonRight"
+                heading='Personal Lifetime Archive'
+                smallHeading='Archive'
+                leftOrRight='right'
+                isPending={isPending}
+                activeTab={activeTabProductJudge}
+                onClick={() => selectTabProductJudge('ProductJudge6')}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+                  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+                  <path d="M10 12l4 0" />
+                </svg>
+              </TabButtonProductJudge>
+            </div>
+
+          </div>
         </div>
-      </div>
 
       </section>
 
@@ -824,23 +918,29 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
-          <ProductFCTitle className="justify-end text-right max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-end text-right max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
-          <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
+          <ProductFCHeading className="mmappHeadingReveal justify-end text-right pl-[0%] md:pl-[15vw]">
             Designed for officials performing Scorekeeping and Timekeeping duties
           </ProductFCHeading>
-          <ProductFCDescription className="justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
             The “RecordKeeper” is our tool designed for officials performing Scorekeeping and Timekeeping duties.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
             Because it is capable of automating most of the responsibilities, we are able to combine the roles of Scorekeeper and Timekeeper into one, called the RecordKeeper.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
             Outperforming the roles when done individually, the RecordKeeper connects to the Judges, receives and calculates their score, and has outstanding timing capabilities, timing simultaneously Round Time, Breaks and In-between rounds, as well as important event logging, such as Reasons for Point deductions or Break duration.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
             At the end of fights, it provides a clear display of the winner for easy visualization, for quick dispatch to the speaker. Once completed, every detail is instantly delivered to the Federation dashboard.
           </ProductFCDescription>
         </ProductFC>
 
         {/* RecordKeeper Titles */}
         <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[10vw]">
-          <h4 className={clsx("text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+          <h4 className={clsx("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
           "twoLinesAlwaysProductRecordKeeper")}>
             {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
           </h4>
@@ -958,15 +1058,19 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] portrait:md:pt-[19.1vw] pb-12 md:pb-[13.75vw]">
-          <ProductFCTitle className="justify-start text-left max-w-[30rem] md:max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Dashboard
           </ProductFCTitle>
-          <ProductFCHeading className="justify-start text-left pr-[0%] md:pr-[15vw]">
+          <ProductFCHeading className="mmappHeadingReveal justify-start text-left pr-[0%] md:pr-[15vw]">
             Enables Federations to easily manage all affairs
           </ProductFCHeading>
-          <ProductFCDescription className="justify-start pr-[0vw] md:pr-[19vw] text-left">
-            The Dashboard is the component Federations interact with the most.<br/><br/>
-            Here they will be able to visualize and manage every aspect of the sport.<br/>
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
+            The Dashboard is the component Federations interact with the most.
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
+            Here they will be able to visualize and manage every aspect of the sport.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[19vw] text-left">
             The dashboard provides an intuitive interface that allows Federations to easily manage various topics, while offering easy-to-digest reports and analysis on the various affairs of the Federation, such as fights statistics and trends from a regulatory perspective, as well as insights into members.
           </ProductFCDescription>
         </ProductFC>
@@ -1034,7 +1138,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               loop
             />
           </div>
-          
+
           <ProductDashboardTitles
             className="flex absolute w-full justify-center items-end pt-[65vw] md:pt-[42vw] portrait:md:pt-[62vw] px-[14vw] portrait:px-[1vw] portrait:md:px-[1vw]"
             productDashboardItems={productDashboardItems}
@@ -1054,16 +1158,22 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[16.75vw] portrait:touch:md:pt-[19.75vw] pb-12 md:pb-[14vw]">
-          <ProductFCTitle className="justify-end text-right max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-end text-right max-w-[100%]">
             Dashboard (Members)
           </ProductFCTitle>
-          <ProductFCHeading className="justify-end text-right pl-[0%] md:pl-[15vw]">
+          <ProductFCHeading className="mmappHeadingReveal justify-end text-right pl-[0%] md:pl-[15vw] ">
             A platform to seemlessly interact with your Federation
           </ProductFCHeading>
-          <ProductFCDescription className="justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
             The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
             Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
             You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
+          </ProductFCDescription>
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
             Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
           </ProductFCDescription>
         </ProductFC>
@@ -1165,19 +1275,19 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             </h4> */}
           </div>
         </div>
-        <CallToActionButton className="mt-[5vw]" />
+        <CallToActionButton className="mmappBlockReveal mt-[5vw]" />
       </section>
 
       <div className="borderBottom"></div>
 
       <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
-        <h5 className="mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
+        <h5 className="mmappBlockReveal mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
           Contact Us
         </h5>
-        <p className="text-center mb-8 md:mb-10 lg:mb-12">
+        <p className="mmappBlockReveal text-center mb-8 md:mb-10 lg:mb-12">
           Please select your kind of inquiry
         </p>
-        <ContactUs id={ContactUs} className=""/>
+        <ContactUs id={ContactUs} className="mmappBlockReveal"/>
       </section>
     </div>
   </>
