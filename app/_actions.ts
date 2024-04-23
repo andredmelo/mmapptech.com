@@ -40,12 +40,12 @@ export async function sendEmail(data: ContactFormInputs) {
       const emailHtml = await renderAsync(MMAPPContactFormEmail(result.data));
       //console.log("result.data are "+kind+name+email+message)
        /* kind={kind} name={name} email={email} message={message} */
-      
+
       const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
       const recipients = [
           new Recipient("andre1melo@proton.me", 'André Melo'),
-          /* new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
-          new Recipient("info@mmapptech.com", 'MMAPP Tech') */
+          //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
+          //new Recipient("info@mmapptech.com", 'MMAPP Tech')
       ];
       const emailParams = new EmailParams()
           .setFrom(sentFrom)
@@ -55,7 +55,7 @@ export async function sendEmail(data: ContactFormInputs) {
 
 
       const data = await mailerSend.email.send(emailParams);
-            
+
       return { success: true, data }
     } catch (error) {
       return { success: false, error }

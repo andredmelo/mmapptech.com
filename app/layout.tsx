@@ -77,9 +77,9 @@ export default function RootLayout({
         matchMedia.add("(max-width: 767px)", () => {
           //console.log("hover none");
           smoother.current = ScrollSmoother.create({
-            smooth: 0.01, // how long (in seconds) it takes to "catch up" to the native scroll position
+            smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
             effects: false, // looks for data-speed and data-lag attributes on elements
-            smoothTouch: 0.01, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
             // ignoreMobileResize: true,
             //normalizeScroll: true,
           });
@@ -88,11 +88,13 @@ export default function RootLayout({
         matchMedia.add("(min-width: 768px)", () => {
           //console.log("hover none");
           smoother.current = ScrollSmoother.create({
-            smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
-            effects: false, // looks for data-speed and data-lag attributes on elements
-            smoothTouch: 0.5, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-            ignoreMobileResize: true,
-            /* normalizeScroll: true, */
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+            effects: true, // looks for data-speed and data-lag attributes on elements
+            smoothTouch: 0.25, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            //ignoreMobileResize: true,
+            //normalizeScroll: true,
           });
           let ScrollSmootherTop = "top 0px";
         });
@@ -102,7 +104,7 @@ export default function RootLayout({
         smoother.current = ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
-          smooth: 0.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+          smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
           effects: true, // looks for data-speed and data-lag attributes on elements
           //smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
         });
@@ -203,9 +205,9 @@ export default function RootLayout({
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
-          <link rel="icon" href="@/public/images/logo.ico" />
+          <link rel="icon" href="@/public/images/logos/mmapp/logo.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <link rel="apple-touch-icon" href="@/public/images/logo.webp" />
+          <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" />
           {/* <!-- Google tag (gtag.js) --> */}
           {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKR4VB95HV"></script>
           <script>
@@ -231,7 +233,7 @@ export default function RootLayout({
               <Navbar />
               <div id="smooth-wrapper">
                 <div id="smooth-content">
-                  <Loading />
+                  {<Loading />}
                   <main id="main" className="templateAnimIn">{children}</main>
 
                   {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}

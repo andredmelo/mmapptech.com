@@ -95,6 +95,7 @@ const MmappParagraphsReveal = () => {
   );
   return null;
 };
+
 const MmappParagraphsRevealRight = () => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
@@ -133,7 +134,42 @@ const MmappParagraphsRevealRight = () => {
   return null;
 };
 
+const MmappSequentialParagraphsReveal = () => {
+  const isPortrait = useMediaQuery('(orientation: portrait)');
+  useGSAP(
+    () => {
+      let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
+      const paragraphs: NodeListOf<HTMLElement> = document.querySelectorAll('.MmappSequentialParagraphsReveal');
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: paragraphs[0], // Assuming all paragraphs are close together, we can just trigger on the first
+          start: viewportTrigger,
+          once: true,
+        },
+      });
 
+      paragraphs.forEach((paragraph, index) => {
+        let split = new SplitText(paragraph, { types: 'lines' });
+        timeline.from(split.lines, {
+          y: '8vh',
+          opacity: 0,
+          scale: '0.25',
+          rotate: "-10deg",
+          rotationX: -75,
+          // rotationY:25,
+          transformOrigin: '50% 50% -50',
+          duration: 0.35,
+          stagger: 0.1,
+          ease: "circ.out",
+          // Delay the start of each paragraph's animation slightly more than the last
+          delay: index * 0.4, // Adjust the multiplier as needed to control the delay between paragraphs
+        }, 1.25); // This "+=0.5" adds a delay before starting the next paragraph's animation, adjust as needed
+      });
+    },
+    { dependencies: [isPortrait] } // Ensure to list all dependencies here
+  );
+  return null;
+};
 
 
 // ===== Main Animations Block ===== //
@@ -307,4 +343,4 @@ const MainAnimations = () => {
   return null;
 };
 
-export { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight };
+export { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight, MmappSequentialParagraphsReveal };

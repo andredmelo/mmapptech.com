@@ -1,2 +1,2 @@
-let vNumber = "v0.1.1-β.11 | Main animations implemented for Home, Product and Contact page. Additional initial animations for Product page.";
+let vNumber = "v0.1.2-β.1 | Company Mission image implemented. All animations for Product page complete. Various small animations.";
 

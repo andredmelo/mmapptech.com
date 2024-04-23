@@ -139,6 +139,7 @@ export default function Home() {
               endTrigger: ".smallMissionDescriptionContainer",
               end: "bottom "+endSmallMissionImgTrigger+"px",
               pin: ".smallMissionImg",
+              
               pinSpacing: false,
               invalidateOnRefresh: true,
             });
@@ -831,7 +832,7 @@ export default function Home() {
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
             <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
-              <img id="heroMMAPPLogo" src="/images/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="relative"/>
+              <img id="heroMMAPPLogo" src="/images/logos/mmapp/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="relative"/>
               <h4 id="heroMMAPPText" className="relative pt-0 portrait:pt-[1%] text-[3.5rem] md:text-[7rem] lg:text-[4vw] portrait:md:text-[8vw] 2xl:text-[4vw] 3xl:text-[4vw] text-center text-white font-bold deboss">
                 Mapping MMA
               </h4>
@@ -1347,7 +1348,7 @@ export default function Home() {
 
                 <CardPoliciesButton
                   id="featuresRecordKeeperBottomButton"
-                  href="/product#MMAPP-Methodology"
+                  href="/product"
                   data-page="/product"
                   data-link="#MMAPP-Methodology"
                   className="w-fit px-14 mx-auto"

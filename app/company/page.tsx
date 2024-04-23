@@ -16,7 +16,7 @@ import horizontalLoop from '@/components/HorizontalLoop';
 import { CardPolicies, CardPoliciesDescription, CardPoliciesHeader, CardPoliciesTitle, CardPoliciesButton } from '@/components/ui/card-policies'
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
-import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal } from '@/components/ui/mainAnimations';
+import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappSequentialParagraphsReveal } from '@/components/ui/mainAnimations';
 //import { Body } from "@react-email/components";
 
 
@@ -73,9 +73,10 @@ const Company = (props: any) => {
       <MmappBlockReveal />
       <MmappHeadingReveal />
       <MmappParagraphsReveal />
+      <MmappSequentialParagraphsReveal />
       <div className="companyPage">
 
-        <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-52">
+        <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-12 lg:mb-16">
           {/* <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
           "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")}>
             <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
@@ -94,18 +95,27 @@ const Company = (props: any) => {
             <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
           </div> */}
 
-          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[62rem] md:min-h-[60rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-28 md:pt-24 lg:pt-32">
+          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[64rem] md:min-h-[50rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-24 md:pt-20 lg:pt-56">
             <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               Our Mission
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] 2xl:max-w-[88rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className="mmappParagraphsReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[39rem] lg:max-w-[55rem] text-left leading-normal">
-              In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
+            <MainFCDescription className={clsx(
+              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] 2xl:max-w-[83rem] text-left leading-normal",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
+              In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness throughout MMA judging.<br/><br/>
+            </MainFCDescription>
+            <MainFCDescription className={clsx(
+              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] 2xl:max-w-[78rem] text-left leading-normal",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
+              Through these tools built for officials to discuss their assessments more profoundly and amplify their judging abilities we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <img className="z-10 max-h-full max-w-[50vw] md:max-w-[36vw] xl:max-w-[34vw] bottom-[-0.1rem] right-[-2vw] portrait:touch:md:right-[-3vw] absolute md:absolute object-contain overflow-hidden" src="/images/referees/Temp/stock-photo-minsk-belarus-september-new-fighting-generation-mixed-martial-arts-1774520465.webp" alt="herb dean"/>
+            <img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src="/images/company/companyMMAFighterPreparingBandages4Training-XL.webp" alt="MMA fighter preparing bandages for training"/>
           </MainFC>
         </section>
 
@@ -127,7 +137,7 @@ const Company = (props: any) => {
               <div className="mmappBlockReveal flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 rounded-[1rem]">
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-assembly w-[24px] h-[24px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-assembly w-[24px] h-[24px] animate-pulse">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" />
                     <path d="M15.5 9.422c.312 .18 .503 .515 .5 .876v3.277c0 .364 -.197 .7 -.515 .877l-3 1.922a1 1 0 0 1 -.97 0l-3 -1.922a1 1 0 0 1 -.515 -.876v-3.278c0 -.364 .197 -.7 .514 -.877l3 -1.79c.311 -.174 .69 -.174 1 0l3 1.79h-.014z" />
@@ -145,11 +155,11 @@ const Company = (props: any) => {
               <div className="mmappBlockReveal flex flex-col max-w-[95%] md:max-w-[35rem] lg:max-w-[40rem] px-4 py-8 md:py-0 bgRadialGradientLeft rounded-[1rem]">
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot w-[24px] h-[24px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh-dot w-[24px] h-[24px] animate-spin-slow">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                    <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                    <path d="m19.5,9c-1.1-2.65-3.52-4.51-6.36-4.91-4.43-.62-8.52,2.48-9.14,6.91m12-2h4s0-4,0-4" />
+                    <path d="m4.5,15c1.1,2.65,3.52,4.51,6.36,4.91,4.43.62,8.52-2.48,9.14-6.91m-12,2h-4s0,4,0,4" />
+                    <path d="m13,12c0-.55-.45-1-1-1s-1,.45-1,1,.45,1,1,1,1-.45,1-1" />
                   </svg>
                   </div>
                   <div className="h7 font-medium leading-6 text-white">
@@ -165,8 +175,8 @@ const Company = (props: any) => {
                 <dt className="inline-flex items-center gap-3 max-w-full">
                   <div className="flex items-center justify-center text-white pr-4 py-4">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-atom-2 w-[24px] h-[24px]">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" className="animate-ping-center" />
                     <path d="M12 21l0 .01" />
                     <path d="M3 9l0 .01" />
                     <path d="M21 9l0 .01" />

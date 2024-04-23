@@ -109,7 +109,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
-              'py-6 px-10',
+              'py-6 px-[2.15rem]',
               'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',
               gradientSide,

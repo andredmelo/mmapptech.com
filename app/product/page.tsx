@@ -13,7 +13,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 import ContactUs from '@/app/contact/contact-us'
 import CallToActionButton from '@/app/CallToActionButton'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
-import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
+import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight, MmappSequentialParagraphsReveal } from '@/components/ui/mainAnimations';
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import { ProductFC, ProductFCTitle, ProductFCHeading, ProductFCDescription } from '@/components/ui/productFunctionalComponent'
@@ -511,8 +511,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
       const ProductJudgeButtonLeft: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonLeft');
       const ProductJudgeButtonRight: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonRight');
-      gsap.set(ProductJudgeButtonLeft, {xPercent: 100, autoAlpha:0})
-      gsap.set(ProductJudgeButtonRight, {xPercent: -100, autoAlpha:0})
+      //gsap.set(ProductJudgeButtonLeft, {xPercent: 120, autoAlpha:0})
+      //gsap.set(ProductJudgeButtonRight, {xPercent: -120, autoAlpha:0})
       /* const productJudgeButtonLeftAnim = gsap.timeline({paused:true})
         .fromTo(ProductJudgeButtonLeft, {autoAlpha:0}, {autoAlpha:1, ease: "power4.out"})
         .fromTo(ProductJudgeButtonLeft,
@@ -533,8 +533,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           trigger: '.judgePhoneWrapper',
           start: 'top bottom',
           end: '50% center',
-          //once:true,
           scrub: 1,
+          once:true,
           //markers: true,
           //invalidateOnRefresh: true,
           /* onUpdate: (self: ScrollTrigger) => {
@@ -563,35 +563,111 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             ease: "power2.out"
           })
 
-      
+      let productJudgeButtonsAnimStart = isPortrait ? (isUnder768 ? '40%' : '30%') : '42%';
       const productJudgeButtonsAnim = gsap.timeline({
         paused:true,
         scrollTrigger: {
           trigger: '.judgePhoneWrapper',
-          start: 'top 25%',
+          start: 'top '+productJudgeButtonsAnimStart,
           end: 'center center',
-          //once:true,
           scrub: 1,
+          once:true,
           //markers: true,
           preventOverlaps:true,
         },
       })
-        .set(ProductJudgeButtonLeft, {autoAlpha:1},0)
-        .set(ProductJudgeButtonRight, {autoAlpha:1},0)
         .fromTo(ProductJudgeButtonLeft,
-          { xPercent: 100, scale: 0},
-          { xPercent: 0, scale: 1, ease: "power1.out"}, 0
+          { xPercent: 120},
+          { xPercent: 0, ease: "power1.out"}, 0
         )
         .fromTo(ProductJudgeButtonRight,
-          { xPercent: -100, scale: 0},
-          { xPercent: 0, scale: 1, ease: "power1.out"}, 0
+          { xPercent: -120},
+          { xPercent: 0, ease: "power1.out"}, 0
         )
 
+      // RecordKeeper Tablet animations
+      const ProductRecordKeeperButtons: HTMLHeadingElement[] = gsap.utils.toArray('.ProductRecordKeeperButton');
+
+      let productRecordKeeperAnimFinish = isPortrait ? (isUnder768 ? '50%' : '38%') : '25%';
+      let productRecordKeeperAnimEase = isPortrait ? "power2.in" : "power2.out";
+      const recordKeeperAnim = gsap.timeline({
+        paused:true,
+        scrollTrigger: {
+          trigger: '.recordKeeperTabletWrapper',
+          start: 'top bottom',
+          end: 'top '+productRecordKeeperAnimFinish,
+          //markers: true,
+          scrub: 1,
+          once:true,
+        },
+      })
+        .from('.recordKeeperTablet',
+          {
+            xPercent: 125,
+            ease: productRecordKeeperAnimEase
+          })
+
+      let productRecordKeeperButtonsAnimStart = isPortrait ? (isUnder768 ? '50%' : '38%') : '48%';
+      let productRecordKeeperButtonsAnimFinish = isPortrait ? (isUnder768 ? '30%' : '30%') : '30%';
+
+      matchMedia.add("(orientation: landscape)", () => {
+        const productRecordKeeperButtonsAnim = gsap.timeline({
+          paused:true,
+          scrollTrigger: {
+            trigger: '.recordKeeperTabletWrapper',
+            start: 'top 48%',
+            end: 'top 30%',
+            scrub: 1,
+            once:true,
+            //markers: true,
+            //preventOverlaps:true,
+          },
+        })
+          .fromTo(ProductRecordKeeperButtons, { xPercent: -150}, { xPercent: 0, ease: "power1.out"})
+      });
+
+      matchMedia.add("(orientation: portrait)", () => {
+        const productRecordKeeperButtonsAnim = gsap.timeline({
+          paused:true,
+          scrollTrigger: {
+            trigger: '.recordKeeperTabletWrapper',
+            start: 'top '+productRecordKeeperButtonsAnimStart,
+            end: 'top '+productRecordKeeperButtonsAnimFinish,
+            scrub: 1,
+            once:true,
+            //markers: true,
+            //preventOverlaps:true,
+          },
+        })
+          .fromTo(ProductRecordKeeperButtons, { yPercent: -225}, { yPercent: 0, ease: "power4.out"})
+      });
+
+
+
+      // RecordKeeper Tablet animations
+      let productdashboardAnimFinish = isPortrait ? (isUnder768 ? '40%' : '30%') : '60%';
+      const dashboardAnim = gsap.timeline({
+        paused:true,
+        scrollTrigger: {
+          trigger: '.dashboardBlock',
+          start: 'top bottom',
+          end: 'center '+productdashboardAnimFinish,
+          scrub: 1,
+          once:true,
+        },
+      })
+        .from('.dashboardBlock',
+          {
+            yPercent: 20,
+            ease: "power2.out"
+          })
 
     /* GSDevTools.create(); */
     },
     { dependencies: [verticalLoop], revertOnUpdate: true }
   );
+
+  //let mmappParagraphsRevealType = isPortrait ? '.MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal' ;
 
   return (
     <>
@@ -600,31 +676,41 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <MmappHeadingReveal />
       <MmappParagraphsReveal />
       <MmappParagraphsRevealRight />
+      <MmappSequentialParagraphsReveal />
 
       <div className="productPage">
 
         <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
-          <ProductFC className="p-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown">
+          <ProductFC className="px-[5vw] pb-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown">
             <ProductFCTitle className="mmappBlockReveal pt-[15vw] md:pt-[3vw]">
               MMAPP Methodology
             </ProductFCTitle>
             <ProductFCHeading className="mmappHeadingReveal mx-[5vw]">
               A consistent and standardised unit of measurement for officiating MMA
             </ProductFCHeading>
-            {/* <ProductFCDescription className="justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
+            {/* <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.<br/><br/>
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
               This allows officials to make more informed decisions for longer.<br/><br/>
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </ProductFCDescription> */}
-            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
+            <ProductFCDescription className={clsx(
+              "justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[26vw] text-left mb-6 md:mb-[2vw]">
+            <ProductFCDescription className={clsx(
+              "justify-start pr-[0vw] md:pr-[26vw] text-left mb-6 md:mb-[2vw]",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
               This allows officials to make more informed decisions for longer.
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[40vw] md:pr-[39vw] portrait:md:pr-[46vw] text-left mb-[9rem] md:mb-[2vw]">
+            <ProductFCDescription className={clsx(
+              "justify-start pr-[40vw] md:pr-[39vw] portrait:md:pr-[46vw] text-left mb-[9rem] md:mb-[2vw]",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </ProductFCDescription>
             <p className="text-lg md:text-xl hover:text-white text-neutral-200 text-left md:text-center pl-[2vw] md:pl-0 pt-[3vw] justify-center bounce-arrow">
@@ -633,37 +719,6 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <img className="z-10 max-h-full max-w-[45vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="MMA Referees"/>
 
           </ProductFC>
-
-          {/* <div className={clsx(
-            "flex flex-col relative justify-center",
-            "h-full mx-1 md:mx-[5.6vw]",//max-w-[1536px] 3xl:min-w-[1536px] 3xl:mx-auto
-            "p-12 md:p-[7.65vw]",
-            "rounded-[3rem] bg-no-repeat bg-bgRadialGradientDown")}
-          >
-            <h5 className="flex flex-col justify-center z-20 text-md md:text-[2.175vw] portrait:touch:text-[3.15vw] text-center mb-12 md:mb-[3.5vw] pt-[3vw] text-neutral-200 deboss">
-              MMAPP Methodology
-            </h5>
-
-            <h3 className={clsx(
-              "flex flex-col justify-center text-center z-20 mx-[5vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] portrait:touch:text-[6.75vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}
-              >
-              A consistent and standardised unit of measurement for officiating MMA
-            </h3>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[22vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw] mb-6 md:mb-[2vw]">
-              The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
-            </h6>
-            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[19vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw] mb-6 md:mb-[2vw]">
-              Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
-              This allows officials to make more informed decisions for longer.
-            </h6>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] portrait:touch:text-[2vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw] portrait:touch:leading-[2.8vw]">
-              By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
-            </h6>
-            <p className="text-xl hover:text-white text-neutral-200 text-center justify-center pt-[2.5vw]">
-            ↓
-            </p>
-          </div> */}
         </section>
 
         <div id="productLineDesktop"
@@ -756,8 +811,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </div> */}
         <div className="portrait:md:h-[112vw]">
           {/* Titles for portrait devices */}
-          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[1.5vw] px-0 portrait:md:px-[10%]">
-            <h4 className={clsx("mmappBlockReveal text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)",
+          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
+            <h4 className={clsx("mmappBlockReveal text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "two-lines-always")}>
               {descriptionSrcMapJudge[activeTabProductJudge]}
             </h4>
@@ -776,7 +831,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
           <div className={clsx("w-full flex flex-col md:flex-row gap-4 md:gap-0 relative pb-0 md:pb-[1.75vw]")}>
 
-            <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative">
+            <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative overflow-hidden">
               <TabButtonProductJudge
                 value='ProductJudge1'
                 className="ProductJudgeButtonLeft"
@@ -787,7 +842,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge1')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-body-scan w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
                   <path d="M4 16v2a2 2 0 0 0 2 2h2" />
@@ -809,7 +864,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge2')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                   <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -827,7 +882,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge3')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-id-badge-2 w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M7 12h3v4h-3z" />
                   <path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" />
@@ -849,7 +904,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
             </div>
 
-            <div className="w-full flex flex-row md:flex-col justify-center items-start gap-4 md:gap-20 relative">
+            <div className="w-full flex flex-row md:flex-col justify-center items-start gap-4 md:gap-20 relative overflow-hidden">
               <TabButtonProductJudge
                 value='ProductJudge4'
                 className="ProductJudgeButtonRight"
@@ -860,7 +915,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge4')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M2 12h1" />
                   <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
@@ -881,7 +936,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge5')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-table-share w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M12 21h-7a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v8" />
                   <path d="M3 10h18" />
@@ -900,7 +955,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
                 activeTab={activeTabProductJudge}
                 onClick={() => selectTabProductJudge('ProductJudge6')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-archive w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                   <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
@@ -955,13 +1010,13 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
           {/* // Use the loading state to conditionally render the image */}
           <div className={clsx(
-            "basis-[67.5%] portrait:touch:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10",
+            "recordKeeperTabletWrapper basis-[67.5%] portrait:touch:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10",
             "min-w-auto max-w-[100%] landscape:md:max-w-[90%] portrait:max-w-[100%] h-full max-h-[100%]",
-            "px-[0vw] pb-[0vw] portrait:pb-[4vw] md:portrait:pb-[0vw] md:pb-[3vw]",
+            "px-[0vw] pb-[0vw] portrait:pb-[4vw] md:portrait:pb-[0vw] md:pb-[4vw]",
             )}
           >
             <img
-              className="object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max rounded-[2.5vw] portrait:touch:rounded-[4vw] shadow-2xl shadow-fuchsia-950/50 ring-4 md:ring-2 portrait:touch:ring-4 ring-purple-950/75"
+              className="recordKeeperTablet object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max rounded-[2.5vw] portrait:touch:rounded-[4vw] shadow-2xl shadow-fuchsia-950/50 ring-4 md:ring-2 portrait:touch:ring-4 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductRecordKeeper]?.src}
               alt="iPad RecordKeeper images"
               onLoad={() => setIsLoading(false)}
@@ -969,10 +1024,15 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
           </div>
 
-          <div className="basis-[32.5%] portrait:touch:basis-full w-full portrait:touch:w-[100%] portrait:touch:md:w-[98%] portrait:touch:mx-auto min-w-[20vw] flex flex-col portrait:touch:flex-row justify-center items-start gap-4 md:gap-[3vw] portrait:touch:gap-[vw] portrait:touch:md:gap-[1vw] relative">
+          <div className={clsx("relative basis-[32.5%] portrait:touch:basis-full flex flex-col",
+          "w-full portrait:touch:w-[100%] portrait:touch:md:w-[98%] portrait:touch:mx-auto min-w-[20vw]",
+          "portrait:touch:flex-row justify-center items-start gap-4 md:gap-[3vw] portrait:touch:gap-[vw] portrait:touch:md:gap-[1vw]",
+          "px-[0vw] pb-[0vw] portrait:pb-[2vw] portrait:pt-[2vw] md:portrait:pb-[0vw] md:pb-[4vw] portrait:md:pt-[0vw] overflow-hidden",
+          )}>
             <div className="flex flex-col portrait:touch:md:flex-row gap-4 md:gap-[3vw] portrait:touch:gap-[vw] portrait:touch:md:gap-[1vw]">
               <TabButtonProductRecordKeeper
                 value='ProductRecordKeeper1'
+                className="ProductRecordKeeperButton"
                 heading='Master Timing'
                 smallHeading='Timing'
                 isPending={isPending}
@@ -993,6 +1053,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               </TabButtonProductRecordKeeper>
               <TabButtonProductRecordKeeper
                 value='ProductRecordKeeper2'
+                className="ProductRecordKeeperButton"
                 heading='Record every detail'
                 smallHeading='Record'
                 isPending={isPending}
@@ -1012,6 +1073,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <div className="flex flex-col portrait:touch:md:flex-row gap-4 md:gap-[3vw] portrait:touch:gap-[3vw] portrait:touch:md:gap-[1vw]">
               <TabButtonProductRecordKeeper
                 value='ProductRecordKeeper3'
+                className="ProductRecordKeeperButton"
                 heading='Receive & Calculate scorecards'
                 smallHeading='Scorecards'
                 isPending={isPending}
@@ -1033,6 +1095,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               </TabButtonProductRecordKeeper>
               <TabButtonProductRecordKeeper
                 value='ProductRecordKeeper4'
+                className="ProductRecordKeeperButton"
                 heading='Send Results'
                 smallHeading='Results'
                 isPending={isPending}
@@ -1097,7 +1160,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </div> */}
 
         <div className={clsx(
-          "flex flex-col items-center justify-start relative z-10",
+          "dashboardBlock flex flex-col items-center justify-start relative z-10",
           "min-w-auto max-w-[100%] md:max-w-[95%] h-full max-h-[100%] mx-0 md:mx-[5.6vw] portrait:mx-[1vw] portrait:md:mx-[3vw]",
           "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 portrait:md:pb-[0vw]",
           )}
@@ -1133,7 +1196,9 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <video
               className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw] portrait:md:pt-[1.475vw]"
               src="/videos/product/dashboard.1286x720.24fps.x264.CRF27.veryslow.mp4"
+              typeof="video/mp4"
               playsInline
+              muted
               autoPlay
               loop
             />
@@ -1236,7 +1301,9 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               <video
                 className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[4vw]"
                 src="/videos/product/dashboard.1624x1040.24fps.x264.CRF27.veryslow.mp4"
+                typeof="video/mp4"
                 playsInline
+                muted
                 autoPlay
                 loop
               />
@@ -1246,7 +1313,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* Dashboard (Members) Titles */}
           <div className={clsx(
             "basis-[45%] relative flex flex-col justify-start items-left",
-            "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[65vw] portrait:md:max-h-[40vw] overflow-hidden",
+            "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[45vw] portrait:md:max-h-[40vw] overflow-hidden",
             "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw]",
             )}
           >

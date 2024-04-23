@@ -19,11 +19,11 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); //This key forces the SVG components to re-mount triggereing the animations again
 
-  function toggleHamburgerSVG() { // Switch the SVGs and trigger the animations
+  /* function toggleHamburgerSVG() { // Switch the SVGs and trigger the animations
     setIsMenuOpen(!isMenuOpen);
     setAnimationKey(prevKey => prevKey + 1); // Increment the key to force the SVG components to re-mount and trigger the animation again
-  }
-  
+  } */
+
   //console.log("Navbar")
   /* const main = useRef<HTMLElement | null>(null); */
   useEffect(() => {
@@ -51,9 +51,19 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
       });
     }
 
+    /* function toggleHamburgerSVG() {
+      if (navMenuSpacer?.classList.contains("show")){
+        setIsMenuOpen(!isMenuOpen);
+        setAnimationKey(prevKey => prevKey + 1);
+      } else {
+        setIsMenuOpen(isMenuOpen);
+        setAnimationKey(prevKey => prevKey + 1);
+      }
+    }; */
+
     function toggleHamburger() {
       let matchMedia = gsap.matchMedia();
-      
+
       matchMedia.add("(min-width: 768px)", () => {
         navMenu?.classList.toggle("show");
         navMenuSpacer?.classList.toggle("show");
@@ -61,7 +71,11 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
       });
 
       matchMedia.add("(max-width: 767px)", () => {
-        if (navMenuSpacer?.classList.contains("show")){
+        const shouldShow = !navMenuSpacer?.classList.contains("show");
+        setIsMenuOpen(shouldShow); // Update based on whether the menu will show or hide
+        setAnimationKey(prevKey => prevKey + 1); // Force SVG component re-mount
+
+        if (navMenuSpacer?.classList.contains("show")) {
           gsap.fromTo(navMenuSpacer,
             {
               xPercent: 0,
@@ -100,14 +114,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             },
             {
               xPercent: 0,
-              duration: 0.45,
+              duration: 0.35,
               ease:"power1.in",
               onStart: () => {
                 navMenu?.classList.toggle("show");
                 navMenuSpacer?.classList.toggle("show");
                 loginLink?.classList.toggle("show");
                 gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
-                gsap.fromTo(MenuGloveSVG, {xPercent: 100, autoAlpha: 1}, {xPercent: -50, autoAlpha: 1, duration: 0.55, ease:"power1.out"});
+                gsap.fromTo(MenuGloveSVG, {xPercent: 100, autoAlpha: 1}, {xPercent: -50, autoAlpha: 1, duration: 0.45, ease:"power1.out"});
               }
             },
           );
@@ -117,7 +131,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             },
             {
               xPercent: 0,
-              delay: 0.3,
+              delay: 0.2,
               duration: 0.1,
               ease:"power1.in",
               stagger: 0.075,
@@ -283,7 +297,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 <li>
                   <button className="nav-link dropdown-btn group" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
                   <img
-                    src="/images/logo_on_black.svg"
+                    src="/images/logos/mmapp/logo_on_black.svg"
                     alt="MMAPP Logo"/>
                     {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                     <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
@@ -524,7 +538,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
 
             <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
               {/* <i className="bx bx-menu" aria-hidden="true"></i> */}
-              <div className="hamburgerMenu" onClick={toggleHamburgerSVG}>
+              <div className="hamburgerMenu" /* onClick={toggleHamburgerSVG} */>
                 {isMenuOpen ? (
                   <LineMdMenuToCloseTransition key={animationKey} aria-hidden="true" />
                 ) : (
