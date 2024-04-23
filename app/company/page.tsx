@@ -99,17 +99,17 @@ const Company = (props: any) => {
             <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
               Our Mission
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] 2xl:max-w-[88rem] text-left">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
             <MainFCDescription className={clsx(
-              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] 2xl:max-w-[83rem] text-left leading-normal",
+              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness throughout MMA judging.<br/><br/>
             </MainFCDescription>
             <MainFCDescription className={clsx(
-              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] 2xl:max-w-[78rem] text-left leading-normal",
+              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               Through these tools built for officials to discuss their assessments more profoundly and amplify their judging abilities we strive to help elevate the sport.
