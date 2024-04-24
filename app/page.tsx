@@ -912,9 +912,13 @@ export default function Home() {
                     Record fight events like never before.<br/>
                   </p>
                 </div>
-                <p className="mmappBlockReveal text-md hover:text-white text-neutral-200 text-left pb-14 md:pb-0 pl-10">
-                <span aria-hidden="true">↓</span> Learn more about their features and benefits below <span aria-hidden="true">↓</span>
-                </p>
+                <div className="mmappBlockReveal flex justify-center md:justify-end w-full">
+                  <p className="flex items-end text-md text-neutral-200 text-center pt-12 pb-20 md:pb-0 max-w-[28rem] md:max-w-[29rem] lg:max-w-full">
+                    <span className="pr-4 bounce-arrow" aria-hidden="true">↓</span>
+                      Learn more about their features and benefits below
+                    <span className="pl-4 bounce-arrow" aria-hidden="true">↓</span>
+                  </p>
+                </div>
               </div>
               <div className="flex justify-start items-start w-[100%] md:w-[35%]">
                 <img className="smallMissionImg landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
@@ -1212,7 +1216,7 @@ export default function Home() {
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
                     <FeaturesCardTitle>
-                      Instantly Scorecard Submission
+                      Instant Scorecard Submission
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
                       Once a decision has been made, instantly submit them to the RecordKeeper for scorecard calculation and archival.

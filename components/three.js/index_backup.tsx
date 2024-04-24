@@ -170,7 +170,7 @@ export function HomeReact3FiberViewer() {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPhone_texture_6, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
   );
 
   return (
@@ -190,7 +190,7 @@ export function HomeReact3FiberViewer() {
           {/* <primitive object={iPhone.scene} /> */}
           {/* <IPhoneModel /> */}
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -344,7 +344,7 @@ export default function ThreeJSViewer() {
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPhone_texture_6, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, iPad?.scene, textures.iPhone_texture_1, textures.iPhone_texture_2, textures.iPhone_texture_3, textures.iPhone_texture_4, textures.iPhone_texture_5, textures.iPad_texture_1, textures.iPad_texture_2, textures.iPad_texture_3, textures.iPad_texture_4, textures.iPad_texture_5], revertOnUpdate: true }
   );
 
   return (
@@ -364,7 +364,7 @@ export default function ThreeJSViewer() {
           {/* <primitive object={iPhone.scene} /> */}
           {/* <IPhoneModel /> */}
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} />
           )}
 
@@ -496,7 +496,7 @@ export const HomeIntroR3F: React.FC = () => {
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -637,7 +637,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -755,7 +755,7 @@ export const TestR3F: React.FC = () => {
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {/* {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {/* {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
             <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )} */}
 
@@ -843,7 +843,7 @@ export const CustomCamera: React.FC = () => {
 
 
 // iPhone Model component
-export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; iPhone_texture_6: any; newiPhoneTextureName: any}; innerRef?: React.Ref<Mesh>; }> = ({ iPhone, textures, innerRef }) => {
+export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: any; iPhone_texture_2: any; iPhone_texture_3: any; iPhone_texture_4: any; iPhone_texture_5: any; newiPhoneTextureName: any}; innerRef?: React.Ref<Mesh>; }> = ({ iPhone, textures, innerRef }) => {
   const { iPhoneTextureName } = useContext(IPhoneTextureContext);
   const { iPhoneOpacity } = useContext(IPhoneOpacityContext);
   // Ref to track if the GUI setup has been done
@@ -904,7 +904,7 @@ export const IPhoneModel: React.FC<{ iPhone: any; textures: { iPhone_texture_1: 
     });
 
     // Change iPhone texture function
-    type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5' | 'iPhone_texture_6';
+    type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5';
 
     const changeiPhoneTexture = (newiPhoneTextureName: TextureName) => {
       //let iPhoneScreenMaterial: any;

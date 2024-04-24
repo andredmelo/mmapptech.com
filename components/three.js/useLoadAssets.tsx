@@ -14,7 +14,6 @@ type LoadAssetsReturnType = {
     iPhone_texture_3: Texture | null,
     iPhone_texture_4: Texture | null,
     iPhone_texture_5: Texture | null,
-    iPhone_texture_6: Texture | null,
     newiPhoneTextureName: Texture | null,
     iPad_texture_1: Texture | null,
     iPad_texture_2: Texture | null,
@@ -43,7 +42,6 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPhone_texture_3: Texture | null,
     iPhone_texture_4: Texture | null,
     iPhone_texture_5: Texture | null,
-    iPhone_texture_6: Texture | null,
     newiPhoneTextureName: Texture | null,
     iPad_texture_1: Texture | null,
     iPad_texture_2: Texture | null,
@@ -64,7 +62,6 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPhone_texture_3: null,
     iPhone_texture_4: null,
     iPhone_texture_5: null,
-    iPhone_texture_6: null,
     newiPhoneTextureName: null,
     iPad_texture_1: null,
     iPad_texture_2: null,
@@ -98,7 +95,6 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
       const iPhoneTexture4 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-4.webp");
       const iPhoneTexture5 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-5.webp");
-      const iPhoneTexture6 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-6.webp");
       const iPadTexture1 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp");
       const iPadTexture2 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp");
       const iPadTexture3 = await textureLoader.loadAsync("/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp");
@@ -109,6 +105,46 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const macBookProTexture3 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-3.webp");
       const macBookProTexture4 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-4.webp");
       const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp");
+
+      const iPhoneVideoSources = [
+        "/videos/features/officialsJudge/featuresOfficialsJudge-1.mp4",
+        "/videos/features/officialsJudge/featuresOfficialsJudge-2.mp4",
+        "/videos/features/officialsJudge/featuresOfficialsJudge-3.mp4",
+        "/videos/features/officialsJudge/featuresOfficialsJudge-4.mp4",
+        "/videos/features/officialsJudge/featuresOfficialsJudge-5.mp4"
+      ];
+      // Map over the sources to create video textures
+      const iPhoneVideoTextures = await Promise.all(iPhoneVideoSources.map(async (src) => {
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        //video.playsInline = true; // This doesn't seem to work
+        video.setAttribute("playsinline", ""); // This is the magic attribute that makes them play on mobile browsers !!!
+        //video.pause();
+        await video.play(); // Consider autoplay policies in modern browsers
+        return new VideoTexture(video);
+      }));
+
+      const iPadVideoSources = [
+        "/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.mp4",
+        "/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.mp4",
+        "/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.mp4",
+        "/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.mp4",
+        "/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.mp4"
+      ];
+      // Map over the sources to create video textures
+      const iPadVideoTextures = await Promise.all(iPadVideoSources.map(async (src) => {
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        //video.playsInline = true; // This doesn't seem to work
+        video.setAttribute("playsinline", ""); // This is the magic attribute that makes them play on mobile browsers !!!
+        //video.pause();
+        await video.play(); // Consider autoplay policies in modern browsers
+        return new VideoTexture(video);
+      }));
 
       // Define your video sources
       const macBookProVideoSources = [
@@ -126,6 +162,18 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         "/images/features/federationsDashboard/featuresFederationsDashboard-4.webp",
         "/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
       ];
+      // Map over the sources to create video textures
+      const macBookProVideoTextures = await Promise.all(macBookProVideoSources.map(async (src) => {
+        const video = document.createElement('video');
+        video.src = src;
+        video.loop = true;
+        video.muted = true;
+        //video.playsInline = true; // This doesn't seem to work
+        video.setAttribute("playsinline", ""); // This is the magic attribute that makes them play on mobile browsers !!!
+        //video.pause();
+        await video.play(); // Consider autoplay policies in modern browsers
+        return new VideoTexture(video);
+      }));
       /* const macBookProVideoTextures = await Promise.all(macBookProVideoSources.map(async (src, index) => {
         const video = document.createElement('video');
         video.src = src;
@@ -171,43 +219,44 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
 
         return videoTexturePromise;
       })); */
-      // Map over the sources to create video textures
-      const macBookProVideoTextures = await Promise.all(macBookProVideoSources.map(async (src) => {
-        const video = document.createElement('video');
-        video.src = src;
-        video.loop = true;
-        video.muted = true;
-        //video.playsInline = true; // This doesn't seem to work
-        video.setAttribute("playsinline", ""); // This is the magic attribute that makes them play on mobile browsers !!!
-        //video.pause();
-        await video.play(); // Consider autoplay policies in modern browsers
-        return new VideoTexture(video);
-      }));
 
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
       setMacBookPro(macBookProModel);
       setCage(cageModel);
       setTextures({
-        iPhone_texture_1: iPhoneTexture1,
+        // Image textures
+        /* iPhone_texture_1: iPhoneTexture1,
         iPhone_texture_2: iPhoneTexture2,
         iPhone_texture_3: iPhoneTexture3,
         iPhone_texture_4: iPhoneTexture4,
         iPhone_texture_5: iPhoneTexture5,
-        iPhone_texture_6: iPhoneTexture6,
-        newiPhoneTextureName: iPhoneTexture1,
-        iPad_texture_1: iPadTexture1,
+        newiPhoneTextureName: iPhoneTexture1, */
+        /* iPad_texture_1: iPadTexture1,
         iPad_texture_2: iPadTexture2,
         iPad_texture_3: iPadTexture3,
         iPad_texture_4: iPadTexture4,
         iPad_texture_5: iPadTexture5,
-        newiPadTextureName: iPadTexture1,
+        newiPadTextureName: iPadTexture1, */
         /* macBookPro_texture_1: macBookProTexture1,
         macBookPro_texture_2: macBookProTexture2,
         macBookPro_texture_3: macBookProTexture3,
         macBookPro_texture_4: macBookProTexture4,
         macBookPro_texture_5: macBookProTexture5,
         newMacBookProTextureName: macBookProTexture1, */
+        // Video textures
+        iPhone_texture_1: iPhoneVideoTextures[0],// Use the video textures for your models
+        iPhone_texture_2: iPhoneVideoTextures[1],
+        iPhone_texture_3: iPhoneVideoTextures[2],
+        iPhone_texture_4: iPhoneVideoTextures[3],
+        iPhone_texture_5: iPhoneVideoTextures[4],
+        newiPhoneTextureName: iPhoneVideoTextures[0],
+        iPad_texture_1: iPadVideoTextures[0],// Use the video textures for your models
+        iPad_texture_2: iPadVideoTextures[1],
+        iPad_texture_3: iPadVideoTextures[2],
+        iPad_texture_4: iPadVideoTextures[3],
+        iPad_texture_5: iPadVideoTextures[4],
+        newiPadTextureName: iPadVideoTextures[0],
         macBookPro_texture_1: macBookProVideoTextures[0],// Use the video textures for your models
         macBookPro_texture_2: macBookProVideoTextures[1],
         macBookPro_texture_3: macBookProVideoTextures[2],

@@ -90,7 +90,6 @@ export const IPhoneModel: React.FC<{
     iPhone_texture_3: any;
     iPhone_texture_4: any;
     iPhone_texture_5: any;
-    iPhone_texture_6: any;
     newiPhoneTextureName: any
   };
   innerRef?: React.Ref<Mesh>;
@@ -156,7 +155,7 @@ export const IPhoneModel: React.FC<{
     });
 
     // Change iPhone texture function
-    type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5' | 'iPhone_texture_6';
+    type TextureName = 'iPhone_texture_1' | 'iPhone_texture_2' | 'iPhone_texture_3' | 'iPhone_texture_4' | 'iPhone_texture_5';
 
     const changeiPhoneTexture = (newiPhoneTextureName: TextureName) => {
       //let iPhoneScreenMaterial: any;

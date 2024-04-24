@@ -302,7 +302,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -931,7 +931,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
             <MacBookProModel macBookPro={macBookPro} textures={textures} innerRef={macBookProRef}/>
           )}
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -1047,7 +1047,7 @@ export const HomeIntroR3F: React.FC = () => {
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
           <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )}
 
@@ -1169,7 +1169,7 @@ export const TestR3F: React.FC = () => {
           <pointLight position={[2, 3, 4]} />
           <directionalLight position={[2, 1, 1]}/>
 
-          {/* {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && textures.iPhone_texture_6 && (
+          {/* {iPhone && textures.iPhone_texture_1 && textures.iPhone_texture_2 && textures.iPhone_texture_3 && textures.iPhone_texture_4 && textures.iPhone_texture_5 && (
             <IPhoneModel iPhone={iPhone} textures={textures} innerRef={iPhoneRef}/>
           )} */}
 
