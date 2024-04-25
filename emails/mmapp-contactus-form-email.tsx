@@ -11,7 +11,7 @@ export default function MMAPPContactFormEmail(props: any) {
 
   const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'https://mmapp-beta.vercel.app';
+  : '';
 
   return (
     <Html lang="en">
@@ -44,7 +44,7 @@ export default function MMAPPContactFormEmail(props: any) {
             //src={`https://mmapp-beta.vercel.app/images/logos/mmapp/logo_lg.webp`}
             width="200"
             height="41"
-            alt="MMAPP"
+            alt="MMAPP Logo"
             className="mx-auto my-20"
           />
           <Container className="bg-white">
