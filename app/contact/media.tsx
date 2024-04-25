@@ -47,10 +47,10 @@ export default function Media() {
     <CardContactUs>
       <CardContactUsHeader>
         <CardContactUsTitle>Media Inquiries</CardContactUsTitle>
-        <CardContactUsDescription>
+        {/* <CardContactUsDescription>
           Inquire about media questions.<br/>
           Any information solicited will be used solely to provide requester with the information they have requested.
-        </CardContactUsDescription>
+        </CardContactUsDescription> */}
       </CardContactUsHeader>
       <CardContactUsContent className='h-full'>
         <div className='h-full rounded-lg bg-emerald-100'>

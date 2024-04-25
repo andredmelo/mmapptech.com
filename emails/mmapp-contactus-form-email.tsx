@@ -11,7 +11,7 @@ export default function MMAPPContactFormEmail(props: any) {
 
   const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : "https://mmapp-beta.vercel.app/";
+  : '/static';
 
   return (
     <Html lang="en">
