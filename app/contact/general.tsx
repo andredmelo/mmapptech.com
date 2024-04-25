@@ -143,7 +143,6 @@ export default function General() {
                 id="form-subscribe"
                 defaultChecked
                 {...register('subscribe')}
-                className=" border-2 border-green-600"
               />
               <label htmlFor="form-subscribe">Yes, I would like to subscribe to updates, promotions, and news from MMAPP.</label>
             </div>

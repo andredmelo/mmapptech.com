@@ -60,7 +60,7 @@ export default function Partnership() {
             className="container rounded-[1rem]"
           >
             <input type="hidden" {...register('kind', { value: 'Partnership Inquiries' })} />
-            <div className="email flex flex-col">
+            <div className="name flex flex-col">
               <label htmlFor="form-name">Name</label>
               <input
                 className="w-full"
@@ -117,6 +117,15 @@ export default function Partnership() {
               {errors.message?.message && (
                 <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
               )}
+            </div>
+            <div className="subscribe inline-block items-end space-x-3 mb-2">
+              <input
+                type="checkbox"
+                id="form-subscribe"
+                defaultChecked
+                {...register('subscribe')}
+              />
+              <label htmlFor="form-subscribe">Yes, I would like to subscribe to updates, promotions, and news from MMAPP.</label>
             </div>
             <div className="flex flex-col items-center">
               {/* <button
