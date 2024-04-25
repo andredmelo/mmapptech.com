@@ -35,7 +35,7 @@ export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data)
 
   if (result.success) {
-    const { kind, name, email, message } = result.data
+    const { kind, name, email, message, subscribe } = result.data
     try {
       const emailHtml = await renderAsync(MMAPPContactFormEmail(result.data));
       //console.log("result.data are "+kind+name+email+message)

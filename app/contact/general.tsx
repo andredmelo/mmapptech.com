@@ -66,10 +66,10 @@ export default function General() {
     <CardContactUs>
       <CardContactUsHeader>
         <CardContactUsTitle>General Inquiries</CardContactUsTitle>
-        <CardContactUsDescription>
+        {/* <CardContactUsDescription>
           Inquire about general questions.<br/>
           Any information solicited will be used solely to provide requester with the information they have requested.
-        </CardContactUsDescription>
+        </CardContactUsDescription> */}
       </CardContactUsHeader>
       <CardContactUsContent className='h-full'>
         <div className='h-full rounded-lg bg-emerald-100'>
@@ -79,7 +79,7 @@ export default function General() {
             className="container rounded-[1rem]"
           >
             <input type="hidden" {...register('kind', { value: 'General Inquiries' })} />
-            <div className="email flex flex-col">
+            <div className="name flex flex-col">
               <label htmlFor="form-name">Name</label>
               <input
                 className="w-full"
@@ -136,6 +136,16 @@ export default function General() {
               {errors.message?.message && (
                 <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
               )}
+            </div>
+            <div className="subscribe inline-block items-end space-x-3 mb-2">
+              <input
+                type="checkbox"
+                id="form-subscribe"
+                defaultChecked
+                {...register('subscribe')}
+                className=" border-2 border-green-600"
+              />
+              <label htmlFor="form-subscribe">Yes, I would like to subscribe to updates, promotions, and news from MMAPP.</label>
             </div>
             <div className="flex flex-col items-center">
               {/* <button

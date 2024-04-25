@@ -643,8 +643,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       });
 
 
-
-      // RecordKeeper Tablet animations
+      // Dashboard animation
       let productdashboardAnimFinish = isPortrait ? (isUnder768 ? '40%' : '30%') : '60%';
       const dashboardAnim = gsap.timeline({
         paused:true,
@@ -661,6 +660,80 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             yPercent: 20,
             ease: "power2.out"
           })
+
+
+      // Dashboard (Members) animation
+
+      matchMedia.add("(orientation: landscape)", () => {
+        gsap.set(".productDashboardMembersTitles", { xPercent: -125});
+        const productDashboardMembersAnim = gsap.timeline({
+          paused:true,
+          scrollTrigger: {
+            trigger: '.dashboardMembersWrapper',
+            start: 'top bottom',
+            end: 'top 30%',
+            scrub: 1,
+            once:true,
+            onLeave: () => {
+              gsap.fromTo(".productDashboardMembersTitles",
+                { xPercent: -125},
+                { xPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+              )
+            },
+            //markers: true,
+          },
+        })
+          .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+      });
+
+
+      matchMedia.add("(orientation: portrait)", () => {
+        matchMedia.add("(min-width: 768px)", () => {
+          gsap.set(".productDashboardMembersTitlesBox", { yPercent: -300})
+          const productDashboardMembersAnim = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: '.dashboardMembersWrapper',
+              start: 'top bottom',
+              end: 'top 20%',
+              scrub: 1,
+              once:true,
+              onLeave: () => {
+                gsap.fromTo(".productDashboardMembersTitlesBox",
+                  { yPercent: -300},
+                  { yPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+                )
+              },
+              //markers: true,
+            },
+          })
+            .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+        });
+      });
+
+      matchMedia.add("(orientation: portrait)", () => {
+        matchMedia.add("(max-width: 767px)", () => {
+          gsap.set(".productDashboardMembersTitlesBox", { yPercent: -200});
+          const productDashboardMembersAnim = gsap.timeline({
+            paused:true,
+            scrollTrigger: {
+              trigger: '.dashboardMembersWrapper',
+              start: 'top bottom',
+              end: 'top 50%',
+              scrub: 1,
+              once:true,
+              onLeave: () => {
+                gsap.fromTo(".productDashboardMembersTitlesBox",
+                  { yPercent: -200},
+                  { yPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+                )
+              },
+              //markers: true,
+            },
+          })
+            .from('.dashboardMembersWrapper', { yPercent: 50, ease: "power2.out" })
+        });
+      });
 
     /* GSDevTools.create(); */
     },
@@ -1271,7 +1344,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           )}
         >
           <div className={clsx(
-            "basis-[55%] flex landscape:items-left portrait:items-start justify-center relative z-10",
+            "dashboardMembersWrapper basis-[55%] flex landscape:items-left portrait:items-start justify-center relative z-10",
             "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[100%] h-full max-h-[100%]",
             "px-0 md:px-[0vw] pb-0 md:pb-0",
             )}
@@ -1310,37 +1383,45 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             </div>
           </div>
 
+          {/* Dashboard (Members) Titles Backup */}
+          {/* <div className="productDashboardMembersTitlesWrapper w-fit h-fit overflow-hidden border-blue-500">
+            <div className={clsx(
+              "productDashboardMembersTitlesBox basis-[45%] relative flex flex-col justify-start items-left",
+              "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[45vw] portrait:md:max-h-[40vw]",
+              "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw] border-2 border-red-500",
+              )}
+            >
+              <ProductDashboardMembersTitles
+                className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:min-h-[15vw] portrait:md:min-h-[11vw] mx-1 md:mx-0 group border-2 border-green-500"
+                productDashboardMembersItems={productDashboardMembersItems}
+              />
+            </div>
+          </div> */}
+
           {/* Dashboard (Members) Titles */}
           <div className={clsx(
-            "basis-[45%] relative flex flex-col justify-start items-left",
-            "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[45vw] portrait:md:max-h-[40vw] overflow-hidden",
-            "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw]",
+            "productDashboardMembersTitlesWrapper basis-[45%] relative flex flex-col justify-start items-left overflow-hidden",
+            "w-full h-full",
+            "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw]", // border-2 border-green-500
             )}
           >
-            <ProductDashboardMembersTitles
-              className="productDashboardMembersTitles flex items-center justify-center min-h-[20%] portrait:min-h-[15vw] portrait:md:min-h-[11vw] mx-1 md:mx-0 group"
-              productDashboardMembersItems={productDashboardMembersItems}
-            />
-
-            {/* <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (ALL) Quick sign-up process
-            </h4>
-            <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (ALL) Intuitive Profile Management
-            </h4>
-            <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (Clubs/Coaches) Multi-user management (Clubs/Coaches can manage multiple athlete profiles)
-            </h4>
-            <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (ALL) View Membership standing (Documents in order, information updated, etc.)
-            </h4>
-            <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (ALL) Receive reminders for document expiration
-            </h4>
-            <h4 className={clsx("text-lg md:text-[1.25vw] leading-[2vw] tracking-normal px-[2vw] text-left text-transparent bg-clip-text bg-gradient-to-r from-[var(--purple-300)] to-purple-100")}>
-            (Athletes/Coaches)View Eligilibillity status
-            </h4> */}
+            <div className={clsx(
+              "productDashboardMembersTitlesBox",
+              "w-full h-full max-h-[40vw] md:max-h-[27vw] portrait:max-h-[70vw] portrait:md:max-h-[45vw]",
+              "portrait:pt-2 portrait:md:pt-4", // border-2 border-yellow-300
+              )}
+            >
+              <ProductDashboardMembersTitles
+                className={clsx(
+                  "productDashboardMembersTitles flex items-center justify-center",
+                  "min-h-[6vw] max-h-[6vw] portrait:min-h-[12vw] portrait:max-h-[12vw] portrait:md:min-h-[10vw] portrait:md:max-h-[10vw]",
+                  "group"
+                )} // border-2 border-red-500
+                productDashboardMembersItems={productDashboardMembersItems}
+              />
+            </div>
           </div>
+
         </div>
         <CallToActionButton className="mmappBlockReveal mt-[5vw]" />
       </section>

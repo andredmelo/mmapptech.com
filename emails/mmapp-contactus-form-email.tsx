@@ -3,7 +3,7 @@ import { Html, Head, Heading, Text, Container, Section, Preview, Body, Row, Img}
 import { Tailwind } from "@react-email/tailwind";
 
 export default function MMAPPContactFormEmail(props: any) {
-  const { kind, name, email, message } = props;
+  const { kind, name, email, message, subscribe } = props;
 
   /* const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,6 +24,10 @@ export default function MMAPPContactFormEmail(props: any) {
               colors: {
                 brand: "#2250f4",
                 offwhite: "#fafbfb",
+                primaryFuchsia: "#800080",
+                primaryFuchsiaDark1: "#660066",
+                primaryFuchsiaDark2: "#570057",
+                primaryFuchsiaDark3: "#4d004d",
               },
               spacing: {
                 0: "0px",
@@ -42,29 +46,41 @@ export default function MMAPPContactFormEmail(props: any) {
             alt="MMAPP"
             className="mx-auto my-20"
           />
-          <Container className="bg-white p-30">
-            <Heading className="text-center mb-2 leading-6">
+          <Container className="bg-white">
+            <Heading className="mt-4 text-center leading-8">
               {kind}<br/>
-              Contact form submission
+              <span className="text-primaryFuchsia">Contact form submission</span>
             </Heading>
-            <Section>
-                <Row>
-                  <Text className="text-base">
-                    Hello Pedro, here below is the latest {kind} contact form submission from the MMAPP website.
-                  </Text>
-                </Row>
-              </Section>
-            <Heading as="h2" className="text-left">
-              From: {name}
+            {/* <Section>
+              <Row>
+                <Text className="text-base">
+                  Hello Pedro, here below is the latest {kind} contact form submission.
+                </Text>
+              </Row>
+            </Section> */}
+            <Heading as="h3" className="text-left mt-16">
+              <span className="text-primaryFuchsia">From:</span> {name}
             </Heading>
-            <Heading as="h2" className="text-left">
-              @: <a href={`mailto:${email}`}>{email}</a>
+            <Heading as="h3" className="text-left">
+              <span className="text-primaryFuchsia">@:</span> <a href={`mailto:${email}`}>{email}</a>
             </Heading>
-            <Heading as="h3" className="text-left">Message:</Heading>
-            <Text>{message}</Text>
+            {subscribe && (
+              <Heading as="h4" className="text-left">
+                <span className="text-primaryFuchsia">Subscribed:</span> Yes
+              </Heading>
+            )}
+            {!subscribe && (
+              <Heading as="h4" className="text-left">
+                <span className="text-primaryFuchsia">Subscribed:</span> No
+              </Heading>
+            )}
+            <Heading as="h4" className="text-left text-primaryFuchsia mt-12">
+              Message:<br/>
+              <Text className="font-medium text-black">{message}</Text>
+            </Heading>
           </Container>
-          <Container className="mt-15">
-              <Text className="text-center text-gray-400 mb-45">
+          <Container className="mt-12 mb-0">
+              <Text className="text-center text-neutral-400">
                 MMAPP, Avenida da República, 861, Bloco D, 3º Dto., Parede, Lisbon 2775-274
               </Text>
             </Container>
