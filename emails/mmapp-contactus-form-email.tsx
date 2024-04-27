@@ -25,9 +25,9 @@ export default function MMAPPContactFormEmail(props: any) {
                 brand: "#2250f4",
                 offwhite: "#fafbfb",
                 primaryFuchsia: "#800080",
-                primaryFuchsiaDark1: "#660066",
-                primaryFuchsiaDark2: "#570057",
-                primaryFuchsiaDark3: "#4d004d",
+                //primaryFuchsiaDark1: "#660066",
+                //primaryFuchsiaDark2: "#570057",
+                //primaryFuchsiaDark3: "#4d004d",
               },
               spacing: {
                 0: "0px",

@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.3 | Contact Us forms adjustments and baseUrl set.";
+let vNumber = "v0.2-β.5 | Features Judge and RecordKeeper videos and Product Methodology image updates.";
