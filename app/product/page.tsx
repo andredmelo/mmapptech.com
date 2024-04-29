@@ -725,7 +725,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               onLeave: () => {
                 gsap.fromTo(".productDashboardMembersTitlesBox",
                   { yPercent: -200},
-                  { yPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+                  { yPercent: 0, duration: 0.75, stagger: 0.125, ease: "power1.out"}
                 )
               },
               //markers: true,
@@ -754,11 +754,11 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <div className="productPage">
 
         <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
-          <ProductFC className="px-[5vw] pb-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown">
+          <ProductFC className="px-[5vw] pb-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown overflow-hidden">
             <ProductFCTitle className="mmappBlockReveal pt-[15vw] md:pt-[3vw]">
               MMAPP Methodology
             </ProductFCTitle>
-            <ProductFCHeading className="mmappHeadingReveal mx-[5vw]">
+            <ProductFCHeading className="mmappHeadingReveal mx-[2vw]">
               A consistent and standardised unit of measurement for officiating MMA
             </ProductFCHeading>
             {/* <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
@@ -768,28 +768,35 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
             </ProductFCDescription> */}
             <ProductFCDescription className={clsx(
-              "justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]",
+              "justify-start pr-[0vw] md:pr-[11vw] lg:pr-[22vw] text-left mb-6 md:mb-[2vw]",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
             </ProductFCDescription>
             <ProductFCDescription className={clsx(
-              "justify-start pr-[0vw] md:pr-[26vw] text-left mb-6 md:mb-[2vw]",
+              "justify-start pr-[0vw] md:pr-[23vw] lg:pr-[26vw] text-left mb-6 md:mb-[2vw]",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
               This allows officials to make more informed decisions for longer.
             </ProductFCDescription>
             <ProductFCDescription className={clsx(
-              "justify-start pr-[40vw] md:pr-[39vw] portrait:md:pr-[46vw] text-left mb-[9rem] md:mb-[2vw]",
+              "justify-start pr-[30vw] md:pr-[39.5vw] portrait:md:pr-[40vw] text-left",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
-              By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
+              By creating a standardised unit of measurement, we are able to get officials on the same page
             </ProductFCDescription>
-            <p className="text-lg md:text-xl hover:text-white text-neutral-200 text-left md:text-center pl-[2vw] md:pl-0 pt-[3vw] justify-center bounce-arrow">
+            <ProductFCDescription className={clsx(
+              "justify-start pr-[36vw] md:pr-[45vw] portrait:md:pr-[49.5vw] text-left mb-[9rem] md:mb-[2vw]",
+              isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
+            )}>
+              and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
+            </ProductFCDescription>
+            <p className="z-15 text-lg md:text-xl text-white text-left md:text-center pl-[2vw] md:pl-0 pt-[2vw] justify-center bounce-arrow">
             ↓
             </p>
-            <img className="z-10 max-h-full max-w-[45vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] xl:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/>
+            <img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/>
+            {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
           </ProductFC>
         </section>

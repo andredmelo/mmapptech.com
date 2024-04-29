@@ -110,6 +110,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('tailwindcss-3d'),
     /* require('@tailwindcss/forms'), */
     plugin(function({ addBase }) {
      addBase({

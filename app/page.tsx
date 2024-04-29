@@ -9,6 +9,9 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
+import { SplitText } from 'gsap/SplitText';
+import CustomEase from 'gsap/CustomEase';
+import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import ContactUs from '@/app/contact/contact-us'
@@ -32,7 +35,7 @@ import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
-gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin);
+gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, SplitText, CustomEase, ScrambleTextPlugin);
 
 export default function Home() {
 
@@ -732,18 +735,47 @@ export default function Home() {
       gsap.set(heroFighterRight, {autoAlpha: 0});
       gsap.set(heroFighterLeft, {autoAlpha: 0});
       gsap.set(heroMMAPPHeader, {xPercent: -50, left: "50%", top: heroMMAPPHeaderTop});
-      //gsap.set(heroMMAPPText, {autoAlpha: 0, xPercent: -50, left: "50%", bottom: heroMMAPPTextBottom});
+      //gsap.set(heroMMAPPText, {transformPerspective:800, transformStyle:"preserve-3d"});
       gsap.set(heroMMAPPiPhone, {autoAlpha: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
       gsap.set(heroMMAPPiPhone2, {opacity: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
 
       const HeroIntroBGReveal = gsap.timeline({paused:false})
         .fromTo(heroVeil, {autoAlpha: 1}, {autoAlpha: 0})
 
+      let split = new SplitText(heroMMAPPText,
+        { types: 'chars',
+          charsClass: "bg-white/70 border-[1.5px] border-[var(--primary-fuchsia)] py-2 px-2 md:px-4 min-w-12 md:min-w-24 rounded-b-sm",
+          wordsClass: "perspective-750",
+          // linesClass: "perspective-750",
+        });
+      const MappingMMARevealAnim = gsap.timeline({
+        paused:true,
+      })
+        .fromTo(split.chars,
+          {autoAlpha:0, rotationX:-90, transformOrigin:"top"},
+          {
+            autoAlpha:1,
+            rotationX:0,
+            scrambleText: {
+              text: "{original}", 
+              chars: "0123456789", 
+              revealDelay: 0.5, 
+              speed: 0.3, 
+              newClass: "myClass"
+            },
+            stagger:{each:0.25, ease:"power1.out"},
+            duration: 3,
+            //ease: "bounce.out",
+            ease: CustomEase.create("custom", "M0,0 C0.051,0 0.106,0.334 0.136,0.5 0.166,0.669 0.192,0.963 0.2,1 0.208,0.985 0.28,0.289 0.354,0.3 0.468,0.316 0.491,0.983 0.5,1 0.518,0.974 0.594,0.562 0.638,0.599 0.713,0.662 0.729,0.934 0.763,1.005 0.799,0.93 0.817,0.769 0.846,0.818 0.875,0.867 0.897,0.985 0.911,0.998 0.922,0.994 0.938,0.973 0.953,0.973 0.968,0.973 1,1 1,1 "),
+            // ease: CustomEase.create("custom", "M0,0 C0,0 0.015,0.156 0.021,0.226 0.033,0.373 0.054,0.719 0.065,0.867 0.07,0.941 0.109,1.488 0.113,1.533 0.191,2.451 0.256,0.554 0.26,0.482 0.276,0.163 0.327,0.106 0.346,0.4 0.35,0.467 0.4,1.573 0.443,1.573 0.485,1.573 0.527,0.535 0.577,0.535 0.627,0.535 0.63,1.37 0.668,1.371 0.704,1.371 0.707,0.722 0.755,0.723 0.781,0.723 0.789,1.184 0.816,1.2 0.838,1.213 0.856,0.833 0.88,0.833 0.913,0.833 0.891,1.104 0.922,1.104 0.95,1.104 0.945,0.915 0.964,0.948 0.98,1 1,1 1,1 "),
+          }
+        )
 
       let hasHeroIntroStageRan = false;
       const HeroIntroStage = gsap.timeline({
         paused:true,
         onComplete: () => {
+          MappingMMARevealAnim?.play();
           hasHeroIntroStageRan = true;
         },
         defaults: {delay: 3},
@@ -754,7 +786,7 @@ export default function Home() {
         .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.75)
         .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.8)
         .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out"}, 1.25)
-        .fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
+        //.fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
         .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
         .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
 
@@ -789,6 +821,13 @@ export default function Home() {
     }
   }
 
+  let heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
+  if (isLandscape) {
+    heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
+  } else {
+    heroLogo = "/images/logos/mmapp/white_logo_on_black80perc.svg";
+  }
+
   return (
     <>
       <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
@@ -796,6 +835,7 @@ export default function Home() {
       <MmappHeadingReveal />
       <MmappParagraphsReveal />
       <MmappParagraphsRevealRight />
+      {/* <MappingMMAReveal /> */}
       {/* <MainAnimations /> */}
       {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
         <h4 id="topOverlayh4" className="text-white">orientation = {isPortrait}</h4>
@@ -832,14 +872,14 @@ export default function Home() {
             <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
             <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
-              <img id="heroMMAPPLogo" src="/images/logos/mmapp/logo_on_black_letters_outline.svg" alt="MMAPP Logo" className="relative"/>
-              <h4 id="heroMMAPPText" className="relative pt-0 portrait:pt-[1%] text-[3.5rem] md:text-[7rem] lg:text-[4vw] portrait:md:text-[8vw] 2xl:text-[4vw] 3xl:text-[4vw] text-center text-white font-bold deboss">
-                Mapping MMA
+              <img id="heroMMAPPLogo" src={heroLogo} alt="MMAPP Logo" className="relative"/>
+              <h4 id="heroMMAPPText" className="relative pt-0 text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw] text-center text-black font-extrabold deboss">
+                MAPPING  MMA
               </h4>
             </div>
             <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
-            <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
-            <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
+            <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/>
+            <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/>
             <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
@@ -856,7 +896,7 @@ export default function Home() {
               What We Do
             </MainFCTitle>
             <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[0%]">
-              All-in-one effortless digital transition solution for MMA Federations, helping elevate MMA to its highest level
+              We offer MMA Federations an All-In-One Solution to transition to the Digital Age
             </MainFCHeading>
             {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
@@ -1171,7 +1211,7 @@ export default function Home() {
                       Personalized Fight Card
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      Even with last-minute changes, have your upcoming roles and fight rules at your fingertips.
+                      Even with last-minute changes, officials have their upcoming roles and fight rules at their fingertips.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresJudgeImage"
@@ -1187,7 +1227,7 @@ export default function Home() {
                       Informed Decisions, for longer
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      With an analysis of their own evaluation of the fight provided immediately after each round, officials are able to make better decisions, with less pressure, and support for their scoring.
+                      With an analysis of their own evaluation of the fight provided immediately after each round, officials are able to make better decisions, with less pressure, and provide support for their scoring.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresJudgeImage"
@@ -1219,7 +1259,7 @@ export default function Home() {
                       Instant Scorecard Submission
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      Once a decision has been made, instantly submit them to the RecordKeeper for scorecard calculation and archival.
+                      Once a decision has been made, officials can instantly submit their scores to the RecordKeeper for scorecard calculation and archival.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresJudgeImage"
@@ -1235,7 +1275,7 @@ export default function Home() {
                       Training Mode
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      Create your Own Fights, Improve your skills and share fight assessments with your colleagues.
+                    Training mode offers officials the ability to create their own Fights, Improve their skills and share fight assessments with their colleagues.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresJudgeImage"
