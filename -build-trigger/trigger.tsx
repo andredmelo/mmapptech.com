@@ -1,1 +1,2 @@
-let vNumber = "v0.2-β.5 | Features Judge and RecordKeeper videos and Product Methodology image updates.";
+let vNumber = "v0.2-β.6 | New mobile image on Hero. Removal of Home > FAQs/Support. Tweaks to Benefits.";
+

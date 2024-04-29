@@ -837,11 +837,11 @@ export default function Home() {
                 Mapping MMA
               </h4>
             </div>
-            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
+            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
             <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[70svh]"/>
             <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[70svh]"/>
             <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
-            <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/features/iphone-12-black.png" alt="iphone-12"/> {/* // h-[40svh] */}
+            <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
           {/* <HomeIntroR3F /> */}
           {/* <HomeiPhoneIntroR3F /> */}
@@ -853,14 +853,14 @@ export default function Home() {
         <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainFC className="bg-bgRadialGradientDown">
             <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
-              Small Mission
+              What We Do
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[5%] lg:px-[8%]">
-              Accelerate the Recognition of MMA as an Olympic Sport
+            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[0%]">
+              All-in-one effortless digital transition solution for MMA Federations, helping elevate MMA to its highest level
             </MainFCHeading>
-            <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
+            {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
-            </MainFCDescription>
+            </MainFCDescription> */}
             <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
               <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
                 <div>
@@ -946,7 +946,7 @@ export default function Home() {
           {/* // Dashboard */}
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
@@ -1002,7 +1002,7 @@ export default function Home() {
                       Easy Form Management and Sign-up process for all your members
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      Registering is as simple as filling out a form online, and managing them is even easier..
+                      Registering is as simple as filling out a form online, and managing them is even easier.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresDashboardImage"
@@ -1146,7 +1146,7 @@ export default function Home() {
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-right">
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
@@ -1252,7 +1252,7 @@ export default function Home() {
           {/* // RecordKeeper */}
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
             <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
@@ -1292,7 +1292,7 @@ export default function Home() {
                       Effortlessly record all relevant details
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      From reason for breaks or point deduction to submission types, everything is recorded, with no extra effort..
+                      From reason for breaks or point deduction to submission types, everything is recorded, with no extra effort.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresRecordKeeperImage"
@@ -1369,11 +1369,11 @@ export default function Home() {
         <div className="borderBottom featuresRecordKeeperBottom"></div>
 
         <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
-          <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12">
+          <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12 mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] 3xl:min-w-[1536px] 3xl:mx-auto">
             <h5 className="mmappBlockReveal mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[85%]">
+            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[90%]">
             Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
             </h3>
             <p className="mmappBlockReveal text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">
@@ -1387,7 +1387,7 @@ export default function Home() {
 
         <div className="borderBottom"></div>
 
-        <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
+        {/* <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
           <h5 className="mmappBlockReveal mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
             FAQs/Support
           </h5>
@@ -1397,7 +1397,7 @@ export default function Home() {
           <FAQ className="mmappBlockReveal" />
         </section>
 
-        <div className="borderBottom"></div>
+        <div className="borderBottom"></div> */}
 
 
         <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">

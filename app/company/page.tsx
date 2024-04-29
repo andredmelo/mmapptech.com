@@ -77,23 +77,6 @@ const Company = (props: any) => {
       <div className="companyPage">
 
         <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-12 lg:mb-16">
-          {/* <div className={clsx("w-full h-[82vh] flex flex-col md:flex-row relative",
-          "hero1ContainerMargins min-h-[55rem] md:min-h-[70rem] lg:min-h-[68rem] max-h-[58rem] md:max-h-[83rem] lg:max-h-[83rem] rounded-b-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown")}>
-            <div className="flex flex-col justify-top z-20 max-w-[30rem] md:max-w-[50rem] lg:max-w-[60rem] hero1ContentMargins text-left">
-              <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
-                Our Mission
-              </h5>
-              <h3 className="mb-8 md:mb-12 lg:mb-16 py-8 text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-250)] to-purple-100">
-                Accelerate the Recognition of MMA as an Olympic Sport
-              </h3>
-              <div className="">
-                <h6 className="h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] md:w-[42rem] lg:w-[51rem]">
-                In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness in MMA judging by offering tools for officials to discuss their assessments more profoundly and amplify their judging abilities.
-                </h6>
-              </div>
-            </div>
-            <img className="z-10 max-h-full max-w-[60vw] md:max-w-[45vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/>
-          </div> */}
 
           <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[64rem] md:min-h-[50rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-24 md:pt-20 lg:pt-56">
             <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">

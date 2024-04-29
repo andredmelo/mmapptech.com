@@ -340,7 +340,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             Benefits for everyone
                           </a>
                       </li>
-                      <li role="menuitem">
+                      {/* <li role="menuitem">
                           <a
                             href="/#FAQSupport"
                             data-page="/"
@@ -348,7 +348,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             className="dropdown-link">
                             FAQs/Support
                           </a>
-                      </li>
+                      </li> */}
                       <li role="menuitem">
                           <a
                             href="/#ContactUs"

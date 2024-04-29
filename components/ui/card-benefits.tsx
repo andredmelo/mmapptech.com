@@ -10,11 +10,11 @@ const CardBenefits = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "flex flex-col h-full rounded-2xl md:rounded-3xl md:mx-0 text-neutral-50",
-        /*  bg-white dark:bg-gradient-to-r from-[var(--primary-fuchsia-dark4)] to-[var(--background-grey)] to-85% */
+        "flex flex-row flex-wrap h-full rounded-2xl md:rounded-3xl md:mx-0 text-neutral-50",
+        //"flex flex-col h-full rounded-2xl md:rounded-3xl md:mx-0 text-neutral-50",
         "bg-no-repeat bg-left bg-cover bg-bgRadialGradientDarkUp md:bg-bgRadialGradientDarkRight",
-        /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
-        "p-8 md:p-10 lg:p-12 space-y-8 md:space-y-10 lg:space-y-10 justify-between",
+        //mx-1 border border-neutral-100 dark:border-fuchsia-800
+        "p-8 md:p-10 lg:p-10 space-y-8 md:space-y-10 lg:space-y-10 justify-between", // lg:pl-12 lg:pt-12
         { ...props, ref }
       )}
       {...props}
@@ -23,6 +23,22 @@ const CardBenefits = React.forwardRef<
 });
 CardBenefits.displayName = "CardBenefits"
 
+const CardBenefitsHeaderWrapper = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "basis-[100%]", //  lg:basis-[50%]
+      //"lg:pr-12 lg:pb-12",
+      className
+    )}
+    {...props}
+  />
+))
+CardBenefitsHeaderWrapper.displayName = "CardBenefitsHeaderWrapper"
+
 const CardBenefitsHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -30,7 +46,8 @@ const CardBenefitsHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10",
+      "flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10", //
+      //"flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10",
       "rounded-2xl md:rounded-2xl shadow-xl",
       "bg-white bg-opacity-[0.0125] text-neutral-50",
       "shadow-inset",
@@ -90,4 +107,4 @@ const CardBenefitsDescription = React.forwardRef<
 CardBenefitsDescription.displayName = "CardBenefitsDescription"
 
 
-export { CardBenefits, CardBenefitsHeader, CardBenefitsTitleWrapper, CardBenefitsTitle, CardBenefitsDescription }
+export { CardBenefits, CardBenefitsHeaderWrapper, CardBenefitsHeader, CardBenefitsTitleWrapper, CardBenefitsTitle, CardBenefitsDescription }

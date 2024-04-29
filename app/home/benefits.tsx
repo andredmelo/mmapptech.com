@@ -16,19 +16,19 @@ const athletesItems: BenefitsItem[] = [
     ],
     svg: <IconTablerAtom2 />
   },
-  {
+  /* {
     header:
       "Minimizes unexpected decisions",
     content: [
       "With our Judge and RecordKeeper tools, Scores are more consistent, and calculations are done instantly, mitigating user errors and conscious and unconscious bias(es)."
     ],
     svg: <IconTablerMinimize />
-  },
+  }, */
   {
     header:
       "Consistency & Transparency",
     content: [
-      "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency around the world, no matter where you fight."
+      "Our Judge and RecordKeeper tools ensure consistent scoring and instant calculations, reducing errors and biases. Our standardized methodology fosters discussion and consensus among judges, promoting consistency and transparency in fights, regardless of where you fight."
     ],
     svg: <IconTablerAssembly />
   },
@@ -205,7 +205,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[116.125rem] portrait:touch:md:min-h-[108rem] max-w-[1400px] mx-auto px-2 md:px-[2vw] md:xl-[5vw]'>
+      <div className='flex flex-col md:flex-row md:min-h-[116.125rem] portrait:touch:md:min-h-[93rem] lg:min-h-0 mx-1 md:mx-[1rem] xl:mx-[8rem] 2xl:mx-[10rem]'>  {/* 3xl:min-w-[1536px] 3xl:mx-auto */}
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}
