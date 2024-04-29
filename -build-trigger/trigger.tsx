@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.7 | Home Hero Logo and sub-logo redesign and animations.";
+let vNumber = "v0.2-β.8 | What We Do NavMenu implementation and new title. Various tweaks to Product Hero.";

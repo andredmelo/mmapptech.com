@@ -754,8 +754,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <div className="productPage">
 
         <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
-          <ProductFC className="px-[5vw] pb-[5vw] md:px-[7.65vw] md:pt-[7vw] md:pb-[1vw] bg-bgRadialGradientDown overflow-hidden">
-            <ProductFCTitle className="mmappBlockReveal pt-[15vw] md:pt-[3vw]">
+          <ProductFC className="px-[5vw] pb-[5vw] md:px-[7.65vw] pt-24 md:pt-56 lg:pt-72 md:pb-[1vw] bg-bgRadialGradientDown overflow-hidden">
+            <ProductFCTitle className="mmappBlockReveal">
               MMAPP Methodology
             </ProductFCTitle>
             <ProductFCHeading className="mmappHeadingReveal mx-[2vw]">

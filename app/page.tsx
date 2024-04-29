@@ -890,13 +890,13 @@ export default function Home() {
           <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
-        <section id="SmallMission" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
-          <MainFC className="bg-bgRadialGradientDown">
+        <section id="WhatWeDo" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
+          <MainFC className="pt-12 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-44 bg-bgRadialGradientDown">
             <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
               What We Do
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[0%]">
-              We offer MMA Federations an All-In-One Solution to transition to the Digital Age
+            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[2%] break-normal">
+              We provide MMA Federations an All-In-One Digital Transition Solution
             </MainFCHeading>
             {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
