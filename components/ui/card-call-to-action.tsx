@@ -169,8 +169,8 @@ const CardCallToActionButton = React.forwardRef<
   <button
     ref={ref}
     disabled={disabled}
-    className={cn("py-3 px-16 w-fit",
-    "text-sm md:text-sm lg:text-md cursor-pointer",
+    className={cn("py-4 md:py-5 px-12 md:px-16 lg:px-20 w-fit",
+    "text-[1.4rem] md:text-md lg:text-[2rem] cursor-pointer font-semibold",
     "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
     "dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
     "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent

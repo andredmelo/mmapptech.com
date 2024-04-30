@@ -36,30 +36,12 @@ const athletesItems: BenefitsItem[] = [
     header:
       "Athlete Profile",
     content: [
-      "Sign up once, keep your documents up to date (with reminders of expiration dates) to remain affiliated. Access your profile anytime, anywhere, and have a lifetime archive of your career."
+      "Sign up only once, and simply keep your profile documents up to date (with reminders of their expiration date) to remain affiliated with your Federation.",
+      <br key="br1" />, // Use keys for list elements
+      "Access your profile anytime, anywhere, and have a lifetime archive of your career."
     ],
     svg: <IconTablerKarate />
   },
-  /* {
-    header:
-      "Athlete Profile",
-    content: [
-      "Sign up only once, and simply keep your profile documents up to date (with reminders of expiration dates) to remain affiliated.",
-      <br key="br1" />, // Use keys for list elements
-      "Access your profile anytime, anywhere."
-    ],
-    svg: <IconTablerKarate />
-  },
-  {
-    header:
-      "Fights Schedule and Records",
-    content: [
-      "Easily browse all your upcoming fights, their details and rulesets.",
-      <br key="br1" />, // Use keys for list elements
-      "Have a digital lifetime archive of your career."
-    ],
-    svg: <IconTablerKarate />
-  }, */
   {
     header:
       "Get featured to Promoters",
@@ -83,15 +65,13 @@ const coachesItems: BenefitsItem[] = [
     header:
       "Coach Profile",
     content: [
-      "Easily keep your profile always up-to-date, with reminders of expiration dates for documents.",
-      <br key="br1" />, // Use keys for list elements
-      "Have a digital lifetime archive of your career."
+      "Easily keep your profile always up-to-date, with reminders of expiration dates for documents."
     ],
     svg: <IconTablerUserCircle />
   },
   {
     header:
-      "Manage multiple athletes",
+      "Manage multiple athletes associated with you",
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
@@ -109,7 +89,7 @@ const coachesItems: BenefitsItem[] = [
     header:
       "Consistency & Transparency",
     content: [
-      "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency worldwide."
+      "Our standardized methodology provides judges with equal, easy-to-access tools to learn, discuss, and find consensus, increasing consistency and transparency worldwide, no matter where your athletes fight."
     ],
     svg: <IconTablerAssembly />
   },
@@ -126,7 +106,7 @@ const coachesItems: BenefitsItem[] = [
 const clubsItems: BenefitsItem[] = [
   {
     header:
-      "Manage multiple athletes",
+      "Manage multiple athletes associated with you",
     content: [
       "Change Federation Information, Upload documents and much more on behalf of your associated athletes, ensuring they’re always eligible for competition."
     ],
@@ -144,9 +124,7 @@ const clubsItems: BenefitsItem[] = [
     header:
       "Digitalized Federation",
     content: [
-      "Help bring your Federation to the 21st century with its digital integration on the MMAPP platform.",
-      <br key="br1" />, // Use keys for list elements
-      "Take care of all your Federation needs and duties through one simple website."
+      "Help bring your Federation to the 21st century with the MMAPP platform, and take care of all your Federation needs and duties through one simple website."
     ],
     svg: <IconTablerFileDigit />
   },
@@ -154,7 +132,7 @@ const clubsItems: BenefitsItem[] = [
     header:
       "Federation’s Continuous Improvement",
     content: [
-      "By having your Federation use MMAPP, they'll have access to tools that can provide analysis and fundament to judging decisions, contributing to a cycle of continuous improvement."
+      "By having your Federation use MMAPP, you are assured they have access to tools that can provide analysis and fundament to judging decisions, contributing to a cycle of continuous improvement."
     ],
     svg: <IconTablerRefreshDot />
   },
@@ -187,7 +165,7 @@ const promotersItems: BenefitsItem[] = [
   },
   {
     header:
-      "Smooth Membership Maintenance",
+      "Smooth Experience for Membership Maintenance",
     content: [
       "Sign up once, and keep your documents up to date with reminders of their expiration to stay registered."
     ],
@@ -225,7 +203,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[120rem] portrait:touch:md:min-h-[86.5rem] lg:min-h-[74.5rem] mx-1 md:mx-[1rem] xl:mx-[8rem] 2xl:mx-[10rem]'>  {/* 3xl:min-w-[1536px] 3xl:mx-auto */}
+      <div className='flex flex-col md:flex-row md:min-h-[116.125rem] portrait:touch:md:min-h-[93rem] lg:min-h-0 mx-1 md:mx-[1rem] xl:mx-[8rem] 2xl:mx-[10rem]'>  {/* 3xl:min-w-[1536px] 3xl:mx-auto */}
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}

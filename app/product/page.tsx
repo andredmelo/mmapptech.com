@@ -96,17 +96,17 @@ const productDashboardItems: ProductTitlesItem[] = [
 ];
 
 const productDashboardMembersItems: ProductTitlesItem[] = [
-  { header: "Quick sign-up process (ALL)" },
-  { header: "Intuitive Profile Management (ALL)" },
-  { header: "Multi-user management (Clubs/Coaches can manage multiple athlete profiles) (Clubs/Coaches)" },
-  { header: "View Membership standing (Documents in order, information updated, etc.) (ALL)" },
-  { header: "Receive reminders for document expiration (ALL)" },
-  { header: "View Eligilibillity status (Athletes/Coaches)" },
-  { header: "Be part of a centralized athlete database, available to Promoters (Athletes)" },
-  { header: "Submit Event hosting applications in under 5 minutes (Promoters)" },
-  { header: "View all athletes registered with the Federation, eligible for competitions (Promoters)" },
-  { header: "View Scheduled Fights (Athletes)" },
-  { header: "View Lifetime career history and statistics (ALL)" },
+  { header: "Quick sign-up process" },
+  { header: "Intuitive Profile Management" },
+  { header: "Multi-user management for Clubs and Coaches" },
+  { header: "View Membership standing (Documents in order, information updated, etc.)" },
+  { header: "Receive reminders for document expiration" },
+  { header: "Competition Eligilibillity status for Athletes and Coaches" },
+  { header: "Athletes are part of a centralized athlete database, available to Promoters" },
+  { header: "Promoters can Submit Event hosting applications to Federations in under 5 minutes" },
+  { header: "Promoters can wiew all athletes registered with the Federation, eligible for competitions" },
+  { header: "View Scheduled Fights" },
+  { header: "View Lifetime career history and statistics" },
 ];
 
   useEffect(() => {
@@ -771,7 +771,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               "justify-start pr-[0vw] md:pr-[11vw] lg:pr-[22vw] text-left mb-6 md:mb-[2vw]",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
-              The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing MMA fights.
+              The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing fights, according to the current rules of MMA.
             </ProductFCDescription>
             <ProductFCDescription className={clsx(
               "justify-start pr-[0vw] md:pr-[23vw] lg:pr-[26vw] text-left mb-6 md:mb-[2vw]",

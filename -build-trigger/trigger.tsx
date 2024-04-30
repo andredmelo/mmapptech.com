@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.8 | What We Do NavMenu implementation and new title. Various tweaks to Product Hero.";
+let vNumber = "v0.2-β.9 | Various fixes and tweaks all over the website.";

@@ -69,7 +69,7 @@ export default function Home() {
         }
       },
       {
-        rootMargin: '200px',
+        rootMargin: '50px',
       }
     );
     if (homeFeaturesR3FobserverRef.current) {
@@ -126,29 +126,33 @@ export default function Home() {
       // Pin Small Mission Image
       const smallMissionImg = document.querySelector(".smallMissionImg");
       const smallMissionDescription = document.querySelector(".smallMissionDescription");
-      if (smallMissionImg) {
-        const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
-        const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
-        const halfViewportHeight = window.innerHeight / 2;
-        const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
-        //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
 
-        //Custom endTrigger
-        matchMedia.add("(min-width: 768px)", (context) => {
-          if (smallMissionImgHeight < smallMissionDescriptionHeight) {
-            ScrollTrigger.create({
-              trigger: smallMissionImg,
-              start: "center 50%",
-              endTrigger: ".smallMissionDescriptionContainer",
-              end: "bottom "+endSmallMissionImgTrigger+"px",
-              pin: ".smallMissionImg",
-              
-              pinSpacing: false,
-              invalidateOnRefresh: true,
-            });
-          }
-        });
-      };
+      const smallMission = setInterval(() => {
+        if (smallMissionImg && smallMissionDescription) {
+          clearInterval(smallMission);
+          const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
+          const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
+          const halfViewportHeight = window.innerHeight / 2;
+          const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
+          //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
+
+          //Custom endTrigger
+          matchMedia.add("(min-width: 768px)", (context) => {
+            if (smallMissionImgHeight < smallMissionDescriptionHeight) {
+              ScrollTrigger.create({
+                trigger: smallMissionImg,
+                start: "center 50%",
+                endTrigger: ".smallMissionDescriptionContainer",
+                end: "bottom "+endSmallMissionImgTrigger+"px",
+                pin: ".smallMissionImg",
+                
+                pinSpacing: false,
+                invalidateOnRefresh: true,
+              });
+            }
+          });
+        };
+      }, 50); // Check every 50ms
 
       /* const detectViewportRatio = () => {
         const width = window.innerWidth;
@@ -204,13 +208,18 @@ export default function Home() {
       /* matchMedia.add("(min-width: 768px)", () => { */
 
         // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
-        ScrollTrigger.create({
-          trigger: '#featuresDashboard',
-          start: 'top 1%',
-          invalidateOnRefresh: false,
-          onEnter: () => { setiPhoneOpacity(0) },
-          onLeaveBack: () => { setiPhoneOpacity(0)},
-        });
+        const checkiPhoneOpacity0 = setInterval(() => {
+          if (document.getElementById('featuresDashboard')) {
+            clearInterval(checkiPhoneOpacity0);
+            ScrollTrigger.create({
+              trigger: '#featuresDashboard',
+              start: 'top 1%',
+              invalidateOnRefresh: false,
+              onEnter: () => { setiPhoneOpacity(0) },
+              onLeaveBack: () => { setiPhoneOpacity(0)},
+            });
+          }
+        }, 50); // Check every 50ms
 
         /* ScrollTrigger.create({
           trigger:"featuresDashboard",
@@ -368,22 +377,28 @@ export default function Home() {
         }, 50); // Check every 50ms
 
         // macBookProiPhoneSwitch Animation
-        ScrollTrigger.create({
-          trigger: '.featuresDashboard',
-          start: 'bottom 50%',
-          //end: 'bottom 75%',
-          markers: false,
-          scrub: false,
-          invalidateOnRefresh: false,
-          onEnter: ({progress, direction, isActive}) => {
-            setMacBookProOpacity(0);
-            setiPhoneOpacity(1);
-          },
-          onLeaveBack: ({progress, direction, isActive}) => {
-            setMacBookProOpacity(1);
-            setiPhoneOpacity(0);
-          },
-        });
+        const macBookProiPhoneSwitch = setInterval(() => {
+          if (document.querySelector('.featuresDashboard')) {
+            clearInterval(macBookProiPhoneSwitch);
+            ScrollTrigger.create({
+              trigger: '.featuresDashboard',
+              start: 'bottom 50%',
+              //end: 'bottom 75%',
+              markers: false,
+              scrub: false,
+              invalidateOnRefresh: false,
+              onEnter: ({progress, direction, isActive}) => {
+                setMacBookProOpacity(0);
+                setiPhoneOpacity(1);
+              },
+              onLeaveBack: ({progress, direction, isActive}) => {
+                setMacBookProOpacity(1);
+                setiPhoneOpacity(0);
+              },
+            });
+          }
+        }, 50); // Check every 50ms
+        
 
         //Judge Animations
         const checkJudgeAnimIn = setInterval(() => {
@@ -527,22 +542,27 @@ export default function Home() {
         }, 50); // Check every 50ms
 
         // iPhoneiPadSwitch Animation
-        ScrollTrigger.create({
-          trigger: '.featuresJudge',
-          start: 'bottom 50%',
-          //end: 'bottom 75%',
-          markers: false,
-          scrub: false,
-          invalidateOnRefresh: false,
-          onEnter: ({progress, direction, isActive}) => {
-            setiPhoneOpacity(0);
-            setiPadOpacity(1);
-          },
-          onLeaveBack: ({progress, direction, isActive}) => {
-            setiPhoneOpacity(1);
-            setiPadOpacity(0);
-          },
-        });
+        const iPhoneiPadSwitch = setInterval(() => {
+          if (document.querySelector('.featuresJudge')) {
+            clearInterval(iPhoneiPadSwitch);
+            ScrollTrigger.create({
+              trigger: '.featuresJudge',
+              start: 'bottom 50%',
+              //end: 'bottom 75%',
+              markers: false,
+              scrub: false,
+              invalidateOnRefresh: false,
+              onEnter: ({progress, direction, isActive}) => {
+                setiPhoneOpacity(0);
+                setiPadOpacity(1);
+              },
+              onLeaveBack: ({progress, direction, isActive}) => {
+                setiPhoneOpacity(1);
+                setiPadOpacity(0);
+              },
+            });
+          }
+        }, 50); // Check every 50ms
 
         //RecordKeeper Animations
         const checkRecordKeeperAnimIn = setInterval(() => {
@@ -678,13 +698,20 @@ export default function Home() {
             });
 
             // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
-            ScrollTrigger.create({
-              trigger: '#featuresRecordKeeperContainer',
-              start: 'bottom top',
-              invalidateOnRefresh: false,
-              onEnter: () => { setMacBookProOpacity(0) },
-              onLeaveBack: () => { setMacBookProOpacity(0)},
-            });
+            const checkiPhoneOpacity02 = setInterval(() => {
+              if (document.getElementById('featuresRecordKeeperContainer')) {
+                clearInterval(checkiPhoneOpacity02);
+                ScrollTrigger.create({
+                  trigger: '#featuresRecordKeeperContainer',
+                  start: 'bottom top',
+                  invalidateOnRefresh: false,
+                  onEnter: () => { setMacBookProOpacity(0) },
+                  onLeaveBack: () => { setMacBookProOpacity(0)},
+                });
+              }
+            }, 50); // Check every 50ms
+
+            
 
             // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
             /* ScrollTrigger.create({
@@ -891,7 +918,7 @@ export default function Home() {
         </section>
 
         <section id="WhatWeDo" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
-          <MainFC className="pt-12 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-44 bg-bgRadialGradientDown">
+          <MainFC className="pt-12 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-20 xl:pb-36 bg-bgRadialGradientDown">
             <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
               What We Do
             </MainFCTitle>
@@ -907,8 +934,8 @@ export default function Home() {
                   <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     Management, Scheduling, Officiation
                   </h5>
-                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    Our platform solves all issues Federations face in membership approval and management and event scheduling and approval.<br/>
+                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                    Our platform solves all issues Federations face in membership approval and management as well as event scheduling and approval.<br/>
                     On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
                   </p>
                 </div>
@@ -916,7 +943,7 @@ export default function Home() {
                   <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     Common Language & Unit of Measurement
                   </h5>
-                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
                     By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
                   </p>
@@ -925,7 +952,7 @@ export default function Home() {
                   <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “Dashboard” app
                   </h5>
-                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Easy & Quick sign up for members, with minimal input from Federations.<br/>
                     Manage Members and Events with a few clicks.<br/>
                     Gain insights into your officials performances.<br/>
@@ -935,7 +962,7 @@ export default function Home() {
                   <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “Judge” app
                   </h5>
-                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
                     Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
                     Discuss scoring in a deeper manner.<br/>
                     Lifetime archive of your scoring.<br/>
@@ -946,7 +973,7 @@ export default function Home() {
                   <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
                     The “RecordKeeper” app
                   </h5>
-                  <p className="mmappParagraphsRevealRight leading-[2.1rem] md:leading-[2.5rem] text-left">
+                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
                     All Timing duties done automatically.<br/>
                     Receive and calculate scores instantly.<br/>
                     Record fight events like never before.<br/>

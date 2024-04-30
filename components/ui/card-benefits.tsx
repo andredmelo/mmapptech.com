@@ -14,7 +14,7 @@ const CardBenefits = React.forwardRef<
         //"flex flex-col h-full rounded-2xl md:rounded-3xl md:mx-0 text-neutral-50",
         "bg-no-repeat bg-left bg-cover bg-bgRadialGradientDarkUp md:bg-bgRadialGradientDarkRight",
         //mx-1 border border-neutral-100 dark:border-fuchsia-800
-        "p-8 md:p-10 lg:p-10 space-y-8 md:space-y-10 lg:space-y-10 justify-between", // lg:pl-12 lg:pt-12
+        "pl-8 md:pl-10 lg:pl-12 py-8 md:py-10 lg:py-12 gap-y-8 md:gap-y-10 lg:gap-y-12 justify-center",// p-8 md:p-10  space-y-8 md:space-y-10 lg:space-y-12 lg:pl-12     // lg:p-10 lg:space-y-10 lg:pt-12
         { ...props, ref }
       )}
       {...props}
@@ -30,8 +30,8 @@ const CardBenefitsHeaderWrapper = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "basis-[100%]", //  lg:basis-[50%]
-      //"lg:pr-12 lg:pb-12",
+      "basis-[100%] lg:basis-1/2", //
+      "pr-8 md:pr-10 lg:pr-12", // lg:pb-12 
       className
     )}
     {...props}
@@ -46,7 +46,7 @@ const CardBenefitsHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10", //
+      "flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10 h-full", //
       //"flex flex-col space-y-3 md:space-y-0 p-8 md:p-8 lg:p-10",
       "rounded-2xl md:rounded-2xl shadow-xl",
       "bg-white bg-opacity-[0.0125] text-neutral-50",

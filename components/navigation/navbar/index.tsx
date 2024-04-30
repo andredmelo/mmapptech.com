@@ -508,7 +508,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                           data-page="/contact"
                           data-link="#FAQSupport"
                           className="dropdown-link">
-                          FAQs/Support
+                          FAQs & Support
                         </a>
                       </li>
                     </ul>
