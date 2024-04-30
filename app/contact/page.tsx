@@ -18,7 +18,7 @@ const Contacts = () => {
 
         <section id="ContactUs" className="flex flex-col justify-center items-center py-24 md:py-40 lg:py-52">
           <h5 className="mmappBlockReveal px-[3vw] md:px-[10vw] lg:px-[25vw] mb-4 md:mb-6 lg:mb-12 text-center text-neutral-200 leading-8 md:leading-[3rem] lg:leading-[4rem] deboss">
-            If you'd like to enjoy the many benefits of MMAPP yourself, contact your Federation and let them know you'd like them to start using the platform.
+            If you&apos;d like to enjoy the many benefits of MMAPP yourself, contact your Federation and let them know you&apos;d like them to start using the platform.
           </h5>
           <CallToActionButton className="mmappBlockReveal" />
         </section>
