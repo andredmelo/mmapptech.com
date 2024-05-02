@@ -95,7 +95,7 @@ const Company = (props: any) => {
               "mmappParagraphsReveal flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
-              Through these tools built for officials to discuss their assessments more profoundly and amplify their judging abilities we strive to help elevate the sport.
+              Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
             <img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src="/images/company/companyMMAFighterPreparingBandages4Training-XL.webp" alt="MMA fighter preparing bandages for training"/>

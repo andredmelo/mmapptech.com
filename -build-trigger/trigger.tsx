@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.10 | Home Hero Judge image fix.";
+let vNumber = "v0.2-β.11 | General fixes.";

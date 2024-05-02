@@ -917,13 +917,13 @@ export default function Home() {
           <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
-        <section id="WhatWeDo" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
+        <section id="OurExpertise" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
           <MainFC className="pt-12 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-20 xl:pb-36 bg-bgRadialGradientDown">
             <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
-              What We Do
+              Our Expertise
             </MainFCTitle>
             <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[2%] break-normal">
-              We provide MMA Federations an All-In-One Digital Transition Solution
+              Boosting MMA Federations to the Digital Age with our all-in-one digital solution
             </MainFCHeading>
             {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
@@ -1270,7 +1270,7 @@ export default function Home() {
                       Deeper Scoring discussions and debates
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques in a with precision never before possible.
+                      With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques with precision never before possible.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresJudgeImage"
@@ -1343,7 +1343,7 @@ export default function Home() {
                       Pre-filled in Information & Quick Edits
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      All information is pre-filled, and accessible, and any last minute change can be easily accomplished and instantly shared with everyone.
+                      All event & fight information is pre-filled and accessible, and any last minute change can be easily accomplished and instantly shared with everyone.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresRecordKeeperImage"
@@ -1375,7 +1375,7 @@ export default function Home() {
                       Automatic timing duties
                     </FeaturesCardTitle>
                     <FeaturesCardDescription>
-                      Flawlessly perform all timing duties with a push of a button. Record (Round time, Break Time, Breaks, Point Deductions and more).
+                      Flawlessly perform all timing duties with a push of a button. Record Round time, Break Time, Breaks, Point Deductions and more.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
                       className="featuresRecordKeeperImage"

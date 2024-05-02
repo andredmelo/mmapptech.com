@@ -72,15 +72,15 @@ const Product = () => {
   };
 
   const descriptionSrcMapRecordKeeper: Record<string, string> = {
-    'ProductRecordKeeper1': 'Master Timing duties like never before (Round Time, Break Time)',
-    'ProductRecordKeeper2': 'Record every fight detail (Number of Breaks, Break Duration, Reasons for Point deductions, etc.)',
+    'ProductRecordKeeper1': 'Master Timing duties like never before',
+    'ProductRecordKeeper2': 'Record every fight detail Number of Breaks, Break Duration, Reasons for Point deductions, etc.',
     'ProductRecordKeeper3': 'Receive and Calculate scorecards automatically and get the results instantly',
     'ProductRecordKeeper4': 'Automatically send the results to the Federation',
   };
 
   const descriptionSrcMapDashboard: Record<string, string> = {
-    'ProductRecordKeeper1': 'Master Timing duties like never before (Round Time, Break Time)',
-    'ProductRecordKeeper2': 'Record every fight detail (Number of Breaks, Break Duration, Reasons for Point deductions, etc.)',
+    'ProductRecordKeeper1': 'Master Timing duties like never before',
+    'ProductRecordKeeper2': 'Record every fight detail Number of Breaks, Break Duration, Reasons for Point deductions, etc.',
     'ProductRecordKeeper3': 'Receive and Calculate scorecards automatically and get the results instantly',
     'ProductRecordKeeper4': 'Automatically send the results to the Federation',
   };
@@ -99,12 +99,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   { header: "Quick sign-up process" },
   { header: "Intuitive Profile Management" },
   { header: "Multi-user management for Clubs and Coaches" },
-  { header: "View Membership standing (Documents in order, information updated, etc.)" },
+  { header: "View Membership standing - Documents in order, information updated, etc." },
   { header: "Receive reminders for document expiration" },
   { header: "Competition Eligilibillity status for Athletes and Coaches" },
   { header: "Athletes are part of a centralized athlete database, available to Promoters" },
   { header: "Promoters can Submit Event hosting applications to Federations in under 5 minutes" },
-  { header: "Promoters can wiew all athletes registered with the Federation, eligible for competitions" },
+  { header: "Promoters can view all athletes registered with the Federation, eligible for competitions" },
   { header: "View Scheduled Fights" },
   { header: "View Lifetime career history and statistics" },
 ];

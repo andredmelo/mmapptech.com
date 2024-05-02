@@ -315,11 +315,11 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </li>
                       <li role="menuitem">
                           <a
-                            href="/#WhatWeDo"
+                            href="/#OurExpertise"
                             data-page="/"
-                            data-link="#WhatWeDo"
+                            data-link="#OurExpertise"
                             className="dropdown-link">
-                            What We Do
+                            Our Expertise
                           </a>
                       </li>
                       <li role="menuitem">
