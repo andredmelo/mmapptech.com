@@ -124,37 +124,6 @@ export default function Home() {
 
       let matchMedia = gsap.matchMedia();
 
-      // Pin Small Mission Image
-      const smallMissionImg = document.querySelector(".smallMissionImg");
-      const smallMissionDescription = document.querySelector(".smallMissionDescription");
-
-      const smallMission = setInterval(() => {
-        if (smallMissionImg && smallMissionDescription) {
-          clearInterval(smallMission);
-          const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
-          const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
-          const halfViewportHeight = window.innerHeight / 2;
-          const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
-          //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
-
-          //Custom endTrigger
-          matchMedia.add("(min-width: 768px)", (context) => {
-            if (smallMissionImgHeight < smallMissionDescriptionHeight) {
-              ScrollTrigger.create({
-                trigger: smallMissionImg,
-                start: "center 50%",
-                endTrigger: ".smallMissionDescriptionContainer",
-                end: "bottom "+endSmallMissionImgTrigger+"px",
-                pin: ".smallMissionImg",
-                
-                pinSpacing: false,
-                invalidateOnRefresh: true,
-              });
-            }
-          });
-        };
-      }, 50); // Check every 50ms
-
       /* const detectViewportRatio = () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -205,10 +174,156 @@ export default function Home() {
       } else {
         sectionTitlePaddingTop = "80px";
       }
-    
-      /* matchMedia.add("(min-width: 768px)", () => { */
 
-        // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
+      /* ScrollTrigger.create({
+        trigger:"featuresDashboard",
+        start:"top top",
+        scrub:true,
+        end:"bottom bottom",
+        once:true,
+        onUpdate:function(self){
+          console.log('dashboardProgress = '+self.progress)
+          if(self.progress > dashboardProgressCircleTween.progress()){
+            dashboardProgressCircleTween.progress(self.progress)
+          }
+        }
+      }); */
+
+
+      // Mobile Animations
+      matchMedia.add("(max-width: 767px)", (context) => {
+        let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
+        fDT.forEach((fDT) => {
+          let fDTEnter = gsap.timeline({
+            defaults: {
+              ease: "power2.in",
+            },
+            scrollTrigger: {
+              trigger: fDT,
+              start: 'top bottom',
+              end: "top 80%",
+              scrub: 1,
+              /* markers:true, */
+              preventOverlaps:true,
+            }
+            })
+            .fromTo(fDT, {xPercent: 100}, {xPercent: 0, ease: "power1.in"})
+
+            let fDTLeave = gsap.timeline({
+              defaults: {
+                ease: "power2.in",
+              },
+              scrollTrigger: {
+                trigger: fDT,
+                start: 'bottom 15%',
+                end: "bottom top",
+                scrub: 1,
+                /* markers:true, */
+                preventOverlaps:true,
+              }
+              })
+              .fromTo(fDT, {xPercent: 0}, {xPercent: -100, ease: "power1.in"})
+        });
+        let fDD: HTMLElement[] = gsap.utils.toArray(".featuresDashboardDescription");
+        fDD.forEach((fDD) => {
+          let fDDEnter = gsap.timeline({
+            defaults: {
+              ease: "power2.in",
+            },
+            scrollTrigger: {
+              trigger: fDD,
+              start: 'top bottom',
+              end: "top 80%",
+              scrub: 1,
+              /* markers:true, */
+              preventOverlaps:true,
+            }
+            })
+            .fromTo(fDD, {xPercent: 100}, {xPercent: 0, ease: "power1.in"})
+
+            let fDDLeave = gsap.timeline({
+              defaults: {
+                ease: "power2.in",
+              },
+              scrollTrigger: {
+                trigger: fDD,
+                start: 'bottom 15%',
+                end: "bottom top",
+                scrub: 1,
+                /* markers:true, */
+                preventOverlaps:true,
+              }
+              })
+              .fromTo(fDD, {xPercent: 0}, {xPercent: -100, ease: "power1.in"})
+        });
+
+        let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
+        fDI.forEach((fDI) => {
+          let fDIEnter = gsap.timeline({
+            defaults: {
+              ease: "power2.in",//
+            },
+            scrollTrigger: {
+              trigger: fDI,
+              start: 'top bottom',
+              end: "top 80%",
+              scrub: 1,
+              /* markers:true, */
+              preventOverlaps:true,
+            }
+            })
+            .fromTo(fDI, {xPercent: -100}, {xPercent: 0, ease: "power1.in"})
+
+            let fDILeave = gsap.timeline({
+              defaults: {
+                ease: "power2.in",//
+              },
+              scrollTrigger: {
+                trigger: fDI,
+                start: 'bottom 15%',
+                end: "bottom top",
+                scrub: 1,
+                /* markers:true, */
+                preventOverlaps:true,
+              }
+              })
+              .fromTo(fDI, {xPercent: 0}, {xPercent: 100, ease: "power1.in"})
+        });
+
+      });
+
+
+      // Tablet and Desktop Animations
+      matchMedia.add("(min-width: 768px)", (context) => {
+        // Pin Small Mission Image
+        const smallMissionImg = document.querySelector(".smallMissionImg");
+        const smallMissionDescription = document.querySelector(".smallMissionDescription");
+
+        const smallMission = setInterval(() => {
+          if (smallMissionImg && smallMissionDescription) {
+            clearInterval(smallMission);
+            const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
+            const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
+            const halfViewportHeight = window.innerHeight / 2;
+            const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
+            //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
+
+            //Custom endTrigger
+            if (smallMissionImgHeight < smallMissionDescriptionHeight) {
+              ScrollTrigger.create({
+                trigger: smallMissionImg,
+                start: "center 50%",
+                endTrigger: ".smallMissionDescriptionContainer",
+                end: "bottom "+endSmallMissionImgTrigger+"px",
+                pin: ".smallMissionImg",
+                pinSpacing: false,
+                invalidateOnRefresh: true,
+              });
+            }
+          };
+        }, 50); // Check every 50ms
+
+        // ScrollTrigger to force iPhone Opacity to 0 when scrolling down after a page transition to #Features
         const checkiPhoneOpacity0 = setInterval(() => {
           if (document.getElementById('featuresDashboard')) {
             clearInterval(checkiPhoneOpacity0);
@@ -221,20 +336,6 @@ export default function Home() {
             });
           }
         }, 50); // Check every 50ms
-
-        /* ScrollTrigger.create({
-          trigger:"featuresDashboard",
-          start:"top top",
-          scrub:true,
-          end:"bottom bottom",
-          once:true,
-          onUpdate:function(self){
-            console.log('dashboardProgress = '+self.progress)
-            if(self.progress > dashboardProgressCircleTween.progress()){
-              dashboardProgressCircleTween.progress(self.progress)
-            }
-          }
-        }) */
 
         //Dashboard Animations
         const checkDashboardAnimIn = setInterval(() => {
@@ -712,8 +813,6 @@ export default function Home() {
               }
             }, 50); // Check every 50ms
 
-            
-
             // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
             /* ScrollTrigger.create({
               trigger: "#featuresJudge",
@@ -731,7 +830,7 @@ export default function Home() {
 
           }
         }, 50); // Check every 50ms
-      /* }); */
+      });
 
 
       //Home Animation
@@ -1033,15 +1132,15 @@ export default function Home() {
                       Dashboard App
                     </h4>
                   </div>
-                <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>
+                {isUnder768 ? '' : <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>}
                 </div>
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresDashboardTitle">
                       Overview of Federation Affairs
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresDashboardDescription">
                       Relevant information for everyday management viewable at a glance in the Overview screen.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
@@ -1054,10 +1153,10 @@ export default function Home() {
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresDashboardTitle">
                       Visual Reports with Actionable Insights
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresDashboardDescription">
                       Gain a better understanding on judge scoring and the differences between your officials, to create a more cohesive team.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
@@ -1070,10 +1169,10 @@ export default function Home() {
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresDashboardTitle">
                       Easy Form Management and Sign-up process for all your members
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresDashboardDescription">
                       Registering is as simple as filling out a form online, and managing them is even easier.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
@@ -1086,10 +1185,10 @@ export default function Home() {
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresDashboardTitle">
                       Intuitive Member Management
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily view and filter your members, according to your needs to quickly drill down on what’s important.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
@@ -1102,10 +1201,10 @@ export default function Home() {
 
                 <FeaturesCard className="dashboardCard z-10">
                   <FeaturesCardHeader className="featuresDashboardHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresDashboardTitle">
                       International Database
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily accessible foreign fighter profiles with competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
                     </FeaturesCardDescription>
                     <FeaturesCardImage
@@ -1233,7 +1332,7 @@ export default function Home() {
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0">
                     Officials
                   </h2>
-                  <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>
+                {isUnder768 ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
                 </div>
 
 
@@ -1339,7 +1438,7 @@ export default function Home() {
                       RecordKeeper
                     </h4>
                   </div>
-                  <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>
+                  {isUnder768 ? '' : <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>}
                 </div>
 
                 <FeaturesCard className="recordKeeperCard z-10">
@@ -1427,7 +1526,7 @@ export default function Home() {
                   href="/product"
                   data-page="/product"
                   data-link="#MMAPP-Methodology"
-                  className="w-fit px-14 mx-auto"
+                  className="w-fit px-14 mx-auto mt-20 md:mt-0"
                 >
                   Learn more in our product page<span aria-hidden="true" className="pl-2"> →</span>
                 </CardPoliciesButton>

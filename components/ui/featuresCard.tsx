@@ -22,7 +22,7 @@ const FeaturesCard = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col items-center justify-center",
-      "w-full h-full min-h-[100lvh] touch:h-[100lvh] touch:max-h-[100lvh]", // border-2 border-fuchsia-600
+      "w-full h-full md:min-h-[100lvh] touch:md:h-[100lvh] touch:md:max-h-[100lvh]", // border-2 border-fuchsia-600
       className
     )}
     {...props}
@@ -38,9 +38,9 @@ const FeaturesCardHeader = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col portrait:items-center landscape:justify-center portrait:justify-start portrait:md:justify-start portrait:text-center", // border-2 border-green-500
-      "w-[100vw] md:w-[90vw] lg:w-full max-w-[1440px] min-h-[100lvh] h-[100lvh] touch:max-h-[100lvh]",
+      "w-[98vw] md:w-[90vw] lg:w-full max-w-[1440px] min-h-0 md:min-h-[100lvh] h-full md:h-[100lvh] touch:md:max-h-[100lvh]",
       leftOrRight === 'left' ? "landscape:items-start landscape:text-left landscape:pr-[50%] portrait:pr-[0%]" : "landscape:items-end landscape:text-right landscape:pl-[50%] portrait:pl-[0%]",
-      "overflow-hidden portrait:pt-[32svh] portrait:md:pt-[36%]",
+      "overflow-hidden portrait:pt-[6rem] portrait:md:pt-[36%]",
       className
     )}
     {...props}
@@ -55,7 +55,7 @@ const FeaturesCardTitle = React.forwardRef<
   <h4
     ref={ref}
     className={cn(
-      "", // border-2 border-green-500
+      "px-10 md:px-0", // border-2 border-green-500
       className
     )}
     {...props}
@@ -71,7 +71,7 @@ const FeaturesCardDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-700 dark:text-neutral-300",
-      "py-8 md:py-8 lg:py-10 portrait:px-[1%] portrait:md:px-[5%] text-shadow-sm",
+      "py-8 md:py-8 lg:py-10 px-2 md:px-0 portrait:md:px-[5%] text-shadow-sm",
       className
     )}
     {...props}
