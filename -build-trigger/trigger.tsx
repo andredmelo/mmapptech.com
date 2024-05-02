@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.12 | 3D Cage removed. Our Expertise section mobile revamp with accordion.";
+let vNumber = "v0.2-β.13 | Various fixes and optimizations.";

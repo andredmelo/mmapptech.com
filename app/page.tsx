@@ -70,7 +70,7 @@ export default function Home() {
         }
       },
       {
-        rootMargin: '50px',
+        rootMargin: '0px',
       }
     );
     if (homeFeaturesR3FobserverRef.current) {
@@ -837,17 +837,17 @@ export default function Home() {
 
   let heroFighterRight = "/images/hero/fighter_red_2xl.webp";
   if (isUnder1280) {
-    heroVideo = "/images/hero/fighter_red_xl.webp";
+    heroFighterRight = "/images/hero/fighter_red_xl.webp";
     if (isUnder768) {
-      heroVideo = "/images/hero/fighter_red_md.webp";
+      heroFighterRight = "/images/hero/fighter_red_md.webp";
     }
   }
 
   let heroFighterLeft = "/images/hero/fighter_blue_2xl.webp";
   if (isUnder1280) {
-    heroVideo = "/images/hero/fighter_blue_xl.webp";
+    heroFighterLeft = "/images/hero/fighter_blue_xl.webp";
     if (isUnder768) {
-      heroVideo = "/images/hero/fighter_blue_md.webp";
+      heroFighterLeft = "/images/hero/fighter_blue_md.webp";
     }
   }
 
@@ -1010,7 +1010,7 @@ export default function Home() {
           {/* <HomeFeaturesR3F /> */}
           <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
           {showHomeFeaturesR3F && (
-            <Suspense fallback={<div className="z-[999]"><h2>Loading 3D...</h2></div>}>
+            <Suspense fallback={<div className="z-[999] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
               <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
             </Suspense>
           )}
