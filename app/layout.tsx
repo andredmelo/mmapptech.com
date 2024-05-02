@@ -77,9 +77,9 @@ export default function RootLayout({
         matchMedia.add("(max-width: 767px)", () => {
           //console.log("hover none");
           smoother.current = ScrollSmoother.create({
-            smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+            smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
             effects: false, // looks for data-speed and data-lag attributes on elements
-            smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+            smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
             // ignoreMobileResize: true,
             //normalizeScroll: true,
           });

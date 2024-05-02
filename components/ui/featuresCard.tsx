@@ -11,7 +11,12 @@ export interface FeaturesCardImageProps
   extends React.HTMLAttributes<HTMLImageElement> {
     src: string
     alt: string
-  }
+}
+
+export interface FeaturesCardVideoProps
+  extends React.HTMLAttributes<HTMLVideoElement> {
+    src: string
+}
 
 
 const FeaturesCard = React.forwardRef<
@@ -104,4 +109,34 @@ const FeaturesCardImage = React.forwardRef<
 ))
 FeaturesCardImage.displayName = "FeaturesCardImage"
 
-export { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage }
+
+const FeaturesCardVideo = React.forwardRef<
+  HTMLVideoElement,
+  FeaturesCardVideoProps
+>(({ className, src, ...props }, ref) => (
+
+  <div
+    className={cn(
+      "flex shrink md:hidden items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+      className
+    )}
+  >
+    <video
+      src={src}
+      ref={ref}
+      typeof="video/mp4"
+      playsInline
+      muted
+      autoPlay
+      loop
+      className={cn(
+        "shrink object-scale-down h-full max-h-[75svh]", //max-h-[50svh]
+      )}
+      {...props}
+    />
+  </div>
+))
+FeaturesCardVideo.displayName = "FeaturesCardVideo"
+
+export { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo }
+

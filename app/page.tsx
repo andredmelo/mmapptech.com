@@ -19,7 +19,7 @@ import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
 import OurExpertise from '@/app/ourExpertise'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
-import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage } from '@/components/ui/featuresCard'
+import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/app/CallToActionButton'
 import ProgressCircle from '@/components/ui/svg/progressCircle'
@@ -192,102 +192,92 @@ export default function Home() {
 
       // Mobile Animations
       matchMedia.add("(max-width: 767px)", (context) => {
+
+        function enterAni(target: HTMLElement, xIn: number, xOut: number){
+          let tl = gsap.timeline({
+            defaults: { ease: "power1.out" },
+            scrollTrigger: {
+              trigger: target,
+              start: 'top bottom',
+              end: "top 60%",
+              scrub: 1,
+              once: true,
+              preventOverlaps:true,
+            }
+          })
+            .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
+          return tl
+        }
+
+        function leaveAni(target: HTMLElement, xIn: number, xOut: number){
+          let tl = gsap.timeline({
+            defaults: { ease: "power1.in"},
+            scrollTrigger: {
+              trigger: target,
+              start: 'bottom 15%',
+              end: "bottom top",
+              scrub: 1,
+              preventOverlaps:true,
+            }
+          })
+            .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
+          return tl
+        }
+
         let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
         fDT.forEach((fDT) => {
-          let fDTEnter = gsap.timeline({
-            defaults: {
-              ease: "power2.in",
-            },
-            scrollTrigger: {
-              trigger: fDT,
-              start: 'top bottom',
-              end: "top 80%",
-              scrub: 1,
-              /* markers:true, */
-              preventOverlaps:true,
-            }
-            })
-            .fromTo(fDT, {xPercent: 100}, {xPercent: 0, ease: "power1.in"})
-
-            let fDTLeave = gsap.timeline({
-              defaults: {
-                ease: "power2.in",
-              },
-              scrollTrigger: {
-                trigger: fDT,
-                start: 'bottom 15%',
-                end: "bottom top",
-                scrub: 1,
-                /* markers:true, */
-                preventOverlaps:true,
-              }
-              })
-              .fromTo(fDT, {xPercent: 0}, {xPercent: -100, ease: "power1.in"})
+          enterAni(fDT, -125, 0);
+          //leaveAni(fDT, 0, 125);
         });
+
         let fDD: HTMLElement[] = gsap.utils.toArray(".featuresDashboardDescription");
-        fDD.forEach((fDD) => {
-          let fDDEnter = gsap.timeline({
-            defaults: {
-              ease: "power2.in",
-            },
-            scrollTrigger: {
-              trigger: fDD,
-              start: 'top bottom',
-              end: "top 80%",
-              scrub: 1,
-              /* markers:true, */
-              preventOverlaps:true,
-            }
-            })
-            .fromTo(fDD, {xPercent: 100}, {xPercent: 0, ease: "power1.in"})
-
-            let fDDLeave = gsap.timeline({
-              defaults: {
-                ease: "power2.in",
-              },
-              scrollTrigger: {
-                trigger: fDD,
-                start: 'bottom 15%',
-                end: "bottom top",
-                scrub: 1,
-                /* markers:true, */
-                preventOverlaps:true,
-              }
-              })
-              .fromTo(fDD, {xPercent: 0}, {xPercent: -100, ease: "power1.in"})
+        fDD.forEach((fDD) => { 
+          enterAni(fDD, -125, 0);
+          //leaveAni(fDD, 0, 125);
         });
 
-        let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
-        fDI.forEach((fDI) => {
-          let fDIEnter = gsap.timeline({
-            defaults: {
-              ease: "power2.in",//
-            },
-            scrollTrigger: {
-              trigger: fDI,
-              start: 'top bottom',
-              end: "top 80%",
-              scrub: 1,
-              /* markers:true, */
-              preventOverlaps:true,
-            }
-            })
-            .fromTo(fDI, {xPercent: -100}, {xPercent: 0, ease: "power1.in"})
+        let fDV: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardVideo");
+        fDV.forEach((fDV) => {
+          enterAni(fDV, 125, 0);
+          //leaveAni(fDV, 0, -125);
+        });
 
-            let fDILeave = gsap.timeline({
-              defaults: {
-                ease: "power2.in",//
-              },
-              scrollTrigger: {
-                trigger: fDI,
-                start: 'bottom 15%',
-                end: "bottom top",
-                scrub: 1,
-                /* markers:true, */
-                preventOverlaps:true,
-              }
-              })
-              .fromTo(fDI, {xPercent: 0}, {xPercent: 100, ease: "power1.in"})
+
+        let fJT: HTMLElement[] = gsap.utils.toArray(".featuresJudgeTitle");
+        fJT.forEach((fJT) => {
+          enterAni(fJT, -125, 0);
+          //leaveAni(fJT, 0, 125);
+        });
+
+        let fJD: HTMLElement[] = gsap.utils.toArray(".featuresJudgeDescription");
+        fJD.forEach((fJD) => { 
+          enterAni(fJD, -125, 0);
+          //leaveAni(fJD, 0, 125);
+        });
+
+        let fJV: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeVideo");
+        fJV.forEach((fJV) => {
+          enterAni(fJV, 125, 0);
+          //leaveAni(fJV, 0, -125);
+        });
+
+
+        let fRKT: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperTitle");
+        fRKT.forEach((fRKT) => {
+          enterAni(fRKT, -125, 0);
+          //leaveAni(fRKT, 0, 125);
+        });
+
+        let fRKD: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperDescription");
+        fRKD.forEach((fRKD) => { 
+          enterAni(fRKD, -125, 0);
+          //leaveAni(fRKD, 0, 125);
+        });
+
+        let fRKV: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperVideo");
+        fRKV.forEach((fRKV) => {
+          enterAni(fRKV, 125, 0);
+          //leaveAni(fRKV, 0, -125);
         });
 
       });
@@ -1120,11 +1110,11 @@ export default function Home() {
             "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
               <div className="flex flex-col z-20 text-left">
 
-                <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
+                <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
                     Federations
                   </h2>
-                  <div className="flex flex-row justify-start items-center">
+                  <div className="flex flex-row justify-start items-center mmappBlockReveal">
                     <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
                       ➤
                     </h6>
@@ -1143,11 +1133,16 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Relevant information for everyday management viewable at a glance in the Overview screen.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresDashboardVideo"
+                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4"
+                      id="features Federations Dashboard video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresDashboardImage"
                       src="/images/features/federationsDashboard/featuresFederationsDashboard-1.webp"
                       alt="features Federations Dashboard image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1159,11 +1154,16 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Gain a better understanding on judge scoring and the differences between your officials, to create a more cohesive team.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresDashboardVideo"
+                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-2.768p.mp4"
+                      id="features Federations Dashboard video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresDashboardImage"
                       src="/images/features/federationsDashboard/featuresFederationsDashboard-2.webp"
                       alt="features Federations Dashboard image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1175,11 +1175,16 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Registering is as simple as filling out a form online, and managing them is even easier.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresDashboardVideo"
+                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-3.768p.mp4"
+                      id="features Federations Dashboard video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresDashboardImage"
                       src="/images/features/federationsDashboard/featuresFederationsDashboard-3.webp"
                       alt="features Federations Dashboard image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1191,11 +1196,16 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily view and filter your members, according to your needs to quickly drill down on what’s important.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresDashboardVideo"
+                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-4.768p.mp4"
+                      id="features Federations Dashboard video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresDashboardImage"
                       src="/images/features/federationsDashboard/featuresFederationsDashboard-4.webp"
                       alt="features Federations Dashboard image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1207,11 +1217,16 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily accessible foreign fighter profiles with competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresDashboardVideo"
+                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-5.768p.mp4"
+                      id="features Federations Dashboard video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresDashboardImage"
                       src="/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
                       alt="features Federations Dashboard image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1321,7 +1336,7 @@ export default function Home() {
               <div className="flex flex-col z-20 text-right">
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
-                  <div className="flex flex-row justify-end items-center">
+                  <div className="flex flex-row justify-end items-center mmappBlockReveal">
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
                       Judge App
                     </h4>
@@ -1329,7 +1344,7 @@ export default function Home() {
                       ➤
                     </h6>
                   </div>
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
                 {isUnder768 ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
@@ -1338,81 +1353,106 @@ export default function Home() {
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresJudgeTitle">
                       Personalized Fight Card
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresJudgeDescription">
                       Even with last-minute changes, officials have their upcoming roles and fight rules at their fingertips.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresJudgeVideo"
+                      src="/videos/features/officialsJudge/featuresOfficialsJudge-1.576p.mp4"
+                      id="features Officials Judge video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresJudgeImage"
                       src="/images/features/officialsJudge/featuresOfficialsJudge-1.webp"
                       alt="features Officials Judge image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresJudgeTitle">
                       Informed Decisions, for longer
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresJudgeDescription">
                       With an analysis of their own evaluation of the fight provided immediately after each round, officials are able to make better decisions, with less pressure, and provide support for their scoring.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresJudgeVideo"
+                      src="/videos/features/officialsJudge/featuresOfficialsJudge-2.576p.mp4"
+                      id="features Officials Judge video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresJudgeImage"
                       src="/images/features/officialsJudge/featuresOfficialsJudge-2.webp"
                       alt="features Officials Judge image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresJudgeTitle">
                       Deeper Scoring discussions and debates
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresJudgeDescription">
                       With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques with precision never before possible.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresJudgeVideo"
+                      src="/videos/features/officialsJudge/featuresOfficialsJudge-3.576p.mp4"
+                      id="features Officials Judge video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresJudgeImage"
                       src="/images/features/officialsJudge/featuresOfficialsJudge-3.webp"
                       alt="features Officials Judge image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresJudgeTitle">
                       Instant Scorecard Submission
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresJudgeDescription">
                       Once a decision has been made, officials can instantly submit their scores to the RecordKeeper for scorecard calculation and archival.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresJudgeVideo"
+                      src="/videos/features/officialsJudge/featuresOfficialsJudge-4.576p.mp4"
+                      id="features Officials Judge video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresJudgeImage"
                       src="/images/features/officialsJudge/featuresOfficialsJudge-4.webp"
                       alt="features Officials Judge image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresJudgeTitle">
                       Training Mode
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresJudgeDescription">
                     Training mode offers officials the ability to create their own Fights, Improve their skills and share fight assessments with their colleagues.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresJudgeVideo"
+                      src="/videos/features/officialsJudge/featuresOfficialsJudge-5.576p.mp4"
+                      id="features Officials Judge video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresJudgeImage"
                       src="/images/features/officialsJudge/featuresOfficialsJudge-5.webp"
                       alt="features Officials Judge image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1427,10 +1467,10 @@ export default function Home() {
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
-                  <div className="flex flex-row justify-start items-center">
+                  <div className="flex flex-row justify-start items-center mmappBlockReveal">
                     <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
                       ➤
                     </h6>
@@ -1443,81 +1483,106 @@ export default function Home() {
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresRecordKeeperTitle">
                       Pre-filled in Information & Quick Edits
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       All event & fight information is pre-filled and accessible, and any last minute change can be easily accomplished and instantly shared with everyone.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresRecordKeeperVideo"
+                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.768p.mp4"
+                      id="features Officials RecordKeeper video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresRecordKeeperImage"
                       src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp"
                       alt="features Officials RecordKeeper image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresRecordKeeperTitle">
                       Effortlessly record all relevant details
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       From reason for breaks or point deduction to submission types, everything is recorded, with no extra effort.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresRecordKeeperVideo"
+                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.768p.mp4"
+                      id="features Officials RecordKeeper video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresRecordKeeperImage"
                       src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp"
                       alt="features Officials RecordKeeper image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresRecordKeeperTitle">
                       Automatic timing duties
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Flawlessly perform all timing duties with a push of a button. Record Round time, Break Time, Breaks, Point Deductions and more.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresRecordKeeperVideo"
+                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.768p.mp4"
+                      id="features Officials RecordKeeper video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresRecordKeeperImage"
                       src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp"
                       alt="features Officials RecordKeeper image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresRecordKeeperTitle">
                       Action Notifications
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Get alerted when a task must be performed such as sounding the clack for the final 10s, or to remove corners from the cage.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresRecordKeeperVideo"
+                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.768p.mp4"
+                      id="features Officials RecordKeeper video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresRecordKeeperImage"
                       src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp"
                       alt="features Officials RecordKeeper image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
                 <FeaturesCard className="recordKeeperCard z-10">
                   <FeaturesCardHeader className="featuresRecordKeeperHeaderItem" leftOrRight='left'>
-                    <FeaturesCardTitle>
+                    <FeaturesCardTitle className="featuresRecordKeeperTitle">
                       Instant Score Delivery and Calculation
                     </FeaturesCardTitle>
-                    <FeaturesCardDescription>
+                    <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Never collect scores at the end of each round or fumble with a calculator. Scores are instantly received from judges and automatically calculated.
                     </FeaturesCardDescription>
-                    <FeaturesCardImage
+                    <FeaturesCardVideo
+                      className="featuresRecordKeeperVideo"
+                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.768p.mp4"
+                      id="features Officials RecordKeeper video"
+                    />
+                    {/* <FeaturesCardImage
                       className="featuresRecordKeeperImage"
                       src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp"
                       alt="features Officials RecordKeeper image"
-                    />
+                    /> */}
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1526,7 +1591,7 @@ export default function Home() {
                   href="/product"
                   data-page="/product"
                   data-link="#MMAPP-Methodology"
-                  className="w-fit px-14 mx-auto mt-20 md:mt-0"
+                  className="w-fit px-14 mx-auto mt-20 md:mt-0 portrait:md:mt-16"
                 >
                   Learn more in our product page<span aria-hidden="true" className="pl-2"> →</span>
                 </CardPoliciesButton>
