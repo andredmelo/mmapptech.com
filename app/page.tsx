@@ -17,6 +17,7 @@ import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/compone
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 import FAQ from '@/app/contact/faq'
+import OurExpertise from '@/app/ourExpertise'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
@@ -768,7 +769,8 @@ export default function Home() {
 
       const HeroIntroBGReveal = gsap.timeline({paused:false})
         .fromTo(heroVeil, {autoAlpha: 1}, {autoAlpha: 0})
-
+        
+      // Mapping MMA Animation
       let split = new SplitText(heroMMAPPText,
         { types: 'chars',
           charsClass: "bg-white/70 border-[1.5px] border-[var(--primary-fuchsia)] py-2 px-2 md:px-4 min-w-12 md:min-w-24 rounded-b-sm",
@@ -784,38 +786,39 @@ export default function Home() {
             autoAlpha:1,
             rotationX:0,
             scrambleText: {
-              text: "{original}", 
-              chars: "0123456789", 
-              revealDelay: 0.5, 
-              speed: 0.3, 
+              text: "{original}",
+              chars: "0123456789",
+              revealDelay: 0.5,
+              speed: 0.6,
               newClass: "myClass"
             },
-            stagger:{each:0.25, ease:"power1.out"},
-            duration: 3,
+            stagger:{each:0.1, ease:"linear"},
+            duration: 2,
             //ease: "bounce.out",
             ease: CustomEase.create("custom", "M0,0 C0.051,0 0.106,0.334 0.136,0.5 0.166,0.669 0.192,0.963 0.2,1 0.208,0.985 0.28,0.289 0.354,0.3 0.468,0.316 0.491,0.983 0.5,1 0.518,0.974 0.594,0.562 0.638,0.599 0.713,0.662 0.729,0.934 0.763,1.005 0.799,0.93 0.817,0.769 0.846,0.818 0.875,0.867 0.897,0.985 0.911,0.998 0.922,0.994 0.938,0.973 0.953,0.973 0.968,0.973 1,1 1,1 "),
             // ease: CustomEase.create("custom", "M0,0 C0,0 0.015,0.156 0.021,0.226 0.033,0.373 0.054,0.719 0.065,0.867 0.07,0.941 0.109,1.488 0.113,1.533 0.191,2.451 0.256,0.554 0.26,0.482 0.276,0.163 0.327,0.106 0.346,0.4 0.35,0.467 0.4,1.573 0.443,1.573 0.485,1.573 0.527,0.535 0.577,0.535 0.627,0.535 0.63,1.37 0.668,1.371 0.704,1.371 0.707,0.722 0.755,0.723 0.781,0.723 0.789,1.184 0.816,1.2 0.838,1.213 0.856,0.833 0.88,0.833 0.913,0.833 0.891,1.104 0.922,1.104 0.95,1.104 0.945,0.915 0.964,0.948 0.98,1 1,1 1,1 "),
           }
         )
 
-      let hasHeroIntroStageRan = false;
+      // HeroIntroStage Animation
+      //let hasHeroIntroStageRan = false;
       const HeroIntroStage = gsap.timeline({
         paused:true,
-        onComplete: () => {
+        /* onComplete: () => {
           MappingMMARevealAnim?.play();
           hasHeroIntroStageRan = true;
-        },
-        defaults: {delay: 3},
+        }, */
+        defaults: {delay: 0.25},
       })
-        .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0)
-        .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.25, ease: "power1.in"}, 0.25)
-        .fromTo(heroBGVideo, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.5)
-        .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.75)
-        .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.8)
-        .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out"}, 1.25)
+        .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.125, ease: "power1.in"}, 0)
+        .fromTo(heroSpotRight, {autoAlpha: 0, xPercent: 100, yPercent: -100}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.125, ease: "power1.in"}, 0.125)
+        .fromTo(heroBGVideo, {autoAlpha: 0}, {autoAlpha: 1, duration: 1, ease: "power2.in"}, 0.075)
+        .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.55)
+        .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.6)
+        .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out", onComplete: () => {MappingMMARevealAnim?.play()}}, 1.05)
         //.fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
-        .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
-        .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.6)
+        .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
+        .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
 
       /* if (isHeroIntro3DComplete && !hasHeroIntroStageRan) {
         HeroIntroStage.play();
@@ -912,83 +915,85 @@ export default function Home() {
           </div>
           {/* <HomeIntroR3F /> */}
           {/* <HomeiPhoneIntroR3F /> */}
-          <HomeCageR3F />
           {/* <HomeReact3FiberViewer /> */}
+          {/* {isUnder768 ? '' : <HomeCageR3F />} */}
           <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
-        <section id="OurExpertise" className="z-20 flex flex-col justify-center py-32 md:py-40 lg:py-52">
-          <MainFC className="pt-12 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-20 xl:pb-36 bg-bgRadialGradientDown">
+        <section id="OurExpertise" className="z-20 flex flex-col justify-center pb-32 md:py-40 lg:py-52">
+          <MainFC className="pt-20 md:pt-36 lg:pt-14 pb-12 md:pb-36 lg:pb-20 xl:pb-36 bg-bgRadialGradientDown">
             <MainFCTitle className="mmappBlockReveal flex flex-col justify-center z-20 text-center">
               Our Expertise
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[3%] lg:px-[2%] break-normal">
-              Boosting MMA Federations to the Digital Age with our all-in-one digital solution
+            <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[1%] lg:px-[0%] break-normal">
+              Boosting MMA Federations to the Digital Age with our all-in-one solution
             </MainFCHeading>
             {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
             </MainFCDescription> */}
             <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
-              <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
-                <div>
-                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                    Management, Scheduling, Officiation
-                  </h5>
-                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    Our platform solves all issues Federations face in membership approval and management as well as event scheduling and approval.<br/>
-                    On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
-                  </p>
+              {isUnder768 ? <OurExpertise className="mmappBlockReveal" /> : 
+                <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
+                  <div>
+                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                      Management, Scheduling, Officiation
+                    </h5>
+                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our platform solves all issues Federations face in membership approval and management as well as event scheduling and approval.<br/>
+                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                      Common Language & Unit of Measurement
+                    </h5>
+                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
+                      By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                      The “Dashboard” app
+                    </h5>
+                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Easy & Quick sign up for members, with minimal input from Federations.<br/>
+                      Manage Members and Events with a few clicks.<br/>
+                      Gain insights into your officials performances.<br/>
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                      The “Judge” app
+                    </h5>
+                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
+                      Discuss scoring in a deeper manner.<br/>
+                      Lifetime archive of your scoring.<br/>
+                      Contribute to the improvement of MMA Judging.<br/>
+                    </p>
+                  </div>
+                  <div>
+                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                      The “RecordKeeper” app
+                    </h5>
+                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                      All Timing duties done automatically.<br/>
+                      Receive and calculate scores instantly.<br/>
+                      Record fight events like never before.<br/>
+                    </p>
+                  </div>
+                  <div className="mmappBlockReveal flex justify-center md:justify-end w-full">
+                    <p className="flex items-end text-md text-neutral-200 text-center pt-12 pb-20 md:pb-0 max-w-[28rem] md:max-w-[29rem] lg:max-w-full">
+                      <span className="pr-4 bounce-arrow" aria-hidden="true">↓</span>
+                        Learn more about their features and benefits below
+                      <span className="pl-4 bounce-arrow" aria-hidden="true">↓</span>
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                    Common Language & Unit of Measurement
-                  </h5>
-                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
-                    By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-                  </p>
-                </div>
-                <div>
-                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                    The “Dashboard” app
-                  </h5>
-                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    Easy & Quick sign up for members, with minimal input from Federations.<br/>
-                    Manage Members and Events with a few clicks.<br/>
-                    Gain insights into your officials performances.<br/>
-                  </p>
-                </div>
-                <div>
-                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                    The “Judge” app
-                  </h5>
-                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
-                    Discuss scoring in a deeper manner.<br/>
-                    Lifetime archive of your scoring.<br/>
-                    Contribute to the improvement of MMA Judging.<br/>
-                  </p>
-                </div>
-                <div>
-                  <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                    The “RecordKeeper” app
-                  </h5>
-                  <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                    All Timing duties done automatically.<br/>
-                    Receive and calculate scores instantly.<br/>
-                    Record fight events like never before.<br/>
-                  </p>
-                </div>
-                <div className="mmappBlockReveal flex justify-center md:justify-end w-full">
-                  <p className="flex items-end text-md text-neutral-200 text-center pt-12 pb-20 md:pb-0 max-w-[28rem] md:max-w-[29rem] lg:max-w-full">
-                    <span className="pr-4 bounce-arrow" aria-hidden="true">↓</span>
-                      Learn more about their features and benefits below
-                    <span className="pl-4 bounce-arrow" aria-hidden="true">↓</span>
-                  </p>
-                </div>
-              </div>
+              }
               <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                <img className="smallMissionImg landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+                <img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
               </div>
             </div>
           </MainFC>
