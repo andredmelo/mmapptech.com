@@ -677,7 +677,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             onLeave: () => {
               gsap.fromTo(".productDashboardMembersTitles",
                 { xPercent: -125},
-                { xPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+                { xPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
               )
             },
             //markers: true,
@@ -701,7 +701,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               onLeave: () => {
                 gsap.fromTo(".productDashboardMembersTitlesBox",
                   { yPercent: -300},
-                  { yPercent: 0, duration: 0.75, stagger: 0.25, ease: "power1.out"}
+                  { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
                 )
               },
               //markers: true,
@@ -725,7 +725,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
               onLeave: () => {
                 gsap.fromTo(".productDashboardMembersTitlesBox",
                   { yPercent: -200},
-                  { yPercent: 0, duration: 0.75, stagger: 0.125, ease: "power1.out"}
+                  { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
                 )
               },
               //markers: true,
@@ -890,9 +890,10 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </h6>
         </div> */}
         <div className="portrait:md:h-[112vw]">
+          
           {/* Titles for portrait devices */}
-          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-[4vw] portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
-            <h4 className={clsx("mmappBlockReveal text-center text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-0 portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
+            <h4 className={clsx("mmappBlockReveal text-center portrait:text-[4.5vw] portrait:md:text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "two-lines-always")}>
               {descriptionSrcMapJudge[activeTabProductJudge]}
             </h4>
@@ -901,7 +902,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* // Use the loading state to conditionally render the images in small mobile device*/}
           <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
             <img
-              className="judgePhone object-scale-down max-h-[62.5vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
+              className="judgePhone object-scale-down max-h-[60vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iphone-12"
               onLoad={() => setIsLoading(false)}
@@ -1053,22 +1054,22 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
-          <ProductFCTitle className="mmappBlockReveal justify-end text-right max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
-          <ProductFCHeading className="mmappHeadingReveal justify-end text-right pl-[0%] md:pl-[15vw]">
+          <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[15vw]">
             Designed for officials performing Scorekeeping and Timekeeping duties
           </ProductFCHeading>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[15vw]">
             The “RecordKeeper” is our tool designed for officials performing Scorekeeping and Timekeeping duties.<br/><br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[15vw]">
             Because it is capable of automating most of the responsibilities, we are able to combine the roles of Scorekeeper and Timekeeper into one, called the RecordKeeper.<br/><br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[15vw]">
             Outperforming the roles when done individually, the RecordKeeper connects to the Judges, receives and calculates their score, and has outstanding timing capabilities, timing simultaneously Round Time, Breaks and In-between rounds, as well as important event logging, such as Reasons for Point deductions or Break duration.<br/><br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[15vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[15vw]">
             At the end of fights, it provides a clear display of the winner for easy visualization, for quick dispatch to the speaker. Once completed, every detail is instantly delivered to the Federation dashboard.
           </ProductFCDescription>
         </ProductFC>
@@ -1303,22 +1304,22 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
       <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
         <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[16.75vw] portrait:touch:md:pt-[19.75vw] pb-12 md:pb-[14vw]">
-          <ProductFCTitle className="mmappBlockReveal justify-end text-right max-w-[100%]">
+          <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
             Dashboard (Members)
           </ProductFCTitle>
-          <ProductFCHeading className="mmappHeadingReveal justify-end text-right pl-[0%] md:pl-[15vw] ">
+          <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[15vw] ">
             A platform to seemlessly interact with your Federation
           </ProductFCHeading>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
             The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
             Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
             You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
           </ProductFCDescription>
-          <ProductFCDescription className="mmappParagraphsRevealRight justify-end text-right pl-[0vw] md:pl-[19vw]">
+          <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
             Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
           </ProductFCDescription>
         </ProductFC>

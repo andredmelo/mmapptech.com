@@ -10,7 +10,7 @@ const CallToActionButton = ({ className }: CallToActionButtonProps) => {
 
   return (
     <CardCallToActionFooter className={className}>
-      <DialogCTA title={""} btnLabel={"Request your Federation to join MMAPP"} />
+      <DialogCTA title={""} btnLabel={"Request that your Federation join MMAPP"} />
     </CardCallToActionFooter>
   )
 };

@@ -715,7 +715,7 @@ const Company = (props: any) => {
                 </p>
               </ol>
             </li>
-            <li className="mmappBlockReveal w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[60%]">
+            <li className="mmappBlockReveal w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[90%] lg:max-w-[60%]">
               <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
               Compliance
               </h4>

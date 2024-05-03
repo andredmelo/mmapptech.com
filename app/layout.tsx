@@ -4,6 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { AppContext } from '@/lib/contexts/AppContext';
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
@@ -259,6 +260,7 @@ export default function RootLayout({
           </Providers>
         </body>
       </html>
+      <SpeedInsights/>
     </AppContext.Provider>
   );
 };

@@ -849,10 +849,10 @@ const DialogCTA = (props: DialogCTAProps) => {
                   "px-10 py-10",  // mt-12
                   )}>
                   <Dialog.Title className="pb-4 text-xl text-center font-semibold text-neutral-900 dark:text-neutral-100">
-                    Request your Federation to join MMAPP
+                    Request that your Federation join MMAPP
                   </Dialog.Title>
                   <Dialog.Description className="py-4 pb-8 text-md text-center font-normal text-neutral-700 dark:text-neutral-400">
-                    Contact your National Federation and request them to join MMAPP.<br/>
+                    Contact your National Federation and request that they join MMAPP.<br/>
                   </Dialog.Description>
 
                   <div className={clsx(

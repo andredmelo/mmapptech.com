@@ -858,7 +858,7 @@ export default function Home() {
 
       const HeroIntroBGReveal = gsap.timeline({paused:false})
         .fromTo(heroVeil, {autoAlpha: 1}, {autoAlpha: 0})
-        
+
       // Mapping MMA Animation
       let split = new SplitText(heroMMAPPText,
         { types: 'chars',
@@ -999,7 +999,7 @@ export default function Home() {
             <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
             <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/>
             <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/>
-            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
+            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[-1px] md:bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
             <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
           </div>
           {/* <HomeIntroR3F /> */}

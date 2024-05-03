@@ -670,7 +670,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               })
                 .fromTo(iPhone.scene.position, {x: 0, y: 0}, {x: -iPhonePosX, y: -0.1, ease:"power1.out"}, "<")
                 .fromTo(iPhone.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: 0.5, z: 0, ease:"power1.in"}, "<")
-                .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 9, y: 9, z: 9, ease:"power3.in"}, "<")
+                .fromTo(iPhone.scene.scale, {x: 3.5, y: 3.5, z: 3.5}, {x: 8, y: 8, z: 8, ease:"power3.in"}, "<")
 
               // iPhoneFeaturesAnimOut
               const iPhoneFeaturesAnimOut = gsap.timeline({

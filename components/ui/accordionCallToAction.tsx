@@ -104,7 +104,7 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
                           {Federation}
                         </CardCallToActionFederation>
                         <CardCallToActionDescription>
-                          Send an Email to your Federation to request them to join MMAPP.
+                          Send an email to your federation requesting them to join MMAPP.
                         </CardCallToActionDescription>
                         {/* <CardCallToActionEmail>
                           {Email}
@@ -113,7 +113,7 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
                     </CardCallToActionHeader>
                     <CardCallToActionFooter>
                       <CardCallToActionButtonEmail
-                        href={`mailto:${Email}?subject=Request%20for%20MMAPP%20Platform&body=I%20am%20%3Cinsert%20your%20name%20here%3E%20and%20I%20am%20affiliated%20with%20you%20as%20an%20%3Cathlete%2Fcoach%2Fclub%2Fpromoter%3E.%0A%0AI%20am%20reaching%20out%20to%20you%20regarding%20MMAPP%2C%20an%20all-in-one%20solution%20I%20came%20across%2C%20designed%20to%20help%20MMA%20Federations%20manage%20their%20members%20and%20events%20with%20ease.%20This%20platform%20also%20provides%20tools%20that%20can%20assist%20in%20improving%20MMA%20officiating%2C%20including%20scorekeeping%2C%20timekeeping%2C%20and%20judging.%20I%20believe%20that%20implementing%20MMAPP%20would%20be%20highly%20beneficial%20not%20only%20to%20the%20Federation%2C%20but%20also%20to%20us%2C%20your%20members.%0A%0AYou%20can%20check%20out%20the%20many%20features%20available%20on%20their%20website%20below%3A%0Awww.mmapptech.com%0A%0ALooking%20forward%20to%20being%20able%20to%20use%20MMAPP%20with%20${Federation}.%0A%0ABest%20regards.%0A%0A%3Cinsert%20name%20here%3E`}
+                        href={`mailto:${Email}?subject=Request%20for%20MMAPP%20Platform&body=I%20am%20%3Cinsert%20your%20name%20here%3E%20and%20I%20am%20affiliated%20with%20you%20as%20an%20%3Cathlete%2Fcoach%2Fclub%2Fpromoter%3E.%0A%0AI%20am%20reaching%20out%20to%20you%20regarding%20MMAPP%2C%20an%20all-in-one%20solution%20I%20came%20across%2C%20designed%20to%20help%20MMA%20Federations%20manage%20their%20members%20and%20events%20with%20ease.%20This%20platform%20also%20provides%20tools%20that%20can%20assist%20in%20improving%20MMA%20officiating%2C%20including%20scorekeeping%2C%20timekeeping%2C%20and%20judging.%20I%20believe%20that%20implementing%20MMAPP%20would%20be%20highly%20beneficial%20not%20only%20to%20the%20Federation%2C%20but%20also%20to%20us%2C%20your%20members.%0A%0AYou%20can%20check%20out%20the%20many%20features%20available%20on%20their%20website%20below%3A%0Awww.mmapptech.com%0A%0ALooking%20forward%20to%20being%20able%20to%20use%20MMAPP%20with%20${Federation}.%0A%0ABest%20regards.%0A%0A%3Cinsert%20your%20name%20here%3E`}
                         className=""
                       >
                         Click to Email now
