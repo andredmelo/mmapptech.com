@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.17 | ScrollSmoother added for Android to prevent the stuck scrolling issue. Added isAndroid conditions on home Features to render images instead of videos.";
+let vNumber = "v0.2-β.18 | Various fixes and Android optimizations.";

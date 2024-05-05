@@ -17,7 +17,7 @@ import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
-import FAQ from '@/app/contact/faq'
+//import FAQ from '@/app/contact/faq'
 import OurExpertise from '@/app/ourExpertise'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo } from '@/components/ui/featuresCard'
@@ -26,18 +26,20 @@ import CallToActionButton from '@/app/CallToActionButton'
 import ProgressCircle from '@/components/ui/svg/progressCircle'
 
 import(/* webpackPreload: true */ '@/components/three.js');
-import { TestR3F } from '@/components/three.js';
-import { HomeIntroR3F } from '@/components/three.js';
-import { HomeiPhoneIntroR3F } from '@/components/three.js';
-import { HomeCageR3F } from '@/components/three.js';
-const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
+//import { TestR3F } from '@/components/three.js';
+//import { HomeIntroR3F } from '@/components/three.js';
+//import { HomeiPhoneIntroR3F } from '@/components/three.js';
+//import { HomeCageR3F } from '@/components/three.js';
+//const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
+import dynamic from 'next/dynamic';
+const HomeFeaturesR3F = dynamic(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })), { ssr: false });
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
 //import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
-gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, SplitText, CustomEase, ScrambleTextPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin, SplitText, CustomEase, ScrambleTextPlugin);
 
 export default function Home() {
 
@@ -237,11 +239,19 @@ export default function Home() {
           //leaveAni(fDD, 0, 125);
         });
 
+        let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
         let fDV: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardVideo");
-        fDV.forEach((fDV) => {
-          enterAni(fDV, 125, 0);
-          //leaveAni(fDV, 0, -125);
-        });
+        {isMobileOnly && isAndroid ? 
+          fDI.forEach((fDI) => {
+            enterAni(fDI, 125, 0);
+            //leaveAni(fDV, 0, -125);
+          })
+        :
+          fDV.forEach((fDV) => {
+            enterAni(fDV, 125, 0);
+            //leaveAni(fDV, 0, -125);
+          })
+        };
 
 
         let fJT: HTMLElement[] = gsap.utils.toArray(".featuresJudgeTitle");
@@ -257,11 +267,18 @@ export default function Home() {
         });
 
         let fJV: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeVideo");
-        fJV.forEach((fJV) => {
-          enterAni(fJV, 125, 0);
-          //leaveAni(fJV, 0, -125);
-        });
-
+        let fJI: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeImage");
+        {isMobileOnly && isAndroid ? 
+          fJI.forEach((fJI) => {
+            enterAni(fJI, 125, 0);
+            //leaveAni(fJV, 0, -125);
+          })
+        :
+          fJV.forEach((fJV) => {
+            enterAni(fJV, 125, 0);
+            //leaveAni(fJV, 0, -125);
+          });
+        };
 
         let fRKT: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperTitle");
         fRKT.forEach((fRKT) => {
@@ -276,10 +293,18 @@ export default function Home() {
         });
 
         let fRKV: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperVideo");
-        fRKV.forEach((fRKV) => {
-          enterAni(fRKV, 125, 0);
-          //leaveAni(fRKV, 0, -125);
-        });
+        let fRKI: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
+        {isMobileOnly && isAndroid ? 
+          fRKI.forEach((fRKI) => {
+            enterAni(fRKI, 125, 0);
+            //leaveAni(fRKV, 0, -125);
+          })
+        :
+          fRKV.forEach((fRKV) => {
+            enterAni(fRKV, 125, 0);
+            //leaveAni(fRKV, 0, -125);
+          })
+        };
 
       });
 
@@ -917,7 +942,7 @@ export default function Home() {
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
   );
 
   let heroVideo = "/videos/hero/hero.1080p.mp4";
@@ -1101,12 +1126,16 @@ export default function Home() {
           </h5>
 
           {/* <HomeFeaturesR3F /> */}
-          <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
-          {showHomeFeaturesR3F && (
-            <Suspense fallback={<div className="z-[999] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
-              <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
-            </Suspense>
-          )}
+          {isUnder768 ? '' : 
+            <>
+              <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
+              {showHomeFeaturesR3F && (
+                <Suspense fallback={<div className="z-[999] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
+                  <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
+                </Suspense>
+              )}
+            </>
+          }
 
           {/* // Dashboard */}
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
