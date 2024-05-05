@@ -45,7 +45,9 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
             }
           });
         } catch (error) {
-          console.error("Trying to scrollTo");
+          let scrollToCount = 0;
+          console.error("Trying to scrollTo "+scrollToCount);
+          scrollToCount++;
           //console.error("Error accessing element's style:", error);
           // Optional: retry logic or other error handling
         }
@@ -58,7 +60,12 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         //animIn.restart().play();
         //console.log("scrollingTo : " + href);
       } else {
-        console.log("Conditions for scrollTo not met");
+        console.log("Conditions for scrollTo not met:", {
+          smootherCurrentExists: !!smoother?.current,
+          offsetIsFunction: typeof smoother?.current?.offset === "function",
+          scrollToIsFunction: typeof smoother?.current?.scrollTo === "function",
+          templateAnimInExists: !!document.querySelector('.templateAnimIn')
+        });
       }
     }, 100);
   }, [href, smoother]);

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Navbar from "./navbar";
 
 const Navigation = () => {
-  console.log("Navigation")
+  //console.log("Navigation")
   // toggle sidebar
   /* const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {

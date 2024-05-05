@@ -3,6 +3,7 @@ import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { clsx } from "clsx";
 import { useMediaQuery } from '@react-hook/media-query';
+import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 /* import Image from "next/image";
 import styles from "./page.module.css"; */
 import gsap from 'gsap';
@@ -1006,7 +1007,7 @@ export default function Home() {
           {/* <HomeiPhoneIntroR3F /> */}
           {/* <HomeReact3FiberViewer /> */}
           {/* {isUnder768 ? '' : <HomeCageR3F />} */}
-          <div id="heroVeil" className="absolute z-[200] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
+          <div id="heroVeil" className="absolute z-[10] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
         <section id="OurExpertise" className="z-20 flex flex-col justify-center pb-32 md:py-40 lg:py-52">
@@ -1081,9 +1082,12 @@ export default function Home() {
                   </div>
                 </div>
               }
+
+              {isUnder768 ? '' : 
               <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                <img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.png" alt="iphone-12"/>
+                <img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.webp" alt="iphone-12"/>
               </div>
+              }
             </div>
           </MainFC>
         </section>
@@ -1133,16 +1137,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Relevant information for everyday management viewable at a glance in the Overview screen.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresDashboardVideo"
-                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4"
-                      id="features Federations Dashboard video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresDashboardImage"
-                      src="/images/features/federationsDashboard/featuresFederationsDashboard-1.webp"
-                      alt="features Federations Dashboard image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresDashboardImage"
+                        src="/images/features/federationsDashboard/featuresFederationsDashboard-1.webp"
+                        alt="features Federations Dashboard image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresDashboardVideo"
+                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4"
+                        id="features Federations Dashboard video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1154,16 +1161,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Gain a better understanding on judge scoring and the differences between your officials, to create a more cohesive team.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresDashboardVideo"
-                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-2.768p.mp4"
-                      id="features Federations Dashboard video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresDashboardImage"
-                      src="/images/features/federationsDashboard/featuresFederationsDashboard-2.webp"
-                      alt="features Federations Dashboard image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresDashboardImage"
+                        src="/images/features/federationsDashboard/featuresFederationsDashboard-2.webp"
+                        alt="features Federations Dashboard image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresDashboardVideo"
+                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-2.768p.mp4"
+                        id="features Federations Dashboard video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1175,16 +1185,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Registering is as simple as filling out a form online, and managing them is even easier.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresDashboardVideo"
-                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-3.768p.mp4"
-                      id="features Federations Dashboard video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresDashboardImage"
-                      src="/images/features/federationsDashboard/featuresFederationsDashboard-3.webp"
-                      alt="features Federations Dashboard image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresDashboardImage"
+                        src="/images/features/federationsDashboard/featuresFederationsDashboard-3.webp"
+                        alt="features Federations Dashboard image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresDashboardVideo"
+                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-3.768p.mp4"
+                        id="features Federations Dashboard video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1196,16 +1209,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily view and filter your members, according to your needs to quickly drill down on what’s important.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresDashboardVideo"
-                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-4.768p.mp4"
-                      id="features Federations Dashboard video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresDashboardImage"
-                      src="/images/features/federationsDashboard/featuresFederationsDashboard-4.webp"
-                      alt="features Federations Dashboard image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresDashboardImage"
+                        src="/images/features/federationsDashboard/featuresFederationsDashboard-4.webp"
+                        alt="features Federations Dashboard image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresDashboardVideo"
+                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-4.768p.mp4"
+                        id="features Federations Dashboard video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1217,16 +1233,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresDashboardDescription">
                       Easily accessible foreign fighter profiles with competition eligibility allows Federations to approve athletes instantly, and athletes to travel abroad carefree.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresDashboardVideo"
-                      src="/videos/features/federationsDashboard/featuresFederationsDashboard-5.768p.mp4"
-                      id="features Federations Dashboard video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresDashboardImage"
-                      src="/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
-                      alt="features Federations Dashboard image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresDashboardImage"
+                        src="/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
+                        alt="features Federations Dashboard image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresDashboardVideo"
+                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-5.768p.mp4"
+                        id="features Federations Dashboard video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1359,16 +1378,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresJudgeDescription">
                       Even with last-minute changes, officials have their upcoming roles and fight rules at their fingertips.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresJudgeVideo"
-                      src="/videos/features/officialsJudge/featuresOfficialsJudge-1.576p.mp4"
-                      id="features Officials Judge video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresJudgeImage"
-                      src="/images/features/officialsJudge/featuresOfficialsJudge-1.webp"
-                      alt="features Officials Judge image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresJudgeImage"
+                        src="/images/features/officialsJudge/featuresOfficialsJudge-1.webp"
+                        alt="features Officials Judge image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresJudgeVideo"
+                        src="/videos/features/officialsJudge/featuresOfficialsJudge-1.576p.mp4"
+                        id="features Officials Judge video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1380,16 +1402,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresJudgeDescription">
                       With an analysis of their own evaluation of the fight provided immediately after each round, officials are able to make better decisions, with less pressure, and provide support for their scoring.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresJudgeVideo"
-                      src="/videos/features/officialsJudge/featuresOfficialsJudge-2.576p.mp4"
-                      id="features Officials Judge video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresJudgeImage"
-                      src="/images/features/officialsJudge/featuresOfficialsJudge-2.webp"
-                      alt="features Officials Judge image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresJudgeImage"
+                        src="/images/features/officialsJudge/featuresOfficialsJudge-2.webp"
+                        alt="features Officials Judge image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresJudgeVideo"
+                        src="/videos/features/officialsJudge/featuresOfficialsJudge-2.576p.mp4"
+                        id="features Officials Judge video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1401,16 +1426,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresJudgeDescription">
                       With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques with precision never before possible.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresJudgeVideo"
-                      src="/videos/features/officialsJudge/featuresOfficialsJudge-3.576p.mp4"
-                      id="features Officials Judge video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresJudgeImage"
-                      src="/images/features/officialsJudge/featuresOfficialsJudge-3.webp"
-                      alt="features Officials Judge image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresJudgeImage"
+                        src="/images/features/officialsJudge/featuresOfficialsJudge-3.webp"
+                        alt="features Officials Judge image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresJudgeVideo"
+                        src="/videos/features/officialsJudge/featuresOfficialsJudge-3.576p.mp4"
+                        id="features Officials Judge video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1422,16 +1450,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresJudgeDescription">
                       Once a decision has been made, officials can instantly submit their scores to the RecordKeeper for scorecard calculation and archival.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresJudgeVideo"
-                      src="/videos/features/officialsJudge/featuresOfficialsJudge-4.576p.mp4"
-                      id="features Officials Judge video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresJudgeImage"
-                      src="/images/features/officialsJudge/featuresOfficialsJudge-4.webp"
-                      alt="features Officials Judge image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresJudgeImage"
+                        src="/images/features/officialsJudge/featuresOfficialsJudge-4.webp"
+                        alt="features Officials Judge image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresJudgeVideo"
+                        src="/videos/features/officialsJudge/featuresOfficialsJudge-4.576p.mp4"
+                        id="features Officials Judge video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1443,16 +1474,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresJudgeDescription">
                     Training mode offers officials the ability to create their own Fights, Improve their skills and share fight assessments with their colleagues.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresJudgeVideo"
-                      src="/videos/features/officialsJudge/featuresOfficialsJudge-5.576p.mp4"
-                      id="features Officials Judge video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresJudgeImage"
-                      src="/images/features/officialsJudge/featuresOfficialsJudge-5.webp"
-                      alt="features Officials Judge image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresJudgeImage"
+                        src="/images/features/officialsJudge/featuresOfficialsJudge-5.webp"
+                        alt="features Officials Judge image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresJudgeVideo"
+                        src="/videos/features/officialsJudge/featuresOfficialsJudge-5.576p.mp4"
+                        id="features Officials Judge video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1489,16 +1523,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       All event & fight information is pre-filled and accessible, and any last minute change can be easily accomplished and instantly shared with everyone.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresRecordKeeperVideo"
-                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.768p.mp4"
-                      id="features Officials RecordKeeper video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresRecordKeeperImage"
-                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp"
-                      alt="features Officials RecordKeeper image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresRecordKeeperImage"
+                        src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp"
+                        alt="features Officials RecordKeeper image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresRecordKeeperVideo"
+                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.768p.mp4"
+                        id="features Officials RecordKeeper video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1510,16 +1547,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       From reason for breaks or point deduction to submission types, everything is recorded, with no extra effort.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresRecordKeeperVideo"
-                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.768p.mp4"
-                      id="features Officials RecordKeeper video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresRecordKeeperImage"
-                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp"
-                      alt="features Officials RecordKeeper image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresRecordKeeperImage"
+                        src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp"
+                        alt="features Officials RecordKeeper image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresRecordKeeperVideo"
+                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.768p.mp4"
+                        id="features Officials RecordKeeper video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1531,16 +1571,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Flawlessly perform all timing duties with a push of a button. Record Round time, Break Time, Breaks, Point Deductions and more.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresRecordKeeperVideo"
-                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.768p.mp4"
-                      id="features Officials RecordKeeper video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresRecordKeeperImage"
-                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp"
-                      alt="features Officials RecordKeeper image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresRecordKeeperImage"
+                        src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp"
+                        alt="features Officials RecordKeeper image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresRecordKeeperVideo"
+                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.768p.mp4"
+                        id="features Officials RecordKeeper video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1552,16 +1595,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Get alerted when a task must be performed such as sounding the clack for the final 10s, or to remove corners from the cage.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresRecordKeeperVideo"
-                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.768p.mp4"
-                      id="features Officials RecordKeeper video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresRecordKeeperImage"
-                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp"
-                      alt="features Officials RecordKeeper image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresRecordKeeperImage"
+                        src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp"
+                        alt="features Officials RecordKeeper image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresRecordKeeperVideo"
+                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.768p.mp4"
+                        id="features Officials RecordKeeper video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
@@ -1573,16 +1619,19 @@ export default function Home() {
                     <FeaturesCardDescription className="featuresRecordKeeperDescription">
                       Never collect scores at the end of each round or fumble with a calculator. Scores are instantly received from judges and automatically calculated.
                     </FeaturesCardDescription>
-                    <FeaturesCardVideo
-                      className="featuresRecordKeeperVideo"
-                      src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.768p.mp4"
-                      id="features Officials RecordKeeper video"
-                    />
-                    {/* <FeaturesCardImage
-                      className="featuresRecordKeeperImage"
-                      src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp"
-                      alt="features Officials RecordKeeper image"
-                    /> */}
+                    {isMobileOnly && isAndroid ? 
+                      <FeaturesCardImage
+                        className="featuresRecordKeeperImage"
+                        src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp"
+                        alt="features Officials RecordKeeper image"
+                      /> 
+                    :
+                      <FeaturesCardVideo
+                        className="featuresRecordKeeperVideo"
+                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.768p.mp4"
+                        id="features Officials RecordKeeper video"
+                      />
+                    }
                   </FeaturesCardHeader>
                 </FeaturesCard>
 

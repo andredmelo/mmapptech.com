@@ -43,25 +43,6 @@ export default function General() {
     toast.error('Something went wrong!')
   }
 
-  /* async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data: FormData = new FormData(e.currentTarget);
-    console.log(data);
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'post',
-        body: new URLSearchParams(data),
-      });
-      if (!response.ok) {
-        throw new Error(`Invalid response: ${response.status}`);
-      }
-      alert('Thanks for contacting us, we will get back to you soon!');
-    } catch (err) {
-      console.error(err);
-      alert("We can't submit the form, try again later?");
-    }
-  } */
-
   return (
     <CardContactUs>
       <CardContactUsHeader>

@@ -291,123 +291,144 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
         ScrollTrigger.refresh()
         // ScrollTrigger to refresh the markers
-        ScrollTrigger.create({
-          trigger: 'body',
-          start: 'top -20%',
-          onEnter: (self) => {
-            console.log('ScrollTriggerRefresh');
-            ScrollTrigger.refresh();
+        const bodyRefresh = setInterval(() => {
+          if (document.querySelector("body")) {
+            clearInterval(bodyRefresh);
+            let scrollTriggerRefreshCount = 0;
+            ScrollTrigger.create({
+              trigger: 'body',
+              start: 'top -20%',
+              onEnter: (self) => {
+                if (scrollTriggerRefreshCount < 10) {
+                  //console.log('ScrollTriggerRefresh '+scrollTriggerRefreshCount);
+                  ScrollTrigger.refresh();
+                  scrollTriggerRefreshCount++;
+                }
+              }
+            });
           }
-        });
+        }, 100);
       });
 
       /* gsap.defaults({
         ease: "none",
         duration: 1
       }); */
-      let drawMainPath0 = gsap.timeline({
-        defaults: {
-          ease: "linear",//
-        },
-        scrollTrigger: {
-          trigger: "#MMAPP-Methodology",
-          start: "bottom 70%",
-          endTrigger: "#Judge",
-          end: "top top",
-          scrub: 1,
-          /* markers:true, */
-          preventOverlaps:true,
-          /* onUpdate: (self) => {
-            if (self.direction === -1 && self.getVelocity() > 1) {
-              // The user is scrolling up fast, so rewind the animation faster
-              gsap.to("#myAnimation", { timeScale: self.getVelocity() });
-            } else {
-              // The user is scrolling normally or down, so play the animation at normal speed
-              gsap.to("#myAnimation", { timeScale: 1 });
-            }
-          } */
-        }
-        })
-        //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
-        .from("#mainPath-0", { drawSVG: 0 }, 0)
-        //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
-        /* .add(() => {
-          if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
-            dotAnimation.reverse();
-          } else { // if scrolling forward, play forward
-            dotAnimation.play();
+      
+      matchMedia.add("(orientation: landscape)", () => {
+        let drawMainPath0 = gsap.timeline({
+          defaults: {
+            ease: "linear",//
+          },
+          scrollTrigger: {
+            trigger: "#MMAPP-Methodology",
+            start: "bottom 70%",
+            endTrigger: "#Judge",
+            end: "top top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+            /* onUpdate: (self) => {
+              if (self.direction === -1 && self.getVelocity() > 1) {
+                // The user is scrolling up fast, so rewind the animation faster
+                gsap.to("#myAnimation", { timeScale: self.getVelocity() });
+              } else {
+                // The user is scrolling normally or down, so play the animation at normal speed
+                gsap.to("#myAnimation", { timeScale: 1 });
+              }
+            } */
           }
-        }, 2.48); */
-      let drawMainPath1 = gsap.timeline({
-        defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
-        },
-        scrollTrigger: {
-          trigger: "#Judge",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-          /* markers:true, */
-          preventOverlaps:true,
-        }
-        })
-        .from("#mainPath-1", { drawSVG: 0 }, 0)
+          })
+          //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
+          .from("#mainPath-0", { drawSVG: 0 }, 0)
+          //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
+          /* .add(() => {
+            if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
+              dotAnimation.reverse();
+            } else { // if scrolling forward, play forward
+              dotAnimation.play();
+            }
+          }, 2.48); */
+        let drawMainPath1 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
+          },
+          scrollTrigger: {
+            trigger: "#Judge",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPath-1", { drawSVG: 0 }, 0)
 
-      let drawMainPath2 = gsap.timeline({
-        defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.097,0.318 0.202,0.019 0.453,0.6 0.561,0.85 0.626,0.733 0.803,0.827 0.873,0.864 0.98,0.934 1,1 "),
-        },
-        scrollTrigger: {
-          trigger: "#RecordKeeper",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-          /* markers:true, */
-          preventOverlaps:true,
-        }
-        })
-        .from("#mainPath-2", { drawSVG: 0 }, 0)
+        let drawMainPath2 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.097,0.318 0.202,0.019 0.453,0.6 0.561,0.85 0.626,0.733 0.803,0.827 0.873,0.864 0.98,0.934 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#RecordKeeper",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPath-2", { drawSVG: 0 }, 0)
 
-      let drawMainPath3 = gsap.timeline({
-        defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.187,0.5 0.273,0.6 0.433,0.808 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),
-        },
-        scrollTrigger: {
-          trigger: "#Dashboard",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-          /* markers:true, */
-          preventOverlaps:true,
-        }
-        })
-        .from("#mainPath-3", { drawSVG: 0 }, 0)
+        let drawMainPath3 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.187,0.5 0.273,0.6 0.433,0.808 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#Dashboard",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPath-3", { drawSVG: 0 }, 0)
 
-      let drawMainPath4 = gsap.timeline({
-        defaults: {
-          ease: CustomEase.create("custom", "M0,0 C0.036,0.256 0.392,0.277 0.5,0.4 0.669,0.595 0.614,0.545 0.754,0.706 0.805,0.765 1,0.851 1,1 "),
-        },
-        scrollTrigger: {
-          trigger: "#Dashboard-Members",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-          /* markers:true, */
-          preventOverlaps:true,
-        }
-        })
-        .from("#mainPath-4", { drawSVG: 0 }, 0)
+        let drawMainPath4 = gsap.timeline({
+          defaults: {
+            ease: CustomEase.create("custom", "M0,0 C0.036,0.256 0.392,0.277 0.5,0.4 0.669,0.595 0.614,0.545 0.754,0.706 0.805,0.765 1,0.851 1,1 "),
+          },
+          scrollTrigger: {
+            trigger: "#Dashboard-Members",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            /* markers:true, */
+            preventOverlaps:true,
+          }
+          })
+          .from("#mainPath-4", { drawSVG: 0 }, 0)
 
 
-      ScrollTrigger.refresh()
-      // ScrollTrigger to refresh the markers
-      ScrollTrigger.create({
-        trigger: 'body',
-        start: 'top -20%',
-        onEnter: (self) => {
-          console.log('ScrollTriggerRefresh');
-          ScrollTrigger.refresh();
-        }
+        ScrollTrigger.refresh()
+        // ScrollTrigger to refresh the markers      
+        const bodyRefresh = setInterval(() => {
+          if (document.querySelector("body")) {
+            clearInterval(bodyRefresh);
+            let scrollTriggerRefreshCount = 0;
+            ScrollTrigger.create({
+              trigger: 'body',
+              start: 'top -20%',
+              onEnter: (self) => {
+                if (scrollTriggerRefreshCount < 10) {
+                  //console.log('ScrollTriggerRefresh '+scrollTriggerRefreshCount);
+                  ScrollTrigger.refresh();
+                  scrollTriggerRefreshCount++;
+                }
+              }
+            });
+          }
+        }, 100);
       });
 
       // Product Dashboard Titles

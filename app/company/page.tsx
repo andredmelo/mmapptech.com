@@ -277,7 +277,6 @@ const Company = (props: any) => {
                 <div><h4>Objectivity</h4></div>
                 {/* <img src="/images/icons/objectivity.svg" alt="Objectivity"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Target-3--Streamline-Core" >
-                  <desc>{"Target 3 Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Target-3--Streamline-Core">
                     <path id="Ellipse 20" fill="#631f99" d="M0.875 7a6.125 6.125 0 1 1 12.25 0A6.125 6.125 0 0 1 0.875 7Z" strokeWidth={0.5} />
                     <path id="Ellipse 19" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" d="M0.875 7a6.125 6.125 0 1 1 12.25 0A6.125 6.125 0 0 1 0.875 7Z" strokeWidth={0.5} />
@@ -303,9 +302,6 @@ const Company = (props: any) => {
                   {...props}
                 >
                   <defs />
-                  <desc>
-                    {"Synchronize Warning Streamline Icon: https://streamlinehq.com"}
-                  </desc>
                   <g id="Synchronize-Warning--Streamline-Core">
                     <g
                       id="Square-Brackets-Circle--Streamline-Core"
@@ -390,7 +386,6 @@ const Company = (props: any) => {
                 <div><h4>Growth & Learning</h4></div>
                 {/* <img src="/images/icons/growth-learning.svg" alt="Growth & Learning"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 16 16" id="Expand-Window-2--Streamline-Core" >
-                  <desc>{"Expand Window 2 Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Expand-Window-2--Streamline-Core">
                     <path id="Rectangle 759" fill="#631f99" d="M0.5 1.5a1 1 0 0 1 1 -1h11a1 1 0 0 1 1 1v11a1 1 0 0 1 -1 1h-11a1 1 0 0 1 -1 -1v-11Z" strokeWidth={0.5} />
                     <path id="Vector" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" d="M13.5 8v4.5a1 1 0 0 1 -1 1h-11a1 1 0 0 1 -1 -1v-11a1 1 0 0 1 1 -1H6" strokeWidth={0.5} />
@@ -405,7 +400,6 @@ const Company = (props: any) => {
                 <div><h4>Accountability</h4></div>
                 {/* <img src="/images/icons/accountability.svg" alt="Accountability"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Task-List--Streamline-Core" >
-                  <desc>{"Task List Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Task-List--Streamline-Core">
                     <path id="Vector" fill="#631f99" d="M12.39 12.39C12.39 12.9312 11.9512 13.37 11.41 13.37H2.59C2.0488 13.37 1.61 12.9312 1.61 12.39V1.61C1.61 1.0688 2.0488 0.63 2.59 0.63H8.47L12.39 4.55V12.39Z" strokeWidth={0.5} />
                     <path id="Vector_2" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" d="M12.39 12.39C12.39 12.9312 11.9512 13.37 11.41 13.37H2.59C2.0488 13.37 1.61 12.9312 1.61 12.39V1.61C1.61 1.0688 2.0488 0.63 2.59 0.63H8.0643C8.3242 0.6301 8.5734 0.7333 8.7571 0.9171L12.1029 4.2629C12.2867 4.4466 12.3899 4.6958 12.39 4.9557V12.39Z" strokeWidth={0.5} />
@@ -422,7 +416,6 @@ const Company = (props: any) => {
                 <div><h4>Safety</h4></div>
                 {/* <img src="/images/icons/safety.svg" alt="Safety"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Shield-Cross--Streamline-Core" >
-                  <desc>{"Shield Cross Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Shield-Cross--Streamline-Core">
                     <path id="Subtract" fill="#631f99" fillRule="evenodd" d="M6.64 13.433a1 1 0 0 0 0.72 0 9.565 9.565 0 0 0 6.136 -8.935V1.499A1 1 0 0 0 12.497 0.5H1.503a1 1 0 0 0 -1 1v2.998a9.565 9.565 0 0 0 6.137 8.935ZM6 3.008h2v2h1.998v1.998H8v2H6v-2H4.002V5.007H6V3.008Z" clipRule="evenodd" strokeWidth={0.5} />
                     <path id="Vector 6" fill="none" d="M8 3.008H6v2H4.002v1.998H6v2h2v-2h1.998V5.007H8V3.008Z" strokeWidth={0.5} />
@@ -437,7 +430,6 @@ const Company = (props: any) => {
                 <div><h4>Compliance</h4></div>
                 {/* <img src="/images/icons/compliance.svg" alt="Compliance"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Business-Handshake--Streamline-Core" >
-                  <desc>{"Business Handshake Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Business-Handshake--Streamline-Core">
                     <path id="Vector" fill="#631f99" d="M2.74246 4.26595 0.54805 3.08496l0.000014 4.77793L5.89503 11.5079c0.69118 0.4711 1.60258 0.4624 2.28459 -0.022l5.22268 -3.64644V2.63208l-2.7059 1.46261 -2.03325 -0.21754c-0.74667 -0.07989 -1.4936 0.12329 -2.095 0.56503 -0.01412 0 -0.02777 -0.00515 -0.03852 -0.01432 -0.50433 -0.43034 -1.17439 -0.61428 -1.82841 -0.50105l-1.95876 0.33914Z" strokeWidth={0.5} />
                     <path id="Rectangle 8" stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" d="M0.548043 3.08491 2.74245 4.2659l1.95877 -0.33914c0.66122 -0.11449 1.33884 0.07479 1.84502 0.51536v0" strokeWidth={0.5} />
@@ -453,7 +445,6 @@ const Company = (props: any) => {
                 <div><h4>Insist on Excellence</h4></div>
                 {/* <img src="/images/icons/excellence.svg" alt="Insist on Excellence"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Star-Badge--Streamline-Core" >
-                  <desc>{"Star Badge Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Star-Badge--Streamline-Core">
                     <path id="Vector 2356" fill="#631f99" d="M2.881 11.093 0.5 11.73l2.204 -3.818 2.728 2.249 -1.912 3.312 -0.639 -2.381Z" strokeWidth={0.5} />
                     <path id="Vector 2354" fill="#631f99" d="m11.118 11.093 2.382 0.638 -2.204 -3.818 -2.728 2.249 1.912 3.312 0.638 -2.381Z" strokeWidth={0.5} />
@@ -477,9 +468,6 @@ const Company = (props: any) => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <defs />
-                  <desc>
-                    {'{"Ai Technology Spark Streamline Icon: https://streamlinehq.com"}'}
-                  </desc>
                   <g id="Ai-Technology-Spark--Streamline-Core">
                     <path
                       id="Vector"
@@ -571,7 +559,6 @@ const Company = (props: any) => {
                   viewBox="0 0 14 14"
                   id="No-Poverty--Streamline-Core"
                 >
-                  <desc>{"No Poverty Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="No-Poverty--Streamline-Core">
                     <path
                       id="Ellipse 233"
@@ -666,7 +653,6 @@ const Company = (props: any) => {
                 <div><h4>Clear Communication</h4></div>
                 {/* <img src="/images/icons/clear-communication.svg" alt="Clear Communication"/> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Chat-Two-Bubbles-Oval--Streamline-Core" >
-                  <desc>{"Chat Two Bubbles Oval Streamline Icon: https://streamlinehq.com"}</desc>
                   <g id="Chat-Two-Bubbles-Oval--Streamline-Core">
                     <path id="Subtract" fill="#631f99" fillRule="evenodd" d="M3.05388 1.24616C3.86856 0.758171 4.80035 0.500297 5.75 0.5c0.79011 -0.000465 1.57014 0.177412 2.28194 0.52037 0.7118 0.34296 1.33701 0.84216 1.82902 1.46039 0.49204 0.61822 0.83814 1.33953 1.01254 2.11014 0.0584 0.25791 0.0971 0.51912 0.116 0.78139C10.4475 5.12918 9.85543 5 9.25 5c-0.63948 -0.00042 -1.27081 0.14347 -1.84696 0.42095 -0.57614 0.27748 -1.08224 0.68139 -1.48058 1.18165 -0.39835 0.50026 -0.67866 1.08396 -0.82007 1.70761 -0.14141 0.62365 -0.14026 1.27117 0.00337 1.89429 0.06203 0.2692 0.14996 0.5308 0.26207 0.7813 -0.66603 -0.049 -1.31775 -0.2247 -1.91975 -0.5189L0.5 11l0.88038 -2.34231C0.854423 7.86699 0.552781 6.94844 0.507584 5.99986c-0.045197 -0.94857 0.167744 -1.89164 0.616146 -2.72877 0.4484 -0.83712 1.11546 -1.53695 1.93015 -2.02493Z" clipRule="evenodd" strokeWidth={0.5} />
                     <path id="Vector" fill="#631f99" d="M9.25001 5c1.12719 0 2.20819 0.44777 3.00519 1.2448 0.797 0.79703 1.2448 1.87803 1.2448 3.0052 0.0027 0.8366 -0.2446 1.6549 -0.71 2.35l0.71 1.9 -2.39 -0.43c-0.5748 0.2803 -1.20539 0.4273 -1.84487 0.43 -0.63947 0.0027 -1.27131 -0.139 -1.84844 -0.4144 -0.57713 -0.2754 -1.08466 -0.6776 -1.48478 -1.1764 -0.40012 -0.4988 -0.68252 -1.0815 -0.82614 -1.7047 -0.14362 -0.62311 -0.14478 -1.27064 -0.00337 -1.89429 0.14141 -0.62365 0.42173 -1.20735 0.82007 -1.70761 0.39834 -0.50026 0.90444 -0.90417 1.48058 -1.18165C7.9792 5.14347 8.61053 4.99958 9.25001 5Z" strokeWidth={0.5} />

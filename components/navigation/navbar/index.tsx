@@ -70,6 +70,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         navMenu?.classList.toggle("show");
         navMenuSpacer?.classList.toggle("show");
         loginLink?.classList.toggle("show");
+        mmappsButtons?.classList.toggle("show");
       });
 
       matchMedia.add("(max-width: 767px)", () => {
@@ -126,7 +127,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 loginLink?.classList.toggle("show");
                 mmappsButtons?.classList.toggle("show");
                 gsap.fromTo(loginLink, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
-                gsap.fromTo(mmappsButtons, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.05, ease:"power1.in"});
+                gsap.fromTo(mmappsButtons, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, duration: 0.1, delay: 0.15, ease:"power1.in"});
                 gsap.fromTo(MenuGloveSVG, {xPercent: 100, autoAlpha: 1}, {xPercent: -100, autoAlpha: 1, duration: 0.5, ease:"power1.out"});
               }
             },
@@ -589,17 +590,13 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             </div>
 
             <button id="hamburger" className="block md:hidden relative ml-8 mr-4" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
-              {/* <i className="bx bx-menu" aria-hidden="true"></i> */}
-              <div className="hamburgerMenu" /* onClick={toggleHamburgerSVG} */>
+              <div className="hamburgerMenu" > {/* // onClick={toggleHamburgerSVG} */}
                 {isMenuOpen ? (
                   <LineMdMenuToCloseTransition key={animationKey} aria-hidden="true" />
                 ) : (
                   <LineMdCloseToMenuAltTransition key={animationKey} aria-hidden="true" />
                 )}
               </div>
-              {/* <div className="menuSVG">
-                <MenuSVG aria-hidden="true"/>
-              </div> */}
             </button>
           </div>
         </div>

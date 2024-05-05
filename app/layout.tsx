@@ -1,24 +1,26 @@
 "use client";
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
+import { useMediaQuery } from '@react-hook/media-query';
 import { AppContext } from '@/lib/contexts/AppContext';
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 import { Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
-import Loading from "./loading";
-import Template from "./template";
-import Providers from './providers'
-import "./globals.css";
+import Loading from "@/app/loading";
+//import Template from "./template";
+import Providers from '@/app/providers'
+import "@/app/globals.css";
 import localFont from "next/font/local";
 
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/ScrollSmoother";
-import { HeroIntroProvider } from '@/lib/contexts/HeroIntroContext';
+//import { HeroIntroProvider } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -34,6 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const main: any = useRef();
+
+  const isUnder768 = useMediaQuery('(max-width: 768px)');
   /* ===== Media Queries ===== */
   /* const [noHover] = useMediaQuery('(hover: none)')
   const [portrait] = useMediaQuery('(orientation: portrait)')
@@ -77,14 +81,23 @@ export default function RootLayout({
       matchMedia.add("(hover: none)", () => {
         matchMedia.add("(max-width: 767px)", () => {
           //console.log("hover none");
-          smoother.current = ScrollSmoother.create({
-            smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
-            effects: false, // looks for data-speed and data-lag attributes on elements
-            smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-            // ignoreMobileResize: true,
-            //normalizeScroll: true,
-          });
-          let ScrollSmootherTop = "top 0px";
+          {isMobileOnly && isAndroid ? 
+            smoother.current = ScrollSmoother.create({
+              smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+              effects: false, // looks for data-speed and data-lag attributes on elements
+              smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+              // ignoreMobileResize: true,
+              //normalizeScroll: true,
+            })
+          :
+            smoother.current = ScrollSmoother.create({
+              smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
+              effects: false, // looks for data-speed and data-lag attributes on elements
+              smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+              // ignoreMobileResize: true,
+              //normalizeScroll: true,
+            })
+          }
         });
         matchMedia.add("(min-width: 768px)", () => {
           //console.log("hover none");
@@ -223,44 +236,57 @@ export default function RootLayout({
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
-          <Providers>
-            <HeroIntroProvider>
-            <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}>
-            <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
-            <IPadTextureContext.Provider value={{ iPadTextureName, setiPadTextureName }}>
-            <MacBookProOpacityContext.Provider value={{ macBookProOpacity, setMacBookProOpacity }}>
-            <IPhoneOpacityContext.Provider value={{ iPhoneOpacity, setiPhoneOpacity }}>
-            <IPadOpacityContext.Provider value={{ iPadOpacity, setiPadOpacity }}>
-              <Navbar />
-              <div id="smooth-wrapper">
-                <div id="smooth-content">
-                  {<Loading />}
-                  <main id="main" className="templateAnimIn">{children}</main>
-
-                  {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
+          {isUnder768 ? 
+            <Providers>
+                <Navbar />
+                <div id="smooth-wrapper">
+                  <div id="smooth-content">
+                    {<Loading />}
                     <main id="main" className="templateAnimIn">{children}</main>
-                  </Template> */}
-
-                  {/* <Suspense fallback={<Loading />}>
-                      <main id="main">
-                        {children}
-                      </main>
-                  </Suspense> */}
-
-                  <Footer />
+                    <Footer />
+                  </div>
                 </div>
-              </div>
-            </IPadOpacityContext.Provider>
-            </IPhoneOpacityContext.Provider>
-            </MacBookProOpacityContext.Provider>
-            </IPadTextureContext.Provider>
-            </IPhoneTextureContext.Provider>
-            </MacBookProTextureContext.Provider>
-            </HeroIntroProvider>
-          </Providers>
+            </Providers>
+           : 
+            <Providers>
+              {/* <HeroIntroProvider> */}
+              <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}>
+              <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
+              <IPadTextureContext.Provider value={{ iPadTextureName, setiPadTextureName }}>
+              <MacBookProOpacityContext.Provider value={{ macBookProOpacity, setMacBookProOpacity }}>
+              <IPhoneOpacityContext.Provider value={{ iPhoneOpacity, setiPhoneOpacity }}>
+              <IPadOpacityContext.Provider value={{ iPadOpacity, setiPadOpacity }}>
+                <Navbar />
+                <div id="smooth-wrapper">
+                  <div id="smooth-content">
+                    {<Loading />}
+                    <main id="main" className="templateAnimIn">{children}</main>
+
+                    {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
+                      <main id="main" className="templateAnimIn">{children}</main>
+                    </Template> */}
+
+                    {/* <Suspense fallback={<Loading />}>
+                        <main id="main">
+                          {children}
+                        </main>
+                    </Suspense> */}
+
+                    <Footer />
+                  </div>
+                </div>
+              </IPadOpacityContext.Provider>
+              </IPhoneOpacityContext.Provider>
+              </MacBookProOpacityContext.Provider>
+              </IPadTextureContext.Provider>
+              </IPhoneTextureContext.Provider>
+              </MacBookProTextureContext.Provider>
+              {/* </HeroIntroProvider> */}
+            </Providers>
+          }
         </body>
       </html>
-      <SpeedInsights/>
+      {/* <SpeedInsights/> */}
     </AppContext.Provider>
   );
 };
