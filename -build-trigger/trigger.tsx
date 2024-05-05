@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.20 | Contact Us form baseUrl fix attempt.";
+let vNumber = "v0.2-β.20 | Contact Us forms recipient change.";

@@ -43,9 +43,9 @@ export async function sendEmail(data: ContactFormInputs) {
 
       const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
       const recipients = [
-          new Recipient("andre1melo@proton.me", 'André Melo'),
+          //new Recipient("andre1melo@proton.me", 'André Melo'),
           //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
-          //new Recipient("info@mmapptech.com", 'MMAPP Tech')
+          new Recipient("info@mmapptech.com", 'MMAPP Tech')
       ];
       const emailParams = new EmailParams()
           .setFrom(sentFrom)
