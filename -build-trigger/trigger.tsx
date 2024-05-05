@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.18 | Various fixes and Android optimizations.";
+let vNumber = "v0.2-β.19 | Contact Us form image fix attempt.";

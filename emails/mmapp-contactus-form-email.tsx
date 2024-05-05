@@ -40,8 +40,9 @@ export default function MMAPPContactFormEmail(props: any) {
       >
         <Body className="bg-offwhite text-base font-sans">
           <Img
-            src={`${baseUrl}/images/logos/mmapp/logo_lg.webp`}
-            //src={`https://www.mmapptech.vercel.app/images/logos/mmapp/logo_lg.webp`}
+            //src={`${baseUrl}/images/logos/mmapp/logo_lg.webp`}
+            //src={`https://mmapptech.vercel.app/images/logos/mmapp/logo_lg.webp`}
+            src={`https://mmapptech.vercel.app/images/logos/mmapp/logo_lg.webp`}
             width="200"
             height="41"
             alt="MMAPP Logo"
