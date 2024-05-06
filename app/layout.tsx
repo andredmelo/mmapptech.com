@@ -14,7 +14,7 @@ import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
 import Loading from "@/app/loading";
 //import Template from "./template";
-import Providers from '@/app/providers'
+import ToasterProviders from '@/lib/providers/toasterProviders'
 import "@/app/globals.css";
 
 import gsap from 'gsap';
@@ -86,7 +86,7 @@ export default function RootLayout({
       matchMedia.add("(hover: none)", () => {
         matchMedia.add("(max-width: 767px)", () => {
           //console.log("hover none");
-          {isMobileOnly && (isAndroid || isSamsungBrowser || isWinPhone) ? 
+          {isMobileOnly && !isIOS ? 
             smoother.current = ScrollSmoother.create({
               smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
               effects: false, // looks for data-speed and data-lag attributes on elements
@@ -96,11 +96,9 @@ export default function RootLayout({
             })
           :
             smoother.current = ScrollSmoother.create({
-              smooth: 0, // how long (in seconds) it takes to "catch up" to the native scroll position
-              effects: false, // looks for data-speed and data-lag attributes on elements
-              smoothTouch: 0, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-              // ignoreMobileResize: true,
-              //normalizeScroll: true,
+              smooth: 0,
+              effects: false,
+              smoothTouch: 0,
             })
           }
         });
@@ -245,7 +243,7 @@ export default function RootLayout({
         </head>
         <body className={`${inter.className} ${CalSans.className}`} ref={main}>
           {isUnder768 ? 
-            <Providers>
+            <ToasterProviders>
                 <Navbar />
                 <div id="smooth-wrapper">
                   <div id="smooth-content">
@@ -254,9 +252,9 @@ export default function RootLayout({
                     <Footer />
                   </div>
                 </div>
-            </Providers>
+            </ToasterProviders>
            : 
-            <Providers>
+            <ToasterProviders>
               {/* <HeroIntroProvider> */}
               <MacBookProTextureContext.Provider value={{ macBookProTextureName, setMacBookProTextureName }}>
               <IPhoneTextureContext.Provider value={{ iPhoneTextureName, setiPhoneTextureName }}>
@@ -290,7 +288,7 @@ export default function RootLayout({
               </IPhoneTextureContext.Provider>
               </MacBookProTextureContext.Provider>
               {/* </HeroIntroProvider> */}
-            </Providers>
+            </ToasterProviders>
           }
         </body>
       </html>

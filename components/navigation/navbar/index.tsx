@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 import { useState, useRef, useEffect } from 'react';
+import { clsx } from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
+import { isMobileOnly, isIOS } from 'react-device-detect';
 import { useMediaQuery } from '@react-hook/media-query';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
@@ -19,6 +21,11 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); //This key forces the SVG components to re-mount triggereing the animations again
 
+  let menuSpacerMarginTop = "mt-0";
+  isUnder768 ? 
+    isMobileOnly&&!isIOS ? menuSpacerMarginTop = "mt-[-26px]" : menuSpacerMarginTop = "mt-0"
+  :
+    menuSpacerMarginTop = "mt-0";
   /* function toggleHamburgerSVG() { // Switch the SVGs and trigger the animations
     setIsMenuOpen(!isMenuOpen);
     setAnimationKey(prevKey => prevKey + 1); // Increment the key to force the SVG components to re-mount and trigger the animation again
@@ -290,6 +297,8 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
   { dependencies: [ /* color, noHover, portrait, under768, isGecko, lettersYInit, lettersYLiftoff, lettersYDrop, lettersYRise */], revertOnUpdate: true, /* scope: main */ }
   );
 
+
+
   return (
     <>
       <header id="nav-menu" aria-label="navigation bar"/*  ref={main} */>
@@ -298,7 +307,11 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             {/* <a className="logo logo-link" data-link="#home">
               <img src="/images/logo.png" alt="MMAPP Logo" />
             </a> */}
-            <div className="menu-spacer flex w-full h-full max-h-[100lvh]">
+            <div className={clsx(
+              "menu-spacer flex w-full h-full max-h-[100lvh]",
+              menuSpacerMarginTop,
+              )}
+              >
               <nav className="menu">
                 <ul className="menu-bar">
                   <li>
