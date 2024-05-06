@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
-
-export const metadata: Metadata = {
+export const MetaData: Metadata = {
+  title: "MMAPP",
+  description: "Mapping MMA",
   robots: {
     index: false,
     follow: true,

@@ -366,7 +366,7 @@ export default function Home() {
             const dashboardProgressCircleTween = gsap.from(dashboardProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
-            let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
+            //let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
             //console.log("fDI is "+fDI);
 
             fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
@@ -443,19 +443,19 @@ export default function Home() {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fDI[i-1], {xPercent: 0}, {xPercent: 24, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i-1], {xPercent: 0}, {xPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fDI[i], {xPercent: -24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i], {xPercent: -24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fDI[i-1], {xPercent: 24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i-1], {xPercent: 24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fDI[i], {xPercent: 0}, {xPercent: -24, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i], {xPercent: 0}, {xPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -471,19 +471,19 @@ export default function Home() {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fDI[i-1], {xPercent: 0, yPercent: 0}, {xPercent: 24, yPercent: 24, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i-1], {xPercent: 0, yPercent: 0}, {xPercent: 24, yPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fDI[i], {xPercent: -24, yPercent: -24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i], {xPercent: -24, yPercent: -24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fDI[i-1], {xPercent: 24, yPercent: 24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i-1], {xPercent: 24, yPercent: 24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fDI[i], {xPercent: 0, yPercent: 0}, {xPercent: -24, yPercent: -24, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fDI[i], {xPercent: 0, yPercent: 0}, {xPercent: -24, yPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -530,7 +530,7 @@ export default function Home() {
             const judgeProgressCircleTween = gsap.from(judgeProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
-            let fJI: HTMLImageElement[] = gsap.utils.toArray(".featuresJudgeImage");
+            //let fJI: HTMLImageElement[] = gsap.utils.toArray(".featuresJudgeImage");
 
             fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
             gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -608,19 +608,19 @@ export default function Home() {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -636,19 +636,19 @@ export default function Home() {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
@@ -694,7 +694,7 @@ export default function Home() {
             const recordKeeperProgressCircleTween = gsap.from(recordKeeperProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
-            let fRKI: HTMLImageElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
+            //let fRKI: HTMLImageElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
 
             fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
             gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -769,19 +769,19 @@ export default function Home() {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -797,19 +797,19 @@ export default function Home() {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
+                      //gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
               }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))

@@ -23,7 +23,7 @@ const Contacts = () => {
           <CallToActionButton className="mmappBlockReveal" />
         </section>
 
-          <div className="borderBottom"></div>
+        <div className="borderBottom"></div>
 
         <section className="flex flex-col justify-center items-center py-24 md:py-40 lg:py-52">
 

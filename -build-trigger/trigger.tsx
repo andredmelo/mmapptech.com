@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.23 | Non-iOS mobile browsers NavMenu fixes.";
+let vNumber = "v0.3-β.1 | NavMenu gap fix. Various tweaks and fixes.";

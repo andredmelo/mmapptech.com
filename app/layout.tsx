@@ -1,8 +1,10 @@
 "use client";
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
-import type { Metadata } from "next";
+//import type { Metadata } from "next";
+//import { MetaData } from "@/components/Metadata";
 import { Inter } from "next/font/google";
+//import { inter } from '@/app/fonts'
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
@@ -27,12 +29,12 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 /* const inter = Inter({ subsets: ["latin"] });
 export const siteTitle = 'MMAPP'; */
-/* export const metadata: Metadata = {
-  title: "MMAPP",
-  description: "Mapping MMA",
-}; */
 
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
 const CalSans = localFont({ src: "../components/ui/fonts/cal-sans/webfonts/CalSans-SemiBold.woff2" });
 
 export default function RootLayout({
@@ -221,12 +223,12 @@ export default function RootLayout({
     <AppContext.Provider value={{ href, setHref, smoother }}>
       <html>
         <head>
-          <meta charSet="utf-8" />
+          {/* <meta charSet="utf-8" /> */}
           <meta property="og:title" content="MMAPP" />
           <meta property="og:description" content="Mapping MMA" />
           <meta property="og:image" content="@/public/images/logos/mmapp/logo.webp" />
+          {/* <meta name="viewport" content="width=device-width, initial-scale=1"/> */}
           <link rel="icon" href="@/public/images/logos/mmapp/logo.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" />
           {/* <!-- Google tag (gtag.js) --> */}
           {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKR4VB95HV"></script>

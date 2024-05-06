@@ -406,7 +406,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
 
         ScrollTrigger.refresh()
-        // ScrollTrigger to refresh the markers      
+        // ScrollTrigger to refresh the markers
         const bodyRefresh = setInterval(() => {
           if (document.querySelector("body")) {
             clearInterval(bodyRefresh);
@@ -424,6 +424,20 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             });
           }
         }, 100);
+
+        // Refresh ScrollTrigger when the page is scrolled
+        /* let scrollTriggerRefreshCount = 0;
+        let scrollListener = () => {
+          if (scrollTriggerRefreshCount < 10) {
+            ScrollTrigger.refresh();
+            scrollTriggerRefreshCount++;
+            console.log('ScrollTriggerRefresh '+scrollTriggerRefreshCount);
+          } else {
+            window.removeEventListener('scroll', scrollListener);
+          }
+        };
+        window.addEventListener('scroll', scrollListener); */
+
       });
 
       // Product Dashboard Titles
