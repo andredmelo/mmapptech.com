@@ -303,10 +303,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 <ul className="menu-bar">
                   <li>
                     <button className="nav-link dropdown-btn group" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
-                    <img
-                      src="/images/logos/mmapp/logo_on_black.svg"
-                      alt="MMAPP Logo"
-                      id="mmappNavMenuLogo"/>
+                      <img
+                        src="/images/logos/mmapp/logo_on_black.svg"
+                        alt="MMAPP Logo"
+                        id="mmappNavMenuLogo"/>
                       {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
@@ -527,12 +527,14 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               {/* App's' links */}
               <div className="mmappsButtons flex items-center justify-center md:hidden relative w-screen mt-24">
                 <div className="flex flex-col w-screen items-center justify-start">
-                  <h6 className="pb-6 text-[1.8rem] text-center text-[var(--purple-250)] deboss">
-                    MMAPP<br/>Apps
+                  <h6 className="flex items-end pb-6 text-[1.9rem] text-center text-[var(--purple-100)] deboss">
+                    <span className="pr-14 bounce-arrow" aria-hidden="true">↓</span>
+                      MMAPP<br/>Apps
+                    <span className="pl-14 bounce-arrow" aria-hidden="true">↓</span>
                   </h6>
-                  <div className="flex flex-row w-screen items-center justify-around">
+                  <div className="flex flex-row w-screen items-center justify-center space-x-14">
                     <div className="flex flex-col items-center justify-center">
-                      <p className="text-[1.5rem] pb-[0.125rem] text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-200)] to-[var(--purple-400)]">
+                      <p className="text-[1.6rem] pb-[0.25rem] text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-100)] to-[var(--purple-300)]">
                         Judge
                       </p>
                       <div className="flex flex-row space-x-3">
@@ -550,7 +552,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                     </div>
 
                     <div className="flex flex-col items-center justify-center">
-                      <p className="text-[1.5rem] pb-[0.125rem] text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-200)] to-[var(--purple-400)]">
+                      <p className="text-[1.6rem] pb-[0.25rem] text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-100)] to-[var(--purple-300)]">
                         RecordKeeper
                       </p>
                       <div className="flex flex-row space-x-3">
