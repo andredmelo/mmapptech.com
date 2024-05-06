@@ -95,7 +95,7 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
                   <CardCallToAction className='' id="Privacy Policy">
                     <CardCallToActionHeader>
                       {/* <CardCallToActionLogo src={`/images/logos/federations/${Icon}`} alt={`${Country} flag`} /> */}
-                      <img src={`/images/logos/federations/${Icon}`} alt={`${Country} flag`} className='object-cover max-h-[20vw] md:max-h-[8vw] pr-4 md:pr-4 lg:pr-6' />
+                      <picture><img src={`/images/logos/federations/${Icon}`} alt={`${Country} flag`} className='object-cover max-h-[20vw] md:max-h-[8vw] pr-4 md:pr-4 lg:pr-6' /></picture>
                       <CardCallToActionInfo>
                         <CardCallToActionCountry>
                           {Country}

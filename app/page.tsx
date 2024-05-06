@@ -212,7 +212,7 @@ export default function Home() {
           return tl
         }
 
-        function leaveAni(target: HTMLElement, xIn: number, xOut: number){
+        /* function leaveAni(target: HTMLElement, xIn: number, xOut: number){
           let tl = gsap.timeline({
             defaults: { ease: "power1.in"},
             scrollTrigger: {
@@ -225,7 +225,7 @@ export default function Home() {
           })
             .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
           return tl
-        }
+        } */
 
         let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
         fDT.forEach((fDT) => {
@@ -1014,19 +1014,19 @@ export default function Home() {
               type="video/mp4" />
             </video> */}
             {/* <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/> */}
-            <img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/>
-            <img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/>
+            <picture><img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/></picture>
+            <picture><img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/></picture>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
-              <img id="heroMMAPPLogo" src={heroLogo} alt="MMAPP Logo" className="relative"/>
+              <picture><img id="heroMMAPPLogo" src={heroLogo} alt="MMAPP Logo" className="relative"/></picture>
               <h4 id="heroMMAPPText" className="relative pt-0 text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw] text-center text-black font-extrabold deboss">
                 MAPPING  MMA
               </h4>
             </div>
-            <img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
-            <img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/>
-            <img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/>
-            <img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[-1px] md:bottom-[0px] left-0 w-[100vw] h-[100svh]"/>
-            <img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/> {/* // h-[40svh] */}
+            <picture><img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/></picture> {/* // h-[40svh] */}
+            <picture><img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/></picture>
+            <picture><img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/></picture>
+            <picture><img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[-1px] md:bottom-[0px] left-0 w-[100vw] h-[100svh]"/></picture>
+            <picture><img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/></picture> {/* // h-[40svh] */}
           </div>
           {/* <HomeIntroR3F /> */}
           {/* <HomeiPhoneIntroR3F /> */}
@@ -1110,7 +1110,7 @@ export default function Home() {
 
               {isUnder768 ? '' : 
               <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                <img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.webp" alt="iphone-12"/>
+                <picture><img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.webp" alt="iphone-12"/></picture>
               </div>
               }
             </div>

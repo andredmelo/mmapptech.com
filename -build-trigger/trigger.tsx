@@ -1,1 +1,1 @@
-let vNumber = "v0.2-β.21 | Various fixes and tweaks to mobile NavMenu.";
+let vNumber = "v0.2-β.22 | Various fixes.";

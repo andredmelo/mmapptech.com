@@ -21,8 +21,8 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
 
         //gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
         const animIn = gsap.timeline({ paused: true })
-          .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: -25, duration: 0.125, ease: "power2.out"})
-          .fromTo(".templateAnimIn", { opacity: 0, x: -100 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out"}, 0.125)
+          .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out"})
+          .fromTo(".templateAnimIn", { opacity: 0, xPercent: -50 }, { opacity: 1, xPercent: 0, duration: 0.3, ease: "power2.out"}, 0.125)
           .set(".footer", {opacity: 1})
 
         if (!href.includes("company") && !href.includes("product")) {

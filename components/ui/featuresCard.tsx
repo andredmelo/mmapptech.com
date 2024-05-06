@@ -88,7 +88,7 @@ FeaturesCardDescription.displayName = "FeaturesCardDescription"
 const FeaturesCardImage = React.forwardRef<
   HTMLImageElement,
   FeaturesCardImageProps
->(({ className, src, ...props }, ref) => (
+>(({ className, src, alt, ...props }, ref) => (
 
   <div
     ref={ref}
@@ -97,14 +97,15 @@ const FeaturesCardImage = React.forwardRef<
       className
     )}
   >
-    <img
+    <picture><img
       src={src}
       ref={ref}
+      alt={alt}
       className={cn(
         "shrink object-scale-down h-full max-h-[58svh]", //max-h-[50svh]
       )}
       {...props}
-    />
+    /></picture>
   </div>
 ))
 FeaturesCardImage.displayName = "FeaturesCardImage"

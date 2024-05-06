@@ -7,7 +7,7 @@ export default function Footer() {
       <footer className="footer flex flex-row justify-around px-4 pt-8 pb-14 md:px-16 md:pt-16 md:pb-24 lg:px-24 lg:pt-24 lg:pb-32 mb-[-10vh] bg-gradient-to-b from-[var(--background-grey-dark)] to-[var(--background-grey)]">
 
         <div className="flex flex-col items-center justify-start space-y-10">
-          <img id="heroMMAPPLogo" src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo" className="min-w-44 md:min-w-52 lg:min-w-60"/>
+          <picture><img id="heroMMAPPLogo" src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo" className="min-w-44 md:min-w-52 lg:min-w-60"/></picture>
           <div className="flex flex-row space-x-4">
             <a href="https://twitter.com/MMAPP_Tech" target="_blank" rel="noopener noreferrer" className="">
               <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0.254 0.25 500 451.95400000000006" fill="rgb(255, 255, 255)" stroke="none" strokeWidth={0} strokeLinecap="round" strokeLinejoin="round" className="twitter-x w-10 h-10 lg:w-9 lg:h-9 p-1">

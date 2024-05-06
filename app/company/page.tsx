@@ -3,7 +3,6 @@ import React from "react";
 import * as ReactDOMServer from "react-dom/server";
 /* import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'; */
-import { Metadata } from 'next'
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,10 +20,6 @@ import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappSeque
 
 
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
-
-/* export const metadata: Metadata = {
-  title: 'Company',
-} */
 
 const Company = (props: any) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
@@ -98,7 +93,7 @@ const Company = (props: any) => {
               Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src="/images/company/companyMMAFighterPreparingBandages4Training-XL.webp" alt="MMA fighter preparing bandages for training"/>
+            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src="/images/company/companyMMAFighterPreparingBandages4Training-XL.webp" alt="MMA fighter preparing bandages for training"/></picture>
           </MainFC>
         </section>
 
@@ -688,7 +683,7 @@ const Company = (props: any) => {
               </ol>
               <ol className="mmappBlockReveal hidden md:inline-flex items-center basis-1/3 content-center justify-center">
                 <div className="md:w-[25rem] md:h-[25rem] lg:w-[30rem] lg:h-[30rem] mx-10">
-                  <img className="" src="/images/icons/shield.svg" alt="shield"/>
+                  <picture><img className="" src="/images/icons/shield.svg" alt="shield"/></picture>
                 </div>
               </ol>
               <ol className="mmappBlockReveal flex flex-col basis-1/3 mt-0 md:mt-20 lg:mt-32">
@@ -711,10 +706,10 @@ const Company = (props: any) => {
               </p>
             </li>
             <div className="mmappBlockReveal flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
-              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/gdpr.webp" alt="gdpr"/>
-              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/cppa.webp" alt="cppa"/>
-              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/apa.webp" alt="apa"/>
-              <img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/ccpa.webp" alt="ccpa"/>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/gdpr.webp" alt="gdpr"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/cppa.webp" alt="cppa"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/apa.webp" alt="apa"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/ccpa.webp" alt="ccpa"/></picture>
             </div>
           </ul>
         </section>

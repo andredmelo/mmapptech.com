@@ -44,13 +44,13 @@ const CardCallToActionLogo = React.forwardRef<
   HTMLImageElement,
   CardCallToActionLogoProps
 >(({ className, src, alt, ...props }, ref) => (
-  <img
+  <picture><img
     ref={ref}
     src={src}
     alt={alt}
     className={cn("object-contain max-w-[100px] max-h-[100px]", className)}
     {...props}
-  />
+  /></picture>
 ))
 CardCallToActionLogo.displayName = "CardCallToActionLogo"
 

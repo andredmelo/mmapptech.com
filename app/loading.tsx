@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <div id="loadingBanner" className="fixed top-0 left-0 flex flex-col items-center justify-center w-[100vw] h-[100vh]">
       <div className="flex flex-col items-center mb-16 text-left">
-        <img className="mb-8 w-[75%] h-[75%]" src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>
+        <picture><img className="mb-8 w-[75%] h-[75%]" src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/></picture>
         <h5 className="text-white animate-pulse">Loading...</h5>
       </div>
     </div>

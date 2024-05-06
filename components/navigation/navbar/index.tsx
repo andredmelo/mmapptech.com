@@ -261,7 +261,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
 
     // toggle hamburger menu
     hamburgerBtn?.addEventListener("click", toggleHamburger);
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, [isUnder768]); // Empty dependency array ensures this runs once on mount
 
 
   /* ===== GSAP React ===== */
@@ -303,10 +303,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 <ul className="menu-bar">
                   <li>
                     <button className="nav-link dropdown-btn group" data-dropdown="dropdown1" aria-haspopup="true" aria-expanded="false" aria-label="About">
-                      <img
+                      <picture><img
                         src="/images/logos/mmapp/logo_on_black.svg"
                         alt="MMAPP Logo"
-                        id="mmappNavMenuLogo"/>
+                        id="mmappNavMenuLogo"/></picture>
                       {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
@@ -496,18 +496,18 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   </li>
                   <li>
                     <button className="nav-link dropdown-btn group" data-dropdown="dropdown4" aria-haspopup="true" aria-expanded="false" aria-label="Contact">
-                      Contact
+                      Contacts
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
                     <div id="dropdown4" className="dropdown">
                       <ul role="menu4">
                         <li role="menuitem">
                           <a
-                            href="/contact#ContactUs"
+                            href="/contact#ContactInfo"
                             data-page="/contact"
-                            data-link="#ContactUs"
+                            data-link="#ContactInfo"
                             className="dropdown-link">
-                            Contact Us
+                            Contact Info
                           </a>
                         </li>
                         <li role="menuitem">

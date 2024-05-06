@@ -1,6 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState, useTransition } from "react";
-import { Metadata } from 'next'
+import React, { useEffect, useRef, useState, useTransition, useMemo } from "react";
 import { clsx } from "clsx";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -30,10 +29,6 @@ import { ProductTitlesItem, ProductDashboardTitles, ProductDashboardMembersTitle
 
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, CustomEase);
 
-/* export const metadata: Metadata = {
-  title: 'Product',
-} */
-
 const Product = () => {
 
   const isLandscape = useMediaQuery('(orientation: landscape)');
@@ -47,20 +42,20 @@ const Product = () => {
   const [preloadedImages, setPreloadedImages] = useState({});
   const [isLoading, setIsLoading] = useState(false); //image loading state
 
-  const imageSrcMapJudge: Record<string, string> = {
+  const imageSrcMapJudge: Record<string, string> = useMemo(() => ({
     'ProductJudge1': 'productJudge-1',
     'ProductJudge2': 'productJudge-2',
     'ProductJudge3': 'productJudge-3',
     'ProductJudge4': 'productJudge-4',
     'ProductJudge5': 'productJudge-5',
     'ProductJudge6': 'productJudge-6',
-  };
-  const imageSrcMapRecordKeeper: Record<string, string> = {
+  }), []);
+  const imageSrcMapRecordKeeper: Record<string, string> = useMemo(() => ({
     'ProductRecordKeeper1': 'productRecordKeeper-1',
     'ProductRecordKeeper2': 'productRecordKeeper-2',
     'ProductRecordKeeper3': 'productRecordKeeper-3',
     'ProductRecordKeeper4': 'productRecordKeeper-4',
-  };
+  }), []);
 
   const descriptionSrcMapJudge: Record<string, string> = {
     'ProductJudge1': 'Assess Fights with the MMAPP Methodology',
@@ -127,7 +122,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
     });
   
     setPreloadedImages(newPreloadedImages);
-  }, []);
+  }, [imageSrcMapJudge, imageSrcMapRecordKeeper]);
 
   // Use the isLoading state to delay the change of the activeTabProductJudge state
   function selectTabProductJudge(tab: string) {
@@ -816,7 +811,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <p className="z-15 text-lg md:text-xl text-white text-left md:text-center pl-[2vw] md:pl-0 pt-[2vw] justify-center bounce-arrow">
             ↓
             </p>
-            <img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/>
+            <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
             {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
           </ProductFC>
@@ -922,12 +917,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
           {/* // Use the loading state to conditionally render the images in small mobile device*/}
           <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
-            <img
+            <picture><img
               className="judgePhone object-scale-down max-h-[60vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iphone-12"
               onLoad={() => setIsLoading(false)}
-            />
+            /></picture>
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
           </div>
 
@@ -997,12 +992,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
             {/* // Use the loading state to conditionally render the image */}
             <div className={clsx("judgePhoneWrapper hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
-              <img
+              <picture><img
                 className="judgePhone object-scale-down landscape:rounded-[5.25rem] landscape:xl:rounded-[6rem] landscape:3xl:rounded-[7rem] portrait:rounded-[4.5rem] portrait:md:rounded-[7vw] portrait:lg:rounded-[6rem] shadow-2xl shadow-fuchsia-950/50 ring-2 ring-purple-950/75"
                 src={(preloadedImages as any)[activeTabProductJudge]?.src}
                 alt="iPhone Judge images"
                 onLoad={() => setIsLoading(false)}
-              />
+              /></picture>
               {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
             </div>
 
@@ -1117,12 +1112,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             "px-[0vw] pb-[0vw] portrait:pb-[4vw] md:portrait:pb-[0vw] md:pb-[4vw]",
             )}
           >
-            <img
+            <picture><img
               className="recordKeeperTablet object-scale-down portrait:touch:max-h-[65vh] portrait:touch:md:max-h-max rounded-[2.5vw] portrait:touch:rounded-[4vw] shadow-2xl shadow-fuchsia-950/50 ring-4 md:ring-2 portrait:touch:ring-4 ring-purple-950/75"
               src={(preloadedImages as any)[activeTabProductRecordKeeper]?.src}
               alt="iPad RecordKeeper images"
               onLoad={() => setIsLoading(false)}
-            />
+            /></picture>
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
           </div>
 
@@ -1267,18 +1262,18 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 portrait:md:pb-[0vw]",
           )}
         >
-          <img
+          <picture><img
             className="object-scale-down"
             src="/images/hardware/proDisplay.webp"
             alt="Pro Display image"
             onLoad={() => setIsLoading(false)}
-          />
-          <img
+          /></picture>
+          <picture><img
             className="object-scale-down px-12 md:px-[8vw] portrait:md:px-[2vw] pt-[2vw] md:pt-[0.5vw]"
             src="/images/hardware/magicKeyboardMouse.webp"
             alt="Magic Keyboard & Mouse image"
             onLoad={() => setIsLoading(false)}
-          />
+          /></picture>
           {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
           {/* Dashboard Video */}
@@ -1378,12 +1373,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             "px-0 md:px-[0vw] pb-0 md:pb-0",
             )}
           >
-            <img
+            <picture><img
               className="object-scale-down"
               src="/images/hardware/macBookPro.webp"
               alt="Pro Display image"
               onLoad={() => setIsLoading(false)}
-            />
+            /></picture>
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
 
             {/* Dashboard (Members) Video */}

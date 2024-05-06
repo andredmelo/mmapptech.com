@@ -1,12 +1,14 @@
 "use client";
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 import { useMediaQuery } from '@react-hook/media-query';
 import { AppContext } from '@/lib/contexts/AppContext';
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
-import { Inter } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 //import Navigation from "./components/navigation";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
@@ -14,7 +16,6 @@ import Loading from "@/app/loading";
 //import Template from "./template";
 import Providers from '@/app/providers'
 import "@/app/globals.css";
-import localFont from "next/font/local";
 
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -26,6 +27,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 /* const inter = Inter({ subsets: ["latin"] });
 export const siteTitle = 'MMAPP'; */
+/* export const metadata: Metadata = {
+  title: "MMAPP",
+  description: "Mapping MMA",
+}; */
 
 const inter = Inter({ subsets: ["latin"] });
 const CalSans = localFont({ src: "../components/ui/fonts/cal-sans/webfonts/CalSans-SemiBold.woff2" });
@@ -81,7 +86,7 @@ export default function RootLayout({
       matchMedia.add("(hover: none)", () => {
         matchMedia.add("(max-width: 767px)", () => {
           //console.log("hover none");
-          {isMobileOnly && isAndroid ? 
+          {isMobileOnly && (isAndroid || isSamsungBrowser || isWinPhone) ? 
             smoother.current = ScrollSmoother.create({
               smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
               effects: false, // looks for data-speed and data-lag attributes on elements
@@ -162,7 +167,7 @@ export default function RootLayout({
                     onComplete: () => {
                       setHref(link.dataset.link);
                       startTransition(() => {
-                        router.push(link.dataset.page, { scroll: false });
+                        router.push(link.dataset.page, { scroll: true });
                         //router.push(link.href, { scroll: false });
                       });
                       currentPage.current = link.dataset.page;
@@ -170,7 +175,7 @@ export default function RootLayout({
                     }
                   })
                     .set(".footer", {opacity: 0})
-                    .fromTo(".templateAnimIn", {opacity: 1, x: 0},{opacity: 0, x: 100, duration: 0.3, ease: "power2.out"})
+                    .fromTo(".templateAnimIn", {opacity: 1, xPercent: 0},{opacity: 0, xPercent: 50, duration: 0.3, ease: "power2.out"})
                     .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
                   //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
 
@@ -216,9 +221,12 @@ export default function RootLayout({
 
   return (
     <AppContext.Provider value={{ href, setHref, smoother }}>
-      <html lang="en">
+      <html>
         <head>
           <meta charSet="utf-8" />
+          <meta property="og:title" content="MMAPP" />
+          <meta property="og:description" content="Mapping MMA" />
+          <meta property="og:image" content="@/public/images/logos/mmapp/logo.webp" />
           <link rel="icon" href="@/public/images/logos/mmapp/logo.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" />
@@ -286,7 +294,7 @@ export default function RootLayout({
           }
         </body>
       </html>
-      {/* <SpeedInsights/> */}
+      <SpeedInsights/>
     </AppContext.Provider>
   );
 };
