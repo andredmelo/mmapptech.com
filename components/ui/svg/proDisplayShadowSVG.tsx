@@ -41,7 +41,7 @@ export default ProDisplayShadowSVG;
       <stop offset=".92" stop-color="#7b7b7b" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <ellipse cx="250" cy="15" rx="250" ry="15" fill="url(#radial-gradient)" stroke-width="0"/>
+  <ellipse cx="250" cy="15" rx="250" ry="15" fill="url(#radial-gradient)" strokeWidth="0"/>
 </svg> */
 
 

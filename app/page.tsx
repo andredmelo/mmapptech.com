@@ -25,7 +25,7 @@ import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/app/CallToActionButton'
 import ProgressCircle from '@/components/ui/svg/progressCircle'
 
-import(/* webpackPreload: true */ '@/components/three.js');
+//import(/* webpackPreload: true */ '@/components/three.js');
 //import { TestR3F } from '@/components/three.js';
 //import { HomeIntroR3F } from '@/components/three.js';
 //import { HomeiPhoneIntroR3F } from '@/components/three.js';
@@ -311,27 +311,27 @@ export default function Home() {
 
       // Tablet and Desktop Animations
       matchMedia.add("(min-width: 768px)", (context) => {
-        // Pin Small Mission Image
-        const smallMissionImg = document.querySelector(".smallMissionImg");
-        const smallMissionDescription = document.querySelector(".smallMissionDescription");
+        // Pin Our Expertise Image
+        const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
+        const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
 
-        const smallMission = setInterval(() => {
-          if (smallMissionImg && smallMissionDescription) {
-            clearInterval(smallMission);
-            const smallMissionImgHeight = (smallMissionImg as HTMLElement).offsetHeight;
-            const smallMissionDescriptionHeight = (smallMissionDescription as HTMLElement).offsetHeight;
+        const ourExpertise = setInterval(() => {
+          if (ourExpertiseImg && ourExpertiseDescription) {
+            clearInterval(ourExpertise);
+            const ourExpertiseImgHeight = (ourExpertiseImg as HTMLElement).offsetHeight;
+            const ourExpertiseDescriptionHeight = (ourExpertiseDescription as HTMLElement).offsetHeight;
             const halfViewportHeight = window.innerHeight / 2;
-            const endSmallMissionImgTrigger = halfViewportHeight + smallMissionImgHeight / 2;
-            //console.log("endSmallMissionImgTrigger is "+endSmallMissionImgTrigger);
+            const endOurExpertiseImgTrigger = halfViewportHeight + ourExpertiseImgHeight / 2;
+            //console.log("endOurExpertiseImgTrigger is "+endOurExpertiseImgTrigger);
 
             //Custom endTrigger
-            if (smallMissionImgHeight < smallMissionDescriptionHeight) {
+            if (ourExpertiseImgHeight < ourExpertiseDescriptionHeight) {
               ScrollTrigger.create({
-                trigger: smallMissionImg,
+                trigger: ourExpertiseImg,
                 start: "center 50%",
-                endTrigger: ".smallMissionDescriptionContainer",
-                end: "bottom "+endSmallMissionImgTrigger+"px",
-                pin: ".smallMissionImg",
+                endTrigger: ".ourExpertiseDescriptionContainer",
+                end: "bottom "+endOurExpertiseImgTrigger+"px",
+                pin: ".ourExpertiseImg",
                 pinSpacing: false,
                 invalidateOnRefresh: true,
               });
@@ -1017,7 +1017,7 @@ export default function Home() {
             <picture><img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/></picture>
             <picture><img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/></picture>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
-              <picture><img id="heroMMAPPLogo" src={heroLogo} alt="MMAPP Logo" className="relative"/></picture>
+              <picture id="heroMMAPPLogo"><img src={heroLogo} alt="MMAPP Logo" className="relative"/></picture>
               <h4 id="heroMMAPPText" className="relative pt-0 text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw] text-center text-black font-extrabold deboss">
                 MAPPING  MMA
               </h4>
@@ -1046,73 +1046,75 @@ export default function Home() {
             {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
               MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
             </MainFCDescription> */}
-            <div className="smallMissionDescriptionContainer flex flex-col md:flex-row w-full">
+            <div className="ourExpertiseDescriptionContainer flex flex-col md:flex-row w-full">
               {isUnder768 ? <OurExpertise className="mmappBlockReveal" /> : 
-                <div className="smallMissionDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
-                  <div>
-                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                      Management, Scheduling, Officiation
-                    </h5>
-                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our platform solves all issues Federations face in membership approval and management as well as event scheduling and approval.<br/>
-                      On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
-                    </p>
+                <>
+                  <div className="ourExpertiseDescription flex flex-col gap-10 w-[100%] md:w-[65%] pr-0 md:pr-12">
+                    <div>
+                      <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                        Management, Scheduling, Officiation
+                      </h5>
+                      <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Our platform solves all issues Federations face in membership approval and management as well as event scheduling and approval.<br/>
+                        On the officiation side, we offer an unparalleled electronic scoring system that encompasses every aspect of the job, from judging fights to Record Keeping (Timekeeping + Scorekeeping).
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                        Common Language & Unit of Measurement
+                      </h5>
+                      <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
+                        By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                        The “Dashboard” app
+                      </h5>
+                      <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Easy & Quick sign up for members, with minimal input from Federations.<br/>
+                        Manage Members and Events with a few clicks.<br/>
+                        Gain insights into your officials performances.<br/>
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                        The “Judge” app
+                      </h5>
+                      <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
+                        Discuss scoring in a deeper manner.<br/>
+                        Lifetime archive of your scoring.<br/>
+                        Contribute to the improvement of MMA Judging.<br/>
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
+                        The “RecordKeeper” app
+                      </h5>
+                      <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
+                        All Timing duties done automatically.<br/>
+                        Receive and calculate scores instantly.<br/>
+                        Record fight events like never before.<br/>
+                      </p>
+                    </div>
+                    <div className="mmappBlockReveal flex justify-center md:justify-end w-full">
+                      <p className="flex items-end text-md text-neutral-200 text-center pt-12 pb-20 md:pb-0 max-w-[28rem] md:max-w-[29rem] lg:max-w-full">
+                        <span className="pr-4 bounce-arrow" aria-hidden="true">↓</span>
+                          Learn more about their features and benefits below
+                        <span className="pl-4 bounce-arrow" aria-hidden="true">↓</span>
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                      Common Language & Unit of Measurement
-                    </h5>
-                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Our aim is to revolutionize MMA Judging by providing officials with a common language and unit of measurement.<br/>
-                      By providing these stepping stones, we can increase precision in discussion and debate the sport in a deeper manner, leading to game-changing improvements.
-                    </p>
+                  <div className="flex justify-start items-start md:w-[35%]">
+                    <picture className="ourExpertiseImg md:block">
+                      <img className="landscape:h-full max-h-[95vh] z-10 object-contain self-start md:px-2 md:pt-6" src="/images/features/iphone-12-black.webp" alt="MMAPP features on iPhone"/>
+                    </picture>
                   </div>
-                  <div>
-                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                      The “Dashboard” app
-                    </h5>
-                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Easy & Quick sign up for members, with minimal input from Federations.<br/>
-                      Manage Members and Events with a few clicks.<br/>
-                      Gain insights into your officials performances.<br/>
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                      The “Judge” app
-                    </h5>
-                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      Make more informed decisions for longer, with MMAPP’s patented methodology.<br/>
-                      Discuss scoring in a deeper manner.<br/>
-                      Lifetime archive of your scoring.<br/>
-                      Contribute to the improvement of MMA Judging.<br/>
-                    </p>
-                  </div>
-                  <div>
-                    <h5 className="mmappHeadingReveal py-6 text-[var(--purple-250)]">
-                      The “RecordKeeper” app
-                    </h5>
-                    <p className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] text-left">
-                      All Timing duties done automatically.<br/>
-                      Receive and calculate scores instantly.<br/>
-                      Record fight events like never before.<br/>
-                    </p>
-                  </div>
-                  <div className="mmappBlockReveal flex justify-center md:justify-end w-full">
-                    <p className="flex items-end text-md text-neutral-200 text-center pt-12 pb-20 md:pb-0 max-w-[28rem] md:max-w-[29rem] lg:max-w-full">
-                      <span className="pr-4 bounce-arrow" aria-hidden="true">↓</span>
-                        Learn more about their features and benefits below
-                      <span className="pl-4 bounce-arrow" aria-hidden="true">↓</span>
-                    </p>
-                  </div>
-                </div>
+                </>
               }
 
-              {isUnder768 ? '' : 
-              <div className="flex justify-start items-start w-[100%] md:w-[35%]">
-                <picture><img className="smallMissionImg hidden md:block landscape:h-full max-h-[95vh] z-10 object-contain self-start px-0 md:px-2 pt-0 md:pt-6" src="/images/features/iphone-12-black.webp" alt="iphone-12"/></picture>
-              </div>
-              }
             </div>
           </MainFC>
         </section>

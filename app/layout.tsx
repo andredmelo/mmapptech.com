@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
-//import type { Metadata } from "next";
 //import { MetaData } from "@/components/Metadata";
 import { Inter } from "next/font/google";
 //import { inter } from '@/app/fonts'
@@ -16,6 +15,7 @@ import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
 import Loading from "@/app/loading";
 //import Template from "./template";
+import { MetaData } from "@/app/template";
 import ToasterProviders from '@/lib/providers/toasterProviders'
 import "@/app/globals.css";
 
@@ -224,12 +224,12 @@ export default function RootLayout({
       <html>
         <head>
           {/* <meta charSet="utf-8" /> */}
-          <meta property="og:title" content="MMAPP" />
+          {/* <meta name="viewport" content="width=device-width, initial-scale=1"/> */}
+          {/* <meta property="og:title" content="MMAPP" />
           <meta property="og:description" content="Mapping MMA" />
           <meta property="og:image" content="@/public/images/logos/mmapp/logo.webp" />
-          {/* <meta name="viewport" content="width=device-width, initial-scale=1"/> */}
           <link rel="icon" href="@/public/images/logos/mmapp/logo.ico" />
-          <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" />
+          <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" /> */}
           {/* <!-- Google tag (gtag.js) --> */}
           {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKR4VB95HV"></script>
           <script>
@@ -268,7 +268,9 @@ export default function RootLayout({
                 <div id="smooth-wrapper">
                   <div id="smooth-content">
                     {<Loading />}
-                    <main id="main" className="templateAnimIn">{children}</main>
+                    <main id="main" className="templateAnimIn">
+                      {children}
+                    </main>
 
                     {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
                       <main id="main" className="templateAnimIn">{children}</main>

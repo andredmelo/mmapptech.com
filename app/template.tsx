@@ -1,9 +1,9 @@
 /* "use client"; */
 
 import { Metadata } from 'next';
-export const metadata: Metadata = {
+export const MetaData: Metadata = {
   title: "MMAPP",
-  description: "Mapping MMA",
+  description: "Mapping MMA, This should work",
   creator: 'André Melo',
 };
 
