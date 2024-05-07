@@ -449,7 +449,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
           matchMedia.add("(orientation: landscape)", (context) => {
             if (macBookProDisplay && macBookProKeyboardBacklight && macBookProGlass && iPhone && iPad) {
 
-              const calculateDeviceScale = (width: number, height: number): number => {
+              /* const calculateDeviceScaleOld = (width: number, height: number): number => {
                 // Calculate a "size factor" based on the window dimensions
                 const sizeFactor = Math.sqrt(width * height);
                 // Define the "size factor" for your two reference points
@@ -468,10 +468,10 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 deviceScale = Math.max(0.45, Math.min(deviceScale, 0.55)); // Adjust the min and max values as needed
                 return deviceScale;
               };
-              let deviceScale = calculateDeviceScale(window.innerWidth, window.innerHeight);
-              //console.log("DeviceScale is "+DeviceScale);
+              let deviceScaleOld = calculateDeviceScaleOld(window.innerWidth, window.innerHeight); */
+              //console.log("DeviceScale is "+deviceScale);
 
-              const calculateMacBookProPosX = (width: number, height: number): number => {
+              /* const calculateMacBookProPosX = (width: number, height: number): number => {
                 // Calculate a "size factor" based on the window dimensions
                 const sizeFactor = Math.sqrt(width * height);
                 // Define the "size factor" for your two reference points
@@ -490,9 +490,9 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 macBookProPosX = Math.max(0.4, Math.min(macBookProPosX, 0.625)); // Adjust the min and max values as needed
                 return macBookProPosX;
               };
-              let macBookProPosX = calculateMacBookProPosX(window.innerWidth, window.innerHeight);
+              let macBookProPosX = calculateMacBookProPosX(window.innerWidth, window.innerHeight); */
 
-              const calculateMacBookProPosY = (width: number, height: number): number => {
+              /* const calculateMacBookProPosY = (width: number, height: number): number => {
                 // Calculate a "size factor" based on the window dimensions
                 const sizeFactor = Math.sqrt(width * height);
                 // Define the "size factor" for your two reference points
@@ -511,9 +511,88 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 macBookProPosY = Math.max(0.5, Math.min(macBookProPosY, 0.7)); // Adjust the min and max values as needed
                 return macBookProPosY;
               };
-              let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight);
+              let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight); */
 
-              const calculateiPhonePosX = (width: number, height: number): number => {
+
+              const detectViewportRatio = (width: number, height: number) => {
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  console.log("Viewport > 32:9");
+                } else if (ratio > 16/9) {
+                  console.log("Viewport > 16:9");
+                } else if (ratio > 4/3) {
+                  console.log("Viewport > 4:3");
+                } else if (ratio <= 4/3){
+                  console.log("Viewport <= 4:3");
+                }
+                console.log("ratio is "+ratio);
+              };
+              window.addEventListener('resize', () => detectViewportRatio(window.innerWidth, window.innerHeight));
+
+              const calculateDeviceScale = (width: number, height: number): number => {
+                let deviceScale = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) { //console.log("Viewport >= 32:9");
+                  //deviceScale = gsap.utils.mapRange(3.555, 1.777, 0.5, 0.6, ratio);
+                  deviceScale = 0.475;
+                } else if (ratio > 16/9) { //console.log("Viewport >= 16:9");
+                  deviceScale = gsap.utils.mapRange(1.777, 3.555, 0.6, 0.475, ratio);
+                  //deviceScale = 0.6;
+                } else if (ratio > 4/3) { //console.log("Viewport >= 4:3");
+                  deviceScale = gsap.utils.mapRange(1.777, 1.3335, 0.6, 0.45, ratio);
+                  //deviceScale = 0.475;
+                } else if (ratio <= 4/3){ //console.log("Viewport < 4:3");
+                  deviceScale = gsap.utils.mapRange(1.333, 1, 0.45, 0.325, ratio);
+                  //deviceScale = 0.325;
+                }
+                //console.log("ratio is "+ratio);
+                return deviceScale;
+              };
+              let deviceScale = calculateDeviceScale(window.innerWidth, window.innerHeight);
+              //console.log("DeviceScale is "+deviceScale);
+
+              const calculateMacBookProPosX = (width: number, height: number): number => {
+                let macBookProPosX = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  macBookProPosX = 1.5;
+                } else if (ratio > 16/9) {
+                  macBookProPosX = gsap.utils.mapRange(1.777, 3.555, 0.48, 1.5,ratio);
+                  //macBookProPosX = 0.48;
+                } else if (ratio > 4/3) {
+                  macBookProPosX = gsap.utils.mapRange(1.777, 1.3335, 0.48, 0.35, ratio);
+                  //macBookProPosX = 0.4;
+                } else if (ratio <= 4/3){
+                  macBookProPosX = gsap.utils.mapRange(1.333, 1, 0.35, 0.27, ratio);
+                  //macBookProPosX = 0.275;
+                }
+                return macBookProPosX;
+              };
+              let macBookProPosX = calculateMacBookProPosX(window.innerWidth, window.innerHeight);
+              //console.log("macBookProPosX is "+macBookProPosX);
+
+              const calculateMacBookProPosY = (width: number, height: number): number => {
+                let macBookProPosY = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  macBookProPosY = 0.75;
+                } else if (ratio > 16/9) {
+                  macBookProPosY = gsap.utils.mapRange(1.777, 3.555, 0.7, 0.75,ratio);
+                  //macBookProPosY = 0.7;
+                } else if (ratio > 4/3) {
+                  macBookProPosY = gsap.utils.mapRange(1.777, 1.3335, 0.7, 0.45, ratio);
+                  //macBookProPosY = 0.45;
+                } else if (ratio <= 4/3){
+                  macBookProPosY = gsap.utils.mapRange(1.333, 1, 0.45, 0.325, ratio);
+                  //macBookProPosY = 0.4;
+                }
+                return macBookProPosY;
+              };
+              let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight);
+              //console.log("macBookProPosY is "+macBookProPosY);
+
+
+              /* const calculateiPhonePosX = (width: number, height: number): number => {
                 // Calculate a "size factor" based on the window dimensions
                 // This is a simplified approach; you might need to adjust the formula based on testing
                 const sizeFactor = Math.sqrt(width * height);
@@ -534,9 +613,29 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 return iPhonePosX;
               };
               let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
-              //console.log("iPhonePosX is "+iPhonePosX);
+              //console.log("iPhonePosX is "+iPhonePosX); */
 
-              const calculateiPadPosX = (width: number, height: number): number => {
+              const calculateiPhonePosX = (width: number, height: number): number => {
+                let iPhonePosX = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  iPhonePosX = 1.5;
+                } else if (ratio > 16/9) {
+                  iPhonePosX = gsap.utils.mapRange(1.777, 3.555, 0.7, 1.5,ratio);
+                  //iPhonePosX = 0.7;
+                } else if (ratio > 4/3) {
+                  iPhonePosX = gsap.utils.mapRange(1.777, 1.3335, 0.7, 0.65, ratio);
+                  //iPhonePosX = 0.4;
+                } else if (ratio <= 4/3){
+                  iPhonePosX = gsap.utils.mapRange(1.333, 1, 0.65, 0.45, ratio);
+                  //iPhonePosX = 0.275;
+                }
+                return iPhonePosX;
+              };
+              let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
+              console.log("iPhonePosX is "+iPhonePosX);
+
+              /* const calculateiPadPosX = (width: number, height: number): number => {
                 // Calculate a "size factor" based on the window dimensions
                 const sizeFactor = Math.sqrt(width * height);
                 // Define the "size factor" for your two reference points
@@ -555,7 +654,50 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 iPadPosX = Math.max(0.55, Math.min(iPadPosX, 0.8)); // Adjust the min and max values as needed
                 return iPadPosX;
               };
+              let iPadPosX = calculateiPadPosX(window.innerWidth, window.innerHeight); */
+
+
+
+              const calculateiPadPosX = (width: number, height: number): number => {
+                let iPadPosX = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  iPadPosX = 1.4;
+                } else if (ratio > 16/9) {
+                  iPadPosX = gsap.utils.mapRange(1.777, 3.555, 0.7, 1.4,ratio);
+                  //iPadPosX = 0.7;
+                } else if (ratio > 4/3) {
+                  iPadPosX = gsap.utils.mapRange(1.777, 1.3335, 0.7, 0.525, ratio);
+                  //iPadPosX = 0.4;
+                } else if (ratio <= 4/3){
+                  iPadPosX = gsap.utils.mapRange(1.333, 1, 0.525, 0.4, ratio);
+                  //iPadPosX = 0.275;
+                }
+                return iPadPosX;
+              };
               let iPadPosX = calculateiPadPosX(window.innerWidth, window.innerHeight);
+              //console.log("iPadPosX is "+iPadPosX);
+
+              const calculateiPadPosY = (width: number, height: number): number => {
+                let iPadPosY = 0.5;
+                const ratio = width / height;
+                if (ratio > 32/9) {
+                  iPadPosY = 0.25;
+                } else if (ratio > 16/9) {
+                  iPadPosY = gsap.utils.mapRange(1.777, 3.555, 0.15, 0.25,ratio);
+                  //iPadPosY = 0.15;
+                } else if (ratio > 4/3) {
+                  iPadPosY = gsap.utils.mapRange(1.777, 1.3335, 0.15, 0, ratio);
+                  //iPadPosY = 0.15;
+                } else if (ratio <= 4/3){
+                  //iPadPosY = gsap.utils.mapRange(1.333, 1, 0.0, 0.0, ratio);
+                  iPadPosY = 0;
+                }
+                return iPadPosY;
+              };
+              let iPadPosY = calculateiPadPosY(window.innerWidth, window.innerHeight);
+              //console.log("iPadPosY is "+iPadPosY);
+
 
               //Initial settings and positioning
               const InitialAnim = gsap.timeline({
@@ -705,9 +847,9 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   toggleActions: "play none none reverse"
                 },
               })
-                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: iPadPosX, y: -0.15, ease:"power1.out"}, "<")
+                .fromTo(iPad.scene.position, {x: 0, y: 0}, {x: iPadPosX, y: -iPadPosY, ease:"power1.out"}, "<")
                 .fromTo(iPad.scene.rotation, {x: -1.57, y: 0, z: 1.57}, {x: 0, y: -0.65, z: 0, ease:"power1.in"}, "<")
-                .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: deviceScale*1.25, y: deviceScale*1.25, z: deviceScale*1.25, ease:"power3.in"}, "<")
+                .fromTo(iPad.scene.scale, {x: 0.45, y: 0.45, z: 0.45}, {x: deviceScale*1.15, y: deviceScale*1.15, z: deviceScale*1.15, ease:"power3.in"}, "<")
             }
           });
 

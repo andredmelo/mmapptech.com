@@ -34,7 +34,7 @@ const Product = () => {
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 768px)');
-  const isOver1536 = useMediaQuery('(min-width: 1536px)');
+  //const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
   const [activeTabProductJudge, setActiveTabProductJudge] = useState('ProductJudge1')
   const [activeTabProductRecordKeeper, setActiveTabProductRecordKeeper] = useState('ProductRecordKeeper1')
@@ -42,20 +42,6 @@ const Product = () => {
   const [preloadedImages, setPreloadedImages] = useState({});
   const [isLoading, setIsLoading] = useState(false); //image loading state
 
-  const imageSrcMapJudge: Record<string, string> = useMemo(() => ({
-    'ProductJudge1': 'productJudge-1',
-    'ProductJudge2': 'productJudge-2',
-    'ProductJudge3': 'productJudge-3',
-    'ProductJudge4': 'productJudge-4',
-    'ProductJudge5': 'productJudge-5',
-    'ProductJudge6': 'productJudge-6',
-  }), []);
-  const imageSrcMapRecordKeeper: Record<string, string> = useMemo(() => ({
-    'ProductRecordKeeper1': 'productRecordKeeper-1',
-    'ProductRecordKeeper2': 'productRecordKeeper-2',
-    'ProductRecordKeeper3': 'productRecordKeeper-3',
-    'ProductRecordKeeper4': 'productRecordKeeper-4',
-  }), []);
 
   const descriptionSrcMapJudge: Record<string, string> = {
     'ProductJudge1': 'Assess Fights with the MMAPP Methodology',
@@ -73,12 +59,12 @@ const Product = () => {
     'ProductRecordKeeper4': 'Automatically send the results to the Federation',
   };
 
-  const descriptionSrcMapDashboard: Record<string, string> = {
+  /* const descriptionSrcMapDashboard: Record<string, string> = {
     'ProductRecordKeeper1': 'Master Timing duties like never before',
     'ProductRecordKeeper2': 'Record every fight detail Number of Breaks, Break Duration, Reasons for Point deductions, etc.',
     'ProductRecordKeeper3': 'Receive and Calculate scorecards automatically and get the results instantly',
     'ProductRecordKeeper4': 'Automatically send the results to the Federation',
-  };
+  }; */
 
 const productDashboardItems: ProductTitlesItem[] = [
   { header: "User-friendly interface" },
@@ -108,7 +94,22 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
     const imagesJudge = ['ProductJudge1', 'ProductJudge2', 'ProductJudge3', 'ProductJudge4', 'ProductJudge5', 'ProductJudge6'];
     const imagesRecordKeeper = ['ProductRecordKeeper1', 'ProductRecordKeeper2', 'ProductRecordKeeper3', 'ProductRecordKeeper4'];
     const newPreloadedImages: Record<string, HTMLImageElement> = {};
-  
+
+    const imageSrcMapJudge: Record<string, string> = {
+      'ProductJudge1': 'productJudge-1',
+      'ProductJudge2': 'productJudge-2',
+      'ProductJudge3': 'productJudge-3',
+      'ProductJudge4': 'productJudge-4',
+      'ProductJudge5': 'productJudge-5',
+      'ProductJudge6': 'productJudge-6',
+    };
+    const imageSrcMapRecordKeeper: Record<string, string> = {
+      'ProductRecordKeeper1': 'productRecordKeeper-1',
+      'ProductRecordKeeper2': 'productRecordKeeper-2',
+      'ProductRecordKeeper3': 'productRecordKeeper-3',
+      'ProductRecordKeeper4': 'productRecordKeeper-4',
+    };
+
     imagesJudge.forEach((image) => {
       const img = new Image();
       img.src = `/images/product/officialsJudge/${imageSrcMapJudge[image as keyof typeof imageSrcMapJudge]}.webp`;
@@ -120,9 +121,9 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       img.src = `/images/product/officialsRecordKeeper/${imageSrcMapRecordKeeper[image as keyof typeof imageSrcMapRecordKeeper]}.webp`;
       newPreloadedImages[image] = img;
     });
-  
+
     setPreloadedImages(newPreloadedImages);
-  }, [imageSrcMapJudge, imageSrcMapRecordKeeper]);
+  }, []);
 
   // Use the isLoading state to delay the change of the activeTabProductJudge state
   function selectTabProductJudge(tab: string) {
@@ -182,7 +183,6 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-
       //drawMainPath Animations
       let matchMedia = gsap.matchMedia();
       matchMedia.add("(orientation: portrait)", () => {
@@ -304,11 +304,6 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           }
         }, 100);
       });
-
-      /* gsap.defaults({
-        ease: "none",
-        duration: 1
-      }); */
       
       matchMedia.add("(orientation: landscape)", () => {
         let drawMainPath0 = gsap.timeline({
@@ -538,25 +533,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
 
 
       // Judge Phone animations
-      let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
-      const ProductJudgeButtonLeft: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonLeft');
-      const ProductJudgeButtonRight: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonRight');
-      //gsap.set(ProductJudgeButtonLeft, {xPercent: 120, autoAlpha:0})
-      //gsap.set(ProductJudgeButtonRight, {xPercent: -120, autoAlpha:0})
-      /* const productJudgeButtonLeftAnim = gsap.timeline({paused:true})
-        .fromTo(ProductJudgeButtonLeft, {autoAlpha:0}, {autoAlpha:1, ease: "power4.out"})
-        .fromTo(ProductJudgeButtonLeft,
-          { xPercent: 100, scale: 0},
-          { xPercent: 0, scale: 1, duration:0.5, ease: "power1.out"}, 0
-        );
-
-      const productJudgeButtonRightAnim = gsap.timeline({paused:true})
-        .fromTo(ProductJudgeButtonRight, {autoAlpha:0}, {autoAlpha:1, ease: "power4.out"})
-        .fromTo(ProductJudgeButtonRight,
-          { xPercent: -100, scale: 0},
-          { xPercent: 0, scale: 1, duration:0.5, ease: "power1.out"}, 0
-        ); */
-
+      //let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
       const judgePhoneAnim = gsap.timeline({
         paused:true,
         scrollTrigger: {
@@ -567,24 +544,6 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           once:true,
           //markers: true,
           //invalidateOnRefresh: true,
-          /* onUpdate: (self: ScrollTrigger) => {
-            //console.log(self.progress);
-            let progressTrigger: number = isPortrait ? 0.82 : 0.6725
-            if (self.progress > progressTrigger) {
-              const mappedProgress = gsap.utils.mapRange(progressTrigger, 0.975, 0, 1, parseFloat(self.progress.toFixed(4)));
-              //console.log(mappedProgress);
-              productJudgeButtonLeftAnim.progress(mappedProgress);
-              productJudgeButtonRightAnim.progress(mappedProgress);
-            }
-          }, */
-          /* onLeave: () => {
-            productJudgeButtonLeftAnim.play();
-            productJudgeButtonRightAnim.play();
-          },
-          onEnterBack: () => {
-            productJudgeButtonLeftAnim.reverse();
-            productJudgeButtonRightAnim.reverse();
-          }, */
         },
       })
         .from('.judgePhone',
@@ -594,6 +553,8 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           })
 
       let productJudgeButtonsAnimStart = isPortrait ? (isUnder768 ? '40%' : '30%') : '42%';
+      const ProductJudgeButtonLeft: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonLeft');
+      const ProductJudgeButtonRight: HTMLHeadingElement[] = gsap.utils.toArray('.ProductJudgeButtonRight');
       const productJudgeButtonsAnim = gsap.timeline({
         paused:true,
         scrollTrigger: {

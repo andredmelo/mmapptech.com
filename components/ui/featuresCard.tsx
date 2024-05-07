@@ -131,7 +131,7 @@ const FeaturesCardVideo = React.forwardRef<
       autoPlay
       loop
       className={cn(
-        "shrink object-scale-down h-full max-h-[75svh]", //max-h-[50svh]
+        "shrink object-scale-down h-full max-h-[65svh]", //max-h-[50svh]
       )}
       {...props}
     />

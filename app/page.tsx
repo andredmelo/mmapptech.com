@@ -132,7 +132,9 @@ export default function Home() {
         const height = window.innerHeight;
         const ratio = width / height;
         if (ratio > 16/9) {
+          console.log("Viewport is wider than 16:9");
         } else if (ratio < 16/9) {
+          console.log("Viewport is narrower than 16:9");
         } else {
           console.log("Viewport is 16:9");
         }
@@ -202,10 +204,11 @@ export default function Home() {
             scrollTrigger: {
               trigger: target,
               start: 'top bottom',
-              end: "top 60%",
+              end: "top 75%",
               scrub: 1,
               once: true,
               preventOverlaps:true,
+              fastScrollEnd: true,
             }
           })
             .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
@@ -1141,8 +1144,10 @@ export default function Home() {
 
           {/* // Dashboard */}
           <div id="featuresDashboard" className="featuresDashboard flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-2 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            <div className={clsx(
+              "w-full h-full flex flex-col md:flex-row relative justify-center",
+              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+            )}>
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
@@ -1381,8 +1386,10 @@ export default function Home() {
 
           {/* // Judge */}
           <div id="featuresJudge" className="featuresJudge flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            <div className={clsx(
+              "w-full h-full flex flex-col md:flex-row relative justify-center",
+              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+            )}>
               <div className="flex flex-col z-20 text-right">
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
@@ -1527,8 +1534,10 @@ export default function Home() {
 
           {/* // RecordKeeper */}
           <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative justify-center",
-            "rounded-[3rem] mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] px-10 md:px-20 lg:px-12 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
+            <div className={clsx(
+              "w-full h-full flex flex-col md:flex-row relative justify-center",
+              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+            )}>
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
