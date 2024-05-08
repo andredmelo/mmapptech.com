@@ -232,80 +232,80 @@ export default function Home() {
 
         let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
         fDT.forEach((fDT) => {
-          enterAni(fDT, -125, 0);
-          //leaveAni(fDT, 0, 125);
+          enterAni(fDT, -150, 0);
+          //leaveAni(fDT, 0, 150);
         });
 
         let fDD: HTMLElement[] = gsap.utils.toArray(".featuresDashboardDescription");
         fDD.forEach((fDD) => { 
-          enterAni(fDD, -125, 0);
-          //leaveAni(fDD, 0, 125);
+          enterAni(fDD, -150, 0);
+          //leaveAni(fDD, 0, 150);
         });
 
         let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
         let fDV: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardVideo");
         {isMobileOnly && isAndroid ? 
           fDI.forEach((fDI) => {
-            enterAni(fDI, 125, 0);
-            //leaveAni(fDV, 0, -125);
+            enterAni(fDI, 150, 0);
+            //leaveAni(fDV, 0, -150);
           })
         :
           fDV.forEach((fDV) => {
-            enterAni(fDV, 125, 0);
-            //leaveAni(fDV, 0, -125);
+            enterAni(fDV, 150, 0);
+            //leaveAni(fDV, 0, -150);
           })
         };
 
 
         let fJT: HTMLElement[] = gsap.utils.toArray(".featuresJudgeTitle");
         fJT.forEach((fJT) => {
-          enterAni(fJT, -125, 0);
-          //leaveAni(fJT, 0, 125);
+          enterAni(fJT, -150, 0);
+          //leaveAni(fJT, 0, 150);
         });
 
         let fJD: HTMLElement[] = gsap.utils.toArray(".featuresJudgeDescription");
         fJD.forEach((fJD) => { 
-          enterAni(fJD, -125, 0);
-          //leaveAni(fJD, 0, 125);
+          enterAni(fJD, -150, 0);
+          //leaveAni(fJD, 0, 150);
         });
 
         let fJV: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeVideo");
         let fJI: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeImage");
         {isMobileOnly && isAndroid ? 
           fJI.forEach((fJI) => {
-            enterAni(fJI, 125, 0);
-            //leaveAni(fJV, 0, -125);
+            enterAni(fJI, 150, 0);
+            //leaveAni(fJV, 0, -150);
           })
         :
           fJV.forEach((fJV) => {
-            enterAni(fJV, 125, 0);
-            //leaveAni(fJV, 0, -125);
+            enterAni(fJV, 150, 0);
+            //leaveAni(fJV, 0, -150);
           });
         };
 
         let fRKT: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperTitle");
         fRKT.forEach((fRKT) => {
-          enterAni(fRKT, -125, 0);
-          //leaveAni(fRKT, 0, 125);
+          enterAni(fRKT, -150, 0);
+          //leaveAni(fRKT, 0, 150);
         });
 
         let fRKD: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperDescription");
         fRKD.forEach((fRKD) => { 
-          enterAni(fRKD, -125, 0);
-          //leaveAni(fRKD, 0, 125);
+          enterAni(fRKD, -150, 0);
+          //leaveAni(fRKD, 0, 150);
         });
 
         let fRKV: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperVideo");
         let fRKI: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
         {isMobileOnly && isAndroid ? 
           fRKI.forEach((fRKI) => {
-            enterAni(fRKI, 125, 0);
-            //leaveAni(fRKV, 0, -125);
+            enterAni(fRKI, 150, 0);
+            //leaveAni(fRKV, 0, -150);
           })
         :
           fRKV.forEach((fRKV) => {
-            enterAni(fRKV, 125, 0);
-            //leaveAni(fRKV, 0, -125);
+            enterAni(fRKV, 150, 0);
+            //leaveAni(fRKV, 0, -150);
           })
         };
 
@@ -1150,12 +1150,12 @@ export default function Home() {
             )}>
               <div className="flex flex-col z-20 text-left">
 
-                <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0">
+                <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0">
                     Federations
                   </h2>
                   <div className="flex flex-row justify-start items-center mmappBlockReveal">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
@@ -1392,16 +1392,16 @@ export default function Home() {
             )}>
               <div className="flex flex-col z-20 text-right">
 
-                <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-row justify-end items-center z-20 text-right">
+                <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-col-reverse landscape:md:flex-row justify-end items-center z-20 text-right">
                   <div className="flex flex-row justify-end items-center mmappBlockReveal">
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
                       Judge App
                     </h4>
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden lanscape:block">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
                   </div>
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-12 portrait:pr-0 mmappBlockReveal">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-0 landscape:md:pl-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
                 {isUnder768 ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
@@ -1540,12 +1540,12 @@ export default function Home() {
             )}>
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
-                <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-row justify-start items-center z-20 text-left">
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-12 portrait:pr-0 mmappBlockReveal">
+                <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left">
+                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
                   <div className="flex flex-row justify-start items-center mmappBlockReveal">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden lanscape:block">
+                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
                     <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">

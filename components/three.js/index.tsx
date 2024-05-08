@@ -513,6 +513,50 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               };
               let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight); */
 
+              /* const calculateiPhonePosX = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                // This is a simplified approach; you might need to adjust the formula based on testing
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the iPhonePosX for your two reference points
+                const iPhonePosX1250x650 = 1;
+                const iPhonePosX1900x1350 = 0.6;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (iPhonePosX1900x1350 - iPhonePosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = iPhonePosX1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the iPhonePosX for the current window dimensions
+                let iPhonePosX = m * sizeFactor + b;
+                // Optionally, you can clamp the value of iPhonePosX to ensure it stays within a reasonable range
+                iPhonePosX = Math.max(0.6, Math.min(iPhonePosX, 1)); // Adjust the min and max values as needed
+                return iPhonePosX;
+              };
+              let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
+              //console.log("iPhonePosX is "+iPhonePosX); */
+
+              /* const calculateiPadPosX = (width: number, height: number): number => {
+                // Calculate a "size factor" based on the window dimensions
+                const sizeFactor = Math.sqrt(width * height);
+                // Define the "size factor" for your two reference points
+                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
+                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
+                // Define the iPadPosX for your two reference points
+                const iPadPosX1250x650 = 0.8;
+                const iPadPosX1900x1350 = 0.55;
+                // Calculate the slope (m) of the line connecting your two reference points
+                const m = (iPadPosX1900x1350 - iPadPosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
+                // Calculate the y-intercept (b) of the line
+                const b = iPadPosX1250x650 - m * sizeFactor1250x650;
+                // Use the line equation to calculate the iPadPosX for the current window dimensions
+                let iPadPosX = m * sizeFactor + b;
+                // Optionally, you can clamp the value of iPadPosX to ensure it stays within a reasonable range
+                iPadPosX = Math.max(0.55, Math.min(iPadPosX, 0.8)); // Adjust the min and max values as needed
+                return iPadPosX;
+              };
+              let iPadPosX = calculateiPadPosX(window.innerWidth, window.innerHeight); */
+
 
               const detectViewportRatio = (width: number, height: number) => {
                 const ratio = width / height;
@@ -591,30 +635,6 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
               let macBookProPosY = calculateMacBookProPosY(window.innerWidth, window.innerHeight);
               //console.log("macBookProPosY is "+macBookProPosY);
 
-
-              /* const calculateiPhonePosX = (width: number, height: number): number => {
-                // Calculate a "size factor" based on the window dimensions
-                // This is a simplified approach; you might need to adjust the formula based on testing
-                const sizeFactor = Math.sqrt(width * height);
-                // Define the "size factor" for your two reference points
-                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
-                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
-                // Define the iPhonePosX for your two reference points
-                const iPhonePosX1250x650 = 1;
-                const iPhonePosX1900x1350 = 0.6;
-                // Calculate the slope (m) of the line connecting your two reference points
-                const m = (iPhonePosX1900x1350 - iPhonePosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
-                // Calculate the y-intercept (b) of the line
-                const b = iPhonePosX1250x650 - m * sizeFactor1250x650;
-                // Use the line equation to calculate the iPhonePosX for the current window dimensions
-                let iPhonePosX = m * sizeFactor + b;
-                // Optionally, you can clamp the value of iPhonePosX to ensure it stays within a reasonable range
-                iPhonePosX = Math.max(0.6, Math.min(iPhonePosX, 1)); // Adjust the min and max values as needed
-                return iPhonePosX;
-              };
-              let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
-              //console.log("iPhonePosX is "+iPhonePosX); */
-
               const calculateiPhonePosX = (width: number, height: number): number => {
                 let iPhonePosX = 0.5;
                 const ratio = width / height;
@@ -633,30 +653,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                 return iPhonePosX;
               };
               let iPhonePosX = calculateiPhonePosX(window.innerWidth, window.innerHeight);
-              console.log("iPhonePosX is "+iPhonePosX);
-
-              /* const calculateiPadPosX = (width: number, height: number): number => {
-                // Calculate a "size factor" based on the window dimensions
-                const sizeFactor = Math.sqrt(width * height);
-                // Define the "size factor" for your two reference points
-                const sizeFactor1250x650 = Math.sqrt(1250 * 650); // Size factor for width=1250, height=650
-                const sizeFactor1900x1350 = Math.sqrt(1900 * 1350); // Size factor for width=1900, height=1350
-                // Define the iPadPosX for your two reference points
-                const iPadPosX1250x650 = 0.8;
-                const iPadPosX1900x1350 = 0.55;
-                // Calculate the slope (m) of the line connecting your two reference points
-                const m = (iPadPosX1900x1350 - iPadPosX1250x650) / (sizeFactor1900x1350 - sizeFactor1250x650);
-                // Calculate the y-intercept (b) of the line
-                const b = iPadPosX1250x650 - m * sizeFactor1250x650;
-                // Use the line equation to calculate the iPadPosX for the current window dimensions
-                let iPadPosX = m * sizeFactor + b;
-                // Optionally, you can clamp the value of iPadPosX to ensure it stays within a reasonable range
-                iPadPosX = Math.max(0.55, Math.min(iPadPosX, 0.8)); // Adjust the min and max values as needed
-                return iPadPosX;
-              };
-              let iPadPosX = calculateiPadPosX(window.innerWidth, window.innerHeight); */
-
-
+              //console.log("iPhonePosX is "+iPhonePosX);
 
               const calculateiPadPosX = (width: number, height: number): number => {
                 let iPadPosX = 0.5;
