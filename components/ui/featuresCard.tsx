@@ -1,4 +1,5 @@
 import * as React from "react"
+import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 
 import { cn } from "@/lib/utils"
 
@@ -39,17 +40,20 @@ const FeaturesCardHeader = React.forwardRef<
   HTMLParagraphElement,
   FeaturesCardProps
 >(({ className, leftOrRight, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "flex flex-col portrait:items-center landscape:justify-center portrait:justify-start portrait:md:justify-start portrait:text-center", // border-2 border-green-500
-      "w-[98vw] md:w-[90vw] lg:w-full max-w-[1440px] min-h-0 md:min-h-[100lvh] h-full md:h-[100lvh] touch:md:max-h-[100lvh]",
-      leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 landscape:md:items-start landscape:md:text-left landscape:md:pr-[50%] portrait:pr-[0%]" : "landscape:items-center landscape:text-center landscape:pl-0 landscape:md:items-end landscape:md:text-right landscape:md:pl-[50%] portrait:pl-[0%]",
-      "overflow-hidden landscape:pt-[6rem] md:landscape:pt-0 portrait:pt-[6rem] portrait:md:pt-[36%]",
-      className
-    )}
-    {...props}
-  />
+    <div
+      ref={ref}
+      className={cn(
+        "flex flex-col portrait:items-center landscape:justify-center portrait:justify-start portrait:md:justify-start portrait:text-center", // border-2 border-green-500
+        "w-[98vw] md:w-[90vw] lg:w-full max-w-[1440px] min-h-0 md:min-h-[100lvh] h-full md:h-[100lvh] touch:md:max-h-[100lvh]",
+        "overflow-hidden",
+        isMobileOnly ? 
+          leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 portrait:pr-[0%] landscape:pt-[6rem] portrait:pt-[6rem] portrait:md:pt-[36%]" : "landscape:items-center landscape:text-center landscape:pl-0 portrait:pl-[0%] landscape:pt-[6rem] portrait:pt-[6rem] portrait:md:pt-[36%]"
+        : 
+          leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 landscape:md:items-start landscape:md:text-left landscape:md:pr-[50%] portrait:pr-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[36%]" : "landscape:items-center landscape:text-center landscape:pl-0 landscape:md:items-end landscape:md:text-right landscape:md:pl-[50%] portrait:pl-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[36%]",
+        className
+      )}
+      {...props}
+    />
 ))
 FeaturesCardHeader.displayName = "FeaturesCardHeader"
 
@@ -93,7 +97,8 @@ const FeaturesCardImage = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex shrink md:hidden items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+      "flex shrink items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+      isMobileOnly ? '' : 'md:hidden',
       className
     )}
   >
@@ -115,27 +120,27 @@ const FeaturesCardVideo = React.forwardRef<
   HTMLVideoElement,
   FeaturesCardVideoProps
 >(({ className, src, ...props }, ref) => (
-
-  <div
-    className={cn(
-      "flex shrink md:hidden items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
-      className
-    )}
-  >
-    <video
-      src={src}
-      ref={ref}
-      typeof="video/mp4"
-      playsInline
-      muted
-      autoPlay
-      loop
+    <div
       className={cn(
-        "shrink object-scale-down h-full max-h-[65svh]", //max-h-[50svh]
+        "flex shrink items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+        isMobileOnly ? '' : 'md:hidden',
+        className
       )}
-      {...props}
-    />
-  </div>
+    >
+      <video
+        src={src}
+        ref={ref}
+        typeof="video/mp4"
+        playsInline
+        muted
+        autoPlay
+        loop
+        className={cn(
+          "shrink object-scale-down h-full max-h-[65svh]", //max-h-[50svh]
+        )}
+        {...props}
+      />
+    </div>
 ))
 FeaturesCardVideo.displayName = "FeaturesCardVideo"
 

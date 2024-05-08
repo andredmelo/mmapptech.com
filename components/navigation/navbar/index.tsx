@@ -526,7 +526,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                 </ul>
               </nav>
               {/* App's' links */}
-              <div className="mmappsButtons flex items-center justify-center md:hidden relative w-screen mt-24">
+              <div className="mmappsButtons flex items-center justify-center md:hidden relative w-screen my-24">
                 <div className="flex flex-col w-screen items-center justify-start">
                   <h6 className="flex items-end pb-6 text-[1.9rem] text-center text-[var(--purple-100)] deboss">
                     <span className="pr-14 bounce-arrow" aria-hidden="true">↓</span>

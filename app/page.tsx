@@ -2,6 +2,7 @@
 import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { clsx } from "clsx";
+import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
 import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 /* import Image from "next/image";
@@ -196,40 +197,40 @@ export default function Home() {
 
 
       // Mobile Animations
-      matchMedia.add("(max-width: 767px)", (context) => {
 
-        function enterAni(target: HTMLElement, xIn: number, xOut: number){
-          let tl = gsap.timeline({
-            defaults: { ease: "power1.out" },
-            scrollTrigger: {
-              trigger: target,
-              start: 'top bottom',
-              end: "top 75%",
-              scrub: 1,
-              once: true,
-              preventOverlaps:true,
-              fastScrollEnd: true,
-            }
-          })
-            .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
-          return tl
-        }
+      function enterAni(target: HTMLElement, xIn: number, xOut: number){
+        let tl = gsap.timeline({
+          defaults: { ease: "power1.out" },
+          scrollTrigger: {
+            trigger: target,
+            start: 'top bottom',
+            end: "top 75%",
+            scrub: 1,
+            once: true,
+            preventOverlaps:true,
+            fastScrollEnd: true,
+          }
+        })
+          .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
+        return tl
+      }
+      /* function leaveAni(target: HTMLElement, xIn: number, xOut: number){
+        let tl = gsap.timeline({
+          defaults: { ease: "power1.in"},
+          scrollTrigger: {
+            trigger: target,
+            start: 'bottom 15%',
+            end: "bottom top",
+            scrub: 1,
+            preventOverlaps:true,
+          }
+        })
+          .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
+        return tl
+      } */
 
-        /* function leaveAni(target: HTMLElement, xIn: number, xOut: number){
-          let tl = gsap.timeline({
-            defaults: { ease: "power1.in"},
-            scrollTrigger: {
-              trigger: target,
-              start: 'bottom 15%',
-              end: "bottom top",
-              scrub: 1,
-              preventOverlaps:true,
-            }
-          })
-            .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
-          return tl
-        } */
-
+      //matchMedia.add("(max-width: 767px)", (context) => {
+      if (isMobileOnly) {
         let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
         fDT.forEach((fDT) => {
           enterAni(fDT, -150, 0);
@@ -309,10 +310,43 @@ export default function Home() {
           })
         };
 
-      });
+
+        matchMedia.add("(min-width: 768px)", (context) => {
+          // Pin Our Expertise Image
+          const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
+          const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
+
+          const ourExpertise = setInterval(() => {
+            if (ourExpertiseImg && ourExpertiseDescription) {
+              clearInterval(ourExpertise);
+              const ourExpertiseImgHeight = (ourExpertiseImg as HTMLElement).offsetHeight;
+              const ourExpertiseDescriptionHeight = (ourExpertiseDescription as HTMLElement).offsetHeight;
+              const halfViewportHeight = window.innerHeight / 2;
+              const endOurExpertiseImgTrigger = halfViewportHeight + ourExpertiseImgHeight / 2;
+              //console.log("endOurExpertiseImgTrigger is "+endOurExpertiseImgTrigger);
+
+              //Custom endTrigger
+              if (ourExpertiseImgHeight < ourExpertiseDescriptionHeight) {
+                ScrollTrigger.create({
+                  trigger: ourExpertiseImg,
+                  start: "center 50%",
+                  endTrigger: ".ourExpertiseDescriptionContainer",
+                  end: "bottom "+endOurExpertiseImgTrigger+"px",
+                  pin: ".ourExpertiseImg",
+                  pinSpacing: false,
+                  invalidateOnRefresh: true,
+                });
+              }
+            };
+          }, 50); // Check every 50ms
+        });
+        //});
+      };
 
 
       // Tablet and Desktop Animations
+      if (isMobileOnly) {
+      } else {
       matchMedia.add("(min-width: 768px)", (context) => {
         // Pin Our Expertise Image
         const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
@@ -850,6 +884,7 @@ export default function Home() {
           }
         }, 50); // Check every 50ms
       });
+      }
 
 
       //Home Animation
@@ -891,7 +926,10 @@ export default function Home() {
       // Mapping MMA Animation
       let split = new SplitText(heroMMAPPText,
         { types: 'chars',
-          charsClass: "bg-white/70 border-[1.5px] border-[var(--primary-fuchsia)] py-2 px-2 md:px-4 min-w-12 md:min-w-24 rounded-b-sm",
+          charsClass: cn(
+            'bg-white/70 border-[1.5px] border-[var(--primary-fuchsia)] rounded-b-sm',
+            'py-2 px-[0.6rem] portrait:md:px-4 lg:px-4' // min-w-12 md:min-w-16
+            ),
           wordsClass: "perspective-750",
           // linesClass: "perspective-750",
         });
@@ -1021,7 +1059,16 @@ export default function Home() {
             <picture><img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/></picture>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
               <picture id="heroMMAPPLogo"><img src={heroLogo} alt="MMAPP Logo" className="relative"/></picture>
-              <h4 id="heroMMAPPText" className="relative pt-0 text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw] text-center text-black font-extrabold deboss">
+              <h4 id="heroMMAPPText" className={cn(
+                "relative pt-0 text-center text-black font-extrabold deboss",
+                'landscape:text-[2.75vw] landscape:md:text-[4vw] landscape:lg:text-[3.25vw] landscape:xl:text-[3.75vw] landscape:2xl:text-[4vw] landscape:3xl:text-[4.5vw]',
+                'portrait:text-[5.5vw] portrait:md:text-[5vw] portrait:lg:text-[7vw]',
+                /* isMobileOnly ?
+                  'text-[1.75rem] md:text-[2.5rem] lg:text-[3rem]'
+                :
+                  'text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw]', */
+                )}
+              >
                 MAPPING  MMA
               </h4>
             </div>
@@ -1131,7 +1178,7 @@ export default function Home() {
           </h5>
 
           {/* <HomeFeaturesR3F /> */}
-          {isUnder768 ? '' : 
+          {isUnder768||isMobileOnly ? '' : 
             <>
               <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
               {showHomeFeaturesR3F && (
@@ -1162,7 +1209,7 @@ export default function Home() {
                       Dashboard App
                     </h4>
                   </div>
-                {isUnder768 ? '' : <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>}
+                {isUnder768||isMobileOnly ? '' : <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>}
                 </div>
 
                 <FeaturesCard className="dashboardCard z-10">
@@ -1404,7 +1451,7 @@ export default function Home() {
                   <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-0 landscape:md:pl-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
-                {isUnder768 ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
+                {isUnder768||isMobileOnly ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
                 </div>
 
 
@@ -1552,7 +1599,7 @@ export default function Home() {
                       RecordKeeper
                     </h4>
                   </div>
-                  {isUnder768 ? '' : <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>}
+                  {isUnder768||isMobileOnly ? '' : <ProgressCircle id="recordKeeperProgressCircle" leftOrRight="left"/>}
                 </div>
 
                 <FeaturesCard className="recordKeeperCard z-10">
