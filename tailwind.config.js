@@ -61,6 +61,10 @@ module.exports = {
       /* padding: "2rem", */
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        'calSans': ['var(--font-calSans)'],
+      },
       /* form: {
         input: {
           fontSize: '1.2rem',

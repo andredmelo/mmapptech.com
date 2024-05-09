@@ -23,7 +23,7 @@ const CardContactUsHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1 px-10 md:px-15 xl:px-20 py-10 md:py-12 xl:py-16", className)}
+    className={cn("flex flex-col space-y-1 px-10 md:px-14 xl:px-20 py-6 md:py-10 xl:py-14", className)}
     {...props}
   />
 ))
@@ -35,7 +35,9 @@ const CardContactUsTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h4
     ref={ref}
-    className={cn("text-xl md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] font-semibold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-400)] to-purple-900 dark:bg-gradient-to-br dark:from-[var(--purple-350)] dark:to-purple-100", className)}
+    className={cn("text-xl py-1 md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] leading-none tracking-normal text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-400)] to-purple-900 dark:bg-gradient-to-br dark:from-[var(--purple-350)] dark:to-purple-100", // font-semibold
+    className
+    )}
     {...props}
   />
 ))
@@ -57,7 +59,7 @@ const CardContactUsContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("px-10 md:px-15 xl:px-20 pb-6 md:pb-6 xl:pb-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("px-10 md:px-14 xl:px-20 pb-6 md:pb-6 xl:pb-6 pt-0", className)} {...props} />
 ))
 CardContactUsContent.displayName = "CardContactUsContent"
 

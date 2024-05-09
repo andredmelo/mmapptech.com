@@ -630,7 +630,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             //preventOverlaps:true,
           },
         })
-          .fromTo(ProductRecordKeeperButtons, { yPercent: -225}, { yPercent: 0, ease: "power4.out"})
+          .fromTo(ProductRecordKeeperButtons, { yPercent: -250}, { yPercent: 0, ease: "power4.out"})
       });
 
 
@@ -749,7 +749,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <ProductFCTitle className="mmappBlockReveal">
               MMAPP Methodology
             </ProductFCTitle>
-            <ProductFCHeading className="mmappHeadingReveal mx-[2vw]">
+            <ProductFCHeading className="mmappHeadingReveal mx-[2vw] lg:mx-[4vw]">
               A consistent and standardised unit of measurement for officiating MMA
             </ProductFCHeading>
             {/* <ProductFCDescription className="mmappParagraphsReveal justify-start pr-[0vw] md:pr-[22vw] text-left mb-6 md:mb-[2vw]">
@@ -786,7 +786,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <p className="z-15 text-lg md:text-xl text-white text-left md:text-center pl-[2vw] md:pl-0 pt-[2vw] justify-center bounce-arrow">
             ↓
             </p>
-            <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
+            <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
             {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
           </ProductFC>
@@ -798,12 +798,12 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             "mx-1 md:mx-[5.6vw] mt-[-2px]",
           )}>
           <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
-            <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,830.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v304c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="backgroundPath" d="m769,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h681.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h677.98c17.67,0,32,14.33,32,32l-.12,780.61c0,17.67-14.33,32-23,32H49.88c-26.67,0-41,14.33-41,32v354c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" opacity=".1" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
             <path id="mainPath-0" d="m769.27,92.32v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02l-598.1.3" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
             <path id="mainPath-1" d="m139.14,200l-101.87-.3c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h598.85" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
             <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
             <path id="mainPath-3" d="m139.14,4220.6H41.27c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-            <path id="mainPath-4" d="m1401.39,6147.7h81.88c17.67,0,32,14.33,32,32l-.12,830.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v304c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
+            <path id="mainPath-4" d="m1401.39,6147.7h81.88c17.67,0,32,14.33,32,32l-.12,780.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v354c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
             {/* <path id="mainPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" pathLength="1" stroke-dashoffset="0px" strokeDasharray="1px 1px"/> */}
             <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
           </svg>
@@ -883,7 +883,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         <div className="portrait:md:h-[112vw]">
           
           {/* Titles for portrait devices */}
-          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-0 md:mb-[1vw] pb-0 portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
+          {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-2 md:mb-[1vw]  md:touch:mb-[2vw] pb-0 portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
             <h4 className={clsx("mmappBlockReveal text-center portrait:text-[4.5vw] portrait:md:text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "two-lines-always")}>
               {descriptionSrcMapJudge[activeTabProductJudge]}
@@ -893,7 +893,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           {/* // Use the loading state to conditionally render the images in small mobile device*/}
           <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
             <picture><img
-              className="judgePhone object-scale-down max-h-[60vh] rounded-[4.5rem] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
+              className="judgePhone object-scale-down max-h-[65svh] rounded-[8vw] shadow-2xl shadow-fuchsia-950/50 ring-4 ring-fuchsia-950/50"
               src={(preloadedImages as any)[activeTabProductJudge]?.src}
               alt="iphone-12"
               onLoad={() => setIsLoading(false)}
@@ -901,7 +901,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
           </div>
 
-          <div className={clsx("w-full flex flex-col md:flex-row gap-4 md:gap-0 relative pb-0 md:pb-[1.75vw]")}>
+          <div className={clsx("w-full flex flex-col md:flex-row gap-1 md:gap-0 relative pb-0 md:pb-[1.75vw]")}>
 
             <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative overflow-hidden">
               <TabButtonProductJudge
@@ -1044,7 +1044,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <div className="productDivider"></div>
 
       <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] portrait:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] md:touch:pt-[10vw] portrait:md:pt-[19vw] pb-[6.5vw] md:pb-[6.5vw]">
           <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
             RecordKeeper
           </ProductFCTitle>
@@ -1084,7 +1084,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           <div className={clsx(
             "recordKeeperTabletWrapper basis-[67.5%] portrait:touch:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10",
             "min-w-auto max-w-[100%] landscape:md:max-w-[90%] portrait:max-w-[100%] h-full max-h-[100%]",
-            "px-[0vw] pb-[0vw] portrait:pb-[4vw] md:portrait:pb-[0vw] md:pb-[4vw]",
+            "px-[0vw] pb-[0vw] portrait:pb-[0vw] md:portrait:pb-[0vw] md:pb-[4vw]",
             )}
           >
             <picture><img
@@ -1099,7 +1099,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           <div className={clsx("relative basis-[32.5%] portrait:touch:basis-full flex flex-col",
           "w-full portrait:touch:w-[100%] portrait:touch:md:w-[98%] portrait:touch:mx-auto min-w-[20vw]",
           "portrait:touch:flex-row justify-center items-start gap-4 md:gap-[3vw] portrait:touch:gap-[vw] portrait:touch:md:gap-[1vw]",
-          "px-[0vw] pb-[0vw] portrait:pb-[2vw] portrait:pt-[2vw] md:portrait:pb-[0vw] md:pb-[4vw] portrait:md:pt-[0vw] overflow-hidden",
+          "px-[0vw] pb-[0vw] portrait:pb-[2vw] portrait:pt-[4vw] md:portrait:pb-[0vw] md:pb-[4vw] portrait:md:pt-[0vw] overflow-hidden",
           )}>
             <div className="flex flex-col portrait:touch:md:flex-row gap-4 md:gap-[3vw] portrait:touch:gap-[vw] portrait:touch:md:gap-[1vw]">
               <TabButtonProductRecordKeeper
@@ -1192,7 +1192,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       <div className="productDivider"></div>
 
       <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] portrait:md:pt-[19.1vw] pb-12 md:pb-[13.75vw]">
+        <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12.625vw] md:touch:pt-[10vw] portrait:md:pt-[19.1vw] pb-12 md:pb-[13.75vw]">
           <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
             Dashboard
           </ProductFCTitle>
@@ -1302,13 +1302,13 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             A platform to seemlessly interact with your Federation
           </ProductFCHeading>
           <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
-            The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
+            The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/>
           </ProductFCDescription>
           <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
-            Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
+            Whether you’re registering for the first time, or managing your membership and submitted documents.<br/><br/>
           </ProductFCDescription>
           <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
-            You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
+            You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/><br/>
           </ProductFCDescription>
           <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
             Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.

@@ -723,7 +723,7 @@ const Company = (props: any) => {
             <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-[var(--purple-250)]">
               Policies and Guidelines of Usage
             </h3>
-            <h6 className="mmappParagraphsReveal h7 font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-12 lg:px-[6rem] xl:px-[24rem]">
+            <h6 className="mmappParagraphsReveal h7 font-sans font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-16 lg:px-[6rem] xl:px-[18rem]">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
               It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
               You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.

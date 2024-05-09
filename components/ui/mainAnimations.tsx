@@ -38,7 +38,7 @@ const MmappHeadingReveal = () => {
       let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
       const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
       splitTypesH.forEach((Heading, index) => {
-        let split = new SplitText(Heading, { types: 'lines,words', linesClass: "overflow-hidden pb-1 md:pb-3 mt-[-0.25rem] md:mt-[-0.75rem]" });
+        let split = new SplitText(Heading, { types: 'lines,words', linesClass: "overflow-hidden pb-2 md:pb-3 mt-[-0.25rem] md:mt-[-0.75rem]" });
         const HeadingsAnim = gsap.timeline({
           paused:true,
           scrollTrigger: {

@@ -118,7 +118,7 @@ export default function General() {
                 <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
               )}
             </div>
-            <div className="subscribe inline-block items-end space-x-3 mb-2">
+            <div className="subscribe inline-block items-end space-x-3 mb-12 md:mb-6 leading-[0rem]">
               <input
                 type="checkbox"
                 id="form-subscribe"

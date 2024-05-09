@@ -315,9 +315,10 @@ export default function Home() {
           // Pin Our Expertise Image
           const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
           const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
+          const ourExpertiseDescriptionContainer = document.querySelector(".ourExpertiseDescriptionContainer");
 
           const ourExpertise = setInterval(() => {
-            if (ourExpertiseImg && ourExpertiseDescription) {
+            if (ourExpertiseImg && ourExpertiseDescription && ourExpertiseDescriptionContainer) {
               clearInterval(ourExpertise);
               const ourExpertiseImgHeight = (ourExpertiseImg as HTMLElement).offsetHeight;
               const ourExpertiseDescriptionHeight = (ourExpertiseDescription as HTMLElement).offsetHeight;
@@ -345,15 +346,15 @@ export default function Home() {
 
 
       // Tablet and Desktop Animations
-      if (isMobileOnly) {
-      } else {
+      if (!isMobileOnly) {
       matchMedia.add("(min-width: 768px)", (context) => {
         // Pin Our Expertise Image
         const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
         const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
+        const ourExpertiseDescriptionContainer = document.querySelector(".ourExpertiseDescriptionContainer");
 
         const ourExpertise = setInterval(() => {
-          if (ourExpertiseImg && ourExpertiseDescription) {
+          if (ourExpertiseImg && ourExpertiseDescription && ourExpertiseDescriptionContainer) {
             clearInterval(ourExpertise);
             const ourExpertiseImgHeight = (ourExpertiseImg as HTMLElement).offsetHeight;
             const ourExpertiseDescriptionHeight = (ourExpertiseDescription as HTMLElement).offsetHeight;
@@ -1060,7 +1061,7 @@ export default function Home() {
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
               <picture id="heroMMAPPLogo"><img src={heroLogo} alt="MMAPP Logo" className="relative"/></picture>
               <h4 id="heroMMAPPText" className={cn(
-                "relative pt-0 text-center text-black font-extrabold deboss",
+                "relative pt-0 text-center text-black font-extrabold deboss font-sans",
                 'landscape:text-[2.75vw] landscape:md:text-[4vw] landscape:lg:text-[3.25vw] landscape:xl:text-[3.75vw] landscape:2xl:text-[4vw] landscape:3xl:text-[4.5vw]',
                 'portrait:text-[5.5vw] portrait:md:text-[5vw] portrait:lg:text-[7vw]',
                 /* isMobileOnly ?

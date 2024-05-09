@@ -25,7 +25,9 @@ export default function TabButtonProductJudge({
 }: TabButtonProductJudgeProps) {
   //const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
-  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isLandscape = useMediaQuery('(orientation: landscape)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
+  const isOver768 = useMediaQuery('(min-width: 768px)');
   const isXL = useMediaQuery('(min-width: 1280px)');
   const isTouch = useMediaQuery('(hover: none)');
 
@@ -52,7 +54,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
-              'py-1 px-4',
+              'py-1 px-4 my-2',
               'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
               className
@@ -62,6 +64,7 @@ export default function TabButtonProductJudge({
             <div className={cn("flex flex-row items-center")}>
               <div className={cn("flex text-center pl-2")}>
                 <p className={cn(
+                  'font-calSans',
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   /* isPending && '' */
                 )}>
@@ -74,14 +77,14 @@ export default function TabButtonProductJudge({
             </div>
               {/* {isPending ? 'loading' : children} */}
           </button>
-      ) : isXL ? (
+      ) : isLandscape ? (
         <button
           className={cn(
             activeTab === value ? activeClass : inactiveClass,
             /* isPending && 'opacity-100', */
             'flex flex-row items-center',
             'w-fit max-w-[43rem] py-10 px-16',
-            'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
+            'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal', // font-semibold
             'rounded-[3rem] bg-no-repeat shadow-inset-mission',
             gradientSide,
             className
@@ -110,7 +113,7 @@ export default function TabButtonProductJudge({
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
               'py-6 px-[2.15rem]',
-              'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg font-semibold leading-none tracking-normal',
+              'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal', // font-semibold
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',
               gradientSide,
               className

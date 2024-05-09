@@ -1,2 +1,1 @@
-let vNumber = "v0.3-β.7 | NavMenu fix for mobile in landscape mode. Hero 'Mapping MMA' size fix for various devices.";
-
+let vNumber = "v0.5-β.1 | Root Layout restructure. Next.JS Metadata. CalSans font re-instated. Various fixes on Product. Our Expertise Img animation fix.";

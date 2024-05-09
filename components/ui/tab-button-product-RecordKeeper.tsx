@@ -51,7 +51,7 @@ export default function TabButtonProductRecordKeeper({
           isPending && 'opacity-100',
           'flex flex-row items-center w-fit max-w-[20vw] portrait:touch:max-w-fit portrait:touch:md:max-w-[20vw] portrait:touch:min-h-[7vw]',
           'py-[1vw] px-6 md:py-[1.1vw] md:px-[2.25vw] portrait:touch:py-[1.25vw] portrait:touch:md:py-[1vw] portrait:touch:md:px-[1.75vw]',
-          'font-semibold tracking-normal',
+          'tracking-normal', // font-semibold 
           'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
           className
         )}

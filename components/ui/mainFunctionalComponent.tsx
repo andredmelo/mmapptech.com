@@ -59,7 +59,7 @@ const MainFCDescription = React.forwardRef<
   <h6
     ref={ref}
     className={cn(
-      "h7 font-medium text-center leading-snug",
+      "h7 font-sans font-medium text-center leading-snug",
       className
     )}
     {...props}

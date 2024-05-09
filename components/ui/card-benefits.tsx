@@ -81,7 +81,7 @@ const CardBenefitsTitle = React.forwardRef<
   <h6
     ref={ref}
     className={cn(
-      "font-bold md:font-semibold text-shadow text-shadow-[rgba(0,0,0,0.35)] leading-none tracking-tight",
+      "h7 text-shadow text-shadow-[rgba(0,0,0,0.35)] leading-none tracking-wide",
       className
     )}
     {...props}
