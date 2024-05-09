@@ -1,1 +1,1 @@
-let vNumber = "v0.5-β.1 | Root Layout restructure. Next.JS Metadata. CalSans font re-instated. Various fixes on Product. Our Expertise Img animation fix.";
+let vNumber = "v0.5-β.2 | removed old layout-backup.";
