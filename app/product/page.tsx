@@ -10,7 +10,8 @@ import verticalLoop from '@/components/VerticalLoop';
 import { useMediaQuery } from '@react-hook/media-query';
 
 import ContactUs from '@/app/contact/contact-us'
-import CallToActionButton from '@/app/CallToActionButton'
+import CallToActionButton from '@/components/ui/CallToActionButton'
+import CallToActionFederationsButton from '@/components/ui/CallToActionFederationsButton'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight, MmappSequentialParagraphsReveal } from '@/components/ui/mainAnimations';
 
@@ -1439,7 +1440,13 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           </div>
 
         </div>
-        <CallToActionButton className="mmappBlockReveal mt-[5vw]" />
+        <div className="flex flex-col justify-center items-center mt-[5vw]">
+          <CallToActionFederationsButton className="mmappBlockReveal" />
+          <p className="mmappBlockReveal my-12 md:my-16 lg:my-20">
+            Or
+          </p>
+          <CallToActionButton className="mmappBlockReveal" />
+        </div>
       </section>
 
       <div className="borderBottom"></div>

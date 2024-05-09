@@ -3,7 +3,9 @@
 import ContactUs from '@/app/contact/contact-us'
 import FAQ from '@/app/contact/faq'
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
-import CallToActionButton from '@/app/CallToActionButton'
+import CallToActionButton from '@/components/ui/CallToActionButton'
+import CallToActionFederationsButton from '@/components/ui/CallToActionFederationsButton'
+
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal } from '@/components/ui/mainAnimations';
 
 const Contacts = () => {
@@ -17,7 +19,11 @@ const Contacts = () => {
       <div className="contactUsPage">
 
         <section id="ContactInfo" className="flex flex-col justify-center items-center py-24 md:py-40 lg:py-52 mt-6 md:mt-0">
-          <h5 className="mmappBlockReveal px-[3vw] md:px-[10vw] lg:px-[25vw] mb-6 md:mb-6 lg:mb-12 text-center text-neutral-200 leading-8 md:leading-[3rem] lg:leading-[4rem] deboss">
+          <CallToActionFederationsButton className="mmappBlockReveal" />
+          <p className="mmappBlockReveal my-12 md:my-16 lg:my-20">
+            Or
+          </p>
+          <h5 className="mmappBlockReveal px-[3vw] md:px-[10vw] lg:px-[25vw] mb-4 md:mb-4 lg:mb-8 text-center text-neutral-200 leading-8 md:leading-[3rem] lg:leading-[4rem] deboss">
             If you&apos;d like to enjoy the many benefits of MMAPP yourself, contact your Federation and let them know you&apos;d like them to start using the platform.
           </h5>
           <CallToActionButton className="mmappBlockReveal" />

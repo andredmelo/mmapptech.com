@@ -180,5 +180,27 @@ const CardCallToActionButton = React.forwardRef<
 ))
 CardCallToActionButton.displayName = "CardCallToActionButton"
 
-export { CardCallToAction, CardCallToActionHeader, CardCallToActionLogo, CardCallToActionInfo, CardCallToActionCountry, CardCallToActionFederation, CardCallToActionDescription, CardCallToActionContent, CardCallToActionEmail, CardCallToActionFooter, CardCallToActionButtonEmail, CardCallToActionButton }
+const CardCallToActionFederationsButton = React.forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+>(({ className, href, ...props }, ref) => (
+  <a
+    ref={ref}
+    href={href}
+    className={cn(
+      "z-[60] py-6 md:py-5 px-12 md:px-16 lg:px-20 w-fit",
+      "text-[1.4rem] md:text-md lg:text-[2rem] cursor-pointer font-semibold",
+      "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+      "dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
+      "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
+      "ring-1 ring-offset-4 ring-offset-[var(--background-grey)] hover:ring-2 hover:ring-offset-0 ring-purple-600 ring-opacity-100",
+      className
+    )}
+    {...props}
+  />
+))
+CardCallToActionFederationsButton.displayName = "CardCallToActionFederationsButton"
+
+
+export { CardCallToAction, CardCallToActionHeader, CardCallToActionLogo, CardCallToActionInfo, CardCallToActionCountry, CardCallToActionFederation, CardCallToActionDescription, CardCallToActionContent, CardCallToActionEmail, CardCallToActionFooter, CardCallToActionButtonEmail, CardCallToActionButton, CardCallToActionFederationsButton }
 

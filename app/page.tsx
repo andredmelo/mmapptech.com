@@ -23,7 +23,9 @@ import OurExpertise from '@/app/ourExpertise'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
-import CallToActionButton from '@/app/CallToActionButton'
+import CallToActionButton from '@/components/ui/CallToActionButton'
+import CallToActionFederationsButton from '@/components/ui/CallToActionFederationsButton'
+import FeaturesCallToActionFederations from '@/components/ui/featuresCallToActionFederations'
 import ProgressCircle from '@/components/ui/svg/progressCircle'
 
 //import(/* webpackPreload: true */ '@/components/three.js');
@@ -397,9 +399,10 @@ export default function Home() {
                 clearInterval(checkDashboardAnimIn);
                 //console.log("Dashboard animations are ready");
             let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
-            let dashboardTitle = document.getElementById('featuresDashboardTitle');
-            let dashboardContainer = document.getElementById('featuresDashboardContainer');
-            const dashboardProgressCircle = document.getElementById("dashboardProgressCircle")
+            const dashboardTitle = document.getElementById('featuresDashboardTitle');
+            const dashboardFeaturesCallToActionFederationsWrapper = document.getElementById('dashboardFeaturesCallToActionFederationsWrapper');
+            //const dashboardContainer = document.getElementById('featuresDashboardContainer');
+            //const dashboardProgressCircle = document.getElementById("dashboardProgressCircle")
             const dashboardProgressCircleProgress = document.querySelector("#dashboardProgressCircle #progress")
             const dashboardProgressCircleTween = gsap.from(dashboardProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
@@ -442,7 +445,16 @@ export default function Home() {
                     pinSpacing: false,
                     invalidateOnRefresh: false,
                   });
-                  // Pin Dashboard Progress Circle
+                  // Pin Dashboard CallToActionFederations
+                  ScrollTrigger.create({
+                    trigger: dashboardTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastDashboardCardST.start + bottomDistance,
+                    pin: dashboardFeaturesCallToActionFederationsWrapper,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                  });
+                  // Track Dashboard Progress Circle percentage
                   ScrollTrigger.create({
                     trigger: dashboardTitle,
                     start: "top "+sectionTitlePaddingTop,
@@ -563,7 +575,8 @@ export default function Home() {
                 //console.log("Judge animations are ready");
             let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
             let judgeTitle = document.getElementById('featuresJudgeTitle');
-            const judgeProgressCircle = document.getElementById("judgeProgressCircle")
+            const judgeFeaturesCallToActionFederationsWrapper = document.getElementById('judgeFeaturesCallToActionFederationsWrapper');
+            //const judgeProgressCircle = document.getElementById("judgeProgressCircle")
             const judgeProgressCircleProgress = document.querySelector("#judgeProgressCircle #progress")
             const judgeProgressCircleTween = gsap.from(judgeProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
@@ -602,6 +615,15 @@ export default function Home() {
                     start: "top "+sectionTitlePaddingTop,
                     end: () => lastJudgeCardST.start + bottomDistance,
                     pin: judgeTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                  });
+                  // Pin Judge CallToActionFederations
+                  ScrollTrigger.create({
+                    trigger: judgeTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastJudgeCardST.start + bottomDistance,
+                    pin: judgeFeaturesCallToActionFederationsWrapper,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
                   });
@@ -727,7 +749,8 @@ export default function Home() {
                 //console.log("RecordKeeper animations are ready");
             let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
             let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
-            const recordKeeperProgressCircle = document.getElementById("recordKeeperProgressCircle")
+            const recordKeeperFeaturesCallToActionFederationsWrapper = document.getElementById('recordKeeperFeaturesCallToActionFederationsWrapper');
+            //const recordKeeperProgressCircle = document.getElementById("recordKeeperProgressCircle")
             const recordKeeperProgressCircleProgress = document.querySelector("#recordKeeperProgressCircle #progress")
             const recordKeeperProgressCircleTween = gsap.from(recordKeeperProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
@@ -765,6 +788,15 @@ export default function Home() {
                     start: "top "+sectionTitlePaddingTop,
                     end: () => lastRecordKeeperCardST.start + bottomDistance,
                     pin: recordKeeperTitle,
+                    pinSpacing: false,
+                    invalidateOnRefresh: false,
+                  });
+                  // Pin RecordKeeper CallToActionFederations
+                  ScrollTrigger.create({
+                    trigger: recordKeeperTitle,
+                    start: "top "+sectionTitlePaddingTop,
+                    end: () => lastRecordKeeperCardST.start + bottomDistance,
+                    pin: recordKeeperFeaturesCallToActionFederationsWrapper,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
                   });
@@ -1183,7 +1215,7 @@ export default function Home() {
             <>
               <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
               {showHomeFeaturesR3F && (
-                <Suspense fallback={<div className="z-[999] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
+                <Suspense fallback={<div className="z-[50] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
                   <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
                 </Suspense>
               )}
@@ -1196,6 +1228,13 @@ export default function Home() {
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
+
+              <FeaturesCallToActionFederations
+                id="dashboardFeaturesCallToActionFederationsWrapper"
+                className=""
+                leftOrRight="left"
+              />
+
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
@@ -1210,7 +1249,7 @@ export default function Home() {
                       Dashboard App
                     </h4>
                   </div>
-                {isUnder768||isMobileOnly ? '' : <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>}
+                  {isUnder768||isMobileOnly ? '' : <ProgressCircle id="dashboardProgressCircle" leftOrRight="left"/>}
                 </div>
 
                 <FeaturesCard className="dashboardCard z-10">
@@ -1333,6 +1372,8 @@ export default function Home() {
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
+                <CallToActionFederationsButton className="flex md:hidden w-full pt-20" />
+
               </div>
             </div>
           </div>
@@ -1438,6 +1479,13 @@ export default function Home() {
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
+
+              <FeaturesCallToActionFederations
+                id="judgeFeaturesCallToActionFederationsWrapper"
+                className=""
+                leftOrRight="right"
+              />
+
               <div className="flex flex-col z-20 text-right">
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-col-reverse landscape:md:flex-row justify-end items-center z-20 text-right">
@@ -1576,6 +1624,8 @@ export default function Home() {
                   </FeaturesCardHeader>
                 </FeaturesCard>
 
+                <CallToActionFederationsButton className="flex md:hidden w-full pt-20" />
+
               </div>
             </div>
           </div>
@@ -1586,6 +1636,13 @@ export default function Home() {
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
+
+              <FeaturesCallToActionFederations
+                id="recordKeeperFeaturesCallToActionFederationsWrapper"
+                className=""
+                leftOrRight="left"
+              />
+              
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left">
@@ -1722,6 +1779,8 @@ export default function Home() {
                     }
                   </FeaturesCardHeader>
                 </FeaturesCard>
+
+                <CallToActionFederationsButton className="flex md:hidden w-full pt-20" />
 
                 <CardPoliciesButton
                   id="featuresRecordKeeperBottomButton"
