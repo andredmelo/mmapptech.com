@@ -1,1 +1,1 @@
-let vNumber = "v0.5-β.2 | removed old layout-backup.";
+let vNumber = "v0.5-β.3 | Home and Product various fixes and tweaks.";

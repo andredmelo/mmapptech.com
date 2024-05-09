@@ -65,7 +65,7 @@ const CardPoliciesButton = React.forwardRef<
   <a
     ref={ref}
     /* href={url} */
-    className={cn("w-full inline-flex items-center justify-center py-2 px-6 mt-auto",
+    className={cn("w-full inline-flex items-center justify-center py-4 px-6 mt-auto",
     "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
     "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
     "text-md text-center duration-200",

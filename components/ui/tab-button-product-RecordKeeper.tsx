@@ -49,20 +49,20 @@ export default function TabButtonProductRecordKeeper({
         className={cn(
           activeTab === value ? activeClass : inactiveClass,
           isPending && 'opacity-100',
-          'flex flex-row items-center w-fit max-w-[20vw] portrait:touch:max-w-fit portrait:touch:md:max-w-[20vw] portrait:touch:min-h-[7vw]',
-          'py-[1vw] px-6 md:py-[1.1vw] md:px-[2.25vw] portrait:touch:py-[1.25vw] portrait:touch:md:py-[1vw] portrait:touch:md:px-[1.75vw]',
-          'tracking-normal', // font-semibold 
+          'flex flex-row items-center w-fit max-w-[80vw] portrait:touch:max-w-fit portrait:touch:md:max-w-[20vw] portrait:touch:min-h-[7vw]',
+          'py-[1vw] px-6 md:py-[1.1vw] md:px-[2vw] portrait:touch:py-[1.25vw] portrait:touch:md:py-[1vw] portrait:touch:md:px-[1.75vw]',
           'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
           className
         )}
         {...props}
       >
         <div className={cn("flex flex-row items-center")}>
-          <div className={cn("flex items-center justify-center py-2 md:py-4 pr-[0vw] md:pr-[0.8vw] portrait:touch:md:pr-[0.4vw] pl-0")}>
+          <div className={cn("flex items-center justify-center py-2 md:py-4 pr-[1vw] md:pr-[0.6vw] portrait:touch:md:pr-[0.6vw] pl-0")}>
             {children}
           </div>
-          <div className={cn("flex text-left pr-[2.5vw] md:pr-[0vw] portrait:touch:md:pr-[1vw]")}>
+          <div className={cn("flex text-left pr-[2.5vw] md:pr-[0vw] portrait:touch:md:pr-[2vw]")}>
             <h6 className={cn(
+              'tracking-wide', // font-semibold 
               activeTab === value ? activeHeadingClass : inactiveHeadingClass,
               isPending && ''
             )}>

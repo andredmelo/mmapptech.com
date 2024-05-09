@@ -55,7 +55,6 @@ export default function TabButtonProductJudge({
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
               'py-1 px-4 my-2',
-              'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal',
               'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
               className
             )}
@@ -65,6 +64,7 @@ export default function TabButtonProductJudge({
               <div className={cn("flex text-center pl-2")}>
                 <p className={cn(
                   'font-calSans',
+                  'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-wide',
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   /* isPending && '' */
                 )}>
@@ -83,8 +83,7 @@ export default function TabButtonProductJudge({
             activeTab === value ? activeClass : inactiveClass,
             /* isPending && 'opacity-100', */
             'flex flex-row items-center',
-            'w-fit max-w-[43rem] py-10 px-16',
-            'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal', // font-semibold
+            'w-fit max-w-[41rem] py-10 px-16',
             'rounded-[3rem] bg-no-repeat shadow-inset-mission',
             gradientSide,
             className
@@ -94,6 +93,7 @@ export default function TabButtonProductJudge({
           <div className={cn("flex items-center", rowDirection)}>
             <div className={cn("shrink flex", textDirection)}>
               <h6 className={cn(
+                'text-[1.55rem] md:text-[1.9rem] lg:text-[2.4rem] leading-none tracking-wide', // font-semibold
                 activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                 /* isPending && '' */
               )}>
@@ -106,14 +106,13 @@ export default function TabButtonProductJudge({
           </div>
           {/* {isPending ? 'loading' : children} */}
         </button>
-        ) : (
+        ) : ( // Tablet - Portrait - Big screens
           <button
             className={cn(
               activeTab === value ? activeClass : inactiveClass,
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
-              'py-6 px-[2.15rem]',
-              'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-normal', // font-semibold
+              'py-4 px-[2.15rem]',
               'rounded-[3rem] bg-no-repeat shadow-inset-mission',
               gradientSide,
               className
@@ -123,6 +122,7 @@ export default function TabButtonProductJudge({
             <div className={cn("flex items-center", rowDirection)}>
               <div className={cn("flex", textDirection)}>
                 <h6 className={cn(
+                  'text-[1.55rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-wide', // font-semibold
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   /* isPending && '' */
                 )}>

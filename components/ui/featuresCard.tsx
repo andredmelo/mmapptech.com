@@ -97,7 +97,7 @@ const FeaturesCardImage = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex shrink items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+      "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-2xl border border-fuchsia-600/75", //  border-2 border-green-500
       isMobileOnly ? '' : 'md:hidden',
       className
     )}
@@ -107,7 +107,7 @@ const FeaturesCardImage = React.forwardRef<
       ref={ref}
       alt={alt}
       className={cn(
-        "shrink object-scale-down h-full max-h-[58svh]", //max-h-[50svh]
+        "shrink object-scale-down h-full max-h-[200svh]", //max-h-[50svh]
       )}
       {...props}
     /></picture>
@@ -122,7 +122,7 @@ const FeaturesCardVideo = React.forwardRef<
 >(({ className, src, ...props }, ref) => (
     <div
       className={cn(
-        "flex shrink items-start justify-center h-auto max-h-full border border-neutral-700/50", //  border-2 border-green-500
+        "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-2xl border border-fuchsia-600/75", //  border-2 border-green-500
         isMobileOnly ? '' : 'md:hidden',
         className
       )}
@@ -136,7 +136,7 @@ const FeaturesCardVideo = React.forwardRef<
         autoPlay
         loop
         className={cn(
-          "shrink object-scale-down h-full max-h-[65svh]", //max-h-[50svh]
+          "shrink object-scale-down h-full max-h-[200svh]", //max-h-[50svh]
         )}
         {...props}
       />

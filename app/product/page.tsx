@@ -185,6 +185,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
     () => {
       //drawMainPath Animations
       let matchMedia = gsap.matchMedia();
+
       matchMedia.add("(orientation: portrait)", () => {
           /* gsap.defaults({
           ease: "none",
@@ -275,7 +276,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           scrollTrigger: {
             trigger: "#Dashboard-Members",
             start: "top top",
-            end: "bottom bottom",
+            end: "85% bottom",
             scrub: 1,
             /* markers:true, */
             preventOverlaps:true,
@@ -391,7 +392,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
           scrollTrigger: {
             trigger: "#Dashboard-Members",
             start: "top top",
-            end: "bottom bottom",
+            end: "90% bottom",
             scrub: 1,
             /* markers:true, */
             preventOverlaps:true,
@@ -656,73 +657,89 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
       // Dashboard (Members) animation
 
       matchMedia.add("(orientation: landscape)", () => {
-        gsap.set(".productDashboardMembersTitles", { xPercent: -125});
-        const productDashboardMembersAnim = gsap.timeline({
-          paused:true,
-          scrollTrigger: {
-            trigger: '.dashboardMembersWrapper',
-            start: 'top bottom',
-            end: 'top 30%',
-            scrub: 1,
-            once:true,
-            onLeave: () => {
-              gsap.fromTo(".productDashboardMembersTitles",
-                { xPercent: -125},
-                { xPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
-              )
-            },
-            //markers: true,
-          },
-        })
-          .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+        const productDashboardMembersTitles = setInterval(() => {
+          if (document.querySelector('.productDashboardMembersTitlesBox') && document.querySelector('.dashboardMembersWrapper')) {
+            clearInterval(productDashboardMembersTitles);
+            gsap.set(".productDashboardMembersTitles", { xPercent: -125});
+            const productDashboardMembersAnim = gsap.timeline({
+              paused:true,
+              scrollTrigger: {
+                trigger: '.dashboardMembersWrapper',
+                start: 'top bottom',
+                end: 'top 50%',
+                scrub: 1,
+                once:true,
+                onLeave: () => {
+                  gsap.fromTo(".productDashboardMembersTitles",
+                    { xPercent: -125},
+                    { xPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
+                  )
+                },
+                //markers: true,
+              },
+            })
+              .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+            }
+          }, 50); // Check every 50ms
+
       });
 
 
       matchMedia.add("(orientation: portrait)", () => {
         matchMedia.add("(min-width: 768px)", () => {
-          gsap.set(".productDashboardMembersTitlesBox", { yPercent: -300})
-          const productDashboardMembersAnim = gsap.timeline({
-            paused:true,
-            scrollTrigger: {
-              trigger: '.dashboardMembersWrapper',
-              start: 'top bottom',
-              end: 'top 20%',
-              scrub: 1,
-              once:true,
-              onLeave: () => {
-                gsap.fromTo(".productDashboardMembersTitlesBox",
-                  { yPercent: -300},
-                  { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
-                )
-              },
-              //markers: true,
-            },
-          })
-            .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+          const productDashboardMembersTitles = setInterval(() => {
+            if (document.querySelector('.productDashboardMembersTitlesBox') && document.querySelector('.dashboardMembersWrapper')) {
+              clearInterval(productDashboardMembersTitles);
+              gsap.set(".productDashboardMembersTitlesBox", { yPercent: -300})
+              const productDashboardMembersAnim = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '.dashboardMembersWrapper',
+                  start: 'top bottom',
+                  end: 'top 38%',
+                  scrub: 1,
+                  once:true,
+                  onLeave: () => {
+                    gsap.fromTo(".productDashboardMembersTitlesBox",
+                      { yPercent: -300},
+                      { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
+                    )
+                  },
+                  //markers: true,
+                },
+              })
+                .from('.dashboardMembersWrapper', { xPercent: 150, ease: "power1.out" })
+            }
+          }, 50); // Check every 50ms
         });
       });
 
       matchMedia.add("(orientation: portrait)", () => {
         matchMedia.add("(max-width: 767px)", () => {
-          gsap.set(".productDashboardMembersTitlesBox", { yPercent: -200});
-          const productDashboardMembersAnim = gsap.timeline({
-            paused:true,
-            scrollTrigger: {
-              trigger: '.dashboardMembersWrapper',
-              start: 'top bottom',
-              end: 'top 50%',
-              scrub: 1,
-              once:true,
-              onLeave: () => {
-                gsap.fromTo(".productDashboardMembersTitlesBox",
-                  { yPercent: -200},
-                  { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
-                )
-              },
-              //markers: true,
-            },
-          })
-            .from('.dashboardMembersWrapper', { yPercent: 50, ease: "power2.out" })
+          const productDashboardMembersTitles = setInterval(() => {
+            if (document.querySelector('.productDashboardMembersTitlesBox') && document.querySelector('.dashboardMembersWrapper')) {
+              clearInterval(productDashboardMembersTitles);
+              gsap.set(".productDashboardMembersTitlesBox", { yPercent: -200});
+              const productDashboardMembersAnim = gsap.timeline({
+                paused:true,
+                scrollTrigger: {
+                  trigger: '.dashboardMembersWrapper',
+                  start: 'top bottom',
+                  end: 'top 60%',
+                  scrub: 1,
+                  once:true,
+                  onLeave: () => {
+                    gsap.fromTo(".productDashboardMembersTitlesBox",
+                      { yPercent: -200},
+                      { yPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
+                    )
+                  },
+                  //markers: true,
+                },
+              })
+                .from('.dashboardMembersWrapper', { yPercent: 50, ease: "power2.out" })
+            }
+          }, 50); // Check every 50ms
         });
       });
 
@@ -786,7 +803,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
             <p className="z-15 text-lg md:text-xl text-white text-left md:text-center pl-[2vw] md:pl-0 pt-[2vw] justify-center bounce-arrow">
             ↓
             </p>
-            <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] bottom-[-0.1rem] right-[-1.5rem] portrait:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
+            <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
             {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
           </ProductFC>
@@ -1066,7 +1083,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         </ProductFC>
 
         {/* RecordKeeper Titles */}
-        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[5.6vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[10vw]">
+        <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[2.5vw] px-[20vw] portrait:touch:px-[3vw] portrait:touch:md:px-[10vw]">
           <h4 className={clsx("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
           "twoLinesAlwaysProductRecordKeeper")}>
             {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
@@ -1076,7 +1093,7 @@ const productDashboardMembersItems: ProductTitlesItem[] = [
         <div className={clsx(
           "w-full flex flex-row portrait:touch:flex-col gap-1 portrait:touch:md:gap-1 md:gap-0 relative",
           "min-w-auto max-w-[100%] md:max-w-[90%] portrait:touch:md:max-w-[92.5%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:touch:mx-auto",
-          "px-2 md:px-[6.25vw] portrait:md:mb-[2vw]",
+          "px-2 md:px-[3vw] md:pr-[0vw] portrait:md:px-[6.25vw] portrait:md:mb-[2vw]",
           )}
         >
 
