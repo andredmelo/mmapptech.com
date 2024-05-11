@@ -44,7 +44,7 @@ export async function sendEmail(data: ContactFormInputs) {
       //console.log("result.data are "+kind+name+email+message)
        /* kind={kind} name={name} email={email} message={message} */
 
-      const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
+      const sentFrom = new Sender(`${email}`, `${name}`);
       const recipients = [
           //new Recipient("andre1melo@proton.me", 'André Melo'),
           //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
@@ -84,11 +84,11 @@ export async function sendEmailBookADemo(data: BookADemoFormInputs) {
       //console.log("result.data are "+kind+name+email+message)
        /* kind={kind} name={name} email={email} message={message} */
 
-      const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
+      const sentFrom = new Sender(`${email}`, `${name}`);
       const recipients = [
-          new Recipient("andre1melo@proton.me", 'André Melo'),
+          //new Recipient("andre1melo@proton.me", 'André Melo'),
           //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
-          //new Recipient("info@mmapptech.com", 'MMAPP Tech')
+          new Recipient("info@mmapptech.com", 'MMAPP Tech')
       ];
       const emailParams = new EmailParams()
           .setFrom(sentFrom)

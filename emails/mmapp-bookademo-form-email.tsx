@@ -49,7 +49,7 @@ export default function MMAPPBookADemoFormEmail(props: any) {
           />
           <Container className="bg-white">
             <Heading className="mt-4 text-center leading-8">
-              {kind}<br/>
+              {/* {kind}<br/> */}
               <span className="text-primaryFuchsia">Book a Demo form submission</span>
             </Heading>
             {/* <Section>
@@ -59,7 +59,7 @@ export default function MMAPPBookADemoFormEmail(props: any) {
                 </Text>
               </Row>
             </Section> */}
-            <Heading as="h3" className="text-left mt-16">
+            <Heading as="h3" className="text-left mt-12">
               <span className="text-primaryFuchsia">Name:</span> {name}
             </Heading>
             <Heading as="h3" className="text-left">
@@ -67,7 +67,7 @@ export default function MMAPPBookADemoFormEmail(props: any) {
             </Heading>
             {subscribe && (
               <Heading as="h4" className="text-left mt-[-0.75rem]">
-                <span className="text-primaryFuchsia">Subscribed:</span> Yes
+                <span className="text-primaryFuchsia">Subscribe:</span> Yes
               </Heading>
             )}
             {!subscribe && (
@@ -75,10 +75,10 @@ export default function MMAPPBookADemoFormEmail(props: any) {
                 <span className="text-primaryFuchsia">Subscribed:</span> No
               </Heading>
             )}
-            <Heading as="h3" className="text-left">
+            <Heading as="h3" className="text-left mb-12">
               <span className="text-primaryFuchsia">Contact Number:</span> {tel}
             </Heading>
-            <Heading as="h3" className="text-left mt-16">
+            <Heading as="h3" className="text-left">
               <span className="text-primaryFuchsia">Role:</span> {role}
             </Heading>
             <Heading as="h3" className="text-left">

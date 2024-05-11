@@ -1,1 +1,1 @@
-let vNumber = "v0.7-β.3 | Book a Demo from complete for all devices.";
+let vNumber = "v0.7-β.4 | Book a Demo from update + React E-mail tweaks.";
