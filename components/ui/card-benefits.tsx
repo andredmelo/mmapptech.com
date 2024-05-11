@@ -30,8 +30,8 @@ const CardBenefitsHeaderWrapper = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "basis-[100%] lg:basis-1/2", //
-      "pr-8 md:pr-10 lg:pr-12", // lg:pb-12 
+      "basis-[100%] landscape:lg:basis-1/2", //
+      "pr-8 md:pr-10 landscape:lg:pr-12", // lg:pb-12 
       className
     )}
     {...props}

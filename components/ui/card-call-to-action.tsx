@@ -18,8 +18,10 @@ const CardCallToAction = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col justify-between w-full h-full min-w-[25vw] rounded-2xl md:rounded-3xl bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
-      /* mx-1 border border-neutral-100 dark:border-fuchsia-800 */
+      "flex flex-col justify-between w-full h-full min-w-[25vw] rounded-2xl md:rounded-3xl",
+      "bg-neutral-900 text-neutral-50 shadow-inset",
+      //"bg-white text-neutral-950 shadow-2xl dark:bg-neutral-900 dark:text-neutral-50 shadow-inset",
+      // mx-1 border border-neutral-100 dark:border-fuchsia-800
       "p-8 md:p-12 lg:p-16",
       className
     )}
@@ -72,7 +74,11 @@ const CardCallToActionCountry = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h5
     ref={ref}
-    className={cn("text-white text-shadow text-shadow-[rgba(0,0,0,0.15)] dark:text-shadow-[rgba(255,255,255,0.15)]", className)}
+    className={cn(
+      "text-white text-shadow text-shadow-[rgba(255,255,255,0.15)]",
+      //"text-white text-shadow text-shadow-[rgba(0,0,0,0.15)] dark:text-shadow-[rgba(255,255,255,0.15)]",
+      className
+    )}
     {...props}
   />
 ))
@@ -84,7 +90,11 @@ const CardCallToActionFederation = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h6
     ref={ref}
-    className={cn("h7 text-white text-shadow text-shadow-[rgba(0,0,0,0.15)] dark:text-shadow-[rgba(255,255,255,0.15)]", className)}
+    className={cn(
+      "h7 text-white text-shadow text-shadow-[rgba(255,255,255,0.15)]",
+      //"h7 text-white text-shadow text-shadow-[rgba(0,0,0,0.15)] dark:text-shadow-[rgba(255,255,255,0.15)]",
+      className
+    )}
     {...props}
   />
 ))
@@ -96,7 +106,10 @@ const CardCallToActionDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("smallP text-neutral-700 dark:text-neutral-300 leading-snug", className)}
+    className={cn(
+      "smallP text-neutral-300 leading-snug",
+      //"smallP text-neutral-700 dark:text-neutral-300 leading-snug",
+      className)}
     {...props}
   />
 ))
@@ -119,8 +132,9 @@ const CardCallToActionEmail = React.forwardRef<
     className={cn(
       "w-fit",
       "text-sm md:text-sm lg:text-md cursor-pointer",
-      "dark:text-white dark:hover:text-blue-500",
-      "text-black hover:text-blue-500",
+      "text-white hover:text-fuchsia-700",
+      //"dark:text-white dark:hover:text-blue-500",
+      //"text-black hover:text-blue-500",
       className
       )}
     {...props}
@@ -151,8 +165,9 @@ const CardCallToActionButtonEmail = React.forwardRef<
     ref={ref}
     className={cn("py-3 px-20 w-fit",
     "text-sm md:text-sm lg:text-md cursor-pointer",
-    "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
-    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
+    "bg-white hover:bg-neutral-700 text-black hover:text-white",
+    //"text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+    //"dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
     "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
     "hover:ring-2 ring-purple-600 ring-opacity-100", className)}
     {...props}
@@ -171,8 +186,9 @@ const CardCallToActionButton = React.forwardRef<
     disabled={disabled}
     className={cn("py-6 md:py-5 px-12 md:px-16 lg:px-20 w-fit",
     "text-[1.4rem] md:text-md lg:text-[2rem] cursor-pointer font-semibold",
-    "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
-    "dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
+    "bg-white hover:bg-neutral-900 text-black hover:text-white",
+    //"text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+    //"dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
     "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
     "ring-1 ring-offset-4 ring-offset-[var(--background-grey)] hover:ring-2 hover:ring-offset-0 ring-purple-600 ring-opacity-100", className)}
     {...props}
@@ -190,8 +206,9 @@ const CardCallToActionFederationsButton = React.forwardRef<
     className={cn(
       "z-[60] py-6 md:py-5 px-12 md:px-16 lg:px-20 w-fit",
       "text-[1.4rem] md:text-md lg:text-[2rem] cursor-pointer font-semibold",
-      "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
-      "dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
+      "bg-white hover:bg-neutral-900 text-black hover:text-white",
+      //"text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+      //"dark:bg-white dark:hover:bg-neutral-900 dark:text-black dark:hover:text-white",
       "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
       "ring-1 ring-offset-4 ring-offset-[var(--background-grey)] hover:ring-2 hover:ring-offset-0 ring-purple-600 ring-opacity-100",
       className

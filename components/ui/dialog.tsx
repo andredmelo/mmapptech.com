@@ -50,7 +50,7 @@ const Dialog = (props: DialogProps) => {
                 "fixed z-50",
                 "w-[95vw] max-w-[925px] h-[80vh] mt-10 md:mt-0 rounded-xl p-10",
                 "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-                "bg-white dark:bg-neutral-800",
+                "bg-neutral-800", //bg-white 
                 "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
                 "overflow-auto" // Add this line to the className
               )}
@@ -83,7 +83,7 @@ const Dialog = (props: DialogProps) => {
                   "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
                 )}
               >
-                <Cross1Icon className="h-4 w-4 text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400" />
+                <Cross1Icon className="h-4 w-4 text-neutral-500 hover:text-neutral-400" /> {/* // text-neutral-500 hover:text-neutral-700 */}
               </DialogPrimitive.Close>
             </DialogPrimitive.Content>
           </Transition.Child>

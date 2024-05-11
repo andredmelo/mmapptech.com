@@ -1,6 +1,6 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { clsx } from "clsx";
+import { cn } from '@/lib/utils'
 import React from "react";
 
 export interface AccordionOurExpertiseItem {
@@ -16,7 +16,7 @@ const AccordionOurExpertise = (props: AccordionProps) => {
       type="multiple"
       defaultValue={["item-1", "item-2"]}
       //collapsible={true}
-      className={clsx("space-y-4 w-full")}
+      className={cn("space-y-4 w-full")}
     >
       {props.items.map(({ header, content }, i) => (
         <AccordionPrimitive.Item
@@ -26,7 +26,7 @@ const AccordionOurExpertise = (props: AccordionProps) => {
         >
           <AccordionPrimitive.Header className="w-full h-full leading-[2rem]">
             <AccordionPrimitive.Trigger
-              className={clsx(
+              className={cn(
                 "group",
                 //"radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
@@ -37,12 +37,18 @@ const AccordionOurExpertise = (props: AccordionProps) => {
                 //"dark:radix-state-open:bg-[var(--purple-1200)] dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
               )}
             >
-              <span className="text-[2rem] py-[0.25rem]group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100"> {/* // font-semibold  */}
+              <span className={cn(
+                "text-[2rem] py-[0.25rem]",
+                "group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text  group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100",
+                /* "group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100 ",
+                "dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100" */
+              )}
+            > {/* // font-semibold  */}
                 {header}
               </span>
               <ChevronDownIcon
-                className={clsx(
-                  "ml-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
+                className={cn(
+                  "ml-2 h-8 w-8 shrink-0  ease-in-out text-neutral-400", //text-neutral-700
                   "group-radix-state-open:rotate-180 group-radix-state-open:duration-300",
                   "group-radix-state-closed:rotate-0 group-radix-state-closed:duration-200"
                 )}

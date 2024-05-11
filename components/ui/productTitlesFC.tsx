@@ -13,7 +13,7 @@ export const ProductDashboardTitles = (props: ProductDashboardTitlesProps) => {
           <h4
             id={"productDashboardTitleShadow"+i}
             className={clsx(
-              "absolute py-4",
+              "absolute py-4 md:py-8",
               "text-center text-[4vw] md:text-[2.5vw] portrait:md:text-[3.75vw] leading-[2.5vw] tracking-normal",
               "text-shadow-sm text-shadow-blur-2 text-shadow-[var(--background-grey)]"
             )}>
@@ -22,7 +22,7 @@ export const ProductDashboardTitles = (props: ProductDashboardTitlesProps) => {
           <h4
             id={"productDashboardTitle"+i}
             className={clsx(
-              "absolute py-4",
+              "absolute py-4 md:py-8",
               "text-center text-[4vw] md:text-[2.5vw] portrait:md:text-[3.75vw] leading-[2.5vw] tracking-normal",
               "text-transparent bg-clip-text bg-gradient-to-t from-[var(--purple-400)] to-white"
             )}>

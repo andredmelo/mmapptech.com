@@ -9,7 +9,10 @@ const CardContactUs = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-xl border border-neutral-200 bg-white text-neutral-950 shadow dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50",
+      "rounded-xl border",
+      "border-neutral-800 bg-neutral-950 text-neutral-50",
+      /* "border-neutral-200 bg-white text-neutral-950 shadow",
+      "dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50", */
       className
     )}
     {...props}
@@ -35,8 +38,12 @@ const CardContactUsTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h4
     ref={ref}
-    className={cn("text-xl py-1 md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] leading-none tracking-normal text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-400)] to-purple-900 dark:bg-gradient-to-br dark:from-[var(--purple-350)] dark:to-purple-100", // font-semibold
-    className
+    className={cn(
+      "text-xl py-1 md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] leading-none tracking-normal text-transparent bg-clip-text",
+      "bg-gradient-to-br from-[var(--purple-350)] to-purple-100", // font-semibold
+      /* "bg-gradient-to-br from-[var(--purple-400)] to-purple-900",
+      "dark:bg-gradient-to-br dark:from-[var(--purple-350)] dark:to-purple-100", */ // font-semibold
+      className
     )}
     {...props}
   />
@@ -49,7 +56,7 @@ const CardContactUsDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("font-medium leading-snug text-neutral-500 dark:text-neutral-300 py-10", className)}
+    className={cn("font-medium leading-snug text-neutral-300 py-10", className)}//text-neutral-500
     {...props}
   />
 ))
@@ -72,8 +79,9 @@ const CardContactUsButton = React.forwardRef<
     disabled={disabled}
     className={cn("p-3 w-[20%]",
     "text-sm md:text-sm lg:text-md",
-    "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
-    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white",
+    "bg-white hover:bg-neutral-700 text-black hover:text-white",
+    /* "text-white hover:text-black hover:bg-neutral-100 bg-neutral-700",
+    "dark:bg-white dark:hover:bg-neutral-700 dark:text-black dark:hover:text-white", */
     "rounded-full", // border-solid border-2 border-purple-600 border-opacity-50 hover:border-transparent
     "hover:ring-1 ring-purple-600 ring-opacity-100", className)}
     {...props}

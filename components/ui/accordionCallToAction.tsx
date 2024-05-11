@@ -1,7 +1,7 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { PlusIcon, MinusIcon } from "@radix-ui/react-icons";
-import { clsx } from "clsx";
+import { cn } from '@/lib/utils'
 import React from "react";
 
 import { CardCallToAction, CardCallToActionHeader, CardCallToActionLogo, CardCallToActionInfo, CardCallToActionCountry, CardCallToActionFederation, CardCallToActionDescription, CardCallToActionContent, CardCallToActionEmail, CardCallToActionFooter, CardCallToActionButtonEmail } from '@/components/ui/card-call-to-action'
@@ -33,13 +33,13 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
     <AccordionPrimitive.Root
       type="multiple"
       /* collapsible */
-      className={clsx("space-y-4 w-full")}
+      className={cn("space-y-4 w-full")}
     >
       {ContinentsData.map(({ continent }, i) => (
         <AccordionPrimitive.Item
           key={`continent-${i}`}
           value={`continent-${i}`}
-          className={clsx(
+          className={cn(
             "rounded-xl",
             "border radix-state-closed:border-transparent", //border radix-state-closed:border-transparent radix-state-closed:hover:ring-2 radix-state-closed:hover:ring-purple-600/25
             "radix-state-open:border radix-state-open:border-neutral-500/25 w-full" // focus:outline-none 
@@ -47,21 +47,23 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
         >
           <AccordionPrimitive.Header className="w-full h-full leading-[3rem]">
             <AccordionPrimitive.Trigger
-              className={clsx(
+              className={cn(
                 "group",
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none cursor-pointer",
                 "inline-flex w-full items-center justify-left px-10 md:px-16 py-6 md:py-10 text-left",
                 /* "bg-neutral-50 hover:bg-neutral-200",
                 "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
-                "text-neutral-700 hover:text-neutral-800",
-                "radix-state-open:bg-white radix-state-closed:bg-neutral-100 radix-state-closed:hover:bg-neutral-50",
-                "dark:text-neutral-300 dark:hover:text-neutral-200",
-                "dark:radix-state-open:bg-neutral-950 dark:radix-state-closed:bg-neutral-900 dark:radix-state-closed:hover:bg-neutral-800 transition-colors"
+                "text-neutral-300 hover:text-neutral-200",
+                "radix-state-open:bg-neutral-950 radix-state-closed:bg-neutral-900 radix-state-closed:hover:bg-neutral-800 transition-colors",
+                //"text-neutral-700 hover:text-neutral-800",
+                //"radix-state-open:bg-white radix-state-closed:bg-neutral-100 radix-state-closed:hover:bg-neutral-50",
+                //"dark:text-neutral-300 dark:hover:text-neutral-200",
+                //"dark:radix-state-open:bg-neutral-950 dark:radix-state-closed:bg-neutral-900 dark:radix-state-closed:hover:bg-neutral-800 transition-colors"
               )}
             >
               <PlusIcon
-                className={clsx(
+                className={cn(
                   "group-radix-state-open:hidden",
                   "group-radix-state-closed:block",
                   "m-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
@@ -70,23 +72,28 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
                 )}
               />
               <MinusIcon
-                className={clsx(
+                className={cn(
                   "group-radix-state-open:block",
                   "group-radix-state-closed:hidden",
-                  "m-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
+                  "m-2 h-8 w-8 shrink-0 ease-in-out text-neutral-400",
+                  //"m-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
                   /* "group-radix-state-open:rotate-45 group-radix-state-open:duration-300",
                   "group-radix-state-closed:rotate-0 group-radix-state-closed:duration-200" */
                 )}
               />
-              <span className={clsx("text-[1.8rem] md:text-lg text-left font-semibold pl-10",
-                "group-radix-state-closed:text-neutral-700 group-radix-state-closed:hover:text-neutral-800 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600",
-                "dark:group-radix-state-closed:text-neutral-300 dark:group-radix-state-closed:hover:text-neutral-200 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100"
+              <span className={cn("text-[1.8rem] md:text-lg text-left pl-10",
+                "group-radix-state-closed:text-neutral-300 group-radix-state-closed:hover:text-neutral-200 group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100",
+                /* "group-radix-state-closed:text-neutral-700 group-radix-state-closed:hover:text-neutral-800 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600",
+                "dark:group-radix-state-closed:text-neutral-300 dark:group-radix-state-closed:hover:text-neutral-200 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100" */
               )}>
                 {continent}
               </span>
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-500/15 dark:border-neutral-500/25 px-4 md:px-0 pt-6 md:pt-8 pb-8 md:pb-10 bg-white dark:bg-neutral-950 transition-transform">
+          <AccordionPrimitive.Content className={cn(
+            "w-full h-full rounded-b-xl border-t border-neutral-500/25 px-4 md:px-0 pt-6 md:pt-8 pb-8 md:pb-10 bg-neutral-950 transition-transform",
+            //"w-full h-full rounded-b-xl border-t border-neutral-500/15 dark:border-neutral-500/25 px-4 md:px-0 pt-6 md:pt-8 pb-8 md:pb-10 bg-white dark:bg-neutral-950 transition-transform",
+              )}>
 
             <div className="flex flex-row flex-wrap justify-center">
               {CountriesData[continent]?.map(({ Country, Email, Federation, Icon }, index) => (

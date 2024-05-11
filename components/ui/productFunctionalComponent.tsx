@@ -62,7 +62,7 @@ const ProductFCDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "font-sans text-center font-medium text-[1.5rem] md:text-[1.33vw] md:touch:text-[1.45vw] portrait:text-[3.5vw] portrait:md:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:leading-[4.75vw] portrait:md:leading-[2.8vw]",
+      "font-sans text-center font-medium text-[1.5rem] md:text-[1.33vw] portrait:text-[3.5vw] portrait:md:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:leading-[4.75vw] portrait:md:leading-[2.8vw]",
       className
     )}
     {...props}

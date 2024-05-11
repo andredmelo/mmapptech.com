@@ -54,7 +54,7 @@ export default function TabButtonProductJudge({
               activeTab === value ? activeClass : inactiveClass,
               /* isPending && 'opacity-100', */
               'flex flex-row items-center',
-              'py-1 px-4 my-2',
+              'py-[2.5vw] px-[3.5vw] my-2',
               'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
               className
             )}
@@ -64,14 +64,14 @@ export default function TabButtonProductJudge({
               <div className={cn("flex text-center pl-2")}>
                 <p className={cn(
                   'font-calSans',
-                  'text-[1.25rem] md:text-[1.9rem] lg:text-lg xl:text-lg 2xl:text-lg leading-none tracking-wide',
+                  'text-[3.5vw] leading-none tracking-wide',
                   activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                   /* isPending && '' */
                 )}>
                   {smallHeading}
                 </p>
               </div>
-              <div className={cn("flex items-center justify-center py-[1.75vw] pl-2 pr-0")}>
+              <div className={cn("flex items-center justify-center pl-2 pr-0")}>
                 {children}
               </div>
             </div>

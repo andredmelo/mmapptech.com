@@ -49,7 +49,7 @@ export default function Home() {
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isTouch = useMediaQuery('(hover: none)');
-  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
   const isUnder1280 = useMediaQuery('(max-width: 1280px)');
   const isUnder1536 = useMediaQuery('(max-width: 1536px)');
   const isOver1280 = useMediaQuery('(min-width: 1280px)');

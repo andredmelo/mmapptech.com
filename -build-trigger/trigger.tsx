@@ -1,1 +1,1 @@
-let vNumber = "v0.6-β.1 | CTA Federations button inserted on all devices. Update of CTA e-mail body.";
+let vNumber = "v0.7-β.1 | CTA Federations form inserted on desktop. Various fixes and tweaks.";

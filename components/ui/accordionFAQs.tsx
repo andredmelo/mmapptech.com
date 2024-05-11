@@ -1,6 +1,6 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { clsx } from "clsx";
+import { cn } from '@/lib/utils'
 import React from "react";
 
 export interface AccordionFAQsItem {
@@ -16,7 +16,7 @@ const AccordionFAQs = (props: AccordionProps) => {
       type="single"
       defaultValue="item-1"
       collapsible
-      className={clsx("space-y-4 w-full")}
+      className={cn("space-y-4 w-full")}
     >
       {props.items.map(({ header, content }, i) => (
         <AccordionPrimitive.Item
@@ -26,31 +26,42 @@ const AccordionFAQs = (props: AccordionProps) => {
         >
           <AccordionPrimitive.Header className="w-full h-full leading-[3rem]">
             <AccordionPrimitive.Trigger
-              className={clsx(
+              className={cn(
                 "group",
                 "radix-state-open:rounded-t-xl radix-state-closed:rounded-xl",
                 "focus:outline-none",
                 "inline-flex w-full items-center justify-between px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 text-left",
                 /* "bg-neutral-50 hover:bg-neutral-200",
                 "dark:bg-neutral-800 hover:dark:bg-neutral-700 transition-colors" */
-                "radix-state-open:bg-white radix-state-closed:bg-neutral-200 radix-state-closed:hover:bg-neutral-100",
-                "dark:radix-state-open:bg-[var(--purple-1200)] dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors"
+                "radix-state-open:bg-[var(--purple-1200)] radix-state-closed:bg-neutral-800 radix-state-closed:hover:bg-neutral-700 transition-colors"
+                /* "radix-state-open:bg-white radix-state-closed:bg-neutral-200 radix-state-closed:hover:bg-neutral-100",
+                "dark:radix-state-open:bg-[var(--purple-1200)] dark:radix-state-closed:bg-neutral-800 dark:radix-state-closed:hover:bg-neutral-700 transition-colors" */
               )}
             >
-              <span className="text-[1.8rem] md:text-[2.2rem] lg:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100">
+              <span className={cn(
+                /* "text-[1.8rem] md:text-[2.2rem] lg:text-lg font-semibold group-radix-state-closed:text-neutral-900 dark:group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100" */
+                "text-[1.8rem] md:text-[2.2rem] lg:text-lg group-radix-state-closed:text-neutral-100 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100"
+                )}
+              >
                 {header}
               </span>
               <ChevronDownIcon
-                className={clsx(
-                  "ml-2 h-8 w-8 shrink-0 text-neutral-700 ease-in-out dark:text-neutral-400",
-                  "group-radix-state-open:rotate-180 group-radix-state-open:duration-300",
+                className={cn(
+                  "ml-2 h-8 w-8 shrink-0",
+                  " text-neutral-400",
+                  //" text-neutral-700 dark:text-neutral-400",
+                  "group-radix-state-open:rotate-180 group-radix-state-open:duration-300 ease-in-out",
                   "group-radix-state-closed:rotate-0 group-radix-state-closed:duration-200"
                 )}
               />
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionPrimitive.Content className="w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-[var(--purple-750)] px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 bg-neutral-50 dark:bg-[#181818] transition-transform">
-            <p className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-900 dark:text-neutral-300">
+          <AccordionPrimitive.Content className={cn(
+            /* "w-full h-full rounded-b-xl border-t border-neutral-200 dark:border-[var(--purple-750)] px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 bg-neutral-50 dark:bg-[#181818] transition-transform" */
+            "w-full h-full rounded-b-xl border-t border-[var(--purple-750)] px-10 md:px-14 lg:px-16 py-6 md:py-8 lg:py-10 bg-[#181818] transition-transform"
+            )}
+          >
+            <p className="leading-[1.9rem] md:leading-[2.5rem] lg:leading-[3.2rem] font-normal text-neutral-300"> {/* //text-neutral-900 */}
               {content}
             </p>
           </AccordionPrimitive.Content>

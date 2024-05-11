@@ -133,8 +133,8 @@ export default function Media() {
 
         </div>
       </CardContactUsContent>
-      <CardContactUsFooter className='border-t border-neutral-300 dark:border-neutral-800 p-6 pl-10'>
-        <p className='text-sm italic text-neutral-400 dark:text-neutral-500'>Media Inquiries Submission Form</p>
+      <CardContactUsFooter className='border-t border-neutral-800 p-6 pl-10'>
+        <p className='text-sm italic text-neutral-500'>Media Inquiries Submission Form</p>
       </CardContactUsFooter>
     </CardContactUs>
   )

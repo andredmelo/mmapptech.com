@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
-import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
+import { isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 import { useMediaQuery } from '@react-hook/media-query';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -53,6 +53,22 @@ export default function MmappRootLayout({
   const initialPathname = usePathname();
   let currentPage = useRef<string>(initialPathname);
   //console.log("currentPage = "+currentPage.current);
+
+  useEffect(() => {
+    const handleResize = () => {
+      window.location.reload();
+    };
+    if (!isMobile) {
+      window.addEventListener('resize', handleResize);
+    }
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      if (!isMobile) {
+        window.removeEventListener('resize', handleResize);
+      }
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, []);
 
   /* useEffect(() => {
     console.log("href = "+href);

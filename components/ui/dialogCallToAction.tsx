@@ -820,7 +820,7 @@ const DialogCTA = (props: DialogCTAProps) => {
           >
             <Dialog.Overlay
               forceMount
-              className="fixed w-full h-full inset-0 z-20 bg-[var(--background-grey-95)] dark:bg-[var(--background-grey-95)]"
+              className="fixed w-full h-full inset-0 z-20 bg-[var(--background-grey-95)]" // bg-[var(--background-grey-95)]
             />
           </Transition.Child>
           <Transition.Child
@@ -839,7 +839,8 @@ const DialogCTA = (props: DialogCTAProps) => {
                   "fixed z-50",
                   "min-w-[95vw] max-w-[95vw] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
                   "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-                  "bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",
+                  "bg-neutral-900 border-2 border-fuchsia-700/50",
+                  //"bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",
                   "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
                   "overflow-auto" // Add this line to the className
                 )}
@@ -848,10 +849,10 @@ const DialogCTA = (props: DialogCTAProps) => {
                   "flex flex-col items-center min-w-full h-full max-h-[85vh]",
                   "px-10 py-10",  // mt-12
                   )}>
-                  <Dialog.Title className="pb-4 text-xl text-center font-semibold text-neutral-900 dark:text-neutral-100">
+                  <Dialog.Title className="pb-4 text-xl text-center text-neutral-100"> {/* // text-neutral-900 */}
                     Request that your Federation join MMAPP
                   </Dialog.Title>
-                  <Dialog.Description className="py-4 pb-8 text-md text-center font-normal text-neutral-700 dark:text-neutral-400">
+                  <Dialog.Description className="py-4 pb-8 text-md text-center font-normal text-neutral-400"> {/* //text-neutral-700 */}
                     Contact your National Federation and request that they join MMAPP.<br/>
                   </Dialog.Description>
 
@@ -879,7 +880,7 @@ const DialogCTA = (props: DialogCTAProps) => {
                       "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
                     )}
                   >
-                    <Cross1Icon className="h-4 w-4 text-neutral-500 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400" />
+                    <Cross1Icon className="h-4 w-4 text-neutral-500 hover:text-neutral-400" /> {/* //text-neutral-500 hover:text-neutral-700 */}
                   </Dialog.Close>
                 </div>
               </Dialog.Content>

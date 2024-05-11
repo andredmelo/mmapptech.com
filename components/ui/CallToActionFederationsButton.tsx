@@ -1,18 +1,22 @@
 import { CardCallToActionFooter, CardCallToActionFederationsButton } from '@/components/ui/card-call-to-action'
+import { DialogCTABookADemo } from '@/components/ui/dialogCallToActionBookADemo'
 
-type CallToActionFederationsButtonProps = {
+
+type CallToActionBookADemoButtonProps = {
   className: string;
 };
 
-const CallToActionFederationsButton = ({ className }: CallToActionFederationsButtonProps) => {
+const CallToActionBookADemoButton = ({ className }: CallToActionBookADemoButtonProps) => {
 
   return (
     <CardCallToActionFooter className={className}>
-      <CardCallToActionFederationsButton href="https://calendar.app.google/teZYUTWXr1kajxyV7" target="_blank">
+      {/* <CardCallToActionBookADemoButton href="https://calendar.app.google/teZYUTWXr1kajxyV7" target="_blank">
         Book a Demo
-      </CardCallToActionFederationsButton>
+      </CardCallToActionBookADemoButton> */}
+
+      <DialogCTABookADemo title={"Request that your Federation join MMAPP"} btnLabel={"Book a Demo"} />
     </CardCallToActionFooter>
   )
 };
 
-export default CallToActionFederationsButton;
+export default CallToActionBookADemoButton;

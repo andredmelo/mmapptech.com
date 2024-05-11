@@ -117,7 +117,7 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
 
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
-  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
   const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
   const { widthViewport, heightViewport } = useViewportSize();
@@ -344,10 +344,10 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
     () => {
       let matchMedia = gsap.matchMedia();
 
-      const isLandscape = window.innerWidth > window.innerHeight;
+      /* const isLandscape = window.innerWidth > window.innerHeight;
       const isPortrait = window.innerWidth < window.innerHeight;
       const isUnder768 = window.innerWidth < 768;
-      const isOver1536 = window.innerWidth > 1536;
+      const isOver1536 = window.innerWidth > 1536; */
       // Initialize a variable to store the largest observed viewport height
       let largestViewportHeight = window.innerHeight;      
       // Update the largest observed viewport height on resize

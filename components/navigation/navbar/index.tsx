@@ -15,7 +15,7 @@ import { MenuGlove } from '@/components/ui/svg/MenuGloveSVG';
 gsap.registerPlugin(gsap, useGSAP);
 
 const Navbar = (/* { toggle }: { toggle: () => void } */) => {
-  const isUnder768 = useMediaQuery('(max-width: 768px)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); //This key forces the SVG components to re-mount triggereing the animations again
 

@@ -17,7 +17,7 @@ export default function NotFound() {
             <a
               href="/"
               className="w-[20%] hover:w-[20.5%] rounded-lg border-solid border-2 border-neutral-200 hover:border-fuchsia-100 text-sm md:text-sm lg:text-md
-              bg-white hover:bg-fuchsia-50 dark:bg-neutral-100
+              hover:bg-fuchsia-50 bg-neutral-100
               text-neutral-600 hover:text-fuchsia-800
               hover:ring-4 ring-fuchsia-700 ring-opacity-75
               px-3.5 py-2.5 font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

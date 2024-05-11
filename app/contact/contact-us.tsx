@@ -24,7 +24,7 @@ const ContactUs = (props: any) => {
         'w-[98%] md:w-[95%] xl:w-[90%] max-w-[1536px] mx-auto px-2 md:px-[4.5vw]',
         props.className
       )}>
-        <div className='flex flex-col md:flex-row w-full h-80 md:h-24 lg:h-28 xl:h-32 2xl:h-36 items-center justify-center gap-1.5 rounded-lg bg-neutral-200 p-1.5 text-neutral-500 dark:bg-neutral-900 dark:text-neutral-400'>
+        <div className='flex flex-col md:flex-row w-full h-80 md:h-24 lg:h-28 xl:h-32 2xl:h-36 items-center justify-center gap-1.5 p-1.5 rounded-lg bg-neutral-900 text-neutral-400'> {/* bg-neutral-200 text-neutral-500 */}
           <TabButton
             value='general'
             activeTab={activeTab}

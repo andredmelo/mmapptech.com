@@ -4,9 +4,10 @@ import { z } from 'zod';
 /* import { Resend } from 'resend'; */
 import { render, renderAsync } from '@react-email/render';
 import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
-import { ContactFormSchema, FormDataSchema } from '@/lib/schema'
+import { ContactFormSchema, FormDataSchema, BookADemoFormSchema } from '@/lib/schema'
 //import ContactFormEmail from '@/emails/contact-form-email'
 import MMAPPContactFormEmail from '@/emails/mmapp-contactus-form-email'
+import MMAPPBookADemoFormEmail from '@/emails/mmapp-bookademo-form-email'
 /* import MMAPPContactFormEmail from '@/emails/simple-mmapp-form-email' */
 
 type Inputs = z.infer<typeof FormDataSchema>
@@ -23,6 +24,8 @@ export async function addEntry(data: Inputs) {
   }
 }
 
+
+// Contact Form
 type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
 /* const resend = new Resend('re_YMaYMgiq_Q965UrGUTjZPfzRqb8PnxndJ') */
@@ -67,6 +70,55 @@ export async function sendEmail(data: ContactFormInputs) {
   }
 }
 
+
+// Book a Demo Form
+type BookADemoFormInputs = z.infer<typeof BookADemoFormSchema>
+
+export async function sendEmailBookADemo(data: BookADemoFormInputs) {
+  const result = BookADemoFormSchema.safeParse(data)
+
+  if (result.success) {
+    const { kind, firstname, lastname, email, subscribe, tel, role, country, time } = result.data
+    try {
+      const emailHtml = await renderAsync(MMAPPBookADemoFormEmail(result.data));
+      //console.log("result.data are "+kind+name+email+message)
+       /* kind={kind} name={name} email={email} message={message} */
+
+      const sentFrom = new Sender(`forms@mmapptech.com`, `${firstname} ${lastname}`);
+      const recipients = [
+          new Recipient("andre1melo@proton.me", 'André Melo'),
+          //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
+          //new Recipient("info@mmapptech.com", 'MMAPP Tech')
+      ];
+      const emailParams = new EmailParams()
+          .setFrom(sentFrom)
+          //.setReplyTo(new ReplyTo(`${email}`, `${firstname} ${lastname}`))
+          .setTo(recipients)
+          .setSubject(`${kind} form submission`)
+          .setHtml(emailHtml)
+
+
+      const data = await mailerSend.email.send(emailParams);
+
+      return { success: true, data }
+    } catch (error) {
+      return { success: false, error }
+    }
+  }
+
+  if (result.error) {
+    return { success: false, error: result.error.format() }
+  }
+}
+
+
+
+
+
+
+
+
+// Deprecated
 /* export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data)
 
