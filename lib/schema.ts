@@ -22,8 +22,7 @@ export const ContactFormSchema = z.object({
 
 export const BookADemoFormSchema = z.object({
   kind: z.string().min(1, { message: 'Kind is required.' }),
-  firstname: z.string().min(1, { message: 'Firstname is required.' }),
-  lastname: z.string().min(1, { message: 'Lastname is required.' }),
+  name: z.string().min(1, { message: 'Name is required.' }),
   email: z.string().min(1, { message: 'Email is required.' }).email('Invalid email.'),
   subscribe: z.boolean(),
   tel: z.string().min(4, { message: 'Contact number is required.' }),

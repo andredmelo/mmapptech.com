@@ -3,7 +3,7 @@ import { Html, Head, Heading, Text, Container, Section, Preview, Body, Row, Img}
 import { Tailwind } from "@react-email/tailwind";
 
 export default function MMAPPBookADemoFormEmail(props: any) {
-  const { kind, firstname, lastname, email, subscribe, tel, role, country, time } = props;
+  const { kind, name, email, subscribe, tel, role, country, time } = props;
 
   /* const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -60,10 +60,7 @@ export default function MMAPPBookADemoFormEmail(props: any) {
               </Row>
             </Section> */}
             <Heading as="h3" className="text-left mt-16">
-              <span className="text-primaryFuchsia">First Name:</span> {firstname}
-            </Heading>
-            <Heading as="h3" className="text-left">
-              <span className="text-primaryFuchsia">Last Name:</span> {lastname}
+              <span className="text-primaryFuchsia">Name:</span> {name}
             </Heading>
             <Heading as="h3" className="text-left">
               <span className="text-primaryFuchsia">@:</span> <a href={`mailto:${email}`}>{email}</a>

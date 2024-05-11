@@ -54,7 +54,7 @@
     @apply font-sans mb-6 mt-1 p-4 rounded-lg border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
   form select {
-    @apply font-sans mb-6 mt-1 p-4 rounded-lg border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
+    @apply font-sans mb-6 mt-1 p-2 rounded-lg border border-fuchsia-700 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;
   }
   form textarea {
     @apply font-sans mb-6 mt-1 p-4 rounded border border-neutral-200 bg-neutral-100 text-neutral-700 text-sm md:text-md lg:text-md;

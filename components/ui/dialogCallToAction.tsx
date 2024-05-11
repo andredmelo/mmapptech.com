@@ -847,7 +847,7 @@ const DialogCTA = (props: DialogCTAProps) => {
               >
                 <div className={clsx(
                   "flex flex-col items-center min-w-full h-full max-h-[85vh]",
-                  "px-10 py-10",  // mt-12
+                  "px-10 py-16",  // mt-12
                   )}>
                   <Dialog.Title className="pb-4 text-xl text-center text-neutral-100"> {/* // text-neutral-900 */}
                     Request that your Federation join MMAPP

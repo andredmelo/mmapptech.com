@@ -78,17 +78,17 @@ export async function sendEmailBookADemo(data: BookADemoFormInputs) {
   const result = BookADemoFormSchema.safeParse(data)
 
   if (result.success) {
-    const { kind, firstname, lastname, email, subscribe, tel, role, country, time } = result.data
+    const { kind, name, email, subscribe, tel, role, country, time } = result.data
     try {
       const emailHtml = await renderAsync(MMAPPBookADemoFormEmail(result.data));
       //console.log("result.data are "+kind+name+email+message)
        /* kind={kind} name={name} email={email} message={message} */
 
-      const sentFrom = new Sender(`forms@mmapptech.com`, `${firstname} ${lastname}`);
+      const sentFrom = new Sender(`forms@mmapptech.com`, `${name}`);
       const recipients = [
           new Recipient("andre1melo@proton.me", 'André Melo'),
           //new Recipient("pedro@mmapptech.com", 'Pedro Marques'),
-          new Recipient("info@mmapptech.com", 'MMAPP Tech')
+          //new Recipient("info@mmapptech.com", 'MMAPP Tech')
       ];
       const emailParams = new EmailParams()
           .setFrom(sentFrom)

@@ -252,36 +252,36 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 forceMount
                 className={cn(
                   "fixed z-50",
-                  "min-w-[95vw] max-w-[95vw] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
+                  "w-[95vw] max-w-[1080px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
                   "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                   "bg-neutral-900 border-2 border-fuchsia-700/50",
                   //"bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",
                   "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
-                  "overflow-auto" // Add this line to the className
+                  "overflow-y-auto"
                 )}
               >
                 <div className={cn(
-                  "flex flex-col items-left min-w-full h-full max-h-[85vh]",
+                  "flex flex-col items-left min-w-full h-full max-h-[75vh] sm:max-h-[90vh] md:max-h-[85vh]",
                   "pt-16",  // mt-12
                   )}>
-                  <Dialog.Title className="px-20 pb-8 text-lg text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100"> {/* // text-neutral-900 */}
+                  <Dialog.Title className="pb-4 md:pb-6 lg:pb-8 text-[1.5rem] md:text-[2rem] lg:text-[2.25rem] text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100"> {/* // text-neutral-900 */}
                     Book a Demo
                   </Dialog.Title>
 
                   <div className={cn(
-                  "flex flex-col inset-0 items-left w-full h-full overflow-y-auto px-20 pb-16", // mt-12
+                  "flex flex-col inset-0 items-left w-full h-full overflow-y-auto px-10 md:px-16 lg:px-20 pb-12 md:pb-16 lg:pb-20", // mt-12
                   )}>
-                    <Dialog.Title className="pb-10 text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
+                    <Dialog.Title className="pb-6 md:pb-8 lg:pb-10 text-lg md:text-[4rem] lg:text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
                       We’d love to show you around
                     </Dialog.Title>
-                    <Dialog.Description className="pb-20 text-lg text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
+                    <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
                       Sign up for a personalised demo today to see how MMAPP can help Federations automate repetitive tasks and help you focus on what’s important.<br/>
                       Our friendly team of experts will be in touch to provide your personalised demo based on your needs.<br/>
                     </Dialog.Description>
-                    <Dialog.Title className="pb-8 text-xl text-left text-neutral-100"> {/* // text-neutral-900 */}
+                    <Dialog.Title className="pb-4 md:pb-4 lg:pb-6 text-[2.1rem] md:text-[2.8rem] lg:text-[3.2rem] text-left text-neutral-100"> {/* // text-neutral-900 */}
                       YOUR CUSTOM DEMO WILL SHOW YOU HOW TO:
                     </Dialog.Title>
-                    <Dialog.Description className="pb-20 pl-1 text-lg text-left font-normal leading-tight text-neutral-200"> {/* //text-neutral-700 */}
+                    <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 pl-1 text-[1.5rem] md:text-[1.8rem] lg:text-[2.2rem] text-left font-normal leading-tight text-neutral-200"> {/* //text-neutral-700 */}
                       • Manage sign-up forms<br/>
                       • Approve and Manage your members<br/>
                       • Approve Events and view Fight Cards<br/>
@@ -295,38 +295,20 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                     >
                       <input type="hidden" {...register('kind', { value: 'Book a Demo' })} />
                       <div className="name flex flex-col">
-                        <label htmlFor="form-name">First Name</label>
+                        <label htmlFor="form-name">Name</label>
                         <input
                           className="w-full"
-                          id="form-firstname"
+                          id="form-name"
                           autoComplete="name"
                           /* type="text"
                           name="first"
                           required */
-                          placeholder='First Name'
-                          {...register('firstname')}
+                          placeholder='Name'
+                          {...register('name')}
                         />
-                        {errors.firstname?.message && (
+                        {errors.name?.message && (
                           <p className='ml-1 mt-1 text-sm text-red-400'>
-                            {errors.firstname.message}
-                          </p>
-                        )}
-                      </div>
-                      <div className="name flex flex-col">
-                        <label htmlFor="form-name">Last Name</label>
-                        <input
-                          className="w-full"
-                          id="form-lastname"
-                          autoComplete="name"
-                          /* type="text"
-                          name="first"
-                          required */
-                          placeholder='Last Name'
-                          {...register('lastname')}
-                        />
-                        {errors.lastname?.message && (
-                          <p className='ml-1 mt-1 text-sm text-red-400'>
-                            {errors.lastname.message}
+                            {errors.name.message}
                           </p>
                         )}
                       </div>
@@ -346,7 +328,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                             {errors.email.message}
                           </p>
                         )}
-                        <div className="subscribe inline-block items-start space-x-3 mt-[-0.75rem] leading-[0rem]">
+                        <div className="subscribe inline-block items-start space-x-3 mt-[-0.75rem] mb-8 sm:mb-0 leading-[0rem]">
                           <input
                             type="checkbox"
                             id="form-subscribe"
@@ -389,10 +371,10 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                           <option value="Promoter">Promoter</option>
                         </select>
                       </div>
-                      <Dialog.Description className="pt-16 pb-4 text-[2rem] text-left font-semi-bold leading-tight text-neutral-200"> {/* //text-neutral-700 */}
+                      <Dialog.Description className="pt-8 md:pt-10 lg:pt-12 pb-4 text-[2rem] text-left font-semi-bold leading-tight text-neutral-200"> {/* //text-neutral-700 */}
                         Meeting preferences:
                       </Dialog.Description>
-                      <div className="country flex flex-col pb-8">
+                      <div className="country flex flex-col">
                         <label htmlFor="form-country">Country/Timezone</label>
                         <select
                           className="max-w-min"
@@ -404,7 +386,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                           ))}
                         </select>
                       </div>
-                      <div className="time flex flex-col pb-16">
+                      <div className="time flex flex-col pb-6 md:pb-8 lg:pb-10">
                         <label htmlFor="form-time">Preferred time</label>
                         <select
                           className="max-w-min"

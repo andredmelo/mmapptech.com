@@ -82,7 +82,7 @@ const AccordionCallToAction = ({ ContinentsData, CountriesData }: AccordionCallT
                 )}
               />
               <span className={cn("text-[1.8rem] md:text-lg text-left pl-10",
-                "group-radix-state-closed:text-neutral-300 group-radix-state-closed:hover:text-neutral-200 group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100",
+                "group-radix-state-closed:text-neutral-300 group-radix-state-closed:hover:text-neutral-200 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-t group-radix-state-open:from-[var(--fuchsia-250)] group-radix-state-open:to-fuchsia-100",
                 /* "group-radix-state-closed:text-neutral-700 group-radix-state-closed:hover:text-neutral-800 group-radix-state-open:text-transparent group-radix-state-open:bg-clip-text group-radix-state-open:bg-gradient-to-r group-radix-state-open:from-[var(--purple-800)] group-radix-state-open:to-purple-600",
                 "dark:group-radix-state-closed:text-neutral-300 dark:group-radix-state-closed:hover:text-neutral-200 dark:group-radix-state-open:bg-gradient-to-t dark:group-radix-state-open:from-[var(--fuchsia-250)] dark:group-radix-state-open:to-fuchsia-100" */
               )}>
