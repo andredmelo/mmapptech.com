@@ -225,7 +225,7 @@ const Benefits = (/* props: BenefitsProps */) => {
 
   return (
     <>
-      <div className='flex flex-col md:flex-row md:min-h-[91rem] lg:min-h-[82.5rem] xl:min-h-[82rem] portrait:lg:min-h-[97rem] portrait:touch:md:min-h-[86.5rem] mx-1 md:mx-[1rem] xl:mx-[8rem] 2xl:mx-[10rem]'>  {/* 3xl:min-w-[1536px] 3xl:mx-auto */}
+      <div className='flex flex-col md:flex-row md:min-h-[91rem] lg:min-h-[83rem] xl:min-h-[73rem] 2xl:min-h-[69rem] portrait:lg:min-h-[97rem] portrait:touch:md:min-h-[86.5rem] mx-1 md:mx-[1rem] xl:mx-[8rem] 2xl:mx-[10rem]'>  {/* 3xl:min-w-[1536px] 3xl:mx-auto */}
 
           <div className='flex flex-row md:flex-col justify-center px-2 md:px-0 items-end md:items-stretch w-full md:w-[30%]'>
             {/* bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400 */}

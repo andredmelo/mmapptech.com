@@ -1,1 +1,2 @@
-let vNumber = "v0.9-β.1 | Metadata and icons updates.";
+let vNumber = "v0.9-β.2 | Benefits visual improvements.";
+

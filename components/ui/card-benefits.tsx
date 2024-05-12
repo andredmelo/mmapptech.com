@@ -96,7 +96,7 @@ const CardBenefitsDescription = React.forwardRef<
   <p
     ref={ref}
     className={cn(
-      "font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem]",
+      "font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[2.5rem]",
       "text-neutral-300 pt-2 md:pt-4 lg:pt-4",
       "",
       className
