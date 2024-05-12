@@ -261,7 +261,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 )}
               >
                 <div className={cn(
-                  "flex flex-col items-left min-w-full h-full max-h-[75vh] sm:max-h-[90vh] md:max-h-[85vh]",
+                  "flex flex-col items-left min-w-full h-full max-h-[75svh] sm:max-h-[90svh] md:max-h-[85svh]",
                   "pt-16",  // mt-12
                   )}>
                   <Dialog.Title className="pb-4 md:pb-6 lg:pb-8 text-[1.5rem] md:text-[2rem] lg:text-[2.25rem] text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100"> {/* // text-neutral-900 */}

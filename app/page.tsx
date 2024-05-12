@@ -64,6 +64,18 @@ export default function Home() {
 
   //const { isHeroIntro3DComplete } = useHeroIntroContext();
 
+  // Main Animations ready check
+  const [animationsReady, setAnimationsReady] = useState(false);
+  const [readyCount, setReadyCount] = useState(0);
+  const handleAnimationReady = () => {
+    setReadyCount(prevCount => prevCount + 1);
+  };
+  useEffect(() => {
+    if (readyCount === 4) { // Assuming there are 5 animation components
+      setAnimationsReady(true);
+    }
+  }, [readyCount]);
+
   // IntersectionObserver for HomeFeaturesR3F
   const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
   const homeFeaturesR3FobserverRef = useRef(null);
@@ -1050,12 +1062,11 @@ export default function Home() {
   return (
     <>
       <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
-      <MmappBlockReveal />
-      <MmappHeadingReveal />
-      <MmappParagraphsReveal />
-      <MmappParagraphsRevealRight />
+      <MmappBlockReveal onReady={handleAnimationReady} />
+      <MmappHeadingReveal onReady={handleAnimationReady} />
+      <MmappParagraphsReveal onReady={handleAnimationReady} />
+      <MmappParagraphsRevealRight onReady={handleAnimationReady} />
       {/* <MappingMMAReveal /> */}
-      {/* <MainAnimations /> */}
       {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
         <h4 id="topOverlayh4" className="text-white">orientation = {isPortrait}</h4>
       </div> */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import  React, { useEffect, useState } from 'react';
 import { useAppContext } from '@/lib/contexts/AppContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -14,11 +14,42 @@ interface PagesTransitionScrollProps {
 const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditionMet }) => {
   const { href, smoother } = useAppContext();
 
+  const [documentReady, setDocumentReady] = useState(false);
+
+  useEffect(() => {
+    let refreshCount = localStorage.getItem('refreshCount') || 0;
+
+    const handleReady = () => {
+      setDocumentReady(true);
+      /* console.log('handleReady'+refreshCount);
+      if (refreshCount === '0') {
+        console.log('Page 1st load');
+        window.location.reload(); // Trigger a full page refresh
+        setTimeout(() => {setDocumentReady(true);}, 50);
+        localStorage.setItem('refreshCount', '1');
+      } */
+      /* if (refreshCount === '1') {
+        console.log('Page re-loaded');
+        setDocumentReady(true);
+        localStorage.setItem('refreshCount', '2');
+      } */
+    };
+
+    if (document.readyState === 'complete') {
+      handleReady();
+    } else {
+      document.addEventListener('DOMContentLoaded', handleReady);
+      return () => document.removeEventListener('DOMContentLoaded', handleReady);
+    }
+  }, []);
+
   useGSAP(() => {
     const checkAllConditionsReady = setInterval(() => {
+      //console.log("href: "+href);
       if (smoother?.current && typeof smoother.current.offset === "function" && typeof smoother.current.scrollTo === "function" && document.querySelector('.templateAnimIn')) {
         clearInterval(checkAllConditionsReady);
-
+        //console.log("ConditionsReady !");
+        //console.log("href: "+href);
         //gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
         const animIn = gsap.timeline({ paused: true })
           .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out"})
@@ -29,7 +60,48 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
           //console.log("condition met");
           onConditionMet?.(); // Call the callback if the condition is met
         }
-        try {
+
+        if (documentReady) {
+          /* setTimeout(() => {
+            console.log("documentReady: "+documentReady);
+            gsap.to(smoother.current!, {
+              scrollTop: Math.min(
+                ScrollTrigger.maxScroll(window),
+                smoother.current?.offset(href, "top 0px") ?? 0
+              ),
+              duration: 0.01,
+              onComplete: () => {
+                console.log("ScrollComplete, now animatingIn");
+                animIn.invalidate().restart().play();
+              }
+            });
+          }, 200); */
+          try {
+          // Code that might throw an error
+          // smoother.current.scrollTo(href, false);
+            gsap.to(smoother.current, {
+              // don't let it go beyond the maximum scrollable area
+              scrollTop: Math.min(
+                ScrollTrigger.maxScroll(window),
+                smoother.current?.offset(href, "top 0px")
+              ),
+              duration: 0.01,
+              onComplete: () => {
+                //console.log("ScrollComplete, now animatingIn");
+                animIn.invalidate().restart().play();
+              }
+            });
+          } catch (error) {
+            let scrollToCount = 0;
+            //console.error("Trying to scrollTo "+scrollToCount);
+            scrollToCount++;
+            // console.error("Error accessing element's style:", error);
+            // Optional: retry logic or other error handling
+          }
+        }
+
+
+        /* try {
           // Code that might throw an error
           //smoother.current.scrollTo(href, false);
           gsap.to(smoother.current, {
@@ -50,7 +122,7 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
           scrollToCount++;
           //console.error("Error accessing element's style:", error);
           // Optional: retry logic or other error handling
-        }
+        } */
 
         if (href == '') {
           //console.log("href = is null");
@@ -68,7 +140,7 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         });
       }
     }, 100);
-  }, [href, smoother]);
+  }, [href, smoother, documentReady]);
 
   return null; // This component does not render anything
 };

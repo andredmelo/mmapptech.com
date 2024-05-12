@@ -846,7 +846,7 @@ const DialogCTA = (props: DialogCTAProps) => {
                 )}
               >
                 <div className={clsx(
-                  "flex flex-col items-center min-w-full h-full max-h-[85vh]",
+                  "flex flex-col items-center min-w-full h-full max-h-[85svh]",
                   "px-10 py-16",  // mt-12
                   )}>
                   <Dialog.Title className="pb-4 text-xl text-center text-neutral-100"> {/* // text-neutral-900 */}
@@ -857,7 +857,7 @@ const DialogCTA = (props: DialogCTAProps) => {
                   </Dialog.Description>
 
                   <div className={clsx(
-                  "flex flex-col inset-0 items-center w-full h-full overflow-y-auto", // mt-12
+                  "flex flex-col inset-0 items-center w-full h-full px-[0.1rem] overflow-y-auto", // mt-12
                   )}>
                     <AccordionCallToAction ContinentsData={ContinentsData} CountriesData={CountriesData} />
                   </div>

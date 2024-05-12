@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { clsx } from "clsx";
+import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
 
 import horizontalLoop from '@/components/HorizontalLoop';
@@ -23,6 +23,7 @@ gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
 
 const Company = (props: any) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isUnder768 = useMediaQuery('(max-width: 767px)');
   
   //console.log(props);
   /* const router = useRouter();
@@ -65,29 +66,29 @@ const Company = (props: any) => {
   return (
     <>
       <PagesTransitionScroll />
-      <MmappBlockReveal />
-      <MmappHeadingReveal />
-      <MmappParagraphsReveal />
-      <MmappSequentialParagraphsReveal />
+      <MmappBlockReveal onReady={()=>{}}  />
+      <MmappHeadingReveal onReady={()=>{}} />
+      <MmappParagraphsReveal onReady={()=>{}} />
+      <MmappSequentialParagraphsReveal onReady={()=>{}} />
       <div className="companyPage">
 
         <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-12 lg:mb-16">
 
-          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[64rem] md:min-h-[50rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-24 md:pt-20 lg:pt-56">
-            <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] text-left">
+          <MainFC className=" justify-start bg-bgRadialGradientDown min-h-[64rem] md:min-h-[50rem] lg:min-h-[74rem] xl:min-h-[50rem] 2xl:min-h-[40rem] max-h-[75rem] md:max-h-[83rem] lg:max-h-[83rem] xl:max-h-[88rem] pt-16 md:pt-16 lg:pt-40 2xl:pt-56">
+            <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] sm:mx-8 md:mx-0 text-left">
               Our Mission
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] text-left">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] sm:mx-8 md:mx-0 text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
-            <MainFCDescription className={clsx(
-              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] text-left leading-normal",
+            <MainFCDescription className={cn(
+              "flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] sm:mx-8 md:mx-0 text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness throughout MMA judging.<br/><br/>
             </MainFCDescription>
-            <MainFCDescription className={clsx(
-              "mmappParagraphsReveal flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] text-left leading-normal",
+            <MainFCDescription className={cn(
+              "flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] sm:mx-8 md:mx-0 text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
@@ -107,7 +108,7 @@ const Company = (props: any) => {
             <MainFCHeading className="mmappHeadingReveal flex-col justify-center text-center">
               Create a common language and unit of measurement for officiating MMA
             </MainFCHeading>
-            <MainFCDescription className="mmappParagraphsReveal text-center mx-5 md:mx-12 lg:mx-44 leading-normal">
+            <MainFCDescription className="mmappParagraphsReveal text-left sm:text-center mx-3 md:mx-12 lg:mx-44 leading-normal">
               By creating a common language and unit of measurement for officials, transparency, consistency, and coherence increase in MMA and promote an honest discussion between all stakeholders of the sport on the best path forward to the betterment of all.
             </MainFCDescription>
             <div className="flex flex-col md:flex-row items-start justify-between mt-12 md:mt-20 mb-8 md:mb-0 lg:mt-32 mx-2 md:mx-0 lg:mx-8">
@@ -174,7 +175,7 @@ const Company = (props: any) => {
             </div>
           </MainFC>
 
-          {/* <div className={clsx("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
+          {/* <div className={cn("w-full h-full flex flex-col md:flex-row relative bg-bgRadialGradientUp",
           "hero1ContainerMargins min-h-[60rem] md:min-h-[75rem] xl:min-h-[60rem] rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5")}>
             <div className="flex flex-col justify-top z-20 text-center">
               <h5 className="mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
@@ -666,18 +667,22 @@ const Company = (props: any) => {
           <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 deboss">
             Security & Compliance
           </h5>
-          <ul className="flex flex-col items-center text-left md:text-center gap-12 md:gap-12 px-8 md:px-12 lg:px-24" role="list">
+          <ul className="flex flex-col items-center text-left md:text-center gap-12 md:gap-12 px-8 sm:px-14 md:px-16 lg:px-[6rem]" role="list">
             <li className="w-[98%] md:w-[90%] lg:w-[80%]">
-              <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 text-[var(--purple-250)]">
+              <h3 className="mmappHeadingReveal mb-0 md:mb-12 lg:mb-16 py-8 text-[var(--purple-250)]">
                 We take Privacy, Security, and Compliance with the utmost seriousness
               </h3>
             </li>
             <li className="flex flex-col md:flex-row mb-0 lg:mb-20">
-              <ol className="mmappBlockReveal basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
-                <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
+              <ol className="basis-1/3 mt-0 md:mt-20 lg:mt-32 mb-12 md:mb-0">
+                <h4 className="mmappBlockReveal leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
                   Security
                 </h4>
-                <p className="leading-[2.1rem] md:leading-[2.5rem] font-semibold text-neutral-300">
+                <p className={cn(
+                  "leading-[2.1rem] md:leading-[2.5rem] font-semibold text-neutral-300",
+                  isUnder768 ? 'mmappParagraphsReveal' : 'mmappBlockReveal',
+                  )}
+                >
                 The privacy of our users is paramount, and we take industry‑excelling measures to guarantee their safety.
                 </p>
               </ol>
@@ -696,7 +701,7 @@ const Company = (props: any) => {
                 </p>
               </ol>
             </li>
-            <li className="mmappBlockReveal w-[100%] md:w-[90%] lg:w-[80%] mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[90%] lg:max-w-[60%]">
+            <li className="mmappBlockReveal w-full mb-8 md:mb-8 lg:mb-12 max-w-[100%] md:max-w-[95%] lg:max-w-[75rem] xl:max-w-[100rem]">
               <h4 className="leading-[2.1rem] md:leading-[2.5rem] font-semibold mb-8 md:mb-8 lg:mb-12">
               Compliance
               </h4>
@@ -705,11 +710,11 @@ const Company = (props: any) => {
               Additionally, we count on the help of external agencies to ensure the best safeguarding practices and compliance for all regulatory purposes whilst providing users with transparent choices on how to manage their data.
               </p>
             </li>
-            <div className="mmappBlockReveal flex flex-row justify-center shrink w-full h-[10rem] space-x-6 md:space-x-10">
-              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/gdpr.webp" alt="gdpr"/></picture>
-              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/cppa.webp" alt="cppa"/></picture>
-              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/apa.webp" alt="apa"/></picture>
-              <picture><img className="h-auto object-scale-down max-w-full max-h-full" src="/images/logos/ccpa.webp" alt="ccpa"/></picture>
+            <div className="mmappBlockReveal flex flex-row shrink justify-center items-center w-full h-[10rem] md:h-[15rem] space-x-6 md:space-x-10">
+              <picture><img className="h-auto object-scale-down max-w-full max-h-[10rem] sd:max-h-[12rem] md:max-h-[15rem]" src="/images/logos/gdpr.webp" alt="gdpr"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-[10rem] md:max-h-[15rem]" src="/images/logos/cppa.webp" alt="cppa"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-[10rem] md:max-h-[15rem]" src="/images/logos/apa.webp" alt="apa"/></picture>
+              <picture><img className="h-auto object-scale-down max-w-full max-h-[10rem] md:max-h-[15rem]" src="/images/logos/ccpa.webp" alt="ccpa"/></picture>
             </div>
           </ul>
         </section>
@@ -723,7 +728,7 @@ const Company = (props: any) => {
             <h3 className="mmappHeadingReveal mb-8 md:mb-12 lg:mb-16 py-8 px-8 md:px-12 lg:px-24 text-[var(--purple-250)]">
               Policies and Guidelines of Usage
             </h3>
-            <h6 className="mmappParagraphsReveal h7 font-sans font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 md:px-16 lg:px-[6rem] xl:px-[18rem]">
+            <h6 className="mmappParagraphsReveal h7 font-sans font-medium text-left leading-[2.1rem] md:leading-[2.5rem] pb-16 md:pb-12 px-8 sm:px-14 md:px-16 lg:px-[6rem] xl:px-[18rem]">
               In accordance with the aforementioned agreements, this section outlines the rules of the road for using our website.<br/>
               It covers important topics like privacy, acceptable use, and limitations of liability. By understanding these policies, you&apos;ll have a smooth and enjoyable experience on our site.<br/>
               You can find a quick rundown below each one, but if you have any questions, don&apos;t hesitate to reach out to us at privacy@mmapp.com.
@@ -731,8 +736,8 @@ const Company = (props: any) => {
             {/* <Dialog url={"https://app.termly.io/document/privacy-policy/2ffc1934-7508-4685-85e3-56eb7785d5e1#otherlaws"} title={"Privacy Policy"} btnLabel={"Privacy Policy"} />
             <br/> */}
 
-            <div className="mmappBlockReveal flex flex-row flex-wrap justify-center mx-8 md:mx-6 lg:mx-8">
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Privacy Policy">
+            <div className="flex flex-row flex-wrap justify-center mx-8 md:mx-6 lg:mx-8">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Privacy Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Privacy Policy
@@ -752,7 +757,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Cookie Policy">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Cookie Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Cookie Policy
@@ -771,7 +776,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Terms & Conditions">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Terms & Conditions">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Terms & Conditions
@@ -790,7 +795,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="EULA">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="EULA">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     EULA
@@ -809,7 +814,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Disclaimer">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Disclaimer">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Disclaimer
@@ -827,7 +832,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Acceptable Use Policy">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Acceptable Use Policy">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Acceptable Use Policy
@@ -846,7 +851,7 @@ const Company = (props: any) => {
                 </CardPoliciesButton>
               </CardPolicies>
 
-              <CardPolicies className='basis-[90%] md:basis-[44%] xl:basis-1/4' id="Minimum & Recommended Requirements">
+              <CardPolicies className='mmappBlockReveal basis-[90%] sm:basis-[75%] md:basis-[44%] xl:basis-1/4' id="Minimum & Recommended Requirements">
                 <CardPoliciesHeader>
                   <CardPoliciesTitle>
                     Minimum & Recommended Requirements

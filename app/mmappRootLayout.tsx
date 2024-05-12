@@ -55,18 +55,18 @@ export default function MmappRootLayout({
   //console.log("currentPage = "+currentPage.current);
 
   useEffect(() => {
-    const handleResize = () => {
+    const reloadWindow = () => {
       window.location.reload();
     };
     if (!isMobile) {
-      window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', reloadWindow);
     }
-    window.addEventListener('orientationchange', handleResize);
+    window.addEventListener('orientationchange', reloadWindow);
     return () => {
       if (!isMobile) {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('resize', reloadWindow);
       }
-      window.removeEventListener('orientationchange', handleResize);
+      window.removeEventListener('orientationchange', reloadWindow);
     };
   }, []);
 

@@ -6,7 +6,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 
 gsap.registerPlugin(gsap, useGSAP, SplitText);
 
-const MmappBlockReveal = () => {
+const MmappBlockReveal = ({ onReady }: { onReady: () => void }) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
     () => {
@@ -25,13 +25,13 @@ const MmappBlockReveal = () => {
         })
           .from(block, {yPercent: 5, autoAlpha:0}) // Carefull as this 'yPercent' property when applied to the trigger being the animated element makes the markers move accordingly, therefore the very low value
       })
-    },
-    { dependencies: [], revertOnUpdate: true }
+      onReady();  // Call the onReady callback when setup is complete
+    }, { dependencies: [], revertOnUpdate: true }
   );
   return null;
 };
 
-const MmappHeadingReveal = () => {
+const MmappHeadingReveal = ({ onReady }: { onReady: () => void }) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
     () => {
@@ -53,12 +53,13 @@ const MmappHeadingReveal = () => {
           {yPercent:150},
           {yPercent:0, stagger:{each:0.125, ease:"power1.out"}, duration: 0.4, ease: "circ.out"})
       });
+      onReady();  // Call the onReady callback when setup is complete
     }, { dependencies: [], revertOnUpdate: true }
   );
   return null;
 };
 
-const MmappParagraphsReveal = () => {
+const MmappParagraphsReveal = ({ onReady }: { onReady: () => void }) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
     () => {
@@ -91,12 +92,13 @@ const MmappParagraphsReveal = () => {
               ease: "circ.out"
             })
       });
+      onReady();  // Call the onReady callback when setup is complete
     }, { dependencies: [], revertOnUpdate: true }
   );
   return null;
 };
 
-const MmappParagraphsRevealRight = () => {
+const MmappParagraphsRevealRight = ({ onReady }: { onReady: () => void }) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
     () => {
@@ -129,12 +131,13 @@ const MmappParagraphsRevealRight = () => {
               ease: "circ.out"
             })
       });
+      onReady();  // Call the onReady callback when setup is complete
     }, { dependencies: [], revertOnUpdate: true }
   );
   return null;
 };
 
-const MmappSequentialParagraphsReveal = () => {
+const MmappSequentialParagraphsReveal = ({ onReady }: { onReady: () => void }) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   useGSAP(
     () => {
@@ -165,8 +168,8 @@ const MmappSequentialParagraphsReveal = () => {
           delay: index * 0.4, // Adjust the multiplier as needed to control the delay between paragraphs
         }, 1.25); // This "+=0.5" adds a delay before starting the next paragraph's animation, adjust as needed
       });
-    },
-    { dependencies: [isPortrait] } // Ensure to list all dependencies here
+      onReady();  // Call the onReady callback when setup is complete
+    }, { dependencies: [isPortrait] } // Ensure to list all dependencies here
   );
   return null;
 };

@@ -11,7 +11,7 @@ const MainFC = React.forwardRef<
     className={cn(
       "flex flex-col relative justify-center",
       "max-w-[1536px] h-full mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[12rem] 3xl:min-w-[1536px] 3xl:mx-auto",
-      "px-10 md:px-24 lg:px-20 xl:px-36 py-12 md:py-36 lg:py-44",
+      "px-10 md:px-24 lg:px-20 xl:px-36 py-24 md:py-36 lg:py-44",
       "rounded-[3rem] bg-no-repeat ", // border-2 border-fuchsia-600
       className
     )}

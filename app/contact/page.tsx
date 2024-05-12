@@ -12,7 +12,7 @@ const Contacts = () => {
   return (
     <>
       <PagesTransitionScroll />
-      <MmappBlockReveal />
+      <MmappBlockReveal onReady={()=>{}} />
       {/* <MmappHeadingReveal />
       <MmappParagraphsReveal /> */}
 
