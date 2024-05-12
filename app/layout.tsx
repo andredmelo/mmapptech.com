@@ -15,36 +15,40 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mmapptech.com'),
   title: "MMAPP",
-  description: "Mapping MMA, Boosting MMA Federations to the Digital Age with our all-in-one solution",
+  description: "Mapping MMA, Boosting MMA Federations to the Digital Age",
   icons: {
-    icon: '/public/images/logos/mmapp/logo.ico',
-    /* shortcut: '/public/images/logos/mmapp/shortcut-icon.png', */
-    apple: '/public/images/logos/mmapp/logo.webp',
-    /* other: {
-      rel: 'apple-touch-icon-precomposed',
-      url: '/apple-touch-icon-precomposed.png',
-    }, */
+    icon: '/public/images/logos/mmapp/logo_icon.svg',
+    shortcut: '/public/images/logos/mmapp/shortcut-icon.png',
+    apple: '/public/images/logos/mmapp/apple-icon.png',
   },
+  manifest: '/public/images/logos/mmapp/manifest.json',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['MMA', 'MMAPP'],
   creator: 'André Melo',
-  authors: [{ name: "André Melo", url: "https://andre1melo.com" }],
+  authors: [{ name: "André Melo", url: "https://andre1melo.com" },{ name: 'Pedro Marques', url: 'https://www.linkedin.com/in/smoothmarx/' }],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: 'MMAPP',
-    description: 'Mapping MMA, Boosting MMA Federations to the Digital Age with our all-in-one solution',
+    description: 'Mapping MMA, Boosting MMA Federations to the Digital Age',
     url: 'https://www.mmapptech.com',
     siteName: 'MMAPP',
-    /* images: [
+    images: [
       {
-        url: 'https://nextjs.org/og.png', // Must be an absolute URL
-        width: 800,
-        height: 600,
+        url: 'https://www.mmapptech.com/public/images/logos/mmapp/og.png', // Must be an absolute URL
+        width: 1200,
+        height: 630,
       },
-      {
+      /* {
         url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
         width: 1800,
         height: 1600,
         alt: 'My custom alt',
-      },
-    ], */
+      }, */
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -57,33 +61,33 @@ export const metadata: Metadata = {
     creatorId: '1467726470533754880',
     images: ['https://nextjs.org/og.png'], // Must be an absolute URL
   }, */
-  /* appLinks: {
+  appLinks: {
     ios: {
-      url: 'https://nextjs.org/ios',
-      app_store_id: 'app_store_id',
+      url: 'https://apps.apple.com/us/app/mmapp-judge/id6446885768',
+      app_store_id: '6446885768',
     },
     android: {
-      package: 'com.example.android/package',
-      app_name: 'app_name_android',
+      package: 'https://play.google.com/store/apps/details?id=com.mmapp.mobile',
+      app_name: 'MMAPP - Judge',
     },
     web: {
-      url: 'https://nextjs.org/web',
+      url: 'https://dashboard.mmapp.app/login',
       should_fallback: true,
     },
-  }, */
-  /* robots: {
+  },
+  robots: {
     index: false,
-    follow: true,
+    follow: false,
     nocache: true,
     googleBot: {
-      index: true,
+      index: false,
       follow: false,
       noimageindex: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  }, */
+  },
 };
 
 const inter = Inter({
