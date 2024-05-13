@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState, useTransition, useMemo } from "react";
+import { preload } from 'react-dom';
 import { clsx } from "clsx";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -44,6 +45,11 @@ const Product = () => {
   const [preloadedImages, setPreloadedImages] = useState({});
   const [isLoading, setIsLoading] = useState(false); //image loading state
 
+
+  preload("/images/product/hero/luizimag3_2876.webp", {
+    as: "image",
+    imageSrcSet: "/images/product/hero/srcset/luizimag3_2876-480w.webp 480w, /images/product/hero/srcset/luizimag3_2876-640w.webp 640w, /images/product/hero/srcset/luizimag3_2876-768w.webp 768w, /images/product/hero/srcset/luizimag3_2876-1024w.webp 1024w, /images/product/hero/srcset/luizimag3_2876-1280w.webp 1280w",
+  });
 
   // Main Animations ready check
   const [animationsReady, setAnimationsReady] = useState(false);
@@ -879,7 +885,17 @@ const Product = () => {
               <p className="z-15 text-lg md:text-xl text-white text-left md:text-center pl-[2vw] md:pl-0 pt-[2vw] justify-center bounce-arrow">
               ↓
               </p>
-              <picture><img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:touch:max-w-[90vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70" src="/images/product/luizimag3_2876.webp" alt="MMA Referees"/></picture>
+              <picture>
+                <img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:touch:max-w-[90vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70"
+                src="/images/product/hero/luizimag3_2876.webp"
+                srcSet="
+                  /images/product/hero/srcset/luizimag3_2876-480w.webp 480w,
+                  /images/product/hero/srcset/luizimag3_2876-640w.webp 640w,
+                  /images/product/hero/srcset/luizimag3_2876-768w.webp 768w,
+                  /images/product/hero/srcset/luizimag3_2876-1024w.webp 1024w,
+                  /images/product/hero/srcset/luizimag3_2876-1280w.webp 1280w"
+                alt="MMA Referees"/>
+              </picture>
               {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
             </ProductFC>

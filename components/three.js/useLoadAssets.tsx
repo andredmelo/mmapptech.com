@@ -4,11 +4,17 @@ import { TextureLoader, Texture, VideoTexture } from 'three';
 
 // Define a type for the hook's return value
 type LoadAssetsReturnType = {
+  macBookPro: GLTF | null;
   iPhone: GLTF | null;
   iPad: GLTF | null;
-  macBookPro: GLTF | null;
-  cage: GLTF | null;
+  //cage: GLTF | null;
   textures: {
+    macBookPro_texture_1: Texture | null,
+    macBookPro_texture_2: Texture | null,
+    macBookPro_texture_3: Texture | null,
+    macBookPro_texture_4: Texture | null,
+    macBookPro_texture_5: Texture | null,
+    newMacBookProTextureName: Texture | null,
     iPhone_texture_1: Texture | null,
     iPhone_texture_2: Texture | null,
     iPhone_texture_3: Texture | null,
@@ -21,22 +27,22 @@ type LoadAssetsReturnType = {
     iPad_texture_4: Texture | null,
     iPad_texture_5: Texture | null,
     newiPadTextureName: Texture | null,
-    macBookPro_texture_1: Texture | null,
-    macBookPro_texture_2: Texture | null,
-    macBookPro_texture_3: Texture | null,
-    macBookPro_texture_4: Texture | null,
-    macBookPro_texture_5: Texture | null,
-    newMacBookProTextureName: Texture | null
   };
 };
 
 export const useLoadAssets = (): LoadAssetsReturnType => {
+  const [macBookPro, setMacBookPro] = useState<GLTF | null>(null);
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
-  const [macBookPro, setMacBookPro] = useState<GLTF | null>(null);
-  const [cage, setCage] = useState<GLTF | null>(null);
+  //const [cage, setCage] = useState<GLTF | null>(null);
   const [textures, setTextures] = useState<{
     // Define the textures state here as in your original code
+    macBookPro_texture_1: Texture | null,
+    macBookPro_texture_2: Texture | null,
+    macBookPro_texture_3: Texture | null,
+    macBookPro_texture_4: Texture | null,
+    macBookPro_texture_5: Texture | null,
+    newMacBookProTextureName: Texture | null,
     iPhone_texture_1: Texture | null,
     iPhone_texture_2: Texture | null,
     iPhone_texture_3: Texture | null,
@@ -49,14 +55,14 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPad_texture_4: Texture | null,
     iPad_texture_5: Texture | null,
     newiPadTextureName: Texture | null,
-    macBookPro_texture_1: Texture | null,
-    macBookPro_texture_2: Texture | null,
-    macBookPro_texture_3: Texture | null,
-    macBookPro_texture_4: Texture | null,
-    macBookPro_texture_5: Texture | null,
-    newMacBookProTextureName: Texture | null
   }>({
     // Initial state
+    macBookPro_texture_1: null,
+    macBookPro_texture_2: null,
+    macBookPro_texture_3: null,
+    macBookPro_texture_4: null,
+    macBookPro_texture_5: null,
+    newMacBookProTextureName: null,
     iPhone_texture_1: null,
     iPhone_texture_2: null,
     iPhone_texture_3: null,
@@ -69,27 +75,21 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
     iPad_texture_4: null,
     iPad_texture_5: null,
     newiPadTextureName: null,
-    macBookPro_texture_1: null,
-    macBookPro_texture_2: null,
-    macBookPro_texture_3: null,
-    macBookPro_texture_4: null,
-    macBookPro_texture_5: null,
-    newMacBookProTextureName: null
   });
 
   useEffect(() => {
     const loadModelsAndTextures = async () => {
       // Your loading logic here
+      const macBookProLoader = new GLTFLoader();
       const iPhoneLoader = new GLTFLoader(); 
       const iPadLoader = new GLTFLoader();
-      const macBookProLoader = new GLTFLoader();
       const cageLoader = new GLTFLoader();
       const textureLoader = new TextureLoader();
 
+      const macBookProModel = await macBookProLoader.loadAsync("/3d-models/macBook_Pro_16.glb");
       const iPhoneModel = await iPhoneLoader.loadAsync("/3d-models/iPhone_14_Pro_Max.glb");
       const iPadModel = await iPadLoader.loadAsync("/3d-models/iPad_Pro_4th.glb");
-      const macBookProModel = await macBookProLoader.loadAsync("/3d-models/macBook_Pro_16.glb");
-      const cageModel = await cageLoader.loadAsync("/3d-models/cage.glb");
+      //const cageModel = await cageLoader.loadAsync("/3d-models/cage.glb");
       const iPhoneTexture1 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-1.webp");
       const iPhoneTexture2 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-2.webp");
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
@@ -220,10 +220,10 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         return videoTexturePromise;
       })); */
 
+      setMacBookPro(macBookProModel);
       setIPhone(iPhoneModel);
       setIPad(iPadModel);
-      setMacBookPro(macBookProModel);
-      setCage(cageModel);
+      //setCage(cageModel);
       setTextures({
         // Image textures
         /* iPhone_texture_1: iPhoneTexture1,
@@ -245,6 +245,12 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         macBookPro_texture_5: macBookProTexture5,
         newMacBookProTextureName: macBookProTexture1, */
         // Video textures
+        macBookPro_texture_1: macBookProVideoTextures[0],// Use the video textures for your models
+        macBookPro_texture_2: macBookProVideoTextures[1],
+        macBookPro_texture_3: macBookProVideoTextures[2],
+        macBookPro_texture_4: macBookProVideoTextures[3],
+        macBookPro_texture_5: macBookProVideoTextures[4],
+        newMacBookProTextureName: macBookProVideoTextures[0],
         iPhone_texture_1: iPhoneVideoTextures[0],// Use the video textures for your models
         iPhone_texture_2: iPhoneVideoTextures[1],
         iPhone_texture_3: iPhoneVideoTextures[2],
@@ -257,17 +263,11 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         iPad_texture_4: iPadVideoTextures[3],
         iPad_texture_5: iPadVideoTextures[4],
         newiPadTextureName: iPadVideoTextures[0],
-        macBookPro_texture_1: macBookProVideoTextures[0],// Use the video textures for your models
-        macBookPro_texture_2: macBookProVideoTextures[1],
-        macBookPro_texture_3: macBookProVideoTextures[2],
-        macBookPro_texture_4: macBookProVideoTextures[3],
-        macBookPro_texture_5: macBookProVideoTextures[4],
-        newMacBookProTextureName: macBookProVideoTextures[0]
       });
     };
 
     loadModelsAndTextures();
   }, []);
 
-  return { iPhone, iPad, macBookPro, cage, textures };
+  return { macBookPro, iPhone, iPad, /* cage, */ textures };
 };

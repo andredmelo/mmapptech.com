@@ -1,6 +1,7 @@
 'use client'
 import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
+import { preload } from 'react-dom';
 import { clsx } from "clsx";
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
@@ -76,8 +77,66 @@ export default function Home() {
     }
   }, [readyCount]);
 
+  // preLoad Hero Assets
+  let heroVideo = "/videos/hero/hero.1080p.mp4";
+  if (isUnder768) {
+    heroVideo = "/videos/hero/hero.720p.mp4";
+  }
+  let heroFighterRight = "/images/hero/fighter_red_2xl.webp";
+  if (isUnder1280) {
+    heroFighterRight = "/images/hero/fighter_red_xl.webp";
+    if (isUnder768) {
+      heroFighterRight = "/images/hero/fighter_red_md.webp";
+    }
+  }
+  let heroFighterLeft = "/images/hero/fighter_blue_2xl.webp";
+  if (isUnder1280) {
+    heroFighterLeft = "/images/hero/fighter_blue_xl.webp";
+    if (isUnder768) {
+      heroFighterLeft = "/images/hero/fighter_blue_md.webp";
+    }
+  }
+  let heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
+  if (isLandscape) {
+    heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
+  } else {
+    heroLogo = "/images/logos/mmapp/white_logo_on_black80perc.svg";
+  }
+
+  preload(heroVideo, {
+    as: "video",
+  });
+  preload("/images/hero/spotlights_top_left.webp", {
+    as: "image",
+  });
+  preload("/images/hero/spotlights_top_right.webp", {
+    as: "image",
+  });
+  preload(heroLogo, {
+    as: "image",
+  });
+  preload("/images/hero/judge.webp", {
+    as: "image",
+    imageSrcSet: "/images/hero/srcset/judge-480w.webp 480w, /images/hero/srcset/judge-640w.webp 640w, /images/hero/srcset/judge-768w.webp 768w, /images/hero/srcset/judge-1024w.webp 1024w, /images/hero/srcset/judge-1280w.webp 1280w",
+  });
+  preload(heroFighterRight, {
+    as: "image",
+  });
+  preload(heroFighterLeft, {
+    as: "image",
+  });
+  preload("/images/hero/fader.webp", {
+    as: "image",
+  });
+  /* preload("/3d-models/macBook_Pro_16.glb", {
+    as: "object",
+  }); */
+
+
+
+
   // IntersectionObserver for HomeFeaturesR3F
-  const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
+  /* const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
   const homeFeaturesR3FobserverRef = useRef(null);
   useEffect(() => {
     const homeFeaturesR3Fobserver = new IntersectionObserver(
@@ -113,16 +172,26 @@ export default function Home() {
         pin: ".homeFeaturesR3FViewer",
         markers: false,
       });
-      /* ScrollTrigger.create({
-        trigger: "#featuresDashboard",
-        start: "top 95%",
-        onEnter: () => {
-          console.log("onEnter createScrollTriggerWhenHomeFeaturesR3FLoaded");
-          setMacBookProOpacity(1);
-        }
-      }); */
       ScrollTrigger.refresh();
 
+      hasLoadedOnceRef.current = true; // Mark as called
+      //console.log("Home Features R3F is loaded and its ScrollTrigger is set");
+    }
+  }; */
+
+  // ScrollTrigger for homeFeaturesR3FViewer upon onLoaded
+  const [endPosition, setEndPosition] = useState(0); // State variable to store the elusive end position
+  const hasLoadedOnceRef = useRef(false); // Ref to track if the function has been called (this prevents the weird disapearance of the 3d Canvas when scrolling down, but not scrolling up?!?!)
+  const createScrollTriggerWhenHomeFeaturesR3FLoaded = () => {
+    if (!hasLoadedOnceRef.current) { // Check if the function hasn't been called yet
+      ScrollTrigger.create({
+        trigger: "#featuresDashboard",
+        start: "top top",
+        end: endPosition,
+        pin: ".homeFeaturesR3FViewer",
+        markers: false,
+      });
+      ScrollTrigger.refresh();
       hasLoadedOnceRef.current = true; // Mark as called
       //console.log("Home Features R3F is loaded and its ScrollTrigger is set");
     }
@@ -1031,37 +1100,9 @@ export default function Home() {
     { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
   );
 
-  let heroVideo = "/videos/hero/hero.1080p.mp4";
-  if (isUnder768) {
-    heroVideo = "/videos/hero/hero.720p.mp4";
-  }
-
-  let heroFighterRight = "/images/hero/fighter_red_2xl.webp";
-  if (isUnder1280) {
-    heroFighterRight = "/images/hero/fighter_red_xl.webp";
-    if (isUnder768) {
-      heroFighterRight = "/images/hero/fighter_red_md.webp";
-    }
-  }
-
-  let heroFighterLeft = "/images/hero/fighter_blue_2xl.webp";
-  if (isUnder1280) {
-    heroFighterLeft = "/images/hero/fighter_blue_xl.webp";
-    if (isUnder768) {
-      heroFighterLeft = "/images/hero/fighter_blue_md.webp";
-    }
-  }
-
-  let heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
-  if (isLandscape) {
-    heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
-  } else {
-    heroLogo = "/images/logos/mmapp/white_logo_on_black80perc.svg";
-  }
-
   return (
     <>
-      <PagesTransitionScroll onConditionMet={() => {setShowHomeFeaturesR3F(true)}} />
+      <PagesTransitionScroll />
       <MmappBlockReveal onReady={handleAnimationReady} />
       <MmappHeadingReveal onReady={handleAnimationReady} />
       <MmappParagraphsReveal onReady={handleAnimationReady} />
@@ -1261,15 +1302,58 @@ export default function Home() {
           </h5>
 
           {/* <HomeFeaturesR3F /> */}
-          {isUnder768||isMobileOnly ? '' : 
+          {/* {isUnder768||isMobileOnly ? '' : 
             <>
               <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
               {showHomeFeaturesR3F && (
-                <Suspense fallback={<div className="z-[50] text-white/80 text-center"><h2>Loading 3D...</h2></div>}>
+                <Suspense fallback={
+                  <div className="z-[50] text-white/80 text-center">
+                    <h2>Loading 3D...</h2>
+                    <div className="flex-col gap-4 w-full flex items-center justify-center">
+                      <div className="flex items-center justify-center">
+                        <svg
+                          className="animate-spin"
+                          xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                          viewBox="0 0 48 48" fill="none"
+                        >
+                          <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                }>
                   <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
                 </Suspense>
               )}
             </>
+          } */}
+
+          {/* {isUnder768||isMobileOnly ? '' : 
+            <>
+              <div className="hidden md:block" />
+              <Suspense fallback={
+                <div className="z-[50] text-white/80 text-center">
+                  <h2>Loading 3D...</h2>
+                  <div className="flex-col gap-4 w-full flex items-center justify-center">
+                    <div className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin"
+                        xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                        viewBox="0 0 48 48" fill="none"
+                      >
+                        <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              }>
+                <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
+              </Suspense>
+            </>
+          } */}
+
+          {isUnder768||isMobileOnly ? '' : 
+            <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
           }
 
           {/* // Dashboard */}
@@ -1927,7 +2011,7 @@ export default function Home() {
                   href="/product"
                   data-page="/product"
                   data-link="#MMAPP-Methodology"
-                  className="w-fit px-14 mx-auto mt-20 md:mt-0 portrait:md:mt-16"
+                  className="w-fit px-14 mx-auto mt-20 md:mt-24 portrait:md:mt-20"
                 >
                   Learn more in our product page<span aria-hidden="true" className="pl-2"> →</span>
                 </CardPoliciesButton>
