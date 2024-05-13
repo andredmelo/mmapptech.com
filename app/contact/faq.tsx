@@ -61,7 +61,9 @@ const items: AccordionFAQsItem[] = [
     header: "What are the minimum/recommended requirements?",
     content: [
       "You can find the Minimum and Recommended requirements for each device type ",
-      <a href="/company/policies/minimum-recommended-requirements" className="link-hover">at the following link</a>,
+      <br key="br1" />, // Use keys for list elements
+      <a key="link1" href="/company/policies/minimum-recommended-requirements" className="link-hover">at the following link</a>,
+      <br key="br2" />, // Use keys for list elements
       ".",
     ],
   },
@@ -71,7 +73,9 @@ const items: AccordionFAQsItem[] = [
       "MMAPP adheres to the strictest privacy policies and performs regular security checks to make sure that all information within the platform is secure.",
       <br key="br1" />, // Use keys for list elements
       "You can read more about this topic in our ",
-      <a href="/company#Policies" className="link-hover">Policies</a>,
+      <br key="br2" />, // Use keys for list elements
+      <a key="link1" href="/company#Policies" className="link-hover">Policies</a>,
+      <br key="br3" />, // Use keys for list elements
       " Section",
     ],
   },

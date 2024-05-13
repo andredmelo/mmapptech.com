@@ -21,7 +21,7 @@ const MinimumRecommendedRequirements = () => {
             />
           </picture>
           <p className="pb-4">
-            (We'll try to be brief)
+            (We`&apos;`ll try to be brief)
           </p>
         </div>
       </section>
