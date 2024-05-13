@@ -1520,7 +1520,7 @@ const Product = () => {
             <p className="mmappBlockReveal my-12 md:my-16 lg:my-20">
               Or
             </p>
-            <CallToActionButton className="mmappBlockReveal" />
+            <CallToActionButton className="mmappBlockReveal" btnLabel="Request my Federation to join MMAPP" />
           </div>
         </section>
 

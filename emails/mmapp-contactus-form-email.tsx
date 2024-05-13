@@ -63,7 +63,7 @@ export default function MMAPPContactFormEmail(props: any) {
               <span className="text-primaryFuchsia">From:</span> {name}
             </Heading>
             <Heading as="h3" className="text-left">
-              <span className="text-primaryFuchsia">@:</span> <a href={`mailto:${email}`}>{email}</a>
+              <span className="text-primaryFuchsia">@:</span> <a href={`mailto:${email}`} aria-label="Submit Contact Form">{email}</a>
             </Heading>
             {subscribe && (
               <Heading as="h4" className="text-left">

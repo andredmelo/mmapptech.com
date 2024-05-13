@@ -252,7 +252,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 forceMount
                 className={cn(
                   "fixed z-50",
-                  "w-[95vw] max-w-[1080px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
+                  "w-[95vw] max-w-[1560px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
                   "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                   "bg-neutral-900 border-2 border-fuchsia-700/50",
                   //"bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",
@@ -261,164 +261,186 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 )}
               >
                 <div className={cn(
-                  "flex flex-col items-left min-w-full h-full max-h-[75svh] sm:max-h-[90svh] md:max-h-[85svh]",
-                  "pt-16",  // mt-12
+                  "flex flex-col items-left min-w-full h-full max-h-[75svh] portrait:max-h-[90dvh] sm:max-h-[90svh] md:max-h-[85svh]",
+                  "pt-12 md:pt-16",  // mt-12
                   )}>
-                  <Dialog.Title className="pb-4 md:pb-6 lg:pb-8 text-[1.5rem] md:text-[2rem] lg:text-[2.25rem] text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100"> {/* // text-neutral-900 */}
+                  {/* <Dialog.Title className="block md:hidden pb-4 md:pb-6 lg:pb-8 text-[1.75rem] text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100">
                     Book a Demo
-                  </Dialog.Title>
+                  </Dialog.Title> */}
 
-                  <div className={cn(
-                  "flex flex-col inset-0 items-left w-full h-full overflow-y-auto px-10 md:px-16 lg:px-20 pb-12 md:pb-16 lg:pb-20", // mt-12
-                  )}>
-                    <Dialog.Title className="pb-6 md:pb-8 lg:pb-10 text-lg md:text-[4rem] lg:text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
-                      We’d love to show you around
-                    </Dialog.Title>
-                    <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
-                      Sign up for a personalised demo today to see how MMAPP can help Federations automate repetitive tasks and help you focus on what’s important.<br/>
-                      Our friendly team of experts will be in touch to provide your personalised demo based on your needs.<br/>
-                    </Dialog.Description>
-                    <Dialog.Title className="pb-4 md:pb-4 lg:pb-6 text-[2.1rem] md:text-[2.8rem] lg:text-[3.2rem] text-left text-neutral-100"> {/* // text-neutral-900 */}
-                      YOUR CUSTOM DEMO WILL SHOW YOU HOW TO:
-                    </Dialog.Title>
-                    <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 pl-1 text-[1.5rem] md:text-[1.8rem] lg:text-[2.2rem] text-left font-normal leading-tight text-neutral-200"> {/* //text-neutral-700 */}
-                      • Manage sign-up forms<br/>
-                      • Approve and Manage your members<br/>
-                      • Approve Events and view Fight Cards<br/>
-                      • How the MMAPP Methodology works<br/>
-                      • How the Judge and RecordKeeper apps help during events<br/>
-                      • Analyse your officials<br/>
-                    </Dialog.Description>
-                    <form
-                      onSubmit={handleSubmit(processForm)}
-                      className="rounded-[1rem]"
-                    >
-                      <input type="hidden" {...register('kind', { value: 'Book a Demo' })} />
-                      <div className="name flex flex-col">
-                        <label htmlFor="form-name">Name</label>
-                        <input
-                          className="w-full"
-                          id="form-name"
-                          autoComplete="name"
-                          /* type="text"
-                          name="first"
-                          required */
-                          placeholder='Name'
-                          {...register('name')}
-                        />
-                        {errors.name?.message && (
-                          <p className='ml-1 mt-1 text-sm text-red-400'>
-                            {errors.name.message}
-                          </p>
-                        )}
-                      </div>
-                      <div className="email flex flex-col mb-1">
-                        <label htmlFor="form-email">Email</label>
-                        <input
-                          id="form-email"
-                          autoComplete="email"
-                          /* type="email"
-                          name="email"
-                          required */
-                          placeholder='Your Email Address'
-                          {...register('email')}
-                        />
-                        {errors.email?.message && (
-                          <p className='ml-1 mt-1 text-sm text-red-400'>
-                            {errors.email.message}
-                          </p>
-                        )}
-                        <div className="subscribe inline-block items-start space-x-3 mt-[-0.75rem] mb-8 sm:mb-0 leading-[0rem]">
-                          <input
-                            type="checkbox"
-                            id="form-subscribe"
-                            defaultChecked
-                            {...register('subscribe')}
-                          />
-                          <label htmlFor="form-subscribe">Yes, I would like to subscribe to updates, promotions, and news from MMAPP.</label>
-                        </div>
-                      </div>
-                      <div className="tel flex flex-col">
-                        <label htmlFor="form-tel">Contact Number</label>
-                        <input
-                          className="w-full"
-                          id="form-tel"
-                          autoComplete="tel"
-                          /* type="text"
-                          name="first"
-                          required */
-                          placeholder='Contact Number'
-                          {...register('tel')}
-                        />
-                        {errors.tel?.message && (
-                          <p className='ml-1 mt-1 text-sm text-red-400'>
-                            {errors.tel.message}
-                          </p>
-                        )}
-                      </div>
-                      <div className="role flex flex-col">
-                        <label htmlFor="form-role">Role</label>
-                        <select
-                          className="max-w-min"
-                          id="form-role"
-                          {...register('role')}
-                        >
-                          <option value="Federation Member">Federation Member</option>
-                          <option value="Administrator">Administrator</option>
-                          <option value="Athlete">Athlete</option>
-                          <option value="Coach">Coach</option>
-                          <option value="Club">Club</option>
-                          <option value="Promoter">Promoter</option>
-                        </select>
-                      </div>
-                      <Dialog.Description className="pt-8 md:pt-10 lg:pt-12 pb-4 text-[2rem] text-left font-semi-bold leading-tight text-neutral-200"> {/* //text-neutral-700 */}
-                        Meeting preferences:
+                  <div className="flex flex-col h-full md:flex-row items-stretch gap-x-16 px-10 md:px-16 lg:px-20 pb-12 md:pb-16">
+
+                    <div className={cn(
+                    "basis-1/2 flex flex-col inset-0 items-left w-full h-full overflow-y-auto",
+                    )}>
+                      <Dialog.Title className="pb-6 md:pb-8 lg:pb-10 text-lg md:text-[4rem] lg:text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
+                        We’d love to show you around
+                      </Dialog.Title>
+                      <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
+                        Sign up for a personalised demo today to see how MMAPP can help Federations automate repetitive tasks and help you focus on what’s important.<br/>
+                        Our friendly team of experts will be in touch to provide your personalised demo based on your needs.<br/>
                       </Dialog.Description>
-                      <div className="country flex flex-col">
-                        <label htmlFor="form-country">Country/Timezone</label>
-                        <select
-                          className="max-w-min"
-                          id="form-country"
-                          {...register('country')}
-                        >
-                          {AllCountriesTimeZones.map(country => (
-                            <option key={country} value={country}>{country}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="time flex flex-col pb-6 md:pb-8 lg:pb-10">
-                        <label htmlFor="form-time">Preferred time</label>
-                        <select
-                          className="max-w-min"
-                          id="form-time"
-                          {...register('time')}
-                        >
-                          <option value="9am-12pm">9am-12pm</option>
-                          <option value="12pm-3pm">12pm-3pm</option>
-                          <option value="3pm-6pm">3pm-6pm</option>
-                        </select>
-                      </div>
-                      {/* <div className="message flex flex-col">
-                        <label htmlFor="form-message">Message</label>
-                        <textarea
-                          id="form-message"
-                          rows={6}
-                          placeholder='Your Message'
-                          {...register('message')}
-                        />
-                        {errors.message?.message && (
-                          <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
-                        )}
-                      </div> */}
-                      <div className="flex flex-col items-center">
-                        {/* <CardContactUsButton disabled={isSubmitting}>
-                          {isSubmitting ? 'Submitting...' : 'Submit'}
-                        </CardContactUsButton> */}
-                        <CardCallToActionButton disabled={isSubmitting}>
-                          {isSubmitting ? 'Submitting Booking...' : 'Submit Booking Request'}
-                        </CardCallToActionButton>
-                      </div>
-                    </form>
+                      <Dialog.Title className="pb-4 md:pb-4 lg:pb-6 text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] text-left text-neutral-100"> {/* // text-neutral-900 */}
+                        YOUR CUSTOM DEMO WILL SHOW YOU HOW TO:
+                      </Dialog.Title>
+                      <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 pl-1 text-[1.5rem] md:text-[1.65rem] lg:text-[2.2rem] text-left font-normal leading-tight text-neutral-200"> {/* //text-neutral-700 */}
+                        • Manage sign-up forms<br/>
+                        • Approve and Manage your members<br/>
+                        • Approve Events and view Fight Cards<br/>
+                        • How the MMAPP Methodology works<br/>
+                        • How the Judge and RecordKeeper apps help during events<br/>
+                        • Analyse your officials<br/>
+                        • Analyse your officials 2<br/>
+                        • Analyse your officials 3<br/>
+                        • Analyse your officials 4<br/>
+                      </Dialog.Description>
+                    </div>
+
+                    <div id="divider " className="hidden md:block flex-grow my-8 border-l border-white/5"></div>
+
+                    <div className={cn(
+                      "basis-1/2 flex flex-col inset-0 items-left w-full h-full overflow-y-auto pb-2",
+                    )}>
+                      <Dialog.Title className="pb-4 md:pb-6 lg:pb-8 text-[2.25rem] md:text-[2.75rem] lg:text-[3rem] text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100"> {/* // text-neutral-900 */}
+                        Book a Demo
+                      </Dialog.Title>
+                      <form
+                        onSubmit={handleSubmit(processForm)}
+                        className="rounded-[1rem]"
+                      >
+                        <input type="hidden" {...register('kind', { value: 'Book a Demo' })} />
+                        <div className="name flex flex-col">
+                          <label htmlFor="form-name">Name</label>
+                          <input
+                            className="w-full"
+                            id="form-name"
+                            autoComplete="name"
+                            /* type="text"
+                            name="first"
+                            required */
+                            placeholder='Name'
+                            {...register('name')}
+                          />
+                          {errors.name?.message && (
+                            <p className='ml-1 mt-1 text-sm text-red-400'>
+                              {errors.name.message}
+                            </p>
+                          )}
+                        </div>
+                        <div className="email flex flex-col mb-1">
+                          <label htmlFor="form-email">Email</label>
+                          <input
+                            id="form-email"
+                            autoComplete="email"
+                            /* type="email"
+                            name="email"
+                            required */
+                            placeholder='Your Email Address'
+                            {...register('email')}
+                          />
+                          {errors.email?.message && (
+                            <p className='ml-1 mt-1 text-sm text-red-400'>
+                              {errors.email.message}
+                            </p>
+                          )}
+                          <div className="subscribe items-start space-x-3 mt-[-0.75rem] mb-8 xl:mb-0 leading-[0rem]">
+                            <input
+                              type="checkbox"
+                              id="form-subscribe"
+                              defaultChecked
+                              {...register('subscribe')}
+                            />
+                            <label
+                              htmlFor="form-subscribe"
+                              className="text-[1.1rem] md:text-[1.4rem]"
+                            >
+                              Yes, I would like to subscribe to updates and news from MMAPP.
+                            </label>
+                          </div>
+                        </div>
+                        <div className="tel flex flex-col">
+                          <label htmlFor="form-tel">Contact Number</label>
+                          <input
+                            className="w-full"
+                            id="form-tel"
+                            autoComplete="tel"
+                            /* type="text"
+                            name="first"
+                            required */
+                            placeholder='Contact Number'
+                            {...register('tel')}
+                          />
+                          {errors.tel?.message && (
+                            <p className='ml-1 mt-1 text-sm text-red-400'>
+                              {errors.tel.message}
+                            </p>
+                          )}
+                        </div>
+                        <div className="role flex flex-col">
+                          <label htmlFor="form-role">Role</label>
+                          <select
+                            className="max-w-min"
+                            id="form-role"
+                            {...register('role')}
+                          >
+                            <option value="Federation Member">Federation Member</option>
+                            <option value="Administrator">Administrator</option>
+                            <option value="Athlete">Athlete</option>
+                            <option value="Coach">Coach</option>
+                            <option value="Club">Club</option>
+                            <option value="Promoter">Promoter</option>
+                          </select>
+                        </div>
+                        <Dialog.Description className="pt-6 md:pt-8 lg:pt-6 pb-4 text-[2rem] text-left font-semi-bold leading-tight text-neutral-200"> {/* //text-neutral-700 */}
+                          Meeting preferences:
+                        </Dialog.Description>
+                        <div className="country flex flex-col">
+                          <label htmlFor="form-country">Country/Timezone</label>
+                          <select
+                            className="max-w-min"
+                            id="form-country"
+                            {...register('country')}
+                          >
+                            {AllCountriesTimeZones.map(country => (
+                              <option key={country} value={country}>{country}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="time flex flex-col pb-6 md:pb-8 lg:pb-10">
+                          <label htmlFor="form-time">Preferred time</label>
+                          <select
+                            className="max-w-min"
+                            id="form-time"
+                            {...register('time')}
+                          >
+                            <option value="9am-12pm">9am-12pm</option>
+                            <option value="12pm-3pm">12pm-3pm</option>
+                            <option value="3pm-6pm">3pm-6pm</option>
+                          </select>
+                        </div>
+                        {/* <div className="message flex flex-col">
+                          <label htmlFor="form-message">Message</label>
+                          <textarea
+                            id="form-message"
+                            rows={6}
+                            placeholder='Your Message'
+                            {...register('message')}
+                          />
+                          {errors.message?.message && (
+                            <p className='ml-1 text-sm text-red-400'>{errors.message.message}</p>
+                          )}
+                        </div> */}
+                        <div className="flex flex-col items-center">
+                          {/* <CardContactUsButton disabled={isSubmitting}>
+                            {isSubmitting ? 'Submitting...' : 'Submit'}
+                          </CardContactUsButton> */}
+                          <CardCallToActionButton disabled={isSubmitting}>
+                            {isSubmitting ? 'Submitting Booking...' : 'Submit Booking Request'}
+                          </CardCallToActionButton>
+                        </div>
+                      </form>
+                    </div>
+
                   </div>
 
 

@@ -1116,11 +1116,41 @@ export default function Home() {
                 MAPPING  MMA
               </h4>
             </div>
-            <picture><img id="heroMMAPPiPhone" className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70" src="/images/hero/judge.webp" alt="iphone-12"/></picture> {/* // h-[40svh] */}
+            <picture>
+              <img
+                id="heroMMAPPiPhone"
+                className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70"
+                src="/images/hero/judge.webp"
+                srcSet="
+                  /images/hero/srcset/judge-480w.webp 480w,
+                  /images/hero/srcset/judge-640w.webp 640w,
+                  /images/hero/srcset/judge-768w.webp 768w,
+                  /images/hero/srcset/judge-1024w.webp 1024w,
+                  /images/hero/srcset/judge-1280w.webp 1280w"
+                width="fit"
+                height="fit"
+                alt="iphone-12"
+              />
+            </picture> {/* // h-[40svh] */}
             <picture><img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/></picture>
             <picture><img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/></picture>
             <picture><img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[-1px] md:bottom-[0px] left-0 w-[100vw] h-[100svh]"/></picture>
-            <picture><img id="heroMMAPPiPhone2" className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent" src="/images/hero/judge.webp" alt="iphone-12"/></picture> {/* // h-[40svh] */}
+            <picture>
+              <img
+                id="heroMMAPPiPhone2"
+                className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent"
+                src="/images/hero/judge.webp"
+                srcSet="
+                  /images/hero/srcset/judge-480w.webp 480w,
+                  /images/hero/srcset/judge-640w.webp 640w,
+                  /images/hero/srcset/judge-768w.webp 768w,
+                  /images/hero/srcset/judge-1024w.webp 1024w,
+                  /images/hero/srcset/judge-1280w.webp 1280w"
+                width="fit"
+                height="fit"
+                alt="iphone-12"
+              />
+            </picture> {/* // h-[40svh] */}
           </div>
           {/* <HomeIntroR3F /> */}
           {/* <HomeiPhoneIntroR3F /> */}
@@ -1203,7 +1233,16 @@ export default function Home() {
                   </div>
                   <div className="flex justify-start items-start md:w-[35%]">
                     <picture className="ourExpertiseImg md:block">
-                      <img className="landscape:h-full max-h-[95vh] z-10 object-contain self-start md:px-2 md:pt-6" src="/images/features/iphone-12-black.webp" alt="MMAPP features on iPhone"/>
+                      <img
+                        className="landscape:h-full max-h-[95vh] z-10 object-contain self-start md:px-2 md:pt-6"
+                        src="/images/ourExpertise/iphone-12-black.webp"
+                        srcSet="
+                          /images/ourExpertise/srcset/iphone-12-black-480w.webp 480w,
+                          /images/ourExpertise/srcset/iphone-12-black-640w.webp 640w,
+                          /images/ourExpertise/srcset/iphone-12-black-768w.webp 768w,
+                          /images/ourExpertise/srcset/iphone-12-black-1024w.webp 1024w,
+                          /images/ourExpertise/srcset/iphone-12-black-1280w.webp 1280w"
+                        alt="MMAPP features on iPhone"/>
                     </picture>
                   </div>
                 </>
@@ -1275,6 +1314,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresDashboardImage"
                         src="/images/features/federationsDashboard/featuresFederationsDashboard-1.webp"
+                        srcSet="
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-1-480w.webp 480w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-1-640.webp 640w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-1-768.webp 768w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-1-1024w.webp 1024w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-1-1280w.webp 1280w"
                         alt="features Federations Dashboard image"
                       /> 
                     :
@@ -1299,6 +1344,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresDashboardImage"
                         src="/images/features/federationsDashboard/featuresFederationsDashboard-2.webp"
+                        srcSet="
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-2-480w.webp 480w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-2-640.webp 640w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-2-768.webp 768w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-2-1024w.webp 1024w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-2-1280w.webp 1280w"
                         alt="features Federations Dashboard image"
                       /> 
                     :
@@ -1323,6 +1374,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresDashboardImage"
                         src="/images/features/federationsDashboard/featuresFederationsDashboard-3.webp"
+                        srcSet="
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-3-480w.webp 480w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-3-640.webp 640w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-3-768.webp 768w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-3-1024w.webp 1024w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-3-1280w.webp 1280w"
                         alt="features Federations Dashboard image"
                       /> 
                     :
@@ -1347,6 +1404,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresDashboardImage"
                         src="/images/features/federationsDashboard/featuresFederationsDashboard-4.webp"
+                        srcSet="
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-4-480w.webp 480w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-4-640.webp 640w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-4-768.webp 768w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-4-1024w.webp 1024w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-4-1280w.webp 1280w"
                         alt="features Federations Dashboard image"
                       /> 
                     :
@@ -1371,6 +1434,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresDashboardImage"
                         src="/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"
+                        srcSet="
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-5-480w.webp 480w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-5-640.webp 640w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-5-768.webp 768w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-5-1024w.webp 1024w,
+                          /images/features/federationsDashboard/srcset/featuresFederationsDashboard-5-1280w.webp 1280w"
                         alt="features Federations Dashboard image"
                       /> 
                     :
@@ -1527,6 +1596,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresJudgeImage"
                         src="/images/features/officialsJudge/featuresOfficialsJudge-1.webp"
+                        srcSet="
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-1-480w.webp 480w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-1-640.webp 640w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-1-768.webp 768w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-1-1024w.webp 1024w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-1-1280w.webp 1280w"
                         alt="features Officials Judge image"
                       /> 
                     :
@@ -1551,6 +1626,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresJudgeImage"
                         src="/images/features/officialsJudge/featuresOfficialsJudge-2.webp"
+                        srcSet="
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-2-480w.webp 480w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-2-640.webp 640w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-2-768.webp 768w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-2-1024w.webp 1024w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-2-1280w.webp 1280w"
                         alt="features Officials Judge image"
                       /> 
                     :
@@ -1575,6 +1656,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresJudgeImage"
                         src="/images/features/officialsJudge/featuresOfficialsJudge-3.webp"
+                        srcSet="
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-3-480w.webp 480w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-3-640.webp 640w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-3-768.webp 768w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-3-1024w.webp 1024w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-3-1280w.webp 1280w"
                         alt="features Officials Judge image"
                       /> 
                     :
@@ -1599,6 +1686,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresJudgeImage"
                         src="/images/features/officialsJudge/featuresOfficialsJudge-4.webp"
+                        srcSet="
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-4-480w.webp 480w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-4-640.webp 640w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-4-768.webp 768w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-4-1024w.webp 1024w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-4-1280w.webp 1280w"
                         alt="features Officials Judge image"
                       /> 
                     :
@@ -1623,6 +1716,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresJudgeImage"
                         src="/images/features/officialsJudge/featuresOfficialsJudge-5.webp"
+                        srcSet="
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-5-480w.webp 480w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-5-640.webp 640w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-5-768.webp 768w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-5-1024w.webp 1024w,
+                          /images/features/officialsJudge/srcset/featuresOfficialsJudge-5-1280w.webp 1280w"
                         alt="features Officials Judge image"
                       /> 
                     :
@@ -1683,6 +1782,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresRecordKeeperImage"
                         src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.webp"
+                        srcSet="
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-1-480w.webp 480w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-1-640.webp 640w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-1-768.webp 768w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-1-1024w.webp 1024w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-1-1280w.webp 1280w"
                         alt="features Officials RecordKeeper image"
                       /> 
                     :
@@ -1707,6 +1812,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresRecordKeeperImage"
                         src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.webp"
+                        srcSet="
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-2-480w.webp 480w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-2-640.webp 640w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-2-768.webp 768w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-2-1024w.webp 1024w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-2-1280w.webp 1280w"
                         alt="features Officials RecordKeeper image"
                       /> 
                     :
@@ -1731,6 +1842,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresRecordKeeperImage"
                         src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.webp"
+                        srcSet="
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-3-480w.webp 480w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-3-640.webp 640w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-3-768.webp 768w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-3-1024w.webp 1024w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-3-1280w.webp 1280w"
                         alt="features Officials RecordKeeper image"
                       /> 
                     :
@@ -1755,6 +1872,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresRecordKeeperImage"
                         src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.webp"
+                        srcSet="
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-4-480w.webp 480w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-4-640.webp 640w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-4-768.webp 768w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-4-1024w.webp 1024w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-4-1280w.webp 1280w"
                         alt="features Officials RecordKeeper image"
                       /> 
                     :
@@ -1779,6 +1902,12 @@ export default function Home() {
                       <FeaturesCardImage
                         className="featuresRecordKeeperImage"
                         src="/images/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.webp"
+                        srcSet="
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-5-480w.webp 480w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-5-640.webp 640w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-5-768.webp 768w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-5-1024w.webp 1024w,
+                          /images/features/officialsRecordKeeper/srcset/featuresOfficialsRecordKeeper-5-1280w.webp 1280w"
                         alt="features Officials RecordKeeper image"
                       /> 
                     :
@@ -1825,7 +1954,7 @@ export default function Home() {
           </div>
           <Benefits /* items={items} */ />
 
-          <CallToActionButton className="mmappBlockReveal mt-[5vw]" />
+          <CallToActionButton className="mmappBlockReveal mt-[5vw]" btnLabel="I want my Federation to join MMAPP" />
         </section>
 
         <div className="borderBottom"></div>

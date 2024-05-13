@@ -4,13 +4,14 @@ import { CardCallToActionFooter } from '@/components/ui/card-call-to-action'
 
 type CallToActionButtonProps = {
   className: string;
+  btnLabel: string;
 };
 
-const CallToActionButton = ({ className }: CallToActionButtonProps) => {
+const CallToActionButton = ({ className, btnLabel }: CallToActionButtonProps) => {
 
   return (
     <CardCallToActionFooter className={className}>
-      <DialogCTA title={""} btnLabel={"Request that your Federation join MMAPP"} />
+      <DialogCTA title={""} btnLabel={btnLabel} />
     </CardCallToActionFooter>
   )
 };

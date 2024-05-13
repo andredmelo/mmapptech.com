@@ -11,7 +11,7 @@ const items: AccordionFAQsItem[] = [
       "Whether you’re a Federation, an individual such as official, athlete or coach, or an entity like a Club or Promoter/Organizer, there are benefits in using the MMAPP Platform.",
     ],
   },
-  {
+  /* {
     header: "What tools are involved?",
     content: [
       "There are three components to the MMAPP Platform:",
@@ -22,7 +22,6 @@ const items: AccordionFAQsItem[] = [
       <br key="br3" />,
       "The “RecordKeeper” app, available only on Tablets, and is used by officials for scorekeeping and timekeeping purposes."
     ],
-      /* "There are three components to the MMAPP Platform: The Dashboard, which any member can access through any web browser; The “Judge” app, which is designed specifically for officials to access on their mobile devices; and the “RecordKeeper” app, available only on Tablets, and is used by officials for scorekeeping and timekeeping purposes.", */
   },
   {
     header: "How does it work?",
@@ -39,6 +38,18 @@ const items: AccordionFAQsItem[] = [
     content: [
       "The MMAPP Methodology is a patented two-in-one process that standardizes the assessment of fights. It includes a tool for applying the methodology, recording the assessment, and providing insights on the evaluation. This allows judges to be more consistent in their evaluations not only between themselves but also each other, reduces fatigue allowing officials to perform better for longer, and ensures athletes their fights are being held to the highest standard, mitigating unexpected results.",
     ],
+  }, */
+  {
+    header: "What do I need to use MMAPP?",
+    content: [
+      "The MMAPP Platform comprises three components:",
+      <br key="br1" />, // Use keys for list elements
+      "• The Dashboard, which allows any member to access their profile through any web browser",
+      <br key="br2" />,
+      "• The \"Judge\" app, which is exclusively designed for officials to use on their mobile devices during events to assign roles and judge fights",
+      <br key="br3" />,
+      "• The \"RecordKeeper\" app, which is only available on tablets and is used by officials for scorekeeping and timekeeping purposes."
+    ],
   },
   {
     header: "Does the public get to see the results?",
@@ -49,13 +60,19 @@ const items: AccordionFAQsItem[] = [
   {
     header: "What are the minimum/recommended requirements?",
     content: [
-      "You can find the Minimum and Recommended requirements in our Policies section.",
+      "You can find the Minimum and Recommended requirements for each device type ",
+      <a href="/company/policies/minimum-recommended-requirements" className="link-hover">at the following link</a>,
+      ".",
     ],
   },
   {
     header: "How do I know my information is safe?",
     content: [
       "MMAPP adheres to the strictest privacy policies and performs regular security checks to make sure that all information within the platform is secure.",
+      <br key="br1" />, // Use keys for list elements
+      "You can read more about this topic in our ",
+      <a href="/company#Policies" className="link-hover">Policies</a>,
+      " Section",
     ],
   },
   {
@@ -69,7 +86,9 @@ const items: AccordionFAQsItem[] = [
   {
     header: "How do I sign up?",
     content: [
-      "You can sign up by using your Federation’s registration forms. If you’re Federation hasn’t signed up for MMAPP yet, <let them know you’d like them to>.",
+      "You can sign up by using your Federation’s registration forms.",
+      <br key="br1" />, // Use keys for list elements
+      "If your Federation hasn’t signed up for MMAPP yet, use the above 'Request that your Federation join MMAPP' button to let them know you’d like them to.",
     ],
   },
   {
@@ -81,7 +100,15 @@ const items: AccordionFAQsItem[] = [
   {
     header: "How do I get in touch with you?",
     content: [
-      "Just below, you have a form for the different occasions you may want to contact us. By using the correct one, you are ensuring your message is directed to the most appropriate person.",
+      "Above, you have a form for the different occasions you may want to contact us.",
+      <br key="br1" />, // Use keys for list elements
+      "By using the correct one, you are ensuring your message is directed to the most appropriate person.",
+    ],
+  },
+  {
+    header: "I want to report a bug/submit feedback for the platform. How can I do that?",
+    content: [
+      "If you’d like to reach our support team about the MMAPP Platform, once logged in to your account you can submit a ticket through our feedback form, or you can click the “Submit Feedback” found on the top right.",
     ],
   },
 ];

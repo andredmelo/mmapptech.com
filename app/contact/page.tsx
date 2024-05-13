@@ -26,7 +26,7 @@ const Contacts = () => {
           <h5 className="mmappBlockReveal px-[3vw] md:px-[10vw] lg:px-[25vw] mb-4 md:mb-4 lg:mb-8 text-center text-neutral-200 leading-8 md:leading-[3rem] lg:leading-[4rem] deboss">
             If you&apos;d like to enjoy the many benefits of MMAPP yourself, contact your Federation and let them know you&apos;d like them to start using the platform.
           </h5>
-          <CallToActionButton className="mmappBlockReveal" />
+          <CallToActionButton className="mmappBlockReveal" btnLabel="Request my Federation to join MMAPP" />
         </section>
 
         <div className="borderBottom"></div>

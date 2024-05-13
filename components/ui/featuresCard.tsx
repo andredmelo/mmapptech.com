@@ -12,6 +12,7 @@ export interface FeaturesCardImageProps
   extends React.HTMLAttributes<HTMLImageElement> {
     src: string
     alt: string
+    srcSet?: string;
 }
 
 export interface FeaturesCardVideoProps
@@ -92,7 +93,7 @@ FeaturesCardDescription.displayName = "FeaturesCardDescription"
 const FeaturesCardImage = React.forwardRef<
   HTMLImageElement,
   FeaturesCardImageProps
->(({ className, src, alt, ...props }, ref) => (
+>(({ className, src, srcSet, alt, ...props }, ref) => (
 
   <div
     ref={ref}
@@ -104,6 +105,7 @@ const FeaturesCardImage = React.forwardRef<
   >
     <picture><img
       src={src}
+      srcSet={srcSet}
       ref={ref}
       alt={alt}
       className={cn(

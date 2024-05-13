@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   manifest: '/public/images/logos/mmapp/manifest.json',
   referrer: 'origin-when-cross-origin',
-  keywords: ['MMA', 'MMAPP'],
+  keywords: ['MMA', 'Fighting', 'Judging', 'Timekeeper', 'Timekeeping', 'Scorekeeper', 'Scorekeeping', 'Methodology', 'Referee', 'Refereeing', 'Officials', 'Regulatory', 'Federations', 'Athletic Commission', 'IMMAF', 'Bellator', 'UFC', 'One', 'Rizin', 'Cage Warriors', 'Academy'],
   creator: 'André Melo',
-  authors: [{ name: "André Melo", url: "https://andre1melo.com" },{ name: 'Pedro Marques', url: 'https://www.linkedin.com/in/smoothmarx/' }],
+  authors: [{ name: "André Melo", url: "https://andre1melo.com" },{ name: 'MMAPP Technologies', url: 'https://www.linkedin.com/company/mmapp-technologies/'}],
   formatDetection: {
     email: false,
     address: false,
@@ -52,15 +52,6 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
-  /* twitter: {
-    card: 'summary_large_image',
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
-    siteId: '1467726470533754880',
-    creator: '@nextjs',
-    creatorId: '1467726470533754880',
-    images: ['https://nextjs.org/og.png'], // Must be an absolute URL
-  }, */
   appLinks: {
     ios: {
       url: 'https://apps.apple.com/us/app/mmapp-judge/id6446885768',
@@ -108,20 +99,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html className={`${inter.variable} ${CalSans.variable}`}>
-      {/* <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta property="og:title" content="MMAPP" />
-        <meta property="og:description" content="Mapping MMA" />
-        <meta property="og:image" content="@/public/images/logos/mmapp/logo.webp" />
-        <link rel="icon" href="@/public/images/logos/mmapp/logo.ico" />
-        <link rel="apple-touch-icon" href="@/public/images/logos/mmapp/logo.webp" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
-      </head> */}
-      {/* <!-- Google tag (gtag.js) --> */}
+    <html className={`${inter.variable} ${CalSans.variable}`} lang="en">
       <GoogleTagManager gtmId="G-XKR4VB95HV" />
       <SpeedInsights/>
       <MmappRootLayout>

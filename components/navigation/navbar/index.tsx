@@ -316,6 +316,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/#Home"
+                              aria-label="MMAPP Tech Home"
                               data-page="/"
                               data-link="#Home"
                               className="dropdown-link">
@@ -325,6 +326,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/#OurExpertise"
+                              aria-label="MMAPP Tech Our Expertise"
                               data-page="/"
                               data-link="#OurExpertise"
                               className="dropdown-link">
@@ -334,6 +336,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/#Features"
+                              aria-label="MMAPP Tech Features"
                               data-page="/"
                               data-link="#Features"
                               className="dropdown-link">
@@ -343,6 +346,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/#Benefits"
+                              aria-label="MMAPP Tech Benefits"
                               data-page="/"
                               data-link="#Benefits"
                               className="dropdown-link">
@@ -361,6 +365,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/#ContactUs"
+                              aria-label="MMAPP Tech Contact Us"
                               data-page="/"
                               data-link="#ContactUs"
                               className="dropdown-link">
@@ -384,6 +389,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/company#Mission"
+                              aria-label="MMAPP Tech Mission"
                               data-page="/company"
                               data-link="#Mission"
                               className="dropdown-link">
@@ -393,6 +399,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/company#Vision"
+                              aria-label="MMAPP Tech Vision"
                               data-page="/company"
                               data-link="#Vision"
                               className="dropdown-link">
@@ -402,6 +409,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/company#CoreValues"
+                              aria-label="MMAPP Tech Core Values"
                               data-page="/company"
                               data-link="#CoreValues"
                               className="dropdown-link">
@@ -411,6 +419,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/company#SecurityCompliance"
+                              aria-label="MMAPP Tech Security & Compliance"
                               data-page="/company"
                               data-link="#SecurityCompliance"
                               className="dropdown-link">
@@ -420,6 +429,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                             <a
                               href="/company#Policies"
+                              aria-label="MMAPP Tech Policies"
                               data-page="/company"
                               data-link="#Policies"
                               className="dropdown-link">
@@ -441,6 +451,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#MMAPP-Methodology"
+                            aria-label="MMAPP Tech MMAPP Methodology"
                             data-page="/product"
                             data-link="#MMAPP-Methodology"
                             className="dropdown-link">
@@ -450,6 +461,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#Judge"
+                            aria-label="MMAPP Tech Judge"
                             data-page="/product"
                             data-link="#Judge"
                             className="dropdown-link">
@@ -459,6 +471,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#RecordKeeper"
+                            aria-label="MMAPP Tech RecordKeeper"
                             data-page="/product"
                             data-link="#RecordKeeper"
                             className="dropdown-link">
@@ -468,6 +481,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#Dashboard"
+                            aria-label="MMAPP Tech Dashboard"
                             data-page="/product"
                             data-link="#Dashboard"
                             className="dropdown-link">
@@ -477,6 +491,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#Dashboard-Members"
+                            aria-label="MMAPP Tech Dashboard (Members)"
                             data-page="/product"
                             data-link="#Dashboard-Members"
                             className="dropdown-link">
@@ -486,6 +501,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/product#ContactUs"
+                            aria-label="MMAPP Tech Contact Us"
                             data-page="/product"
                             data-link="#ContactUs"
                             className="dropdown-link">
@@ -505,6 +521,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/contact#ContactInfo"
+                            aria-label="MMAPP Tech Contact Info"
                             data-page="/contact"
                             data-link="#ContactInfo"
                             className="dropdown-link">
@@ -514,6 +531,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         <li role="menuitem">
                           <a
                             href="/contact#FAQSupport"
+                            aria-label="MMAPP Tech FAQs & Support"
                             data-page="/contact"
                             data-link="#FAQSupport"
                             className="dropdown-link">
@@ -539,12 +557,12 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         Judge
                       </p>
                       <div className="flex flex-row space-x-3">
-                        <a href="https://apps.apple.com/us/app/mmapp-judge/id6446885768" target="_blank" rel="noopener noreferrer" className="">
+                        <a href="https://apps.apple.com/us/app/mmapp-judge/id6446885768" aria-label="MMAPP Judge IOS App" target="_blank" rel="noopener noreferrer" className="">
                           <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 -3.552713678800501e-15 820 950" fill="rgb(200, 200, 200)" stroke="none" strokeWidth={0} strokeLinecap="round" strokeLinejoin="round" className="judge apple w-24 h-24 p-4">
                             <path d="M404.345 229.846c52.467 0 98.494-20.488 138.08-61.465s59.38-88.626 59.38-142.947c0-5.966-.472-14.444-1.414-25.434-6.912.942-12.096 1.727-15.552 2.355-48.383 6.908-90.954 30.615-127.713 71.12-36.758 40.506-55.137 83.838-55.137 129.996 0 5.337.785 14.13 2.356 26.375zM592.379 950c37.387 0 78.701-25.59 123.943-76.772S796.122 761.915 820 692.836c-88.912-45.844-133.368-111.626-133.368-197.348 0-71.591 35.973-132.82 107.92-183.688-49.954-62.486-115.931-93.729-197.931-93.729-34.56 0-66.134 5.181-94.724 15.543l-17.908 6.594-24.035 9.42c-15.709 5.966-30.004 8.95-42.885 8.95-10.054 0-23.25-3.455-39.586-10.363l-18.38-7.536-17.436-7.065c-25.449-10.676-52.782-16.014-82-16.014-78.23 0-141.065 26.376-188.506 79.128C23.72 349.479 0 419.03 0 505.379c0 121.517 38.015 233.772 114.046 336.763C166.828 914.047 215.054 950 258.724 950c18.537 0 36.916-3.611 55.138-10.833l23.092-9.42 18.38-6.594c25.762-9.106 49.482-13.659 71.16-13.659 22.935 0 49.326 5.81 79.173 17.427l14.609 5.652C550.75 944.191 574.786 950 592.379 950z"></path>
                           </svg>
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.mmapp.mobile" target="_blank" rel="noopener noreferrer" className="">
+                        <a href="https://play.google.com/store/apps/details?id=com.mmapp.mobile" aria-label="MMAPP Judge Android App" target="_blank" rel="noopener noreferrer" className="">
                           <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="42.544 -.671 467.96 553.72" fill="rgb(200, 200, 200)" stroke="none" strokeWidth={0} strokeLinecap="round" strokeLinejoin="round" className="judge android w-24 h-24 p-4">
                             <path d="m76.774 179.141c-9.529 0-17.614 3.323-24.26 9.969s-9.97 14.621-9.97 23.929v142.914c0 9.541 3.323 17.619 9.97 24.266 6.646 6.646 14.731 9.97 24.26 9.97 9.522 0 17.558-3.323 24.101-9.97 6.53-6.646 9.804-14.725 9.804-24.266v-142.914c0-9.309-3.323-17.283-9.97-23.929s-14.627-9.969-23.935-9.969zm275.198-128.294 23.598-43.532c1.549-2.882.998-5.092-1.658-6.646-2.883-1.34-5.098-.661-6.646 1.989l-23.928 43.88c-21.055-9.309-43.324-13.972-66.807-13.972-23.488 0-45.759 4.664-66.806 13.972l-23.929-43.88c-1.555-2.65-3.77-3.323-6.646-1.989-2.662 1.561-3.213 3.764-1.658 6.646l23.599 43.532c-23.929 12.203-42.987 29.198-57.167 51.022-14.18 21.836-21.273 45.698-21.273 71.628h307.426c0-25.924-7.094-49.787-21.273-71.628-14.181-21.824-33.129-38.819-56.832-51.022zm-136.433 63.318c-2.552 2.558-5.6 3.831-9.143 3.831-3.55 0-6.536-1.273-8.972-3.831-2.436-2.546-3.654-5.582-3.654-9.137 0-3.543 1.218-6.585 3.654-9.137 2.436-2.546 5.429-3.819 8.972-3.819s6.591 1.273 9.143 3.819c2.546 2.558 3.825 5.594 3.825 9.137-.007 3.549-1.285 6.591-3.825 9.137zm140.086 0c-2.441 2.558-5.434 3.831-8.971 3.831-3.551 0-6.598-1.273-9.145-3.831-2.551-2.546-3.824-5.582-3.824-9.137 0-3.543 1.273-6.585 3.824-9.137 2.547-2.546 5.594-3.819 9.145-3.819 3.543 0 6.529 1.273 8.971 3.819 2.438 2.558 3.654 5.594 3.654 9.137 0 3.549-1.217 6.591-3.654 9.137zm-231.654 292.639c0 10.202 3.543 18.838 10.63 25.925 7.093 7.087 15.729 10.63 25.924 10.63h24.596l.337 75.454c0 9.528 3.323 17.619 9.969 24.266s14.627 9.97 23.929 9.97c9.523 0 17.613-3.323 24.26-9.97s9.97-14.737 9.97-24.266v-75.447h45.864v75.447c0 9.528 3.322 17.619 9.969 24.266s14.73 9.97 24.26 9.97c9.523 0 17.613-3.323 24.26-9.97s9.969-14.737 9.969-24.266v-75.447h24.928c9.969 0 18.494-3.544 25.594-10.631 7.086-7.087 10.631-15.723 10.631-25.924v-221.361h-305.09zm352.304-227.663c-9.309 0-17.283 3.274-23.93 9.804-6.646 6.542-9.969 14.578-9.969 24.094v142.914c0 9.541 3.322 17.619 9.969 24.266s14.627 9.97 23.93 9.97c9.523 0 17.613-3.323 24.26-9.97s9.969-14.725 9.969-24.266v-142.914c0-9.517-3.322-17.552-9.969-24.094-6.647-6.53-14.737-9.804-24.26-9.804z"></path>
                           </svg>
@@ -557,12 +575,12 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         RecordKeeper
                       </p>
                       <div className="flex flex-row space-x-3">
-                        <a href="https://apps.apple.com/us/app/mmapp-recordkeeper/id6446888381" target="_blank" rel="noopener noreferrer" className="">
+                        <a href="https://apps.apple.com/us/app/mmapp-recordkeeper/id6446888381" aria-label="MMAPP RecordKeeper IOS App" target="_blank" rel="noopener noreferrer" className="">
                           <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="0 -3.552713678800501e-15 820 950" fill="rgb(200, 200, 200)" stroke="none" strokeWidth={0} strokeLinecap="round" strokeLinejoin="round" className="recordKeeper apple w-24 h-24 p-4">
                             <path d="M404.345 229.846c52.467 0 98.494-20.488 138.08-61.465s59.38-88.626 59.38-142.947c0-5.966-.472-14.444-1.414-25.434-6.912.942-12.096 1.727-15.552 2.355-48.383 6.908-90.954 30.615-127.713 71.12-36.758 40.506-55.137 83.838-55.137 129.996 0 5.337.785 14.13 2.356 26.375zM592.379 950c37.387 0 78.701-25.59 123.943-76.772S796.122 761.915 820 692.836c-88.912-45.844-133.368-111.626-133.368-197.348 0-71.591 35.973-132.82 107.92-183.688-49.954-62.486-115.931-93.729-197.931-93.729-34.56 0-66.134 5.181-94.724 15.543l-17.908 6.594-24.035 9.42c-15.709 5.966-30.004 8.95-42.885 8.95-10.054 0-23.25-3.455-39.586-10.363l-18.38-7.536-17.436-7.065c-25.449-10.676-52.782-16.014-82-16.014-78.23 0-141.065 26.376-188.506 79.128C23.72 349.479 0 419.03 0 505.379c0 121.517 38.015 233.772 114.046 336.763C166.828 914.047 215.054 950 258.724 950c18.537 0 36.916-3.611 55.138-10.833l23.092-9.42 18.38-6.594c25.762-9.106 49.482-13.659 71.16-13.659 22.935 0 49.326 5.81 79.173 17.427l14.609 5.652C550.75 944.191 574.786 950 592.379 950z"></path>
                           </svg>
                         </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.mmapp_central&hl=pt_PT&gl=US" target="_blank" rel="noopener noreferrer" className="">
+                        <a href="https://play.google.com/store/apps/details?id=com.mmapp_central&hl=pt_PT&gl=US" aria-label="MMAPP RecordKeeper Android App" target="_blank" rel="noopener noreferrer" className="">
                           <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} viewBox="42.544 -.671 467.96 553.72" fill="rgb(200, 200, 200)" stroke="none" strokeWidth={0} strokeLinecap="round" strokeLinejoin="round" className="recordKeeper android w-24 h-24 p-4">
                             <path d="m76.774 179.141c-9.529 0-17.614 3.323-24.26 9.969s-9.97 14.621-9.97 23.929v142.914c0 9.541 3.323 17.619 9.97 24.266 6.646 6.646 14.731 9.97 24.26 9.97 9.522 0 17.558-3.323 24.101-9.97 6.53-6.646 9.804-14.725 9.804-24.266v-142.914c0-9.309-3.323-17.283-9.97-23.929s-14.627-9.969-23.935-9.969zm275.198-128.294 23.598-43.532c1.549-2.882.998-5.092-1.658-6.646-2.883-1.34-5.098-.661-6.646 1.989l-23.928 43.88c-21.055-9.309-43.324-13.972-66.807-13.972-23.488 0-45.759 4.664-66.806 13.972l-23.929-43.88c-1.555-2.65-3.77-3.323-6.646-1.989-2.662 1.561-3.213 3.764-1.658 6.646l23.599 43.532c-23.929 12.203-42.987 29.198-57.167 51.022-14.18 21.836-21.273 45.698-21.273 71.628h307.426c0-25.924-7.094-49.787-21.273-71.628-14.181-21.824-33.129-38.819-56.832-51.022zm-136.433 63.318c-2.552 2.558-5.6 3.831-9.143 3.831-3.55 0-6.536-1.273-8.972-3.831-2.436-2.546-3.654-5.582-3.654-9.137 0-3.543 1.218-6.585 3.654-9.137 2.436-2.546 5.429-3.819 8.972-3.819s6.591 1.273 9.143 3.819c2.546 2.558 3.825 5.594 3.825 9.137-.007 3.549-1.285 6.591-3.825 9.137zm140.086 0c-2.441 2.558-5.434 3.831-8.971 3.831-3.551 0-6.598-1.273-9.145-3.831-2.551-2.546-3.824-5.582-3.824-9.137 0-3.543 1.273-6.585 3.824-9.137 2.547-2.546 5.594-3.819 9.145-3.819 3.543 0 6.529 1.273 8.971 3.819 2.438 2.558 3.654 5.594 3.654 9.137 0 3.549-1.217 6.591-3.654 9.137zm-231.654 292.639c0 10.202 3.543 18.838 10.63 25.925 7.093 7.087 15.729 10.63 25.924 10.63h24.596l.337 75.454c0 9.528 3.323 17.619 9.969 24.266s14.627 9.97 23.929 9.97c9.523 0 17.613-3.323 24.26-9.97s9.97-14.737 9.97-24.266v-75.447h45.864v75.447c0 9.528 3.322 17.619 9.969 24.266s14.73 9.97 24.26 9.97c9.523 0 17.613-3.323 24.26-9.97s9.969-14.737 9.969-24.266v-75.447h24.928c9.969 0 18.494-3.544 25.594-10.631 7.086-7.087 10.631-15.723 10.631-25.924v-221.361h-305.09zm352.304-227.663c-9.309 0-17.283 3.274-23.93 9.804-6.646 6.542-9.969 14.578-9.969 24.094v142.914c0 9.541 3.322 17.619 9.969 24.266s14.627 9.97 23.93 9.97c9.523 0 17.613-3.323 24.26-9.97s9.969-14.725 9.969-24.266v-142.914c0-9.517-3.322-17.552-9.969-24.094-6.647-6.53-14.737-9.804-24.26-9.804z"></path>
                           </svg>

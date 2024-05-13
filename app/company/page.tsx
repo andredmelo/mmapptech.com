@@ -24,6 +24,7 @@ gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
 const Company = (props: any) => {
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isUnder768 = useMediaQuery('(max-width: 767px)');
+  const isUnder1280 = useMediaQuery('(max-width: 1279px)');
   
   //console.log(props);
   /* const router = useRouter();
@@ -63,6 +64,15 @@ const Company = (props: any) => {
   { dependencies: [horizontalLoop], revertOnUpdate: true, /* scope: main */ }
   );
 
+
+  let companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-XL.webp";
+  if (isUnder1280) {
+    companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-MD.webp";
+    if (isUnder768) {
+      companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-SM.webp";
+    }
+  }
+
   return (
     <>
       <PagesTransitionScroll />
@@ -94,7 +104,7 @@ const Company = (props: any) => {
               Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src="/images/company/companyMMAFighterPreparingBandages4Training-XL.webp" alt="MMA fighter preparing bandages for training"/></picture>
+            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src={companyMMAFighterPreparingBandages4Training} alt="MMA fighter preparing bandages for training"/></picture>
           </MainFC>
         </section>
 
