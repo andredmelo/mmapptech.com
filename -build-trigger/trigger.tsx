@@ -1,2 +1,2 @@
-let vNumber = "v0.9-β.6 | Removed IntersectionObserver on R3F 3D Models loader. Various preLoading optimizations.";
+let vNumber = "v0.9-β.6.1 | 3D cage references commented.";
 

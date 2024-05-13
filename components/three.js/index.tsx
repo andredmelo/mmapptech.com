@@ -41,13 +41,13 @@ const IPhoneBobAnimation = ({ iPhoneRef }: { iPhoneRef: React.RefObject<Mesh> })
 
 
 // Home Cage R3F
-export const HomeCageR3F: React.FC = () => {
+/* export const HomeCageR3F: React.FC = () => {
   const { cage } = useLoadAssets();
   const container = useRef(null);
   const cageRef = useRef<Mesh>(null);
   
   const { setHeroIntro3DComplete } = useHeroIntroContext();
-  /* ===== GSAP React ===== */
+  // ===== GSAP React ===== //
   useGSAP(
     () => {
       gsap.set(".HomeCageR3F", {autoAlpha:0});
@@ -62,14 +62,14 @@ export const HomeCageR3F: React.FC = () => {
               paused:true,
               delay:0,
               fastScrollEnd: 3000,
-              /* onUpdate: () => {
-                //console.log(cageHomeAnimIn.progress());
-                if (cageHomeAnimIn.progress() > 0.9 && !isHeroIntro3DOver90) {
-                  isHeroIntro3DOver90 = true; // Set the flag to true
-                  setHeroIntro3DComplete(true); // Set the completion state
-                  console.log("cageHomeAnimIn progress over 90%");
-                }
-              }, */
+              // onUpdate: () => {
+              //  //console.log(cageHomeAnimIn.progress());
+              //  if (cageHomeAnimIn.progress() > 0.9 && !isHeroIntro3DOver90) {
+              //    isHeroIntro3DOver90 = true; // Set the flag to true
+              //    setHeroIntro3DComplete(true); // Set the completion state
+              //    console.log("cageHomeAnimIn progress over 90%");
+              //  }
+              //},
               onComplete: () => {
                 //console.log("cageHomeAnimIn completed");
                 //setHeroIntro3DComplete(true); // Set the completion state
@@ -105,7 +105,7 @@ export const HomeCageR3F: React.FC = () => {
       </Canvas>
     </div>
   )
-}
+} */
 
 // Home iPhone Intro R3F
 export const HomeiPhoneIntroR3F: React.FC = () => {
@@ -319,7 +319,7 @@ interface HomeFeaturesR3FLoadedProps {
 }
 // Home Features
 export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded }) => {
-  const { iPhone, iPad, macBookPro, cage, textures } = useLoadAssets();
+  const { iPhone, iPad, macBookPro, /* cage, */ textures } = useLoadAssets();
   const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
@@ -1201,7 +1201,7 @@ export const HomeIntroR3F: React.FC = () => {
 
 // TestR3F
 export const TestR3F: React.FC = () => {
-  const { iPhone, iPad, macBookPro, cage, textures } = useLoadAssets();
+  const { iPhone, iPad, macBookPro, /* cage, */ textures } = useLoadAssets();
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
   const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
@@ -1274,7 +1274,7 @@ export const TestR3F: React.FC = () => {
       }, 50); // Check every 50ms
 
 
-      const TestcageR3F = setInterval(() => {
+      /* const TestcageR3F = setInterval(() => {
         if (cage?.scene) {
           clearInterval(TestcageR3F);
 
@@ -1290,11 +1290,11 @@ export const TestR3F: React.FC = () => {
             //.fromTo(cage.scene.position, {y: -0.65}, {y: -0.55, ease:"power1.out", duration:1.5}, 1.5) 
           cageHomeAnimIn.play()
         }
-      }, 50); // Check every 50ms
+      }, 50); // Check every 50ms */
 
       /* GSDevTools.create(); */
     },
-    { dependencies: [iPhone?.scene, iPad?.scene, macBookPro?.scene, cage?.scene], revertOnUpdate: true }
+    { dependencies: [iPhone?.scene, iPad?.scene, macBookPro?.scene, /* cage?.scene */], revertOnUpdate: true }
   );
 
   return (
@@ -1320,9 +1320,9 @@ export const TestR3F: React.FC = () => {
             <MacBookProModel macBookPro={macBookPro} textures={textures} innerRef={macBookProRef}/>
           )} */}
 
-          {cage && (
+          {/* {cage && (
             <CageModel cage={cage} innerRef={cageRef}/>
-          )}
+          )} */}
 
           {/* <IPhoneBobAnimation iPhoneRef={iPhoneRef} /> */}
 
