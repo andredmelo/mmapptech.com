@@ -12,9 +12,9 @@ type Sitemap = Array<{
     | 'yearly'
     | 'never'
   priority?: number
-  alternates?: {
+  /* alternates?: {
     languages?: Languages<string>
-  }
+  } */
 }>
 
 export default function sitemap(): MetadataRoute.Sitemap {
