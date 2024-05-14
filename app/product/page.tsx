@@ -842,6 +842,7 @@ const Product = () => {
       <MmappSequentialParagraphsReveal onReady={handleAnimationReady}  />
       {animationsReady && (
         <div className="productPage">
+          <title>Product | MMAPP</title>
 
           <section id="MMAPP-Methodology" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 md:pt-[0vw] lg:pt-[0vw]">
             <ProductFC className="px-[5vw] pb-[12vw] md:px-[7.65vw] pt-24 md:pt-56 lg:pt-72 md:pb-[1vw] bg-bgRadialGradientDown overflow-hidden">

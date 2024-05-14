@@ -81,6 +81,7 @@ const Company = (props: any) => {
       <MmappParagraphsReveal onReady={()=>{}} />
       <MmappSequentialParagraphsReveal onReady={()=>{}} />
       <div className="companyPage">
+        <title>Company | MMAPP</title>
 
         <section id="Mission" className="w-full flex flex-col pt-0 py-32 md:py-40 lg:py-12 lg:mb-16">
 

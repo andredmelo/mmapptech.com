@@ -168,7 +168,7 @@
   --primary-blue: rgb(40, 45, 215);
   --primary-red: rgb(204, 0, 0);
   --secondary-red: hsl(0, 100%, 30%);
-  --primary-fuchsia: #800080;
+  --primary-fuchsia: rgb(128, 0, 128);
   --primary-fuchsia-dark1: #660066;
   --primary-fuchsia-dark2: #570057;
   --primary-fuchsia-dark3: #4d004d;
@@ -711,6 +711,63 @@ animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 .animate-ping-center {
   animation: ping-center 4s cubic-bezier(0.8, 0, 1, 1) infinite;
+}
+
+@keyframes spinner-3d {
+  0% {
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+  }
+
+  50% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+  }
+
+  100% {
+    transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+  }
+}
+
+.threeDspinner {
+  width: 88px;
+  height: 88px;
+  animation: spinner-3d 3s infinite ease;
+  transform-style: preserve-3d;
+}
+
+.threeDspinner > div {
+  background-color: rgba(128, 0, 128, 0.4);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  border: 2px solid #ffff;
+}
+
+.threeDspinner div:nth-of-type(1) {
+  transform: translateZ(-44px) rotateY(180deg);
+}
+
+.threeDspinner div:nth-of-type(2) {
+  transform: rotateY(-270deg) translateX(50%);
+  transform-origin: top right;
+}
+
+.threeDspinner div:nth-of-type(3) {
+  transform: rotateY(270deg) translateX(-50%);
+  transform-origin: center left;
+}
+
+.threeDspinner div:nth-of-type(4) {
+  transform: rotateX(90deg) translateY(-50%);
+  transform-origin: top center;
+}
+
+.threeDspinner div:nth-of-type(5) {
+  transform: rotateX(-90deg) translateY(50%);
+  transform-origin: bottom center;
+}
+
+.threeDspinner div:nth-of-type(6) {
+  transform: translateZ(44px);
 }
 
 /* ========= NavBar ============*/

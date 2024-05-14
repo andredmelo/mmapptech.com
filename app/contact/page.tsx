@@ -17,6 +17,7 @@ const Contacts = () => {
       <MmappParagraphsReveal /> */}
 
       <div className="contactUsPage">
+        <title>Contacts | MMAPP</title>
 
         <section id="ContactInfo" className="flex flex-col justify-center items-center py-24 md:py-40 lg:py-52 mt-6 md:mt-0">
           <CallToActionFederationsButton className="mmappBlockReveal" />

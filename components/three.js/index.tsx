@@ -319,7 +319,7 @@ interface HomeFeaturesR3FLoadedProps {
 }
 // Home Features
 export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded }) => {
-  const { iPhone, iPad, macBookPro, /* cage, */ textures } = useLoadAssets();
+  const { iPhone, iPad, macBookPro, /* cage, */ textures, isLoading } = useLoadAssets();
   const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
   const { setiPhoneOpacity } = useContext(IPhoneOpacityContext);
   const { setiPadOpacity } = useContext(IPadOpacityContext);
@@ -334,10 +334,10 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
   //This is to provide the loading state to the parent to trigger the Manual ScrollTrigger
   useEffect(() => {
     // Ensure onLoaded is called only if it's provided
-    if (onLoaded) {
+    if (!isLoading) {
       onLoaded();
     }
-  }, [onLoaded]);
+  }, [isLoading]);
 
   /* ===== GSAP React ===== */
   useGSAP(
@@ -1053,7 +1053,40 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
     { dependencies: [macBookPro?.scene, iPhone?.scene, iPad?.scene, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity], revertOnUpdate: true }
   );
 
-  //border-2 border-red-600
+  if (isLoading) {
+    return <>
+      <div id="secondary3DLoading" className="relative w-full h-0 overflow-visible">
+        <div className="absolute z-[500] top-0 left-0 flex flex-col items-center justify-center w-full h-[50svh] bg-transparent">
+          <div className="flex flex-col items-center mb-16 text-left">
+            {/* <picture className="mb-6 w-[25vw]">
+              <img src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>
+            </picture> */}
+            <h4 className="mb-6 tracking-tight text-white animate-pulse">Loading</h4>
+            <h4 className="mb-24 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100 animate-pulse">3D Models and Textures</h4>
+            <div className="flex-col gap-4 w-full flex items-center justify-center">
+              <div className="flex items-center justify-center">
+                <div className="threeDspinner">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                {/* <svg
+                  className="animate-spin"
+                  xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                  viewBox="0 0 48 48" fill="none"
+                >
+                  <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
+                </svg> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>;
+  }
 
   return (
     <div ref={container} className="homeFeaturesR3FViewer hidden md:block absolute z-[50] w-auto h-auto min-w-[100vw] min-h-[100svh] max-w-[100vw] max-h-[100svh] overflow-visible">

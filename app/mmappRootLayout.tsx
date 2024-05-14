@@ -1,8 +1,34 @@
 "use client";
+import dynamic from 'next/dynamic';
 import { useState, useRef, useEffect, useTransition, Suspense } from 'react';
 import { useRouter, usePathname } from "next/navigation";
 import { isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 import { useMediaQuery } from '@react-hook/media-query';
+//import Loading from "@/app/loading";
+const Loading = dynamic(() => import('@/app/loading'), {
+  loading: () => 
+    <div id="initalLoading" className="absolute z-[11] top-0 left-0 flex flex-col items-center justify-center w-screen h-screen">
+      <div className="flex flex-col items-center mb-16 text-left">
+        <picture className="mb-6 w-[25vw]">
+          <img src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>
+        </picture>
+        <h5 className="text-white mb-6 animate-pulse">Loading Assets</h5>
+        <div className="flex-col gap-4 w-full flex items-center justify-center">
+          <div className="flex items-center justify-center">
+            <svg
+              className="animate-spin"
+              xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+              viewBox="0 0 48 48" fill="none"
+            >
+              <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ssr: false
+});
+
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -11,7 +37,6 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 import "@/app/globals.css";
 import Navbar from "@/components/navigation/navbar";
 import Footer from "@/app/footer";
-import Loading from "@/app/loading";
 import { AppContext } from '@/lib/contexts/AppContext';
 import ToasterProviders from '@/lib/providers/toasterProviders'
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
@@ -246,10 +271,17 @@ return (
             <Navbar />
             <div id="smooth-wrapper">
               <div id="smooth-content">
-                {<Loading />}
+                <Loading />
                 <main id="main" className="templateAnimIn">
                   {children}
                 </main>
+
+                {/* <Loading />
+                <Suspense fallback={<Loading />}>
+                  <main id="main" className="templateAnimIn">
+                    {children}
+                  </main>
+                </Suspense> */}
 
                 {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
                   <main id="main" className="templateAnimIn">{children}</main>

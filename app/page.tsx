@@ -36,7 +36,37 @@ import ProgressCircle from '@/components/ui/svg/progressCircle'
 //import { HomeCageR3F } from '@/components/three.js';
 //const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import dynamic from 'next/dynamic';
-const HomeFeaturesR3F = dynamic(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })), { ssr: false });
+const HomeFeaturesR3F = dynamic(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })), {
+  loading: () => 
+    <div id="initial3DLoading" className="relative w-full h-0 overflow-visible">
+      <div className="absolute z-[999] top-0 left-0 flex flex-col items-center justify-center w-full h-[50svh]">
+        <div className="flex flex-col items-center mb-16 text-left">
+          <h4 className="mb-6 tracking-tight text-white animate-pulse">Loading</h4>
+          <h4 className="mb-24 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100 animate-pulse">3D Models and Textures</h4>
+          <div className="flex-col gap-4 w-full flex items-center justify-center">
+            <div className="flex items-center justify-center">
+              <div className="threeDspinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              {/* <svg
+                className="animate-spin"
+                xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                viewBox="0 0 48 48" fill="none"
+              >
+                <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
+              </svg> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>,
+  ssr: false
+});
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
 
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
@@ -50,9 +80,12 @@ export default function Home() {
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
   const isTouch = useMediaQuery('(hover: none)');
+  const isUnder480 = useMediaQuery('(max-width: 479px)');
+  const isUnder640 = useMediaQuery('(max-width: 639px)');
   const isUnder768 = useMediaQuery('(max-width: 767px)');
-  const isUnder1280 = useMediaQuery('(max-width: 1280px)');
-  const isUnder1536 = useMediaQuery('(max-width: 1536px)');
+  const isUnder1024 = useMediaQuery('(max-width: 1023px)');
+  const isUnder1280 = useMediaQuery('(max-width: 1279px)');
+  const isUnder1536 = useMediaQuery('(max-width: 1535px)');
   const isOver1280 = useMediaQuery('(min-width: 1280px)');
   const isOver1536 = useMediaQuery('(min-width: 1536px)');
 
@@ -78,32 +111,88 @@ export default function Home() {
   }, [readyCount]);
 
   // preLoad Hero Assets
-  let heroVideo = "/videos/hero/hero.1080p.mp4";
-  if (isUnder768) {
-    heroVideo = "/videos/hero/hero.720p.mp4";
-  }
-  let heroFighterRight = "/images/hero/fighter_red_2xl.webp";
-  if (isUnder1280) {
-    heroFighterRight = "/images/hero/fighter_red_xl.webp";
-    if (isUnder768) {
-      heroFighterRight = "/images/hero/fighter_red_md.webp";
-    }
-  }
-  let heroFighterLeft = "/images/hero/fighter_blue_2xl.webp";
-  if (isUnder1280) {
-    heroFighterLeft = "/images/hero/fighter_blue_xl.webp";
-    if (isUnder768) {
-      heroFighterLeft = "/images/hero/fighter_blue_md.webp";
-    }
-  }
-  let heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
-  if (isLandscape) {
-    heroLogo = "/images/logos/mmapp/white_logo_on_black.svg";
-  } else {
-    heroLogo = "/images/logos/mmapp/white_logo_on_black80perc.svg";
-  }
+  const [heroVideo, setHeroVideo] = useState("");
+  const [heroFighterRight, setHeroFighterRight] = useState("");
+  const [heroFighterLeft, setHeroFighterLeft] = useState("");
+  const [heroLogo, setHeroLogo] = useState("");
+  const [judge, setJudge] = useState("");
+  const [heroIntroStageReady, setHeroIntroStageReady] = useState(false);
+  const [dashboardVideos, setDashboardVideos] = useState<string[]>([]);
+  const [judgeVideos, setJudgeVideos] = useState<string[]>([]);
+  const [recordKeeperVideos, setRecordKeeperVideos] = useState<string[]>([]);
+  //const [dashboardVideo, setDashboardVideo] = useState("/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4");
 
-  preload(heroVideo, {
+  useEffect(() => {
+    let video = "/videos/hero/hero.1920w.mp4";
+    if (isUnder768) {
+      video = "/videos/hero/hero.768w.mp4";
+    } else if (isUnder1024) {
+      video = "/videos/hero/hero.1024w.mp4";
+    } else if (isUnder1280) {
+      video = "/videos/hero/hero.1280w.mp4";
+    } else if (isUnder1536) {
+      video = "/videos/hero/hero.1536w.mp4";
+    }
+    setHeroVideo(video);
+
+    let fighterRight = "/images/hero/fighter_red_2xl.webp";
+    if (isUnder768) {
+      fighterRight = "/images/hero/fighter_red_md.webp";
+    } else if (isUnder1280) {
+      fighterRight = "/images/hero/fighter_red_xl.webp";
+    }
+    setHeroFighterRight(fighterRight);
+
+    let fighterLeft = "/images/hero/fighter_blue_2xl.webp";
+    if (isUnder768) {
+      fighterLeft = "/images/hero/fighter_blue_md.webp";
+    } else if (isUnder1280) {
+      fighterLeft = "/images/hero/fighter_blue_xl.webp";
+    }
+    setHeroFighterLeft(fighterLeft);
+
+    let logo = "/images/logos/mmapp/white_logo_on_black.svg";
+    if (isLandscape) {
+      logo = "/images/logos/mmapp/white_logo_on_black.svg";
+    } else {
+      logo = "/images/logos/mmapp/white_logo_on_black80perc.svg";
+    }
+    setHeroLogo(logo);
+
+    let judge = "/images/hero/judge.webp";
+    if (isUnder480) {
+      judge = "/images/hero/srcset/judge-480w.webp";
+    } else if (isUnder640) {
+      judge = "/images/hero/srcset/judge-640w.webp";
+    } else if (isUnder768) {
+      judge = "/images/hero/srcset/judge-768w.webp";
+    } else if (isUnder1024) {
+      judge = "/images/hero/srcset/judge-1024w.webp";
+    } else if (isUnder1280) {
+      judge = "/images/hero/srcset/judge-1280w.webp";
+    }
+    setJudge(judge);
+
+    if (isUnder768) {
+      const dashboardVideos = Array.from({ length: 5 }, (_, i) => 
+      `/videos/features/federationsDashboard/featuresFederationsDashboard-${i + 1}.768p.mp4`
+      );
+      setDashboardVideos(dashboardVideos);
+
+      const judgeVideos = Array.from({ length: 5 }, (_, i) => 
+      `/videos/features/officialsJudge/featuresOfficialsJudge-${i + 1}.576p.mp4`
+      );
+      setJudgeVideos(judgeVideos);
+
+      const recordKeeperVideos = Array.from({ length: 5 }, (_, i) => 
+      `/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-${i + 1}.768p.mp4`
+      );
+      setRecordKeeperVideos(recordKeeperVideos);
+    }
+  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480]);
+
+
+  /* preload(heroVideo, {
     as: "video",
   });
   preload("/images/hero/spotlights_top_left.webp", {
@@ -115,9 +204,8 @@ export default function Home() {
   preload(heroLogo, {
     as: "image",
   });
-  preload("/images/hero/judge.webp", {
+  preload(judge, {
     as: "image",
-    imageSrcSet: "/images/hero/srcset/judge-480w.webp 480w, /images/hero/srcset/judge-640w.webp 640w, /images/hero/srcset/judge-768w.webp 768w, /images/hero/srcset/judge-1024w.webp 1024w, /images/hero/srcset/judge-1280w.webp 1280w",
   });
   preload(heroFighterRight, {
     as: "image",
@@ -127,7 +215,7 @@ export default function Home() {
   });
   preload("/images/hero/fader.webp", {
     as: "image",
-  });
+  }); */
   /* preload("/3d-models/macBook_Pro_16.glb", {
     as: "object",
   }); */
@@ -184,6 +272,13 @@ export default function Home() {
   const hasLoadedOnceRef = useRef(false); // Ref to track if the function has been called (this prevents the weird disapearance of the 3d Canvas when scrolling down, but not scrolling up?!?!)
   const createScrollTriggerWhenHomeFeaturesR3FLoaded = () => {
     if (!hasLoadedOnceRef.current) { // Check if the function hasn't been called yet
+      let featuresDashboard = document.getElementById("featuresDashboard");
+      let featuresJudge = document.getElementById("featuresJudge");
+      let featuresRecordKeeper = document.getElementById("featuresRecordKeeper");
+      gsap.set(featuresDashboard, { visibility: "visible", });
+      gsap.set(featuresJudge, { visibility: "visible", });
+      gsap.set(featuresRecordKeeper, { visibility: "visible", });
+
       ScrollTrigger.create({
         trigger: "#featuresDashboard",
         start: "top top",
@@ -193,7 +288,7 @@ export default function Home() {
       });
       ScrollTrigger.refresh();
       hasLoadedOnceRef.current = true; // Mark as called
-      //console.log("Home Features R3F is loaded and its ScrollTrigger is set");
+      console.log("Home Features R3F is loaded and its ScrollTrigger is set");
     }
   };
 
@@ -999,8 +1094,19 @@ export default function Home() {
         }, 50); // Check every 50ms
       });
       }
+  
+    /* GSDevTools.create(); */
+    },
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
+  );
 
 
+
+  const heroContainer = useRef<HTMLDivElement>(null);
+  const { contextSafe } = useGSAP({ scope: heroContainer });
+  /* ===== useGSAP for Hero Animation ===== */
+  useGSAP(
+    () => {
       //Home Animation
       const heroVeil = document.getElementById("heroVeil");
       //const heroBG = document.getElementById("heroBG");
@@ -1074,10 +1180,7 @@ export default function Home() {
       //let hasHeroIntroStageRan = false;
       const HeroIntroStage = gsap.timeline({
         paused:true,
-        /* onComplete: () => {
-          MappingMMARevealAnim?.play();
-          hasHeroIntroStageRan = true;
-        }, */
+        /* onComplete: () => { MappingMMARevealAnim?.play(); hasHeroIntroStageRan = true; }, */
         defaults: {delay: 0.25},
       })
         .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.125, ease: "power1.in"}, 0)
@@ -1089,15 +1192,29 @@ export default function Home() {
         //.fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
         .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
         .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
+      //HeroIntroStage.play();
 
       /* if (isHeroIntro3DComplete && !hasHeroIntroStageRan) {
         HeroIntroStage.play();
       } */
-      HeroIntroStage.play();
+      /* if (heroIntroStageReady) {
+        HeroIntroStage.play();
+      } */
+      //playHeroIntroStage();
+
+      const handleHeroBGVideoLoaded = contextSafe(() => {
+        HeroIntroStage.play();
+      });
+
+      window.addEventListener('heroBGVideoLoaded', handleHeroBGVideoLoaded);
+
+      return () => {
+        window.removeEventListener('heroBGVideoLoaded', handleHeroBGVideoLoaded);
+      };
   
     /* GSDevTools.create(); */
     },
-    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
+    { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid], revertOnUpdate: false }
   );
 
   return (
@@ -1113,9 +1230,10 @@ export default function Home() {
       </div> */}
 
       <div className="homeRoot">
+        <title>Home | MMAPP</title>
 
         <section id="Home" className="homeSection overflow-hidden">
-          <div className="hero relative w-[100vw] h-[100svh]">
+          <div className="hero relative w-[100vw] h-[100svh]" ref={heroContainer}>
             {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
             <video
               className="z-[1] absolute object-cover top-0 left-0 w-screen h-[99svh]"
@@ -1126,6 +1244,10 @@ export default function Home() {
               autoPlay
               loop
               id="heroBGVideo"
+              onLoadedData={() => {
+                const event = new CustomEvent('heroBGVideoLoaded');
+                window.dispatchEvent(event);
+              }}
             />
             {/* <video
               className="z-[1] absolute object-cover top-0 left-0 h-[100svh]"
@@ -1161,13 +1283,7 @@ export default function Home() {
               <img
                 id="heroMMAPPiPhone"
                 className="z-[4] absolute object-contain rounded-[4.5vh] border-[3px] border-fuchsia-900/70"
-                src="/images/hero/judge.webp"
-                srcSet="
-                  /images/hero/srcset/judge-480w.webp 480w,
-                  /images/hero/srcset/judge-640w.webp 640w,
-                  /images/hero/srcset/judge-768w.webp 768w,
-                  /images/hero/srcset/judge-1024w.webp 1024w,
-                  /images/hero/srcset/judge-1280w.webp 1280w"
+                src={judge}
                 width="fit"
                 height="fit"
                 alt="iphone-12"
@@ -1180,13 +1296,7 @@ export default function Home() {
               <img
                 id="heroMMAPPiPhone2"
                 className="z-[4] absolute object-contain opacity-[0.5] rounded-[4.5vh] border-[3px] border-transparent"
-                src="/images/hero/judge.webp"
-                srcSet="
-                  /images/hero/srcset/judge-480w.webp 480w,
-                  /images/hero/srcset/judge-640w.webp 640w,
-                  /images/hero/srcset/judge-768w.webp 768w,
-                  /images/hero/srcset/judge-1024w.webp 1024w,
-                  /images/hero/srcset/judge-1280w.webp 1280w"
+                src={judge}
                 width="fit"
                 height="fit"
                 alt="iphone-12"
@@ -1357,7 +1467,7 @@ export default function Home() {
           }
 
           {/* // Dashboard */}
-          <div id="featuresDashboard" className="featuresDashboard flex justify-center">
+          <div id="featuresDashboard" className="visible md:invisible featuresDashboard flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
@@ -1409,7 +1519,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresDashboardVideo"
-                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4"
+                        src={dashboardVideos[0]}
                         id="features Federations Dashboard video"
                       />
                     }
@@ -1439,7 +1549,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresDashboardVideo"
-                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-2.768p.mp4"
+                        src={dashboardVideos[1]}
                         id="features Federations Dashboard video"
                       />
                     }
@@ -1469,7 +1579,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresDashboardVideo"
-                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-3.768p.mp4"
+                        src={dashboardVideos[2]}
                         id="features Federations Dashboard video"
                       />
                     }
@@ -1499,7 +1609,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresDashboardVideo"
-                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-4.768p.mp4"
+                        src={dashboardVideos[3]}
                         id="features Federations Dashboard video"
                       />
                     }
@@ -1529,7 +1639,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresDashboardVideo"
-                        src="/videos/features/federationsDashboard/featuresFederationsDashboard-5.768p.mp4"
+                        src={dashboardVideos[4]}
                         id="features Federations Dashboard video"
                       />
                     }
@@ -1638,7 +1748,7 @@ export default function Home() {
 
 
           {/* // Judge */}
-          <div id="featuresJudge" className="featuresJudge flex justify-center">
+          <div id="featuresJudge" className="visible md:invisible featuresJudge flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
@@ -1691,7 +1801,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresJudgeVideo"
-                        src="/videos/features/officialsJudge/featuresOfficialsJudge-1.576p.mp4"
+                        src={judgeVideos[0]}
                         id="features Officials Judge video"
                       />
                     }
@@ -1721,7 +1831,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresJudgeVideo"
-                        src="/videos/features/officialsJudge/featuresOfficialsJudge-2.576p.mp4"
+                        src={judgeVideos[1]}
                         id="features Officials Judge video"
                       />
                     }
@@ -1751,7 +1861,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresJudgeVideo"
-                        src="/videos/features/officialsJudge/featuresOfficialsJudge-3.576p.mp4"
+                        src={judgeVideos[2]}
                         id="features Officials Judge video"
                       />
                     }
@@ -1781,7 +1891,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresJudgeVideo"
-                        src="/videos/features/officialsJudge/featuresOfficialsJudge-4.576p.mp4"
+                        src={judgeVideos[3]}
                         id="features Officials Judge video"
                       />
                     }
@@ -1811,7 +1921,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresJudgeVideo"
-                        src="/videos/features/officialsJudge/featuresOfficialsJudge-5.576p.mp4"
+                        src={judgeVideos[4]}
                         id="features Officials Judge video"
                       />
                     }
@@ -1825,7 +1935,7 @@ export default function Home() {
           </div>
 
           {/* // RecordKeeper */}
-          <div id="featuresRecordKeeper" className="featuresRecordKeeper flex justify-center">
+          <div id="featuresRecordKeeper" className="visible md:invisible featuresRecordKeeper flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
               "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
@@ -1877,7 +1987,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresRecordKeeperVideo"
-                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-1.768p.mp4"
+                        src={recordKeeperVideos[0]}
                         id="features Officials RecordKeeper video"
                       />
                     }
@@ -1907,7 +2017,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresRecordKeeperVideo"
-                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-2.768p.mp4"
+                        src={recordKeeperVideos[1]}
                         id="features Officials RecordKeeper video"
                       />
                     }
@@ -1937,7 +2047,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresRecordKeeperVideo"
-                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-3.768p.mp4"
+                        src={recordKeeperVideos[2]}
                         id="features Officials RecordKeeper video"
                       />
                     }
@@ -1967,7 +2077,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresRecordKeeperVideo"
-                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-4.768p.mp4"
+                        src={recordKeeperVideos[3]}
                         id="features Officials RecordKeeper video"
                       />
                     }
@@ -1997,7 +2107,7 @@ export default function Home() {
                     :
                       <FeaturesCardVideo
                         className="featuresRecordKeeperVideo"
-                        src="/videos/features/officialsRecordKeeper/featuresOfficialsRecordKeeper-5.768p.mp4"
+                        src={recordKeeperVideos[4]}
                         id="features Officials RecordKeeper video"
                       />
                     }

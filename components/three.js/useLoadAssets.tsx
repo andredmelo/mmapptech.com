@@ -30,7 +30,8 @@ type LoadAssetsReturnType = {
   };
 };
 
-export const useLoadAssets = (): LoadAssetsReturnType => {
+export const useLoadAssets = (): LoadAssetsReturnType & { isLoading: boolean } => {
+  const [isLoading, setIsLoading] = useState(true);
   const [macBookPro, setMacBookPro] = useState<GLTF | null>(null);
   const [iPhone, setIPhone] = useState<GLTF | null>(null);
   const [iPad, setIPad] = useState<GLTF | null>(null);
@@ -79,7 +80,8 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
 
   useEffect(() => {
     const loadModelsAndTextures = async () => {
-      // Your loading logic here
+      setIsLoading(true);
+      // Loading logic here
       const macBookProLoader = new GLTFLoader();
       const iPhoneLoader = new GLTFLoader(); 
       const iPadLoader = new GLTFLoader();
@@ -90,7 +92,7 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const iPhoneModel = await iPhoneLoader.loadAsync("/3d-models/iPhone_14_Pro_Max.glb");
       const iPadModel = await iPadLoader.loadAsync("/3d-models/iPad_Pro_4th.glb");
       //const cageModel = await cageLoader.loadAsync("/3d-models/cage.glb");
-      const iPhoneTexture1 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-1.webp");
+      /* const iPhoneTexture1 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-1.webp");
       const iPhoneTexture2 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-2.webp");
       const iPhoneTexture3 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-3.webp");
       const iPhoneTexture4 = await textureLoader.loadAsync("/images/features/officialsJudge/featuresOfficialsJudge-4.webp");
@@ -104,7 +106,7 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
       const macBookProTexture2 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-2.webp");
       const macBookProTexture3 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-3.webp");
       const macBookProTexture4 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-4.webp");
-      const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp");
+      const macBookProTexture5 = await textureLoader.loadAsync("/images/features/federationsDashboard/featuresFederationsDashboard-5.webp"); */
 
       const iPhoneVideoSources = [
         "/videos/features/officialsJudge/featuresOfficialsJudge-1.mp4",
@@ -264,10 +266,11 @@ export const useLoadAssets = (): LoadAssetsReturnType => {
         iPad_texture_5: iPadVideoTextures[4],
         newiPadTextureName: iPadVideoTextures[0],
       });
+      setIsLoading(false);
     };
 
     loadModelsAndTextures();
   }, []);
 
-  return { macBookPro, iPhone, iPad, /* cage, */ textures };
+  return { macBookPro, iPhone, iPad, /* cage, */ textures, isLoading };
 };

@@ -98,7 +98,7 @@ const FeaturesCardImage = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-2xl border border-fuchsia-600/75", //  border-2 border-green-500
+      "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-xl border border-fuchsia-600/75", //  border-2 border-green-500
       isMobileOnly ? '' : 'md:hidden',
       className
     )}
@@ -124,7 +124,7 @@ const FeaturesCardVideo = React.forwardRef<
 >(({ className, src, ...props }, ref) => (
   <div
     className={cn(
-      "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-2xl border border-fuchsia-600/75", //  border-2 border-green-500
+      "flex shrink items-start justify-center h-auto max-h-full overflow-hidden rounded-xl border border-fuchsia-600/75", //  border-2 border-green-500
       isMobileOnly ? '' : 'md:hidden',
       className
     )}

@@ -2,7 +2,7 @@
 import { Metadata } from 'next';
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import { GoogleTagManager } from '@next/third-parties/google';
+//import { GoogleTagManager } from '@next/third-parties/google';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Viewport } from 'next'
 
@@ -100,7 +100,7 @@ export default function RootLayout({
 
   return (
     <html className={`${inter.variable} ${CalSans.variable}`} lang="en">
-      <GoogleTagManager gtmId="G-XKR4VB95HV" />
+      {/* <GoogleTagManager gtmId="G-XKR4VB95HV" /> */}
       <SpeedInsights/>
       <MmappRootLayout>
         {children}
