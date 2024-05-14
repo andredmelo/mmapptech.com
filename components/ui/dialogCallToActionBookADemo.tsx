@@ -252,7 +252,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 forceMount
                 className={cn(
                   "fixed z-50",
-                  "w-[95vw] max-w-[1560px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
+                  "w-[95vw] max-w-[1580px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
                   "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                   "bg-neutral-900 border-2 border-fuchsia-700/50",
                   //"bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",
@@ -261,38 +261,37 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 )}
               >
                 <div className={cn(
-                  "flex flex-col items-left min-w-full h-full max-h-[75svh] portrait:max-h-[90dvh] sm:max-h-[90svh] md:max-h-[85svh]",
-                  "pt-12 md:pt-16",  // mt-12
+                  "flex flex-col items-left min-w-full h-full max-h-[75svh] portrait:max-h-[88dvh] sm:max-h-[90svh] md:max-h-[85svh]",
+                  /* "pt-12 md:pt-16", */  // mt-12
                   )}>
                   {/* <Dialog.Title className="block md:hidden pb-4 md:pb-6 lg:pb-8 text-[1.75rem] text-center text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100">
                     Book a Demo
                   </Dialog.Title> */}
 
-                  <div className="flex flex-col h-full md:flex-row items-stretch gap-x-16 px-10 md:px-16 lg:px-20 pb-12 md:pb-16">
+                  <div className="flex flex-col h-full md:flex-row items-stretch gap-x-16 px-10 md:px-14 lg:px-20 py-10 md:py-10">
 
                     <div className={cn(
                     "basis-1/2 flex flex-col inset-0 items-left w-full h-full overflow-y-auto",
                     )}>
-                      <Dialog.Title className="pb-6 md:pb-8 lg:pb-10 text-lg md:text-[4rem] lg:text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
+                      <Dialog.Title className="2xl:pt-6 pb-6 md:pb-8 lg:pb-10 text-[3.5rem] sm:text-[4rem] md:text-[3.5rem] lg:text-[4.6rem] xl:text-2xl text-center text-neutral-100"> {/* // text-neutral-900 */}
                         We’d love to show you around
                       </Dialog.Title>
-                      <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
-                        Sign up for a personalised demo today to see how MMAPP can help Federations automate repetitive tasks and help you focus on what’s important.<br/>
-                        Our friendly team of experts will be in touch to provide your personalised demo based on your needs.<br/>
+                      <Dialog.Description className="pb-12 md:pb-16 lg:pb-12 xl:pb-16 text-[1.65rem] sm:text-[1.85rem] md:text-[1.75rem] lg:text-[2rem] xl:text-[2.2rem] 2xl:text-[2.4rem] text-left font-normal leading-tight text-neutral-300"> {/* //text-neutral-700 */}
+                        Sign up for a personalised demo today to see how MMAPP can help Federations automate repetitive tasks and help you focus on what’s important. Our friendly team of experts will be in touch to provide your personalised demo based on your needs.<br/>
                       </Dialog.Description>
-                      <Dialog.Title className="pb-4 md:pb-4 lg:pb-6 text-[2.1rem] md:text-[2.5rem] lg:text-[3.2rem] text-left text-neutral-100"> {/* // text-neutral-900 */}
+                      <Dialog.Title className="pb-4 md:pb-4 lg:pb-6 text-[2.25rem] sm:text-[2.5rem] md:text-[2.2rem] lg:text-[2.4rem] xl:text-[2.39rem] 2xl:text-[2.6rem] pr-0 lg:pr-0 xl:pr-0 text-left text-neutral-100"> {/* // text-neutral-900 */}
                         YOUR CUSTOM DEMO WILL SHOW YOU HOW TO:
                       </Dialog.Title>
-                      <Dialog.Description className="pb-12 md:pb-16 lg:pb-16 pl-1 text-[1.5rem] md:text-[1.65rem] lg:text-[2.2rem] text-left font-normal leading-tight text-neutral-200"> {/* //text-neutral-700 */}
-                        • Manage sign-up forms<br/>
-                        • Approve and Manage your members<br/>
-                        • Approve Events and view Fight Cards<br/>
-                        • How the MMAPP Methodology works<br/>
-                        • How the Judge and RecordKeeper apps help during events<br/>
-                        • Analyse your officials<br/>
-                        • Analyse your officials 2<br/>
-                        • Analyse your officials 3<br/>
-                        • Analyse your officials 4<br/>
+                      <Dialog.Description className="pb-10 md:pb-0 pl-1 text-[1.5rem] sm:text-[1.75rem] md:text-[1.65rem] lg:text-[2rem] text-left font-normal leading-normal text-neutral-200"> {/* //text-neutral-700 */}
+                        {/* ➤ */} <span className="mr-3">➣</span> Manage sign-up forms<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> Approve and Manage your members<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> Approve Events and view Fight Cards<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> How the MMAPP Methodology works<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> How the Judge and RecordKeeper apps help during events<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> Manage your profile<br/>
+                        {/* ➤ */} <span className="mr-3">➣</span> Send event hosting requests<br/>
+                        {/* ➤ */} {/* <span className="mr-3">➣</span> Change your details/submit new documents<br/> */}
+                        {/* ➤ */} {/* <span className="mr-3">➣</span> View user history<br/> */}
                       </Dialog.Description>
                     </div>
 
@@ -358,65 +357,69 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                             </label>
                           </div>
                         </div>
-                        <div className="tel flex flex-col">
-                          <label htmlFor="form-tel">Contact Number</label>
-                          <input
-                            className="w-full"
-                            id="form-tel"
-                            autoComplete="tel"
-                            /* type="text"
-                            name="first"
-                            required */
-                            placeholder='Contact Number'
-                            {...register('tel')}
-                          />
-                          {errors.tel?.message && (
-                            <p className='ml-1 mt-1 text-sm text-red-400'>
-                              {errors.tel.message}
-                            </p>
-                          )}
-                        </div>
-                        <div className="role flex flex-col">
-                          <label htmlFor="form-role">Role</label>
-                          <select
-                            className="max-w-min"
-                            id="form-role"
-                            {...register('role')}
-                          >
-                            <option value="Federation Member">Federation Member</option>
-                            <option value="Administrator">Administrator</option>
-                            <option value="Athlete">Athlete</option>
-                            <option value="Coach">Coach</option>
-                            <option value="Club">Club</option>
-                            <option value="Promoter">Promoter</option>
-                          </select>
+                        <div className="country flex flex-col xl:flex-row space-x-0 xl:space-x-8">
+                          <div className="tel w-full flex flex-col">
+                            <label htmlFor="form-tel">Contact Number</label>
+                            <input
+                              className="w-full"
+                              id="form-tel"
+                              autoComplete="tel"
+                              /* type="text"
+                              name="first"
+                              required */
+                              placeholder='Contact Number'
+                              {...register('tel')}
+                            />
+                            {errors.tel?.message && (
+                              <p className='ml-1 mt-1 text-sm text-red-400'>
+                                {errors.tel.message}
+                              </p>
+                            )}
+                          </div>
+                          <div className="role flex flex-col">
+                            <label htmlFor="form-role">Role</label>
+                            <select
+                              className="max-w-min"
+                              id="form-role"
+                              {...register('role')}
+                            >
+                              <option value="Federation Member">Federation Member</option>
+                              <option value="Administrator">Administrator</option>
+                              <option value="Athlete">Athlete</option>
+                              <option value="Coach">Coach</option>
+                              <option value="Club">Club</option>
+                              <option value="Promoter">Promoter</option>
+                            </select>
+                          </div>
                         </div>
                         <Dialog.Description className="pt-6 md:pt-8 lg:pt-6 pb-4 text-[2rem] text-left font-semi-bold leading-tight text-neutral-200"> {/* //text-neutral-700 */}
                           Meeting preferences:
                         </Dialog.Description>
-                        <div className="country flex flex-col">
-                          <label htmlFor="form-country">Country/Timezone</label>
-                          <select
-                            className="max-w-min"
-                            id="form-country"
-                            {...register('country')}
-                          >
-                            {AllCountriesTimeZones.map(country => (
-                              <option key={country} value={country}>{country}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="time flex flex-col pb-6 md:pb-8 lg:pb-10">
-                          <label htmlFor="form-time">Preferred time</label>
-                          <select
-                            className="max-w-min"
-                            id="form-time"
-                            {...register('time')}
-                          >
-                            <option value="9am-12pm">9am-12pm</option>
-                            <option value="12pm-3pm">12pm-3pm</option>
-                            <option value="3pm-6pm">3pm-6pm</option>
-                          </select>
+                        <div className="country flex flex-col xl:flex-row space-x-0 xl:space-x-8">
+                          <div className="country flex flex-col">
+                            <label htmlFor="form-country">Country/Timezone</label>
+                            <select
+                              className="max-w-min"
+                              id="form-country"
+                              {...register('country')}
+                            >
+                              {AllCountriesTimeZones.map(country => (
+                                <option key={country} value={country}>{country}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="time flex flex-col pb-6 md:pb-8 lg:pb-10">
+                            <label htmlFor="form-time">Preferred time</label>
+                            <select
+                              className="max-w-min"
+                              id="form-time"
+                              {...register('time')}
+                            >
+                              <option value="9am-12pm">9am-12pm</option>
+                              <option value="12pm-3pm">12pm-3pm</option>
+                              <option value="3pm-6pm">3pm-6pm</option>
+                            </select>
+                          </div>
                         </div>
                         {/* <div className="message flex flex-col">
                           <label htmlFor="form-message">Message</label>
