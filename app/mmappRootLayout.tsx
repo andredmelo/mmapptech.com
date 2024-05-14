@@ -47,6 +47,12 @@ import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, Mac
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+declare global {
+  interface Window {
+    _mtm: any;
+  }
+}
+
 export default function MmappRootLayout({
   children,
 }: Readonly<{
@@ -244,6 +250,18 @@ export default function MmappRootLayout({
   );
 
   //console.log(smoother);
+  
+  // Matomo tracker
+  useEffect(() => {
+    var _mtm = window._mtm = window._mtm || [];
+    _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true;
+    g.src='https://cdn.matomo.cloud/mmapptech.matomo.cloud/container_PHzoXL7A.js';
+    if (s.parentNode) {
+      s.parentNode.insertBefore(g, s);
+    }
+   }, [])
 
 return (
     <AppContext.Provider value={{ href, setHref, smoother }}>
