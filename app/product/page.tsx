@@ -1003,7 +1003,7 @@ const Product = () => {
             {/* // Use the loading state to conditionally render the images in small mobile device*/}
             <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
               <picture><img
-                className="judgePhone object-scale-down max-h-[65svh] shadow-2xl shadow-fuchsia-950/50"
+                className="judgePhone object-scale-down max-h-[65svh]" // shadow-2xl shadow-fuchsia-950/50
                 src={(preloadedImages as any)[activeTabProductJudge]?.src}
                 alt="iphone-12"
                 onLoad={() => setIsLoading(false)}
@@ -1078,7 +1078,7 @@ const Product = () => {
               {/* // Use the loading state to conditionally render the image */}
               <div className={clsx("judgePhoneWrapper hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
                 <picture><img
-                  className="judgePhone object-scale-down shadow-2xl shadow-fuchsia-950/50"
+                  className="judgePhone object-scale-down" // shadow-2xl shadow-fuchsia-950/50
                   src={(preloadedImages as any)[activeTabProductJudge]?.src}
                   alt="iPhone Judge images"
                   onLoad={() => setIsLoading(false)}
@@ -1198,7 +1198,7 @@ const Product = () => {
                 )}
               >
                 <picture className="flex landscape:justify-end"><img
-                  className="recordKeeperTablet object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max landscape:md:max-w-full landscape:md:max-h-full shadow-2xl shadow-fuchsia-950/50" // rounded-[2.5vw] portrait:rounded-[4vw] ring-4 md:ring-2 portrait:ring-4 ring-purple-950/75
+                  className="recordKeeperTablet object-scale-down portrait:max-h-[65vh] portrait:md:max-h-max landscape:md:max-w-full landscape:md:max-h-full" //  shadow-2xl shadow-fuchsia-950/50 rounded-[2.5vw] portrait:rounded-[4vw] ring-4 md:ring-2 portrait:ring-4 ring-purple-950/75
                   src={(preloadedImages as any)[activeTabProductRecordKeeper]?.src}
                   alt="iPad RecordKeeper images"
                   onLoad={() => setIsLoading(false)}
