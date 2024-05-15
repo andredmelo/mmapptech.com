@@ -81,14 +81,12 @@ const Company = (props: any) => {
   const [mMAFighter, setMMAFighter] = useState("");
   useEffect(() => {
     let mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-LG-1024w.webp";
-    if (isUnder480) {
-      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XXXS-240w.webp";
-    } else if (isUnder640) {
-      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XXS-360w.webp";
-    } else if (isUnder768) {
+    if (isUnder640) {
       mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XS-480w.webp";
-    } else if (isUnder1024) {
+    } else if (isUnder768) {
       mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-SM-640w.webp";
+    /* } else if (isUnder1024) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-MD-768w.webp"; */
     } else if (isUnder1280) {
       mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-MD-768w.webp";
     }
@@ -111,23 +109,23 @@ const Company = (props: any) => {
             <MainFCTitle className="mmappBlockReveal flex-col justify-start z-20 max-w-[100%] md:max-w-[50rem] lg:max-w-[60rem] sm:mx-8 md:mx-0 text-left">
               Our Mission
             </MainFCTitle>
-            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] xl:max-w-[65rem] sm:mx-8 md:mx-0 text-left">
+            <MainFCHeading className="mmappHeadingReveal flex-col justify-start z-20 max-w-[32rem] md:max-w-[42rem] lg:max-w-[70rem] portrait:lg:max-w-[65rem] xl:max-w-[65rem] sm:mx-8 md:mx-0 text-left">
               Accelerate the Recognition of MMA as an Olympic Sport
             </MainFCHeading>
             <MainFCDescription className={cn(
-              "flex-col justify-start z-20 max-w-[30rem] md:max-w-[35rem] lg:max-w-[60rem] xl:max-w-[70rem] sm:mx-8 md:mx-0 text-left leading-normal",
+              "flex-col justify-start z-20 max-w-[30rem] sm:max-w-[32rem] md:max-w-[35rem] lg:max-w-[60rem] portrait:lg:max-w-[50rem] xl:max-w-[70rem] sm:mx-8 md:mx-0 text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               In pursuit of this goal, we build solutions designed to help Federations and their respective members streamline their activities and build cohesiveness throughout MMA judging.<br/><br/>
             </MainFCDescription>
             <MainFCDescription className={cn(
-              "flex-col justify-start z-20 max-w-[17rem] md:max-w-[23rem] lg:max-w-[50rem] xl:max-w-[55rem] sm:mx-8 md:mx-0 text-left leading-normal",
+              "flex-col justify-start z-20 max-w-[17rem] sm:max-w-[21rem] md:max-w-[23rem] lg:max-w-[50rem] portrait:lg:max-w-[37rem] xl:max-w-[55rem] sm:mx-8 md:mx-0 text-left leading-normal",
               isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
             )}>
               Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src={mMAFighter} alt="MMA fighter preparing bandages for training"/></picture>
+            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] portrait:lg:max-w-[75vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src={mMAFighter} alt="MMA fighter preparing bandages for training"/></picture>
           </MainFC>
         </section>
 
