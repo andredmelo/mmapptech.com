@@ -1,2 +1,1 @@
-let vNumber = "v0.9-β.8.5 | Metadata fixes.";
-
+let vNumber = "v0.9-β.8.7 | PostHog issues fixes.";
