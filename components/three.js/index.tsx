@@ -337,7 +337,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
     if (!isLoading) {
       onLoaded();
     }
-  }, [isLoading]);
+  }, [isLoading, onLoaded]);
 
   /* ===== GSAP React ===== */
   useGSAP(
@@ -1058,9 +1058,6 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
       <div id="secondary3DLoading" className="relative w-full h-0 overflow-visible">
         <div className="absolute z-[500] top-0 left-0 flex flex-col items-center justify-center w-full h-[50svh] bg-transparent">
           <div className="flex flex-col items-center mb-16 text-left">
-            {/* <picture className="mb-6 w-[25vw]">
-              <img src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>
-            </picture> */}
             <h4 className="mb-6 tracking-tight text-white animate-pulse">Loading</h4>
             <h4 className="mb-24 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-350)] to-purple-100 animate-pulse">3D Models and Textures</h4>
             <div className="flex-col gap-4 w-full flex items-center justify-center">
@@ -1073,13 +1070,6 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
                   <div></div>
                   <div></div>
                 </div>
-                {/* <svg
-                  className="animate-spin"
-                  xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                  viewBox="0 0 48 48" fill="none"
-                >
-                  <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
-                </svg> */}
               </div>
             </div>
           </div>

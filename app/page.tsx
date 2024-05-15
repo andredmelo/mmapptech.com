@@ -190,7 +190,7 @@ export default function Home() {
       );
       setRecordKeeperVideos(recordKeeperVideos);
     }
-  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480]);
+  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isLandscape]);
 
   // IntersectionObserver for HomeFeaturesR3F
   /* const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
