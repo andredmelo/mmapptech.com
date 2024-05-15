@@ -1377,7 +1377,7 @@ const Product = () => {
               /> */}
               <video
                 className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw] portrait:md:pt-[1.475vw]"
-                src="/videos/product/dashboard.1286x720.24fps.x264.CRF27.veryslow.mp4"
+                src="/videos/product/dashboard/dashboard.1280x716.x264.AVBR.300kbps.veryslow.high-1280w.mp4"
                 typeof="video/mp4"
                 playsInline
                 muted
@@ -1481,8 +1481,8 @@ const Product = () => {
                   onLoad={() => setIsLoading(false)}
                 /> */}
                 <video
-                  className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[2.15vw] rounded-[0.5rem]"
-                  src="/videos/product/dashboard.1624x1040.24fps.x264.CRF27.veryslow.mp4"
+                  className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[2.15vw] rounded-[0.3rem]"
+                  src="/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.AVBR.400kbps.veryslow.high-1024w.mp4"
                   typeof="video/mp4"
                   playsInline
                   muted

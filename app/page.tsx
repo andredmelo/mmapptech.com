@@ -1439,7 +1439,7 @@ export default function Home() {
           <div id="featuresDashboard" className="visible md:invisible featuresDashboard flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
-              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+              "rounded-[3rem] mx-1 md:mx-10 lg:mx-[4rem] px-2 md:px-10 lg:px-20 xl:px-24 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
 
               <FeaturesCallToActionFederations
@@ -1451,14 +1451,14 @@ export default function Home() {
               <div className="flex flex-col z-20 text-left">
 
                 <div id="featuresDashboardTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left mmappBlockReveal">
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0">
+                  <h2 className="text-2xl md:text-[6.2rem] lg:text-[7.4rem] xl:text-[9.2rem] 2xl:text-[9.2rem] text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0">
                     Federations
                   </h2>
                   <div className="flex flex-row justify-start items-center mmappBlockReveal">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
+                    <h6 className="text-[1.55rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[4rem] 2xl:text-[4rem] text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
-                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
+                    <h4 className="text-lg md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[5.4rem] text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
                       Dashboard App
                     </h4>
                   </div>
@@ -1720,7 +1720,7 @@ export default function Home() {
           <div id="featuresJudge" className="visible md:invisible featuresJudge flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
-              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-10 lg:px-20 xl:px-24 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
 
               <FeaturesCallToActionFederations
@@ -1733,14 +1733,14 @@ export default function Home() {
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-col-reverse landscape:md:flex-row justify-end items-center z-20 text-right">
                   <div className="flex flex-row justify-end items-center mmappBlockReveal">
-                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
+                    <h4 className="text-lg md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[5.4rem] text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
                       Judge App
                     </h4>
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden landscape:hidden landscape:md:block">
+                    <h6 className="text-[1.55rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[4rem] 2xl:text-[4rem] text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
                   </div>
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-0 landscape:md:pl-12 portrait:pr-0 mmappBlockReveal">
+                  <h2 className="text-2xl md:text-[6.2rem] lg:text-[7.4rem] xl:text-[9.2rem] 2xl:text-[9.2rem] text-transparent bg-clip-text bg-gradient-to-bl from-[var(--purple-250)] to-purple-100 pb-2 landscape:pl-0 landscape:md:pl-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
                 {isUnder768||isMobileOnly ? '' : <ProgressCircle id="judgeProgressCircle" leftOrRight="right"/>}
@@ -1907,7 +1907,7 @@ export default function Home() {
           <div id="featuresRecordKeeper" className="visible md:invisible featuresRecordKeeper flex justify-center">
             <div className={clsx(
               "w-full h-full flex flex-col md:flex-row relative justify-center",
-              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
+              "rounded-[3rem] mx-1 md:mx-[4rem] px-2 md:px-10 lg:px-20 xl:px-24 py-28 md:py-32 lg:py-32 ring-1 ring-white/5" // xl:mx-[8rem] 2xl:mx-[13.5rem]
             )}>
 
               <FeaturesCallToActionFederations
@@ -1919,14 +1919,14 @@ export default function Home() {
               <div id="featuresRecordKeeperContainer" className="flex flex-col z-20 text-left">
 
                 <div id="featuresRecordKeeperTitle" className="flex portrait:flex-col landscape:flex-col landscape:md:flex-row justify-start items-center z-20 text-left">
-                  <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0 mmappBlockReveal">
+                  <h2 className="text-2xl md:text-[6.2rem] lg:text-[7.4rem] xl:text-[9.2rem] 2xl:text-[9.2rem] text-transparent bg-clip-text bg-gradient-to-br from-[var(--purple-250)] to-purple-100 pb-2 landscape:pr-0 landscape:md:pr-12 portrait:pr-0 mmappBlockReveal">
                     Officials
                   </h2>
                   <div className="flex flex-row justify-start items-center mmappBlockReveal">
-                    <h6 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
+                    <h6 className="text-[1.55rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[4rem] 2xl:text-[4rem] text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 pr-8 portrait:hidden landscape:hidden landscape:md:block">
                       ➤
                     </h6>
-                    <h4 className="text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
+                    <h4 className="text-lg md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[5.4rem] text-transparent bg-clip-text bg-gradient-to-tl from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-left">
                       RecordKeeper
                     </h4>
                   </div>

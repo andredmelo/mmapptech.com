@@ -65,6 +65,7 @@ const FeaturesCardTitle = React.forwardRef<
   <h4
     ref={ref}
     className={cn(
+      "text-[2.4rem] md:text-[2.9rem] lg:text-[3.6rem] xl:text-[4.6rem] 2xl:text-[4.8rem]",
       "px-10 md:px-0", // border-2 border-green-500
       className
     )}
@@ -80,6 +81,7 @@ const FeaturesCardDescription = React.forwardRef<
   <h6
     ref={ref}
     className={cn(
+      "text-[1.55rem] md:text-[1.8rem] lg:text-[2rem] xl:text-[2.2rem] 2xl:text-[2.4rem]",
       "font-sans font-medium md:font-normal leading-[2rem] md:leading-[2rem] lg:leading-[3rem] text-neutral-300", //text-neutral-700 
       "py-8 md:py-8 lg:py-10 px-2 md:px-0 portrait:md:px-[5%] landscape:px-[9%] landscape:md:px-0 text-shadow-sm",
       className

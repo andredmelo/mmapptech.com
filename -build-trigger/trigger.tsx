@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.9 | Company MMA Fighter image optimizations. Home Features Book A Demo CTA button position on wide screens fix.";
+let vNumber = "v0.9-β.8.10 | Home FEatures various adjustments and fixes. Product new videos.";
