@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   title: "MMAPP",
   description: "Mapping MMA, Boosting MMA Federations to the Digital Age",
   icons: {
-    icon: '/public/images/logos/mmapp/logo_icon.svg',
-    shortcut: '/public/images/logos/mmapp/shortcut-icon.png',
-    apple: '/public/images/logos/mmapp/apple-icon.png',
+    icon: '/images/logos/mmapp/logo_icon.svg',
+    shortcut: '/images/logos/mmapp/shortcut-icon.png',
+    apple: '/images/logos/mmapp/apple-icon.png',
   },
-  manifest: '/public/images/logos/mmapp/manifest.json',
+  manifest: '/images/logos/mmapp/manifest.json',
   referrer: 'origin-when-cross-origin',
   keywords: ['MMA', 'Fighting', 'Judging', 'Timekeeper', 'Timekeeping', 'Scorekeeper', 'Scorekeeping', 'Methodology', 'Referee', 'Refereeing', 'Officials', 'Regulatory', 'Federations', 'Athletic Commission', 'IMMAF', 'Bellator', 'UFC', 'One', 'Rizin', 'Cage Warriors', 'Academy'],
   creator: 'André Melo',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'MMAPP',
     images: [
       {
-        url: 'https://www.mmapptech.com/public/images/logos/mmapp/og.png', // Must be an absolute URL
+        url: 'https://www.mmapptech.com/images/logos/mmapp/og.png', // Must be an absolute URL
         width: 1200,
         height: 630,
       },
