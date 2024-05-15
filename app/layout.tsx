@@ -6,6 +6,8 @@ import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import type { Viewport } from 'next'
 
+import { CSPostHogProvider } from './providers'
+
 import MmappRootLayout from "@/app/mmappRootLayout";
  
 export const viewport: Viewport = {
@@ -102,9 +104,11 @@ export default function RootLayout({
     <html className={`${inter.variable} ${CalSans.variable}`} lang="en">
       {/* <GoogleTagManager gtmId="G-XKR4VB95HV" /> */}
       <SpeedInsights/>
-      <MmappRootLayout>
-        {children}
-      </MmappRootLayout>
+      <CSPostHogProvider>
+        <MmappRootLayout>
+          {children}
+        </MmappRootLayout>
+      </CSPostHogProvider>
     </html>
   );
 };

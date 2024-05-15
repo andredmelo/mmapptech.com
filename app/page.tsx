@@ -1,13 +1,12 @@
 'use client'
 import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
-import { preload } from 'react-dom';
+//import { preload } from 'react-dom';
 import { clsx } from "clsx";
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
 import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
-/* import Image from "next/image";
-import styles from "./page.module.css"; */
+/* import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -53,13 +52,6 @@ const HomeFeaturesR3F = dynamic(() => import('@/components/three.js').then(modul
                 <div></div>
                 <div></div>
               </div>
-              {/* <svg
-                className="animate-spin"
-                xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                viewBox="0 0 48 48" fill="none"
-              >
-                <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
-              </svg> */}
             </div>
           </div>
         </div>
@@ -126,10 +118,19 @@ export default function Home() {
     let video = "/videos/hero/hero.1920w.mp4";
     if (isUnder768) {
       video = "/videos/hero/hero.768w.mp4";
+      if (isLandscape) {
+        video = "/videos/hero/hero.1024w.mp4";
+      }
     } else if (isUnder1024) {
       video = "/videos/hero/hero.1024w.mp4";
+      if (isLandscape) {
+        video = "/videos/hero/hero.1280w.mp4";
+      }
     } else if (isUnder1280) {
       video = "/videos/hero/hero.1280w.mp4";
+      if (isLandscape) {
+        video = "/videos/hero/hero.1536w.mp4";
+      }
     } else if (isUnder1536) {
       video = "/videos/hero/hero.1536w.mp4";
     }
@@ -190,38 +191,6 @@ export default function Home() {
       setRecordKeeperVideos(recordKeeperVideos);
     }
   }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480]);
-
-
-  /* preload(heroVideo, {
-    as: "video",
-  });
-  preload("/images/hero/spotlights_top_left.webp", {
-    as: "image",
-  });
-  preload("/images/hero/spotlights_top_right.webp", {
-    as: "image",
-  });
-  preload(heroLogo, {
-    as: "image",
-  });
-  preload(judge, {
-    as: "image",
-  });
-  preload(heroFighterRight, {
-    as: "image",
-  });
-  preload(heroFighterLeft, {
-    as: "image",
-  });
-  preload("/images/hero/fader.webp", {
-    as: "image",
-  }); */
-  /* preload("/3d-models/macBook_Pro_16.glb", {
-    as: "object",
-  }); */
-
-
-
 
   // IntersectionObserver for HomeFeaturesR3F
   /* const [showHomeFeaturesR3F, setShowHomeFeaturesR3F] = useState(false);
@@ -288,7 +257,7 @@ export default function Home() {
       });
       ScrollTrigger.refresh();
       hasLoadedOnceRef.current = true; // Mark as called
-      console.log("Home Features R3F is loaded and its ScrollTrigger is set");
+      //console.log("Home Features R3F is loaded and its ScrollTrigger is set");
     }
   };
 
