@@ -2103,12 +2103,12 @@ export default function Home() {
 
         <div className="borderBottom featuresRecordKeeperBottom"></div>
 
-        <section id="Benefits" className='z-20 benefits py-32 md:py-40 lg:py-52'>
+        <section id="Benefits" className='z-20 flex flex-col justify-center items-center benefits py-32 md:py-40 lg:py-52'>
           <div className="flex flex-col justify-center items-center mb-4 md:mb-8 lg:mb-12 mx-1 md:mx-[4rem] xl:mx-[8rem] 2xl:mx-[13.5rem] 3xl:min-w-[1536px] 3xl:mx-auto">
             <h5 className="mmappBlockReveal mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[90%]">
+            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[90%] max-w-[1200px]">
             Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
             </h3>
             <p className="mmappBlockReveal text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">

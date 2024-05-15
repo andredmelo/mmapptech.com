@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import * as ReactDOMServer from "react-dom/server";
-/* import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'; */
+import { useEffect, useState } from 'react';
+//import { useRouter } from 'next/navigation';
 import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,9 +22,14 @@ import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappSeque
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, SplitText);
 
 const Company = (props: any) => {
+  const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isUnder480 = useMediaQuery('(max-width: 479px)');
+  const isUnder640 = useMediaQuery('(max-width: 639px)');
   const isUnder768 = useMediaQuery('(max-width: 767px)');
+  const isUnder1024 = useMediaQuery('(max-width: 1023px)');
   const isUnder1280 = useMediaQuery('(max-width: 1279px)');
+  const isUnder1536 = useMediaQuery('(max-width: 1535px)');
   
   //console.log(props);
   /* const router = useRouter();
@@ -65,13 +70,30 @@ const Company = (props: any) => {
   );
 
 
-  let companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-XL.webp";
+  let companyMMAFighterPreparingBandages4Training = "companyMMAFighterPreparingBandages4Training-LG-1024w.webp";
   if (isUnder1280) {
     companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-MD.webp";
     if (isUnder768) {
       companyMMAFighterPreparingBandages4Training = "/images/company/companyMMAFighterPreparingBandages4Training-SM.webp";
     }
   }
+
+  const [mMAFighter, setMMAFighter] = useState("");
+  useEffect(() => {
+    let mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-LG-1024w.webp";
+    if (isUnder480) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XXXS-240w.webp";
+    } else if (isUnder640) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XXS-360w.webp";
+    } else if (isUnder768) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-XS-480w.webp";
+    } else if (isUnder1024) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-SM-640w.webp";
+    } else if (isUnder1280) {
+      mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-MD-768w.webp";
+    }
+    setMMAFighter(mMAFighter);
+  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isLandscape]);
 
   return (
     <>
@@ -105,7 +127,7 @@ const Company = (props: any) => {
               Through these tools, built for officials to discuss their assessments more profoundly and amplify their judging abilities, we strive to help elevate the sport.
             </MainFCDescription>
             {/* <img className="z-10 max-h-full max-w-[50vw] md:max-w-[40vw] xl:max-w-[38vw] bottom-[-0.1rem] right-[1rem] absolute md:absolute object-contain" src="/images/referees/herb-dean.webp" alt="herb dean"/> */}
-            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src={companyMMAFighterPreparingBandages4Training} alt="MMA fighter preparing bandages for training"/></picture>
+            <picture><img className="z-10 max-h-full max-w-[90vw] md:max-w-[92vw] lg:max-w-[55vw] xl:max-w-[55vw] 2xl:max-w-[65vw] bottom-[-0.1rem] right-[-0.5rem] md:right-[-3rem] absolute md:absolute object-contain overflow-hidden" src={mMAFighter} alt="MMA fighter preparing bandages for training"/></picture>
           </MainFC>
         </section>
 

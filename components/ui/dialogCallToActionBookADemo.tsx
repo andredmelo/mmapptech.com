@@ -252,7 +252,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
                 forceMount
                 className={cn(
                   "fixed z-50",
-                  "w-[95vw] max-w-[1580px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
+                  "w-[95vw] max-w-[1375px] min-h-[5vh] rounded-xl my-[20px]", // my-[20px]
                   "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
                   "bg-neutral-900 border-2 border-fuchsia-700/50",
                   //"bg-neutral-100 dark:bg-neutral-900 border-2 border-fuchsia-700/50",

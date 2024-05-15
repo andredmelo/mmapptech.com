@@ -1193,7 +1193,7 @@ const Product = () => {
               {/* // Use the loading state to conditionally render the image */}
               <div className={clsx(
                 "recordKeeperTabletWrapper portrait:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10", // basis-[67%]
-                "min-w-auto max-w-[100%] landscape:md:max-w-[90%] portrait:max-w-[100%] h-full max-h-[100%] landscape:md:max-h-[75vh]",
+                "min-w-auto max-w-[100%] landscape:md:max-w-[90%] landscape:2xl:max-w-[65%] portrait:max-w-[100%] h-full max-h-[100%] landscape:md:max-h-[75vh] landscape:2xl:max-h-full",
                 "px-[0vw] pb-[0vw] md:pb-[0vw] portrait:pb-[0vw] md:portrait:pb-[0vw] landscape:touch:md:pb-[0vw]",
                 )}
               >
@@ -1207,7 +1207,7 @@ const Product = () => {
               </div>
 
               <div className={clsx("relative portrait:basis-full flex flex-col", // basis-[33%]
-              "w-full portrait:w-[100%] portrait:md:w-[98%] portrait:mx-auto min-w-[20vw] landscape:md:max-h-[75vh]",
+              "w-full 2xl:w-[65%] portrait:w-[100%] portrait:md:w-[98%] portrait:mx-auto min-w-[20vw] landscape:md:max-h-[75vh]", //w-full
               "portrait:flex-row justify-center items-start gap-4 md:gap-[3vh] portrait:gap-[vw] portrait:md:gap-[1vw]",
               "px-[0vw] pb-[0vw] md:pb-[0vw] portrait:pb-[2vw] portrait:md:pb-[0vw] portrait:pt-[4vw] portrait:md:pt-[0vw] overflow-hidden",
               )}>
