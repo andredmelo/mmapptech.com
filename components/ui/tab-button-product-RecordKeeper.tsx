@@ -38,10 +38,10 @@ export default function TabButtonProductRecordKeeper({
     'md:transition-all md:duration-500 md:ease-out ring-1 ring-white/5'
     )
   const activeHeadingClass = cn(
-    'text-[3.5vw] md:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100',
+    'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100',
     'md:transition-all md:duration-500 md:ease-out'
     )
-  const inactiveHeadingClass = 'text-[3.5vw] md:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug text-white py-1';
+  const inactiveHeadingClass = 'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug text-white py-1';
 
   return (
     <>
@@ -50,8 +50,8 @@ export default function TabButtonProductRecordKeeper({
           activeTab === value ? activeClass : inactiveClass,
           isPending && 'opacity-100',
           'flex flex-row items-center w-fit max-w-[80vw] portrait:touch:max-w-fit portrait:md:max-w-[20vw] portrait:touch:min-h-[7vw]',
-          'py-[1vw] md:py-[1.1vw] portrait:py-[1.75vw] portrait:md:py-[1vw]',
-          'px-[4.5vw] md:px-[2vw] portrait:md:px-[1.75vw]',
+          'py-[1vw] md:py-[0.5vw] lg:py-[1.1vw] portrait:py-[1.75vw] portrait:md:py-[1vw]',
+          'px-[4vw] md:px-[2vw] portrait:md:px-[1.75vw]',
           'rounded-[3rem] bg-no-repeat bg-bottom bg-bgRadialGradientDown shadow-inset-mission',
           className
         )}

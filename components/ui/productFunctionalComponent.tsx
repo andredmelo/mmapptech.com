@@ -28,8 +28,8 @@ const ProductFCTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "mb-[3.5vw] md:mb-[3.5vw]", // border-2 border-green-500,
-      "text-md md:text-[2.175vw] portrait:text-[5vw] portrait:md:text-[3.15vw] text-neutral-200 deboss text-center",
+      "mb-[3.5vw] md:mb-[1.75vw] lg:mb-[3.5vw]", // border-2 border-green-500,
+      "text-md md:text-[2.5vw] lg:text-[2.175vw] portrait:text-[5vw] portrait:md:text-[3.15vw] text-neutral-200 deboss text-center",
       className
     )}
     {...props}
@@ -45,8 +45,8 @@ const ProductFCHeading = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "mb-[3.5vw] md:mb-[3.5vw] py-2",
-      "text-xl md:text-[4.35vw] portrait:text-[7.5vw] portrait:md:text-[6.75vw] text-center text-[var(--purple-250)]", // border-2 border-blue-500
+      "mb-[3.5vw] md:mb-[2vw] lg:mb-[3.5vw] py-2",
+      "text-xl md:text-[4.5vw] lg:text-[4.35vw] portrait:text-[7.5vw] portrait:md:text-[6.75vw] text-center text-[var(--purple-250)]", // border-2 border-blue-500
       className
     )}
     {...props}
@@ -62,7 +62,7 @@ const ProductFCDescription = React.forwardRef<
     ref={ref}
     className={cn(
       "flex flex-col justify-center z-20",
-      "font-sans text-center font-medium text-[1.5rem] md:text-[1.33vw] portrait:text-[3.5vw] portrait:md:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:leading-[4.75vw] portrait:md:leading-[2.8vw]",
+      "font-sans text-center font-medium text-[1.5rem] md:text-[1.5vw] lg:text-[1.33vw] portrait:text-[3.5vw] portrait:md:text-[2vw] leading-[2.1rem] md:leading-[1.75vw] portrait:leading-[4.75vw] portrait:md:leading-[2.8vw]",
       className
     )}
     {...props}

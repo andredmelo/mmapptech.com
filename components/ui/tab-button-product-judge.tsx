@@ -83,7 +83,7 @@ export default function TabButtonProductJudge({
             activeTab === value ? activeClass : inactiveClass,
             /* isPending && 'opacity-100', */
             'flex flex-row items-center',
-            'w-fit max-w-[41rem] py-10 px-16',
+            'w-fit max-w-[41rem] py-10 md:py-3 lg:py-10 px-16 md:px-8 lg:px-16',
             'rounded-[3rem] bg-no-repeat shadow-inset-mission',
             gradientSide,
             className
@@ -93,7 +93,7 @@ export default function TabButtonProductJudge({
           <div className={cn("flex items-center", rowDirection)}>
             <div className={cn("shrink flex", textDirection)}>
               <h6 className={cn(
-                'text-[1.55rem] md:text-[1.9rem] lg:text-[2.4rem] leading-none tracking-wide', // font-semibold
+                'text-[1.55rem] md:text-[1.4rem] lg:text-[2.4rem] leading-none tracking-wide', // font-semibold
                 activeTab === value ? activeHeadingClass : inactiveHeadingClass,
                 /* isPending && '' */
               )}>

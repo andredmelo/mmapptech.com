@@ -102,7 +102,7 @@ export default function Home() {
     }
   }, [readyCount]);
 
-  // preLoad Hero Assets
+  // Hero Assets
   const [heroVideo, setHeroVideo] = useState("");
   const [heroFighterRight, setHeroFighterRight] = useState("");
   const [heroFighterLeft, setHeroFighterLeft] = useState("");

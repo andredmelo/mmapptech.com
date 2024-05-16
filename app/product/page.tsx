@@ -36,8 +36,12 @@ const Product = () => {
 
   const isLandscape = useMediaQuery('(orientation: landscape)');
   const isPortrait = useMediaQuery('(orientation: portrait)');
+  const isUnder480 = useMediaQuery('(max-width: 479px)');
+  const isUnder640 = useMediaQuery('(max-width: 639px)');
   const isUnder768 = useMediaQuery('(max-width: 767px)');
-  //const isOver1536 = useMediaQuery('(min-width: 1536px)');
+  const isUnder1024 = useMediaQuery('(max-width: 1023px)');
+  const isUnder1280 = useMediaQuery('(max-width: 1279px)');
+  const isUnder1536 = useMediaQuery('(max-width: 1535px)');
 
   const [activeTabProductJudge, setActiveTabProductJudge] = useState('ProductJudge1')
   const [activeTabProductRecordKeeper, setActiveTabProductRecordKeeper] = useState('ProductRecordKeeper1')
@@ -50,6 +54,44 @@ const Product = () => {
     as: "image",
     imageSrcSet: "/images/product/hero/srcset/luizimag3_2876-480w.webp 480w, /images/product/hero/srcset/luizimag3_2876-640w.webp 640w, /images/product/hero/srcset/luizimag3_2876-768w.webp 768w, /images/product/hero/srcset/luizimag3_2876-1024w.webp 1024w, /images/product/hero/srcset/luizimag3_2876-1280w.webp 1280w",
   });
+
+  // Product Assets
+  const [dashboard, setDashboard] = useState("");
+  const [dashboardMembers, setDashboardMembers] = useState("");
+
+  useEffect(() => {
+    let dashboard = "/videos/product/dashboard/dashboard.1280x716.x264.CRF26.veryslow.high-1280w.mp4";
+    if (isUnder480) {
+      dashboard = "/videos/product/dashboard/dashboard.480x268.x264.CRF26.veryslow.high-480w.mp4";
+    } else if (isUnder640) {
+      dashboard = "/videos/product/dashboard/dashboard.640x358.x264.CRF26.veryslow.high-640w.mp4";
+    } else if (isUnder768) {
+      dashboard = "/videos/product/dashboard/dashboard.768x430.x264.CRF26.veryslow.high-768w.mp4";
+    } else if (isUnder1024) {
+      dashboard = "/videos/product/dashboard/dashboard.1024x572.x264.CRF26.veryslow.high-1024w.mp4";
+    }
+    setDashboard(dashboard);
+
+    let dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
+    if (isUnder1024) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
+    } else if (isUnder1280) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x358.x264.CRF26.veryslow.high-640w.mp4";
+    } else if (isUnder1536) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x430.x264.CRF26.veryslow.high-768w.mp4";
+    } else if (isPortrait) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
+      } else if (isUnder640) {
+        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
+      } else if (isUnder768) {
+        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x358.x264.CRF26.veryslow.high-640w.mp4";
+      } else if (isUnder1024) {
+        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x430.x264.CRF26.veryslow.high-768w.mp4";
+      } else if (isUnder1280) {
+        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
+    }
+    setDashboardMembers(dashboardMembers);
+  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isPortrait]);
 
   // Main Animations ready check
   const [animationsReady, setAnimationsReady] = useState(false);
@@ -940,7 +982,7 @@ const Product = () => {
 
           {/* <div className="borderBottom"></div> */}
 
-        <section id="Judge" className="flex flex-col mt-0 md:mt-[6vw] landscape:touch:md:mt-[4vw] justify-center">
+        <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] justify-center">
           {/* <div id="bgGlowRight" className={clsx(
                 "flex justify-end",
                 "h-full ml-auto",
@@ -952,7 +994,7 @@ const Product = () => {
                 alt="bg GlowRight"
               />
           </div> */}
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[17.5vw] portrait:touch:md:pt-[19.5vw] pb-6 md:pb-[14.1vw] portrait:md:pb-[12vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.5vw] lg:pt-[14vw] xl:pt-[13vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[17.5vw] portrait:touch:md:pt-[19.5vw] pb-6 md:pb-[7vw] lg:pb-[11.5vw] xl:pb-[13.1vw] 2xl:pb-[14.1vw] portrait:md:pb-[12vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Judge
             </ProductFCTitle>
@@ -969,27 +1011,6 @@ const Product = () => {
               Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
             </ProductFCDescription>
           </ProductFC>
-          {/* <div className={clsx(
-            "flex flex-col relative justify-center",
-            "h-full mx-1 md:mx-[5.6vw]",
-            "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14.1vw]",
-            "rounded-[3rem] bg-no-repeat ",
-            )}
-          >
-            <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
-              Judge
-            </h5>
-            <h3 className={clsx(
-              "flex flex-col justify-start text-left z-20 pr-[0%] md:pr-[15vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
-              Designed for officials and their mobile devices
-            </h3>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
-              The “Judge” app is specifically designed for officials and their mobile devices.<br/><br/>
-              It provides the tools to apply our methodology during a fight, submit scores to the RecordKeeper instantly, and offer personalised fight cards for each official.<br/><br/>
-              Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
-            </h6>
-          </div> */}
           <div className="portrait:md:h-[112vw]">
             
             {/* Titles for portrait devices */}
@@ -1154,7 +1175,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12.5vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[14vw] portrait:touch:md:pt-[20vw] pb-0 md:pb-[6.5vw] landscape:touch:md:pb-[6vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.25vw] lg:pt-[13.5vw] xl:pt-[13.5vw] 2xl:pt-[12.5vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[14vw] portrait:touch:md:pt-[20vw] pb-0 md:pb-[0vw] lg:pb-[1.75vw] xl:pb-[3.5vw] 2xl:pb-[6.5vw] landscape:touch:md:pb-[6vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               RecordKeeper
             </ProductFCTitle>
@@ -1176,7 +1197,7 @@ const Product = () => {
           </ProductFC>
 
           {/* RecordKeeper Titles */}
-          <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[2.5vw] px-[20vw] portrait:mt-[1vw] portrait:py-[4.5vw] portrait:md:py-[3.25vw] portrait:lg:py-[4.5vw] portrait:px-[3vw] portrait:md:px-[10vw]">
+          <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[7.5vw] lg:pt-[4vw] xl:pt-[2.5vw] px-[20vw] portrait:mt-[1vw] portrait:py-[4.5vw] portrait:md:py-[3.25vw] portrait:lg:py-[4.5vw] portrait:px-[3vw] portrait:md:px-[10vw]">
             <h4 className={clsx("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "twoLinesAlwaysProductRecordKeeper")}>
               {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
@@ -1185,7 +1206,7 @@ const Product = () => {
 
           <div className={clsx(
             "w-full gap-1 portrait:md:gap-1 md:gap-0 relative",
-            "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[92.5%] h-full max-h-[100vh] landscape:md:min-h-[46vw] landscape:touch:md:min-h-[45vw] mx-1 md:mx-[5.6vw] portrait:mx-auto",
+            "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[92.5%] h-full max-h-[100vh] landscape:md:min-h-[35vw] landscape:lg:min-h-[46vw] landscape:touch:md:min-h-[45vw] mx-1 md:mx-[5.6vw] portrait:mx-auto",
             "px-2 md:px-[3vw] md:pr-[0vw] portrait:md:px-[6.25vw] portrait:md:mb-[0vw] portrait:lg:mb-[0vw]",
             )}
           >
@@ -1193,7 +1214,7 @@ const Product = () => {
               {/* // Use the loading state to conditionally render the image */}
               <div className={clsx(
                 "recordKeeperTabletWrapper portrait:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10", // basis-[67%]
-                "min-w-auto max-w-[100%] landscape:md:max-w-[90%] landscape:2xl:max-w-[65%] portrait:max-w-[100%] h-full max-h-[100%] landscape:md:max-h-[75vh] landscape:2xl:max-h-full",
+                "min-w-auto max-w-[100%] landscape:md:max-w-[62%] landscape:lg:max-w-[90%] landscape:2xl:max-w-[65%] portrait:max-w-[100%] h-full max-h-[100%] landscape:md:max-h-[75vh] landscape:2xl:max-h-full",
                 "px-[0vw] pb-[0vw] md:pb-[0vw] portrait:pb-[0vw] md:portrait:pb-[0vw] landscape:touch:md:pb-[0vw]",
                 )}
               >
@@ -1221,7 +1242,7 @@ const Product = () => {
                     activeTab={activeTabProductRecordKeeper}
                     onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper1')}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-time-duration-30 w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-time-duration-30 w-[25px] md:w-[25px] lg:w-[30px] h-[25pxw] md:h-[25px] lg:h-[30px]">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M14 10.5v3a1.5 1.5 0 0 0 3 0v-3a1.5 1.5 0 0 0 -3 0z" />
                       <path d="M8 9h1.5a1.5 1.5 0 0 1 0 3h-.5h.5a1.5 1.5 0 0 1 0 3h-1.5" />
@@ -1242,7 +1263,7 @@ const Product = () => {
                     activeTab={activeTabProductRecordKeeper}
                     onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper2')}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-report-analytics w-[25px] md:w-[25px] lg:w-[30px] h-[25pxw] md:h-[25px] lg:h-[30px]">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
                       <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
@@ -1262,7 +1283,7 @@ const Product = () => {
                     activeTab={activeTabProductRecordKeeper}
                     onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper3')}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard w-[25px] md:w-[30px] h-[25pxw] md:h-[30px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-scoreboard w-[25px] md:w-[25px] lg:w-[30px] h-[25pxw] md:h-[25px] lg:h-[30px]">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
                       <path d="M12 5v2" />
@@ -1284,7 +1305,7 @@ const Product = () => {
                     activeTab={activeTabProductRecordKeeper}
                     onClick={() => selectTabProductRecordKeeper('ProductRecordKeeper4')}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[30px] h-[25px] md:h-[30px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-file-upload w-[25px] md:w-[25px] lg:w-[30px] h-[25px] md:h-[25px] lg:h-[30px]">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M14 3v4a1 1 0 0 0 1 1h4" />
                       <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
@@ -1302,7 +1323,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[12vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[14vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Dashboard
             </ProductFCTitle>
@@ -1319,32 +1340,11 @@ const Product = () => {
               The dashboard provides an intuitive interface that allows Federations to easily manage various topics, while offering easy-to-digest reports and analysis on the various affairs of the Federation, such as fights statistics and trends from a regulatory perspective, as well as insights into members.
             </ProductFCDescription>
           </ProductFC>
-          {/* <div className={clsx(
-            "flex flex-col relative justify-center",
-            "h-full mx-1 md:mx-[5.6vw]",
-            "px-12 md:px-[7.65vw] pt-12 md:pt-[13.625vw] pb-12 md:pb-[13.75vw]",
-            "rounded-[3rem] bg-no-repeat ",
-            )}
-          >
-            <h5 className="flex flex-col justify-start text-left z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
-              Dashboard
-            </h5>
-            <h3 className={clsx(
-              "flex flex-col justify-start text-left z-20 pr-[0%] md:pr-[15vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
-              Enables Federations to easily manage all affairs
-            </h3>
-            <h6 className="flex flex-col justify-start z-20 pr-[0vw] md:pr-[19vw] text-[1.5rem] md:text-[1.33vw] text-left font-medium leading-[2.1rem] md:leading-[1.75vw]">
-              The Dashboard is the component Federations interact with the most.<br/><br/>
-              Here they will be able to visualize and manage every aspect of the sport.<br/>
-              The dashboard provides an intuitive interface that allows Federations to easily manage various topics, while offering easy-to-digest reports and analysis on the various affairs of the Federation, such as fights statistics and trends from a regulatory perspective, as well as insights into members.
-            </h6>
-          </div> */}
 
           <div className={clsx(
             "dashboardBlock flex flex-col items-center justify-start relative z-10",
             "min-w-auto max-w-[100%] md:max-w-[95%] h-full max-h-[100%] mx-0 md:mx-[5.6vw] portrait:mx-[1vw] portrait:md:mx-[3vw]",
-            "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 portrait:md:pb-[0vw] landscape:touch:md:pb-[2vw] landscape:touch:lg:pb-[1.5vw]",
+            "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 md:pb-0 lg:pb-12 portrait:md:pb-[0vw] landscape:touch:md:pb-[2vw] landscape:touch:lg:pb-[1.5vw]",
             )}
           >
             <picture><img
@@ -1376,8 +1376,8 @@ const Product = () => {
                 onLoad={() => setIsLoading(false)}
               /> */}
               <video
-                className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.45vw] md:pt-[1vw] portrait:md:pt-[1.475vw]"
-                src="/videos/product/dashboard/dashboard.1280x716.x264.AVBR.300kbps.veryslow.high-1280w.mp4"
+                className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] pt-[1.6vw] md:pt-[1vw] portrait:md:pt-[1.475vw]"
+                src={dashboard}
                 typeof="video/mp4"
                 playsInline
                 muted
@@ -1390,62 +1390,32 @@ const Product = () => {
               className="flex absolute w-full justify-center items-end pt-[65vw] md:pt-[42vw] portrait:md:pt-[62vw] px-[14vw] portrait:px-[1vw] portrait:md:px-[1vw]"
               productDashboardItems={productDashboardItems}
             />
-            {/* <div className="flex absolute w-full justify-center items-end md:pt-[38.5vw] px-[14vw]">
-              <h4 className={clsx("text-lg md:text-[1.9vw] leading-[2.5vw] tracking-normal text-center text-shadow-sm text-shadow-blur-3 text-shadow-[var(--background-grey)]")}>
-                {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
-              </h4>
-              <h4 className={clsx("text-lg md:text-[1.9vw] leading-[2.5vw] tracking-normal md:pt-[33vw] px-[14vw] absolute text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-600)] to-purple-100")}>
-                {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
-              </h4>
-            </div> */}
           </div>
         </section>
 
         <div className="productDivider"></div>
 
         <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[12vw] landscape:touch:md:pt-[14vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[17vw] portrait:touch:lg:pt-[19.5vw] pb-12 md:pb-[14vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.75vw] lg:pt-[12vw] xl:pt-[13.5vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[17vw] portrait:touch:lg:pt-[19.5vw] pb-12 md:pb-[14vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               Dashboard (Members)
             </ProductFCTitle>
-            <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[15vw] ">
+            <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[13vw] lg:pl-[15vw]">
               A platform to seemlessly interact with your Federation
             </ProductFCHeading>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
               The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
               Whether you’re registering for the first time, or managing your membership and submitted documents.<br/><br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
               You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/><br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
               Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
             </ProductFCDescription>
           </ProductFC>
-          {/* <div className={clsx(
-            "flex flex-col relative justify-center",
-            "h-full mx-1 md:mx-[5.6vw]",
-            "px-12 md:px-[7.65vw] pt-12 md:pt-[12vw] pb-12 md:pb-[14vw]",
-            "rounded-[3rem] bg-no-repeat ",
-          )}>
-            <h5 className="flex flex-col justify-end text-right z-20 max-w-[30rem] md:max-w-[100%] text-md md:text-[2.175vw] mb-12 md:mb-[3.5vw] text-neutral-200 deboss">
-              Dashboard (Members)
-            </h5>
-            <h3 className={clsx(
-              "flex flex-col justify-end text-right z-20 pl-[0%] md:pl-[15vw] mb-12 md:mb-[3.5vw]",
-              "text-xl md:text-[4.35vw] text-transparent bg-clip-text py-2 bg-gradient-to-bl from-[var(--purple-250)] to-purple-100")}>
-              A platform to seemlessly interact with your Federation
-            </h3>
-            <h6 className="flex flex-col justify-end z-20 pl-[0vw] md:pl-[25vw] text-[1.5rem] md:text-[1.33vw] text-right font-medium leading-[2.1rem] md:leading-[1.75vw]">
-              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/><br/>
-              Whether you’re registering for the first time, or managing your membership and submitted documents.<br/>
-              You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/>
-              Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
-
-            </h6>
-          </div> */}
 
           <div className={clsx(
             "w-full flex landscape:flex-row portrait:flex-col gap-0 md:gap-0 relative",
@@ -1482,7 +1452,7 @@ const Product = () => {
                 /> */}
                 <video
                   className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[2.15vw] rounded-[0.3rem]"
-                  src="/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.AVBR.400kbps.veryslow.high-1024w.mp4"
+                  src={dashboardMembers}
                   typeof="video/mp4"
                   playsInline
                   muted

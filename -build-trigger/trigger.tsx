@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.10 | Home FEatures various adjustments and fixes. Product new videos.";
+let vNumber = "v0.9-β.8.11 | Product cards and devices adjustments. Product new responsive videos.";
