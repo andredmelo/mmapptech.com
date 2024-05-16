@@ -76,19 +76,20 @@ const Product = () => {
     if (isUnder1024) {
       dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
     } else if (isUnder1280) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x358.x264.CRF26.veryslow.high-640w.mp4";
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x410.x264.CRF26.veryslow.high-640w.mp4";
     } else if (isUnder1536) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x430.x264.CRF26.veryslow.high-768w.mp4";
-    } else if (isPortrait) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
+    }
+    if (isPortrait) {
       dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
-      } else if (isUnder640) {
-        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
-      } else if (isUnder768) {
-        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x358.x264.CRF26.veryslow.high-640w.mp4";
-      } else if (isUnder1024) {
-        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x430.x264.CRF26.veryslow.high-768w.mp4";
-      } else if (isUnder1280) {
-        dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
+    } else if (isPortrait && isUnder640) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
+    } else if (isPortrait && isUnder768) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x410.x264.CRF26.veryslow.high-640w.mp4";
+    } else if (isPortrait && isUnder1024) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
+    } else if (isPortrait && isUnder1280) {
+      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
     }
     setDashboardMembers(dashboardMembers);
   }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isPortrait]);
@@ -966,7 +967,7 @@ const Product = () => {
 
           <div id="productLineTablets"
             className={clsx(
-              "landscape:hidden portrait:flex portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",
+              "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",// portrait:md:flex
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
             <svg viewBox="0 0 1536 13000" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
@@ -982,7 +983,7 @@ const Product = () => {
 
           {/* <div className="borderBottom"></div> */}
 
-        <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] justify-center">
+        <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] landscape:touch:2xl:mt-[2vw] portrait:touch:md:mt-[5.5vw] portrait:touch:lg:mt-[6vw] justify-center">
           {/* <div id="bgGlowRight" className={clsx(
                 "flex justify-end",
                 "h-full ml-auto",
@@ -994,7 +995,7 @@ const Product = () => {
                 alt="bg GlowRight"
               />
           </div> */}
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.5vw] lg:pt-[14vw] xl:pt-[13vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[17.5vw] portrait:touch:md:pt-[19.5vw] pb-6 md:pb-[7vw] lg:pb-[11.5vw] xl:pb-[13.1vw] 2xl:pb-[14.1vw] portrait:md:pb-[12vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.5vw] lg:pt-[14vw] xl:pt-[13vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[17.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[19.5vw] pb-6 md:pb-[7vw] lg:pb-[11.5vw] xl:pb-[13.1vw] 2xl:pb-[14.1vw] portrait:md:pb-[12vw] portrait:touch:md:pb-[10.5vw] portrait:touch:lg:pb-[10vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Judge
             </ProductFCTitle>
@@ -1011,7 +1012,7 @@ const Product = () => {
               Additionally, it allows judges to share their scorecards and graphs with each other and their Federations, allowing for a second-by-second analysis of each round.
             </ProductFCDescription>
           </ProductFC>
-          <div className="portrait:md:h-[112vw]">
+          <div className="portrait:md:h-[112vw] portrait:touch:md:h-[115vw] portrait:touch:lg:h-[115vw]">
             
             {/* Titles for portrait devices */}
             {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-2 md:mb-[2vw] pb-0 portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
@@ -1032,7 +1033,7 @@ const Product = () => {
               {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
             </div>
 
-            <div className={clsx("w-full flex flex-col md:flex-row gap-1 md:gap-0 relative pb-0 md:pb-[1.75vw] landscape:touch:md:pb-[2vw]")}>
+            <div className={clsx("w-full flex flex-col md:flex-row gap-1 md:gap-0 relative pb-0 md:pb-[1.75vw] landscape:touch:md:pb-[2vw] ")}>
 
               <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative overflow-hidden">
                 <TabButtonProductJudge
@@ -1169,7 +1170,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.25vw] lg:pt-[13.5vw] xl:pt-[13.5vw] 2xl:pt-[12.5vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[14vw] portrait:touch:md:pt-[20vw] pb-0 md:pb-[0vw] lg:pb-[1.75vw] xl:pb-[3.5vw] 2xl:pb-[6.5vw] landscape:touch:md:pb-[6vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.25vw] lg:pt-[13.5vw] xl:pt-[13.5vw] 2xl:pt-[12.5vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[14vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20vw] pb-0 md:pb-[0vw] lg:pb-[1.75vw] xl:pb-[3.5vw] 2xl:pb-[6.5vw] landscape:touch:md:pb-[6vw] portrait:touch:md:pb-[8vw] portrait:touch:lg:pb-[6vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               RecordKeeper
             </ProductFCTitle>
@@ -1191,7 +1192,7 @@ const Product = () => {
           </ProductFC>
 
           {/* RecordKeeper Titles */}
-          <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[7.5vw] lg:pt-[4vw] xl:pt-[2.5vw] px-[20vw] portrait:mt-[1vw] portrait:py-[4.5vw] portrait:md:py-[3.25vw] portrait:lg:py-[4.5vw] portrait:px-[3vw] portrait:md:px-[10vw]">
+          <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[7.5vw] lg:pt-[4vw] xl:pt-[4vw] 2xl:pt-[2.5vw] px-[20vw] portrait:mt-[1vw] portrait:py-[4.5vw] portrait:md:py-[3.25vw] portrait:lg:py-[4.5vw] portrait:px-[3vw] portrait:md:px-[10vw]">
             <h4 className={clsx("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "twoLinesAlwaysProductRecordKeeper")}>
               {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
@@ -1317,7 +1318,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[14vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] landscape:touch:xl:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[14vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Dashboard
             </ProductFCTitle>
@@ -1390,7 +1391,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.75vw] lg:pt-[12vw] xl:pt-[13.5vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[17vw] portrait:touch:lg:pt-[19.5vw] pb-12 md:pb-[14vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.75vw] lg:pt-[12vw] xl:pt-[11vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] landscape:touch:lg:pt-[11.75vw] landscape:touch:xl:pt-[13vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[22.5vw] portrait:touch:lg:pt-[18vw] pb-12 md:pb-[14vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               Dashboard (Members)
             </ProductFCTitle>
@@ -1445,7 +1446,7 @@ const Product = () => {
                   onLoad={() => setIsLoading(false)}
                 /> */}
                 <video
-                  className="object-fill w-full portrait:max-h-max portrait:md:max-h-max px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[2.15vw] rounded-[0.3rem]"
+                  className="object-fill w-full px-0 md:px-[0vw] my-[3.75vw] md:my-[0.9vw] portrait:md:my-[2.15vw] portrait:touch:md:mt-[2vw] portrait:touch:lg:mt-[2vw] rounded-[0.3rem]"
                   src={dashboardMembers}
                   typeof="video/mp4"
                   playsInline
