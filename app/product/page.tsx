@@ -111,7 +111,7 @@ const Product = () => {
     'ProductJudge1': 'Assess Fights with the MMAPP Methodology',
     'ProductJudge2': 'Submit Scores Instantly',
     'ProductJudge3': 'Personalised Fight Card',
-    'ProductJudge4': 'Practice at Home',
+    'ProductJudge4': 'Make more informed decisions',
     'ProductJudge5': 'Share your results with your colleagues',
     'ProductJudge6': 'Personal Lifetime archive of your results',
   };
@@ -1111,8 +1111,8 @@ const Product = () => {
                 <TabButtonProductJudge
                   value='ProductJudge4'
                   className="ProductJudgeButtonRight"
-                  heading='Practice at Home'
-                  smallHeading='Practice'
+                  heading='Make more informed decisions'
+                  smallHeading='Decisions'
                   leftOrRight='right'
                   isPending={isPending}
                   activeTab={activeTabProductJudge}
@@ -1120,13 +1120,7 @@ const Product = () => {
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-barbell w-[25px] md:w-[28px] lg:w-[30px] h-[25px] md:h-[28px] lg:h-[30px]">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M2 12h1" />
-                    <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
-                    <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
-                    <path d="M9 12h6" />
-                    <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
-                    <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" />
-                    <path d="M22 12h-1" />
+                    <path d="M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5" />
                   </svg>
                 </TabButtonProductJudge>
                 <TabButtonProductJudge

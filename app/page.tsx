@@ -1733,7 +1733,7 @@ export default function Home() {
 
                 <div id="featuresJudgeTitle" className="flex portrait:flex-col-reverse landscape:flex-col-reverse landscape:md:flex-row justify-end items-center z-20 text-right">
                   <div className="flex flex-row justify-end items-center mmappBlockReveal">
-                    <h4 className="text-lg md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[5.4rem] text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 text-center md:text-right">
+                    <h4 className="text-lg md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5.4rem] 2xl:text-[5.4rem] text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 md:pb-4 text-center md:text-right">
                       Judge App
                     </h4>
                     <h6 className="text-[1.55rem] md:text-[2.6rem] lg:text-[3rem] xl:text-[4rem] 2xl:text-[4rem] text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2 pr-8 rotate-180 portrait:hidden landscape:hidden landscape:md:block">
