@@ -9,7 +9,7 @@ import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
 import CustomEase from 'gsap/CustomEase';
 import verticalLoop from '@/components/VerticalLoop';
 import { useMediaQuery } from '@react-hook/media-query';
-import { isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
+import { isDesktop, isTablet, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 
 import ContactUs from '@/app/contact/contact-us'
 import CallToActionButton from '@/components/ui/CallToActionButton'
@@ -945,6 +945,7 @@ const Product = () => {
             </ProductFC>
           </section>
 
+          {/* {isDesktop || isTablet && isLandscape ?  */}
           <div id="productLineDesktop"
             className={clsx(
               "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
@@ -961,10 +962,12 @@ const Product = () => {
               <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
+          {/* :  '' } */}
 
 
           {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" strokeWidth="3" pathLength="1" stroke-dashoffset="0px" strokeDasharray="0.98052660449808px 1px"></path> */}
 
+          {/* {isTablet && isPortrait ?  */}
           <div id="productLineTablets"
             className={clsx(
               "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",// portrait:md:flex
@@ -980,6 +983,7 @@ const Product = () => {
               <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
+          {/* :  '' } */}
 
           {/* <div className="borderBottom"></div> */}
 
