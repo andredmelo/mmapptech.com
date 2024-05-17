@@ -67,6 +67,12 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Icon": "GUINEA-GSKMAD-icon-only.webp"
     },
     {
+      "Country": "Madagascar",
+      "Email": "spvfelana@gmail.com",
+      "Federation": "Mixte Martial Art Madagascar",
+      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
+    },
+    {
       "Country": "Mauritius",
       "Email": "ramtohulavinash@yahoo.com",
       "Federation": "Mixed Martial Arts Federation Mauritius",
@@ -126,12 +132,6 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Federation": "Zimbabwe Mixed Martial Arts Association",
       "Icon": "Zimbabwe-ZMMAA-icon-only.webp"
     },
-    {
-      "Country": "Madagascar",
-      "Email": "spvfelana@gmail.com",
-      "Federation": "Mixte Martial Art Madagascar",
-      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
-    }
   ],
   ASIA: [
     {
@@ -255,6 +255,18 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Icon": "SAUDI-ARABIA-SAUMMAF-icon-only.webp"
     },
     {
+      "Country": "Singapore",
+      "Email": "admin@mmaas.com.sg",
+      "Federation": "Mixed Martial Arts Association of Singapore",
+      "Icon": "SINGAPORE-290x205-1.webp"
+    },
+    {
+      "Country": "South Korea",
+      "Email": "kimse7942@hanmail.net",
+      "Federation": "",
+      "Icon": "SOUTH-KOREA-290x205-1.webp"
+    },
+    {
       "Country": "Sri Lanka",
       "Email": "daido@sltnet.lk",
       "Federation": "Mixed Martial Arts Federation Sri Lanka",
@@ -271,6 +283,18 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Email": "farrux.halimov@tajmma.tj",
       "Federation": "Federation Of Mixed Martial Arts Of The Republic Of Tajikistan",
       "Icon": "Tajikistan-290x205-1.webp"
+    },
+    {
+      "Country": "Thailand",
+      "Email": "jitinat_a@jslglobalmedia.com",
+      "Federation": "",
+      "Icon": "THAILAND-290x205-1.webp"
+    },
+    {
+      "Country": "Turkmenistan",
+      "Email": "tkmmmaf@mail.ru",
+      "Federation": "Federation of Mixed Martial Arts of Turkmenistan",
+      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
     },
     {
       "Country": "United Arab Emirates",
@@ -290,30 +314,6 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Federation": "Vietnam MMA Federation",
       "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
     },
-    {
-      "Country": "Singapore",
-      "Email": "admin@mmaas.com.sg",
-      "Federation": "Mixed Martial Arts Association of Singapore",
-      "Icon": "SINGAPORE-290x205-1.webp"
-    },
-    {
-      "Country": "Thailand",
-      "Email": "jitinat_a@jslglobalmedia.com",
-      "Federation": "",
-      "Icon": "THAILAND-290x205-1.webp"
-    },
-    {
-      "Country": "South Korea",
-      "Email": "kimse7942@hanmail.net",
-      "Federation": "",
-      "Icon": "SOUTH-KOREA-290x205-1.webp"
-    },
-    {
-      "Country": "Turkmenistan",
-      "Email": "tkmmmaf@mail.ru",
-      "Federation": "Federation of Mixed Martial Arts of Turkmenistan",
-      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
-    }
   ],
   EUROPE: [
     {
@@ -473,6 +473,12 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Icon": "Luxembourg-400x283-1.webp"
     },
     {
+      "Country": "Macedonia",
+      "Email": "ivica.jkdmk@gmail.com",
+      "Federation": "Macedonia MMA Federation",
+      "Icon": "Macedonia-IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
+    },
+    {
       "Country": "Malta",
       "Email": "kcmifsud123@gmail.com",
       "Federation": "Malta Mixed Martial Arts Association",
@@ -592,12 +598,6 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Federation": "Mixed Martial Arts Cymru",
       "Icon": "Wales-MMACym-399x283-1.webp"
     },
-    {
-      "Country": "Macedonia",
-      "Email": "ivica.jkdmk@gmail.com",
-      "Federation": "Macedonia MMA Federation",
-      "Icon": "Macedonia-IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
-    }
   ],
   OCEANIA: [
     {
@@ -741,6 +741,12 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Icon": "PARAGUAY-400x283-1.webp"
     },
     {
+      "Country": "Peru",
+      "Email": "mijailiberico@hotmail.com",
+      "Federation": "Asociacion Peruana de Mixed Martial Arts",
+      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
+    },
+    {
       "Country": "Puerto Rico",
       "Email": "antoniojcesani@yahoo.com",
       "Federation": "Federacion Independiente de Artes Marciales Mixtas de Puerto Rico",
@@ -782,12 +788,6 @@ const CountriesData: AccordionCallToActionCountriesData = {
       "Federation": "Federación Venezolana de Artes Marciales Mixtas",
       "Icon": "VENEZUELA-FEVAMM-icon-only.webp"
     },
-    {
-      "Country": "Peru",
-      "Email": "mijailiberico@hotmail.com",
-      "Federation": "Asociacion Peruana de Mixed Martial Arts",
-      "Icon": "IMMAF-blk-Globe_ICON-ONLY-400x283-1.webp"
-    }
   ],
 };
 

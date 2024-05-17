@@ -1,2 +1,2 @@
-let vNumber = "v0.9-β.8.14 | MailSender fix. React-device-detect fix.";
+let vNumber = "v0.9-β.8.15 | Book a Demo CTA Countries list fix.";
 

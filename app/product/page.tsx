@@ -948,7 +948,7 @@ const Product = () => {
           {/* {isDesktop || isTablet && isLandscape ?  */}
           <div id="productLineDesktop"
             className={clsx(
-              "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
+              "flex flex-col relative justify-center items-center", // portrait:touch:
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
             <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
@@ -962,7 +962,7 @@ const Product = () => {
               <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
-          {/* :  '' } */}
+          {/*   :  '' } */}
 
 
           {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" strokeWidth="3" pathLength="1" stroke-dashoffset="0px" strokeDasharray="0.98052660449808px 1px"></path> */}
@@ -983,7 +983,7 @@ const Product = () => {
               <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
-          {/* :  '' } */}
+           {/*  :  '' } */}
 
           {/* <div className="borderBottom"></div> */}
 
@@ -1400,18 +1400,15 @@ const Product = () => {
               Dashboard (Members)
             </ProductFCTitle>
             <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[13vw] lg:pl-[15vw]">
-              A platform to seemlessly interact with your Federation
+              A platform to seamlessly interact with your Federation
             </ProductFCHeading>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
-              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, Promoters a simple platform to interact with your Federations.<br/>
-            </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
-              Whether you’re registering for the first time, or managing your membership and submitted documents.<br/><br/>
+              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, and Promoters a simple platform to interact with your Federations, whether you’re registering for the first time, or managing your membership and submitted documents.<br/><br/>
             </ProductFCDescription>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
               You can also confirm your eligibility for participation in sanctioned events, or submit applications for hosting events, in the case of Promoters.<br/><br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[20vw] lg:pl-[19vw]">
               Additionally, members can view events they’re scheduled to participate in or host, as well as view a history of their career.
             </ProductFCDescription>
           </ProductFC>
