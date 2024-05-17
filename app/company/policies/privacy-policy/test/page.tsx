@@ -1,4 +1,4 @@
-/* 'use client' */
+/* &apos;use client&apos; */
 
 const PrivacyPolicy = () => {
 
@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
           <p>PRIVACY POLICY</p>
           <p>Last updated October 09, 2023</p>
           <p><br /><br /><br /></p>
-          <p>This privacy notice for MMAPP Technologies, Unipessoal Lda. (doing business as MMAPP) ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you:</p>
+          <p>This privacy notice for MMAPP Technologies, Unipessoal Lda. (doing business as MMAPP) (&apos;we&apos;, &apos;us&apos;, or &apos;our&apos;), describes how and why we might collect, store, use, and/or share (&apos;process&apos;) your information when you use our services (&apos;Services&apos;), such as when you:</p>
           <p>Visit our website at https://www.mmapp.app, or any website of ours that links to this privacy notice</p>
           <p>Download and use our mobile application (MMAPP Judge), or any other application of ours that links to this privacy notice</p>
           <p>Engage with us in other related ways, including any sales, marketing, or events</p>
@@ -66,11 +66,11 @@ const PrivacyPolicy = () => {
           <p>Sensitive Information. When necessary, with your consent or as otherwise permitted by applicable law, we process the following categories of sensitive information:</p>
           <p>health data</p>
           <p>social security numbers or other government identifiers</p>
-          <p>Social Media Login Data. We may provide you with the option to register with us using your existing social media account details, like your Facebook, Twitter, or other social media account. If you choose to register in this way, we will collect the information described in the section called 'HOW DO WE HANDLE YOUR SOCIAL LOGINS?' below.</p>
+          <p>Social Media Login Data. We may provide you with the option to register with us using your existing social media account details, like your Facebook, Twitter, or other social media account. If you choose to register in this way, we will collect the information described in the section called &apos;HOW DO WE HANDLE YOUR SOCIAL LOGINS?&apos; below.</p>
           <p>Application Data. If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:</p>
-          <p>Mobile Device Access. We may request access or permission to certain features from your mobile device, including your mobile device's bluetooth, storage, wi-fi, networking capabilities, and other features. If you wish to change our access or permissions, you may do so in your device's settings.</p>
+          <p>Mobile Device Access. We may request access or permission to certain features from your mobile device, including your mobile device&apos;s bluetooth, storage, wi-fi, networking capabilities, and other features. If you wish to change our access or permissions, you may do so in your device&apos;s settings.</p>
           <p>Mobile Device Data. We automatically collect device information (such as your mobile device ID, model, and manufacturer), operating system, version information and system configuration information, device and application identification numbers, browser type and version, hardware model Internet service provider and/or mobile carrier, and Internet Protocol (IP) address (or proxy server). If you are using our application(s), we may also collect information about the phone network associated with your mobile device, your mobile device&rsquo;s operating system or platform, the type of mobile device you use, your mobile device&rsquo;s unique device ID, and information about the features of our application(s) you accessed.</p>
-          <p>Push Notifications. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device's settings.</p>
+          <p>Push Notifications. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device&apos;s settings.</p>
           <p>This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.</p>
           <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
           <p>Information automatically collected</p>
@@ -78,9 +78,9 @@ const PrivacyPolicy = () => {
           <p>We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.</p>
           <p>Like many businesses, we also collect information through cookies and similar technologies.</p>
           <p>The information we collect includes:</p>
-          <p>Log and Usage Data. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called 'crash dumps'), and hardware settings).</p>
+          <p>Log and Usage Data. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called &apos;crash dumps&apos;), and hardware settings).</p>
           <p>Device Data. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.</p>
-          <p>Location Data. We collect location data such as information about your device's location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.</p>
+          <p>Location Data. We collect location data such as information about your device&apos;s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.</p>
           <ol>
           <li>HOW DO WE PROCESS YOUR INFORMATION?</li>
           </ol>
@@ -92,10 +92,10 @@ const PrivacyPolicy = () => {
           <p>To fulfil and manage your orders. We may process your information to fulfil and manage your orders, payments, returns, and exchanges made through the Services.</p>
           <p><br /><br /><br /><br /></p>
           <p>To request feedback. We may process your information when necessary to request feedback and to contact you about your use of our Services.</p>
-          <p>To send you marketing and promotional communications. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see 'WHAT ARE YOUR PRIVACY RIGHTS?' below.</p>
+          <p>To send you marketing and promotional communications. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see &apos;WHAT ARE YOUR PRIVACY RIGHTS?&apos; below.</p>
           <p>To protect our Services. We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.</p>
           <p>To identify usage trends. We may process information about how you use our Services to better understand how they are being used so we can improve them.</p>
-          <p>To save or protect an individual's vital interest. We may process your information when necessary to save or protect an individual&rsquo;s vital interest, such as to prevent harm.</p>
+          <p>To save or protect an individual&apos;s vital interest. We may process your information when necessary to save or protect an individual&rsquo;s vital interest, such as to prevent harm.</p>
           <p>To officialise competition results. We may process your information to officiliase the results of competitions and/or events you participated in.</p>
           <p>__________. __________</p>
           <ol>
@@ -133,7 +133,7 @@ const PrivacyPolicy = () => {
           <li>WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</li>
           </ol>
           <p>In Short: We may share information in specific situations described in this section and/or with the following categories of third parties.</p>
-          <p>Vendors, Consultants, and Other Third-Party Service Providers. We may share your data with third-party vendors, service providers, contractors, or agents ('third parties') who perform services for us or on our behalf and require access to such information to do that work. We have contracts in place with our third parties, which are designed to help safeguard your personal information. This means that they cannot do anything with your personal information unless we have instructed them to do it. They will also not share your personal information with any organisation apart from us. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct. The categories of third parties we may share personal information with are as follows:</p>
+          <p>Vendors, Consultants, and Other Third-Party Service Providers. We may share your data with third-party vendors, service providers, contractors, or agents (&apos;third parties&apos;) who perform services for us or on our behalf and require access to such information to do that work. We have contracts in place with our third parties, which are designed to help safeguard your personal information. This means that they cannot do anything with your personal information unless we have instructed them to do it. They will also not share your personal information with any organisation apart from us. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct. The categories of third parties we may share personal information with are as follows:</p>
           <p>Government Entities</p>
           <p>Data Analytics Services</p>
           <p>Testing Tools</p>
@@ -159,15 +159,15 @@ const PrivacyPolicy = () => {
           <li>IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?</li>
           </ol>
           <p>In Short: We may transfer, store, and process your information in countries other than your own.</p>
-          <p>Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see 'WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?' above), in and other countries.</p>
+          <p>Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see &apos;WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?&apos; above), in and other countries.</p>
           <p>If you are a resident in the European Economic Area (EEA), United Kingdom (UK), or Switzerland, then these countries may not necessarily have data protection laws or other similar laws as comprehensive as those in your country. However, we will take all necessary measures to protect your personal information in accordance with this privacy notice and applicable law.</p>
-          <p>European Commission's Standard Contractual Clauses:</p>
-          <p>We have implemented measures to protect your personal information, including by using the European Commission's Standard Contractual Clauses for transfers of personal information between our group companies and between us and our third-party providers. These clauses require all recipients to protect all personal information that they process originating from the EEA or UK in accordance with European data protection laws and regulations. Our Standard Contractual Clauses can be provided upon request. We have implemented similar appropriate safeguards with our third-party service providers and partners and further details can be provided upon request.</p>
+          <p>European Commission&apos;s Standard Contractual Clauses:</p>
+          <p>We have implemented measures to protect your personal information, including by using the European Commission&apos;s Standard Contractual Clauses for transfers of personal information between our group companies and between us and our third-party providers. These clauses require all recipients to protect all personal information that they process originating from the EEA or UK in accordance with European data protection laws and regulations. Our Standard Contractual Clauses can be provided upon request. We have implemented similar appropriate safeguards with our third-party service providers and partners and further details can be provided upon request.</p>
           <ol>
           <li>HOW LONG DO WE KEEP YOUR INFORMATION?</li>
           </ol>
           <p>In Short: We keep your information for as long as necessary to fulfil the purposes outlined in this privacy notice unless otherwise required by law.</p>
-          <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than eighteen (18) months past the termination of the user's account.</p>
+          <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than eighteen (18) months past the termination of the user&apos;s account.</p>
           <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymise such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
           <ol>
           <li>HOW DO WE KEEP YOUR INFORMATION SAFE?</li>
@@ -178,13 +178,13 @@ const PrivacyPolicy = () => {
           <li>WHAT ARE YOUR PRIVACY RIGHTS?</li>
           </ol>
           <p>In Short: In some regions, such as the European Economic Area (EEA), United Kingdom (UK), Switzerland, and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time.</p>
-          <p>In some regions (like the EEA, UK, Switzerland, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; (iv) if applicable, to data portability; and (v) not to be subject to automated decision-making. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?' below.</p>
+          <p>In some regions (like the EEA, UK, Switzerland, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; (iv) if applicable, to data portability; and (v) not to be subject to automated decision-making. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section &apos;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&apos; below.</p>
           <p>We will consider and act upon any request in accordance with applicable data protection laws.</p>
           <p>If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your Member State data protection authority or UK data protection authority.</p>
           <p>If you are located in Switzerland, you may contact the Federal Data Protection and Information Commissioner.</p>
-          <p>Withdrawing your consent: If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?' below or updating your preferences.</p>
+          <p>Withdrawing your consent: If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section &apos;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&apos; below or updating your preferences.</p>
           <p>However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
-          <p>Opting out of marketing and promotional communications: You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, or by contacting us using the details provided in the section 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?' below. You will then be removed from the marketing lists. However, we may still communicate with you &mdash; for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.</p>
+          <p>Opting out of marketing and promotional communications: You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, or by contacting us using the details provided in the section &apos;HOW CAN YOU CONTACT US ABOUT THIS NOTICE?&apos; below. You will then be removed from the marketing lists. However, we may still communicate with you &mdash; for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.</p>
           <p>Account Information</p>
           <p>If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
           <p>Log in to your account settings and update your user account.</p>
@@ -194,7 +194,7 @@ const PrivacyPolicy = () => {
           <ol>
           <li>CONTROLS FOR DO-NOT-TRACK FEATURES</li>
           </ol>
-          <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ('DNT') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
+          <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track (&apos;DNT&apos;) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognising and implementing DNT signals has been finalised. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.</p>
           <ol>
           <li>DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</li>
           </ol>
@@ -264,22 +264,22 @@ const PrivacyPolicy = () => {
           <p><br /><br /></p>
           <p>We will use and retain the collected personal information as needed to provide the Services or for:</p>
           <p>Category A - 18 months after user terminates their account.</p>
-          <p>Category B - 18 months after the user's account is terminated</p>
+          <p>Category B - 18 months after the user&apos;s account is terminated</p>
           <p>Category C - 18 months after user terminates their account.</p>
           <p>Category E - 18 months after user terminates their account.</p>
           <p>Category G - 6 months</p>
           <p>Category I - 18 months after user terminates their account.</p>
-          <p>Category L - 18 months after the user's account is terminated</p>
+          <p>Category L - 18 months after the user&apos;s account is terminated</p>
           <p>Category L information may be used, or disclosed to a service provider or contractor, for additional, specified purposes. You have the right to limit the use or disclosure of your sensitive personal information.</p>
           <p>We may also collect other personal information outside of these categories through instances where you interact with us in person, online, or by phone or mail in the context of:</p>
           <p>Receiving help through our customer support channels;</p>
           <p>Participation in customer surveys or contests; and</p>
           <p>Facilitation in the delivery of our Services and to respond to your inquiries.</p>
           <p>How do we use and share your personal information?</p>
-          <p>Learn about how we use your personal information in the section, 'HOW DO WE PROCESS YOUR INFORMATION?'</p>
+          <p>Learn about how we use your personal information in the section, &apos;HOW DO WE PROCESS YOUR INFORMATION?&apos;</p>
           <p>Will your information be shared with anyone else?</p>
-          <p>We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Learn more about how we disclose personal information to in the section, 'WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?'</p>
-          <p>We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be 'selling' of your personal information.</p>
+          <p>We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Learn more about how we disclose personal information to in the section, &apos;WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?&apos;</p>
+          <p>We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be &apos;selling&apos; of your personal information.</p>
           <p>We have disclosed the following categories of personal information to third parties for a business or commercial purpose in the preceding twelve (12) months:</p>
           <p>Category A. Identifiers</p>
           <p><br /><br /></p>
@@ -293,20 +293,20 @@ const PrivacyPolicy = () => {
           <p><br /><br /><br /></p>
           <p>Category I. Professional or employment-related information</p>
           <p>Category L. Sensitive personal information</p>
-          <p>The categories of third parties to whom we disclosed personal information for a business or commercial purpose can be found under 'WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?'</p>
+          <p>The categories of third parties to whom we disclosed personal information for a business or commercial purpose can be found under &apos;WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?&apos;</p>
           <p>We have sold or shared the following categories of personal information to third parties in the preceding twelve (12) months:</p>
           <p><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
           <p>The categories of third parties to whom we sold personal information are:</p>
           <p>California Residents</p>
-          <p>California Civil Code Section 1798.83, also known as the 'Shine The Light' law permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below.</p>
+          <p>California Civil Code Section 1798.83, also known as the &apos;Shine The Light&apos; law permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below.</p>
           <p>If you are under 18 years of age, reside in California, and have a registered account with the Services, you have the right to request removal of unwanted data that you publicly post on the Services. To request removal of such data, please contact us using the contact information provided below and include the email address associated with your account and a statement that you reside in California. We will make sure the data is not publicly displayed on the Services, but please be aware that the data may not be completely or comprehensively removed from all our systems (e.g. backups, etc.).</p>
           <p>CCPA Privacy Notice</p>
           <p>This section applies only to California residents. Under the California Consumer Privacy Act (CCPA), you have the rights listed below.</p>
-          <p>The California Code of Regulations defines a 'residents' as:</p>
+          <p>The California Code of Regulations defines a &apos;residents&apos; as:</p>
           <p>(1) every individual who is in the State of California for other than a temporary or transitory purpose and</p>
           <p>(2) every individual who is domiciled in the State of California who is outside the State of California for a temporary or transitory purpose</p>
-          <p>All other individuals are defined as 'non-residents'.</p>
-          <p>If this definition of 'resident' applies to you, we must adhere to certain rights and obligations regarding your personal information.</p>
+          <p>All other individuals are defined as &apos;non-residents&apos;.</p>
+          <p>If this definition of &apos;resident&apos; applies to you, we must adhere to certain rights and obligations regarding your personal information.</p>
           <p>Your rights with respect to your personal data</p>
           <p>Right to request deletion of the data &mdash; Request to delete</p>
           <p>You can ask for the deletion of your personal information. If you ask us to delete your personal information, we will respect your request and delete your personal information, subject to certain exceptions provided by law, such as (but not limited to) the exercise by another consumer of his or her right to free speech, our compliance requirements resulting from a legal obligation, or any processing that may be required to protect against illegal activities.</p>
@@ -325,7 +325,7 @@ const PrivacyPolicy = () => {
           <p>We will not discriminate against you if you exercise your privacy rights.</p>
           <p>Right to Limit Use and Disclosure of Sensitive Personal Information</p>
           <p>If the business collects any of the following:</p>
-          <p>social security information, drivers' licenses, state ID cards, passport numbers</p>
+          <p>social security information, drivers&apos; licenses, state ID cards, passport numbers</p>
           <p>account login information</p>
           <p>credit card numbers, financial account information, or credentials allowing access to such accounts</p>
           <p>precise geolocation</p>
@@ -353,7 +353,7 @@ const PrivacyPolicy = () => {
           <p>Right to correct inaccuracies in your personal data</p>
           <p>Right to request deletion of your personal data</p>
           <p>Right to obtain a copy of the personal data you previously shared with us</p>
-          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ('profiling')</p>
+          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (&apos;profiling&apos;)</p>
           <p>We sell personal data to third parties or process personal data for targeted advertising. You can opt out from the selling of your personal data, targeted advertising, or profiling by disabling cookies in Cookie Preference Settings. To submit a request to exercise any of the other rights described above, please email privacy@mmapptech.com or visit https://dashboard.mmapp.app.</p>
           <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at privacy@mmapptech.com. Within forty-five (45) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
           <p>Connecticut Residents</p>
@@ -363,7 +363,7 @@ const PrivacyPolicy = () => {
           <p>Right to correct inaccuracies in your personal data</p>
           <p>Right to request deletion of your personal data</p>
           <p>Right to obtain a copy of the personal data you previously shared with us</p>
-          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ('profiling')</p>
+          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (&apos;profiling&apos;)</p>
           <p>We sell personal data to third parties or process personal data for targeted advertising. You can opt out from the selling of your personal data, targeted advertising, or profiling by disabling cookies in Cookie Preference Settings. To submit a request to exercise any of the other rights described above, please email privacy@mmapptech.com or visit https://dashboard.mmapp.app.</p>
           <p>If we decline to take action regarding your request and you wish to appeal our decision, please email us at privacy@mmapptech.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions.</p>
           <p>Utah Residents</p>
@@ -376,23 +376,23 @@ const PrivacyPolicy = () => {
           <p>We sell personal data to third parties or process personal data for targeted advertising. You can opt out from the selling of your personal data or targeted advertising by disabling cookies in Cookie Preference Settings. To submit a request to exercise any of the other rights described above, please email privacy@mmapptech.com or visit https://dashboard.mmapp.app.</p>
           <p>Virginia Residents</p>
           <p>Under the Virginia Consumer Data Protection Act (VCDPA):</p>
-          <p>'Consumer' means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.</p>
-          <p>'Personal data' means any information that is linked or reasonably linkable to an identified or identifiable natural person. 'Personal data' does not include de-identified data or publicly available information.</p>
-          <p>'Sale of personal data' means the exchange of personal data for monetary consideration.</p>
-          <p>If this definition of 'consumer' applies to you, we must adhere to certain rights and obligations regarding your personal data.</p>
+          <p>&apos;Consumer&apos; means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.</p>
+          <p>&apos;Personal data&apos; means any information that is linked or reasonably linkable to an identified or identifiable natural person. &apos;Personal data&apos; does not include de-identified data or publicly available information.</p>
+          <p>&apos;Sale of personal data&apos; means the exchange of personal data for monetary consideration.</p>
+          <p>If this definition of &apos;consumer&apos; applies to you, we must adhere to certain rights and obligations regarding your personal data.</p>
           <p>Your rights with respect to your personal data</p>
           <p>Right to be informed whether or not we are processing your personal data</p>
           <p>Right to access your personal data</p>
           <p>Right to correct inaccuracies in your personal data</p>
           <p>Right to request deletion of your personal data</p>
           <p>Right to obtain a copy of the personal data you previously shared with us</p>
-          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ('profiling')</p>
+          <p>Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (&apos;profiling&apos;)</p>
           <p>We sell personal data to third parties or process personal data for targeted advertising. Please see the following section to find out how you can opt out from further selling or sharing of your personal data for targeted advertising or profiling purposes.</p>
           <p>Exercise your rights provided under the Virginia VCDPA</p>
           <p>You can opt out from the selling of your personal data, targeted advertising, or profiling by disabling cookies in Cookie Preference Settings. You may contact us by email at privacy@mmapptech.com or visit https://dashboard.mmapp.app.</p>
           <p>If you are using an authorised agent to exercise your rights, we may deny a request if the authorised agent does not submit proof that they have been validly authorised to act on your behalf.</p>
           <p>Verification process</p>
-          <p>We may request that you provide additional information reasonably necessary to verify you and your consumer's request. If you submit the request through an authorised agent, we may need to collect additional information to verify your identity before processing your request.</p>
+          <p>We may request that you provide additional information reasonably necessary to verify you and your consumer&apos;s request. If you submit the request through an authorised agent, we may need to collect additional information to verify your identity before processing your request.</p>
           <p>Upon receiving your request, we will respond without undue delay, but in all cases, within forty-five (45) days of receipt. The response period may be extended once by forty-five (45) additional days when reasonably necessary. We will inform you of any such extension within the initial 45-day response period, together with the reason for the extension.</p>
           <p>Right to appeal</p>
           <p>If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at privacy@mmapptech.com. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may contact the Attorney General to submit a complaint.</p>
@@ -401,17 +401,17 @@ const PrivacyPolicy = () => {
           </ol>
           <p>In Short: You may have additional rights based on the country you reside in.</p>
           <p>Australia and New Zealand</p>
-          <p>We collect and process your personal information under the obligations and conditions set by Australia's Privacy Act 1988 and New Zealand's Privacy Act 2020 (Privacy Act).</p>
+          <p>We collect and process your personal information under the obligations and conditions set by Australia&apos;s Privacy Act 1988 and New Zealand&apos;s Privacy Act 2020 (Privacy Act).</p>
           <p>This privacy notice satisfies the notice requirements defined in both Privacy Acts, in particular: what personal information we collect from you, from which sources, for which purposes, and other recipients of your personal information.</p>
           <p>If you do not wish to provide the personal information necessary to fulfill their applicable purpose, it may affect our ability to provide our services, in particular:</p>
           <p>offer you the products or services that you want</p>
           <p>respond to or help with your requests</p>
           <p>manage your account with us</p>
           <p>confirm your identity and protect your account</p>
-          <p>At any time, you have the right to request access to or correction of your personal information. You can make such a request by contacting us by using the contact details provided in the section 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?'</p>
-          <p>If you believe we are unlawfully processing your personal information, you have the right to submit a complaint about a breach of the Australian Privacy Principles to the Office of the Australian Information Commissioner and a breach of New Zealand's Privacy Principles to the Office of New Zealand Privacy Commissioner.</p>
+          <p>At any time, you have the right to request access to or correction of your personal information. You can make such a request by contacting us by using the contact details provided in the section &apos;HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?&apos;</p>
+          <p>If you believe we are unlawfully processing your personal information, you have the right to submit a complaint about a breach of the Australian Privacy Principles to the Office of the Australian Information Commissioner and a breach of New Zealand&apos;s Privacy Principles to the Office of New Zealand Privacy Commissioner.</p>
           <p>Republic of South Africa</p>
-          <p>At any time, you have the right to request access to or correction of your personal information. You can make such a request by contacting us by using the contact details provided in the section 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?'</p>
+          <p>At any time, you have the right to request access to or correction of your personal information. You can make such a request by contacting us by using the contact details provided in the section &apos;HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?&apos;</p>
           <p>If you are unsatisfied with the manner in which we address any complaint with regard to our processing of personal information, you can contact the office of the regulator, the details of which are:</p>
           <p>The Information Regulator (South Africa)</p>
           <p>General enquiries: enquiries@inforegulator.org.za</p>
@@ -420,7 +420,7 @@ const PrivacyPolicy = () => {
           <li>DO WE MAKE UPDATES TO THIS NOTICE?</li>
           </ol>
           <p>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</p>
-          <p>We may update this privacy notice from time to time. The updated version will be indicated by an updated 'Revised' date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
+          <p>We may update this privacy notice from time to time. The updated version will be indicated by an updated &apos;Revised&apos; date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.</p>
           <ol>
           <li>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</li>
           </ol>
