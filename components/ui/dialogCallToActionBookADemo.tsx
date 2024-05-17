@@ -249,7 +249,7 @@ const DialogCTABookADemo = (props: DialogCTABookADemoProps) => {
 
     if (result?.success) {
       console.log({ data: result.data })
-      toast.success('Booking Email sent!')
+      toast.success('Thank you, your booking request has been sent successfully. We will get back to you as soon as possible')
       reset()
       return
     }

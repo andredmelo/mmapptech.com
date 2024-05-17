@@ -48,7 +48,7 @@ const items: AccordionFAQsItem[] = [
       <br key="br2" />,
       "• The \"Judge\" app, which is exclusively designed for officials to use on their mobile devices during events to assign roles and judge fights",
       <br key="br3" />,
-      "• The \"RecordKeeper\" app, which is only available on tablets and is used by officials for scorekeeping and timekeeping purposes."
+      "• The \"RecordKeeper\" app, which is only available on tablets and is used by officials for scorekeeping and timekeeping purposes"
     ],
   },
   {

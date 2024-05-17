@@ -7,7 +7,7 @@ import { useMediaQuery } from '@react-hook/media-query';
 //import Loading from "@/app/loading";
 const Loading = dynamic(() => import('@/app/loading'), {
   loading: () => 
-    <div id="initalLoading" className="absolute z-[11] top-0 left-0 flex flex-col items-center justify-center w-screen h-screen">
+    <div id="initalLoading" className="absolute z-[11] top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-[var(--background-grey)]">
       <div className="flex flex-col items-center mb-16 text-left">
         <picture className="mb-6 w-[25vw]">
           <img src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>
