@@ -1403,7 +1403,7 @@ const Product = () => {
               A platform to seamlessly interact with your Federation
             </ProductFCHeading>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
-              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, and Promoters a simple platform to interact with your Federations, whether you’re registering for the first time, or managing your membership and submitted documents.<br/><br/>
+              The Dashboard for Federation Members offers Athletes, Coaches, Clubs, and Promoters a simple platform to interact with your Federations, whether you&apos;re registering for the first time, or managing your membership and submitted documents.<br/><br/>
             </ProductFCDescription>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
             You can also confirm your eligibility for competing in sanctioned events, view where you're scheduled to participate, as well as your career history.<br/><br/>
