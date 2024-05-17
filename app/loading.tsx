@@ -4,7 +4,7 @@ import React from 'react';
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div id="loadingBanner" className="absolute z-[500] top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-[var(--background-grey)]">
+    <div id="loadingBanner" className="absolute top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-[var(--background-grey)]">
       <div className="flex flex-col items-center mb-16 text-left">
         <picture className="mb-6 w-[25vw]">
           <img src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo"/>

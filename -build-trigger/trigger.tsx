@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.19 | &apos; fix.";
+let vNumber = "v0.9-β.8.20 | Loading z removed.";
