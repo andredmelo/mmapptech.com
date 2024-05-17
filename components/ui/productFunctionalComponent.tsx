@@ -11,7 +11,6 @@ const ProductFC = React.forwardRef<
     className={cn(
       "flex flex-col relative justify-center",
       "h-full mx-[1.5vw] md:mx-[5.6vw]",
-      "",
       "rounded-[3rem] bg-no-repeat ", // border-2 border-fuchsia-600
       className
     )}
@@ -29,7 +28,9 @@ const ProductFCTitle = React.forwardRef<
     className={cn(
       "flex flex-col justify-center z-20",
       "mb-[3.5vw] md:mb-[1.75vw] lg:mb-[3.5vw]", // border-2 border-green-500,
-      "text-md md:text-[2.5vw] lg:text-[2.175vw] portrait:text-[5vw] portrait:md:text-[3.15vw] text-neutral-200 deboss text-center",
+      "text-md md:text-[2.5vw] lg:text-[2.175vw]",
+      "portrait:text-[5vw] portrait:md:text-[3.15vw]",
+      "text-neutral-200 deboss text-center",
       className
     )}
     {...props}

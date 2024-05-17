@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.20 | Loading z removed.";
+let vNumber = "v0.9-β.8.21 | Product portrait desktop line adjustments.";

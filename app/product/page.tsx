@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState, useTransition, useMemo } from "react";
 import { preload } from 'react-dom';
-import { clsx } from "clsx";
+import { cn } from "@/lib/utils"
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -901,27 +901,27 @@ const Product = () => {
                 This allows officials to make more informed decisions for longer.<br/><br/>
                 By creating a standardised unit of measurement, we are able to get officials on the same page and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
               </ProductFCDescription> */}
-              <ProductFCDescription className={clsx(
-                "justify-start pr-[0vw] md:pr-[11vw] lg:pr-[22vw] text-left mb-6 md:mb-[2vw]",
+              <ProductFCDescription className={cn(
+                "justify-start pr-[0vw] md:pr-[11vw] lg:pr-[22vw] portrait:md:pr-[11vw] portrait:touch:md:pr-[0vw] text-left mb-6 md:mb-[2vw]",
                 isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
               )}>
                 The MMAPP Platform centres around our patented methodology, which provides officials worldwide with a consistent and coherent approach to assessing fights, according to the current rules of MMA.
               </ProductFCDescription>
-              <ProductFCDescription className={clsx(
-                "justify-start pr-[0vw] md:pr-[23vw] lg:pr-[26vw] text-left mb-6 md:mb-[2vw]",
+              <ProductFCDescription className={cn(
+                "justify-start pr-[0vw] md:pr-[23vw] lg:pr-[26vw] portrait:lg:pr-[22vw] portrait:touch:lg:pr-[26vw] text-left mb-6 md:mb-[2vw]",
                 isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
               )}>
                 Using only a mobile device, officials can record their train of thought, without any outside input, for every second of the fight and provide insights into their own evaluation immediately after the round.<br/>
                 This allows officials to make more informed decisions for longer.
               </ProductFCDescription>
-              <ProductFCDescription className={clsx(
-                "justify-start pr-[30vw] md:pr-[39.5vw] portrait:md:pr-[40vw] text-left",
+              <ProductFCDescription className={cn(
+                "justify-start pr-[30vw] md:pr-[39.5vw] portrait:md:pr-[35vw] portrait:touch:md:pr-[40vw] text-left",
                 isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
               )}>
                 By creating a standardised unit of measurement, we are able to get officials on the same page
               </ProductFCDescription>
-              <ProductFCDescription className={clsx(
-                "justify-start pr-[36vw] md:pr-[45vw] portrait:md:pr-[49.5vw] text-left mb-[9rem] md:mb-[2vw]",
+              <ProductFCDescription className={cn(
+                "justify-start pr-[36vw] md:pr-[45vw] portrait:md:pr-[48vw] portrait:touch:md:pr-[49.5vw] text-left mb-[9rem] md:mb-[2vw]",
                 isPortrait ? 'MmappSequentialParagraphsReveal' : 'mmappParagraphsReveal'
               )}>
                 and improve consistency in MMA Judging, whilst allowing judges to have a better recall of every fight.
@@ -930,7 +930,7 @@ const Product = () => {
               ↓
               </p>
               <picture>
-                <img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:touch:max-w-[90vw] portrait:touch:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70"
+                <img className="z-10 max-h-full max-w-[45vw] md:max-w-[55vw] portrait:max-w-[90vw] portrait:md:max-w-[66vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-5vw] absolute md:absolute object-contain opacity-70"
                 src="/images/product/hero/luizimag3_2876.webp"
                 srcSet="
                   /images/product/hero/srcset/luizimag3_2876-480w.webp 480w,
@@ -947,7 +947,7 @@ const Product = () => {
 
           {/* {isDesktop || isTablet && isLandscape ?  */}
           <div id="productLineDesktop"
-            className={clsx(
+            className={cn(
               "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
@@ -969,8 +969,8 @@ const Product = () => {
 
           {/* {isTablet && isPortrait ?  */}
           <div id="productLineTablets"
-            className={clsx(
-              "landscape:hidden portrait:hidden portrait:touch:hidden portrait:touch:md:flex flex-col relative justify-center items-center",// portrait:md:flex
+            className={cn(
+              "landscape:hidden portrait:hidden portrait:md:flex portrait:touch:md:flex flex-col relative justify-center items-center",// portrait:md:flex
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
             <svg viewBox="0 0 1536 13000" id="productPathTouchMD" data-name="productPathTouchMD" className="pointer-events-none absolute top-0 select-none" xmlns="http://www.w3.org/2000/svg">
@@ -987,8 +987,8 @@ const Product = () => {
 
           {/* <div className="borderBottom"></div> */}
 
-        <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] landscape:touch:2xl:mt-[2vw] portrait:touch:md:mt-[5.5vw] portrait:touch:lg:mt-[6vw] justify-center">
-          {/* <div id="bgGlowRight" className={clsx(
+        <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] landscape:touch:2xl:mt-[2vw] portrait:md:mt-[5.5vw] portrait:lg:mt-[6vw] justify-center">
+          {/* <div id="bgGlowRight" className={cn(
                 "flex justify-end",
                 "h-full ml-auto",
                 )}
@@ -999,7 +999,14 @@ const Product = () => {
                 alt="bg GlowRight"
               />
           </div> */}
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.5vw] lg:pt-[14vw] xl:pt-[13vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[17.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[19.5vw] pb-6 md:pb-[7vw] lg:pb-[11.5vw] xl:pb-[13.1vw] 2xl:pb-[14.1vw] portrait:md:pb-[12vw] portrait:touch:md:pb-[10.5vw] portrait:touch:lg:pb-[10vw]">
+          <ProductFC className={cn(
+            "px-[7.65vw] md:px-[7.65vw]",
+            "pt-[12vw] md:pt-[15.5vw] lg:pt-[14vw] xl:pt-[13vw] 2xl:pt-[12vw]",
+            "landscape:touch:md:pt-[14.5vw]",
+            "portrait:md:pt-[19.5vw] portrait:lg:pt-[17.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[19.5vw]",
+            "pb-6 md:pb-[7vw] lg:pb-[11.5vw] xl:pb-[13.1vw] 2xl:pb-[14.1vw]",
+            "portrait:md:pb-[7vw] portrait:lg:pb-[7vw] portrait:touch:md:pb-[10.5vw] portrait:touch:lg:pb-[10vw]"
+            )}>
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Judge
             </ProductFCTitle>
@@ -1020,14 +1027,14 @@ const Product = () => {
             
             {/* Titles for portrait devices */}
             {<div className="landscape:hidden portrait:flex w-full justify-center items-center relative mb-2 md:mb-[2vw] pb-0 portrait:md:pb-[0.5vw] portrait:md:pt-[1vw] px-0 portrait:md:px-[10%]">
-              <h4 className={clsx("mmappBlockReveal text-center portrait:text-[4.5vw] portrait:md:text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+              <h4 className={cn("mmappBlockReveal text-center portrait:text-[4.5vw] portrait:md:text-[3.75vw] text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
               "two-lines-always")}>
                 {descriptionSrcMapJudge[activeTabProductJudge]}
               </h4>
             </div>}
 
             {/* // Use the loading state to conditionally render the images in small mobile device*/}
-            <div className={clsx("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
+            <div className={cn("judgePhoneWrapper flex portrait:md:hidden landscape:hidden items-center justify-center min-w-auto portrait:max-w-[100vw] max-h-[100vh] z-10 pb-[4vw]")}>
               <picture><img
                 className="judgePhone object-scale-down max-h-[65svh]" // shadow-2xl shadow-fuchsia-950/50
                 src={(preloadedImages as any)[activeTabProductJudge]?.src}
@@ -1037,7 +1044,7 @@ const Product = () => {
               {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
             </div>
 
-            <div className={clsx("w-full flex flex-col md:flex-row gap-1 md:gap-0 relative pb-0 md:pb-[1.75vw] landscape:touch:md:pb-[2vw] ")}>
+            <div className={cn("w-full flex flex-col md:flex-row gap-1 md:gap-0 relative pb-0 md:pb-[1.75vw] landscape:touch:md:pb-[2vw] ")}>
 
               <div className="w-full flex flex-row md:flex-col justify-center items-end gap-4 md:gap-20 relative overflow-hidden">
                 <TabButtonProductJudge
@@ -1102,7 +1109,7 @@ const Product = () => {
               </div>
 
               {/* // Use the loading state to conditionally render the image */}
-              <div className={clsx("judgePhoneWrapper hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
+              <div className={cn("judgePhoneWrapper hidden portrait:md:flex landscape:flex items-center justify-center min-w-[25vw] max-w-[25vw] portrait:min-w-[50vw] portrait:max-w-[50vw] z-10")}> {/* needed to set both min-w and max-w to cater to Chrome and Safari */}
                 <picture><img
                   className="judgePhone object-scale-down" // shadow-2xl shadow-fuchsia-950/50
                   src={(preloadedImages as any)[activeTabProductJudge]?.src}
@@ -1174,7 +1181,17 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="RecordKeeper" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.25vw] lg:pt-[13.5vw] xl:pt-[13.5vw] 2xl:pt-[12.5vw] md:touch:pt-[10vw] landscape:touch:md:pt-[14.5vw] portrait:md:pt-[14vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20vw] pb-0 md:pb-[0vw] lg:pb-[1.75vw] xl:pb-[3.5vw] 2xl:pb-[6.5vw] landscape:touch:md:pb-[6vw] portrait:touch:md:pb-[8vw] portrait:touch:lg:pb-[6vw]">
+          <ProductFC className={cn(
+            "px-[7.65vw] md:px-[7.65vw]",
+            "pt-[12vw] md:pt-[15.25vw] lg:pt-[13.5vw] xl:pt-[13.5vw] 2xl:pt-[12.5vw] md:touch:pt-[10vw]",
+            "landscape:touch:md:pt-[14.5vw]",
+            "portrait:md:pt-[21vw] portrait:lg:pt-[20vw]",
+            "portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20vw]",
+            "pb-0 md:pb-[0vw] lg:pb-[1.75vw] xl:pb-[3.5vw] 2xl:pb-[6.5vw]",
+            "landscape:touch:md:pb-[6vw]",
+            "portrait:md:pb-[8vw] portrait:lg:pb-[6vw]",
+            "portrait:touch:md:pb-[8vw] portrait:touch:lg:pb-[6vw]"
+            )}>
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               RecordKeeper
             </ProductFCTitle>
@@ -1197,13 +1214,13 @@ const Product = () => {
 
           {/* RecordKeeper Titles */}
           <div className="flex w-full justify-center items-center relative pb-6 md:pb-[1vw] md:pt-[7.5vw] lg:pt-[4vw] xl:pt-[4vw] 2xl:pt-[2.5vw] px-[20vw] portrait:mt-[1vw] portrait:py-[4.5vw] portrait:md:py-[3.25vw] portrait:lg:py-[4.5vw] portrait:px-[3vw] portrait:md:px-[10vw]">
-            <h4 className={clsx("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
+            <h4 className={cn("mmappBlockReveal text-[3vw] md:text-[2.25vw] portrait:text-[5vw] portrait:md:text-[4.5vw] text-center text-transparent bg-clip-text bg-gradient-to-b from-[var(--purple-500)] to-purple-50",
             "twoLinesAlwaysProductRecordKeeper")}>
               {descriptionSrcMapRecordKeeper[activeTabProductRecordKeeper]}
             </h4>
           </div>
 
-          <div className={clsx(
+          <div className={cn(
             "w-full gap-1 portrait:md:gap-1 md:gap-0 relative",
             "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[92.5%] h-full max-h-[100vh] landscape:md:min-h-[35vw] landscape:lg:min-h-[46vw] landscape:touch:md:min-h-[45vw] mx-1 md:mx-[5.6vw] portrait:mx-auto",
             "px-2 md:px-[3vw] md:pr-[0vw] portrait:md:px-[6.25vw] portrait:md:mb-[0vw] portrait:lg:mb-[0vw]",
@@ -1211,7 +1228,7 @@ const Product = () => {
           >
             <div className="flex flex-row portrait:flex-col landscape:md:max-h-[75vh]">
               {/* // Use the loading state to conditionally render the image */}
-              <div className={clsx(
+              <div className={cn(
                 "recordKeeperTabletWrapper portrait:basis-full flex landscape:items-left portrait:items-center justify-center relative z-10", // basis-[67%]
                 "min-w-auto max-w-[100%] landscape:md:max-w-[62%] landscape:lg:max-w-[90%] landscape:2xl:max-w-[65%] portrait:max-w-[100%] h-full max-h-[100%] landscape:md:max-h-[75vh] landscape:2xl:max-h-full",
                 "px-[0vw] pb-[0vw] md:pb-[0vw] portrait:pb-[0vw] md:portrait:pb-[0vw] landscape:touch:md:pb-[0vw]",
@@ -1226,7 +1243,7 @@ const Product = () => {
                 {/* {isLoading && <div className="loading-overlay">Loading...</div>} // Disabled because it causes visual glitches that are unecessary given the small payload */}
               </div>
 
-              <div className={clsx("relative portrait:basis-full flex flex-col", // basis-[33%]
+              <div className={cn("relative portrait:basis-full flex flex-col", // basis-[33%]
               "w-full 2xl:w-[65%] portrait:w-[100%] portrait:md:w-[98%] portrait:mx-auto min-w-[20vw] landscape:md:max-h-[75vh]", //w-full
               "portrait:flex-row justify-center items-start gap-4 md:gap-[3vh] portrait:gap-[vw] portrait:md:gap-[1vw]",
               "px-[0vw] pb-[0vw] md:pb-[0vw] portrait:pb-[2vw] portrait:md:pb-[0vw] portrait:pt-[4vw] portrait:md:pt-[0vw] overflow-hidden",
@@ -1322,7 +1339,15 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] landscape:touch:xl:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[12vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
+          <ProductFC className={cn(
+            "px-[7.65vw] md:px-[7.65vw]",
+            "pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw]",
+            "landscape:touch:md:pt-[14.5vw] landscape:touch:xl:pt-[14.5vw]",
+            "portrait:md:pt-[20vw] portrait:lg:pt-[16.5vw] portrait:xl:pt-[19.5vw]",
+            "portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw]",
+            "pb-12 md:pb-[12vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw]",
+            "landscape:touch:md:pb-[13.75vw]"
+          )}>
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Dashboard
             </ProductFCTitle>
@@ -1340,7 +1365,7 @@ const Product = () => {
             </ProductFCDescription>
           </ProductFC>
 
-          <div className={clsx(
+          <div className={cn(
             "dashboardBlock flex flex-col items-center justify-start relative z-10",
             "min-w-auto max-w-[100%] md:max-w-[95%] h-full max-h-[100%] mx-0 md:mx-[5.6vw] portrait:mx-[1vw] portrait:md:mx-[3vw]",
             "px-0 md:px-[12vw] portrait:md:px-[0vw] pb-12 md:pb-0 lg:pb-12 portrait:md:pb-[0vw] landscape:touch:md:pb-[2vw] landscape:touch:lg:pb-[1.5vw]",
@@ -1395,7 +1420,14 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[14.5vw] lg:pt-[10vw] xl:pt-[10.5vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] landscape:touch:lg:pt-[11.75vw] landscape:touch:xl:pt-[13vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[22.5vw] portrait:touch:lg:pt-[18vw] pb-12 md:pb-[14vw]">
+          <ProductFC className={cn(
+            "px-[7.65vw] md:px-[7.65vw]",
+            "pt-[12vw] md:pt-[14.5vw] lg:pt-[10vw] xl:pt-[10.5vw] 2xl:pt-[12vw]",
+            "landscape:touch:md:pt-[14vw] landscape:touch:lg:pt-[11.75vw] landscape:touch:xl:pt-[13vw]",
+            "portrait:md:pt-[20vw] portrait:lg:pt-[15vw] portrait:xl:pt-[18vw]",
+            "portrait:touch:md:pt-[22.5vw] portrait:touch:lg:pt-[18vw]",
+            "pb-12 md:pb-[14vw]"
+            )}>
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               Dashboard (Members)
             </ProductFCTitle>
@@ -1413,12 +1445,12 @@ const Product = () => {
             </ProductFCDescription>
           </ProductFC>
 
-          <div className={clsx(
+          <div className={cn(
             "w-full flex landscape:flex-row portrait:flex-col gap-0 md:gap-0 relative",
             "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[94%] h-full max-h-[100vh] mx-1 md:mx-[5.6vw] portrait:md:mx-auto portrait:mx-auto",
             )}
           >
-            <div className={clsx(
+            <div className={cn(
               "dashboardMembersWrapper basis-[55%] flex landscape:items-left portrait:items-start justify-center relative z-10",
               "min-w-auto max-w-[100%] md:max-w-[90%] portrait:md:max-w-[100%] h-full max-h-[100%]",
               "px-0 md:px-[0vw] pb-0 md:pb-0",
@@ -1460,7 +1492,7 @@ const Product = () => {
 
             {/* Dashboard (Members) Titles Backup */}
             {/* <div className="productDashboardMembersTitlesWrapper w-fit h-fit overflow-hidden border-blue-500">
-              <div className={clsx(
+              <div className={cn(
                 "productDashboardMembersTitlesBox basis-[45%] relative flex flex-col justify-start items-left",
                 "w-full min-w-[20vw] portrait:min-w-[70vw] max-h-[40vw] md:max-h-[27vw] portrait:max-h-[45vw] portrait:md:max-h-[40vw]",
                 "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw] border-2 border-red-500",
@@ -1474,20 +1506,20 @@ const Product = () => {
             </div> */}
 
             {/* Dashboard (Members) Titles */}
-            <div className={clsx(
+            <div className={cn(
               "productDashboardMembersTitlesWrapper basis-[45%] relative flex flex-col justify-start items-left overflow-hidden",
               "w-full h-full",
               "ml-[2vw] portrait:ml-[0vw] mr-[6vw] portrait:mr-[0vw]", // border-2 border-green-500
               )}
             >
-              <div className={clsx(
+              <div className={cn(
                 "productDashboardMembersTitlesBox",
                 "w-full h-full max-h-[40vw] md:max-h-[27vw] portrait:max-h-[70vw] portrait:md:max-h-[45vw]",
                 "portrait:pt-2 portrait:md:pt-4", // border-2 border-yellow-300
                 )}
               >
                 <ProductDashboardMembersTitles
-                  className={clsx(
+                  className={cn(
                     "productDashboardMembersTitles flex items-center justify-center",
                     "min-h-[6vw] max-h-[6vw] portrait:min-h-[12vw] portrait:max-h-[12vw] portrait:md:min-h-[10vw] portrait:md:max-h-[10vw]",
                     "group"

@@ -38,10 +38,10 @@ export default function TabButtonProductRecordKeeper({
     'md:transition-all md:duration-500 md:ease-out ring-1 ring-white/5'
     )
   const activeHeadingClass = cn(
-    'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100',
+    'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:md:text-[2.25vw] leading-snug py-1 text-transparent bg-clip-text bg-gradient-to-b md:bg-gradient-to-tl from-[var(--purple-500)] to-purple-100',
     'md:transition-all md:duration-500 md:ease-out'
     )
-  const inactiveHeadingClass = 'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:touch:md:text-[2.25vw] leading-snug text-white py-1';
+  const inactiveHeadingClass = 'text-[3.5vw] md:text-[1.2vw] lg:text-[1.3vw] portrait:md:text-[2.25vw] leading-snug text-white py-1';
 
   return (
     <>
