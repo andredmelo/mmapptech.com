@@ -9,7 +9,7 @@ import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
 import CustomEase from 'gsap/CustomEase';
 import verticalLoop from '@/components/VerticalLoop';
 import { useMediaQuery } from '@react-hook/media-query';
-import { isDesktop, isTablet, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
+import { isDesktop, isTablet, isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 
 import ContactUs from '@/app/contact/contact-us'
 import CallToActionButton from '@/components/ui/CallToActionButton'
