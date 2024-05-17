@@ -1406,7 +1406,7 @@ const Product = () => {
               The Dashboard for Federation Members offers Athletes, Coaches, Clubs, and Promoters a simple platform to interact with your Federations, whether you&apos;re registering for the first time, or managing your membership and submitted documents.<br/><br/>
             </ProductFCDescription>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[11vw] lg:pl-[11vw]">
-            You can also confirm your eligibility for competing in sanctioned events, view where you're scheduled to participate, as well as your career history.<br/><br/>
+            You can also confirm your eligibility for competing in sanctioned events, view where you&apos;re scheduled to participate, as well as your career history.<br/><br/>
             </ProductFCDescription>
             <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[16vw] lg:pl-[16vw]">
             Promoters can quickly submit applications for hosting events, view all athletes eligible to compete in their events, and any last-minute changes are quickly sent to all relevant participants (Federations, Officials, Athletes).
