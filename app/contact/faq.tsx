@@ -78,7 +78,7 @@ const items: AccordionFAQsItem[] = [
   {
     header: "Why is there no pricing on your website?",
     content: [
-      "We assess every potential customer on a case-by-case basis, taking into account their circumstances, such as the sport's status within their country, the number of members, and the number of events per year, among others, so that we can offer valuable solutions every time.",
+      "MMAPP offers bespoke pricing. We assess every potential customer on a case-by-case basis, taking into account their circumstances, such as the sport's status within their country, the number of members, and the number of events per year, among others, so that we can offer valuable solutions every time.",
       <br key="br1" />, // Use keys for list elements
       "Having said that, our platform is free for members, once their Federation has enrolled in the MMAPP Platform.",
     ],
@@ -88,7 +88,7 @@ const items: AccordionFAQsItem[] = [
     content: [
       "You can sign up by using your Federation’s registration forms.",
       <br key="br1" />, // Use keys for list elements
-      "If your Federation hasn’t signed up for MMAPP yet, use the above 'Request that your Federation join MMAPP' button to let them know you’d like them to.",
+      "If your Federation hasn’t signed up for MMAPP yet, use the above 'Request my Federation to join MMAPP' button to let them know you’d like them to.",
     ],
   },
   {
@@ -108,7 +108,7 @@ const items: AccordionFAQsItem[] = [
   {
     header: "I want to report a bug/submit feedback for the platform. How can I do that?",
     content: [
-      "If you’d like to reach our support team about the MMAPP Platform, once logged in to your account you can submit a ticket through our feedback form, or you can click the “Submit Feedback” found on the top right.",
+      "If you’d like to reach our support team about the MMAPP Platform, once logged in to your account you can submit a ticket through our feedback form found on the top right of the dashboard, or you can use the form above, using the “General Inquiries” option.",
     ],
   },
 ];
