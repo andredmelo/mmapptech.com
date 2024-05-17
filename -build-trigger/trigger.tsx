@@ -1,2 +1,1 @@
-let vNumber = "v0.9-β.8.17 | &apos; fix.";
-
+let vNumber = "v0.9-β.8.18 | Product Tablet Line related fixes.";

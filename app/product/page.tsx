@@ -948,7 +948,7 @@ const Product = () => {
           {/* {isDesktop || isTablet && isLandscape ?  */}
           <div id="productLineDesktop"
             className={clsx(
-              "flex flex-col relative justify-center items-center", // portrait:touch:
+              "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
             <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
@@ -1322,7 +1322,7 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] landscape:touch:xl:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[14vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[13.625vw] md:pt-[17vw] lg:pt-[14.8vw] xl:pt-[14vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14.5vw] landscape:touch:xl:pt-[14.5vw] portrait:md:pt-[16.5vw] portrait:touch:md:pt-[22vw] portrait:touch:lg:pt-[20.5vw] pb-12 md:pb-[12vw] lg:pb-[14vw] xl:pb-[12.75vw] 2xl:pb-[13.75vw] landscape:touch:md:pb-[13.75vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left max-w-[30rem] md:max-w-[100%]">
               Dashboard
             </ProductFCTitle>
@@ -1395,20 +1395,20 @@ const Product = () => {
         <div className="productDivider"></div>
 
         <section id="Dashboard-Members" className="flex flex-col py-0 md:py-0 lg:py-0 pt-0 mb-12 md:mb-[10vw] justify-center">
-          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[15.75vw] lg:pt-[12vw] xl:pt-[11vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] landscape:touch:lg:pt-[11.75vw] landscape:touch:xl:pt-[13vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[22.5vw] portrait:touch:lg:pt-[18vw] pb-12 md:pb-[14vw]">
+          <ProductFC className="px-[7.65vw] md:px-[7.65vw] pt-[12vw] md:pt-[14.5vw] lg:pt-[10vw] xl:pt-[10.5vw] 2xl:pt-[12vw] landscape:touch:md:pt-[14vw] landscape:touch:lg:pt-[11.75vw] landscape:touch:xl:pt-[13vw] portrait:md:pt-[19vw] portrait:touch:md:pt-[22.5vw] portrait:touch:lg:pt-[18vw] pb-12 md:pb-[14vw]">
             <ProductFCTitle className="mmappBlockReveal justify-start text-left md:justify-end md:text-right max-w-[100%]">
               Dashboard (Members)
             </ProductFCTitle>
             <ProductFCHeading className="mmappHeadingReveal justify-start text-left md:justify-end md:text-right pl-[0%] md:pl-[13vw] lg:pl-[15vw]">
               A platform to seamlessly interact with your Federation
             </ProductFCHeading>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[11vw] lg:pl-[11vw]">
               The Dashboard for Federation Members offers Athletes, Coaches, Clubs, and Promoters a simple platform to interact with your Federations, whether you&apos;re registering for the first time, or managing your membership and submitted documents.<br/><br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[18vw] lg:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[11vw] lg:pl-[11vw]">
             You can also confirm your eligibility for competing in sanctioned events, view where you're scheduled to participate, as well as your career history.<br/><br/>
             </ProductFCDescription>
-            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[20vw] lg:pl-[19vw]">
+            <ProductFCDescription className="mmappParagraphsRevealRight justify-start text-left md:justify-end md:text-right pl-[0vw] md:pl-[16vw] lg:pl-[16vw]">
             Promoters can quickly submit applications for hosting events, view all athletes eligible to compete in their events, and any last-minute changes are quickly sent to all relevant participants (Federations, Officials, Athletes).
             </ProductFCDescription>
           </ProductFC>
