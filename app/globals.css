@@ -72,10 +72,10 @@
   section:last-child {
     @apply min-h-[calc(75vh)];
   }
-  .borderBottom{
+  .borderBottom {
     @apply relative mx-12 md:mx-72 border-b border-white/5;  /* This is to account for the Navbar */
   }
-  .productDivider{
+  .productDivider {
     @apply relative block md:hidden mx-32 mt-24 border-b border-fuchsia-700/75;  /* This is to account for the Navbar */
   }
 
@@ -146,6 +146,55 @@
   }
   .hero1ContentMargins {
     @apply ml-[4rem] md:ml-[6rem] xl:ml-[12rem] 2xl:ml-[16rem] mr-0 md:mr-[4rem] xl:mr-[8rem] 2xl:mr-[13.5rem] mt-[2rem] md:mt-[8vh] lg:mt-[10vh];
+  }
+
+  .policiesPage {
+    @apply flex flex-col w-full max-w-[1024px] px-4;
+  }
+  .policiesPage div {
+    @apply py-4;
+  }
+  .policiesPage div span[data-custom-class="heading_1"]{
+    @apply pt-10 pb-6 inline-block;
+  }
+  .policiesPage div span[data-custom-class="heading_2"]{
+    @apply pt-6 pb-2 inline-block;
+  }
+  /* .policiesPage div span[data-custom-class="body_text"]{
+    @apply pb-6 inline-block;
+  } */
+  .policiesPage ul {
+    @apply pt-4 pb-2 pl-12 ;
+  }
+  .policiesPage ul li {
+    @apply list-disc list-outside;
+  }
+  [data-custom-class="heading_1"] {
+    @apply text-[1.7rem] md:text-[2.1rem] lg:text-[2.6rem] leading-none tracking-normal;
+  }
+  [data-custom-class="heading_2"] {
+    @apply text-[1.4rem] md:text-[1.8rem] lg:text-[2.3rem] leading-none tracking-normal;
+  }
+  [data-custom-class="body_text"] {
+    @apply text-[1.2rem] md:text-[1.4rem] lg:text-[1.6rem] font-medium leading-normal tracking-normal;
+  }
+  [data-custom-class="link"] {
+    @apply text-[1.2rem] md:text-[1.4rem] lg:text-[1.6rem] font-medium leading-none tracking-normal text-fuchsia-600 hover:text-purple-700 hover:underline;
+  }
+  .policiesPage table {
+    @apply my-6;
+  }
+  .policiesPage tr {
+    @apply flex flex-row border border-fuchsia-700;
+  }
+  .policiesPage td:nth-child(1) {
+    @apply basis-2/6 px-3 py-1 border-x border-fuchsia-700;
+  }
+  .policiesPage td:nth-child(2) {
+    @apply basis-3/6 px-3 py-1 border-s border-fuchsia-700;
+  }
+  .policiesPage td:nth-child(3) {
+    @apply basis-1/6 px-3 py-1 text-center border-x border-fuchsia-700;
   }
 }
 
