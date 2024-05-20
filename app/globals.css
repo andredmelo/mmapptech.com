@@ -196,6 +196,9 @@
   .policiesPage td:nth-child(3) {
     @apply basis-1/6 px-3 py-1 text-center border border-fuchsia-700;
   }
+  #minimumRequirements tr td {
+    @apply basis-1/2 
+  }
 }
 
 
