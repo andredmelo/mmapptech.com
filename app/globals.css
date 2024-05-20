@@ -149,16 +149,16 @@
   }
 
   .policiesPage {
-    @apply flex flex-col w-full max-w-[1024px] px-4;
+    @apply flex flex-col w-full max-w-[1200px] px-4 md:px-10 text-left;
   }
   .policiesPage div {
-    @apply py-4;
+    @apply py-3 md:py-4;
   }
   .policiesPage div span[data-custom-class="heading_1"]{
-    @apply pt-10 pb-6 inline-block;
+    @apply pt-6 pb-4 md:pt-8 md:pb-4 lg:pt-10 lg:pb-6 inline-block;
   }
   .policiesPage div span[data-custom-class="heading_2"]{
-    @apply pt-6 pb-2 inline-block;
+    @apply pt-2 pb-1 md:pt-6 md:pb-2 inline-block;
   }
   /* .policiesPage div span[data-custom-class="body_text"]{
     @apply pb-6 inline-block;
@@ -182,19 +182,19 @@
     @apply text-[1.2rem] md:text-[1.4rem] lg:text-[1.6rem] font-medium leading-none tracking-normal text-fuchsia-600 hover:text-purple-700 hover:underline;
   }
   .policiesPage table {
-    @apply my-6;
+    @apply my-4 md:my-6 border border-fuchsia-700;
   }
   .policiesPage tr {
-    @apply flex flex-row border border-fuchsia-700;
+    @apply flex flex-row ;
   }
   .policiesPage td:nth-child(1) {
-    @apply basis-2/6 px-3 py-1 border-x border-fuchsia-700;
+    @apply basis-2/6 px-3 py-1 border border-fuchsia-700;
   }
   .policiesPage td:nth-child(2) {
-    @apply basis-3/6 px-3 py-1 border-s border-fuchsia-700;
+    @apply basis-3/6 px-3 py-1 border border-fuchsia-700;
   }
   .policiesPage td:nth-child(3) {
-    @apply basis-1/6 px-3 py-1 text-center border-x border-fuchsia-700;
+    @apply basis-1/6 px-3 py-1 text-center border border-fuchsia-700;
   }
 }
 
