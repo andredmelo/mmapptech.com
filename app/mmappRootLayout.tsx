@@ -77,13 +77,18 @@ export default function MmappRootLayout({
 
   const router = useRouter();
   const [href, setHref] = useState('');
+  const [lastHref, setLastHref] = useState('');
+  const [backLink, setBackLink] = useState(false);
   const smoother = useRef<ScrollSmoother>();
   const [isPending, startTransition] = useTransition();
 
   // Initialize currentPage with the current path
-  const initialPathname = usePathname();
-  let currentPage = useRef<string>(initialPathname);
   //console.log("currentPage = "+currentPage.current);
+  const currentPathname = usePathname(); // Call usePathname at the top level
+  let currentPage = useRef<string>(currentPathname);
+  const pathnameHistory = useRef([currentPathname]); // Initialize with the first pathname
+
+  const linkHrefHistory = useRef<string[]>([]); // Ref to store the history of link.href values
 
   useEffect(() => {
     const reloadWindow = () => {
@@ -113,7 +118,7 @@ export default function MmappRootLayout({
     // if (href) fetchData();
   }, [href]); */
 
-  /* ===== GSAP React ===== */
+  /* ===== useGSAP 4 matchMedia ===== */
   useGSAP(
     () => {
       let matchMedia = gsap.matchMedia();
@@ -166,15 +171,55 @@ export default function MmappRootLayout({
 
       //ScrollTrigger.config({ ignoreMobileResize: true });
       //ScrollTrigger.normalizeScroll(true);
+    },
+    { dependencies: [ smoother ], revertOnUpdate: true, scope: main }
+  );
 
-      // Navigation
+  /* ===== useGSAP 4 Navigation ===== */
+  useGSAP(
+    () => {
+      /* const animInBack = gsap.timeline({ paused: true,  })
+      .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out", delay: 0})
+      .set(".templateAnimIn", {xPercent: -50})
+      .fromTo(".templateAnimIn", { opacity: 0, xPercent: -50 }, { opacity: 1, xPercent: 0, duration: 0.3, ease: "power2.out"}, 0.125)
+      //.fromTo(".templateAnimIn", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out"}, 0.125)
+      .set(".footer", {opacity: 1}) */
+
+      const hrefHistory = linkHrefHistory.current;
+      const lastHref = hrefHistory[hrefHistory.length - 2];
+      const handleLinkClick = (link:any) => {
+        if (hrefHistory.length > 0) {
+          //console.log('Previous href was:', lastHref);
+        }
+        // Update href history
+        linkHrefHistory.current = [...hrefHistory, link.dataset.link];
+        // Your existing logic for handling link click
+        //console.log('Current href is:', link.href);
+      };
+
+      const history = pathnameHistory.current;
+      const lastPathname = history[history.length - 1];
+      if (currentPathname !== lastPathname) {
+        //console.log('Pathname changed');
+        // Check if it's likely a back button press
+        if (history.length > 1 && currentPathname === history[history.length - 2]) {
+          console.log('Back button was pressed');
+          console.log('Previous href was:', lastHref);
+          setBackLink(true);
+          setLastHref(lastHref);
+          //animInBack.invalidate().restart().play();
+        }
+        // Update the history
+        pathnameHistory.current = [...history, currentPathname];
+      }
+
       const checktemplateAnimIn = setInterval(() => {
         if (document.querySelector('.templateAnimIn')) {
           clearInterval(checktemplateAnimIn);
           //console.log("Template animations are ready");
-
           if (smoother && smoother.current) {
-            const dropdownLinks = gsap.utils.toArray('.dropdown-link');
+
+            const dropdownLinks = gsap.utils.toArray('.dropdown-link-button');
             dropdownLinks.forEach((link: any, i) => {
               //router.prefetch(link.dataset.page)
               link.addEventListener("click", (e: any) => {
@@ -182,10 +227,10 @@ export default function MmappRootLayout({
                 e.preventDefault();
 
                 if (link.dataset.page == currentPage.current && smoother.current) {
-                  console.log("currentPage is = "+currentPage.current);
+                  //console.log("currentPage is = "+currentPage.current);
                   smoother.current.scrollTo(link.dataset.link, true, "top 0px");
                   //router.replace(link.href, { scroll: false });
-                  //console.log("currentPage remains = "+currentPage);
+                  //console.log("currentPage remains = "+currentPage.current);
                 } else {
                   /* // Event without animOut
                   setHref(link.dataset.link);
@@ -197,56 +242,106 @@ export default function MmappRootLayout({
                     paused: true,
                     immediateRender: true,
                     onComplete: () => {
+                      //console.log("animOut complete");
                       setHref(link.dataset.link);
+                      setBackLink(false);
+                      handleLinkClick(link);
                       startTransition(() => {
                         router.push(link.dataset.page, { scroll: true });
                         //router.push(link.href, { scroll: false });
                       });
                       currentPage.current = link.dataset.page;
-                      //console.log("currentPage changed to " + currentPage);
+                      //console.log("currentPage changed to " + currentPage.current);
                     }
                   })
                     .set(".footer", {opacity: 0})
                     .fromTo(".templateAnimIn", {opacity: 1, xPercent: 0},{opacity: 0, xPercent: 50, duration: 0.3, ease: "power2.out"})
+                    .set(".templateAnimIn", {xPercent: 0})
                     .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
                   //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
 
                   animOut.invalidate().restart().play();
+                  //animOut.restart().play();
                 }
               });
             });
+
+            /* const policiesLinks = gsap.utils.toArray('.policies-link-button');
+            policiesLinks.forEach((link: any, i) => {
+              //router.prefetch(link.dataset.page)
+              link.addEventListener("click", (e: any) => {
+                e.preventDefault();
+                //console.log("Start animOut");
+
+                const animOut = gsap.timeline({
+                  paused: true,
+                  immediateRender: true,
+                  onComplete: () => {
+                    console.log("animOut complete && link.dataset.page = "+link.dataset.page);
+                    setHref(link.dataset.link);
+                    startTransition(() => {
+                      router.push(link.dataset.page, { scroll: true });
+                      //router.push(link.href, { scroll: false });
+                    });
+                    currentPage.current = link.dataset.page;
+                    //console.log("currentPage changed to " + currentPage.current);
+                  }
+                })
+                  .set(".footer", {opacity: 0})
+                  .fromTo(".templateAnimIn", {opacity: 1, xPercent: 0},{opacity: 0, xPercent: 50, duration: 0.3, ease: "power2.out"})
+                  .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
+                //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
+                animOut.restart().play();
+              });
+            }); */
+            
+
           }
         }
       }, 50); // Check every 50ms
 
-      /* const detectViewportRatio = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const ratio = width / height;
-        if (ratio > 16/9) {
-        } else if (ratio < 16/9) {
-        } else {
-          console.log("Viewport is 16:9");
-        }
-        if (ratio < 4/3) {
-          console.log("Viewport is narrower than 4:3");
-        } else if (ratio > 4/3) {
-          console.log("Viewport is wider than 4:3");
-        } else {
-          console.log("Viewport is 4:3");
-        }
-        console.log("ratio is "+ratio);
-
-        if (ratio > 1.54) {
-          gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
-        }
-      }
-      detectViewportRatio();
-      window.addEventListener('resize', detectViewportRatio); */
 
   /* GSDevTools.create(); */
   },
-  { dependencies: [currentPage, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
+  { dependencies: [currentPage, currentPathname, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
+  );
+
+
+
+  /* ===== useGSAP 4 animIn ===== */
+  useGSAP(
+    () => {
+
+      /* const history = pathnameHistory.current;
+      const lastPathname = history[history.length - 1];
+      if (currentPathname !== lastPathname) {
+        console.log('Pathname changed');
+        // Check if it's likely a back button press
+        if (history.length > 1 && currentPathname === history[history.length - 2]) {
+          console.log('Back button was pressed');
+          //setBackLink(currentPathname);
+          //console.log('Back link is '+currentPathname);
+          //animInBack.invalidate().restart().play();
+        }
+        // Update the history
+        pathnameHistory.current = [...history, lastPathname];
+      } */
+
+      /* const history = pathnameHistory.current;
+      const lastPathname = history[history.length - 1];
+      if (currentPathname !== lastPathname) {
+        console.log('Pathname changed');
+        // Check if it's likely a back button press
+        if (history.length > 1 && currentPathname === history[history.length - 2]) {
+          console.log('Back button was pressed');
+          //animInBack.invalidate().restart().play();
+        }
+        // Update the history
+        pathnameHistory.current = [...history, currentPathname];
+      } */
+
+  },
+  { dependencies: [currentPage, currentPathname, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
   );
 
   //console.log(smoother);
@@ -264,7 +359,7 @@ export default function MmappRootLayout({
    }, [])
 
 return (
-    <AppContext.Provider value={{ href, setHref, smoother }}>
+    <AppContext.Provider value={{ href, setHref, lastHref, setLastHref, backLink, setBackLink, smoother }}>
     <body ref={main}>
       {isUnder768 ? 
         <ToasterProviders>
@@ -327,3 +422,29 @@ return (
     </AppContext.Provider>
   );
 };
+
+
+      /* const detectViewportRatio = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+        if (ratio > 16/9) {
+        } else if (ratio < 16/9) {
+        } else {
+          console.log("Viewport is 16:9");
+        }
+        if (ratio < 4/3) {
+          console.log("Viewport is narrower than 4:3");
+        } else if (ratio > 4/3) {
+          console.log("Viewport is wider than 4:3");
+        } else {
+          console.log("Viewport is 4:3");
+        }
+        console.log("ratio is "+ratio);
+
+        if (ratio > 1.54) {
+          gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
+        }
+      }
+      detectViewportRatio();
+      window.addEventListener('resize', detectViewportRatio); */

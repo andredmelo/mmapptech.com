@@ -319,7 +319,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Home"
                               data-page="/"
                               data-link="#Home"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Home
                             </a>
                         </li>
@@ -329,7 +329,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Our Expertise"
                               data-page="/"
                               data-link="#OurExpertise"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Our Expertise
                             </a>
                         </li>
@@ -339,7 +339,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Features"
                               data-page="/"
                               data-link="#Features"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Features
                             </a>
                         </li>
@@ -349,7 +349,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Benefits"
                               data-page="/"
                               data-link="#Benefits"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Benefits for everyone
                             </a>
                         </li>
@@ -358,7 +358,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               href="/#FAQSupport"
                               data-page="/"
                               data-link="#FAQSupport"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               FAQs/Support
                             </a>
                         </li> */}
@@ -368,7 +368,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Contact Us"
                               data-page="/"
                               data-link="#ContactUs"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Contact Us
                             </a>
                         </li>
@@ -392,7 +392,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Mission"
                               data-page="/company"
                               data-link="#Mission"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Mission
                             </a>
                         </li>
@@ -402,7 +402,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Vision"
                               data-page="/company"
                               data-link="#Vision"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Vision
                             </a>
                         </li>
@@ -412,7 +412,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Core Values"
                               data-page="/company"
                               data-link="#CoreValues"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Core Values
                             </a>
                         </li>
@@ -422,7 +422,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Security & Compliance"
                               data-page="/company"
                               data-link="#SecurityCompliance"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Security & Compliance
                             </a>
                         </li>
@@ -432,7 +432,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               aria-label="MMAPP Tech Policies"
                               data-page="/company"
                               data-link="#Policies"
-                              className="dropdown-link">
+                              className="dropdown-link dropdown-link-button">
                               Policies
                             </a>
                         </li>
@@ -454,7 +454,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech MMAPP Methodology"
                             data-page="/product"
                             data-link="#MMAPP-Methodology"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             MMAPP Methodology
                           </a>
                         </li>
@@ -464,7 +464,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech Judge"
                             data-page="/product"
                             data-link="#Judge"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             Judge
                           </a>
                         </li>
@@ -474,7 +474,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech RecordKeeper"
                             data-page="/product"
                             data-link="#RecordKeeper"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             RecordKeeper
                           </a>
                         </li>
@@ -484,7 +484,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech Dashboard"
                             data-page="/product"
                             data-link="#Dashboard"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             Dashboard
                           </a>
                         </li>
@@ -494,7 +494,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech Dashboard (Members)"
                             data-page="/product"
                             data-link="#Dashboard-Members"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             Dashboard (Members)
                           </a>
                         </li>
@@ -504,7 +504,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech Contact Us"
                             data-page="/product"
                             data-link="#ContactUs"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             Contact Us
                           </a>
                         </li>
@@ -524,7 +524,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech Contact Info"
                             data-page="/contact"
                             data-link="#ContactInfo"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             Contact Info
                           </a>
                         </li>
@@ -534,7 +534,7 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                             aria-label="MMAPP Tech FAQs & Support"
                             data-page="/contact"
                             data-link="#FAQSupport"
-                            className="dropdown-link">
+                            className="dropdown-link dropdown-link-button">
                             FAQs & Support
                           </a>
                         </li>

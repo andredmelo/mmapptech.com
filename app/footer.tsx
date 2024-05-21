@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 export default function Footer() {
   return (
     <>
-      <footer className="footer flex flex-row justify-around px-4 pt-8 pb-14 md:px-16 md:pt-16 md:pb-24 lg:px-24 lg:pt-24 lg:pb-32 mb-[-10vh] bg-gradient-to-b from-[var(--background-grey-dark)] to-[var(--background-grey)]">
+      <footer className="z-50 footer flex flex-row justify-around px-4 pt-8 pb-14 md:px-16 md:pt-16 md:pb-24 lg:px-24 lg:pt-24 lg:pb-32 mb-[-10vh] bg-gradient-to-b from-[var(--background-grey-dark)] to-[var(--background-grey)]">
 
         <div className="flex flex-col items-center justify-start space-y-10">
           <picture><img id="heroMMAPPLogo" src="/images/logos/mmapp/logo_on_black.svg" alt="MMAPP Logo" className="min-w-44 md:min-w-52 lg:min-w-60"/></picture>

@@ -4,6 +4,10 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 interface AppContextType {
   href: string;
   setHref: (href: string) => void;
+  lastHref: string;
+  setLastHref: (lastHref: string) => void;
+  backLink: boolean;
+  setBackLink: (backLink: boolean) => void;
   smoother: React.MutableRefObject<ScrollSmoother | undefined>;
 }
 
@@ -11,6 +15,10 @@ interface AppContextType {
 export const AppContext = createContext<AppContextType>({
   href: '',
   setHref: () => {},
+  lastHref: '',
+  setLastHref: () => {},
+  backLink: false,
+  setBackLink: () => {},
   smoother: { current: undefined },
 });
 

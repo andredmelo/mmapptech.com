@@ -1,2 +1,1 @@
-let vNumber = "v0.9-β.8.28 | Policies footer issue fix.";
-
+let vNumber = "v0.9-β.8.29 | Page transions and routing seemingly fixed! Policies buttons integrated into regular page transitions but still some minor back button issues.";

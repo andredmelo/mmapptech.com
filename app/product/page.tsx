@@ -466,7 +466,7 @@ const Product = () => {
               .from("#mainPath-4", { drawSVG: 0 }, 0)
 
 
-            ScrollTrigger.refresh()
+            /* ScrollTrigger.refresh()
             // ScrollTrigger to refresh the markers
             const bodyRefresh = setInterval(() => {
               if (document.querySelector("body")) {
@@ -484,7 +484,7 @@ const Product = () => {
                   }
                 });
               }
-            }, 100);
+            }, 100); */
           }
         }, 50); // Check every 50ms
       });

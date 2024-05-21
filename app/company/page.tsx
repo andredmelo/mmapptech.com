@@ -23,9 +23,7 @@ const Company = (props: any) => {
   const isUnder480 = useMediaQuery('(max-width: 479px)');
   const isUnder640 = useMediaQuery('(max-width: 639px)');
   const isUnder768 = useMediaQuery('(max-width: 767px)');
-  const isUnder1024 = useMediaQuery('(max-width: 1023px)');
   const isUnder1280 = useMediaQuery('(max-width: 1279px)');
-  const isUnder1536 = useMediaQuery('(max-width: 1535px)');
   
   /* ===== GSAP React ===== */
   useGSAP(
@@ -52,11 +50,10 @@ const Company = (props: any) => {
       mMAFighter = "/images/company/companyMMAFighterPreparingBandages4Training-MD-768w.webp";
     }
     setMMAFighter(mMAFighter);
-  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isLandscape]);
+  }, [isUnder1280, isUnder768, isUnder640, isUnder480, isLandscape]);
 
   return (
     <>
-      <PagesTransitionScroll />
       <MmappBlockReveal onReady={()=>{}}  />
       <MmappHeadingReveal onReady={()=>{}} />
       <MmappParagraphsReveal onReady={()=>{}} />
@@ -661,8 +658,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/privacy-policy"
+                  aria-label="MMAPP Tech Privacy Policy"
                   data-page="/company/policies/privacy-policy"
-                  className=""
+                  data-link="#PrivacyPolicy"
+                  className="dropdown-link-button"
                 >
                   Privacy Policy
                 </CardPoliciesButton>
@@ -680,8 +679,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/cookie-policy"
+                  aria-label="MMAPP Tech Cookie Policy"
                   data-page="/company/policies/cookie-policy"
-                  className=""
+                  data-link="#CookiePolicy"
+                  className="dropdown-link-button"
                 >
                   Cookie Policy
                 </CardPoliciesButton>
@@ -699,8 +700,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/terms-conditions"
+                  aria-label="MMAPP Tech Terms & Conditions"
                   data-page="/company/policies/terms-conditions"
-                  className=""
+                  data-link="#TermsConditions"
+                  className="dropdown-link-button"
                 >
                   Terms & Conditions
                 </CardPoliciesButton>
@@ -718,8 +721,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/eula"
+                  aria-label="MMAPP Tech EULA"
                   data-page="/company/policies/eula"
-                  className=""
+                  data-link="#EULA"
+                  className="dropdown-link-button"
                 >
                   EULA
                 </CardPoliciesButton>
@@ -736,8 +741,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/disclaimer"
+                  aria-label="MMAPP Tech Disclaimer"
                   data-page="/company/policies/disclaimer"
-                  className=""
+                  data-link="#Disclaimer"
+                  className="dropdown-link-button"
                 >
                   Disclaimer
                 </CardPoliciesButton>
@@ -755,8 +762,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/acceptable-use-policy"
+                  aria-label="MMAPP Tech Acceptable Use Policy"
                   data-page="/company/policies/acceptable-use-policy"
-                  className=""
+                  data-link="#AcceptableUsePolicy"
+                  className="dropdown-link-button"
                 >
                   Acceptable Use Policy
                 </CardPoliciesButton>
@@ -773,8 +782,10 @@ const Company = (props: any) => {
                 </CardPoliciesHeader>
                 <CardPoliciesButton
                   href="/company/policies/minimum-recommended-requirements"
+                  aria-label="MMAPP Tech Minimum & Recommended Requirements"
                   data-page="/company/policies/minimum-recommended-requirements"
-                  className=""
+                  data-link="#MinimumRecommendedRequirements"
+                  className="dropdown-link-button"
                 >
                   Requirements
                 </CardPoliciesButton>
@@ -782,6 +793,7 @@ const Company = (props: any) => {
           </div>
         </section>
       </div>
+      <PagesTransitionScroll />
     </>
   )
 };

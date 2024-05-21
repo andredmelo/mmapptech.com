@@ -1,9 +1,11 @@
-/* &apos;use client&apos; */
+"use client";
+import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 
 const AcceptableUsePolicy = () => {
 
   return (
     <>
+      <PagesTransitionScroll />
       <section id="AcceptableUsePolicy" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
         <div className="policiesPage">
         <h4 className="text-center mb-2 tracking-tight">ACCEPTABLE USE POLICY</h4>

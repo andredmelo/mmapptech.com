@@ -1,13 +1,17 @@
+"use client";
+import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import PoliciesLoader from "@/app/company/policies/policiesLoader";
 
 const EULA = () => {
 
   return (
-    <PoliciesLoader>
-      <section id="EULA" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
-        <div className="policiesPage">
-        <h4 className="text-center mb-2 tracking-tight">END USER LICENCE AGREEMENT</h4>
-        <h6 className="text-center mb-8 md:mb-12 lg:mb-16">Last updated October 23, 2023</h6>
+    <>
+      <PagesTransitionScroll />
+      <PoliciesLoader>
+        <section id="EULA" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
+          <div className="policiesPage">
+          <h4 className="text-center mb-2 tracking-tight">END USER LICENCE AGREEMENT</h4>
+          <h6 className="text-center mb-8 md:mb-12 lg:mb-16">Last updated October 23, 2023</h6>
           
 {/* // Raw extraction */}
 <div>
@@ -173,9 +177,10 @@ const EULA = () => {
 </div>
 {/* // Raw extraction end */}
 
-        </div>
-      </section>
-    </PoliciesLoader>
+          </div>
+        </section>
+      </PoliciesLoader>
+    </>
   )
 };
 

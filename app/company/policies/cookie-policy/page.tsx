@@ -1,9 +1,11 @@
-//import PoliciesLoader from "@/app/company/policies/policiesLoader";
+"use client";
+import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 
 const CookiePolicy = () => {
 
   return (
     <>
+      <PagesTransitionScroll />
       <section id="CookiePolicy" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
         <div className="policiesPage">
         <h4 className="text-center mb-2 tracking-tight">COOKIE POLICY</h4>
@@ -24,29 +26,25 @@ const CookiePolicy = () => {
 <div>
 <div><span data-custom-class="heading_2"><strong><u><br />Analytics and customization cookies:</u></strong></span></div>
 <p><span data-custom-class="body_text">These cookies collect information that is used either in aggregate form to help us understand how our Website is being used or how effective our marketing campaigns are, or to help us customize our Website for you.</span></p>
-<div>
-<div data-custom-class="body_text">
-<div>
-<tr>
+</div>
+
+<tr data-custom-class="body_text">
 <td>Name:</td>
 <td>vt</td>
 </tr>
-<tr>
+<tr data-custom-class="body_text">
 <td>Provider:</td>
 <td>www.google.com</td>
 </tr>
-<tr>
+<tr data-custom-class="body_text">
 <td>Type:</td>
 <td>pixel_tracker</td>
 </tr>
-<tr>
+<tr data-custom-class="body_text">
 <td>Expires in:</td>
 <td>session</td>
 </tr>
-</div>
-</div>
-</div>
-</div>
+
 <div><strong><span data-custom-class="heading_1">How can I control cookies on my browser?</span></strong></div>
 <span data-custom-class="body_text">As the means by which you can refuse cookies through your web browser controls vary from browser to browser, you should visit your browser&apos;s help menu for more information. The following is information about how to manage cookies on the most popular browsers:</span>
 <ul>

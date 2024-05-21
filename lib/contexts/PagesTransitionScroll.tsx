@@ -1,4 +1,4 @@
-import  React, { useEffect, useState } from 'react';
+import  React, { useEffect, useState, useRef } from 'react';
 import { useAppContext } from '@/lib/contexts/AppContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -12,12 +12,13 @@ interface PagesTransitionScrollProps {
 }
 
 const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditionMet }) => {
-  const { href, smoother } = useAppContext();
+  const { href, lastHref, backLink, smoother } = useAppContext();
 
   const [documentReady, setDocumentReady] = useState(false);
+  //console.log("documentReady "+documentReady);
 
   useEffect(() => {
-    let refreshCount = localStorage.getItem('refreshCount') || 0;
+    //let refreshCount = localStorage.getItem('refreshCount') || 0;
 
     const handleReady = () => {
       setDocumentReady(true);
@@ -52,8 +53,10 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         //console.log("href: "+href);
         //gsap.set(".templateAnimIn", { opacity: 0, x: -100 });
         const animIn = gsap.timeline({ paused: true, /* onComplete: () => {ScrollTrigger.refresh();} */ })
-          .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out"})
+          .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out", delay: 0})
+          .set(".templateAnimIn", {xPercent: -50})
           .fromTo(".templateAnimIn", { opacity: 0, xPercent: -50 }, { opacity: 1, xPercent: 0, duration: 0.3, ease: "power2.out"}, 0.125)
+          //.fromTo(".templateAnimIn", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out"}, 0.125)
           .set(".footer", {opacity: 1})
 
         if (!href.includes("company") && !href.includes("product")) {
@@ -62,23 +65,10 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         }
 
         if (documentReady) {
-          /* setTimeout(() => {
-            console.log("documentReady: "+documentReady);
-            gsap.to(smoother.current!, {
-              scrollTop: Math.min(
-                ScrollTrigger.maxScroll(window),
-                smoother.current?.offset(href, "top 0px") ?? 0
-              ),
-              duration: 0.01,
-              onComplete: () => {
-                console.log("ScrollComplete, now animatingIn");
-                animIn.invalidate().restart().play();
-              }
-            });
-          }, 200); */
-          try {
-          // Code that might throw an error
-          // smoother.current.scrollTo(href, false);
+          //console.log("documentReady "+documentReady);
+          try {// Code that might throw an error
+            console.log("try");
+            console.log("href: "+href);
             gsap.to(smoother.current, {
               // don't let it go beyond the maximum scrollable area
               scrollTop: Math.min(
@@ -87,11 +77,12 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
               ),
               duration: 0.01,
               onComplete: () => {
-                //console.log("ScrollComplete, now animatingIn");
-                animIn.invalidate().restart().play();
+                console.log("ScrollComplete, now animatingIn ");
+                  animIn.invalidate().restart().play();
               }
             });
           } catch (error) {
+            console.log("catch");
             let scrollToCount = 0;
             //console.error("Trying to scrollTo "+scrollToCount);
             scrollToCount++;
@@ -99,6 +90,80 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
             // Optional: retry logic or other error handling
           }
         }
+
+        if (href == '') {
+          console.log("href = is null");
+          animIn.invalidate().restart().play();
+        }
+
+        if (backLink) {
+          console.log("backLink = true");
+          //animIn.invalidate().restart().play();
+          try {// Code that might throw an error
+            console.log("try backLink");
+            console.log("lastHref: "+lastHref);
+            gsap.to(smoother.current, {
+              // don't let it go beyond the maximum scrollable area
+              scrollTop: Math.min(
+                ScrollTrigger.maxScroll(window),
+                smoother.current?.offset(lastHref, "top 0px")
+              ),
+              duration: 0.01,
+              onComplete: () => {
+                console.log("ScrollComplete, now animatingIn ");
+                  animIn.invalidate().restart().play();
+              }
+            });
+          } catch (error) {
+            console.log("catch backLink");
+            animIn.invalidate().restart().play();
+            //let scrollToCount = 0;
+            //console.error("Trying to scrollTo "+scrollToCount);
+            //scrollToCount++;
+            // console.error("Error accessing element's style:", error);
+            // Optional: retry logic or other error handling
+          }
+        }
+
+        /* if (documentReady) {
+          if (href == '') {
+            console.log("href = is null");
+            animIn.invalidate().restart().play();
+          } else {
+            try {// Code that might throw an error
+              console.log("try");
+              if (document.querySelector(href) && smoother.current) {
+                gsap.to(smoother.current, {
+                  // don't let it go beyond the maximum scrollable area
+                  scrollTop: Math.min(
+                    ScrollTrigger.maxScroll(window),
+                    smoother.current?.offset(href, "top 0px")
+                  ),
+                  duration: 0.01,
+                  onComplete: () => {
+                    console.log("ScrollComplete, now animatingIn "+animInJustRan);
+                    //if (!animInJustRan) {
+                      animIn.invalidate().restart().play();
+                      //localStorage.setItem('animInJustRan', 'false');
+                    ///}
+                  }
+                });
+              } else {
+                animIn.invalidate().restart().play()
+                //localStorage.setItem('animInJustRan', 'true');
+                //console.log("href not found, animIn just ran "+animInJustRan);
+              }
+            } catch (error) {
+              let scrollToCount = 0;
+              //console.error("Trying to scrollTo "+scrollToCount);
+              scrollToCount++;
+              // console.error("Error accessing element's style:", error);
+              // Optional: retry logic or other error handling
+            } finally {
+              //console.log("scrollTo complete");
+            }
+          }
+        } */
 
 
         /* try {
@@ -124,10 +189,6 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
           // Optional: retry logic or other error handling
         } */
 
-        if (href == '') {
-          //console.log("href = is null");
-          animIn.invalidate().restart().play();
-        }
         //animIn.invalidate();
         //animIn.restart().play();
         //console.log("scrollingTo : " + href);
@@ -140,7 +201,7 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         });
       }
     }, 100);
-  }, [href, smoother, documentReady]);
+  }, [href, lastHref, backLink, smoother, documentReady]);
 
   return null; // This component does not render anything
 };

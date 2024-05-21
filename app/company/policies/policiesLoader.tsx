@@ -22,12 +22,12 @@ export default function PoliciesLoader({
 
         const policiesLinks = document.querySelectorAll(".policiesLink") as NodeListOf<HTMLAnchorElement>;
 
-        console.log(policiesLinks);
+        //console.log(policiesLinks);
         policiesLinks.forEach((link: HTMLAnchorElement) => {
           link.addEventListener("click", (e: MouseEvent) => {
             e.preventDefault(); // Prevent the default link behavior
             const href = link.getAttribute('href'); // Get the href attribute from the link
-            console.log(href);
+            //console.log(href);
 
             gsap.to(smoother.current!, {
               // don't let it go beyond the maximum scrollable area
