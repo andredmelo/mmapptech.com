@@ -1,2 +1,2 @@
-let vNumber = "v0.9-β.8.27 | Policies update.";
+let vNumber = "v0.9-β.8.28 | Policies footer issue fix.";
 

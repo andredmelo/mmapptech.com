@@ -4,7 +4,7 @@ const AcceptableUsePolicy = () => {
 
   return (
     <>
-      <section id="AcceptableUsePolicy" className="flex items-center justify-center w-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
+      <section id="AcceptableUsePolicy" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
         <div className="policiesPage">
         <h4 className="text-center mb-2 tracking-tight">ACCEPTABLE USE POLICY</h4>
         <h6 className="text-center mb-8 md:mb-12 lg:mb-16">Last updated December 05, 2023</h6>

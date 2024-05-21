@@ -4,7 +4,7 @@ const MinimumRecommendedRequirements = () => {
 
   return (
     <>
-      <section id="MinimumRecommendedRequirements" className="flex items-center justify-center w-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
+      <section id="MinimumRecommendedRequirements" className="flex items-center justify-center w-full h-full py-24 md:py-36 lg:py-44 bg-[var(--background-grey)]">
         <div className="policiesPage">
         <h4 className="text-center mb-2 tracking-tight">Minimum and Recommended Requirements</h4>
         <h6 className="text-center mb-8 md:mb-12 lg:mb-16">Last updated December 05, 2023</h6>
