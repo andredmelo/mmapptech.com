@@ -103,6 +103,7 @@ const Product = () => {
   useEffect(() => {
     if (readyCount === 5) { // Assuming there are 5 animation components
       setAnimationsReady(true);
+      //console.log('Animations are ready')
     }
   }, [readyCount]);
 
@@ -883,7 +884,7 @@ const Product = () => {
       <MmappParagraphsReveal onReady={handleAnimationReady}  />
       <MmappParagraphsRevealRight onReady={handleAnimationReady}  />
       <MmappSequentialParagraphsReveal onReady={handleAnimationReady}  />
-      {animationsReady && (
+      {/* {animationsReady && ( */}
         <div className="productPage">
           <title>Product | MMAPP</title>
 
@@ -1551,7 +1552,7 @@ const Product = () => {
           <ContactUs id={ContactUs} className="mmappBlockReveal"/>
         </section>
       </div>
-    )}
+    {/* )} */}
   </>
 )};
 

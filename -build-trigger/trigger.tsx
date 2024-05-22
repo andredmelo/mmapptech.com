@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.30 | Policies update. Other small fixes.";
+let vNumber = "v0.9-β.8.31 | Policies update. Product titles animations fix.";

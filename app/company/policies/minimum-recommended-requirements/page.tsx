@@ -14,7 +14,7 @@ const MinimumRecommendedRequirements = () => {
             <strong><span data-custom-class="heading_1">Connection Requirements:</span></strong>
             <div data-custom-class="body_text">
             An Internet Connection is required to access the Dashboard and make any last-minute changes to events.
-            To connect the devices between themselves during an event, a Wi-Fi network must be available. It is recommended to have your own private Wi-Fi network. This can be through a router at the venue, a router of your own, or you can use the tablet to create a Wi-Fi hotspot..
+            To connect the devices between themselves during an event, a Wi-Fi network must be available. It is recommended to have your own private Wi-Fi network. This can be through a router at the venue, a router of your own, or you can use the tablet to create a Wi-Fi hotspot.
             </div>
             <div>
               <table id="minimumRequirements" className="max-w-[1040px]">
