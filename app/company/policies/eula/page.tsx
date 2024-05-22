@@ -63,7 +63,7 @@ const EULA = () => {
 
 <div>
 <span id="requirements" data-custom-class="heading_1"><strong>3. TECHNICAL REQUIREMENTS</strong></span>
-<div data-custom-class="body_text">3.1 The Licensed Application requires a firmware version 1.1.7 or higher. Licensor recommends using the latest version of the firmware.</div>
+<div data-custom-class="body_text">3.1 The Licensed Application requires a firmware version 1.2.3 or higher. Licensor recommends using the latest version of the firmware.</div>
 <div data-custom-class="body_text">3.2 Licensor attempts to keep the Licensed Application updated so that it complies with modified/new versions of the firmware and new hardware. You are not granted rights to claim such an update.</div>
 <div data-custom-class="body_text">3.3 You acknowledge that it is Your responsibility to confirm and determine that the app end-user device on which You intend to use the Licensed Application satisfies the technical specifications mentioned above.</div>
 <div data-custom-class="body_text">3.4 Licensor reserves the right to modify the technical specifications as it sees appropriate at any time.</div>

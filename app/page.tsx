@@ -5,7 +5,7 @@ import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from '
 import { clsx } from "clsx";
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
-import { isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
+import { isDesktop, isTablet, isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
 /* import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -19,7 +19,7 @@ import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/compone
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
 //import FAQ from '@/app/contact/faq'
-import OurExpertise from '@/app/ourExpertise'
+import OurExpertise from '@/app/home/ourExpertise'
 //import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
@@ -314,20 +314,6 @@ export default function Home() {
         return ratio < 1.9265;
       } */
 
-      //Variables in common
-      let sectionTitlePaddingTop = "" as string;
-      if (isLandscape) {
-        if (isOver1536) {
-          sectionTitlePaddingTop = "90px";
-        } else {
-          sectionTitlePaddingTop = "70px";
-        }
-      } else if (isUnder768) {
-        sectionTitlePaddingTop = "50px";
-      } else {
-        sectionTitlePaddingTop = "80px";
-      }
-
       /* ScrollTrigger.create({
         trigger:"featuresDashboard",
         start:"top top",
@@ -458,7 +444,7 @@ export default function Home() {
         };
 
 
-        matchMedia.add("(min-width: 768px)", (context) => {
+        /* matchMedia.add("(min-width: 768px)", (context) => {
           // Pin Our Expertise Image
           const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
           const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
@@ -487,10 +473,23 @@ export default function Home() {
               }
             };
           }, 50); // Check every 50ms
-        });
+        }); */
         //});
       };
 
+      //Variables in common
+      let sectionTitlePaddingTop = "" as string;
+      if (isLandscape) {
+        if (isOver1536) {
+          sectionTitlePaddingTop = "90px";
+        } else {
+          sectionTitlePaddingTop = "70px";
+        }
+      } else if (isUnder768) {
+        sectionTitlePaddingTop = "50px";
+      } else {
+        sectionTitlePaddingTop = "80px";
+      }
 
       // Tablet and Desktop Animations
       if (!isMobileOnly) {

@@ -50,7 +50,7 @@ const FeaturesCardHeader = React.forwardRef<
       isMobileOnly ? 
         leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 portrait:pr-[0%] landscape:pt-[6rem] portrait:pt-[6rem] portrait:md:pt-[36%]" : "landscape:items-center landscape:text-center landscape:pl-0 portrait:pl-[0%] landscape:pt-[6rem] portrait:pt-[6rem] portrait:md:pt-[36%]"
       : 
-        leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 landscape:md:items-start landscape:md:text-left landscape:md:pr-[50%] portrait:pr-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[36%]" : "landscape:items-center landscape:text-center landscape:pl-0 landscape:md:items-end landscape:md:text-right landscape:md:pl-[50%] portrait:pl-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[36%]",
+        leftOrRight === 'left' ? "landscape:items-center landscape:text-center landscape:pr-0 landscape:md:items-start landscape:md:text-left landscape:md:pr-[50%] portrait:pr-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[28%] portrait:touch:md:pt-[36%]" : "landscape:items-center landscape:text-center landscape:pl-0 landscape:md:items-end landscape:md:text-right landscape:md:pl-[50%] portrait:pl-[0%] landscape:pt-[6rem] landscape:md:pt-0 portrait:pt-[6rem] portrait:md:pt-[28%] portrait:touch:md:pt-[36%]",
       className
     )}
     {...props}

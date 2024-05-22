@@ -16,10 +16,10 @@ const PrivacyPolicy = () => {
 {/* // Raw extraction */}
 <div><span data-custom-class="body_text">This privacy notice for MMAPP Technologies, Unipessoal Lda. (doing business as MMAPP) (&apos;<strong>we</strong>&apos;, &apos;<strong>us</strong>&apos;, or &apos;<strong>our</strong>&apos;</span><span data-custom-class="body_text">), describes how and why we might collect, store, use, and/or share (&apos;<strong>process</strong>&apos;) your information when you use our services (&apos;<strong>Services</strong>&apos;), such as when you:</span></div>
 <ul>
-<li><span data-custom-class="body_text">Visit our website at <a href="https://www.mmapp.app/" target="_blank" data-custom-class="link">https://www.mmapp.app</a><span data-custom-class="body_text">, or any website of ours that links to this privacy notice</span></span></li>
+<li><span data-custom-class="body_text">Visit our websites at <a href="https://www.mmapptech.com/" target="_blank" data-custom-class="link">https://www.mmapptech.com/</a> and <a href="https://www.mmapp.app/" target="_blank" data-custom-class="link">https://www.mmapp.app</a><span data-custom-class="body_text">, or any website of ours that links to this privacy notice</span></span></li>
 </ul>
 <ul>
-<li><span data-custom-class="body_text">Download and use our mobile application (MMAPP Judge)<span data-custom-class="body_text"><span data-custom-class="body_text">,</span></span></span><span data-custom-class="body_text"><span data-custom-class="body_text"> or any other application of ours that links to this privacy notice</span></span></li>
+<li><span data-custom-class="body_text">Download and use our mobile applications (MMAPP Judge and MMAPP Recordkeeper)<span data-custom-class="body_text"><span data-custom-class="body_text">,</span></span></span><span data-custom-class="body_text"><span data-custom-class="body_text"> or any other application of ours that links to this privacy notice</span></span></li>
 </ul>
 <ul>
 <li><span data-custom-class="body_text">Engage with us in other related ways, including any sales, marketing, or events</span></li>
