@@ -67,8 +67,8 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         if (documentReady) {
           //console.log("documentReady "+documentReady);
           try {// Code that might throw an error
-            console.log("try");
-            console.log("href: "+href);
+            //console.log("try");
+            //console.log("href: "+href);
             gsap.to(smoother.current, {
               // don't let it go beyond the maximum scrollable area
               scrollTop: Math.min(
@@ -82,7 +82,7 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
               }
             });
           } catch (error) {
-            console.log("catch");
+            //console.log("catch");
             let scrollToCount = 0;
             //console.error("Trying to scrollTo "+scrollToCount);
             scrollToCount++;
@@ -92,16 +92,16 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
         }
 
         if (href == '') {
-          console.log("href = is null");
+          //console.log("href = is null");
           animIn.invalidate().restart().play();
         }
 
         if (backLink) {
-          console.log("backLink = true");
+          //console.log("backLink = true");
           //animIn.invalidate().restart().play();
           try {// Code that might throw an error
-            console.log("try backLink");
-            console.log("lastHref: "+lastHref);
+            //console.log("try backLink");
+            //console.log("lastHref: "+lastHref);
             gsap.to(smoother.current, {
               // don't let it go beyond the maximum scrollable area
               scrollTop: Math.min(
@@ -110,12 +110,12 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
               ),
               duration: 0.01,
               onComplete: () => {
-                console.log("ScrollComplete, now animatingIn ");
+                //console.log("ScrollComplete, now animatingIn ");
                   animIn.invalidate().restart().play();
               }
             });
           } catch (error) {
-            console.log("catch backLink");
+            //console.log("catch backLink");
             animIn.invalidate().restart().play();
             //let scrollToCount = 0;
             //console.error("Trying to scrollTo "+scrollToCount);

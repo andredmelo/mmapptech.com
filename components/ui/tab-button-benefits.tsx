@@ -23,7 +23,7 @@ export default function TabButtonBenefits({
       )}
       {...props}
     >
-      {isPending ? 'loading' : children}
+      {/* isPending ? 'loading' : */ children}
     </button>
   )
 }

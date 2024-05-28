@@ -1809,10 +1809,10 @@ export default function Home() {
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
                     <FeaturesCardTitle className="featuresJudgeTitle">
-                      Deeper Scoring discussions and debates
+                      Instant Scorecard Submission
                     </FeaturesCardTitle>
                     <FeaturesCardDescription className="featuresJudgeDescription">
-                      With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques with precision never before possible.
+                      Once a decision has been made, officials can instantly submit their scores to the RecordKeeper for scorecard calculation and archival.
                     </FeaturesCardDescription>
                     {isMobileOnly && isAndroid ? 
                       <FeaturesCardImage
@@ -1839,10 +1839,10 @@ export default function Home() {
                 <FeaturesCard className="judgeCard z-10">
                   <FeaturesCardHeader className="featuresJudgeHeaderItem" leftOrRight='right'>
                     <FeaturesCardTitle className="featuresJudgeTitle">
-                      Instant Scorecard Submission
+                      Deeper Scoring discussions and debates
                     </FeaturesCardTitle>
                     <FeaturesCardDescription className="featuresJudgeDescription">
-                      Once a decision has been made, officials can instantly submit their scores to the RecordKeeper for scorecard calculation and archival.
+                      With a consistent and coherent methodology, with common baselines, officials are able to discuss fight and techniques with precision never before possible.
                     </FeaturesCardDescription>
                     {isMobileOnly && isAndroid ? 
                       <FeaturesCardImage

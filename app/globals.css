@@ -44,6 +44,10 @@
   .footer h6 {
     @apply text-[1.25rem] md:text-[1.3rem] lg:text-[1.55rem] leading-[1.8rem] md:leading-[2rem] tracking-normal text-neutral-200; /* // font-semibold */
   }
+  .footer .a1m {
+    font-family: var(--font-calSans);
+    @apply text-[1rem] md:text-[1.2rem] lg:text-[1.4rem] font-normal md:font-extralight leading-[1.8rem] md:leading-[2rem] tracking-wide text-white/40 hover:text-white/60;
+  }
   /* button {
     @apply border-none cursor-pointer text-sm md:text-md lg:text-md;
   } */

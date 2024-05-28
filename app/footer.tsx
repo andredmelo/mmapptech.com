@@ -119,6 +119,17 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className="absolute bottom-0 right-0 px-12 py-10 md:px-8 md:py-6">
+          <a
+            href="https://andre1melo.com"
+            aria-label="a1m andre1melo link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="a1m group">
+            Made by <span className="group-hover:text-red-700">a1m</span>
+          </a>
+        </div>
+
       </footer>
     </>
   )

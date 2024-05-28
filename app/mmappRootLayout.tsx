@@ -204,7 +204,7 @@ export default function MmappRootLayout({
         // Check if it's likely a back button press
         if (history.length > 1 && currentPathname === history[history.length - 2]) {
           console.log('Back button was pressed');
-          console.log('Previous href was:', lastHref);
+          //console.log('Previous href was:', lastHref);
           setBackLink(true);
           setLastHref(lastHref);
           //animInBack.invalidate().restart().play();
