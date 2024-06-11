@@ -1,1 +1,1 @@
-let vNumber = "v0.9-β.8.32 | Home Features Judge update. a1m link in footer.";
+let vNumber = "v0.9-β.8.5 | Product phone, tablet, desktop and laptops extracted into components. Bottom padding adjustment on mainAnimations. Bug fix on 'featuresJudgeTitle'.";

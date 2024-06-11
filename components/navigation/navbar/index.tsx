@@ -490,10 +490,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         </li>
                         <li role="menuitem">
                           <a
-                            href="/product#Dashboard-Members"
+                            href="/product#DashboardMembers"
                             aria-label="MMAPP Tech Dashboard (Members)"
                             data-page="/product"
-                            data-link="#Dashboard-Members"
+                            data-link="#DashboardMembers"
                             className="dropdown-link dropdown-link-button">
                             Dashboard (Members)
                           </a>

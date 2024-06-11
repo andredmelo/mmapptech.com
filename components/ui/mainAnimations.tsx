@@ -1,3 +1,4 @@
+"use client"
 import React, {  } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -38,7 +39,7 @@ const MmappHeadingReveal = ({ onReady }: { onReady: () => void }) => {
       let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
       const splitTypesH: HTMLHeadingElement[] = gsap.utils.toArray('.mmappHeadingReveal');
       splitTypesH.forEach((Heading, index) => {
-        let split = new SplitText(Heading, { types: 'lines,words', linesClass: "overflow-hidden pb-2 md:pb-3 mt-[-0.25rem] md:mt-[-0.75rem]" });
+        let split = new SplitText(Heading, { types: 'lines,words', linesClass: "overflow-hidden pb-2 md:pb-3 lg:pb-4 mt-[-0.25rem] md:mt-[-0.75rem]" });
         const HeadingsAnim = gsap.timeline({
           paused:true,
           scrollTrigger: {
@@ -142,7 +143,7 @@ const MmappSequentialParagraphsReveal = ({ onReady }: { onReady: () => void }) =
   useGSAP(
     () => {
       let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
-      const paragraphs: NodeListOf<HTMLElement> = document.querySelectorAll('.MmappSequentialParagraphsReveal');
+      const paragraphs: NodeListOf<HTMLElement> = document.querySelectorAll('.mmappSequentialParagraphsReveal');
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: paragraphs[0], // Assuming all paragraphs are close together, we can just trigger on the first

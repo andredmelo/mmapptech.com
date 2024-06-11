@@ -77,8 +77,8 @@ const PagesTransitionScroll: React.FC<PagesTransitionScrollProps> = ({ onConditi
               ),
               duration: 0.01,
               onComplete: () => {
-                console.log("ScrollComplete, now animatingIn ");
-                  animIn.invalidate().restart().play();
+                //console.log("ScrollComplete, now animatingIn ");
+                animIn.invalidate().restart().play();
               }
             });
           } catch (error) {

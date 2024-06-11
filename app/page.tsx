@@ -2107,7 +2107,7 @@ export default function Home() {
             <h5 className="mmappBlockReveal mb-7 md:mb-8 lg:mb-10 text-neutral-200 text-center deboss">
               Benefits for everyone else
             </h5>
-            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[90%] max-w-[1200px]">
+            <h3 id="featuresJudgeTitle" className="mmappHeadingReveal text-[var(--purple-250)] text-center py-1 md:py-2 mb-7 md:mb-8 lg:mb-10 w-[95%] md:w-[90%] lg:w-[100%] max-w-[1200px]">
             Athletes, Coaches, Clubs and Promoters also benefit from using MMAPP
             </h3>
             <p className="mmappBlockReveal text-center w-[95%] md:w-[60%] mb-8 md:mb-10 lg:mb-12">
