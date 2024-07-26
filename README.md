@@ -1,9 +1,7 @@
 <img src="public/images/logos/mmapp/logo_lg.webp" width="50%" syt height="50%" />
 
-# MMAPP landing page
-## mmapptech.com
-
 -------
+## [mmapptech.com(https://mmapptech.com/)]
 
 [![CC BY-NC-ND 4.0][cc-by-nc-nd-shield]][cc-by-nc-nd]
 
@@ -18,13 +16,13 @@ This work is licensed under a
 
 -------
 
-This repository has the base code for the development of the landing website for MMAPP Tech's innovative platform, featuring a comprehensive suite of applications designed specifically for the Mixed Martial Arts (MMA) sport.
+This repository features the base code for the development of the landing website for MMAPP Tech's innovative platform, featuring a comprehensive suite of applications designed specifically for the Mixed Martial Arts (MMA) sport.
 
 Featuring a sleek layout with animations and 3D motion graphics showcasing MMAPP's main features and the many benefits it brings to Federations, their athletes, coaches, clubs and promoters.
 
 -------
 
-### Tech Stack:
+## Tech Stack:
 
 * **Next.js**
 * **Tailwind**
@@ -33,4 +31,4 @@ Featuring a sleek layout with animations and 3D motion graphics showcasing MMAPP
 
 -------
 
-### Development by [andreDmelo](https://andredmelo.dev/)
+#### Development by [andreDmelo](https://andredmelo.dev/)
