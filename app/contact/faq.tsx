@@ -11,34 +11,6 @@ const items: AccordionFAQsItem[] = [
       "Whether you’re a Federation, an individual such as official, athlete or coach, or an entity like a Club or Promoter/Organizer, there are benefits in using the MMAPP Platform.",
     ],
   },
-  /* {
-    header: "What tools are involved?",
-    content: [
-      "There are three components to the MMAPP Platform:",
-      <br key="br1" />, // Use keys for list elements
-      "The Dashboard, which any member can access through any web browser.",
-      <br key="br2" />,
-      "The “Judge” app, which is designed specifically for officials to access on their mobile devices.",
-      <br key="br3" />,
-      "The “RecordKeeper” app, available only on Tablets, and is used by officials for scorekeeping and timekeeping purposes."
-    ],
-  },
-  {
-    header: "How does it work?",
-    content: [
-      "The Dashboard allows promoters to create their events and schedule their fights according to their parameters, which in turn is approved by their Federations.",
-      <br key="br1" />, // Use keys for list elements
-      "The Recordkeeper performs all scorekeeping and timekeeping duties on behalf of the officials, and the Judge app allows the judges to score their fights effectively using the MMAPP Methodology and communicate their scores to the RecordKeeper instantly.",
-      <br key="br2" />,
-      "In the end, all the event information is sent and automatically archived in the Federation.",
-    ],
-  },
-  {
-    header: "What is the MMAPP Methodology?",
-    content: [
-      "The MMAPP Methodology is a patented two-in-one process that standardizes the assessment of fights. It includes a tool for applying the methodology, recording the assessment, and providing insights on the evaluation. This allows judges to be more consistent in their evaluations not only between themselves but also each other, reduces fatigue allowing officials to perform better for longer, and ensures athletes their fights are being held to the highest standard, mitigating unexpected results.",
-    ],
-  }, */
   {
     header: "What do I need to use MMAPP?",
     content: [

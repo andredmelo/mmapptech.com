@@ -40,10 +40,6 @@ import Footer from "@/app/footer";
 import { AppContext } from '@/lib/contexts/AppContext';
 import ToasterProviders from '@/lib/providers/toasterProviders'
 import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, MacBookProOpacityContext, IPhoneOpacityContext, IPadOpacityContext } from '@/lib/contexts/R3FContext';
-//import Navigation from "./components/navigation";
-//import Template from "./template";
-//import { MetaData } from "@/app/template";
-//import { HeroIntroProvider } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -106,18 +102,6 @@ export default function MmappRootLayout({
     };
   }, []);
 
-  /* useEffect(() => {
-    console.log("href = "+href);
-    // Here you can fetch data based on the `href` value
-    // For example:
-    // async function fetchData() {
-    //   const response = await fetch(href);
-    //   const data = await response.json();
-    //   console.log(data);
-    // }
-    // if (href) fetchData();
-  }, [href]); */
-
   /* ===== useGSAP 4 matchMedia ===== */
   useGSAP(
     () => {
@@ -178,12 +162,6 @@ export default function MmappRootLayout({
   /* ===== useGSAP 4 Navigation ===== */
   useGSAP(
     () => {
-      /* const animInBack = gsap.timeline({ paused: true,  })
-      .fromTo("#loadingBanner", {opacity: 1, y: 0}, {opacity: 0, y: 25, duration: 0.125, ease: "power2.out", delay: 0})
-      .set(".templateAnimIn", {xPercent: -50})
-      .fromTo(".templateAnimIn", { opacity: 0, xPercent: -50 }, { opacity: 1, xPercent: 0, duration: 0.3, ease: "power2.out"}, 0.125)
-      //.fromTo(".templateAnimIn", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out"}, 0.125)
-      .set(".footer", {opacity: 1}) */
 
       const hrefHistory = linkHrefHistory.current;
       const lastHref = hrefHistory[hrefHistory.length - 2];
@@ -193,7 +171,6 @@ export default function MmappRootLayout({
         }
         // Update href history
         linkHrefHistory.current = [...hrefHistory, link.dataset.link];
-        // Your existing logic for handling link click
         //console.log('Current href is:', link.href);
       };
 
@@ -258,94 +235,18 @@ export default function MmappRootLayout({
                     .fromTo(".templateAnimIn", {opacity: 1, xPercent: 0},{opacity: 0, xPercent: 50, duration: 0.3, ease: "power2.out"})
                     .set(".templateAnimIn", {xPercent: 0})
                     .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
-                  //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
 
                   animOut.invalidate().restart().play();
-                  //animOut.restart().play();
                 }
               });
             });
-
-            /* const policiesLinks = gsap.utils.toArray('.policies-link-button');
-            policiesLinks.forEach((link: any, i) => {
-              //router.prefetch(link.dataset.page)
-              link.addEventListener("click", (e: any) => {
-                e.preventDefault();
-                //console.log("Start animOut");
-
-                const animOut = gsap.timeline({
-                  paused: true,
-                  immediateRender: true,
-                  onComplete: () => {
-                    console.log("animOut complete && link.dataset.page = "+link.dataset.page);
-                    setHref(link.dataset.link);
-                    startTransition(() => {
-                      router.push(link.dataset.page, { scroll: true });
-                      //router.push(link.href, { scroll: false });
-                    });
-                    currentPage.current = link.dataset.page;
-                    //console.log("currentPage changed to " + currentPage.current);
-                  }
-                })
-                  .set(".footer", {opacity: 0})
-                  .fromTo(".templateAnimIn", {opacity: 1, xPercent: 0},{opacity: 0, xPercent: 50, duration: 0.3, ease: "power2.out"})
-                  .fromTo("#loadingBanner", {opacity: 0, y: -25}, {opacity: 1, y: 0, duration: 0.125, ease: "power2.out"})
-                //.fromTo("main h1, main h2, main h3, main h4, main p, main a, main button, main img", {opacity: 1, y: 0}, {duration: 0.1, opacity: 0, y: -100, stagger: 0.01, ease: "power2.inOut"})
-                animOut.restart().play();
-              });
-            }); */
-            
-
           }
         }
       }, 50); // Check every 50ms
-
-
-  /* GSDevTools.create(); */
   },
   { dependencies: [currentPage, currentPathname, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
   );
 
-
-
-  /* ===== useGSAP 4 animIn ===== */
-  useGSAP(
-    () => {
-
-      /* const history = pathnameHistory.current;
-      const lastPathname = history[history.length - 1];
-      if (currentPathname !== lastPathname) {
-        console.log('Pathname changed');
-        // Check if it's likely a back button press
-        if (history.length > 1 && currentPathname === history[history.length - 2]) {
-          console.log('Back button was pressed');
-          //setBackLink(currentPathname);
-          //console.log('Back link is '+currentPathname);
-          //animInBack.invalidate().restart().play();
-        }
-        // Update the history
-        pathnameHistory.current = [...history, lastPathname];
-      } */
-
-      /* const history = pathnameHistory.current;
-      const lastPathname = history[history.length - 1];
-      if (currentPathname !== lastPathname) {
-        console.log('Pathname changed');
-        // Check if it's likely a back button press
-        if (history.length > 1 && currentPathname === history[history.length - 2]) {
-          console.log('Back button was pressed');
-          //animInBack.invalidate().restart().play();
-        }
-        // Update the history
-        pathnameHistory.current = [...history, currentPathname];
-      } */
-
-  },
-  { dependencies: [currentPage, currentPathname, router, setHref, smoother, startTransition], revertOnUpdate: true, scope: main }
-  );
-
-  //console.log(smoother);
-  
   // Matomo tracker
   useEffect(() => {
     var _mtm = window._mtm = window._mtm || [];
@@ -388,24 +289,6 @@ return (
                 <main id="main" className="templateAnimIn">
                   {children}
                 </main>
-
-                {/* <Loading />
-                <Suspense fallback={<Loading />}>
-                  <main id="main" className="templateAnimIn">
-                    {children}
-                  </main>
-                </Suspense> */}
-
-                {/* <Template isPending={isPending}>  //key={routeParam} smoother={smoother}
-                  <main id="main" className="templateAnimIn">{children}</main>
-                </Template> */}
-
-                {/* <Suspense fallback={<Loading />}>
-                    <main id="main">
-                      {children}
-                    </main>
-                </Suspense> */}
-
                 <Footer />
               </div>
             </div>

@@ -47,10 +47,6 @@ export default function General() {
     <CardContactUs>
       <CardContactUsHeader>
         <CardContactUsTitle>General Inquiries</CardContactUsTitle>
-        {/* <CardContactUsDescription>
-          Inquire about general questions.<br/>
-          Any information solicited will be used solely to provide requester with the information they have requested.
-        </CardContactUsDescription> */}
       </CardContactUsHeader>
       <CardContactUsContent className='h-full'>
         <div className='h-full rounded-lg bg-emerald-100'>
@@ -66,9 +62,6 @@ export default function General() {
                 className="w-full"
                 id="form-name"
                 autoComplete="name"
-                /* type="text"
-                name="first"
-                required */
                 placeholder='Your Name'
                 {...register('name')}
               />
@@ -83,9 +76,6 @@ export default function General() {
               <input
                 id="form-email"
                 autoComplete="email"
-                /* type="email"
-                name="email"
-                required */
                 placeholder='Your Email Address'
                 {...register('email')}
               />
@@ -95,21 +85,10 @@ export default function General() {
                 </p>
               )}
             </div>
-            {/* <div className="phone flex flex-col">
-              <label htmlFor="frm-phone">Phone</label>
-              <input
-                id="form-phone"
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                required
-              />
-            </div> */}
             <div className="message flex flex-col">
               <label htmlFor="form-message">Message</label>
               <textarea
                 id="form-message"
-                /* name="message" */
                 rows={6}
                 placeholder='Your Message'
                 {...register('message')}
@@ -128,13 +107,6 @@ export default function General() {
               <label htmlFor="form-subscribe">Yes, I would like to subscribe to updates, promotions, and news from MMAPP.</label>
             </div>
             <div className="flex flex-col items-center">
-              {/* <button
-                disabled={isSubmitting}
-                className=""
-                // type="submit"
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button> */}
               <CardContactUsButton disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </CardContactUsButton>

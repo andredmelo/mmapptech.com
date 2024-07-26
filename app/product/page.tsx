@@ -14,8 +14,6 @@ import { isDesktop, isTablet, isMobile, isMobileOnly, isAndroid, isWinPhone, isI
 
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import { ProductFC, ProductFCTitle, ProductFCHeading, ProductFCDescription } from '@/components/ui/productFunctionalComponent'
-//import TabButtonProductJudge from '@/components/ui/tab-button-product-judge'
-//import TabButtonProductRecordKeeper from '@/components/ui/tab-button-product-RecordKeeper'
 const ProductJudgePhone = dynamic(() => import('@/components/ui/productJudgePhone'), { ssr: false })
 const ProductRecordKeeperTablet = dynamic(() => import('@/components/ui/productRecordKeeperTablet'), { ssr: false })
 const ProductDashboardDesktop = dynamic(() => import('@/components/ui/productDashboardDesktop'), { ssr: false })
@@ -29,15 +27,6 @@ import CallToActionFederationsButton from '@/components/ui/CallToActionFederatio
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight, MmappSequentialParagraphsReveal } from '@/components/ui/mainAnimations';
 
-//import { ProductTitlesItem, ProductDashboardTitles, ProductDashboardMembersTitles } from '@/components/ui/productTitlesFC'
-
-
-/* interface TemplateProps {
-  smoother: {
-    scrollTo: (target: string, animate: boolean, position: string) => void;
-  };
-} */
-
 gsap.registerPlugin(gsap, useGSAP, ScrollTrigger, DrawSVGPlugin, CustomEase);
 
 const Product = () => {
@@ -50,11 +39,7 @@ const Product = () => {
   const isUnder1024 = useMediaQuery('(max-width: 1023px)');
   const isUnder1280 = useMediaQuery('(max-width: 1279px)');
   const isUnder1536 = useMediaQuery('(max-width: 1535px)');
-
-  //const [activeTabProductJudge, setActiveTabProductJudge] = useState('ProductJudge1')
-  //const [activeTabProductRecordKeeper, setActiveTabProductRecordKeeper] = useState('ProductRecordKeeper1')
-  //const [isPending, startTransition] = useTransition()
-  //const [preloadedImages, setPreloadedImages] = useState({});
+  
   const [isLoading, setIsLoading] = useState(false); //image loading state
 
 
@@ -62,45 +47,6 @@ const Product = () => {
     as: "image",
     imageSrcSet: "/images/product/hero/srcset/luizimag3_2876-480w.webp 480w, /images/product/hero/srcset/luizimag3_2876-640w.webp 640w, /images/product/hero/srcset/luizimag3_2876-768w.webp 768w, /images/product/hero/srcset/luizimag3_2876-1024w.webp 1024w, /images/product/hero/srcset/luizimag3_2876-1280w.webp 1280w",
   });
-
-  // Product Assets
-  /* const [dashboard, setDashboard] = useState("");
-  const [dashboardMembers, setDashboardMembers] = useState("");
-
-  useEffect(() => {
-    let dashboard = "/videos/product/dashboard/dashboard.1280x716.x264.CRF26.veryslow.high-1280w.mp4";
-    if (isUnder480) {
-      dashboard = "/videos/product/dashboard/dashboard.480x268.x264.CRF26.veryslow.high-480w.mp4";
-    } else if (isUnder640) {
-      dashboard = "/videos/product/dashboard/dashboard.640x358.x264.CRF26.veryslow.high-640w.mp4";
-    } else if (isUnder768) {
-      dashboard = "/videos/product/dashboard/dashboard.768x430.x264.CRF26.veryslow.high-768w.mp4";
-    } else if (isUnder1024) {
-      dashboard = "/videos/product/dashboard/dashboard.1024x572.x264.CRF26.veryslow.high-1024w.mp4";
-    }
-    setDashboard(dashboard);
-
-    let dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
-    if (isUnder1024) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
-    } else if (isUnder1280) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x410.x264.CRF26.veryslow.high-640w.mp4";
-    } else if (isUnder1536) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
-    }
-    if (isPortrait) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
-    } else if (isPortrait && isUnder640) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.480x308.x264.CRF26.veryslow.high-480w.mp4";
-    } else if (isPortrait && isUnder768) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.640x410.x264.CRF26.veryslow.high-640w.mp4";
-    } else if (isPortrait && isUnder1024) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.768x492.x264.CRF27.veryslow.high-768w.mp4";
-    } else if (isPortrait && isUnder1280) {
-      dashboardMembers = "/videos/product/dashboardMembers/dashboardMembers.1024x656.x264.CRF27.veryslow.high-1024w.mp4";
-    }
-    setDashboardMembers(dashboardMembers);
-  }, [isUnder1536, isUnder1280, isUnder1024, isUnder768, isUnder640, isUnder480, isPortrait]); */
 
   // Main Animations ready check
   const [animationsReady, setAnimationsReady] = useState(false);
@@ -111,149 +57,14 @@ const Product = () => {
   useEffect(() => {
     if (readyCount === 5) { // Assuming there are 5 animation components
       setAnimationsReady(true);
-      //console.log('Animations are ready')
     }
   }, [readyCount]);
-
-
-  // Judge and RecordKeeper titles
-  /* const descriptionSrcMapJudge: Record<string, string> = {
-    'ProductJudge1': 'Assess Fights with the MMAPP Methodology',
-    'ProductJudge2': 'Submit Scores Instantly',
-    'ProductJudge3': 'Personalised Fight Card',
-    'ProductJudge4': 'Make more informed decisions',
-    'ProductJudge5': 'Share your results with your colleagues',
-    'ProductJudge6': 'Personal Lifetime archive of your results',
-  }; */
-
-  /* const descriptionSrcMapRecordKeeper: Record<string, string> = {
-    'ProductRecordKeeper1': 'Master Timing duties like never before',
-    'ProductRecordKeeper2': 'Record every fight detail Number of Breaks, Break Duration, Reasons for Point deductions, etc.',
-    'ProductRecordKeeper3': 'Receive and Calculate scorecards automatically and get the results instantly',
-    'ProductRecordKeeper4': 'Automatically send the results to the Federation',
-  }; */
-
-  // Dashboard and Dashboard Members titles
-  /* const productDashboardItems: ProductTitlesItem[] = [
-    { header: "User-friendly interface" },
-    { header: "Straightforward registration form management" },
-    { header: "Easily approve or reject Applications" },
-    { header: "Deep analysis on fights and scoring" },
-    { header: "Intuitive Reports and Insights" },
-    { header: "Seamless Event Approval Process" },
-    { header: "Paperless management" },
-  ];
-
-  const productDashboardMembersItems: ProductTitlesItem[] = [
-    { header: "Quick sign-up process" },
-    { header: "Intuitive Profile Management" },
-    { header: "Multi-user management for Clubs and Coaches" },
-    { header: "View Membership standing - Documents in order, information updated, etc." },
-    { header: "Receive reminders for document expiration" },
-    { header: "Competition Eligilibillity status for Athletes and Coaches" },
-    { header: "Athletes are part of a centralized athlete database, available to Promoters" },
-    { header: "Promoters can Submit Event hosting applications to Federations in under 5 minutes" },
-    { header: "Promoters can view all athletes registered with the Federation, eligible for competitions" },
-    { header: "View Scheduled Fights" },
-    { header: "View Lifetime career history and statistics" },
-  ]; */
-
-  // Judge and RecordKeeper images loading
-  /* useEffect(() => {
-    const imagesJudge = ['ProductJudge1', 'ProductJudge2', 'ProductJudge3', 'ProductJudge4', 'ProductJudge5', 'ProductJudge6'];
-    const imagesRecordKeeper = ['ProductRecordKeeper1', 'ProductRecordKeeper2', 'ProductRecordKeeper3', 'ProductRecordKeeper4'];
-    const newPreloadedImages: Record<string, HTMLImageElement> = {};
-
-    const imageSrcMapJudge: Record<string, string> = {
-      'ProductJudge1': 'productJudge-1',
-      'ProductJudge2': 'productJudge-2',
-      'ProductJudge3': 'productJudge-3',
-      'ProductJudge4': 'productJudge-4',
-      'ProductJudge5': 'productJudge-5',
-      'ProductJudge6': 'productJudge-6',
-    };
-    const imageSrcMapRecordKeeper: Record<string, string> = {
-      'ProductRecordKeeper1': 'productRecordKeeper-1',
-      'ProductRecordKeeper2': 'productRecordKeeper-2',
-      'ProductRecordKeeper3': 'productRecordKeeper-3',
-      'ProductRecordKeeper4': 'productRecordKeeper-4',
-    };
-
-    imagesJudge.forEach((image) => {
-      const img = new Image();
-      img.src = `/images/product/officialsJudge/${imageSrcMapJudge[image as keyof typeof imageSrcMapJudge]}.webp`;
-      newPreloadedImages[image] = img;
-    });
-
-    imagesRecordKeeper.forEach((image) => {
-      const img = new Image();
-      img.src = `/images/product/officialsRecordKeeper/${imageSrcMapRecordKeeper[image as keyof typeof imageSrcMapRecordKeeper]}.webp`;
-      newPreloadedImages[image] = img;
-    });
-
-    setPreloadedImages(newPreloadedImages);
-  }, []); */
-
-  // Use the isLoading state to delay the change of the activeTabProductJudge state
-  /* function selectTabProductJudge(tab: string) {
-    setIsLoading(true); // Assuming you have an isLoading state to manage the loading indicator
-    startTransition(() => {
-      setActiveTabProductJudge(tab);
-      // Introduce a delay before setting isPending to false
-      setTimeout(() => {
-        setIsLoading(false); // Turn off loading indicator after a delay
-      }, 50); // Adjust the delay as needed
-    });
-  } */
-
-  /* function selectTabProductRecordKeeper(tab: string) {
-    setIsLoading(true); // Assuming you have an isLoading state to manage the loading indicator
-    startTransition(() => {
-      setActiveTabProductRecordKeeper(tab);
-      // Introduce a delay before setting isPending to false
-      setTimeout(() => {
-        setIsLoading(false); // Turn off loading indicator after a delay
-      }, 50); // Adjust the delay as needed
-    });
-  } */
-
-  /* useEffect(() => {
-    let timeoutId: any;
-    if (isLoading) {
-      timeoutId = setTimeout(() => {
-        setIsLoading(false);
-      }, 50);
-    }
-    return () => clearTimeout(timeoutId);
-  }, [isLoading]); */
-
-/*   const useDomReady = (callback: () => void) => {
-    useEffect(() => {
-      if (document.readyState === 'complete') {
-        callback();
-      } else {
-        const handleReady = () => {
-          callback();
-          document.removeEventListener('DOMContentLoaded', handleReady);
-        };
-        document.addEventListener('DOMContentLoaded', handleReady);
-        return () => document.removeEventListener('DOMContentLoaded', handleReady);
-      }
-    }, [callback]);
-  };
-  // Usage
-  useDomReady(() => {
-    console.log('DomReady is done')
-    ScrollTrigger.refresh()
-  }); */
-
 
   const [executionCount, setExecutionCount] = useState(0);
 
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-      //drawMainPath Animations
       let matchMedia = gsap.matchMedia();
 
       matchMedia.add("(orientation: portrait)", () => {
@@ -293,16 +104,7 @@ const Product = () => {
                 } */
               }
               })
-              //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
               .from("#mainPathTouchMD-0", { drawSVG: 0 }, 0)
-              //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
-              /* .add(() => {
-                if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
-                  dotAnimation.reverse();
-                } else { // if scrolling forward, play forward
-                  dotAnimation.play();
-                }
-              }, 2.48); */
             let drawMainPathTablet1 = gsap.timeline({
               defaults: {
                 ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
@@ -424,16 +226,8 @@ const Product = () => {
                 } */
               }
               })
-              //.to(".ball04", { duration: 0.01, autoAlpha: 1 })
               .from("#mainPath-0", { drawSVG: 0 }, 0)
-              //.to(".ball01", { motionPath: { path: "#path", align: '#path', alignOrigin: [0.5, 0.5] } }, 0 )
-              /* .add(() => {
-                if (action.scrollTrigger.direction === -1) { // if scrolling backwards, reverse the dot animation
-                  dotAnimation.reverse();
-                } else { // if scrolling forward, play forward
-                  dotAnimation.play();
-                }
-              }, 2.48); */
+
             let drawMainPath1 = gsap.timeline({
               defaults: {
                 ease: CustomEase.create("custom", "M0,0 C0.036,0.228 0.314,0.499 0.4,0.6 0.551,0.776 0.625,0.682 0.802,0.776 0.872,0.813 0.98,0.934 1,1 "),//
@@ -494,44 +288,9 @@ const Product = () => {
               })
               .from("#mainPath-4", { drawSVG: 0 }, 0)
 
-
-            /* ScrollTrigger.refresh()
-            // ScrollTrigger to refresh the markers
-            const bodyRefresh = setInterval(() => {
-              if (document.querySelector("body")) {
-                clearInterval(bodyRefresh);
-                let scrollTriggerRefreshCount = 0;
-                ScrollTrigger.create({
-                  trigger: 'body',
-                  start: 'top -20%',
-                  onEnter: (self) => {
-                    if (scrollTriggerRefreshCount < 10) {
-                      //console.log('ScrollTriggerRefresh '+scrollTriggerRefreshCount);
-                      ScrollTrigger.refresh();
-                      scrollTriggerRefreshCount++;
-                    }
-                  }
-                });
-              }
-            }, 100); */
           }
         }, 50); // Check every 50ms
       });
-
-        // Refresh ScrollTrigger when the page is scrolled
-        /* let scrollTriggerRefreshCount = 0;
-        let scrollListener = () => {
-          if (scrollTriggerRefreshCount < 10) {
-            ScrollTrigger.refresh();
-            scrollTriggerRefreshCount++;
-            console.log('ScrollTriggerRefresh '+scrollTriggerRefreshCount);
-          } else {
-            window.removeEventListener('scroll', scrollListener);
-          }
-        };
-        window.addEventListener('scroll', scrollListener); */
-
-      /* }); */
 
       // Product Dashboard Titles
 
@@ -562,54 +321,6 @@ const Product = () => {
 
         }
       }, 50); // Check every 50ms
-
-      // Product Dashboard Titles
-        /* const productDashboardMembersTitles = gsap.utils.toArray("#productDashboardMembersTitles")
-        gsap.set(productDashboardMembersTitles, { autoAlpha: 0 })
-        const totalDashboardMembersTitles = productDashboardMembersTitles.length;
-        const visibleTitlesCount = 5; // Number of titles to keep visible
-        const moveDistance = 5.25; // Adjust based on your needs
-
-        const showAndAnimateTitles = () => {
-          // Make the first 4 titles visible and animate them
-          for (let i = 0; i < visibleTitlesCount; i++) {
-            const title = productDashboardMembersTitles[i] as HTMLElement;
-            gsap.to(title as EventTarget, {
-              autoAlpha: 1,
-              //y: `-=${moveDistance * i}`+'vh',
-              duration: 0.5,
-              //delay: i * 0.5, // Delay each title slightly for sequential movement
-              ease: "power1.out"
-            });
-            console.log(productDashboardMembersTitles[i].offsetTop)
-          }
-
-          // Function to handle the infinite scrolling effect
-          const moveTitles = () => {
-            // Move all titles up
-            gsap.to(productDashboardMembersTitles, {
-              y: `-=${moveDistance}`+'vw',
-              duration: 0.5,
-              ease: "power1.out",
-              onComplete: () => {
-                // After moving, hide the first (now off-screen) title, move it to the end, and reset its position
-                const firstTitle = productDashboardMembersTitles.shift() as EventTarget; // Remove the first title
-                gsap.set(firstTitle, { autoAlpha: 0, y: (5.25*totalDashboardMembersTitles)+`vw` }); // Reset its position and hide it
-                productDashboardMembersTitles.push(firstTitle); // Add it back at the end
-
-                // Make the new last title visible and move it into position
-                const newLastTitle = productDashboardMembersTitles[visibleTitlesCount - 1] as EventTarget;
-                gsap.to(newLastTitle, { autoAlpha: 1, y: `0vw`, duration: 0.5, ease: "power1.out" });
-              }
-            });
-          };
-
-          // Start moving titles every few seconds to create an infinite scroll effect
-          gsap.timeline({ repeat: -1, repeatDelay: 3 })
-            .call(moveTitles, [], '+=1'); // Adjust timing as needed
-        };
-
-        showAndAnimateTitles(); */
 
       const checkproductDashboardMembersTitlesAnim = setInterval(() => {
         if (document.querySelector(".productDashboardMembersTitles")) {
@@ -643,7 +354,7 @@ const Product = () => {
 
 
       // Judge Phone animations
-      //let viewportTrigger = isPortrait ? '0% 95%' : '0% 90%';
+      
       const checkjudgePhoneAnim = setInterval(() => {
         if (document.querySelector(".judgePhoneWrapper")) {
           clearInterval(checkjudgePhoneAnim);
@@ -802,7 +513,6 @@ const Product = () => {
             clearInterval(checkProductDashboardMembersTitles);
             let productDashboardMembersTitlesFinish = isPortrait ? 'center 50%' : (isMobile ? 'center 60%' : 'center 55%');
             gsap.set(".productDashboardMembersTitlesBox", { xPercent: -125 });
-            /* isMobile ? gsap.set(".productDashboardMembersTitles", { opacity: 0 }) : gsap.set(".productDashboardMembersTitles", { xPercent: -125 }); */
             const productDashboardMembersAnim = gsap.timeline({
               paused:true,
               scrollTrigger: {
@@ -816,16 +526,6 @@ const Product = () => {
                     { xPercent: -125},
                     { xPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
                   )
-                  /* isMobile ? 
-                    gsap.fromTo(".productDashboardMembersTitles",
-                      { opacity: 0},
-                      { opacity: 100, duration: 0.5, stagger: 0.125, ease: "power1.out"}
-                    )
-                  :
-                    gsap.fromTo(".productDashboardMembersTitles",
-                      { xPercent: 0},
-                      { xPercent: 0, duration: 0.5, stagger: 0.125, ease: "power1.out"}
-                    ) */
                 },
                 //markers: true,
               },
@@ -895,7 +595,6 @@ const Product = () => {
         });
       });
 
-    /* GSDevTools.create(); */
     },
     { dependencies: [verticalLoop], revertOnUpdate: true }
   );
@@ -992,15 +691,13 @@ const Product = () => {
                   /images/product/hero/srcset/luizimag3_2876-1280w.webp 1280w"
                 alt="MMA Referees"/>
               </picture>
-              {/* <img className="z-10 max-h-full max-w-[45vw] xl:max-w-[35vw] portrait:max-w-[90vw] portrait:md:max-w-[45vw] portrait:touch:md:max-w-[70vw] bottom-[-0.1rem] right-[-1.5rem] portrait:touch:right-[-13vw] portrait:touch:md:right-[-14.5vw] absolute md:absolute object-contain opacity-80" src="/images/product/luizimag3_0161.webp" alt="MMA Referees"/> */}
 
             </ProductFC>
           </section>
 
-          {/* {isDesktop || isTablet && isLandscape ?  */}
           <div id="productLineDesktop"
             className={cn(
-              "portrait:hidden flex flex-col relative justify-center items-center", // portrait:touch:
+              "portrait:hidden flex flex-col relative justify-center items-center",
               "mx-1 md:mx-[5.6vw] mt-[-2px]",
             )}>
             <svg viewBox="0 0 1536 7500" id="productPath" data-name="productPath" className="pointer-events-none absolute top-0 hidden select-none md:block" xmlns="http://www.w3.org/2000/svg">
@@ -1010,16 +707,10 @@ const Product = () => {
               <path id="mainPath-2" d="m1400.14,2112.7h83.13c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-23,32H50.27c-26.67,0-41,14.33-41,32l-.13,475.61c0,17.67,14.33,32,32,32l714.13.29c17.67,0,32,14.33,32,32v444c0,17.67-14.33,32-32,32H139.14" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
               <path id="mainPath-3" d="m139.14,4220.6H41.27c-17.67,0-32,14.33-32,32v720.1c0,17.67,14.33,32,32,32h700c17.67,0,32,14.33,32,32l.02,1078.98c-.01,17.68,14.32,32.02,32,32.02h596.1" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
               <path id="mainPath-4" d="m1401.39,6147.7h81.88c17.67,0,32,14.33,32,32l-.12,780.61c0,17.67-14.33,32-23,32H50.14c-26.67,0-41,14.33-41,32v354c0,17.67,14.33,32,32,32h364c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10"/>
-              {/* <path id="mainPath" d="m760,92v56l-.02,19.37c.01,17.68-14.32,32.02-32,32.02H37c-17.67,0-32,14.33-32,32v714c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1070.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32v996c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32l-.13,475.61c0,17.67,14.33,32,32,32l705.13.29c17.67,0,32,14.33,32,32v419c0,17.67-14.33,32-32,32H41c-17.67,0-32,14.33-32,32v708.1c0,17.67,14.33,32,32,32h691c17.67,0,32,14.33,32,32l.02,1076.98c-.01,17.68,14.32,32.02,32,32.02h690.98c17.67,0,32,14.33,32,32l-.12,773.61c0,17.67-14.33,32-32,32H40.88c-17.67,0-32,14.33-32,32v400c0,17.67,14.33,32,32,32h705c17.67,0,32,14.33,32,32" fill="none" stroke="#4d004d" strokeLinecap="round" strokeLinejoin="round" strokeWidth="10" pathLength="1" stroke-dashoffset="0px" strokeDasharray="1px 1px"/> */}
               <path id="funnel" d="m768.88,122.16s-.53-120.16,193.21-119.78C1248.71,2.19,1008.91,0,769.11,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
-          {/*   :  '' } */}
-
-
-          {/* <path d="M2 1686.5L2 1607C2 1589.33 16.3269 1575 34 1575L1186 1575C1203.67 1575 1218 1560.67 1218 1543L1218 795.001C1218 777.327 1203.67 763.001 1186 763.001L34.021 763.001C16.3397 763.001 2.00945 748.661 2.02104 730.98L2.50015 -0.000122048" stroke="var(--blue-500)" stroke-opacity="1" stroke-linecap="round" strokeWidth="3" pathLength="1" stroke-dashoffset="0px" strokeDasharray="0.98052660449808px 1px"></path> */}
-
-          {/* {isTablet && isPortrait ?  */}
+          
           <div id="productLineTablets"
             className={cn(
               "landscape:hidden portrait:hidden portrait:md:flex portrait:touch:md:flex flex-col relative justify-center items-center",// portrait:md:flex
@@ -1035,9 +726,6 @@ const Product = () => {
               <path id="funnelTouchMD" d="m759.64,122.16s-.53-120.16,193.21-119.78C1239.48,2.19,999.68,0,759.87,0s-479.6,2.19-192.97,2.39c193.74-.39,193.21,119.78,193.21,119.78" fill="#4d004d" strokeWidth="0"/>
             </svg>
           </div>
-           {/*  :  '' } */}
-
-          {/* <div className="borderBottom"></div> */}
 
         <section id="Judge" className="flex flex-col mt-0 md:mt-[1vw] lg:mt-[4vw] xl:mt-[5vw] 2xl:mt-[6vw] landscape:touch:md:mt-[4vw] landscape:touch:2xl:mt-[2vw] portrait:md:mt-[5.5vw] portrait:lg:mt-[6vw] justify-center">
           <ProductFC className={cn(

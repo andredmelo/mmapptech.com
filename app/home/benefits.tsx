@@ -16,14 +16,6 @@ const athletesItems: BenefitsItem[] = [
     ],
     svg: <IconTablerAtom2 />
   },
-  /* {
-    header:
-      "Minimizes unexpected decisions",
-    content: [
-      "With our Judge and RecordKeeper tools, Scores are more consistent, and calculations are done instantly, mitigating user errors and conscious and unconscious bias(es)."
-    ],
-    svg: <IconTablerMinimize />
-  }, */
   {
     header:
       "Consistency & Transparency",
@@ -40,26 +32,6 @@ const athletesItems: BenefitsItem[] = [
     ],
     svg: <IconTablerKarate />
   },
-  /* {
-    header:
-      "Athlete Profile",
-    content: [
-      "Sign up only once, and simply keep your profile documents up to date (with reminders of expiration dates) to remain affiliated.",
-      <br key="br1" />, // Use keys for list elements
-      "Access your profile anytime, anywhere."
-    ],
-    svg: <IconTablerKarate />
-  },
-  {
-    header:
-      "Fights Schedule and Records",
-    content: [
-      "Easily browse all your upcoming fights, their details and rulesets.",
-      <br key="br1" />, // Use keys for list elements
-      "Have a digital lifetime archive of your career."
-    ],
-    svg: <IconTablerKarate />
-  }, */
   {
     header:
       "Get featured to Promoters",

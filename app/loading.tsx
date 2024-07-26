@@ -1,8 +1,6 @@
-//import LoadingSkeleton from './LoadingSkeleton';
 import React from 'react';
 
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return (
     <div id="loadingBanner" className="absolute top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-[var(--background-grey)]">
       <div className="flex flex-col items-center mb-16 text-left">
@@ -25,13 +23,3 @@ export default function Loading() {
     </div>
   );
 }
-
-
-
-
-{/* <div id="loadingBanner" style={{ position: 'fixed', top: '0px', left: '0px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100vw', height: '100vh' }}>
-<div style={{ display: 'flex', flexDirection: 'column', marginBottom: '4rem', alignItems: 'center', textAlign: 'left' }}>
-  <img style={{ marginBottom: '2rem'}} src="/images/logo_on_black.svg" alt="MMAPP Logo" width="75%" height="75%"/>
-  <h5 className="text-white animate-pulse">Loading...</h5>
-</div>
-</div> */}
