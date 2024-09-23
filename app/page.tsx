@@ -1,12 +1,10 @@
 'use client'
 import * as ReactDOMServer from "react-dom/server";
 import React, { useContext, useState, useEffect, lazy, Suspense, useRef } from 'react';
-//import { preload } from 'react-dom';
 import { clsx } from "clsx";
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from '@react-hook/media-query';
 import { isDesktop, isTablet, isMobile, isMobileOnly, isAndroid, isWinPhone, isIOS, isSamsungBrowser } from 'react-device-detect';
-/* import styles from "./page.module.css"; */
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -18,9 +16,7 @@ import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 import { MainFC, MainFCTitle, MainFCHeading, MainFCDescription } from '@/components/ui/mainFunctionalComponent'
 import ContactUs from '@/app/contact/contact-us'
 import Benefits from '@/app/home/benefits'
-//import FAQ from '@/app/contact/faq'
 import OurExpertise from '@/app/home/ourExpertise'
-//import { HeroBGSVG, HeroBGSVG180 } from '@/components/ui/svg/heroBGSVG';
 import { FeaturesCard, FeaturesCardHeader, FeaturesCardTitle, FeaturesCardDescription, FeaturesCardImage, FeaturesCardVideo } from '@/components/ui/featuresCard'
 import { CardPoliciesButton } from '@/components/ui/card-policies'
 import CallToActionButton from '@/components/ui/CallToActionButton'
@@ -28,12 +24,6 @@ import CallToActionFederationsButton from '@/components/ui/CallToActionFederatio
 import FeaturesCallToActionFederations from '@/components/ui/featuresCallToActionFederations'
 import ProgressCircle from '@/components/ui/svg/progressCircle'
 
-//import(/* webpackPreload: true */ '@/components/three.js');
-//import { TestR3F } from '@/components/three.js';
-//import { HomeIntroR3F } from '@/components/three.js';
-//import { HomeiPhoneIntroR3F } from '@/components/three.js';
-//import { HomeCageR3F } from '@/components/three.js';
-//const HomeFeaturesR3F = lazy(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })));
 import dynamic from 'next/dynamic';
 const HomeFeaturesR3F = dynamic(() => import('@/components/three.js').then(module => ({ default: module.HomeFeaturesR3F })), {
   loading: () => 
@@ -63,7 +53,6 @@ import { MacBookProTextureContext, IPhoneTextureContext, IPadTextureContext, Mac
 
 import PagesTransitionScroll from '@/lib/contexts/PagesTransitionScroll';
 import { MmappBlockReveal, MmappHeadingReveal, MmappParagraphsReveal, MmappParagraphsRevealRight } from '@/components/ui/mainAnimations';
-//import { useHeroIntroContext } from '@/lib/contexts/HeroIntroContext';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin, SplitText, CustomEase, ScrambleTextPlugin);
 
@@ -88,8 +77,6 @@ export default function Home() {
   const { setMacBookProOpacity } = useContext(MacBookProOpacityContext);
   const { setMacBookProTextureName } = useContext(MacBookProTextureContext);
 
-  //const { isHeroIntro3DComplete } = useHeroIntroContext();
-
   // Main Animations ready check
   const [animationsReady, setAnimationsReady] = useState(false);
   const [readyCount, setReadyCount] = useState(0);
@@ -112,7 +99,6 @@ export default function Home() {
   const [dashboardVideos, setDashboardVideos] = useState<string[]>([]);
   const [judgeVideos, setJudgeVideos] = useState<string[]>([]);
   const [recordKeeperVideos, setRecordKeeperVideos] = useState<string[]>([]);
-  //const [dashboardVideo, setDashboardVideo] = useState("/videos/features/federationsDashboard/featuresFederationsDashboard-1.768p.mp4");
 
   useEffect(() => {
     let video = "/videos/hero/hero.1920w.mp4";
@@ -264,15 +250,6 @@ export default function Home() {
   /* ===== GSAP React ===== */
   useGSAP(
     () => {
-      /* //ScrollTrigger for debugging
-      ScrollTrigger.create({
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        pin: "#topOverlay",
-        markers: false,
-      }); */
-
       let matchMedia = gsap.matchMedia();
 
       /* const detectViewportRatio = () => {
@@ -314,21 +291,6 @@ export default function Home() {
         return ratio < 1.9265;
       } */
 
-      /* ScrollTrigger.create({
-        trigger:"featuresDashboard",
-        start:"top top",
-        scrub:true,
-        end:"bottom bottom",
-        once:true,
-        onUpdate:function(self){
-          console.log('dashboardProgress = '+self.progress)
-          if(self.progress > dashboardProgressCircleTween.progress()){
-            dashboardProgressCircleTween.progress(self.progress)
-          }
-        }
-      }); */
-
-
       // Mobile Animations
 
       function enterAni(target: HTMLElement, xIn: number, xOut: number){
@@ -347,33 +309,16 @@ export default function Home() {
           .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
         return tl
       }
-      /* function leaveAni(target: HTMLElement, xIn: number, xOut: number){
-        let tl = gsap.timeline({
-          defaults: { ease: "power1.in"},
-          scrollTrigger: {
-            trigger: target,
-            start: 'bottom 15%',
-            end: "bottom top",
-            scrub: 1,
-            preventOverlaps:true,
-          }
-        })
-          .fromTo(target, {xPercent: xIn}, {xPercent: xOut, ease: "power1.in"})
-        return tl
-      } */
 
-      //matchMedia.add("(max-width: 767px)", (context) => {
       if (isMobileOnly) {
         let fDT: HTMLElement[] = gsap.utils.toArray(".featuresDashboardTitle");
         fDT.forEach((fDT) => {
           enterAni(fDT, -150, 0);
-          //leaveAni(fDT, 0, 150);
         });
 
         let fDD: HTMLElement[] = gsap.utils.toArray(".featuresDashboardDescription");
         fDD.forEach((fDD) => { 
           enterAni(fDD, -150, 0);
-          //leaveAni(fDD, 0, 150);
         });
 
         let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
@@ -381,12 +326,10 @@ export default function Home() {
         {isMobileOnly && isAndroid ? 
           fDI.forEach((fDI) => {
             enterAni(fDI, 150, 0);
-            //leaveAni(fDV, 0, -150);
           })
         :
           fDV.forEach((fDV) => {
             enterAni(fDV, 150, 0);
-            //leaveAni(fDV, 0, -150);
           })
         };
 
@@ -394,13 +337,11 @@ export default function Home() {
         let fJT: HTMLElement[] = gsap.utils.toArray(".featuresJudgeTitle");
         fJT.forEach((fJT) => {
           enterAni(fJT, -150, 0);
-          //leaveAni(fJT, 0, 150);
         });
 
         let fJD: HTMLElement[] = gsap.utils.toArray(".featuresJudgeDescription");
         fJD.forEach((fJD) => { 
           enterAni(fJD, -150, 0);
-          //leaveAni(fJD, 0, 150);
         });
 
         let fJV: HTMLDivElement[] = gsap.utils.toArray(".featuresJudgeVideo");
@@ -408,25 +349,21 @@ export default function Home() {
         {isMobileOnly && isAndroid ? 
           fJI.forEach((fJI) => {
             enterAni(fJI, 150, 0);
-            //leaveAni(fJV, 0, -150);
           })
         :
           fJV.forEach((fJV) => {
             enterAni(fJV, 150, 0);
-            //leaveAni(fJV, 0, -150);
           });
         };
 
         let fRKT: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperTitle");
         fRKT.forEach((fRKT) => {
           enterAni(fRKT, -150, 0);
-          //leaveAni(fRKT, 0, 150);
         });
 
         let fRKD: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperDescription");
         fRKD.forEach((fRKD) => { 
           enterAni(fRKD, -150, 0);
-          //leaveAni(fRKD, 0, 150);
         });
 
         let fRKV: HTMLDivElement[] = gsap.utils.toArray(".featuresRecordKeeperVideo");
@@ -434,47 +371,12 @@ export default function Home() {
         {isMobileOnly && isAndroid ? 
           fRKI.forEach((fRKI) => {
             enterAni(fRKI, 150, 0);
-            //leaveAni(fRKV, 0, -150);
           })
         :
           fRKV.forEach((fRKV) => {
             enterAni(fRKV, 150, 0);
-            //leaveAni(fRKV, 0, -150);
           })
         };
-
-
-        /* matchMedia.add("(min-width: 768px)", (context) => {
-          // Pin Our Expertise Image
-          const ourExpertiseImg = document.querySelector(".ourExpertiseImg");
-          const ourExpertiseDescription = document.querySelector(".ourExpertiseDescription");
-          const ourExpertiseDescriptionContainer = document.querySelector(".ourExpertiseDescriptionContainer");
-
-          const ourExpertise = setInterval(() => {
-            if (ourExpertiseImg && ourExpertiseDescription && ourExpertiseDescriptionContainer) {
-              clearInterval(ourExpertise);
-              const ourExpertiseImgHeight = (ourExpertiseImg as HTMLElement).offsetHeight;
-              const ourExpertiseDescriptionHeight = (ourExpertiseDescription as HTMLElement).offsetHeight;
-              const halfViewportHeight = window.innerHeight / 2;
-              const endOurExpertiseImgTrigger = halfViewportHeight + ourExpertiseImgHeight / 2;
-              //console.log("endOurExpertiseImgTrigger is "+endOurExpertiseImgTrigger);
-
-              //Custom endTrigger
-              if (ourExpertiseImgHeight < ourExpertiseDescriptionHeight) {
-                ScrollTrigger.create({
-                  trigger: ourExpertiseImg,
-                  start: "center 50%",
-                  endTrigger: ".ourExpertiseDescriptionContainer",
-                  end: "bottom "+endOurExpertiseImgTrigger+"px",
-                  pin: ".ourExpertiseImg",
-                  pinSpacing: false,
-                  invalidateOnRefresh: true,
-                });
-              }
-            };
-          }, 50); // Check every 50ms
-        }); */
-        //});
       };
 
       //Variables in common
@@ -545,13 +447,10 @@ export default function Home() {
             let dashboardCards: HTMLElement[] = gsap.utils.toArray(".dashboardCard");
             const dashboardTitle = document.getElementById('featuresDashboardTitle');
             const dashboardFeaturesCallToActionFederationsWrapper = document.getElementById('dashboardFeaturesCallToActionFederationsWrapper');
-            //const dashboardContainer = document.getElementById('featuresDashboardContainer');
-            //const dashboardProgressCircle = document.getElementById("dashboardProgressCircle")
             const dashboardProgressCircleProgress = document.querySelector("#dashboardProgressCircle #progress")
             const dashboardProgressCircleTween = gsap.from(dashboardProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fDHI: HTMLElement[] = gsap.utils.toArray(".featuresDashboardHeaderItem");
-            //let fDI: HTMLDivElement[] = gsap.utils.toArray(".featuresDashboardImage");
             //console.log("fDI is "+fDI);
 
             fDHI.forEach((fDHI) => { gsap.set(fDHI, {opacity: 0}); });
@@ -603,7 +502,6 @@ export default function Home() {
                     trigger: dashboardTitle,
                     start: "top "+sectionTitlePaddingTop,
                     end: () => lastDashboardCardST.start + bottomDistance,
-                    //pin: dashboardProgressCircle,
                     scrub:true,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
@@ -611,19 +509,8 @@ export default function Home() {
                       let progress: number = Number(self.progress.toFixed(3));
                       //console.log('dashboardProgress = '+progress);
                       dashboardProgressCircleTween.progress(progress)
-                      /* if(self.progress > dashboardProgressCircleTween.progress()){
-                        dashboardProgressCircleTween.progress(progress)
-                      } */ // This will make it once:true
                     }
                   });
-                  /* ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 50%",
-                    end: () => lastDashboardCardST.start + bottomDistance,
-                    pin: dashboardContainer,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  }); */
                   break;
                 case dashboardCards.length-1: // case to pinSpacing the last card
                   ScrollTrigger.create({
@@ -637,19 +524,15 @@ export default function Home() {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fDI[i-1], {xPercent: 0}, {xPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fDI[i], {xPercent: -24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fDI[i-1], {xPercent: 24}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fDI[i], {xPercent: 0}, {xPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -665,24 +548,18 @@ export default function Home() {
                       setMacBookProTextureName('macBookPro_texture_'+(i+1));
                       gsap.fromTo(fDHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fDI[i-1], {xPercent: 0, yPercent: 0}, {xPercent: 24, yPercent: 24, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fDI[i], {xPercent: -24, yPercent: -24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setMacBookProTextureName('macBookPro_texture_'+(i));
                       gsap.fromTo(fDHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fDHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fDI[i-1], {xPercent: 24, yPercent: 24}, {xPercent: 0, yPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fDHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fDI[i], {xPercent: 0, yPercent: 0}, {xPercent: -24, yPercent: -24, duration: 0.2, ease: "power1.in"});
                     }
                   });
-              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-              //setiPhoneOpacity(1);
-              //setiPadOpacity(0);
+              }
             });
 
           }
@@ -720,12 +597,10 @@ export default function Home() {
             let judgeCards: HTMLElement[] = gsap.utils.toArray(".judgeCard");
             let judgeTitle = document.getElementById('featuresJudgeTitle');
             const judgeFeaturesCallToActionFederationsWrapper = document.getElementById('judgeFeaturesCallToActionFederationsWrapper');
-            //const judgeProgressCircle = document.getElementById("judgeProgressCircle")
             const judgeProgressCircleProgress = document.querySelector("#judgeProgressCircle #progress")
             const judgeProgressCircleTween = gsap.from(judgeProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fJHI: HTMLElement[] = gsap.utils.toArray(".featuresJudgeHeaderItem");
-            //let fJI: HTMLImageElement[] = gsap.utils.toArray(".featuresJudgeImage");
 
             fJHI.forEach((fJHI) => { gsap.set(fJHI, {opacity: 0}); });
             gsap.set(fJHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -776,7 +651,6 @@ export default function Home() {
                     trigger: judgeTitle,
                     start: "top "+sectionTitlePaddingTop,
                     end: () => lastJudgeCardST.start + bottomDistance,
-                    //pin: judgeProgressCircle,
                     scrub:true,
                     pinSpacing: false,
                     invalidateOnRefresh: false,
@@ -784,21 +658,8 @@ export default function Home() {
                       let progress: number = Number(self.progress.toFixed(3));
                       //console.log('judgeProgress = '+progress);
                       judgeProgressCircleTween.progress(progress)
-                      /* if(self.progress > judgeProgressCircleTween.progress()){
-                        judgeProgressCircleTween.progress(progress)
-                      } */ // This will make it once:true
                     }
                   });
-                  /* if (isViewportRatioLessThan192()) {
-                    ScrollTrigger.create({
-                      trigger: card,
-                      start: "center 50%",
-                      end: () => lastJudgeCardST.start + bottomDistance,
-                      pin: judgeTitle,
-                      pinSpacing: false,
-                      invalidateOnRefresh: true,
-                    });
-                  } */
                   break;
                 case judgeCards.length-1: // case to pinSpacing the last card
                   ScrollTrigger.create({
@@ -812,19 +673,15 @@ export default function Home() {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -840,24 +697,18 @@ export default function Home() {
                       setiPhoneTextureName('iPhone_texture_'+(i+1));
                       gsap.fromTo(fJHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fJI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fJI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPhoneTextureName('iPhone_texture_'+(i));
                       gsap.fromTo(fJHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fJHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fJI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fJHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fJI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
-              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
-              //setiPhoneOpacity(1);
-              //setiPadOpacity(0);
+              }
             });
 
           }
@@ -894,12 +745,10 @@ export default function Home() {
             let recordKeeperCards: HTMLElement[] = gsap.utils.toArray(".recordKeeperCard");
             let recordKeeperTitle = document.getElementById('featuresRecordKeeperTitle');
             const recordKeeperFeaturesCallToActionFederationsWrapper = document.getElementById('recordKeeperFeaturesCallToActionFederationsWrapper');
-            //const recordKeeperProgressCircle = document.getElementById("recordKeeperProgressCircle")
             const recordKeeperProgressCircleProgress = document.querySelector("#recordKeeperProgressCircle #progress")
             const recordKeeperProgressCircleTween = gsap.from(recordKeeperProgressCircleProgress, { drawSVG: 0, ease: "linear", paused:true })
 
             let fRKHI: HTMLElement[] = gsap.utils.toArray(".featuresRecordKeeperHeaderItem");
-            //let fRKI: HTMLImageElement[] = gsap.utils.toArray(".featuresRecordKeeperImage");
 
             fRKHI.forEach((fRKHI) => { gsap.set(fRKHI, {opacity: 0}); });
             gsap.set(fRKHI[0], {opacity: 1, filter:"brightness(100%)"});
@@ -957,19 +806,8 @@ export default function Home() {
                       let progress: number = Number(self.progress.toFixed(3));
                       //console.log('recordKeeperProgress = '+progress);
                       recordKeeperProgressCircleTween.progress(progress)
-                      /* if(self.progress > recordKeeperProgressCircleTween.progress()){
-                        recordKeeperProgressCircleTween.progress(progress)
-                      } */ // This will make it once:true
                     }
                   });
-                  /* ScrollTrigger.create({
-                    trigger: card,
-                    start: "center 60%",
-                    end: () => lastRecordKeeperCardST.start + bottomDistance,
-                    pin: header,
-                    pinSpacing: false,
-                    invalidateOnRefresh: true,
-                  }); */
                   break;
                 case recordKeeperCards.length-1: // case to pinSpacing the last card
                   ScrollTrigger.create({
@@ -983,19 +821,15 @@ export default function Home() {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
                   break;
@@ -1011,22 +845,18 @@ export default function Home() {
                       setiPadTextureName('iPad_texture_'+(i+1));
                       gsap.fromTo(fRKHI[i-1], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: 0}, {yPercent: -48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fRKI[i-1], {xPercent: 0}, {xPercent: 96, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i], {yPercent: 48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fRKI[i], {xPercent: -96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                     },
                     onLeaveBack: ({progress, direction, isActive}) => {
                       setiPadTextureName('iPad_texture_'+(i));
                       gsap.fromTo(fRKHI[i-1], {opacity: 0}, {opacity: 1, duration: 0.2, ease: "power1.out"});
                       gsap.fromTo(fRKHI[i-1], {yPercent: -48}, {yPercent: 0, duration: 0.4, ease: "power1.out"});
-                      //gsap.fromTo(fRKI[i-1], {xPercent: 96}, {xPercent: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {opacity: 1}, {opacity: 0, duration: 0.2, ease: "power1.in"});
                       gsap.fromTo(fRKHI[i], {yPercent: 0}, {yPercent: 48, duration: 0.4, ease: "power1.in"});
-                      //gsap.fromTo(fRKI[i], {xPercent: 0}, {xPercent: -96, duration: 0.2, ease: "power1.in"});
                     }
                   });
-              }   //"center "+(vhToPixels(55)+(vhToPixels(1)*i))
+              }
             });
 
             // ScrollTrigger to force iPhone Opacity to 0 when scrolling back up after a page transition below #Features
@@ -1043,17 +873,6 @@ export default function Home() {
               }
             }, 50); // Check every 50ms
 
-            // Pin R3F Canvas throughout Features section (glitchy so replaced with createScrollTriggerWhenHomeFeaturesR3FLoaded)
-            /* ScrollTrigger.create({
-              trigger: "#featuresJudge",
-              start: "top top",
-              //endTrigger: ".featuresRecordKeeperBottom",
-              //end: "bottom bottom",
-              end: () => lastRecordKeeperCardST.start + bottomDistance,
-              pin: ".homeFeaturesR3FViewer",
-              markers: true,
-            }); */
-
             //This sets the end position to the createScrollTriggerWhenHomeFeaturesR3FLoaded function that pins the R3F Canvas throughout Features section only when fully loaded
             setEndPosition(lastRecordKeeperCardST.start + bottomDistance);
             //console.log("GSAP endPosition = "+(lastRecordKeeperCardST.start + bottomDistance));
@@ -1062,8 +881,6 @@ export default function Home() {
         }, 50); // Check every 50ms
       });
       }
-  
-    /* GSDevTools.create(); */
     },
     { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid, setMacBookProTextureName, setiPhoneTextureName, setiPadTextureName, setMacBookProOpacity, setiPhoneOpacity, setiPadOpacity, setEndPosition], revertOnUpdate: false }
   );
@@ -1072,12 +889,12 @@ export default function Home() {
 
   const heroContainer = useRef<HTMLDivElement>(null);
   const { contextSafe } = useGSAP({ scope: heroContainer });
+
   /* ===== useGSAP for Hero Animation ===== */
   useGSAP(
     () => {
       //Home Animation
       const heroVeil = document.getElementById("heroVeil");
-      //const heroBG = document.getElementById("heroBG");
       const heroBGVideo = document.getElementById("heroBGVideo");
       const heroSpotLeft = document.getElementById("heroSpotLeft");
       const heroSpotRight = document.getElementById("heroSpotRight");
@@ -1091,20 +908,16 @@ export default function Home() {
 
       const heroMMAPPHeaderTop = isPortrait ? ( isUnder768 ? "42px" : "70px") : (isTouch ? (isUnder768 ? "5px" : "70px") : "70px");
       const heroMMAPPLogoWidth = isPortrait ? ( isUnder768 ? "85vw" : "80vw") : "50vw";
-      //const heroMMAPPLogoScale = isPortrait ? ( isUnder768 ? "1.5" : "1.5") : "2";
-      //const heroMMAPPTextBottom = isPortrait ? ( isUnder768 ? "0%" : "1.5%") : "10%";
       const heroMMAPPiPhoneScale = isPortrait ? "65svh" : "55svh";
       const heroMMAPPiPhoneBottom = isPortrait ? ( isUnder768 ? "4%" : "4%") : "4%";
 
       gsap.set(heroVeil, {autoAlpha: 1});
-      //gsap.set(heroBG, {autoAlpha: 0});
       gsap.set(heroBGVideo, {autoAlpha: 0});
       gsap.set(heroSpotLeft, {autoAlpha: 0});
       gsap.set(heroSpotRight, {autoAlpha: 0});
       gsap.set(heroFighterRight, {autoAlpha: 0});
       gsap.set(heroFighterLeft, {autoAlpha: 0});
       gsap.set(heroMMAPPHeader, {xPercent: -50, left: "50%", top: heroMMAPPHeaderTop});
-      //gsap.set(heroMMAPPText, {transformPerspective:800, transformStyle:"preserve-3d"});
       gsap.set(heroMMAPPiPhone, {autoAlpha: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
       gsap.set(heroMMAPPiPhone2, {opacity: 0, xPercent: -50, left: "50%", height: heroMMAPPiPhoneScale, bottom: "-70%"});
 
@@ -1116,7 +929,7 @@ export default function Home() {
         { types: 'chars',
           charsClass: cn(
             'bg-white/70 border-[1.5px] border-[var(--primary-fuchsia)] rounded-b-sm',
-            'py-2 px-[0.6rem] portrait:md:px-4 lg:px-4' // min-w-12 md:min-w-16
+            'py-2 px-[0.6rem] portrait:md:px-4 lg:px-4'
             ),
           wordsClass: "perspective-750",
           // linesClass: "perspective-750",
@@ -1140,15 +953,12 @@ export default function Home() {
             duration: 2,
             //ease: "bounce.out",
             ease: CustomEase.create("custom", "M0,0 C0.051,0 0.106,0.334 0.136,0.5 0.166,0.669 0.192,0.963 0.2,1 0.208,0.985 0.28,0.289 0.354,0.3 0.468,0.316 0.491,0.983 0.5,1 0.518,0.974 0.594,0.562 0.638,0.599 0.713,0.662 0.729,0.934 0.763,1.005 0.799,0.93 0.817,0.769 0.846,0.818 0.875,0.867 0.897,0.985 0.911,0.998 0.922,0.994 0.938,0.973 0.953,0.973 0.968,0.973 1,1 1,1 "),
-            // ease: CustomEase.create("custom", "M0,0 C0,0 0.015,0.156 0.021,0.226 0.033,0.373 0.054,0.719 0.065,0.867 0.07,0.941 0.109,1.488 0.113,1.533 0.191,2.451 0.256,0.554 0.26,0.482 0.276,0.163 0.327,0.106 0.346,0.4 0.35,0.467 0.4,1.573 0.443,1.573 0.485,1.573 0.527,0.535 0.577,0.535 0.627,0.535 0.63,1.37 0.668,1.371 0.704,1.371 0.707,0.722 0.755,0.723 0.781,0.723 0.789,1.184 0.816,1.2 0.838,1.213 0.856,0.833 0.88,0.833 0.913,0.833 0.891,1.104 0.922,1.104 0.95,1.104 0.945,0.915 0.964,0.948 0.98,1 1,1 1,1 "),
           }
         )
 
       // HeroIntroStage Animation
-      //let hasHeroIntroStageRan = false;
       const HeroIntroStage = gsap.timeline({
         paused:true,
-        /* onComplete: () => { MappingMMARevealAnim?.play(); hasHeroIntroStageRan = true; }, */
         defaults: {delay: 0.25},
       })
         .fromTo(heroSpotLeft, {autoAlpha: 0, xPercent: -100, yPercent: -1000}, {autoAlpha: 1, xPercent: 0, yPercent: 0, duration: 0.125, ease: "power1.in"}, 0)
@@ -1157,18 +967,8 @@ export default function Home() {
         .fromTo(heroFighterLeft, {autoAlpha: 0, xPercent: -100, left: "-50%"}, {autoAlpha: 1, xPercent: -50, left: "50%", duration: 0.5, ease: "back.out"}, 0.55)
         .fromTo(heroFighterRight, {autoAlpha: 0, xPercent: 100, right: "-50%"}, {autoAlpha: 1, xPercent: 50, right: "50%", duration: 0.5, ease: "power2.out"}, 0.6)
         .fromTo(heroMMAPPLogo, {autoAlpha: 0, width: 0}, {autoAlpha: 1, width: heroMMAPPLogoWidth, duration: 0.2, ease: "back.out", onComplete: () => {MappingMMARevealAnim?.play()}}, 1.05)
-        //.fromTo(heroMMAPPText, {autoAlpha: 0, scale: 0}, {autoAlpha: 1, scale: 1, duration: 0.2, ease: "back.out"}, 1.35)
         .to(heroMMAPPiPhone, {autoAlpha: 1, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
         .to(heroMMAPPiPhone2, {opacity: 0.5, bottom: heroMMAPPiPhoneBottom, duration: 0.2, ease: "power1.out"}, 1.4)
-      //HeroIntroStage.play();
-
-      /* if (isHeroIntro3DComplete && !hasHeroIntroStageRan) {
-        HeroIntroStage.play();
-      } */
-      /* if (heroIntroStageReady) {
-        HeroIntroStage.play();
-      } */
-      //playHeroIntroStage();
 
       const handleHeroBGVideoLoaded = contextSafe(() => {
         HeroIntroStage.play();
@@ -1179,8 +979,7 @@ export default function Home() {
       return () => {
         window.removeEventListener('heroBGVideoLoaded', handleHeroBGVideoLoaded);
       };
-  
-    /* GSDevTools.create(); */
+
     },
     { dependencies: [isLandscape, isPortrait, isUnder768, isOver1536, isMobileOnly, isAndroid], revertOnUpdate: false }
   );
@@ -1192,17 +991,12 @@ export default function Home() {
       <MmappHeadingReveal onReady={handleAnimationReady} />
       <MmappParagraphsReveal onReady={handleAnimationReady} />
       <MmappParagraphsRevealRight onReady={handleAnimationReady} />
-      {/* <MappingMMAReveal /> */}
-      {/* <div id="topOverlay" className="z-[500] absolute top-0 right-0 mt-[10vh]">
-        <h4 id="topOverlayh4" className="text-white">orientation = {isPortrait}</h4>
-      </div> */}
 
       <div className="homeRoot">
         <title>Home | MMAPP</title>
 
         <section id="Home" className="homeSection overflow-hidden">
           <div className="hero relative w-[100vw] h-[100svh]" ref={heroContainer}>
-            {/* <img src="/images/33498201-fade.webp" alt="Fighters getting ready to fight"/> */}
             <video
               className="z-[1] absolute object-cover top-0 left-0 w-screen h-[99svh]"
               src={heroVideo}
@@ -1217,19 +1011,6 @@ export default function Home() {
                 window.dispatchEvent(event);
               }}
             />
-            {/* <video
-              className="z-[1] absolute object-cover top-0 left-0 h-[100svh]"
-              playsInline
-              muted
-              autoPlay
-              loop
-              id="heroBGVideo"
-            >
-              <source
-              src="/videos/hero/empty-fighting-cage-ready-fight.1620x1080p.x264.AVBR1500kbps.veryslow.mp4"
-              type="video/mp4" />
-            </video> */}
-            {/* <img id="heroBG" src="/images/hero/bg.webp" alt="Arena" className="z-[1] absolute object-cover top-0 left-0 w-[100vw] h-[100svh]"/> */}
             <picture><img id="heroSpotLeft" src="/images/hero/spotlights_top_left.webp" alt="Spotlight Top Left" className="z-[2] absolute object-scale-down top-0 left-0 max-w-[35vw] md:max-w-full"/></picture>
             <picture><img id="heroSpotRight" src="/images/hero/spotlights_top_right.webp" alt="Spotlight Top Right" className="z-[2] absolute object-scale-down top-0 right-0 max-w-[35vw] md:max-w-full"/></picture>
             <div id="heroMMAPPHeader" className="z-[3] absolute flex flex-col justify-center items-center w-screen">
@@ -1238,10 +1019,6 @@ export default function Home() {
                 "relative pt-0 text-center text-black font-extrabold deboss font-sans",
                 'landscape:text-[2.75vw] landscape:md:text-[4vw] landscape:lg:text-[3.25vw] landscape:xl:text-[3.75vw] landscape:2xl:text-[4vw] landscape:3xl:text-[4.5vw]',
                 'portrait:text-[5.5vw] portrait:md:text-[5vw] portrait:lg:text-[7vw]',
-                /* isMobileOnly ?
-                  'text-[1.75rem] md:text-[2.5rem] lg:text-[3rem]'
-                :
-                  'text-[1.75rem] md:text-[7rem] lg:text-[2.5vw] portrait:md:text-[5vw]', */
                 )}
               >
                 MAPPING  MMA
@@ -1256,7 +1033,7 @@ export default function Home() {
                 height="fit"
                 alt="iphone-12"
               />
-            </picture> {/* // h-[40svh] */}
+            </picture>
             <picture><img id="heroFighterRight" src={heroFighterRight} alt="Red Fighter" className="z-[4] absolute object-scale-down bottom-0 right-0 max-h-[65svh]"/></picture>
             <picture><img id="heroFighterLeft" src={heroFighterLeft} alt="Blue Fighter" className="z-[4] absolute object-scale-down bottom-0 left-0 max-h-[65svh]"/></picture>
             <picture><img id="heroBGFader" src="/images/hero/fader.webp" alt="Arena" className="z-[4] absolute object-cover bottom-[-1px] md:bottom-[0px] left-0 w-[100vw] h-[100svh]"/></picture>
@@ -1269,12 +1046,8 @@ export default function Home() {
                 height="fit"
                 alt="iphone-12"
               />
-            </picture> {/* // h-[40svh] */}
+            </picture>
           </div>
-          {/* <HomeIntroR3F /> */}
-          {/* <HomeiPhoneIntroR3F /> */}
-          {/* <HomeReact3FiberViewer /> */}
-          {/* {isUnder768 ? '' : <HomeCageR3F />} */}
           <div id="heroVeil" className="absolute z-[10] top-0 left-0 w-[100vw] h-[100lvh] bg-[var(--background-grey)]"/>
         </section>
 
@@ -1286,9 +1059,6 @@ export default function Home() {
             <MainFCHeading className="mmappHeadingReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[1%] lg:px-[0%] break-normal">
               Boosting MMA Federations to the Digital Age with our all-in-one solution
             </MainFCHeading>
-            {/* <MainFCDescription className="mmappParagraphsReveal flex flex-col justify-center z-20 text-center px-[0%] md:px-[8%] lg:px-[17%] mb-8 md:mb-12 lg:mb-12">
-              MMAPP is an all-in-one solution for MMA Federations, enabling a quick and effortless transition to the digital age, helping elevate MMA to the highest level.
-            </MainFCDescription> */}
             <div className="ourExpertiseDescriptionContainer flex flex-col md:flex-row w-full">
               {isUnder768 ? <OurExpertise className="mmappBlockReveal" /> : 
                 <>
@@ -1378,57 +1148,6 @@ export default function Home() {
           <h5 className="mmappBlockReveal mb-4 md:mb-8 lg:mb-12 text-neutral-200 text-center deboss">
             Features
           </h5>
-
-          {/* <HomeFeaturesR3F /> */}
-          {/* {isUnder768||isMobileOnly ? '' : 
-            <>
-              <div className="hidden md:block" ref={homeFeaturesR3FobserverRef} />
-              {showHomeFeaturesR3F && (
-                <Suspense fallback={
-                  <div className="z-[50] text-white/80 text-center">
-                    <h2>Loading 3D...</h2>
-                    <div className="flex-col gap-4 w-full flex items-center justify-center">
-                      <div className="flex items-center justify-center">
-                        <svg
-                          className="animate-spin"
-                          xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                          viewBox="0 0 48 48" fill="none"
-                        >
-                          <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                }>
-                  <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
-                </Suspense>
-              )}
-            </>
-          } */}
-
-          {/* {isUnder768||isMobileOnly ? '' : 
-            <>
-              <div className="hidden md:block" />
-              <Suspense fallback={
-                <div className="z-[50] text-white/80 text-center">
-                  <h2>Loading 3D...</h2>
-                  <div className="flex-col gap-4 w-full flex items-center justify-center">
-                    <div className="flex items-center justify-center">
-                      <svg
-                        className="animate-spin"
-                        xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                        viewBox="0 0 48 48" fill="none"
-                      >
-                        <circle cx="24" cy="24" r="22.5" stroke="#800080" strokeWidth="3" strokeDasharray="15 15" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              }>
-                <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
-              </Suspense>
-            </>
-          } */}
 
           {isUnder768||isMobileOnly ? '' : 
             <HomeFeaturesR3F onLoaded={createScrollTriggerWhenHomeFeaturesR3FLoaded} />
@@ -1619,101 +1338,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* 
-            // Dashboard V3 with 3D
-          <div id="featuresDashboard" className="featuresDashboard flex justify-center">
-            <div className={clsx("w-full h-full flex flex-col md:flex-row relative",
-            "hero1ContainerMargins rounded-[3rem] px-10 md:px-20 lg:px-32 py-28 md:py-32 lg:py-32 border-2 border-neutral-900")}>
-              <div id="featuresDashboardContainer" className="flex flex-col w-full justify-top z-20 text-center">
-                <h2 id="featuresDashboardTitle" className="text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100 pb-2">
-                  Federations (Dashboard)
-                </h2>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Overview of Federation Affairs
-                  </h4>
-                </FeaturesDashboardCard>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Visual Reports with Actionable Insights
-                  </h4>
-                </FeaturesDashboardCard>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Easy Form Management and Seamless Sign-up process for all (Officials, Athletes, Coaches, Promoters and Clubs)
-                  </h4>
-                </FeaturesDashboardCard>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Intuitive Member Management
-                  </h4>
-                </FeaturesDashboardCard>
-                <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="">
-                  <h4 className="featuresDashboardHeaderItem">
-                    Centralized Database
-                  </h4>
-                </FeaturesDashboardCard>
-              </div>
-            </div>
-          </div> */}
-
-          {/*
-            // Dashboard V2 with Screen and MacBook Pro image behind
-          <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
-            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
-            <div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] flex flex-col justify-center items-center z-5">
-              <img className="object-contain relative z-5 max-w-[68%] mt-[5vh] macBookPro" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x_alpha.webp" alt="MacBook Pro"/>
-            </div>
-            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
-              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
-              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
-            </div>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
-              <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
-            </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
-              <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
-            </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
-              <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
-            </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
-              <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
-            </FeaturesDashboardCard>
-          </div> */}
-          {/*
-            // Dashboard V1 with Screen and shadow
-            <div id="featuresDashboard" className="flex flex-col items-center dashboardCards my-24">
-            <h2 id="featuresDashboardTitle" className="z-20 px-[5vw] md:px-[20vw] lg:px-[10vw] portrait:pb-4 md:portrait:pb-12 text-center text-transparent bg-clip-text bg-gradient-to-tr from-[var(--purple-250)] to-purple-100" >Federations (Dashboard)</h2>
-            //<div id="featuresDashboardMBP" className="absolute w-[92vw] h-[100vh] pt-[8vh] flex items-start z-5">
-              <img className="object-contain z-5" src="/images/features/mbp_16_hw__cqlhn5ys0o9y_large_2x.jpg" alt="MacBook Pro"/>
-            </div>
-            <div id="featuresDashboardHeader" className="featuresDashboardHeader w-full flex items-center justify-center text-center z-20 overflow-visible relative py-6 portrait:py-12">
-              <h5 className="relative" style={{ visibility: 'hidden' }}>Easy Form Management and Seamless Sign-up process<br/>for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Overview of Federation Affairs</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Visual Reports with Actionable Insights</h5>
-              <h5 className="absolute px-[5vw] 2xl:px-[10vw] featuresDashboardHeaderItem">Easy Form Management and Seamless Sign-up process for all your members (Officials, Athletes, Coaches, Promoters and Clubs)</h5>
-              <h5 className="absolute featuresDashboardHeaderItem">Intuitive Member Management</h5>
-            </div>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
-              <img src="/images/features/federationsDashboard/dashboard1.webp" alt="Federations Dashboard 1"/>
-            </FeaturesDashboardCard>
-            <ProDisplayShadowSVG className="proDisplayShadowSVG pb-[35vh]"/>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
-              <img src="/images/features/federationsDashboard/dashboard2.webp" alt="Federations Dashboard 2"/>
-            </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-[35vh]">
-              <img src="/images/features/federationsDashboard/dashboard3.webp" alt="Federations Dashboard 3"/>
-            </FeaturesDashboardCard>
-            <FeaturesDashboardCard className="dashboardCard z-10" parentClassName="pb-0">
-              <img src="/images/features/federationsDashboard/dashboard4.webp" alt="Federations Dashboard 4"/>
-            </FeaturesDashboardCard>
-          </div> */}
-
 
           {/* // Judge */}
           <div id="featuresJudge" className="visible md:invisible featuresJudge flex justify-center">
@@ -2114,24 +1738,12 @@ export default function Home() {
               Choose your category below to find out how you stand to gain
             </p>
           </div>
-          <Benefits /* items={items} */ />
+          <Benefits />
 
           <CallToActionButton className="mmappBlockReveal mt-[5vw]" btnLabel="I want my Federation to join MMAPP" />
         </section>
 
         <div className="borderBottom"></div>
-
-        {/* <section id="FAQSupport" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">
-          <h5 className="mmappBlockReveal mb-8 md:mb-10 lg:mb-12 text-neutral-200 text-center deboss">
-            FAQs/Support
-          </h5>
-          <p className="mmappBlockReveal text-center mb-8 md:mb-10 lg:mb-12 md:px-56">
-            If you have any other questions, or need any assistance, please feel free to use the contact us form below
-          </p>
-          <FAQ className="mmappBlockReveal" />
-        </section>
-
-        <div className="borderBottom"></div> */}
 
 
         <section id="ContactUs" className="flex flex-col justify-center items-center py-32 md:py-40 lg:py-52">

@@ -14,17 +14,11 @@ import { MenuGlove } from '@/components/ui/svg/MenuGloveSVG';
 
 gsap.registerPlugin(gsap, useGSAP);
 
-const Navbar = (/* { toggle }: { toggle: () => void } */) => {
+const Navbar = () => {
   const isUnder768 = useMediaQuery('(max-width: 767px)');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); //This key forces the SVG components to re-mount triggereing the animations again
 
-  /* function toggleHamburgerSVG() { // Switch the SVGs and trigger the animations
-    setIsMenuOpen(!isMenuOpen);
-    setAnimationKey(prevKey => prevKey + 1); // Increment the key to force the SVG components to re-mount and trigger the animation again
-  } */
-
-  /* const main = useRef<HTMLElement | null>(null); */
   useEffect(() => {
     const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
     const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
@@ -51,16 +45,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         drop.addEventListener("click", (e) => e.stopPropagation());
       });
     }
-
-    /* function toggleHamburgerSVG() {
-      if (navMenuSpacer?.classList.contains("show")){
-        setIsMenuOpen(!isMenuOpen);
-        setAnimationKey(prevKey => prevKey + 1);
-      } else {
-        setIsMenuOpen(isMenuOpen);
-        setAnimationKey(prevKey => prevKey + 1);
-      }
-    }; */
 
     function toggleHamburger() {
       let matchMedia = gsap.matchMedia();
@@ -96,7 +80,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
               onStart: () => {
                 gsap.fromTo(loginLink, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
                 gsap.fromTo(mmappsButtons, {xPercent: 0, autoAlpha: 1}, {xPercent: 100, autoAlpha: 0, duration: 0.25, ease:"power1.in"});
-                //gsap.fromTo(MenuGloveSVG, {xPercent: -50, autoAlpha: 1}, {xPercent: 100, autoAlpha: 1, duration: 0.3, delay: 0.2, ease:"power1.out"});
               }
             },
           );
@@ -146,12 +129,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         }
       });
     }
-    
-
-    /* function toggleHamburgerIfActive() {
-      navMenu?.classList.remove("show");
-      navMenuSpacer?.classList.remove("show");
-    } */
 
     dropdownBtn.forEach((btn) => {
       btn.addEventListener("click", function (e) {
@@ -160,18 +137,8 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
         const dropdownContent = dropdownElement.querySelector('ul');
         const dropdownContentLi = dropdownContent?.querySelectorAll('li') as NodeListOf<HTMLLIElement>;
         const dropdownElementA = dropdownElement.querySelectorAll("a") as NodeListOf<HTMLAnchorElement>;
-        //const dropdownContentLiS = gsap.utils.toArray('[role="menuitem"]');
-        //console.log(dropdownContentLiS)
 
-        /* if (btn.getAttribute("aria-expanded") === "true") {
-          closeDropdownMenu();
-          console.log("Here")
-        } */
         if (dropdownElement?.classList.contains("active")){
-          //closeDropdownMenu();
-          //setAriaExpandedFalse();
-          //console.log("Close");
-          /* gsap.fromTo(dropdownContentLi, {xPercent: 0}, {xPercent: 100, duration: 0.125, ease:"back.in", stagger: 0.05}) */
           if (isUnder768) {
             gsap.fromTo(dropdownContentLi,
               {xPercent: 0},
@@ -189,21 +156,12 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           } else {
             closeDropdownMenu();
             setAriaExpandedFalse();
-            //gsap.fromTo(dropdownElementA, {yPercent: 0}, {yPercent: -100, duration: 0.25, ease:"power1.out", stagger: 0.05})
           }
-          /* dropdownContentLi?.forEach(box => {
-            gsap.from(box, {
-              ease: "power1.in",
-              duration:3,
-              stagger: 0.9,
-            });
-          }); */
         } else {
           dropdownElement?.classList.toggle("active");
           setAriaExpandedFalse();
           btn.setAttribute("aria-expanded", "true")
           //console.log("Open")
-          /* gsap.fromTo(dropdownContentLi, {xPercent: 100}, {xPercent: 0, duration: 0.25, ease:"back.out", stagger: 0.1}) */
           if (isUnder768) {
             gsap.fromTo(dropdownContentLi, {xPercent: -100}, {xPercent: 0, duration: 0.125, ease:"power1.out", stagger: 0.05})
           } else {
@@ -217,11 +175,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
           }
         });
         e.stopPropagation();
-        /* setAriaExpandedFalse(); */
-        /* btn.setAttribute(
-          "aria-expanded",
-          btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
-        ); */
       });
     });
     
@@ -260,45 +213,13 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
 
     // toggle hamburger menu
     hamburgerBtn?.addEventListener("click", toggleHamburger);
-  }, [isUnder768]); // Empty dependency array ensures this runs once on mount
-
-
-  /* ===== GSAP React ===== */
-  useGSAP(
-    () => {
-
-    /* const dropdownBtn = document.querySelectorAll(".dropdown-btn") as NodeListOf<HTMLButtonElement>;
-    const dropdown = document.querySelectorAll(".dropdown") as NodeListOf<HTMLButtonElement>;
-
-
-    function openDropdownMenu() {
-      dropdown.forEach((drop) => {
-        if (drop?.classList.contains("active")){
-          gsap.fromTo(drop, {height: 0, duration: 5}, {height: "100%", duration: 5})
-          console.log("Open")
-        } else {
-          gsap.fromTo(drop, {height: "100%", duration: 5}, {height: 0, duration: 5})
-          console.log("Close")
-        }
-      });
-    } */
-
-  /* GSDevTools.create(); */
-
-  },
-  { dependencies: [ /* color, noHover, portrait, under768, isGecko, lettersYInit, lettersYLiftoff, lettersYDrop, lettersYRise */], revertOnUpdate: true, /* scope: main */ }
-  );
-
-
+  }, [isUnder768]);
 
   return (
     <>
       <header id="nav-menu" aria-label="navigation bar"/*  ref={main} */>
         <div className="nav-container">
           <div className="nav-start">
-            {/* <a className="logo logo-link" data-link="#home">
-              <img src="/images/logo.png" alt="MMAPP Logo" />
-            </a> */}
             <div className="menu-spacer flex w-full h-full max-h-[100lvh]">
               <nav className="menu">
                 <ul className="menu-bar">
@@ -308,7 +229,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                         src="/images/logos/mmapp/logo_on_black.svg"
                         alt="MMAPP Logo"
                         id="mmappNavMenuLogo"/></picture>
-                      {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
                     <div id="dropdown1" className="dropdown transition-transform">
@@ -353,15 +273,6 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                               Benefits for everyone
                             </a>
                         </li>
-                        {/* <li role="menuitem">
-                            <a
-                              href="/#FAQSupport"
-                              data-page="/"
-                              data-link="#FAQSupport"
-                              className="dropdown-link dropdown-link-button">
-                              FAQs/Support
-                            </a>
-                        </li> */}
                         <li role="menuitem">
                             <a
                               href="/#ContactUs"
@@ -378,14 +289,10 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                   <li>
                     <button className="nav-link dropdown-btn group" data-dropdown="dropdown2" aria-haspopup="true" aria-expanded="false" aria-label="Company">
                       Company
-                      {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
                     <div id="dropdown2" className="dropdown">
                       <ul role="menu2">
-                        {/* <li>
-                          <span className="dropdown-link-title">MMAPP for...</span>
-                        </li> */}
                         <li role="menuitem">
                             <a
                               href="/company#Mission"
@@ -439,11 +346,9 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
                       </ul>
                     </div>
                   </li>
-                  {/* <li><a className="nav-link" href="/">Security & Compliance</a></li> */}
                   <li>
                     <button className="nav-link dropdown-btn group" data-dropdown="dropdown3" aria-haspopup="true" aria-expanded="false" aria-label="Product">
                       Product
-                      {/* <div className="bx bx-chevron-down" aria-hidden="true"></div> */}
                       <div className="arrowDown group-aria-[expanded=false]:rotate-0 group-aria-[expanded=true]:rotate-180 transition-transform"><ArrowDown aria-hidden="true"/></div>
                     </button>
                     <div id="dropdown3" className="dropdown">
@@ -598,20 +503,13 @@ const Navbar = (/* { toggle }: { toggle: () => void } */) => {
             <div id="MenuGloveSVG" className="absolute MenuGloveSVG block md:hidden invisible w-[100vw] h-[25vh] top-0 right-0">
               <MenuGlove />
             </div>
-              {/* <form className="search" role="search">
-                <input type="search" name="search" placeholder="Search" />
-                <i className="bx bx-search" aria-hidden="true"></i>
-              </form> */}
-              {/* <a href="#profile">
-                <img src="https://???" width="30" height="30" alt="user image" />
-              </a> */}
               <button id="loginLink" className="btn btn-primary login-link hover:ring-1 hover:ring-white hover:ring-opacity-85 hover:ring-offset-2">
                 <a href="https://dashboard.mmapp.app/login">Login</a>
               </button>
             </div>
 
             <button id="hamburger" className="block md:hidden relative ml-8 mr-4" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
-              <div className="hamburgerMenu" > {/* // onClick={toggleHamburgerSVG} */}
+              <div className="hamburgerMenu" >
                 {isMenuOpen ? (
                   <LineMdMenuToCloseTransition key={animationKey} aria-hidden="true" />
                 ) : (
