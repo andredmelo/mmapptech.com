@@ -25,8 +25,12 @@ export async function addEntry(data: Inputs) {
 // Contact Form
 type ContactFormInputs = z.infer<typeof ContactFormSchema>
 
+if (!process.env.MAILER_SEND_API_TOKEN) {
+  throw new Error('MAILER_SEND_API_TOKEN is not defined');
+}
+
 const mailerSend = new MailerSend({
-  apiKey: 'mlsn.07e27fa464e2d75484a582b57df9fb7adea894054dc54695c4fb20b68b99637e' || '',
+  apiKey: process.env.MAILER_SEND_API_TOKEN,
 });
 
 export async function sendEmail(data: ContactFormInputs) {
