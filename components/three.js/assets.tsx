@@ -104,25 +104,6 @@ export const IPhoneModel: React.FC<{
 
   const iPhoneRef = useRef<Mesh>(null);
 
-  useFrame((_state, delta) => {
-  // Make it spin
-    /* if (iPhoneRef.current) {
-        iPhoneRef.current.rotation.y -= delta / 1;
-    } */
-
-    // Make it bob
-    /* let baseY = 0; // Base y-position of the model
-    let amplitude = 0.05; // Amplitude of the bobbing, adjust as needed
-    let frequency = 1; // Frequency of the bobbing, adjust as needed
-    const clock = new Clock()
-    const elapsedTime = clock.getElapsedTime()
-    if (iPhoneRef.current){
-      iPhoneRef.current.rotation.y = 1.25 * elapsedTime;
-      let time = performance. now() * 0.001; // Current time in seconds
-      iPhoneRef.current.position.y = baseY + Math. sin(time * frequency) * amplitude;
-    } */
-  });
-
   useEffect(() => {
     //Set initial iPhone texture
     let iPhoneScreenMaterial: any;
@@ -313,25 +294,6 @@ export const IPadModel: React.FC<{
 
   const iPadRef = useRef<Mesh>(null);
 
-  useFrame((_state, delta) => {
-  // Make it spin
-    /* if (iPadRef.current) {
-        iPadRef.current.rotation.y -= delta / 1;
-    } */
-
-    // Make it bob
-    /* let baseY = 0; // Base y-position of the model
-    let amplitude = 0.05; // Amplitude of the bobbing, adjust as needed
-    let frequency = 1; // Frequency of the bobbing, adjust as needed
-    const clock = new Clock()
-    const elapsedTime = clock.getElapsedTime()
-    if (iPadRef.current){
-      iPadRef.current.rotation.y = 1.25 * elapsedTime;
-      let time = performance. now() * 0.001; // Current time in seconds
-      iPadRef.current.position.y = baseY + Math. sin(time * frequency) * amplitude;
-    } */
-  });
-
   useEffect(() => {
     //Set initial iPad texture
     let iPadScreenMaterial: any;
@@ -367,13 +329,10 @@ export const IPadModel: React.FC<{
     type TextureName = 'iPad_texture_1' | 'iPad_texture_2' | 'iPad_texture_3' | 'iPad_texture_4' | 'iPad_texture_5';
 
     const changeiPadTexture = (newiPadTextureName: TextureName) => {
-      //let iPadScreenMaterial: any;
       iPad.scene.traverse((child: Object3D) => {
         if (child instanceof Mesh && child.material.name === 'iPad_Screen') {
-          //console.log("texture = " + newiPadTextureName);
           let iPadScreenMaterial: any = child.material;
           const texture = textures[newiPadTextureName];
-          //console.log("iPad texture = " + texture);
 
           if (!texture) {
             console.error("Texture not found:", newiPadTextureName);

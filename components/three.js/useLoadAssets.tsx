@@ -247,19 +247,19 @@ export const useLoadAssets = (): LoadAssetsReturnType & { isLoading: boolean } =
         macBookPro_texture_5: macBookProTexture5,
         newMacBookProTextureName: macBookProTexture1, */
         // Video textures
-        macBookPro_texture_1: macBookProVideoTextures[0],// Use the video textures for your models
+        macBookPro_texture_1: macBookProVideoTextures[0],
         macBookPro_texture_2: macBookProVideoTextures[1],
         macBookPro_texture_3: macBookProVideoTextures[2],
         macBookPro_texture_4: macBookProVideoTextures[3],
         macBookPro_texture_5: macBookProVideoTextures[4],
         newMacBookProTextureName: macBookProVideoTextures[0],
-        iPhone_texture_1: iPhoneVideoTextures[0],// Use the video textures for your models
+        iPhone_texture_1: iPhoneVideoTextures[0],
         iPhone_texture_2: iPhoneVideoTextures[1],
         iPhone_texture_3: iPhoneVideoTextures[2],
         iPhone_texture_4: iPhoneVideoTextures[3],
         iPhone_texture_5: iPhoneVideoTextures[4],
         newiPhoneTextureName: iPhoneVideoTextures[0],
-        iPad_texture_1: iPadVideoTextures[0],// Use the video textures for your models
+        iPad_texture_1: iPadVideoTextures[0],
         iPad_texture_2: iPadVideoTextures[1],
         iPad_texture_3: iPadVideoTextures[2],
         iPad_texture_4: iPadVideoTextures[3],

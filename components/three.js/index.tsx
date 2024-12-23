@@ -129,66 +129,6 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
         if (document.querySelector('.homeiPhoneIntro') && document.querySelector('.homeSection') && iPhone?.scene) {
           clearInterval(checkhomeiPhoneIntro);
 
-          /* const detectViewportRatio = () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const ratio = width / height;
-
-            if (isLandscape) {
-              if (ratio > 16/9) {
-                //console.log("Viewport is wider than 16:9");
-                return 4.8;
-              } else if (ratio < 16/9) {
-                //console.log("Viewport is narrower than 16:9");                
-                return gsap.utils.mapRange(1, 1.777, 3, 4.8, ratio);
-              }
-            } else if (isUnder768) {
-              return 7.5;
-            } else {
-              return 6;
-            }
-
-            if (ratio > 16/9) {
-              console.log("Viewport is wider than 16:9");
-              //return 4.9;
-            } else if (ratio < 16/9) {
-              console.log("Viewport is narrower than 16:9");
-              //return ratio;
-            } else {
-              console.log("Viewport is 16:9");
-            }
-            if (ratio < 4/3) {
-              console.log("Viewport is narrower than 4:3");
-
-            } else if (ratio > 4/3) {
-              console.log("Viewport is wider than 4:3");
-            } else {
-              console.log("Viewport is 4:3");
-            }
-            //console.log("ratio is "+ratio);
-
-            if (ratio > 1.54) {
-              //gsap.set(document.getElementById("featuresDashboardTitle"), {marginBottom: 0, });
-            }
-          }
-          detectViewportRatio();
-          window.addEventListener('resize', () => {
-            console.log(detectViewportRatio());
-            detectViewportRatio();
-          }); */
-          //To detect if a viewport is ultra-wide 1.9265 = 920px height
-          /* function isViewportNarrowerThan169() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const ratio = width / height;
-            return ratio < 16/9;
-          }
-          if (isViewportNarrowerThan169()) {
-            console.log("Viewport is narrower than 16:9");
-          } else {
-            console.log("Viewport is 16:9 or wider");
-          } */
-
           const detectiPhoneScaleLandscape = (widthViewport: number, heightViewport: number) => {
             /* const width = window.innerWidth;
             const height = window.innerHeight; */
@@ -209,8 +149,6 @@ export const HomeiPhoneIntroR3F: React.FC = () => {
           //console.log("detectiPhoneScaleLandscape = "+detectiPhoneScaleLandscape( width, height ));
 
           const detectiPhoneYRestingPositionLandscape = (widthViewport: number, heightViewport: number) => {
-            /* const width = window.innerWidth;
-            const height = window.innerHeight; */
             const ratio = widthViewport / heightViewport;
 
             if (isLandscape) {
@@ -349,7 +287,7 @@ export const HomeFeaturesR3F: React.FC<HomeFeaturesR3FLoadedProps> = ({ onLoaded
       const isUnder768 = window.innerWidth < 768;
       const isOver1536 = window.innerWidth > 1536; */
       // Initialize a variable to store the largest observed viewport height
-      let largestViewportHeight = window.innerHeight;      
+      let largestViewportHeight = window.innerHeight;
       // Update the largest observed viewport height on resize
       window.addEventListener('resize', () => {
         largestViewportHeight = Math.max(largestViewportHeight, window.innerHeight);
